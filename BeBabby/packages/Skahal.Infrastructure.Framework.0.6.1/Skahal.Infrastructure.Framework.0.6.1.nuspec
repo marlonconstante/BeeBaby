@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Skahal.Infrastructure.Framework</id>
+    <version>0.6.1</version>
+    <title>Skahal.Infrastructure.Framework</title>
+    <authors>Skahal</authors>
+    <owners>Skahal</owners>
+    <licenseUrl>https://github.com/skahal/Skahal.Infrastructure.Framework/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/skahal/Skahal.Infrastructure.Framework</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Skahal's infrastructure framework used in games (destop, web, iOS and Android) and apps (OSX, Win and iOS).</description>
+    <summary>Skahal's infrastructure framework used in games (destop, web, iOS and Android) and apps (OSX, Win and iOS).</summary>
+    <releaseNotes>Added Rollback method to IUnitOfWork and MemoryUnitOfWork.</releaseNotes>
+    <copyright />
+    <tags>ddd unitOfWork framework repository entity</tags>
+    <dependencies>
+      <dependency id="HelperSharp" version="0.0.2.9" />
+      <dependency id="System.IO.Abstractions" version="1.4.0.66" />
+    </dependencies>
+  </metadata>
+</package>
