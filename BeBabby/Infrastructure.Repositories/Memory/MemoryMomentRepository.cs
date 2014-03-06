@@ -16,7 +16,8 @@ namespace Infrastructure.Repositories.Memory
 		public MemoryMomentRepository(IUnitOfWork unitOfWork)
 			: base(unitOfWork, u =>
 			{
-				return ++s_lastKey;
+				++s_lastKey;
+				return s_lastKey.ToString();
 			})
 		{
 			s_lastKey = 0;

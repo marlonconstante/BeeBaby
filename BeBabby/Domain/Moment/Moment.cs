@@ -1,6 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Domain;
 using System.Collections.Generic;
+using Domain.Media;
 
 namespace Domain.Moment
 {
@@ -19,7 +20,7 @@ namespace Domain.Moment
 		/// Gets or sets the medias.
 		/// </summary>
 		/// <value>The medias.</value>
-		public IList<Media> Medias { set; get; }
+		public IList<MediaBase> Medias { set; get; }
 
 		/// <summary>
 		/// Gets or sets the description.

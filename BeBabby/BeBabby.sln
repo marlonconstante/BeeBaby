@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeBabby", "BeBabby\BeBabby.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.iOS", "BeBabby\App.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D6BAC3D9-67FC-4448-83CE-6D905212CE48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{64C49034-2B88-4908-976E-5666EDD7D4B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BEF9C1D0-14CC-4640-9041-77ECE96E1038}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0D61ADF6-DA94-4E23-8E22-79C896D46C6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Repositories", "Infrastructure.Repositories\Infrastructure.Repositories.csproj", "{2053666D-F182-4C7A-AB38-994861F13536}"
 EndProject
@@ -41,6 +47,18 @@ Global
 		{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}.Release|iPhone.Build.0 = Release|iPhone
 		{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Release|iPhone.Build.0 = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{64C49034-2B88-4908-976E-5666EDD7D4B9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{BEF9C1D0-14CC-4640-9041-77ECE96E1038}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
 		{BEF9C1D0-14CC-4640-9041-77ECE96E1038}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
 		{BEF9C1D0-14CC-4640-9041-77ECE96E1038}.AppStore|iPhone.ActiveCfg = Release|Any CPU
@@ -54,8 +72,13 @@ Global
 		{BEF9C1D0-14CC-4640-9041-77ECE96E1038}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BEF9C1D0-14CC-4640-9041-77ECE96E1038}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64C49034-2B88-4908-976E-5666EDD7D4B9} = {D6BAC3D9-67FC-4448-83CE-6D905212CE48}
+		{BEF9C1D0-14CC-4640-9041-77ECE96E1038} = {D6BAC3D9-67FC-4448-83CE-6D905212CE48}
+		{2053666D-F182-4C7A-AB38-994861F13536} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
+	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BeBabby\BeBabby.csproj
+		StartupItem = BeBabby\App.iOS.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical

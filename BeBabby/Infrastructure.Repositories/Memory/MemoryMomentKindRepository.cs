@@ -7,7 +7,7 @@ namespace Infrastructure.Repositories.Memory
 	/// <summary>
 	/// IMomentKindRepository memory implementation.
 	/// </summary>
-	public class MemoryMomentKindRepository : MemoryRepository<MemoryMomentKindRepository>, IMomentKindRepository
+	public class MemoryMomentKindRepository : MemoryRepository<MomentKind>, IMomentKindRepository
 	{
 		#region Fields
 		private static long s_lastKey;
@@ -16,7 +16,8 @@ namespace Infrastructure.Repositories.Memory
 		public MemoryMomentKindRepository(IUnitOfWork unitOfWork)
 			: base(unitOfWork, u =>
 			{
-				return ++s_lastKey;
+				++s_lastKey;
+				return s_lastKey.ToString();
 			})
 		{
 			s_lastKey = 0;
