@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>TestSharp</id>
+    <version>1.0.2</version>
+    <title>TestSharp</title>
+    <authors>Diego Giacomelli</authors>
+    <owners>Diego Giacomelli</owners>
+    <projectUrl>https://github.com/giacomelli/TestSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of helpers and asserts for unit and functional tests</description>
+    <releaseNotes>Added TimeAssert.</releaseNotes>
+  </metadata>
+</package>

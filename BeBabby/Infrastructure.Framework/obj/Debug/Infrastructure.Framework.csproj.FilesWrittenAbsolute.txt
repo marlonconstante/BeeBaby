@@ -1,0 +1,8 @@
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/bin/Debug/Infrastructure.Framework.dll.mdb
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/bin/Debug/Infrastructure.Framework.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/obj/Debug/Infrastructure.Framework.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/obj/Debug/Infrastructure.Framework.dll.mdb
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/bin/Debug/HelperSharp.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/bin/Debug/System.IO.Abstractions.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Infrastructure.Framework/bin/Debug/Skahal.Infrastructure.Framework.dll

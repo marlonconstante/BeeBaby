@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Moment\MomentKindServiceTest.cs" />
+    <Compile Include="Moment\MomentServiceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{BEF9C1D0-14CC-4640-9041-77ECE96E1038}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Framework\Infrastructure.Framework.csproj">
+      <Project>{AFE59ED3-1E14-494D-8DF9-73741E17D001}</Project>
+      <Name>Infrastructure.Framework</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -51,6 +51,7 @@
     <Compile Include="Moment\IMomentKindRepository.cs" />
     <Compile Include="Moment\IMomentRepository.cs" />
     <Compile Include="Moment\MomentKindService.cs" />
+    <Compile Include="Moment\MomentService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -59,5 +60,11 @@
   <ItemGroup>
     <Folder Include="Moment\" />
     <Folder Include="Media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Framework\Infrastructure.Framework.csproj">
+      <Project>{AFE59ED3-1E14-494D-8DF9-73741E17D001}</Project>
+      <Name>Infrastructure.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

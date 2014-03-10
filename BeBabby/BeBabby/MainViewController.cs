@@ -1,6 +1,8 @@
 ﻿using MonoTouch.UIKit;
 using System;
 using MonoTouch.Foundation;
+using Xamarin.Media;
+using System.Threading.Tasks;
 
 namespace BeBabby
 {
@@ -24,8 +26,12 @@ namespace BeBabby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-			
-			// Perform any additional setup after loading the view, typically from a nib.
+
+		}
+
+		partial void btnStartCamera (MonoTouch.UIKit.UIButton sender)
+		{
+
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -36,6 +42,27 @@ namespace BeBabby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+			var picker = new MediaPicker ();
+
+			if (!picker.IsCameraAvailable)
+				Console.WriteLine("No Camera");
+			else {
+				var tempName = new Guid().ToString();
+				picker.TakePhotoAsync(new StoreCameraMediaOptions
+				{
+					Name = tempName + ".jpg",
+					Directory = "MediaPickerSample"
+				}).ContinueWith (t => {
+					if (t.IsCanceled) {
+						Console.WriteLine("User cancelled");
+						return;
+					}
+					Console.WriteLine("Photo succeeded");
+
+					Console.WriteLine(t.Result.Path);
+				}, TaskScheduler.FromCurrentSynchronizationContext());
+			}
+
 		}
 
 		public override void ViewWillDisappear(bool animated)

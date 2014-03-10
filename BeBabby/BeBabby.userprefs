@@ -1,6 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Giusepe Casagrande’s iPad" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BeBabby/MainViewController.cs">
+    <Files>
+      <File FileName="Infrastructure.App.UnitTests/Resources/FileSystemResourceProviderTest.cs" Line="102" Column="61" />
+      <File FileName="Infrastructure.App/Resources/FileSystemResourceProvider.cs" Line="66" Column="99" />
+      <File FileName="BeBabby/MainViewController.cs" Line="37" Column="37" />
+      <File FileName="BeBabby/Main.cs" Line="16" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="App.iOS" expanded="True">
+            <Node name="MainViewController.cs" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
