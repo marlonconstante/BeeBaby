@@ -1,4 +1,8 @@
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Domain.UnitTests.dll.mdb
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Domain.UnitTests.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/obj/Debug/Domain.UnitTests.dll
+/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/obj/Debug/Domain.UnitTests.dll.mdb
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/HelperSharp.dll
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/System.IO.Abstractions.dll
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Skahal.Infrastructure.Framework.dll
@@ -8,7 +12,3 @@
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Domain.dll.mdb
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Infrastructure.Framework.dll
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Infrastructure.Framework.dll.mdb
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Domain.UnitTests.dll.mdb
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/bin/Debug/Domain.UnitTests.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/obj/Debug/Domain.UnitTests.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Domain.UnitTests/obj/Debug/Domain.UnitTests.dll.mdb

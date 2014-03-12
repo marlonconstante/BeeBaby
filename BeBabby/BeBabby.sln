@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.iOS", "BeBabby\App.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bebabby", "BeBabby\Bebabby.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D6BAC3D9-67FC-4448-83CE-6D905212CE48}"
 EndProject
@@ -123,7 +123,7 @@ Global
 		{0C763FF8-77C6-4C1D-864F-A079B88B202C} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BeBabby\App.iOS.csproj
+		StartupItem = BeBabby\Bebabby.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical

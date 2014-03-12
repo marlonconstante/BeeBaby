@@ -3,11 +3,14 @@ using System;
 using MonoTouch.Foundation;
 using Xamarin.Media;
 using System.Threading.Tasks;
+using MonoTouch.ObjCRuntime;
 
 namespace BeBabby
 {
 	public partial class MainViewController : UIViewController
 	{
+		UIImagePickerController m_picker;
+
 		public MainViewController(IntPtr handle) : base(handle)
 		{
 			// Custom initialization
@@ -29,11 +32,6 @@ namespace BeBabby
 
 		}
 
-		partial void btnStartCamera (MonoTouch.UIKit.UIButton sender)
-		{
-
-		}
-
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
@@ -42,27 +40,22 @@ namespace BeBabby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			var picker = new MediaPicker ();
 
-			if (!picker.IsCameraAvailable)
-				Console.WriteLine("No Camera");
-			else {
-				var tempName = new Guid().ToString();
-				picker.TakePhotoAsync(new StoreCameraMediaOptions
-				{
-					Name = tempName + ".jpg",
-					Directory = "MediaPickerSample"
-				}).ContinueWith (t => {
-					if (t.IsCanceled) {
-						Console.WriteLine("User cancelled");
-						return;
-					}
-					Console.WriteLine("Photo succeeded");
+			// Setup the UIImagePickerController
+			m_picker = new UIImagePickerController();
+			m_picker.SourceType = UIImagePickerControllerSourceType.Camera;
+			m_picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
+			m_picker.PrefersStatusBarHidden();
+			m_picker.ShowsCameraControls = false;
+			m_picker.Delegate = new ImagePickerDelegate();
 
-					Console.WriteLine(t.Result.Path);
-				}, TaskScheduler.FromCurrentSynchronizationContext());
-			}
+			// Setup the "OverlayView", basically the custom interface of the camera.
+			var nibObjects = NSBundle.MainBundle.LoadNib("OverlayView", this, null);
+			overlayView = (UIView)Runtime.GetNSObject(nibObjects.ValueAt(0));
+			overlayView.Frame = m_picker.CameraOverlayView.Frame;
+			m_picker.CameraOverlayView = overlayView;
 
+			PresentViewController(m_picker, false, null);
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -76,9 +69,14 @@ namespace BeBabby
 		}
 
 		#endregion
-
-		partial void showInfo(NSObject sender)
+		partial void btnSnap(MonoTouch.UIKit.UIBarButtonItem sender)
 		{
+			m_picker.TakePicture();
+		}
+
+		partial void btnDone(MonoTouch.UIKit.UIBarButtonItem sender)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

@@ -4,6 +4,24 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
+        <!--Overlay View Controller-->
+        <scene sceneID="4gm-5a-sap">
+            <objects>
+                <viewController id="s1e-I8-atF" customClass="OverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F0S-LI-enA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Srf-hN-SQH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Vl-kb-Xfj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PUF-Gs-qfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50" y="-491"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>

@@ -12,14 +12,21 @@ namespace BeBabby
 	[Register ("MainViewController")]
 	partial class MainViewController
 	{
-		[Action ("btnStartCamera:")]
-		partial void btnStartCamera (MonoTouch.UIKit.UIButton sender);
+		[Outlet]
+		MonoTouch.UIKit.UIView overlayView { get; set; }
 
-		[Action ("showInfo:")]
-		partial void showInfo (MonoTouch.Foundation.NSObject sender);
+		[Action ("btnDone:")]
+		partial void btnDone (MonoTouch.UIKit.UIBarButtonItem sender);
+
+		[Action ("btnSnap:")]
+		partial void btnSnap (MonoTouch.UIKit.UIBarButtonItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (overlayView != null) {
+				overlayView.Dispose ();
+				overlayView = null;
+			}
 		}
 	}
 }

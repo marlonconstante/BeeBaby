@@ -3,18 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>SRBAMC32TY.com.your-company.BeBabby</string>
-	<key>com.apple.developer.ubiquity-container-identifiers</key>
-	<array>
-		<string>SRBAMC32TY.com.your-company.BeBabby</string>
-	</array>
-	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
-	<string>SRBAMC32TY.com.your-company.BeBabby</string>
+	<string>33AAM955B2.com.your-company.BeBabby</string>
 	<key>get-task-allow</key>
 	<true/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>SRBAMC32TY.com.your-company.BeBabby</string>
+		<string>33AAM955B2.com.your-company.BeBabby</string>
 	</array>
 </dict>
 </plist>

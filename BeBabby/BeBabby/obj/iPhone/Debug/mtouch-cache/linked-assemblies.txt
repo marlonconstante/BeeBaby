@@ -2,5 +2,3 @@
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/BeBabby.exe
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/System.dll
 /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/System.Core.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/Xamarin.Mobile.dll
