@@ -1266,7 +1266,7 @@ image_table:
 
 	.long 3
 	.asciz "BeBabby"
-	.asciz "9C2EB4C3-D160-47D6-B944-56D0F0E63626"
+	.asciz "B09E9DC7-5704-4B59-868F-4410F4C8768F"
 	.asciz ""
 	.asciz ""
 	.align 3
@@ -1294,7 +1294,7 @@ got_end:
 .section __TEXT, __const
 	.align 2
 assembly_guid:
-	.asciz "9C2EB4C3-D160-47D6-B944-56D0F0E63626"
+	.asciz "B09E9DC7-5704-4B59-868F-4410F4C8768F"
 .section __TEXT, __const
 	.align 2
 runtime_version:

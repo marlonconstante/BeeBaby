@@ -17,7 +17,7 @@ namespace BeBabby
 			var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			string jpgFilename = System.IO.Path.Combine(documentsDirectory, string.Format("{0}.jpg", Guid.NewGuid()));
 
-			InvokeOnMainThread(() =>
+			InvokeOnMainThread(() => 
 			{
 				using (NSData imageData = item.AsJPEG())
 				{
