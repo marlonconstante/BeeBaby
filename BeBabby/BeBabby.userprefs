@@ -1,14 +1,29 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Giusepe Casagrande’s iPad" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BeBabby/MainViewController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BeBabby/ImagePickerDelegate.cs">
     <Files>
-      <File FileName="BeBabby/MainViewController.cs" Line="58" Column="41" />
-      <File FileName="BeBabby/Main.cs" Line="1" Column="1" />
-      <File FileName="BeBabby/PickerDelegate.cs" Line="1" Column="1" />
+      <File FileName="BeBabby/MainViewController.cs" Line="45" Column="42" />
+      <File FileName="BeBabby/ImagePickerDelegate.cs" Line="54" Column="7" />
+      <File FileName="BeBabby/Main.cs" Line="16" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Bebabby" expanded="True">
+            <Node name="ImagePickerDelegate.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/ImagePickerDelegate.cs" line="70" column="1" />
+      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/ImagePickerDelegate.cs" line="34" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

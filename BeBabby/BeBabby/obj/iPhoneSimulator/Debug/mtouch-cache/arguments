@@ -1,4 +1,4 @@
-# Version: 7.0.7.2 (fb4bc7b)
+# Version: 7.2.0.2 (58c3efa)
 # [first argument, ignore] # /Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/bin/iPhoneSimulator/Debug/mtouch.exe
 /Developer/MonoTouch/usr/bin/mtouch \
 	-sdkroot \
@@ -8,7 +8,7 @@
 	--nomanifest \
 	--nosign \
 	-sim \
-	/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/bin/iPhoneSimulator/Debug/AppiOS.app \
+	/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/bin/iPhoneSimulator/Debug/Bebabby.app \
 	-r \
 	/Developer/MonoTouch/usr/lib/mono/2.1/System.dll \
 	-r \
@@ -18,11 +18,11 @@
 	-r \
 	/Developer/MonoTouch/usr/lib/mono/2.1/monotouch.dll \
 	-r \
-	/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/references/Xamarin.Mobile/ios/Xamarin.Mobile.dll \
+	/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/Components/xamarin.mobile-0.7.1/lib/ios/Xamarin.Mobile.dll \
 	-debug \
 	-nolink \
 	-sdk \
-	7.0 \
+	7.1 \
 	-targetver \
 	7.0 \
 	--abi=i386 \
