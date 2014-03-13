@@ -1,4 +1,0 @@
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/BeBabby.exe
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/System.dll
-/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeBabby/BeBabby/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
