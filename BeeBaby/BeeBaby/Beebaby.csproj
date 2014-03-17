@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
+    <BundleResource Include="placeholder.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -118,6 +119,15 @@
       <DependentUpon>OverlayViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ImagePickerDelegate.cs" />
+    <Compile Include="MediaCollectionViewController.cs" />
+    <Compile Include="MediaCollectionViewController.designer.cs">
+      <DependentUpon>MediaCollectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
+    <Compile Include="CollectionViewCell.cs" />
+    <Compile Include="CollectionViewCell.designer.cs">
+      <DependentUpon>CollectionViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -129,5 +139,8 @@
   <ItemGroup>
     <InterfaceDefinition Include="OverlayView.xib" />
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResourcesProviders\" />
   </ItemGroup>
 </Project>
