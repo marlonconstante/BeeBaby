@@ -41,6 +41,10 @@ namespace BeBabby
 			base.ViewDidLoad();
 			CollectionView.RegisterClassForCell (typeof(CollectionViewCell), s_cellId);
 
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
 			var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			var filesList = System.IO.Directory.GetFiles(documentsDirectory, "*.jpg");
 
@@ -50,6 +54,10 @@ namespace BeBabby
 				var data = NSData.FromFile(System.IO.Path.Combine(documentsDirectory, item));
 				m_images.Add(UIImage.LoadFromData(data));
 			}
+				
+			this.CollectionView.ReloadData();
+
+			base.ViewWillAppear(animated);
 		}
 
 		public override int NumberOfSections (UICollectionView collectionView)
