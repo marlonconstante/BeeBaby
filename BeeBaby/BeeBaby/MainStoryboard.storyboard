@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="N5b-mA-KCA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XbC-sd-fcb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -22,6 +22,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH2-pT-7vf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="780" y="-1110"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="v9Q-YG-mtl">
+            <objects>
+                <viewController id="UAi-dU-234" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EUe-ij-ab7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hid-rg-Azm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LSR-dg-obf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="-421"/>
         </scene>
         <!--Media Collection View Controller-->
         <scene sceneID="WF3-wJ-G2f">
@@ -63,12 +82,20 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="abg-Sy-6ak">
-                        <barButtonItem key="rightBarButtonItem" title="Lib" id="yUY-cf-PxY">
+                        <barButtonItem key="leftBarButtonItem" title="Lib" id="yUY-cf-PxY">
                             <connections>
                                 <action selector="btnAddMediaFromLibrary:" destination="N5b-mA-KCA" id="SSH-Fi-m6k"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="ZMc-i6-zfs">
+                            <connections>
+                                <action selector="btnNextStep:" destination="N5b-mA-KCA" id="a7a-X4-MtW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="UAi-dU-234" kind="push" identifier="segueEventStep" id="lzE-eM-NTB"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRw-km-th5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

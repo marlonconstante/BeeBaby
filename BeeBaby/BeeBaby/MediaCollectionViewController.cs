@@ -31,6 +31,11 @@ namespace BeBabby
 			PresentViewController(m_picker, false, null);
 		}
 
+		partial void btnNextStep(MonoTouch.UIKit.UIBarButtonItem sender)
+		{
+			PerformSegue("segueEventStep", sender);
+		}
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

@@ -14,6 +14,9 @@ namespace BeBabby
 	{
 		[Action ("btnAddMediaFromLibrary:")]
 		partial void btnAddMediaFromLibrary (MonoTouch.UIKit.UIBarButtonItem sender);
+
+		[Action ("btnNextStep:")]
+		partial void btnNextStep (MonoTouch.UIKit.UIBarButtonItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
