@@ -1,10 +1,10 @@
 ﻿using MonoTouch.UIKit;
 using System;
 using MonoTouch.Foundation;
-using Xamarin.Media;
 using System.Threading.Tasks;
 using MonoTouch.ObjCRuntime;
 using BeBabby.ResourcesProviders;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -27,6 +27,8 @@ namespace BeeBaby
 			m_picker = imagePickerProvider.GetUIImagePickerController();
 
 			LoadOverlayView();
+
+			var moment = new Moment();
 
 			PresentViewController(m_picker, false, null);
 		}       

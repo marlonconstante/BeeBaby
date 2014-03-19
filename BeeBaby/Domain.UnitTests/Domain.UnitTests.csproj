@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Domain.UnitTests</RootNamespace>
     <AssemblyName>Domain.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,12 +35,6 @@
     <Reference Include="HelperSharp">
       <HintPath>..\packages\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO.Abstractions">
-      <HintPath>..\packages\System.IO.Abstractions.1.4.0.78\lib\net35\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Skahal.Infrastructure.Framework">
-      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.6.1\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Moment\MomentKindServiceTest.cs" />
@@ -53,16 +48,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
-      <Project>{2053666D-F182-4C7A-AB38-994861F13536}</Project>
-      <Name>Infrastructure.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{BEF9C1D0-14CC-4640-9041-77ECE96E1038}</Project>
+      <Project>{44A38002-014A-4297-A53F-EDC91F3E75E6}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Framework\Infrastructure.Framework.csproj">
-      <Project>{AFE59ED3-1E14-494D-8DF9-73741E17D001}</Project>
+    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
+      <Project>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</Project>
+      <Name>Infrastructure.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Framework\Infrastructure.Framework.csproj">
+      <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
       <Name>Infrastructure.Framework</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Linq;
-using Skahal.Infrastructure.Framework.Repositories;
-using Infrastructure.Repositories.Memory;
+using Infrastructure.Framework.Repositories;
+using Infrastructure.Framework.Commons;
 using Domain.Moment;
-using Skahal.Infrastructure.Framework.Commons;
+using Infrastructure.Repositories.Memory;
 
 namespace Domain.UnitTests.Moment
 {

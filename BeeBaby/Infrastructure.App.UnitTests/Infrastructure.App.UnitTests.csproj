@@ -59,16 +59,12 @@
     <Compile Include="Resources\FileSystemResourceProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.App\Infrastructure.App.csproj">
-      <Project>{9879F861-4A17-47E8-B855-EAB417B3458B}</Project>
-      <Name>Infrastructure.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{BEF9C1D0-14CC-4640-9041-77ECE96E1038}</Project>
+      <Project>{44A38002-014A-4297-A53F-EDC91F3E75E6}</Project>
       <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Framework\Infrastructure.Framework.csproj">
-      <Project>{AFE59ED3-1E14-494D-8DF9-73741E17D001}</Project>
+      <Project>{C6F707DF-D593-42A6-88E9-E492223B20E3}</Project>
       <Name>Infrastructure.Framework</Name>
     </ProjectReference>
   </ItemGroup>

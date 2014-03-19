@@ -1,13 +1,12 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
-using Infrastructure.Framework.Resources;
+using Infrastructure.Framework.Domain;
 
 namespace Domain.Media
 {
 	/// <summary>
 	/// Class that represents the kind of moment.
 	/// </summary>
-	public class MediaBase: EntityWithIdBase<string>, IResourceEntity, IAggregateRoot
+	public class MediaBase: EntityWithIdBase<string>, IAggregateRoot
 	{
 		#region Constants
 		/// <summary>

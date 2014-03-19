@@ -1,12 +1,40 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Giusepe Casagrande’s iPad" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BeeBaby/CollectionViewCell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure.Repositories/Infrastructure.Framework/Commons/AppService.cs">
     <Files>
-      <File FileName="BeeBaby/CollectionViewCell.cs" Line="30" Column="4" />
-      <File FileName="BeeBaby/MediaCollectionViewController.cs" Line="1" Column="1" />
-      <File FileName="BeeBaby/ImagePickerDelegate.cs" Line="1" Column="1" />
-      <File FileName="BeeBaby/CollectionViewCell.designer.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure.Repositories/Memory/MemoryMomentKindRepository.cs" Line="6" Column="11" />
+      <File FileName="Infrastructure.Repositories/Memory/MemoryMomentRepository.cs" Line="14" Column="3" />
+      <File FileName="Infrastructure.Repositories/Infrastructure.Framework/Commons/AppService.cs" Line="8" Column="16" />
+      <File FileName="Infrastructure.Repositories/Infrastructure.Framework/Commons/DependencyService.cs" Line="19" Column="13" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Domain" expanded="True">
+            <Node name="Domain" expanded="True" />
+            <Node name="Domain.UnitTests" expanded="True">
+              <Node name="References" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Infrastructure" expanded="True">
+            <Node name="Infrastructure.Framework" expanded="True">
+              <Node name="Commons" expanded="True">
+                <Node name="AppService.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="Infrastructure.Repositories" expanded="True">
+              <Node name="References" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Beebaby" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

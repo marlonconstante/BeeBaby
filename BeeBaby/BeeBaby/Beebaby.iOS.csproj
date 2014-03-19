@@ -95,8 +95,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\Components\xamarin.mobile-0.7.1\lib\ios\Xamarin.Mobile.dll</HintPath>
+    <Reference Include="HelperSharp">
+      <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -138,5 +138,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ResourcesProviders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{44A38002-014A-4297-A53F-EDC91F3E75E6}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Framework\Infrastructure.Framework.csproj">
+      <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
+      <Name>Infrastructure.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

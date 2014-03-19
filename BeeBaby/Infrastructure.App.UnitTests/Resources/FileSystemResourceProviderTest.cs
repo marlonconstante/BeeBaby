@@ -3,10 +3,10 @@ using System;
 using TestSharp;
 using System.IO;
 using Infrastructure.App.Resources;
-using Domain.Media;
-using Infrastructure.Framework.Resources;
 using HelperSharp;
 using System.Linq;
+using Domain.Media;
+using Infrastructure.Framework.Resources;
 
 namespace Infrastructure.App.UnitTests.Resources
 {

@@ -5,9 +5,8 @@ using Domain.Media;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using NUnit.Framework;
-using Skahal.Infrastructure.Framework.Commons;
-using Skahal.Infrastructure.Framework.Repositories;
-using Infrastructure.Framework.Resources;
+using Infrastructure.Framework.Commons;
+using Infrastructure.Framework.Repositories;
 
 namespace Domain.UnitTests.Moment
 {

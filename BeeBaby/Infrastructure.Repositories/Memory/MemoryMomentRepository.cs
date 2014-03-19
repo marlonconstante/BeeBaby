@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Framework.Repositories;
 using Domain.Moment;
-using Skahal.Infrastructure.Framework.Repositories;
 
 namespace Infrastructure.Repositories.Memory
 {

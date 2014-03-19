@@ -1,5 +1,5 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
+using Infrastructure.Framework.Domain;
 
 namespace Domain.Moment
 {

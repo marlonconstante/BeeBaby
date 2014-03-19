@@ -5,10 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2053666D-F182-4C7A-AB38-994861F13536}</ProjectGuid>
+    <ProjectGuid>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Infrastructure.Repositories</RootNamespace>
     <AssemblyName>Infrastructure.Repositories</AssemblyName>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,33 +32,27 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Abstractions">
-      <HintPath>..\packages\System.IO.Abstractions.1.4.0.78\lib\net35\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Skahal.Infrastructure.Framework">
-      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.6.1\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Memory\MemoryMomentRepository.cs" />
     <Compile Include="Memory\MemoryMomentKindRepository.cs" />
+    <Compile Include="Memory\MemoryMomentRepository.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Memory\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{BEF9C1D0-14CC-4640-9041-77ECE96E1038}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{44A38002-014A-4297-A53F-EDC91F3E75E6}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="Infrastructure.Framework\Infrastructure.Framework.csproj">
+      <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
+      <Name>Infrastructure.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

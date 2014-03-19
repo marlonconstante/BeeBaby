@@ -1,5 +1,5 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
+using Infrastructure.Framework.Domain;
 using System.Collections.Generic;
 using Domain.Media;
 
