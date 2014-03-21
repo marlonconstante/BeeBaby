@@ -1,18 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina.7.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BeeBaby/MainViewController.cs">
-    <Files>
-      <File FileName="BeeBaby/MainViewController.cs" Line="24" Column="1" />
-      <File FileName="Application/CurrentMoment.cs" Line="1" Column="1" />
-      <File FileName="BeeBaby/ResourcesProviders/MediaPickerProvider.cs" Line="1" Column="1" />
-      <File FileName="Infrastructure.Repositories/Infrastructure.Framework/Commons/DependencyService.cs" Line="1" Column="1" />
-      <File FileName="BeeBaby/AppDelegate.cs" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Domain" expanded="True" />
+          <Node name="Infrastructure" expanded="True" />
+          <Node name="Application" expanded="True" />
+          <Node name="Beebaby.iOS" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeeBaby/BeeBaby/ResourcesProviders/MediaPickerProvider.cs" line="35" column="56" />
-      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeeBaby/BeeBaby/MainViewController.cs" line="24" column="1" />
+      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeeBaby/BeeBaby/MediaCollectionViewController.cs" line="50" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

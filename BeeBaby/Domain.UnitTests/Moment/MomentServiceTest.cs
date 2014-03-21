@@ -40,7 +40,7 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Title = momentKind
+				Event = momentKind
 			});
 			m_repository.Add(new Domain.Moment.Moment()
 			{
@@ -50,7 +50,7 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Title = momentKind
+				Event = momentKind
 			});
 			m_repository.Add(new Domain.Moment.Moment()
 			{
@@ -60,7 +60,7 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Title = momentKind
+				Event = momentKind
 			});
 
 			m_unitOfWork.Commit();
