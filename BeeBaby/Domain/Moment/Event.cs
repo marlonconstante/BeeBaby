@@ -6,7 +6,7 @@ namespace Domain.Moment
 	/// <summary>
 	/// Class that represents the kind of moment.
 	/// </summary>
-	public class MomentKind: EntityWithIdBase<string>, IAggregateRoot
+	public class Event: EntityWithIdBase<string>, IAggregateRoot
 	{
 		/// <summary>
 		/// Gets or sets the description.

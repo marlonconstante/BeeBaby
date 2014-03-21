@@ -8,14 +8,14 @@ namespace Domain.Moment
 	/// <summary>
 	/// Domain layer service related to kind of moments.
 	/// </summary>
-	public class MomentKindService : ServiceBase<MomentKind, IMomentKindRepository, IUnitOfWork>
+	public class EventService : ServiceBase<Event, IEventRepository, IUnitOfWork>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Domain.Moment.MomentKindService"/> class.
 		/// </summary>
 		/// <param name="mainRepository">Main repository.</param>
 		/// <param name="unitOfWork">Unit of work.</param>
-		public MomentKindService(IMomentKindRepository mainRepository, IUnitOfWork unitOfWork)
+		public EventService(IEventRepository mainRepository, IUnitOfWork unitOfWork)
 			: base(mainRepository, unitOfWork)
 		{
 		}
@@ -23,7 +23,7 @@ namespace Domain.Moment
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Domain.Moment.MomentKindService"/> class.
 		/// </summary>
-		public MomentKindService()
+		public EventService()
 		{
 		}
 
@@ -31,7 +31,7 @@ namespace Domain.Moment
 		/// Gets all moment kinds.
 		/// </summary>
 		/// <returns>All moment kinds.</returns>
-		public IEnumerable<MomentKind> GetAllMomentKinds()
+		public IEnumerable<Event> GetAllMomentKinds()
 		{
 			return MainRepository.FindAllAscending((o) => o.Id);
 		}

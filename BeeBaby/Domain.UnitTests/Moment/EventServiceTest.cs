@@ -8,12 +8,12 @@ using Infrastructure.Repositories.Memory;
 namespace Domain.UnitTests.Moment
 {
 	[TestFixture()]
-	public class MomentKindServiceTest
+	public class EventServiceTest
 	{
 		#region Fields
-		private MomentKindService m_target;
+		private EventService m_target;
 		private MemoryUnitOfWork m_unitOfWork;
-		private MemoryMomentKindRepository m_repository;
+		private MemoryEventRepository m_repository;
 		#endregion
 
 		#region Initialize
@@ -21,19 +21,19 @@ namespace Domain.UnitTests.Moment
 		public void InitializeTest()
 		{ 
 			m_unitOfWork = new MemoryUnitOfWork();
-			m_repository = new MemoryMomentKindRepository(m_unitOfWork);
+			m_repository = new MemoryEventRepository(m_unitOfWork);
 
-			m_repository.Add(new MomentKind()
+			m_repository.Add(new Event()
 			{
 				Description = "Primeiro Sorriso"
 			
 			});
-			m_repository.Add(new MomentKind()
+			m_repository.Add(new Event()
 			{
 				Description = "Primeiro Banho"
 
 			});
-			m_repository.Add(new MomentKind()
+			m_repository.Add(new Event()
 			{
 				Description = "Primeiro Passeio"
 
@@ -41,7 +41,7 @@ namespace Domain.UnitTests.Moment
 
 			m_unitOfWork.Commit();
 
-			m_target = new MomentKindService(m_repository, m_unitOfWork);
+			m_target = new EventService(m_repository, m_unitOfWork);
 		}
 		#endregion
 
@@ -49,8 +49,8 @@ namespace Domain.UnitTests.Moment
 		public void Constructor_NoArgsDIRegistered_DIInstances()
 		{
 			DependencyService.Register<IUnitOfWork>(new MemoryUnitOfWork());
-			DependencyService.Register<IMomentKindRepository>(new MemoryMomentKindRepository(null));
-			var target = new MomentKindService();
+			DependencyService.Register<IEventRepository>(new MemoryEventRepository(null));
+			var target = new EventService();
 
 			Assert.AreEqual(0, target.GetAllMomentKinds().Count());
 		}

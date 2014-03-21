@@ -6,13 +6,13 @@ namespace Infrastructure.Repositories.Memory
 	/// <summary>
 	/// IMomentKindRepository memory implementation.
 	/// </summary>
-	public class MemoryMomentKindRepository : MemoryRepository<MomentKind>, IMomentKindRepository
+	public class MemoryEventRepository : MemoryRepository<Event>, IEventRepository
 	{
 		#region Fields
 		private static long s_lastKey;
 		#endregion
 
-		public MemoryMomentKindRepository(IUnitOfWork unitOfWork)
+		public MemoryEventRepository(IUnitOfWork unitOfWork)
 			: base(unitOfWork, u =>
 			{
 				++s_lastKey;

@@ -20,13 +20,13 @@ namespace Domain.UnitTests.Moment
 		#endregion
 
 		#region Initialize
-		[TestFixtureSetUp]
+		[SetUp]
 		public void InitializeTest()
 		{ 
 			m_unitOfWork = new MemoryUnitOfWork();
 			m_repository = new MemoryMomentRepository(m_unitOfWork);
 		
-			var momentKind = new MomentKind()
+			var momentKind = new Event()
 			{
 				Id = "1",
 				Description = "Primeiro qualquer coisa"
@@ -54,7 +54,7 @@ namespace Domain.UnitTests.Moment
 			});
 			m_repository.Add(new Domain.Moment.Moment()
 			{
-				Description = "Descrição livre momento 2",
+				Description = "Descrição livre momento 3",
 				Local = new Location(),
 				Medias = new List<MediaBase>()
 				{
@@ -84,6 +84,15 @@ namespace Domain.UnitTests.Moment
 		{
 			var actual = m_target.GetAllMoments();
 			Assert.AreEqual(3, actual.Count());
+		}
+
+		[Test()]
+		public void CreateMoment_NoArgs_MomentCreated()
+		{
+			var actual = m_target.CreateMoment();
+
+			Assert.AreEqual(4, m_repository.CountAll());
+			Assert.IsNotNull(actual.Id);
 		}
 	}
 }

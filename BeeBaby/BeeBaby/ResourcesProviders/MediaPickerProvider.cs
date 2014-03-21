@@ -1,6 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
 using BeeBaby;
+using Application;
 
 namespace BeBabby.ResourcesProviders
 {
@@ -30,6 +31,8 @@ namespace BeBabby.ResourcesProviders
 			}
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 			picker.Delegate = new ImagePickerDelegate();
+
+			Console.WriteLine(CurrentMoment.Instance.Moment.Id);
 
 			return picker;
 		}

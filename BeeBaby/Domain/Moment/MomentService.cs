@@ -27,6 +27,32 @@ namespace Domain.Moment
 		{
 		}
 
+		/// <summary>
+		/// Saves the moment.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		public void SaveMoment(Moment moment)
+		{
+			MainRepository.Add(moment);
+			UnitOfWork.Commit();
+		}
+
+		/// <summary>
+		/// Creates the moment.
+		/// </summary>
+		/// <returns>The moment.</returns>
+		public Moment CreateMoment()
+		{
+			var moment = new Moment();
+			SaveMoment(moment);
+
+			return moment;
+		}
+			
+		/// <summary>
+		/// Gets all moments.
+		/// </summary>
+		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments()
 		{
 			return MainRepository.FindAllAscending((o) => o.Id);

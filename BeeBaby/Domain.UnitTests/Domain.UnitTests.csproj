@@ -37,8 +37,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Moment\MomentKindServiceTest.cs" />
     <Compile Include="Moment\MomentServiceTest.cs" />
+    <Compile Include="Moment\EventServiceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

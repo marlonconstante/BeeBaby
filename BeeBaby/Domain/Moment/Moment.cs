@@ -14,7 +14,7 @@ namespace Domain.Moment
 		/// Gets or sets the title.
 		/// </summary>
 		/// <value>The title.</value>
-		public MomentKind Title { set; get; }
+		public Event Title { set; get; }
 
 		/// <summary>
 		/// Gets or sets the medias.

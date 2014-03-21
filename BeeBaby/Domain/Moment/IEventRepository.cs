@@ -6,7 +6,7 @@ namespace Domain.Moment
 	/// <summary>
 	/// Defines an Interface for a moment kind repository.
 	/// </summary>
-	public interface IMomentKindRepository : IRepository<MomentKind>
+	public interface IEventRepository : IRepository<Event>
 	{
 	}
 }

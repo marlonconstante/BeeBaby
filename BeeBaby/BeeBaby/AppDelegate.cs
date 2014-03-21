@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MonoTouch.Foundation;
+﻿using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Infrastructure.Framework.Commons;
+using Domain.Moment;
+using Infrastructure.Repositories.Memory;
+using Infrastructure.Framework.Repositories;
+using Application;
 
 namespace BeeBaby
 {
@@ -36,6 +38,15 @@ namespace BeeBaby
 		// This method is called when the application is about to terminate. Save data, if needed.
 		public override void WillTerminate(UIApplication application)
 		{
+		}
+
+		/// <summary>
+		/// Finisheds the launching.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		public override void FinishedLaunching(UIApplication application)
+		{
+			DomainConfig.RegisterDependencies();
 		}
 	}
 }
