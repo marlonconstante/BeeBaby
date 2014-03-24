@@ -111,11 +111,8 @@ namespace BeBabby.ResourcesProviders
 			var permanentDirectory = GetPermanentDirectory();
 			foreach (var imageName in imagesNames)
 			{
-				//TODO: Remover quando a seleção de imagens estiver correta.
-				var image = imageName.Split('/').Last();
-
-				var source = Path.Combine(temporaryDirectory, image);
-				var destiny = Path.Combine(permanentDirectory, image);
+				var source = Path.Combine(temporaryDirectory, imageName);
+				var destiny = Path.Combine(permanentDirectory, imageName);
 				File.Move(source, destiny);
 			}
 		}

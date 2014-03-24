@@ -16,6 +16,24 @@ namespace Application
 			var unitOfWork = new MemoryUnitOfWork();
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
 			DependencyService.Register<IMomentRepository>(new MemoryMomentRepository(unitOfWork));
+
+			var eventRepository = new MemoryEventRepository(unitOfWork);
+			MockEvents(unitOfWork, eventRepository);
+			DependencyService.Register<IEventRepository>(eventRepository);
+		}
+
+		static void MockEvents(MemoryUnitOfWork unitOfWork, MemoryEventRepository eventRepository)
+		{
+			eventRepository.Add(new Event() {
+				Description = "Primeiro Sorriso"
+			});
+			eventRepository.Add(new Event() {
+				Description = "Primeiro Banho"
+			});
+			eventRepository.Add(new Event() {
+				Description = "Primeiro Passeio"
+			});
+			unitOfWork.Commit();
 		}
 	}
 }

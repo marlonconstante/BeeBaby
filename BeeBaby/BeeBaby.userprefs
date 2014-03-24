@@ -1,13 +1,29 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Giusepe Casagrande’s iPad" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BeeBaby/EventListViewController.cs">
+    <Files>
+      <File FileName="BeeBaby/EventListViewController.cs" Line="25" Column="12" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Domain" expanded="True" />
-          <Node name="Infrastructure" expanded="True" />
+          <Node name="Domain" expanded="True">
+            <Node name="Domain" expanded="True">
+              <Node name="Moment" expanded="True" />
+            </Node>
+            <Node name="Domain.UnitTests" expanded="True">
+              <Node name="Moment" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Infrastructure" expanded="True">
+            <Node name="Infrastructure.Repositories" expanded="True">
+              <Node name="Memory" expanded="True" />
+            </Node>
+          </Node>
           <Node name="Application" expanded="True" />
-          <Node name="Beebaby.iOS" expanded="True" />
+          <Node name="Beebaby.iOS" expanded="True">
+            <Node name="EventListViewController.cs" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
@@ -17,7 +33,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeeBaby/BeeBaby/MediaCollectionViewController.cs" line="50" column="1" />
+      <Breakpoint file="/Users/giusepecasagrande/Dropbox/Lighthouse/BeeBaby/BeeBaby/BeeBaby/MomentDetailViewController.cs" line="15" column="4" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

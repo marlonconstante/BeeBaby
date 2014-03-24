@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
+    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -125,6 +125,15 @@
       <DependentUpon>CollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ResourcesProviders\ImageProvider.cs" />
+    <Compile Include="MomentDetailViewController.cs" />
+    <Compile Include="MomentDetailViewController.designer.cs">
+      <DependentUpon>MomentDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventListViewController.cs" />
+    <Compile Include="EventListViewController.designer.cs">
+      <DependentUpon>EventListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventListViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

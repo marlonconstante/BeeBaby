@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="780" y="-1110"/>
         </scene>
-        <!--View Controller-->
+        <!--Moment Detail View Controller-->
         <scene sceneID="v9Q-YG-mtl">
             <objects>
-                <viewController id="UAi-dU-234" sceneMemberID="viewController">
+                <viewController id="UAi-dU-234" customClass="MomentDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EUe-ij-ab7"/>
                         <viewControllerLayoutGuide type="bottom" id="Hid-rg-Azm"/>
@@ -34,13 +34,57 @@
                     <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
+                                <rect key="frame" x="0.0" y="72" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Selecione o momento >">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="IX9-ZK-kCq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="LSR-dg-obf"/>
+                    <connections>
+                        <segue destination="wjh-N5-O9g" kind="push" identifier="segueSelectEvent" id="jhm-aX-2LD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1302" y="-421"/>
+        </scene>
+        <!--Event List View Controller-->
+        <scene sceneID="5yr-Fy-QMB">
+            <objects>
+                <tableViewController id="wjh-N5-O9g" customClass="EventListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tlb-Zq-iua">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="J9Z-As-rrN">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J9Z-As-rrN" id="Oun-ZN-Wtx">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wjh-N5-O9g" id="tUo-WX-QDD"/>
+                            <outlet property="delegate" destination="wjh-N5-O9g" id="KWK-oV-N02"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="752-eY-quo"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2K-M1-72j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850" y="-413"/>
         </scene>
         <!--Media Collection View Controller-->
         <scene sceneID="WF3-wJ-G2f">
