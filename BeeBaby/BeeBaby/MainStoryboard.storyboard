@@ -35,9 +35,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
-                                <rect key="frame" x="0.0" y="72" width="320" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Selecione o momento >">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,8 +46,27 @@
                                     <action selector="SelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="Hij-54-swU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-we-1LJ">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Salvar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Save:" destination="UAi-dU-234" eventType="touchUpInside" id="lsd-Wy-tLV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vGp-Ig-353" firstAttribute="leading" secondItem="b1H-we-1LJ" secondAttribute="leading" id="7WX-aJ-rOw"/>
+                            <constraint firstItem="vGp-Ig-353" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="EaE-HS-TYt"/>
+                            <constraint firstAttribute="bottom" secondItem="b1H-we-1LJ" secondAttribute="bottom" id="IRA-QT-hFd"/>
+                            <constraint firstAttribute="trailing" secondItem="b1H-we-1LJ" secondAttribute="trailing" id="Xtu-Iu-JE4"/>
+                            <constraint firstItem="vGp-Ig-353" firstAttribute="trailing" secondItem="b1H-we-1LJ" secondAttribute="trailing" id="aEJ-Wn-L86"/>
+                            <constraint firstItem="vGp-Ig-353" firstAttribute="top" secondItem="EUe-ij-ab7" secondAttribute="bottom" id="g4d-h7-26g"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LSR-dg-obf"/>
                     <connections>

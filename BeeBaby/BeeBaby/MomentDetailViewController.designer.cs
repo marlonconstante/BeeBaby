@@ -15,6 +15,9 @@ namespace BeBabby
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
 
+		[Action ("Save:")]
+		partial void Save (MonoTouch.UIKit.UIButton sender);
+
 		[Action ("SelectEvent:")]
 		partial void SelectEvent (MonoTouch.UIKit.UIButton sender);
 		

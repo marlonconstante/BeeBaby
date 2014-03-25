@@ -33,7 +33,7 @@ namespace Domain.Moment
 		/// <param name="moment">Moment.</param>
 		public void SaveMoment(Moment moment)
 		{
-			MainRepository.Add(moment);
+			MainRepository[moment.Id] = moment;
 			UnitOfWork.Commit();
 		}
 
