@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using Domain.Moment;
+using Application;
 
 namespace BeBabby
 {
@@ -32,15 +33,8 @@ namespace BeBabby
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
+			CurrentContext.Instance.SelectedEvent = tableItems[indexPath.Row];
 			m_viewController.NavigationController.PopViewControllerAnimated(true);
-//			//new UIAlertView("Row Selected", tableItems[indexPath.Row].Heading, null, "OK", null).Show();
-//			tableView.DeselectRow (indexPath, true);
-//
-//			// Specially for Storyboard !!
-//			var detail = viewController.Storyboard.InstantiateViewController("vegeIdentifier") as myVegeViewCtrl;
-//			detail.Title = tableItems[indexPath.Row].Heading;
-//			detail.LoadUrl (tableItems[indexPath.Row].Url);
-//			viewController.NavigationController.PushViewController (detail, true);
 		}
 
 		/// <summary>

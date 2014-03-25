@@ -3,20 +3,20 @@ using Domain.Moment;
 
 namespace Application
 {
-	public sealed class CurrentMoment
+	public sealed class CurrentContext
 	{
-		private static CurrentMoment s_instance;
+		private static CurrentContext s_instance;
 		//private Moment m_moment;
-		private CurrentMoment()
+		private CurrentContext()
 		{
 		}
 
-		public static CurrentMoment Instance
+		public static CurrentContext Instance
 		{
 			get
 			{
 				if (s_instance == null)
-					s_instance = new CurrentMoment();
+					s_instance = new CurrentContext();
 
 				return s_instance; 
 			}
@@ -27,6 +27,12 @@ namespace Application
 		/// </summary>
 		/// <value>The moment.</value>
 		public Moment Moment
+		{
+			get;
+			set;
+		}
+
+		public Event SelectedEvent
 		{
 			get;
 			set;

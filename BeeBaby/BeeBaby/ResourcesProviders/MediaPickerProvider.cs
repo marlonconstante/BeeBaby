@@ -32,7 +32,7 @@ namespace BeBabby.ResourcesProviders
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 			picker.Delegate = new ImagePickerDelegate();
 
-			Console.WriteLine(CurrentMoment.Instance.Moment.Id);
+			Console.WriteLine(CurrentContext.Instance.Moment.Id);
 
 			return picker;
 		}

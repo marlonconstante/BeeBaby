@@ -22,7 +22,7 @@ namespace BeBabby.ResourcesProviders
 		/// </summary>
 		public ImageProvider()
 		{
-			m_currentMoment = CurrentMoment.Instance.Moment;
+			m_currentMoment = CurrentContext.Instance.Moment;
 			m_appDocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 		}
 

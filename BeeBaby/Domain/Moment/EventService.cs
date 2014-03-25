@@ -31,7 +31,7 @@ namespace Domain.Moment
 		/// Gets all moment kinds.
 		/// </summary>
 		/// <returns>All moment kinds.</returns>
-		public IEnumerable<Event> GetAllMomentKinds()
+		public IEnumerable<Event> GetAllEvents()
 		{
 			return MainRepository.FindAllAscending((o) => o.Id);
 		}

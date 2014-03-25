@@ -52,13 +52,13 @@ namespace Domain.UnitTests.Moment
 			DependencyService.Register<IEventRepository>(new MemoryEventRepository(null));
 			var target = new EventService();
 
-			Assert.AreEqual(0, target.GetAllMomentKinds().Count());
+			Assert.AreEqual(0, target.GetAllEvents().Count());
 		}
 
 		[Test()]
 		public void GetAllMomentKinds_NoArgs_AllMomentKinds()
 		{
-			var actual = m_target.GetAllMomentKinds();
+			var actual = m_target.GetAllEvents();
 			Assert.AreEqual(3, actual.Count());
 		}
 	}

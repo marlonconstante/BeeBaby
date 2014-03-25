@@ -12,11 +12,18 @@ namespace BeBabby
 	[Register ("MomentDetailViewController")]
 	partial class MomentDetailViewController
 	{
-		[Action ("btnSelectEvent:")]
-		partial void btnSelectEvent (MonoTouch.UIKit.UIButton sender);
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
+
+		[Action ("SelectEvent:")]
+		partial void SelectEvent (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnSelectEvent != null) {
+				btnSelectEvent.Dispose ();
+				btnSelectEvent = null;
+			}
 		}
 	}
 }

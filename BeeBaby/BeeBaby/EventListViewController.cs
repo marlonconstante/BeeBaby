@@ -21,7 +21,7 @@ namespace BeBabby
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
-			m_events = m_eventService.GetAllMomentKinds();
+			m_events = m_eventService.GetAllEvents();
 			TableView.Source = new EventListViewSource(this, m_events.ToList());
 		}
 	}

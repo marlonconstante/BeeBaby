@@ -42,7 +42,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnSelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="IX9-ZK-kCq"/>
+                                    <action selector="SelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="Hij-54-swU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,6 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="LSR-dg-obf"/>
                     <connections>
+                        <outlet property="btnSelectEvent" destination="vGp-Ig-353" id="aeq-gL-p9H"/>
                         <segue destination="wjh-N5-O9g" kind="push" identifier="segueSelectEvent" id="jhm-aX-2LD"/>
                     </connections>
                 </viewController>

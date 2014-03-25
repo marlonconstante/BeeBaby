@@ -29,7 +29,7 @@ namespace BeeBaby
 
 			// create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
-			CurrentMoment.Instance.Moment = momentService.CreateMoment();
+			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
 			var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
 			m_picker = imagePickerProvider.GetUIImagePickerController();
