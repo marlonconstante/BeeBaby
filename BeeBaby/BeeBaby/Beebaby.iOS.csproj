@@ -104,6 +104,12 @@
   <ItemGroup>
     <BundleResource Include="Info.plist" />
     <BundleResource Include="placeholder.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Quicksand_Book.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -151,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ResourcesProviders\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
