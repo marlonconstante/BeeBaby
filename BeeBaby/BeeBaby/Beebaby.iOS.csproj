@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -97,13 +97,15 @@
     <Reference Include="HelperSharp">
       <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
+    <Reference Include="PixateFreestyle">
+      <HintPath>..\references\PixateFreestyle-2.1.2\ios\PixateFreestyle.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
     <BundleResource Include="placeholder.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="MainViewController.designer.cs">
@@ -133,6 +135,7 @@
       <DependentUpon>EventListViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="EventListViewSource.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -166,5 +169,8 @@
       <Project>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</Project>
       <Name>Infrastructure.Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default.css" />
   </ItemGroup>
 </Project>
