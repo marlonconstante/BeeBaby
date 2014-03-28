@@ -33,6 +33,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Quicksand_Book.otf</string>
+		<string>Quicksand_Bold.otf</string>
 	</array>
 </dict>
 </plist>

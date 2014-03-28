@@ -15,6 +15,9 @@ namespace BeBabby
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
 
+		[Outlet]
+		MonoTouch.MapKit.MKMapView mapView { get; set; }
+
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
 
@@ -26,6 +29,11 @@ namespace BeBabby
 			if (btnSelectEvent != null) {
 				btnSelectEvent.Dispose ();
 				btnSelectEvent = null;
+			}
+
+			if (mapView != null) {
+				mapView.Dispose ();
+				mapView = null;
 			}
 		}
 	}

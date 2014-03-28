@@ -15,12 +15,12 @@ namespace BeBabby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
+			mapView.ShowsUserLocation = true;
 
 			if (CurrentContext.Instance.SelectedEvent != null)
 			{

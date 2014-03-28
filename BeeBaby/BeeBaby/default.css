@@ -1,5 +1,89 @@
-﻿/* Navigation Bar */
+﻿navigation-bar,
+button,
+button:highlighted,
+button:selected,
+text-view,
+label {
+	font-family: "Quicksand";
+}
+
+switch {
+  color: #00aead;
+}
+
 navigation-bar {
-	background-color: #0096d7;
-	color: white;
+	background-color: #00aead;
+}
+
+navigation-bar,
+navigation-bar title {
+	color: #fff;
+}
+
+.navigation-button,
+.navigation-button:highlighted,
+.navigation-button:selected {
+	background-color: #f2f5f5;
+	color: #4d5f5c;
+	font-size: 16pt;
+	font-weight: normal;
+	box-shadow: 0px 1px 1px 0px #b9c9c5;
+}
+
+.subtitle {
+	font-size: 13pt;
+}
+
+.screen-background {
+	background-color: #dce6e6;
+}
+
+button,
+button:highlighted,
+button:selected {
+	color: #00aead;
+	font-size: 17pt;
+	font-weight: bold;
+}
+
+.row {
+	background-color: #fff;
+	border: 1px solid #b6bcba;
+}
+
+.row label {
+	font-size: 16pt;
+}
+
+text-view {
+	font-size: 14.5pt;
+}
+
+.subtitle,
+.follow,
+.row label,
+text-view {
+	color: #4d5f5c;
+}
+
+.follow {
+	font-weight: bold;
+	font-size: 17pt;
+}
+
+label.highlighted {
+	color: #00aead;
+	font-weight: bold;
+}
+
+.checklist {
+	background-image: url(checklist.svg);
+}
+
+.calendar {
+	background-image: url(calendar.svg);
+}
+
+.location {
+	background-image: url(location.svg);
 }
