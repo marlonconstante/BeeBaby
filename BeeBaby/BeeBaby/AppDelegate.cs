@@ -1,11 +1,9 @@
-﻿using MonoTouch.Foundation;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Infrastructure.Framework.Commons;
-using Domain.Moment;
-using Infrastructure.Repositories.Memory;
-using Infrastructure.Framework.Repositories;
 using Application;
-using PixateFreestyleLib;
+using SQLite.Net;
+using System;
+using System.IO;
 
 namespace BeeBaby
 {
@@ -47,11 +45,13 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void FinishedLaunching(UIApplication application)
 		{
-			DomainConfig.RegisterDependencies();
-			#if DEBUG
-			//PixateFreestyle.StyleSheetFromFilePathWithOrigin("/Users/marlon/Documents/Desenvolvimento/BeeBaby/BeeBaby/BeeBaby/default.css", PXStylesheetOrigin.PXStylesheetOriginApplication);
-			//PixateFreestyle.CurrentApplicationStylesheet().MonitorChanges = true;
-			#endif
+			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+
+			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			var dbPath = Path.Combine(home, "BeeBaby.sql");
+
+			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
+			DomainConfig.RegisterDependencies(connection);
 		}
 	}
 }

@@ -35,14 +35,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Memory\MemoryMomentRepository.cs" />
     <Compile Include="Memory\MemoryEventRepository.cs" />
+    <Compile Include="SqliteNet\SqliteNetRepositoryBase.cs" />
+    <Compile Include="SqliteNet\SqliteNetConnection.cs" />
+    <Compile Include="SqliteNet\Entities\DataBase.cs" />
+    <Compile Include="SqliteNet\Entities\EventData.cs" />
+    <Compile Include="SqliteNet\Entities\LocationData.cs" />
+    <Compile Include="SqliteNet\Entities\MomentData.cs" />
+    <Compile Include="SqliteNet\SqliteNetMomentRepository.cs" />
+    <Compile Include="SqliteNet\SqliteNetEventRepository.cs" />
+    <Compile Include="Commons\IMapper.cs" />
+    <Compile Include="Commons\MapperHelper.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetMomentMapper.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetEventMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Memory\" />
+    <Folder Include="SqliteNet\" />
+    <Folder Include="Commons\" />
+    <Folder Include="SqliteNet\Mapper\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HelperSharp">
       <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLiteNetExtensions">
+      <HintPath>..\references\SqliteNet\SQLiteNetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\references\JsonNet\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,5 +78,8 @@
       <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
       <Name>Infrastructure.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
