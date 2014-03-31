@@ -1,9 +1,5 @@
-﻿using MonoTouch.Foundation;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Infrastructure.Framework.Commons;
-using Domain.Moment;
-using Infrastructure.Repositories.Memory;
-using Infrastructure.Framework.Repositories;
 using Application;
 using SQLite.Net;
 using System;

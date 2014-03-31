@@ -1,0 +1,108 @@
+﻿navigation-bar,
+navigation-bar button-appearance,
+button,
+button:highlighted,
+button:selected,
+text-view,
+label {
+	font-family: "Quicksand";
+}
+
+switch {
+  color: #00aead;
+}
+
+navigation-bar {
+	background-color: #00aead;
+}
+
+navigation-bar,
+navigation-bar title {
+	color: #fff;
+}
+
+navigation-bar back-indicator {
+    background-image: url(comeback.svg);
+    background-size: 21;
+    background-padding: 1;
+}
+
+.navigation-button,
+.navigation-button:highlighted,
+.navigation-button:selected {
+	background-color: #f2f5f5;
+	color: #4d5f5c;
+	font-size: 16pt;
+	font-weight: normal;
+	box-shadow: 0 1 1 0 #b9c9c5;
+}
+
+.subtitle {
+	font-size: 14pt;
+}
+
+.screen-background {
+	background-color: #dce6e6;
+}
+
+button,
+button:highlighted,
+button:selected {
+	color: #00aead;
+	font-size: 17pt;
+	font-weight: bold;
+}
+
+.row {
+	background-color: #fff;
+	box-shadow: 0 1 0 0 #b6bcba;
+}
+
+.row label {
+	font-size: 16pt;
+}
+
+map-view {
+	box-shadow: 0 1 0 0 #fff;
+}
+
+map-view label {
+	font-size: 12pt;
+}
+
+text-view {
+	font-size: 14.5pt;
+}
+
+.subtitle,
+.follow,
+.row label,
+text-view {
+	color: #4d5f5c;
+}
+
+.follow {
+	font-weight: bold;
+	font-size: 17pt;
+}
+
+label.highlighted {
+	color: #00aead;
+	font-weight: bold;
+}
+
+.checklist {
+	background-image: url(checklist.svg);
+}
+
+.calendar {
+	background-image: url(calendar.svg);
+}
+
+.location {
+	background-image: url(location.svg);
+}
+
+.camera {
+	background-image: url(camera.svg);
+}

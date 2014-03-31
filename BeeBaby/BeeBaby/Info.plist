@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>BeeBaby</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.BeBabby</string>
+	<string>com.lighthouse.BeeBaby</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -30,5 +30,14 @@
 	<string>0.1</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Quicksand_Book.otf</string>
+		<string>Quicksand_Bold.otf</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>

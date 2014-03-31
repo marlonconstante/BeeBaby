@@ -91,8 +91,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <AssemblyName>BeeBaby</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
@@ -106,6 +105,9 @@
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>
     </Reference>
+    <Reference Include="PixateFreestyle">
+      <HintPath>..\references\PixateFreestyle-2.1.2\ios\PixateFreestyle.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Net.Platform.XamarinIOS">
       <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.1.0\lib\monotouch\SQLite.Net.Platform.XamarinIOS.dll</HintPath>
     </Reference>
@@ -113,9 +115,22 @@
   <ItemGroup>
     <BundleResource Include="Info.plist" />
     <BundleResource Include="placeholder.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Quicksand_Book.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Quicksand_Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\calendar.svg" />
+    <BundleResource Include="Resources\location.svg" />
+    <BundleResource Include="Resources\checklist.svg" />
+    <BundleResource Include="Resources\camera.svg" />
+    <BundleResource Include="Resources\comeback.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="MainViewController.designer.cs">
@@ -146,6 +161,7 @@
     </Compile>
     <Compile Include="EventListViewSource.cs" />
     <Compile Include="TimelineViewController.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="TimelineViewController.designer.cs">
       <DependentUpon>TimelineViewController.cs</DependentUpon>
     </Compile>
@@ -165,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ResourcesProviders\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
@@ -186,5 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="default.css" />
   </ItemGroup>
 </Project>
