@@ -116,6 +116,8 @@
     <BundleResource Include="Resources\calendar.svg" />
     <BundleResource Include="Resources\location.svg" />
     <BundleResource Include="Resources\checklist.svg" />
+    <BundleResource Include="Resources\camera.svg" />
+    <BundleResource Include="Resources\comeback.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
