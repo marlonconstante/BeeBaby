@@ -17,6 +17,7 @@ namespace BeBabby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+			new KeyboardNotification(View);
 		}
 
 		public override void ViewWillAppear(bool animated)

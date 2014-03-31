@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="EventListViewSource.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="KeyboardNotification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
