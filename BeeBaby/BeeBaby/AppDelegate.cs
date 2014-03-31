@@ -5,6 +5,7 @@ using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using Infrastructure.Framework.Repositories;
 using Application;
+using SQLite.Net;
 
 namespace BeeBaby
 {
@@ -46,7 +47,9 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void FinishedLaunching(UIApplication application)
 		{
-			DomainConfig.RegisterDependencies();
+			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+			SQLiteConnection connection = new SQLiteConnection(platform, "BeeBaby.sql");
+			DomainConfig.RegisterDependencies(connection);
 		}
 	}
 }

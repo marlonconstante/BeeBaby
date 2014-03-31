@@ -46,6 +46,7 @@ namespace BeBabby
 		{
 			var momentService = new MomentService();
 			momentService.SaveMoment(CurrentContext.Instance.Moment);
+			PerformSegue("segueSave", sender);
 		}
 	}
 }
