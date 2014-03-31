@@ -1,29 +1,55 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure.Repositories.UnitTests/SqliteNet/Mapper/SqliteNetEventMapperTest.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure.Repositories/SqliteNet/SqliteNetRepositoryBase.cs">
     <Files>
-      <File FileName="Infrastructure.Repositories/Commons/MapperHelper.cs" Line="75" Column="5" />
-      <File FileName="Infrastructure.Repositories.UnitTests/SqliteNet/Mapper/SqliteNetEventMapperTest.cs" Line="16" Column="43" />
+      <File FileName="Application/DomainConfig.cs" Line="30" Column="58" />
+      <File FileName="Infrastructure.Repositories/SqliteNet/SqliteNetMomentRepository.cs" Line="14" Column="41" />
+      <File FileName="Infrastructure.Repositories/SqliteNet/SqliteNetEventRepository.cs" Line="14" Column="40" />
+      <File FileName="Infrastructure.Repositories/SqliteNet/SqliteNetRepositoryBase.cs" Line="65" Column="4" />
+      <File FileName="BeeBaby/AppDelegate.cs" Line="57" Column="71" />
+      <File FileName="BeeBaby/MediaCollectionViewController.cs" Line="70" Column="47" />
+      <File FileName="BeeBaby/ResourcesProviders/ImageProvider.cs" Line="35" Column="24" />
+      <File FileName="Infrastructure.Repositories/Infrastructure.Framework/Domain/EntityWithIdBase.cs" Line="48" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Domain" expanded="True">
-            <Node name="Domain.UnitTests" expanded="True">
-              <Node name="Moment" expanded="True" />
+          <Node name="Domain" expanded="True" />
+          <Node name="Infrastructure" expanded="True">
+            <Node name="Infrastructure.Framework" expanded="True">
+              <Node name="Domain" expanded="True" />
+            </Node>
+            <Node name="Infrastructure.Repositories" expanded="True">
+              <Node name="SqliteNet" expanded="True">
+                <Node name="SqliteNetRepositoryBase.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
+          <Node name="Application" expanded="True" />
+          <Node name="Beebaby.iOS" expanded="True">
+            <Node name="ResourcesProviders" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True">
           <Node name="Infrastructure" expanded="True">
-            <Node name="Infrastructure.Repositories.UnitTests" expanded="True" selected="True">
-              <Node name="SqliteNet" expanded="True">
-                <Node name="Mapper" expanded="True" />
+            <Node name="Infrastructure.Repositories.UnitTests" expanded="True">
+              <Node name="Infrastructure" expanded="True">
+                <Node name="Repositories" expanded="True">
+                  <Node name="UnitTests" expanded="True">
+                    <Node name="SqliteNet" expanded="True">
+                      <Node name="Mapper" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
