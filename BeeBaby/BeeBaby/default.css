@@ -1,4 +1,5 @@
 ﻿navigation-bar,
+navigation-bar button-appearance,
 button,
 button:highlighted,
 button:selected,
@@ -20,6 +21,12 @@ navigation-bar title {
 	color: #fff;
 }
 
+navigation-bar back-indicator {
+    background-image: url(comeback.svg);
+    background-size: 21;
+    background-padding: 1;
+}
+
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected {
@@ -27,11 +34,11 @@ navigation-bar title {
 	color: #4d5f5c;
 	font-size: 16pt;
 	font-weight: normal;
-	box-shadow: 0px 1px 1px 0px #b9c9c5;
+	box-shadow: 0 1 1 0 #b9c9c5;
 }
 
 .subtitle {
-	font-size: 13pt;
+	font-size: 14pt;
 }
 
 .screen-background {
@@ -48,11 +55,19 @@ button:selected {
 
 .row {
 	background-color: #fff;
-	border: 1px solid #b6bcba;
+	box-shadow: 0 1 0 0 #b6bcba;
 }
 
 .row label {
 	font-size: 16pt;
+}
+
+map-view {
+	box-shadow: 0 1 0 0 #fff;
+}
+
+map-view label {
+	font-size: 12pt;
 }
 
 text-view {
@@ -86,4 +101,8 @@ label.highlighted {
 
 .location {
 	background-image: url(location.svg);
+}
+
+.camera {
+	background-image: url(camera.svg);
 }
