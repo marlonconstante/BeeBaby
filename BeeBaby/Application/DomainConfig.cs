@@ -24,7 +24,6 @@ namespace Application
 //			DependencyService.Register<IEventRepository>(eventRepository);
 //
 
-
 			var unitOfWork = new MemoryUnitOfWork();
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));

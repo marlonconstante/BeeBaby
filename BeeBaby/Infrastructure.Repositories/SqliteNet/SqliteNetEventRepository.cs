@@ -11,6 +11,7 @@ namespace Infrastructure.Repositories.SqliteNet
 	{
 		public SqliteNetEventRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetEventMapper(), unitOfWork)
 		{
+			connection.CreateTable<EventData>();
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace Infrastructure.Repositories.SqliteNet
 	{
 		public SqliteNetMomentRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetMomentMapper(), unitOfWork)
 		{
+			connection.CreateTable<MomentData>();
 		}
 	}
 }

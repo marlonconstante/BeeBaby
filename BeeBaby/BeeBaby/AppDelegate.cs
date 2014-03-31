@@ -6,6 +6,8 @@ using Infrastructure.Repositories.Memory;
 using Infrastructure.Framework.Repositories;
 using Application;
 using SQLite.Net;
+using System;
+using System.IO;
 
 namespace BeeBaby
 {
@@ -48,7 +50,11 @@ namespace BeeBaby
 		public override void FinishedLaunching(UIApplication application)
 		{
 			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
-			SQLiteConnection connection = new SQLiteConnection(platform, "BeeBaby.sql");
+
+			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			var dbPath = Path.Combine(home, "BeeBaby.sql");
+
+			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
 			DomainConfig.RegisterDependencies(connection);
 		}
 	}

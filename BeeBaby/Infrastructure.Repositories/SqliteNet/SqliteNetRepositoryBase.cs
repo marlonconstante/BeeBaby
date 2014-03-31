@@ -55,6 +55,7 @@ namespace Infrastructure.Repositories.SqliteNet
 
 		protected override void PersistNewItem(TEntity item)
 		{
+			item.Key = Guid.NewGuid().ToString(); 
 			m_connection.Insert(Mapper.ToRepositoryEntity(item));
 		}
 
