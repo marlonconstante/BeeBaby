@@ -5,6 +5,7 @@ using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using Infrastructure.Framework.Repositories;
 using Application;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -47,6 +48,10 @@ namespace BeeBaby
 		public override void FinishedLaunching(UIApplication application)
 		{
 			DomainConfig.RegisterDependencies();
+			#if DEBUG
+			//PixateFreestyle.StyleSheetFromFilePathWithOrigin("/Users/marlon/Documents/Desenvolvimento/BeeBaby/BeeBaby/BeeBaby/default.css", PXStylesheetOrigin.PXStylesheetOriginApplication);
+			//PixateFreestyle.CurrentApplicationStylesheet().MonitorChanges = true;
+			#endif
 		}
 	}
 }
