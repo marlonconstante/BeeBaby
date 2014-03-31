@@ -1,6 +1,8 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.MapKit;
+using MonoTouch.CoreLocation;
 using Domain.Moment;
 using Application;
 
@@ -20,13 +22,28 @@ namespace BeBabby
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			mapView.ShowsUserLocation = true;
+			DefineZoomMap(mapView);
 
 			if (CurrentContext.Instance.SelectedEvent != null)
 			{
 				CurrentContext.Instance.Moment.Event = CurrentContext.Instance.SelectedEvent;
 				btnSelectEvent.SetTitle(CurrentContext.Instance.SelectedEvent.Description, UIControlState.Normal);
 			}
+		}
+
+		/// <summary>
+		/// Adjusts the zoom of the map.
+		/// </summary>
+		/// <param name="mapView">MapView.</param>
+		private void DefineZoomMap(MKMapView mapView) {
+			mapView.DidUpdateUserLocation += (sender, e) => {
+				if (mapView.UserLocation != null) {
+					CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
+					MKCoordinateSpan span = new MKCoordinateSpan(0.001, 0.001);
+					MKCoordinateRegion region = new MKCoordinateRegion(coordinate, span);
+					mapView.SetRegion(region, false);
+				}
+			};
 		}
 
 		/// <summary>
