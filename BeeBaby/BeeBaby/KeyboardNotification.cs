@@ -42,27 +42,34 @@ namespace BeBabby
 		/// <param name="notification">Notification.</param>
 		private void KeyboardUpNotification(NSNotification notification)
 		{
-			UIView element = null;
-
-			// Find what opened the keyboard
-			foreach (UIView view in this.view.Subviews) {
-				if (view.IsFirstResponder) {
-					element = view;
-					break;
-				}
-			}
-
-			if (element != null) {
+			UIView firstResponder = GetFirstResponder(view);
+			if (firstResponder != null) {
 				// Get the keyboard size
 				RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
 				// Calculate how far we need to scroll
-				float bottom = (element.Frame.Y + element.Frame.Height + offset);
+				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + offset);
 				scrollAmount = (rectangle.Height - (view.Frame.Size.Height - bottom));
 
 				// Perform the scrolling
 				ScrollTheView(true);
 			}
+		}
+
+		/// <summary>
+		/// Get the first input that responds view.
+		/// </summary>
+		/// <param name="view">View.</param>
+		private UIView GetFirstResponder(UIView view)
+		{
+			foreach (UIView element in view.Subviews)
+			{
+				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null))
+				{
+					return element;
+				}
+			}
+			return null;
 		}
 
 		/// <summary>
