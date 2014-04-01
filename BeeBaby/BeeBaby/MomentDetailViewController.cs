@@ -101,6 +101,12 @@ namespace BeBabby
 		partial void LocationChanged(UISwitch sender)
 		{
 			mapView.Hidden = !sender.On;
+
+			float height = mapView.Frame.Height;
+			RectangleF frame = txtDescription.Frame;
+			frame.Y += (sender.On) ? height : -height;
+
+			txtDescription.Frame = frame;
 		}
 	}
 }

@@ -22,6 +22,9 @@ namespace BeBabby
 		MonoTouch.UIKit.UIDatePicker pckDate { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UITextView txtDescription { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIView viewDate { get; set; }
 
 		[Action ("LocationChanged:")]
@@ -51,6 +54,11 @@ namespace BeBabby
 			if (pckDate != null) {
 				pckDate.Dispose ();
 				pckDate = null;
+			}
+
+			if (txtDescription != null) {
+				txtDescription.Dispose ();
+				txtDescription = null;
 			}
 
 			if (viewDate != null) {
