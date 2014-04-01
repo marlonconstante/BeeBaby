@@ -17,7 +17,7 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// Gets or sets the event identifier.
 		/// </summary>
 		/// <value>The event identifier.</value>
-		[ForeignKey(typeof(Event))] 
+		[ForeignKey(typeof(EventData))] 
 		public string EventId { set; get; }
 
 		/// <summary>
@@ -25,5 +25,31 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The description.</value>
 		public string Description { set; get; }
+
+		/// <summary>
+		/// Gets or sets the longitude.
+		/// </summary>
+		/// <value>The longitude.</value>
+		public double Longitude { set; get; }
+
+		/// <summary>
+		/// Gets or sets the latitude.
+		/// </summary>
+		/// <value>The latitude.</value>
+		public double Latitude { set; get; }
+
+		/// <summary>
+		/// Gets or sets the location.
+		/// </summary>
+		/// <value>The location.</value>
+		[ManyToOne]
+		public LocationData Location { set; get; }
+
+		/// <summary>
+		/// Gets or sets the location identifier.
+		/// </summary>
+		/// <value>The location identifier.</value>
+		[ForeignKey(typeof(LocationData))] 
+		public string LocationId { set; get; }
 	}
 }

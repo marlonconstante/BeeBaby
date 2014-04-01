@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
+    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -157,6 +157,9 @@
     <Compile Include="EventListViewSource.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="KeyboardNotification.cs" />
+    <Compile Include="TimelineViewSource.cs" />
+    <Compile Include="TimelineViewController.cs" />
+    <Compile Include="TimelineViewController.designer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -29,9 +29,16 @@ namespace Domain.Moment
 		public string Description { set; get; }
 
 		/// <summary>
+		/// Gets or sets the position.
+		/// </summary>
+		/// <value>The position.</value>
+		public GlobalPosition Position { set; get; }
+
+		/// <summary>
 		/// Gets or sets the local.
 		/// </summary>
 		/// <value>The local.</value>
-		public Location Local { set; get; }	}
+		public Location Location { set; get; }
+	}
 }
 

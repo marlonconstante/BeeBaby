@@ -43,6 +43,7 @@
     <Compile Include="Moment\Event.cs" />
     <Compile Include="Moment\EventService.cs" />
     <Compile Include="Moment\IEventRepository.cs" />
+    <Compile Include="Moment\GlobalPosition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

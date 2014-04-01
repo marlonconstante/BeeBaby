@@ -1,15 +1,9 @@
 ﻿using System;
 
-namespace Infrastructure.Repositories.SqliteNet.Entities
+namespace Domain.Moment
 {
-	public class LocationData : DataBase
+	public class GlobalPosition
 	{
-		/// <summary>
-		/// Gets or sets the name.
-		/// </summary>
-		/// <value>The name.</value>
-		public string Name { set; get; }
-
 		/// <summary>
 		/// Gets or sets the longitude.
 		/// </summary>

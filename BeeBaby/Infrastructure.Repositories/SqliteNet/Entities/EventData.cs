@@ -9,7 +9,6 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The description.</value>
 		public string Description { set; get; }
-
 	}
 }
 

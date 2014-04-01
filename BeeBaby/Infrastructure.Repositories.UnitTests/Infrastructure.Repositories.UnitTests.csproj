@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="SqliteNet\Mapper\SqliteNetEventMapperTest.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetMomentMapperTest.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetLocationMapperTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -35,7 +35,7 @@ namespace Domain.UnitTests.Moment
 			m_repository.Add(new Domain.Moment.Moment()
 			{
 				Description = "Descrição livre momento 1",
-				Local = new Location(),
+				Location = new Location(),
 				Medias = new List<MediaBase>()
 				{
 					new Photo() 
@@ -45,7 +45,7 @@ namespace Domain.UnitTests.Moment
 			m_repository.Add(new Domain.Moment.Moment()
 			{
 				Description = "Descrição livre momento 2",
-				Local = new Location(),
+				Location = new Location(),
 				Medias = new List<MediaBase>()
 				{
 					new Photo() 
@@ -55,7 +55,7 @@ namespace Domain.UnitTests.Moment
 			m_repository.Add(new Domain.Moment.Moment()
 			{
 				Description = "Descrição livre momento 3",
-				Local = new Location(),
+				Location = new Location(),
 				Medias = new List<MediaBase>()
 				{
 					new Photo() 
