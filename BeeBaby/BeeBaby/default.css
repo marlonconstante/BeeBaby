@@ -3,6 +3,7 @@ navigation-bar button-appearance,
 button,
 button:highlighted,
 button:selected,
+text-field,
 text-view,
 label {
 	font-family: "Quicksand";
@@ -70,13 +71,17 @@ map-view label {
 	font-size: 12pt;
 }
 
+text-field,
+text-field label,
 text-view {
 	font-size: 14.5pt;
+	padding-top: 3;
 }
 
 .subtitle,
 .follow,
 .row label,
+text-field,
 text-view {
 	color: #4d5f5c;
 }

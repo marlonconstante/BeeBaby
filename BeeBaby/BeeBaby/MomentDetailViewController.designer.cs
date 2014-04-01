@@ -18,6 +18,9 @@ namespace BeBabby
 		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
+		[Action ("LocationChanged:")]
+		partial void LocationChanged (MonoTouch.UIKit.UISwitch sender);
+
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
 

@@ -17,6 +17,7 @@ namespace BeBabby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+			new KeyboardNotification(View);
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -32,18 +33,29 @@ namespace BeBabby
 		}
 
 		/// <summary>
-		/// Adjusts the zoom of the map.
+		/// Sets the event responsible for changing the zoom of the map.
 		/// </summary>
 		/// <param name="mapView">MapView.</param>
 		private void DefineZoomMap(MKMapView mapView) {
 			mapView.DidUpdateUserLocation += (sender, e) => {
-				if (mapView.UserLocation != null) {
-					CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
+				changeZoomMap(mapView);
+			};
+			changeZoomMap(mapView);
+		}
+
+		/// <summary>
+		/// Adjusts the zoom of the map.
+		/// </summary>
+		/// <param name="mapView">MapView.</param>
+		private void changeZoomMap(MKMapView mapView) {
+			if (mapView.UserLocation != null) {
+				CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
+				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f) {
 					MKCoordinateSpan span = new MKCoordinateSpan(0.001, 0.001);
 					MKCoordinateRegion region = new MKCoordinateRegion(coordinate, span);
 					mapView.SetRegion(region, false);
 				}
-			};
+			}
 		}
 
 		/// <summary>
@@ -64,6 +76,15 @@ namespace BeBabby
 			var momentService = new MomentService();
 			momentService.SaveMoment(CurrentContext.Instance.Moment);
 			PerformSegue("segueSave", sender);
+		}
+
+		/// <summary>
+		/// Controls the display of the map.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void LocationChanged(UISwitch sender)
+		{
+			mapView.Hidden = !sender.On;
 		}
 	}
 }
