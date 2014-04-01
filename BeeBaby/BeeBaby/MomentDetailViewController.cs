@@ -5,6 +5,7 @@ using MonoTouch.MapKit;
 using MonoTouch.CoreLocation;
 using Domain.Moment;
 using Application;
+using System.Drawing;
 
 namespace BeBabby
 {
@@ -65,6 +66,21 @@ namespace BeBabby
 		partial void SelectEvent(UIButton sender)
 		{
 			PerformSegue("segueSelectEvent", sender);
+		}
+
+		/// <summary>
+		/// Selects the date.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SelectDate(UIButton sender)
+		{
+			pckDate.Hidden = !pckDate.Hidden;
+
+			float height = pckDate.Frame.Height - 20f;
+			RectangleF frame = viewDate.Frame;
+			frame.Height += (pckDate.Hidden) ? -height : height;
+
+			viewDate.Frame = frame;
 		}
 
 		/// <summary>

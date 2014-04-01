@@ -18,11 +18,20 @@ namespace BeBabby
 		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIDatePicker pckDate { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView viewDate { get; set; }
+
 		[Action ("LocationChanged:")]
 		partial void LocationChanged (MonoTouch.UIKit.UISwitch sender);
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectDate:")]
+		partial void SelectDate (MonoTouch.UIKit.UIButton sender);
 
 		[Action ("SelectEvent:")]
 		partial void SelectEvent (MonoTouch.UIKit.UIButton sender);
@@ -37,6 +46,16 @@ namespace BeBabby
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;
+			}
+
+			if (pckDate != null) {
+				pckDate.Dispose ();
+				pckDate = null;
+			}
+
+			if (viewDate != null) {
+				viewDate.Dispose ();
+				viewDate = null;
 			}
 		}
 	}

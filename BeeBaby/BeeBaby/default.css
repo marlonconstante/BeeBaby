@@ -9,10 +9,6 @@ label {
 	font-family: "Quicksand";
 }
 
-switch {
-  color: #00aead;
-}
-
 navigation-bar {
 	background-color: #00aead;
 }
@@ -42,25 +38,43 @@ navigation-bar back-indicator {
 	font-size: 14pt;
 }
 
+:root > view,
 .screen-background {
 	background-color: #dce6e6;
+}
+
+.subtitle,
+.follow,
+.row label,
+text-field,
+text-view {
+	color: #4d5f5c;
+}
+
+switch,
+button,
+button:highlighted,
+button:selected {
+	color: #00aead;
 }
 
 button,
 button:highlighted,
 button:selected {
-	color: #00aead;
 	font-size: 17pt;
 	font-weight: bold;
+}
+
+.row label,
+button.highlighted,
+button.highlighted:highlighted,
+button.highlighted:selected {
+	font-size: 16pt;
 }
 
 .row {
 	background-color: #fff;
 	box-shadow: 0 1 0 0 #b6bcba;
-}
-
-.row label {
-	font-size: 16pt;
 }
 
 map-view {
@@ -78,22 +92,9 @@ text-view {
 	padding-top: 3;
 }
 
-.subtitle,
-.follow,
-.row label,
-text-field,
-text-view {
-	color: #4d5f5c;
-}
-
 .follow {
 	font-weight: bold;
 	font-size: 17pt;
-}
-
-label.highlighted {
-	color: #00aead;
-	font-weight: bold;
 }
 
 .checklist {
