@@ -32,20 +32,20 @@ namespace Infrastructure.Repositories.SqliteNet
 
 		public override IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter)
 		{
-			return MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable()
-					.Where(filter.Compile()).Skip(offset).Take(limit);
+			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+					.Skip(offset).Take(limit);
 		}
 
 		public override IEnumerable<TEntity> FindAllAscending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy)
 		{
-			return MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable()
-					.Where(filter.Compile()).OrderBy(orderBy.Compile()).Skip(offset).Take(limit);
+			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+					.OrderBy(orderBy.Compile()).Skip(offset).Take(limit);
 		}
 
 		public override IEnumerable<TEntity> FindAllDescending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy)
 		{
-			return MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable()
-					.Where(filter.Compile()).OrderByDescending(orderBy.Compile()).Skip(offset).Take(limit);
+			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+					.OrderByDescending(orderBy.Compile()).Skip(offset).Take(limit);
 		}
 
 		public override long CountAll(Expression<Func<TEntity, bool>> filter)
@@ -67,6 +67,18 @@ namespace Infrastructure.Repositories.SqliteNet
 		protected override void PersistDeletedItem(TEntity item)
 		{
 			m_connection.Delete(Mapper.ToRepositoryEntity(item));
+		}
+
+		private IQueryable<TEntity> InitializeQuery(IQueryable<TEntity> entities, Expression<Func<TEntity, bool>> filter)
+		{
+			if (filter == null)
+			{
+				return entities;
+			}
+			else
+			{
+				return entities.Where(e => filter.Compile()(e));
+			}
 		}
 
 		#endregion
