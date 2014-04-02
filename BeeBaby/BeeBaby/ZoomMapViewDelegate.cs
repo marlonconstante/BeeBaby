@@ -13,6 +13,11 @@ namespace BeeBaby
 			this.zoom = zoom;
 		}
 
+		public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
+		{
+			changeZoomMap(mapView);
+		}
+
 		public override void WillStartRenderingMap(MKMapView mapView)
 		{
 			changeZoomMap(mapView);
