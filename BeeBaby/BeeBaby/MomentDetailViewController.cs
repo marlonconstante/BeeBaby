@@ -11,6 +11,8 @@ namespace BeBabby
 {
 	public partial class MomentDetailViewController : UIViewController
 	{
+		private float mapViewHeight = -1;
+
 		public MomentDetailViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -18,44 +20,28 @@ namespace BeBabby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
 			new KeyboardNotification(View);
+			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
+			txtDescription.Delegate = new PlaceholderTextViewDelegate();
+		}
+
+		public override void ViewDidDisappear(bool animated)
+		{
+			base.ViewDidDisappear(animated);
+
+			pckDate.Hidden = true;
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			DefineZoomMap(mapView);
 
-			if (CurrentContext.Instance.SelectedEvent != null)
+			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
+			if (selectedEvent != null)
 			{
-				CurrentContext.Instance.Moment.Event = CurrentContext.Instance.SelectedEvent;
-				btnSelectEvent.SetTitle(CurrentContext.Instance.SelectedEvent.Description, UIControlState.Normal);
-			}
-		}
-
-		/// <summary>
-		/// Sets the event responsible for changing the zoom of the map.
-		/// </summary>
-		/// <param name="mapView">MapView.</param>
-		private void DefineZoomMap(MKMapView mapView) {
-			mapView.DidUpdateUserLocation += (sender, e) => {
-				changeZoomMap(mapView);
-			};
-			changeZoomMap(mapView);
-		}
-
-		/// <summary>
-		/// Adjusts the zoom of the map.
-		/// </summary>
-		/// <param name="mapView">MapView.</param>
-		private void changeZoomMap(MKMapView mapView) {
-			if (mapView.UserLocation != null) {
-				CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
-				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f) {
-					MKCoordinateSpan span = new MKCoordinateSpan(0.001, 0.001);
-					MKCoordinateRegion region = new MKCoordinateRegion(coordinate, span);
-					mapView.SetRegion(region, false);
-				}
+				CurrentContext.Instance.Moment.Event = selectedEvent;
+				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
 		}
 
@@ -100,13 +86,12 @@ namespace BeBabby
 		/// <param name="sender">Sender.</param>
 		partial void LocationChanged(UISwitch sender)
 		{
+			if (mapViewHeight == -1)
+			{
+				mapViewHeight = mapView.Frame.Height;
+			}
+			mapViewConstraint.Constant += (sender.On) ? -mapViewHeight : mapViewHeight;
 			mapView.Hidden = !sender.On;
-
-			float height = mapView.Frame.Height;
-			RectangleF frame = txtDescription.Frame;
-			frame.Y += (sender.On) ? height : -height;
-
-			txtDescription.Frame = frame;
 		}
 	}
 }
