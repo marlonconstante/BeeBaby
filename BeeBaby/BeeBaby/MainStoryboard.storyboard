@@ -72,22 +72,32 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="subtitle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
                                 <rect key="frame" x="0.0" y="226" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="aGs-uI-JdM"/>
+                                </constraints>
                             </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-7K-8Yo">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-7K-8Yo">
                                 <rect key="frame" x="0.0" y="344" width="320" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="5Lh-Xc-ApN"/>
+                                </constraints>
                                 <string key="text">O que você gostaria
 de lembrar sobre este momento?</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-we-1LJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-we-1LJ">
                                 <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="Xl3-v4-eXE"/>
+                                    <constraint firstAttribute="width" constant="320" id="bar-3V-SWD"/>
+                                </constraints>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Salvar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -227,6 +237,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5cT-qc-4it" secondAttribute="trailing" id="9yc-Eg-7vB"/>
+                            <constraint firstAttribute="trailing" secondItem="b1H-we-1LJ" secondAttribute="trailing" id="Hlw-IM-9bn"/>
+                            <constraint firstAttribute="bottom" secondItem="RSR-7K-8Yo" secondAttribute="bottom" constant="49" id="HsG-bv-nwh"/>
+                            <constraint firstAttribute="bottom" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="154" id="QZg-PA-e5H"/>
+                            <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="226" id="V1p-Fe-FS4"/>
+                            <constraint firstItem="RSR-7K-8Yo" firstAttribute="top" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="18" id="anN-uf-Tup"/>
+                            <constraint firstAttribute="bottom" secondItem="b1H-we-1LJ" secondAttribute="bottom" id="mp8-Ci-vEQ"/>
+                            <constraint firstAttribute="trailing" secondItem="RSR-7K-8Yo" secondAttribute="trailing" id="q24-7H-XUM"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="screen-background"/>
                         </userDefinedRuntimeAttributes>
@@ -249,7 +269,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <connections>
                         <outlet property="btnSelectEvent" destination="vGp-Ig-353" id="aeq-gL-p9H"/>
                         <outlet property="mapView" destination="5cT-qc-4it" id="Kyl-UM-70Q"/>
+                        <outlet property="mapViewConstraint" destination="QZg-PA-e5H" id="D7V-EL-tIf"/>
                         <outlet property="pckDate" destination="fKl-Fi-dxI" id="VGz-SB-uuI"/>
+                        <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="viewDate" destination="VUV-1f-YlT" id="3Gj-qz-QHY"/>
                         <segue destination="wjh-N5-O9g" kind="push" identifier="segueSelectEvent" id="jhm-aX-2LD"/>
                         <segue destination="Mt1-FJ-GcP" kind="push" identifier="segueSave" id="vZa-fo-I9D"/>
