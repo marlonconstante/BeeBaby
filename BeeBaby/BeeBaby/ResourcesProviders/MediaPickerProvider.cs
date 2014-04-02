@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 using BeeBaby;
 using Application;
 
-namespace BeBabby.ResourcesProviders
+namespace BeeBaby.ResourcesProviders
 {
 	public class MediaPickerProvider
 	{

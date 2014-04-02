@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Repositories
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skahal.Infrastructure.Framework", "Skahal.Infrastructure.Framework\Skahal.Infrastructure.Framework.csproj", "{404971D6-D685-40C7-80C6-F412697EEF75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebaby.iOS", "BeeBaby\Beebaby.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{CC957DCA-EC1E-43E2-A016-2711F2581197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeBaby.iOS", "BeeBaby\BeeBaby.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,7 +152,7 @@ Global
 		{404971D6-D685-40C7-80C6-F412697EEF75} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BeeBaby\Beebaby.iOS.csproj
+		StartupItem = BeeBaby\BeeBaby.iOS.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical

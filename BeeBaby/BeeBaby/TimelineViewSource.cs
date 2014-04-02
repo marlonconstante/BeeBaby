@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Application;
 using MonoTouch.Foundation;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{

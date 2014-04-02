@@ -6,7 +6,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using MonoTouch.CoreGraphics;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public partial class CollectionViewCell : UICollectionViewCell
 	{

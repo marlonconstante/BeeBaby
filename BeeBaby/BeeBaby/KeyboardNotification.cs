@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.Drawing;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public class KeyboardNotification
 	{

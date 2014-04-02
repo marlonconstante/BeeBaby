@@ -6,7 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Domain.Moment;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public partial class TimelineViewController : UITableViewController
 	{

@@ -5,7 +5,7 @@ using MonoTouch.Foundation;
 using Domain.Moment;
 using Application;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public class EventListViewSource : UITableViewSource
 	{

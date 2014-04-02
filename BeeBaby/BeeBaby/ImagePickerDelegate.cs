@@ -1,7 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
-using BeBabby.ResourcesProviders;
+using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {

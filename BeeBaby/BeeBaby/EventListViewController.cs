@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public partial class EventListViewController : UITableViewController
 	{

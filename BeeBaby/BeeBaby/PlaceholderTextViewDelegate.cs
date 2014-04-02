@@ -1,7 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public class PlaceholderTextViewDelegate : UITextViewDelegate
 	{

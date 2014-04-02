@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using BeBabby.ResourcesProviders;
+using BeeBaby.ResourcesProviders;
 using System.Collections.Generic;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public partial class MediaCollectionViewController : UICollectionViewController
 	{

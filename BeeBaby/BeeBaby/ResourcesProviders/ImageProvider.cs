@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace BeBabby.ResourcesProviders
+namespace BeeBaby.ResourcesProviders
 {
 	public class ImageProvider
 	{
@@ -18,7 +18,7 @@ namespace BeBabby.ResourcesProviders
 		const string m_fileExtension = ".jpg";
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeBabby.ResourcesProviders.ImageProvider"/> class.
+		/// Initializes a new instance of the <see cref="BeeBaby.ResourcesProviders.ImageProvider"/> class.
 		/// </summary>
 		public ImageProvider()
 		{

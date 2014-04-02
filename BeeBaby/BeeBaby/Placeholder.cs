@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public class Placeholder
 	{

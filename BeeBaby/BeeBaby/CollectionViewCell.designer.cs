@@ -7,7 +7,7 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	[Register ("CollectionViewCell")]
 	partial class CollectionViewCell

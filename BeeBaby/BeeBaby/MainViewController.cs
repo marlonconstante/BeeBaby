@@ -2,7 +2,7 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
-using BeBabby.ResourcesProviders;
+using BeeBaby.ResourcesProviders;
 using Domain.Moment;
 using Application;
 

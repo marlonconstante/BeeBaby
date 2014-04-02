@@ -7,7 +7,7 @@ using Domain.Moment;
 using Application;
 using System.Drawing;
 
-namespace BeBabby
+namespace BeeBaby
 {
 	public partial class MomentDetailViewController : UIViewController
 	{
