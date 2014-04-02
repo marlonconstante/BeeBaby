@@ -89,11 +89,7 @@ namespace BeBabby
 			UIView.SetAnimationDuration(0.3);
 
 			RectangleF frame = view.Frame;
-			if (up) {
-				frame.Y -= scrollAmount;
-			} else {
-				frame.Y += scrollAmount;
-			}
+			frame.Y += up ? -scrollAmount : scrollAmount;
 			view.Frame = frame;
 
 			UIView.CommitAnimations();
