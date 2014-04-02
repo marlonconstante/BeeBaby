@@ -19,6 +19,9 @@ namespace BeBabby
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint mapViewConstraint { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIDatePicker pckDate { get; set; }
 
 		[Outlet]
@@ -49,6 +52,11 @@ namespace BeBabby
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;
+			}
+
+			if (mapViewConstraint != null) {
+				mapViewConstraint.Dispose ();
+				mapViewConstraint = null;
 			}
 
 			if (pckDate != null) {
