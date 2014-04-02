@@ -1,10 +1,10 @@
 ﻿using System;
-using Infrastructure.Framework.Repositories;
-using Infrastructure.Framework.Commons;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using SQLite.Net;
 using Infrastructure.Repositories.SqliteNet;
+using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.Commons;
 
 namespace Application
 {

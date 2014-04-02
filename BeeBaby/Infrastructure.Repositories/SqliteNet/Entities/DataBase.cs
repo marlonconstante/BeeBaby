@@ -1,5 +1,5 @@
 ﻿using SQLite.Net.Attributes;
-using Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {

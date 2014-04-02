@@ -1,6 +1,6 @@
 ﻿using System;
-using Infrastructure.Framework.Domain;
-using Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
 
 namespace Domain.Moment

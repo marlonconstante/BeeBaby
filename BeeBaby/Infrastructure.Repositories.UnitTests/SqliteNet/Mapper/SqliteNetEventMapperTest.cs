@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
-using System;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Infrastructure.Repositories.SqliteNet.Entities;
-using Infrastructure.Framework.Domain;
 using Domain.Moment;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 {

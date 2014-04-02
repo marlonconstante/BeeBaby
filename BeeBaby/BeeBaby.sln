@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Repositories", "Infrastructure.Repositories\Infrastructure.Repositories.csproj", "{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Framework", "Infrastructure.Repositories\Infrastructure.Framework\Infrastructure.Framework.csproj", "{404971D6-D685-40C7-80C6-F412697EEF75}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Repositories.UnitTests", "Infrastructure.Repositories.UnitTests\Infrastructure.Repositories.UnitTests.csproj", "{85B112B9-548C-4568-91F1-F62577CDF404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skahal.Infrastructure.Framework", "Skahal.Infrastructure.Framework\Skahal.Infrastructure.Framework.csproj", "{404971D6-D685-40C7-80C6-F412697EEF75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebaby.iOS", "BeeBaby\Beebaby.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
 EndProject
@@ -148,8 +148,8 @@ Global
 		{64C49034-2B88-4908-976E-5666EDD7D4B9} = {D6BAC3D9-67FC-4448-83CE-6D905212CE48}
 		{44A38002-014A-4297-A53F-EDC91F3E75E6} = {D6BAC3D9-67FC-4448-83CE-6D905212CE48}
 		{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
-		{404971D6-D685-40C7-80C6-F412697EEF75} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 		{85B112B9-548C-4568-91F1-F62577CDF404} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
+		{404971D6-D685-40C7-80C6-F412697EEF75} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = BeeBaby\Beebaby.iOS.csproj

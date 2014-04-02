@@ -1,7 +1,7 @@
 ﻿using System;
-using Infrastructure.Framework.Domain;
 using System.Collections.Generic;
 using Domain.Media;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Domain.Moment
 {

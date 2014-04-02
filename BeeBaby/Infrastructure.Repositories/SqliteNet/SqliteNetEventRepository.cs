@@ -1,9 +1,9 @@
 ﻿using System;
 using Domain.Moment;
 using SQLite.Net;
-using Infrastructure.Framework.Repositories;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Infrastructure.Repositories.SqliteNet.Mapper;
+using Skahal.Infrastructure.Framework.Repositories;
 
 namespace Infrastructure.Repositories.SqliteNet
 {

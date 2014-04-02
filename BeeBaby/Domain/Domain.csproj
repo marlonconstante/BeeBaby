@@ -57,9 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Framework\Infrastructure.Framework.csproj">
+    <ProjectReference Include="..\Skahal.Infrastructure.Framework\Skahal.Infrastructure.Framework.csproj">
       <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
-      <Name>Infrastructure.Framework</Name>
+      <Name>Skahal.Infrastructure.Framework</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
