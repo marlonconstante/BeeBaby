@@ -97,8 +97,44 @@ text-view {
 	font-size: 17pt;
 }
 
+.ninety-degrees {
+	transform: rotate(90);
+}
+
+.bee-baby {
+	background-image: url(bee-baby.svg);
+}
+
 .checklist {
 	background-image: url(checklist.svg);
+}
+
+.hourglass {
+	background-image: url(hourglass.svg);
+}
+
+.heart {
+	background-image: url(heart.svg);
+}
+
+.heart-empty {
+	background-image: url(heart-empty.svg);
+}
+
+.badge {
+	background-image: url(badge.svg);
+}
+
+.tag {
+	background-image: url(tag.svg);
+}
+
+.bookmark {
+	background-image: url(bookmark.svg);
+}
+
+.comments {
+	background-image: url(comments.svg);
 }
 
 .calendar {
