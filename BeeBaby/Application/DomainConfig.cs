@@ -5,6 +5,8 @@ using SQLite.Net;
 using Infrastructure.Repositories.SqliteNet;
 using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.Globalization;
+using Infrastructure.Globalization;
 
 namespace Application
 {
@@ -45,6 +47,11 @@ namespace Application
 				Description = "Primeiro Passeio"
 			});
 			unitOfWork.Commit();
+		}
+
+		public static void InitializeGlobalization()
+		{
+			GlobalizationService.Initialize (new GlobalizationLabelRepository());
 		}
 	}
 }

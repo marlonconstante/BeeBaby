@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Logging;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		: MemoryGlobalizationLabelRepository
 	{
 		#region Constructors
+
 		/// <summary>
 		/// Initializes a new instance of the
 		/// <see cref="Skahal.Infrastructure.Framework.Globalization.TextGlobalizationLabelRepositoryBase"/> class.
@@ -19,30 +21,34 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		protected TextGlobalizationLabelRepositoryBase()
 		{
 		}
+
 		#endregion
 
 		#region Methods
+
 		/// <summary>
 		/// Loads the culture labels.
 		/// </summary>
 		/// <returns>true</returns>
 		/// <c>false</c>
 		/// <param name="cultureName">Culture name.</param>
-		public override bool LoadCultureLabels (string cultureName)
+		public override bool LoadCultureLabels(string cultureName)
 		{
-			if (CountAll(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0) {
-				LogService.Debug ("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
+			if (CountAll(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
+			{
+				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
 
-				var lines = GetCultureText(cultureName).Split (new string[] { System.Environment.NewLine }, System.StringSplitOptions.RemoveEmptyEntries);
+				var lines = GetCultureText(cultureName).Split(new string[] { System.Environment.NewLine }, System.StringSplitOptions.RemoveEmptyEntries);
 
-				LogService.Debug ("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
+				LogService.Debug("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
 
-				foreach (var line in lines) {
-					var lineParts = line.Split ('=');
-					Entities.Add(new GlobalizationLabel() 
-					             {
-						EnglishText = lineParts [0].Trim (),
-						CultureText = lineParts [1].Trim ().Replace(@"\n", System.Environment.NewLine),
+				foreach (var line in lines)
+				{
+					var lineParts = line.Split('=');
+					Entities.Add(new GlobalizationLabel()
+					{
+						EnglishText = lineParts[0].Trim(),
+						CultureText = lineParts[1].Trim().Replace(@"\n", System.Environment.NewLine),
 						CultureName = cultureName
 					});
 				}
@@ -58,7 +64,8 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		/// </summary>
 		/// <returns>The culture text.</returns>
 		/// <param name="cultureName">Culture name.</param>
-		internal protected abstract string GetCultureText (string cultureName);
+		internal protected abstract string GetCultureText(string cultureName);
+
 		#endregion
 	}
 }

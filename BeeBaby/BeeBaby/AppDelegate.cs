@@ -52,6 +52,7 @@ namespace BeeBaby
 
 			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
 			DomainConfig.RegisterDependencies(connection);
+			DomainConfig.InitializeGlobalization();
 		}
 	}
 }
