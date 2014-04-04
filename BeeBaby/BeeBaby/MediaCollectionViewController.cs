@@ -24,7 +24,7 @@ namespace BeeBaby
 		/// Buttons the add media from library.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void btnAddMediaFromLibrary(UIBarButtonItem sender)
+		partial void AddMediaFromLibrary(UIBarButtonItem sender)
 		{
 			var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
 			m_picker = imagePickerProvider.GetUIImagePickerController();
@@ -45,12 +45,13 @@ namespace BeeBaby
 		/// Buttons the next step.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void btnNextStep(UIBarButtonItem sender)
+		partial void NextStep(UIBarButtonItem sender)
 		{
 			var imageNames = GetSelectedImagesNames();
 
 			//TODO: Remover quando a seleção de imagens estiver correta.
-			for (int i = 0; i < imageNames.Count; i++) {
+			for (int i = 0; i < imageNames.Count; i++)
+			{
 				imageNames[i] = imageNames[i].Split('/').Last();
 			}
 				
@@ -63,10 +64,10 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			var abc = "Baby".Translate();
-
 			CollectionView.RegisterClassForCell(typeof(CollectionViewCell), s_cellId);
 
+			btnNextStep.Title = "Next".Translate();
+			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
 		}
 
 		public override void ViewWillAppear(bool animated)

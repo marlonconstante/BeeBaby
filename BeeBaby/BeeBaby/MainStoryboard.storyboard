@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sBD-ww-51T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XbC-sd-fcb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -614,16 +614,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationItem key="navigationItem" id="abg-Sy-6ak">
                         <barButtonItem key="leftBarButtonItem" title="Lib" id="yUY-cf-PxY">
                             <connections>
-                                <action selector="btnAddMediaFromLibrary:" destination="N5b-mA-KCA" id="SSH-Fi-m6k"/>
+                                <action selector="AddMediaFromLibrary:" destination="N5b-mA-KCA" id="2xD-Pk-qmU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="ZMc-i6-zfs">
                             <connections>
-                                <action selector="btnNextStep:" destination="N5b-mA-KCA" id="a7a-X4-MtW"/>
+                                <action selector="NextStep:" destination="N5b-mA-KCA" id="WbQ-df-e5M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnAddMediaFromLibrary" destination="yUY-cf-PxY" id="IxL-py-qn5"/>
+                        <outlet property="btnNextStep" destination="ZMc-i6-zfs" id="vVS-lu-9vp"/>
                         <segue destination="UAi-dU-234" kind="push" identifier="segueEventStep" id="lzE-eM-NTB"/>
                     </connections>
                 </collectionViewController>
