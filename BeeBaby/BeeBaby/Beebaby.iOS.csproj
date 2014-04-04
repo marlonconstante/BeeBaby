@@ -124,6 +124,13 @@
     <BundleResource Include="Resources\checklist.svg" />
     <BundleResource Include="Resources\camera.svg" />
     <BundleResource Include="Resources\comeback.svg" />
+    <BundleResource Include="Resources\hourglass.svg" />
+    <BundleResource Include="Resources\badge.svg" />
+    <BundleResource Include="Resources\tag.svg" />
+    <BundleResource Include="Resources\comments.svg" />
+    <BundleResource Include="Resources\heart.svg" />
+    <BundleResource Include="Resources\heart-empty.svg" />
+    <BundleResource Include="Resources\bee-baby.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
