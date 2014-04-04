@@ -61,13 +61,10 @@
     <Compile Include="Logging\LogService.cs" />
     <Compile Include="Logging\LogStrategyBase.cs" />
     <Compile Include="Logging\LogWrittenEventArgs.cs" />
-    <Compile Include="Globalization\FileGlobalizationLabelRepository.cs" />
     <Compile Include="Globalization\GlobalizationExtensions.cs" />
     <Compile Include="Globalization\GlobalizationLabel.cs" />
     <Compile Include="Globalization\GlobalizationService.cs" />
     <Compile Include="Globalization\IGlobalizationLabelRepository.cs" />
-    <Compile Include="Globalization\MemoryGlobalizationLabelRepository.cs" />
-    <Compile Include="Globalization\TextGlobalizationLabelRepositoryBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

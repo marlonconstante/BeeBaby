@@ -2,18 +2,23 @@
 using System.Linq;
 using Skahal.Infrastructure.Framework.Globalization;
 using Skahal.Infrastructure.Framework.Logging;
+using System.Collections.Generic;
 
 namespace Infrastructure.Globalization
 {
 	/// <summary>
 	/// Globalization label repository.
 	/// </summary>
-	public class GlobalizationLabelRepository : TextGlobalizationLabelRepositoryBase
+	public class GlobalizationLabelRepository : IGlobalizationLabelRepository
 	{
-		public override bool LoadCultureLabels(string cultureName)
+		List<GlobalizationLabel> m_entities;
+
+		public bool LoadCultureLabels(string cultureName)
 		{
+			m_entities = new List<GlobalizationLabel>();
+
 			//TODO: Quando for corrigido o Bug na Xamarin, podemos remover esse override.
-			if (Entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
+			if (m_entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
 			{
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
 
@@ -24,7 +29,7 @@ namespace Infrastructure.Globalization
 				foreach (var line in lines)
 				{
 					var lineParts = line.Split('=');
-					Entities.Add(new GlobalizationLabel()
+					m_entities.Add(new GlobalizationLabel()
 					{
 						EnglishText = lineParts[0].Trim(),
 						CultureText = lineParts[1].Trim().Replace(@"\n", System.Environment.NewLine),
@@ -38,8 +43,14 @@ namespace Infrastructure.Globalization
 			return false;
 		}
 
+		public GlobalizationLabel FindFirst(string englishText)
+		{
+			return m_entities.FindAll(
+				f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
+				.FirstOrDefault();
+		}
 
-		protected override string GetCultureText(string cultureName)
+		protected string GetCultureText(string cultureName)
 		{
 			return @"
 Baby = Bebe

@@ -150,11 +150,8 @@ namespace Skahal.Infrastructure.Framework.Globalization
 				throw new ArgumentNullException("englishText"); 
 			}
 
-			var translatedLabel = s_labelRepository
-				.FindAll(
-				                      f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase)
-				                      && f.CultureName == s_currentCulture.Name)
-				.FirstOrDefault();
+			var translatedLabel = s_labelRepository.FindFirst(englishText);
+				
 
 			if (translatedLabel == null)
 			{

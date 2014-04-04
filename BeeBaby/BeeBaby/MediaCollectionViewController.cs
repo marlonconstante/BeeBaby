@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 using System.Collections.Generic;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -61,6 +62,9 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			var abc = "Baby".Translate();
+
 			CollectionView.RegisterClassForCell(typeof(CollectionViewCell), s_cellId);
 
 		}
