@@ -27,9 +27,9 @@ navigation-bar back-indicator {
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
     font-size: 16pt;
 	font-weight: normal;
 }
@@ -41,11 +41,11 @@ navigation-bar back-indicator {
 	box-shadow: 0 1 1 0 #b9c9c5;
 }
 
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
 	background-color: #eef1f1;
-	box-shadow: 0 1 1 0 #bacbc8;
+	box-shadow: 0 1 0 0 #bacbc8;
 }
 
 .subtitle,
@@ -106,9 +106,9 @@ text-view,
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
 	color: #4d5f5c;
 }
 
