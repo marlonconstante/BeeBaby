@@ -131,6 +131,9 @@
     <BundleResource Include="Resources\heart.svg" />
     <BundleResource Include="Resources\heart-empty.svg" />
     <BundleResource Include="Resources\bee-baby.svg" />
+    <BundleResource Include="Resources\photo-1.jpg" />
+    <BundleResource Include="Resources\photo-2.jpg" />
+    <BundleResource Include="Resources\bookmark.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

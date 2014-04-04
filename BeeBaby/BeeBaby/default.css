@@ -27,9 +27,9 @@ navigation-bar back-indicator {
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
     font-size: 16pt;
 	font-weight: normal;
 }
@@ -41,20 +41,30 @@ navigation-bar back-indicator {
 	box-shadow: 0 1 1 0 #b9c9c5;
 }
 
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
 	background-color: #eef1f1;
-	box-shadow: 0 1 1 0 #bacbc8;
+	box-shadow: 0 1 0 0 #bacbc8;
 }
 
-.subtitle {
-	font-size: 14pt;
+.subtitle,
+.moment-label {
+	font-size: 13pt;
 }
 
 .time-box {
 	background-color: #f1f1e9;
 	box-shadow: 0 1 0 0 #b1bdbb;
+}
+
+.time-box-row {
+
+}
+
+.time-box-row label {
+	font-size: 14pt;
+	font-weight: normal;
 }
 
 .time-button,
@@ -85,7 +95,9 @@ navigation-bar back-indicator {
 .subtitle,
 .follow,
 .row label,
+.time-box-row label,
 .day-label,
+.moment-label,
 text-field,
 text-view,
 .time-button,
@@ -94,9 +106,9 @@ text-view,
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
-.filter-button,
-.filter-button:highlighted,
-.filter-button:selected {
+.large-button,
+.large-button:highlighted,
+.large-button:selected {
 	color: #4d5f5c;
 }
 
