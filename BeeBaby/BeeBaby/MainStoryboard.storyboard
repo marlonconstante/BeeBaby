@@ -630,7 +630,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <rect key="frame" x="4" y="4" width="21" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="heart"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="heart bubble"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
