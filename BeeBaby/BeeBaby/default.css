@@ -59,17 +59,17 @@ navigation-bar back-indicator {
 }
 
 .time-box-row {
-
 }
 
+.special-event-label,
 .time-box-row label {
 	font-size: 14pt;
 	font-weight: normal;
 }
 
-.time-button,
-.time-button:highlighted,
-.time-button:selected {
+.small-button,
+.small-button:highlighted,
+.small-button:selected {
 	background-color: #dadacb;
 	border-radius: 5;
 	font-size: 13pt;
@@ -87,6 +87,11 @@ navigation-bar back-indicator {
 	font-weight: bold;
 }
 
+.special-message-label {
+	font-size: 15pt;
+	font-weight: bold;
+}
+
 :root > view,
 .screen-background {
 	background-color: #dce6e6;
@@ -98,11 +103,13 @@ navigation-bar back-indicator {
 .time-box-row label,
 .day-label,
 .moment-label,
+.special-event-label,
+.special-message-label,
 text-field,
 text-view,
-.time-button,
-.time-button:highlighted,
-.time-button:selected,
+.small-button,
+.small-button:highlighted,
+.small-button:selected,
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
