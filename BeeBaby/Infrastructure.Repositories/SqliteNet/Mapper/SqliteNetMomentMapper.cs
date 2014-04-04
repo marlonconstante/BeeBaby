@@ -25,6 +25,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 					Longitude = source.Longitude
 				};
 				result.Location = new SqliteNetLocationMapper().ToDomainEntity(source.Location);
+				result.Date = source.Date;
 			}
 
 			return result;
@@ -42,7 +43,13 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.Event = new SqliteNetEventMapper().ToRepositoryEntity(source.Event);
 				result.EventId = source.Event != null ? source.Event.Id : null;
 				result.Location = new SqliteNetLocationMapper().ToRepositoryEntity(source.Location);
-				result.LocationId = source.Event != null ? source.Location.Id : null;
+				result.LocationId = source.Location != null ? source.Location.Id : null;
+				if (source.Position != null)
+				{
+					result.Latitude = source.Position.Latitude;
+					result.Longitude = source.Position.Longitude;
+				}
+				result.Date = source.Date;
 			}
 
 			return result;

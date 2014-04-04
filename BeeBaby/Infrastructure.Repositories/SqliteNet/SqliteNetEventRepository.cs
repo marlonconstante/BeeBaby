@@ -12,6 +12,13 @@ namespace Infrastructure.Repositories.SqliteNet
 		public SqliteNetEventRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetEventMapper(), unitOfWork)
 		{
 			connection.CreateTable<EventData>();
+
+			if (CountAll(null) <= 0)
+			{
+				connection.ExecuteScalar<EventData>("Insert Into EventData (Id, Description) values ( '1', 'Primeiro Evento')");
+				connection.ExecuteScalar<EventData>("Insert Into EventData (Id, Description) values ( '2', 'Segundo Evento')");
+
+			}
 		}
 	}
 }

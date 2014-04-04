@@ -13,7 +13,7 @@ namespace BeeBaby
 	{
 		private float mapViewHeight = -1;
 
-		public MomentDetailViewController (IntPtr handle) : base (handle)
+		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
 		}
 
@@ -76,7 +76,22 @@ namespace BeeBaby
 		partial void Save(UIButton sender)
 		{
 			var momentService = new MomentService();
-			momentService.SaveMoment(CurrentContext.Instance.Moment);
+			var moment = CurrentContext.Instance.Moment;
+
+			moment.Description = txtDescription.Text;
+			moment.Event = CurrentContext.Instance.SelectedEvent;
+			moment.Date = pckDate.Date;
+
+			if (!mapView.Hidden)
+			{
+				moment.Position = new GlobalPosition();
+				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
+				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
+			}
+
+			CurrentContext.Instance.Moment = moment;
+			momentService.SaveMoment(moment);
+
 			PerformSegue("segueSave", sender);
 		}
 

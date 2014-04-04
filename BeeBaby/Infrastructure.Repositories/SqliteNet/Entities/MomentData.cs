@@ -51,5 +51,11 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// <value>The location identifier.</value>
 		[ForeignKey(typeof(LocationData))] 
 		public string LocationId { set; get; }
+
+		/// <summary>
+		/// Gets or sets the date.
+		/// </summary>
+		/// <value>The date.</value>
+		public DateTime Date { set; get; }
 	}
 }

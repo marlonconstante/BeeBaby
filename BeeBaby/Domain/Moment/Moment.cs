@@ -39,6 +39,13 @@ namespace Domain.Moment
 		/// </summary>
 		/// <value>The local.</value>
 		public Location Location { set; get; }
+
+		/// <summary>
+		/// Gets or sets the date.
+		/// </summary>
+		/// <value>The date.</value>
+		public DateTime Date { set; get; }
+
 	}
 }
 
