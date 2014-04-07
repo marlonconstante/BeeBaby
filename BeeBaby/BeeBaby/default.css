@@ -58,9 +58,6 @@ navigation-bar back-indicator {
 	box-shadow: 0 1 0 0 #b1bdbb;
 }
 
-.time-box-row {
-}
-
 .special-event-label,
 .time-box-row label {
 	font-size: 14pt;
@@ -93,8 +90,16 @@ navigation-bar back-indicator {
 }
 
 :root > view,
+.default-screen-background {
+	background-color: #fff;
+}
+
 .screen-background {
 	background-color: #dce6e6;
+}
+
+.selected-cell {
+	background-color: #58c5cd;
 }
 
 .subtitle,
@@ -199,6 +204,10 @@ text-view {
 
 .bookmark {
 	background-image: url(bookmark.svg);
+}
+
+.checkmark {
+	background-image: url(checkmark.svg);
 }
 
 .comments {
