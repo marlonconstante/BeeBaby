@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using Domain.Media;
+using System.Drawing;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -131,6 +133,23 @@ namespace BeeBaby.ResourcesProviders
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
+		}
+
+		private UIImage GenerateThumbnails(UIImage sourceImage)
+		{
+			var sourceSize = sourceImage.Size;
+			var maxResizeFactor = Math.Min(MediaBase.ImageThumbnailWidth / sourceSize.Width, MediaBase.ImageThumbnailHeight / sourceSize.Height);
+			if (maxResizeFactor > 1)
+				return sourceImage;
+			var width = maxResizeFactor * sourceSize.Width;
+			var height = maxResizeFactor * sourceSize.Height;
+
+			UIGraphics.BeginImageContext(new SizeF(width, height));
+			sourceImage.Draw(new RectangleF(0, 0, width, height));
+			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+			return resultImage;
+
 		}
 	}
 }

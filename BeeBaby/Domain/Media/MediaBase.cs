@@ -9,15 +9,8 @@ namespace Domain.Media
 	public class MediaBase: EntityWithIdBase<string>, IAggregateRoot
 	{
 		#region Constants
-		/// <summary>
-		/// A largura da imagem do anúncio.
-		/// </summary>
-		public const int ImageWidth = 120;
-
-		/// <summary>
-		/// A altura da imagem do anúncio.
-		/// </summary>
-		public const int ImageHeight = 72;
+		public const int ImageThumbnailWidth = 100;
+		public const int ImageThumbnailHeight = 100;
 		#endregion
 
 		/// <summary>
@@ -47,7 +40,7 @@ namespace Domain.Media
 		/// <value>The width of the resource.</value>
 		public int ResourceWidth
 		{
-			get { return ImageWidth; }
+			get { return ImageThumbnailWidth; }
 		}
 
 		/// <summary>
@@ -56,7 +49,7 @@ namespace Domain.Media
 		/// <value>The height of the resource.</value>
 		public int ResourceHeight
 		{
-			get { return ImageHeight; }
+			get { return ImageThumbnailHeight; }
 		}
 
 	}

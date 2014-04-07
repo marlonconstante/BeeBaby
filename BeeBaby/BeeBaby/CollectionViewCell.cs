@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using MonoTouch.CoreGraphics;
+using Domain.Media;
 
 namespace BeeBaby
 {
@@ -18,7 +19,7 @@ namespace BeeBaby
 			}
 			set
 			{
-				p_imageView = new UIImageView (MaxResizeImage(value, 130, 130));
+				p_imageView = new UIImageView(MaxResizeImage(value, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 				p_imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 				ContentView.AddSubview(p_imageView);
 			}
@@ -27,7 +28,7 @@ namespace BeeBaby
 		public CollectionViewCell(IntPtr handle) : base(handle)
 		{
 		}
-			
+
 		/// <summary>
 		/// Resize the image to be contained within a maximum width and height, keeping aspect ratio
 		/// </summary>
@@ -37,20 +38,35 @@ namespace BeeBaby
 		/// <param name="maxHeight">Max height.</param>
 		public UIImage MaxResizeImage(UIImage sourceImage, float maxWidth, float maxHeight)
 		{
-//			var sourceSize = sourceImage.Size;
-//			var maxResizeFactor = Math.Min(maxWidth / sourceSize.Width, maxHeight / sourceSize.Height);
-//			if (maxResizeFactor > 1) return sourceImage;
-//			var width = maxResizeFactor * sourceSize.Width;
-//			var height = maxResizeFactor * sourceSize.Height;
+			var sourceWidth = sourceImage.Size.Width;
+			var sourceHeight = sourceImage.Size.Height;
 
-			var width = 140;
-			var height = 140;
+			float marginH = 0;
+			float marginV = 0;
+			float imgSize = 0;
 
-			UIGraphics.BeginImageContext(new SizeF(width, height));
-			sourceImage.Draw(new RectangleF(0, 0, width, height));
+			if (sourceWidth > sourceHeight)
+			{
+				marginH = (sourceWidth - sourceHeight) / 2;
+				imgSize = sourceHeight;
+			}
+			else
+			{
+				marginV = (sourceHeight - sourceWidth) / 2;
+				imgSize = sourceWidth;
+			}
+			UIImage cropped;
+			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginH, marginV, imgSize, imgSize)))
+			{
+				cropped = UIImage.FromImage(cr, 1f, sourceImage.Orientation );
+			}
+
+			UIGraphics.BeginImageContext(new SizeF(maxWidth, maxHeight));
+			cropped.Draw(new RectangleF(0, 0, maxWidth, maxHeight));
 			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
 			UIGraphics.EndImageContext();
 			return resultImage;
+
 		}
 	}
 }
