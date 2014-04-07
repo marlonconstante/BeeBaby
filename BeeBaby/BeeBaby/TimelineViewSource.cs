@@ -13,40 +13,50 @@ namespace BeeBaby
 		string m_cellIdentifier = "MomentCell";
 		UIViewController m_viewController;
 
-		public TimelineViewSource (UIViewController viewController, List<Moment> items)
+		public TimelineViewSource(UIViewController viewController, List<Moment> items)
 		{
 			tableItems = items;
 			m_viewController = viewController;
 		}
 
-
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override int RowsInSection(UITableView tableview, int section)
 		{
 			return tableItems.Count;
 		}
 
+		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 255f;
+		}
+
+		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			//UITableViewCell cell = tableView.DequeueReusableCell(m_cellIdentifier);
+			//cell.ContentView.SetNeedsLayout();
+			//cell.ContentView.LayoutIfNeeded();
+			return 255f;
+		}
 
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			// request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell (m_cellIdentifier);
+			UITableViewCell cell = tableView.DequeueReusableCell(m_cellIdentifier);
 
 			var cellStyle = UITableViewCellStyle.Default;
 			// if there are no cells to reuse, create a new one
 			if (cell == null) {
-				cell = new UITableViewCell (cellStyle, m_cellIdentifier);
+				cell = new UITableViewCell(cellStyle, m_cellIdentifier);
 			}
 
-			cell.TextLabel.Text = tableItems[indexPath.Row].Id;
+			//cell.TextLabel.Text = tableItems[indexPath.Row].Id;
 
 			return cell;
 		}
 	}
 }
-
