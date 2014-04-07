@@ -205,6 +205,10 @@ text-view {
 	background-image: url(comments.svg);
 }
 
+.separator {
+	background-image: url(separator.png);
+}
+
 .calendar {
 	background-image: url(calendar.svg);
 }

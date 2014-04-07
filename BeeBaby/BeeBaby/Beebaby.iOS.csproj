@@ -134,6 +134,7 @@
     <BundleResource Include="Resources\photo-1.jpg" />
     <BundleResource Include="Resources\photo-2.jpg" />
     <BundleResource Include="Resources\bookmark.svg" />
+    <BundleResource Include="Resources\separator.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
