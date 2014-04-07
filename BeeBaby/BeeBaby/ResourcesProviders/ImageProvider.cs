@@ -164,11 +164,40 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="sourceImage">Source image.</param>
 		private UIImage GenerateThumbnail(UIImage sourceImage)
 		{
-			var sourceWidth = sourceImage.Size.Width;
-			var sourceHeight = sourceImage.Size.Height;
+			var croppedImage = CropImage(sourceImage, sourceImage.Size.Width, sourceImage.Size.Height);
+
+			return ResizeImage(croppedImage, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight);
+		}
+
+		/// <summary>
+		/// Resizes the image.
+		/// </summary>
+		/// <returns>The image.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		/// <param name="newWidth">New width.</param>
+		/// <param name="newHeight">New height.</param>
+		static UIImage ResizeImage(UIImage sourceImage, int newWidth, int newHeight)
+		{
+			var size = new Size(newWidth, newHeight);
+			UIGraphics.BeginImageContextWithOptions(size, true, 0f);
+			sourceImage.Draw(new Rectangle(0, 0, newWidth, newHeight));
+			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+			return resultImage;
+		}
+
+		/// <summary>
+		/// Crops the image.
+		/// </summary>
+		/// <returns>The image.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		/// <param name="sourceWidth">Source width.</param>
+		/// <param name="sourceHeight">Source height.</param>
+		static UIImage CropImage(UIImage sourceImage, float sourceWidth, float sourceHeight)
+		{
 			float marginHorizontal = 0;
 			float marginVertical = 0;
-			float imageSize = 0;
+			float imageSize;
 
 			if (sourceWidth > sourceHeight)
 			{
@@ -181,20 +210,13 @@ namespace BeeBaby.ResourcesProviders
 				imageSize = sourceWidth;
 			}
 
-
 			// Crop the image at original size
 			UIImage cropped;
 			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
 			{
 				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation);
 			}
-
-			// Resize image for thumbnail
-			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight), false, 0f);
-			cropped.Draw(new RectangleF(0, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
-			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
-			UIGraphics.EndImageContext();
-			return resultImage;
+			return cropped;
 		}
 	}
 }

@@ -21,6 +21,7 @@ namespace BeeBaby
 			{
 				p_imageView = new UIImageView(new RectangleF(0, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 				p_imageView.Image = value;
+				p_imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 				ContentView.AddSubview(p_imageView);
 			}
 		}
