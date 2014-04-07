@@ -9,6 +9,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Domain.Media;
 using System.Drawing;
+using MonoTouch.CoreGraphics;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -18,6 +19,7 @@ namespace BeeBaby.ResourcesProviders
 		string m_appDocumentsDirectory;
 		const string m_temporaryDirectoryName = "temp";
 		const string m_fileExtension = ".jpg";
+		const string m_thumbnailPrefix = "thumbnail-";
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.ResourcesProviders.ImageProvider"/> class.
@@ -65,9 +67,13 @@ namespace BeeBaby.ResourcesProviders
 		/// Creates the temporary file path.
 		/// </summary>
 		/// <returns>The temporary file path.</returns>
-		public string CreateTemporaryFilePath()
+		/// <param name="isThumbnail">If set to <c>true</c> is thumbnail.</param>
+		public string CreateTemporaryFilePath(bool isThumbnail = false)
 		{
-			var fileName = string.Concat(DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), m_fileExtension);
+			var fileName = string.Concat(
+				               isThumbnail ? m_thumbnailPrefix : string.Empty,
+				               DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), 
+				               m_fileExtension);
 			var filePath = Path.Combine(CreateTemporaryDirectory(), fileName);
 
 			return filePath;
@@ -87,10 +93,17 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets the images for current moment.
 		/// </summary>
 		/// <returns>The images for current moment.</returns>
-		public IList<UIImage> GetImagesForCurrentMoment()
+		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
+		public IList<UIImage> GetImagesForCurrentMoment(bool thumbnails = false)
 		{
 			var temporaryDirectory = CreateTemporaryDirectory();
-			var fileNames = Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension));
+			var fileNames = Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension))
+				.Where(f => 
+						thumbnails 
+						? f.Contains(m_thumbnailPrefix)
+						: !f.Contains(m_thumbnailPrefix)
+            ).ToArray();
+		
 
 			var images = new List<UIImage>();
 
@@ -133,23 +146,55 @@ namespace BeeBaby.ResourcesProviders
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
+
+			using (NSData imageData = GenerateThumbnail(image).AsJPEG())
+			{
+				NSError err;
+				if (!imageData.Save(CreateTemporaryFilePath(true), false, out err))
+				{
+					Console.WriteLine("Saving of file failed: " + err.Description);
+				}
+			}
 		}
 
-		private UIImage GenerateThumbnails(UIImage sourceImage)
+		/// <summary>
+		/// Generates the thumbnail.
+		/// </summary>
+		/// <returns>The thumbnail.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		private UIImage GenerateThumbnail(UIImage sourceImage)
 		{
-			var sourceSize = sourceImage.Size;
-			var maxResizeFactor = Math.Min(MediaBase.ImageThumbnailWidth / sourceSize.Width, MediaBase.ImageThumbnailHeight / sourceSize.Height);
-			if (maxResizeFactor > 1)
-				return sourceImage;
-			var width = maxResizeFactor * sourceSize.Width;
-			var height = maxResizeFactor * sourceSize.Height;
+			var sourceWidth = sourceImage.Size.Width;
+			var sourceHeight = sourceImage.Size.Height;
+			float marginHorizontal = 0;
+			float marginVertical = 0;
+			float imageSize = 0;
 
-			UIGraphics.BeginImageContext(new SizeF(width, height));
-			sourceImage.Draw(new RectangleF(0, 0, width, height));
+			if (sourceWidth > sourceHeight)
+			{
+				marginHorizontal = (sourceWidth - sourceHeight) / 2;
+				imageSize = sourceHeight;
+			}
+			else
+			{
+				marginVertical = (sourceHeight - sourceWidth) / 2;
+				imageSize = sourceWidth;
+			}
+
+
+			// Crop the image at original size
+			UIImage cropped;
+			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
+			{
+				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation);
+			}
+
+			// Resize image for thumbnail
+			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight), false, 0f);
+			cropped.Draw(new RectangleF(0, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
 			UIGraphics.EndImageContext();
 			return resultImage;
-
 		}
 	}
 }

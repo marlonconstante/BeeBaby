@@ -29,15 +29,12 @@ namespace BeeBaby
 
 		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
 		{
-			return 255f;
+			return indexPath.Row == 1 ? 56f : 255f;
 		}
 
 		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			//UITableViewCell cell = tableView.DequeueReusableCell(m_cellIdentifier);
-			//cell.ContentView.SetNeedsLayout();
-			//cell.ContentView.LayoutIfNeeded();
-			return 255f;
+			return indexPath.Row == 1 ? 56f : 255f;
 		}
 
 		/// <summary>
@@ -46,7 +43,7 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			// request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(m_cellIdentifier);
+			UITableViewCell cell = tableView.DequeueReusableCell(indexPath.Row == 1 ? "EventCell" : m_cellIdentifier);
 
 			var cellStyle = UITableViewCellStyle.Default;
 			// if there are no cells to reuse, create a new one

@@ -72,7 +72,7 @@ namespace BeeBaby
 
 		public override void ViewWillAppear(bool animated)
 		{
-			m_images = m_imageProvider.GetImagesForCurrentMoment();
+			m_images = m_imageProvider.GetImagesForCurrentMoment(true);
 				
 			this.CollectionView.ReloadData();
 

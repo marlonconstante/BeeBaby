@@ -19,55 +19,14 @@ namespace BeeBaby
 			}
 			set
 			{
-				p_imageView = new UIImageView(MaxResizeImage(value, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
-				p_imageView.ContentMode = UIViewContentMode.ScaleToFill;
+				p_imageView = new UIImageView(new RectangleF(0, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
+				p_imageView.Image = value;
 				ContentView.AddSubview(p_imageView);
 			}
 		}
 
 		public CollectionViewCell(IntPtr handle) : base(handle)
 		{
-		}
-
-		/// <summary>
-		/// Resize the image to be contained within a maximum width and height, keeping aspect ratio
-		/// </summary>
-		/// <returns>The resize image.</returns>
-		/// <param name="sourceImage">Source image.</param>
-		/// <param name="maxWidth">Max width.</param>
-		/// <param name="maxHeight">Max height.</param>
-		public UIImage MaxResizeImage(UIImage sourceImage, float maxWidth, float maxHeight)
-		{
-			var sourceWidth = sourceImage.Size.Width;
-			var sourceHeight = sourceImage.Size.Height;
-
-			float marginHorizontal = 0;
-			float marginVertical = 0;
-			float imageSize = 0;
-
-			if (sourceWidth > sourceHeight)
-			{
-				marginHorizontal = (sourceWidth - sourceHeight) / 2;
-				imageSize = sourceHeight;
-			}
-			else
-			{
-				marginVertical = (sourceHeight - sourceWidth) / 2;
-				imageSize = sourceWidth;
-			}
-
-			UIImage cropped;
-			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
-			{
-				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation );
-			}
-				
-			UIGraphics.BeginImageContextWithOptions(new SizeF(maxWidth, maxHeight), false, 0f);
-			cropped.Draw(new RectangleF(0, 0, maxWidth, maxHeight));
-			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
-			UIGraphics.EndImageContext();
-			return resultImage;
-
 		}
 	}
 }
