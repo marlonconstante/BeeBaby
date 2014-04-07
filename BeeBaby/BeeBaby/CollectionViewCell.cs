@@ -20,7 +20,7 @@ namespace BeeBaby
 			set
 			{
 				p_imageView = new UIImageView(MaxResizeImage(value, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
-				p_imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+				p_imageView.ContentMode = UIViewContentMode.ScaleToFill;
 				ContentView.AddSubview(p_imageView);
 			}
 		}
@@ -41,27 +41,28 @@ namespace BeeBaby
 			var sourceWidth = sourceImage.Size.Width;
 			var sourceHeight = sourceImage.Size.Height;
 
-			float marginH = 0;
-			float marginV = 0;
-			float imgSize = 0;
+			float marginHorizontal = 0;
+			float marginVertical = 0;
+			float imageSize = 0;
 
 			if (sourceWidth > sourceHeight)
 			{
-				marginH = (sourceWidth - sourceHeight) / 2;
-				imgSize = sourceHeight;
+				marginHorizontal = (sourceWidth - sourceHeight) / 2;
+				imageSize = sourceHeight;
 			}
 			else
 			{
-				marginV = (sourceHeight - sourceWidth) / 2;
-				imgSize = sourceWidth;
-			}
-			UIImage cropped;
-			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginH, marginV, imgSize, imgSize)))
-			{
-				cropped = UIImage.FromImage(cr, 1f, sourceImage.Orientation );
+				marginVertical = (sourceHeight - sourceWidth) / 2;
+				imageSize = sourceWidth;
 			}
 
-			UIGraphics.BeginImageContext(new SizeF(maxWidth, maxHeight));
+			UIImage cropped;
+			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
+			{
+				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation );
+			}
+				
+			UIGraphics.BeginImageContextWithOptions(new SizeF(maxWidth, maxHeight), false, 0f);
 			cropped.Draw(new RectangleF(0, 0, maxWidth, maxHeight));
 			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
 			UIGraphics.EndImageContext();
