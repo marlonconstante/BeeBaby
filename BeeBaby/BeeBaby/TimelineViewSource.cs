@@ -4,37 +4,44 @@ using Domain.Moment;
 using System.Collections.Generic;
 using Application;
 using MonoTouch.Foundation;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
-		List<Moment> tableItems;
-		string m_cellIdentifier = "MomentCell";
-		UIViewController m_viewController;
+		private List<IAggregateRoot> tableItems;
+		private UIViewController m_viewController;
 
-		public TimelineViewSource(UIViewController viewController, List<Moment> items)
+		public TimelineViewSource(UIViewController viewController, List<IAggregateRoot> items)
 		{
 			tableItems = items;
 			m_viewController = viewController;
 		}
 
 		/// <summary>
-		/// Called by the TableView to determine how many cells to create for that particular section.
+		/// Called by the TableView to determine how many cells to create for that particular section
 		/// </summary>
 		public override int RowsInSection(UITableView tableview, int section)
 		{
 			return tableItems.Count;
 		}
 
+		/// <summary>
+		/// Called by the TableView to determine the estimated height of the row
+		/// </summary>
 		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
 		{
-			return indexPath.Row == 1 ? 56f : 255f;
+
+			return GetHeight(indexPath);
 		}
 
+		/// <summary>
+		/// Called by the TableView to determine the row height
+		/// </summary>
 		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			return indexPath.Row == 1 ? 56f : 255f;
+			return GetHeight(indexPath);
 		}
 
 		/// <summary>
@@ -42,18 +49,50 @@ namespace BeeBaby
 		/// </summary>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			// request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(indexPath.Row == 1 ? "EventCell" : m_cellIdentifier);
+			string cellIdentifier = GetCellIdentifier(indexPath);
 
-			var cellStyle = UITableViewCellStyle.Default;
-			// if there are no cells to reuse, create a new one
+			// Request a recycled cell to save memory
+			UITableViewCell cell = tableView.DequeueReusableCell(cellIdentifier);
+
+			// If there are no cells to reuse, create a new one
 			if (cell == null) {
-				cell = new UITableViewCell(cellStyle, m_cellIdentifier);
+				cell = new UITableViewCell(UITableViewCellStyle.Default, cellIdentifier);
 			}
 
 			//cell.TextLabel.Text = tableItems[indexPath.Row].Id;
-
 			return cell;
+		}
+
+		/// <summary>
+		/// Get the cell identifier
+		/// </summary>
+		private string GetCellIdentifier(NSIndexPath indexPath)
+		{
+			switch (tableItems[indexPath.Row].GetType().Name)
+			{
+			case "Moment":
+				return "MomentCell";
+			case "Event":
+				return "EventCell";
+			default:
+				return "";
+			}
+		}
+
+		/// <summary>
+		/// Get the row height
+		/// </summary>
+		private float GetHeight(NSIndexPath indexPath)
+		{
+			switch (tableItems[indexPath.Row].GetType().Name)
+			{
+			case "Moment":
+				return 255f;
+			case "Event":
+				return 56f;
+			default:
+				return 0;
+			}
 		}
 	}
 }
