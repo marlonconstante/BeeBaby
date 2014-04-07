@@ -12,9 +12,15 @@ namespace BeeBaby
 	[Register ("TimelineViewController")]
 	partial class TimelineViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (tblView != null) {
+				tblView.Dispose ();
+				tblView = null;
+			}
 		}
 	}
 }
