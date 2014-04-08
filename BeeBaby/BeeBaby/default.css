@@ -14,8 +14,18 @@ navigation-bar {
 }
 
 navigation-bar,
-navigation-bar title {
+navigation-bar title,
+navigation-bar button,
+navigation-bar button:highlighted,
+navigation-bar button:selected {
 	color: #fff;
+}
+
+navigation-bar button,
+navigation-bar button:highlighted,
+navigation-bar button:selected {
+	font-size: 16pt;
+	font-weight: normal;
 }
 
 navigation-bar back-indicator {
