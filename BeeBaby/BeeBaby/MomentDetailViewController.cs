@@ -101,12 +101,15 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void LocationChanged(UISwitch sender)
 		{
-			if (mapViewHeight == -1)
+			InvokeInBackground(() =>
 			{
-				mapViewHeight = mapView.Frame.Height;
-			}
-			mapViewConstraint.Constant += (sender.On) ? -mapViewHeight : mapViewHeight;
-			mapView.Hidden = !sender.On;
+				if (mapViewHeight == -1)
+				{
+					mapViewHeight = mapView.Frame.Height;
+				}
+				mapViewConstraint.Constant += (sender.On) ? -mapViewHeight : mapViewHeight;
+				mapView.Hidden = !sender.On;
+			});
 		}
 	}
 }

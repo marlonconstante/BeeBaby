@@ -11,6 +11,10 @@ namespace BeeBaby
 {
 	public partial class CollectionViewCell : UICollectionViewCell
 	{
+		/// <summary>
+		/// Gets or sets the image.
+		/// </summary>
+		/// <value>The image.</value>
 		public UIImage Image
 		{
 			get
@@ -25,6 +29,12 @@ namespace BeeBaby
 				ContentView.AddSubview(p_imageView);
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets the name of the media.
+		/// </summary>
+		/// <value>The name of the media.</value>
+		public string MediaName { set; get; }
 
 		public CollectionViewCell(IntPtr handle) : base(handle)
 		{

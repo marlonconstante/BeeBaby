@@ -46,6 +46,11 @@ namespace Domain.Moment
 		/// <value>The date.</value>
 		public DateTime Date { set; get; }
 
+		/// <summary>
+		/// Gets or sets the selected media paths.
+		/// </summary>
+		/// <value>The selected media paths.</value>
+		public IList<string> SelectedMediaPaths { set; get; }
 	}
 }
 
