@@ -30,5 +30,11 @@ namespace BeeBaby
 		{
 			m_imageProvider.SaveTemporaryImageOnApp(image);
 		}
+
+		public override void WillShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
+		{
+			UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+		}
+
 	}
 }
