@@ -176,6 +176,7 @@
     <Compile Include="PlaceholderTextFieldDelegate.cs" />
     <Compile Include="Placeholder.cs" />
     <Compile Include="ZoomMapViewDelegate.cs" />
+    <Compile Include="ViewModels\ImageViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -192,6 +193,7 @@
   <ItemGroup>
     <Folder Include="ResourcesProviders\" />
     <Folder Include="Resources\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

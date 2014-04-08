@@ -9,15 +9,16 @@ namespace BeeBaby.ViewModels
 		{
 		}
 
-		public UIImage Image {
-			get;
-			set;
-		}
+		/// <summary>
+		/// Gets or sets the image.
+		/// </summary>
+		/// <value>The image.</value>
+		public UIImage Image { get; set; }
 
-		public string FileName {
-			get;
-			set;
-		}
+		/// <summary>
+		/// Gets or sets the name of the file.
+		/// </summary>
+		/// <value>The name of the file.</value>
+		public string FileName { set; get; }
 	}
 }
-

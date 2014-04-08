@@ -10,6 +10,7 @@ using MonoTouch.Foundation;
 using Domain.Media;
 using System.Drawing;
 using MonoTouch.CoreGraphics;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -94,7 +95,7 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The images for current moment.</returns>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<UIImage> GetImagesForCurrentMoment(bool thumbnails = false)
+		public IList<ImageViewModel> GetImagesForCurrentMoment(bool thumbnails = false)
 		{
 			var temporaryDirectory = CreateTemporaryDirectory();
 			var fileNames = Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension))
@@ -103,14 +104,17 @@ namespace BeeBaby.ResourcesProviders
 						? f.Contains(m_thumbnailPrefix)
 						: !f.Contains(m_thumbnailPrefix)
             ).ToArray();
-		
 
-			var images = new List<UIImage>();
+			var images = new List<ImageViewModel>();
 
 			foreach (var fileName in fileNames)
 			{
 				var data = NSData.FromFile(System.IO.Path.Combine(temporaryDirectory, fileName));
-				images.Add(UIImage.LoadFromData(data));
+				var imageView = new ImageViewModel () {
+					Image = UIImage.LoadFromData(data),
+					FileName = fileName
+				};
+				images.Add(imageView);
 			}
 
 			return images;
