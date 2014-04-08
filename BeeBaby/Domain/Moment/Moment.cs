@@ -10,6 +10,11 @@ namespace Domain.Moment
 	/// </summary>
 	public class Moment : EntityWithIdBase<string>, IAggregateRoot
 	{
+		public Moment() : base()
+		{
+			SelectedMediaPaths = new List<string>();
+		}
+
 		/// <summary>
 		/// Gets or sets the title.
 		/// </summary>

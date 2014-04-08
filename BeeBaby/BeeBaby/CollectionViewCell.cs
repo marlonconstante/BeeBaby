@@ -14,6 +14,7 @@ namespace BeeBaby
 	{
 		public CollectionViewCell(IntPtr handle) : base(handle)
 		{
+			IsSelected = false;
 		}
 
 		/// <summary>
@@ -50,6 +51,12 @@ namespace BeeBaby
 		public string MediaName { set; get; }
 
 		/// <summary>
+		/// Gets or sets a value indicating whether this instance is selected.
+		/// </summary>
+		/// <value><c>true</c> if this instance is selected; otherwise, <c>false</c>.</value>
+		public bool IsSelected { get; set; }
+
+		/// <summary>
 		/// Updates the status.
 		/// </summary>
 		public void UpdateStatus()
@@ -59,6 +66,8 @@ namespace BeeBaby
 
 			var imageCheckmark = GetImageCheckmark();
 			imageCheckmark.Hidden = !imageCheckmark.Hidden;
+
+			IsSelected = !IsSelected;
 		}
 	}
 }
