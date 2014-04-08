@@ -11,7 +11,7 @@ namespace BeeBaby
 {
 	public partial class MomentDetailViewController : UIViewController
 	{
-		private float mapViewHeight = -1;
+		private float m_mapViewHeight = -1;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -103,11 +103,11 @@ namespace BeeBaby
 		{
 			InvokeInBackground(() =>
 			{
-				if (mapViewHeight == -1)
+				if (m_mapViewHeight == -1)
 				{
-					mapViewHeight = mapView.Frame.Height;
+					m_mapViewHeight = mapView.Frame.Height;
 				}
-				mapViewConstraint.Constant += (sender.On) ? -mapViewHeight : mapViewHeight;
+				mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
 				mapView.Hidden = !sender.On;
 			});
 		}

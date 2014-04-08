@@ -10,12 +10,12 @@ namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
-		private List<IAggregateRoot> tableItems;
+		private List<IAggregateRoot> m_tableItems;
 		private UIViewController m_viewController;
 
 		public TimelineViewSource(UIViewController viewController, List<IAggregateRoot> items)
 		{
-			tableItems = items;
+			m_tableItems = items;
 			m_viewController = viewController;
 		}
 
@@ -24,7 +24,7 @@ namespace BeeBaby
 		/// </summary>
 		public override int RowsInSection(UITableView tableview, int section)
 		{
-			return tableItems.Count;
+			return m_tableItems.Count;
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace BeeBaby
 		/// </summary>
 		private string GetCellIdentifier(NSIndexPath indexPath)
 		{
-			switch (tableItems[indexPath.Row].GetType().Name)
+			switch (m_tableItems[indexPath.Row].GetType().Name)
 			{
 			case "Moment":
 				return "MomentCell";
@@ -77,7 +77,7 @@ namespace BeeBaby
 		/// </summary>
 		private float GetHeight(NSIndexPath indexPath)
 		{
-			switch (tableItems[indexPath.Row].GetType().Name)
+			switch (m_tableItems[indexPath.Row].GetType().Name)
 			{
 			case "Moment":
 				return 255f;
