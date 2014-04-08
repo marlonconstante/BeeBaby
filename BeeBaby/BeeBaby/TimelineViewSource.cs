@@ -53,13 +53,6 @@ namespace BeeBaby
 
 			// Request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell(cellIdentifier);
-
-			// If there are no cells to reuse, create a new one
-			if (cell == null) {
-				cell = new UITableViewCell(UITableViewCellStyle.Default, cellIdentifier);
-			}
-
-			//cell.TextLabel.Text = tableItems[indexPath.Row].Id;
 			return cell;
 		}
 

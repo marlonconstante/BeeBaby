@@ -103,12 +103,16 @@ navigation-bar back-indicator {
 	background-color: #fff;
 }
 
-.screen-background {
+.screen-background,
+.default-button,
+.default-button:highlighted,
+.default-button:selected {
 	background-color: #dce6e6;
 }
 
 .selected-cell {
 	background-color: #58c5cd;
+	opacity: 0.5;
 }
 
 .subtitle,

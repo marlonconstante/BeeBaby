@@ -12,15 +12,9 @@ namespace BeeBaby
 	[Register ("CollectionViewCell")]
 	partial class CollectionViewCell
 	{
-		[Outlet]
-		MonoTouch.UIKit.UIImageView p_imageView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (p_imageView != null) {
-				p_imageView.Dispose ();
-				p_imageView = null;
-			}
 		}
 	}
 }

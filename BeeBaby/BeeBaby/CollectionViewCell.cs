@@ -6,28 +6,38 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using MonoTouch.CoreGraphics;
 using Domain.Media;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
 	public partial class CollectionViewCell : UICollectionViewCell
 	{
-		public UIImage Image
-		{
-			get
-			{ 
-				return this.p_imageView.Image; 
-			}
-			set
-			{
-				p_imageView = new UIImageView(new RectangleF(0, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
-				p_imageView.Image = value;
-				p_imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-				ContentView.AddSubview(p_imageView);
-			}
-		}
-
 		public CollectionViewCell(IntPtr handle) : base(handle)
 		{
+		}
+
+		public UIImageView GetImagePhoto()
+		{
+			return (UIImageView) this.ViewWithTag(1);
+		}
+
+		public UIView GetViewOverlay()
+		{
+			return this.ViewWithTag(2);
+		}
+
+		public UIImageView GetImageCheckmark()
+		{
+			return (UIImageView) this.ViewWithTag(3);
+		}
+
+		public void Update()
+		{
+			var viewOverlay = GetViewOverlay();
+			viewOverlay.Hidden = !viewOverlay.Hidden;
+
+			var imageCheckmark = GetImageCheckmark();
+			imageCheckmark.Hidden = !imageCheckmark.Hidden;
 		}
 	}
 }

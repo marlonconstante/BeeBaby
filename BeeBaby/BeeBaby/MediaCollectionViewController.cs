@@ -10,10 +10,10 @@ namespace BeeBaby
 {
 	public partial class MediaCollectionViewController : UICollectionViewController
 	{
-		UIImagePickerController m_picker;
-		IList<UIImage> m_images;
-		static NSString s_cellId = new NSString("GalleryCell");
-		ImageProvider m_imageProvider;
+		private static NSString cellIdentifier = new NSString("GalleryCell");
+		private UIImagePickerController m_picker;
+		private IList<UIImage> m_images;
+		private ImageProvider m_imageProvider;
 
 		public MediaCollectionViewController(IntPtr handle) : base(handle)
 		{
@@ -64,8 +64,6 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			CollectionView.RegisterClassForCell(typeof(CollectionViewCell), s_cellId);
-
 			btnNextStep.Title = "Next".Translate();
 			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
 		}
@@ -89,19 +87,18 @@ namespace BeeBaby
 			return m_images.Count;
 		}
 
-		public override UICollectionViewCell GetCell(UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(s_cellId, indexPath);
-
-			if (cell == null)
-			{
-				cell = new CollectionViewCell(base.Handle);
-			}
-
-			cell.BackgroundColor = UIColor.White;
-			cell.Image = m_images[indexPath.Item];
-
+			// Request a recycled cell to save memory
+			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(cellIdentifier, indexPath);
+			cell.GetImagePhoto().Image = m_images[indexPath.Item];
 			return cell;
+		}
+
+		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+		{
+			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
+			cell.Update();
 		}
 	}
 }
