@@ -5,14 +5,16 @@ using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
+using Application;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby
 {
 	public partial class MediaCollectionViewController : UICollectionViewController
 	{
-		private static NSString cellIdentifier = new NSString("GalleryCell");
+		private static NSString m_cellIdentifier = new NSString("GalleryCell");
 		private UIImagePickerController m_picker;
-		private IList<UIImage> m_images;
+		private IList<ImageViewModel> m_images;
 		private ImageProvider m_imageProvider;
 
 		public MediaCollectionViewController(IntPtr handle) : base(handle)
@@ -33,29 +35,20 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets the selected images names.
-		/// </summary>
-		/// <returns>The selected images names.</returns>
-		IList<string> GetSelectedImagesNames()
-		{
-			return m_imageProvider.GetTemporaryImagesNamesForCurrentMoment();
-		}
-
-		/// <summary>
 		/// Buttons the next step.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIBarButtonItem sender)
 		{
-			var imageNames = GetSelectedImagesNames();
-
-			//TODO: Remover quando a seleção de imagens estiver correta.
-			for (int i = 0; i < imageNames.Count; i++)
-			{
-				imageNames[i] = imageNames[i].Split('/').Last();
-			}
-				
-			m_imageProvider.SavePermanentImages(imageNames);
+//			var imageNames = GetSelectedImagesNames();
+//
+//			//TODO: Remover quando a seleção de imagens estiver correta.
+//			for (int i = 0; i < imageNames.Count; i++)
+//			{
+//				imageNames[i] = imageNames[i].Split('/').Last();
+//			}
+//				
+//			m_imageProvider.SavePermanentImages(imageNames);
 
 			PerformSegue("segueEventStep", sender);
 		}
@@ -89,9 +82,12 @@ namespace BeeBaby
 
 		public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
 		{
+			var imageView = m_images [indexPath.Item];
+
 			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(cellIdentifier, indexPath);
-			cell.GetImagePhoto().Image = m_images[indexPath.Item];
+			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(m_cellIdentifier, indexPath);
+			cell.GetImagePhoto().Image = imageView.Image;
+			cell.MediaName = imageView.FileName;
 			return cell;
 		}
 
@@ -99,6 +95,12 @@ namespace BeeBaby
 		{
 			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
 			cell.UpdateStatus();
+
+			if (cell.IsSelected) {
+				CurrentContext.Instance.Moment.SelectedMediaPaths.Add(cell.MediaName);
+			} else {
+				CurrentContext.Instance.Moment.SelectedMediaPaths.Remove(cell.MediaName);
+			}
 		}
 	}
 }

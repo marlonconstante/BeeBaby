@@ -7,17 +7,17 @@ namespace BeeBaby
 {
 	public class KeyboardNotification
 	{
-		private UIView view;
+		private UIView m_view;
 
 		// Amount to scroll
-		private float scrollAmount = 0.0f;
+		private float m_scrollAmount = 0.0f;
 
 		// Extra offset
-		private float offset = 18.0f;
+		private float m_offset = 18.0f;
 
 		public KeyboardNotification(UIView view)
 		{
-			this.view = view;
+			m_view = view;
 
 			// Keyboard Up
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyboardUpNotification);
@@ -32,8 +32,8 @@ namespace BeeBaby
 		/// Add tap gesture recognizer.
 		/// </summary>
 		private void AddGestureRecognizer() {
-			var gestureRecognizer = new UITapGestureRecognizer(() => view.EndEditing(true));
-			view.AddGestureRecognizer(gestureRecognizer);
+			var gestureRecognizer = new UITapGestureRecognizer(() => m_view.EndEditing(true));
+			m_view.AddGestureRecognizer(gestureRecognizer);
 		}
 
 		/// <summary>
@@ -42,14 +42,14 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		private void KeyboardUpNotification(NSNotification notification)
 		{
-			UIView firstResponder = GetFirstResponder(view);
+			UIView firstResponder = GetFirstResponder(m_view);
 			if (firstResponder != null) {
 				// Get the keyboard size
 				RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
 				// Calculate how far we need to scroll
-				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + offset);
-				scrollAmount = (rectangle.Height - (view.Frame.Size.Height - bottom));
+				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + m_offset);
+				m_scrollAmount = (rectangle.Height - (m_view.Frame.Size.Height - bottom));
 
 				// Perform the scrolling
 				ScrollTheView(true);
@@ -88,9 +88,9 @@ namespace BeeBaby
 			UIView.BeginAnimations(string.Empty, System.IntPtr.Zero);
 			UIView.SetAnimationDuration(0.3);
 
-			RectangleF frame = view.Frame;
-			frame.Y += up ? -scrollAmount : scrollAmount;
-			view.Frame = frame;
+			RectangleF frame = m_view.Frame;
+			frame.Y += up ? -m_scrollAmount : m_scrollAmount;
+			m_view.Frame = frame;
 
 			UIView.CommitAnimations();
 		}
