@@ -98,7 +98,7 @@ namespace BeeBaby
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
-			cell.Update();
+			cell.UpdateStatus();
 		}
 	}
 }

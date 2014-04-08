@@ -16,22 +16,43 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Gets the image photo.
+		/// </summary>
+		/// <returns>The image photo.</returns>
 		public UIImageView GetImagePhoto()
 		{
 			return (UIImageView) this.ViewWithTag(1);
 		}
 
-		public UIView GetViewOverlay()
+		/// <summary>
+		/// Gets the view overlay.
+		/// </summary>
+		/// <returns>The view overlay.</returns>
+		private UIView GetViewOverlay()
 		{
 			return this.ViewWithTag(2);
 		}
 
-		public UIImageView GetImageCheckmark()
+		/// <summary>
+		/// Gets the image checkmark.
+		/// </summary>
+		/// <returns>The image checkmark.</returns>
+		private UIImageView GetImageCheckmark()
 		{
 			return (UIImageView) this.ViewWithTag(3);
 		}
 
-		public void Update()
+		/// <summary>
+		/// Gets or sets the name of the media.
+		/// </summary>
+		/// <value>The name of the media.</value>
+		public string MediaName { set; get; }
+
+		/// <summary>
+		/// Updates the status.
+		/// </summary>
+		public void UpdateStatus()
 		{
 			var viewOverlay = GetViewOverlay();
 			viewOverlay.Hidden = !viewOverlay.Hidden;
