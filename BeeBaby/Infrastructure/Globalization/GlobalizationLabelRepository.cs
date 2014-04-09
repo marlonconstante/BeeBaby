@@ -53,11 +53,13 @@ namespace Infrastructure.Globalization
 		protected string GetCultureText(string cultureName)
 		{
 			return @"
-Baby = Bebe
+Baby = Bebê
 Photo = Foto
-TimeLine = Linha de Tempo
+TimeLine = Linha do Tempo
 First = Primeiro
 Save = Salvar
+Albums = Álbuns
+WantThese = Quero essas >
 ";
 		}
 	}

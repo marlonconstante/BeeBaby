@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -151,10 +151,6 @@
       <DependentUpon>OverlayViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ImagePickerDelegate.cs" />
-    <Compile Include="MediaCollectionViewController.cs" />
-    <Compile Include="MediaCollectionViewController.designer.cs">
-      <DependentUpon>MediaCollectionViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
     <Compile Include="CollectionViewCell.cs" />
     <Compile Include="CollectionViewCell.designer.cs">
@@ -181,6 +177,10 @@
     <Compile Include="ZoomMapViewDelegate.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ImageCollectionViewSource.cs" />
+    <Compile Include="MediaViewController.cs" />
+    <Compile Include="MediaViewController.designer.cs">
+      <DependentUpon>MediaViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimelineMomentCell.cs" />
     <Compile Include="TimelineMomentCell.designer.cs">
       <DependentUpon>TimelineMomentCell.cs</DependentUpon>
