@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using BeeBaby.ViewModels;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -40,6 +41,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIBarButtonItem sender)
 		{
+			// Shows the spinner
+			BTProgressHUD.Show();
 			PerformSegue("segueEventStep", sender);
 		}
 
@@ -52,6 +55,8 @@ namespace BeeBaby
 
 			btnNextStep.Title = "Next".Translate();
 			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
+
+			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
@@ -100,6 +105,7 @@ namespace BeeBaby
 			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
 			cell.GetImagePhoto().Image = image.Image;
 			cell.MediaName = image.FileName;
+
 			return cell;
 		}
 

@@ -7,6 +7,7 @@ using Domain.Moment;
 using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -19,15 +20,6 @@ namespace BeeBaby
 			m_mapViewHeight = -1;
 		}
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-
-			new KeyboardNotification(View);
-			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
-			txtDescription.Delegate = new PlaceholderTextViewDelegate();
-		}
-
 		public override void ViewDidDisappear(bool animated)
 		{
 			base.ViewDidDisappear(animated);
@@ -35,15 +27,21 @@ namespace BeeBaby
 			pckDate.Hidden = true;
 		}
 
-		public override void ViewWillAppear(bool animated)
+		public async override void ViewDidAppear(bool animated)
 		{
-			base.ViewWillAppear(animated);
+			base.ViewDidAppear(animated);
+
+			new KeyboardNotification(View);
+			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
+			txtDescription.Delegate = new PlaceholderTextViewDelegate();
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
 			if (selectedEvent != null) {
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+
+			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
@@ -52,6 +50,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
+			BTProgressHUD.Show(); //shows the spinner
+
 			PerformSegue("segueSelectEvent", sender);
 		}
 
@@ -94,6 +94,8 @@ namespace BeeBaby
 
 			imageProvider.SavePermanentImages(moment.SelectedMediaNames);
 			momentService.SaveMoment(moment);
+
+			BTProgressHUD.Show(); //shows the spinner
 
 			PerformSegue("segueSave", sender);
 		}
