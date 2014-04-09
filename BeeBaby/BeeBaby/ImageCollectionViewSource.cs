@@ -18,7 +18,7 @@ namespace BeeBaby
 		public ImageCollectionViewSource(UIViewController viewController)
 		{
 			m_viewController = viewController;
-			m_imageProvider = new ImageProvider();
+			m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
 		}
 
 		/// <summary>

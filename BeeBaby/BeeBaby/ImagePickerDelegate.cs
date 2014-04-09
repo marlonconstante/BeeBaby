@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using BeeBaby.ResourcesProviders;
+using Application;
 
 namespace BeeBaby
 {
@@ -11,7 +12,7 @@ namespace BeeBaby
 
 		public ImagePickerDelegate()
 		{
-			m_imageProvider = new ImageProvider();
+			m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
 		}
 
 		public override void FinishedPickingMedia(UIImagePickerController picker, NSDictionary info)

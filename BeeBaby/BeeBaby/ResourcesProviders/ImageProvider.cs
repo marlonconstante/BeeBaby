@@ -25,9 +25,9 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.ResourcesProviders.ImageProvider"/> class.
 		/// </summary>
-		public ImageProvider()
+		public ImageProvider(Moment moment)
 		{
-			m_currentMoment = CurrentContext.Instance.Moment;
+			m_currentMoment = moment;
 			m_appDocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 		}
 
@@ -108,8 +108,8 @@ namespace BeeBaby.ResourcesProviders
 			var images = new List<ImageViewModel>();
 
 			foreach (var fileName in fileNames) {
-				var data = NSData.FromFile(System.IO.Path.Combine(temporaryDirectory, fileName));
-				var image = new ImageViewModel() {
+				var data = NSData.FromFile(Path.Combine(temporaryDirectory, fileName));
+				var image = new ImageViewModel {
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};

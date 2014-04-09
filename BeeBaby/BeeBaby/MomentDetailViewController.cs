@@ -80,7 +80,7 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show(); 
 
-			var imageProvider = new ImageProvider();
+			var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
 			var momentService = new MomentService();
 			var moment = CurrentContext.Instance.Moment;
 
