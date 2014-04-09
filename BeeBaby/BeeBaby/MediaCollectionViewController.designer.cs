@@ -13,19 +13,27 @@ namespace BeeBaby
 	partial class MediaCollectionViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem btnAddMediaFromLibrary { get; set; }
+		MonoTouch.UIKit.UIButton btnAddMediaFromLibrary { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem btnNextStep { get; set; }
+		MonoTouch.UIKit.UIButton btnNextStep { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UICollectionView clnView { get; set; }
 
 		[Action ("AddMediaFromLibrary:")]
-		partial void AddMediaFromLibrary (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void AddMediaFromLibrary (MonoTouch.UIKit.UIButton sender);
 
 		[Action ("NextStep:")]
-		partial void NextStep (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void NextStep (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (clnView != null) {
+				clnView.Dispose ();
+				clnView = null;
+			}
+
 			if (btnNextStep != null) {
 				btnNextStep.Dispose ();
 				btnNextStep = null;

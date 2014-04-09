@@ -11,23 +11,21 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public partial class MediaCollectionViewController : UICollectionViewController
+	public partial class MediaCollectionViewController : UIViewController
 	{
-		private static NSString s_cellIdentifier = new NSString("GalleryCell");
 		private UIImagePickerController m_picker;
-		private IList<ImageViewModel> m_images;
-		private ImageProvider m_imageProvider;
+		private ImageCollectionViewSource m_collectionViewSource;
 
 		public MediaCollectionViewController(IntPtr handle) : base(handle)
 		{
-			m_imageProvider = new ImageProvider();
+			m_collectionViewSource = new ImageCollectionViewSource(this);
 		}
 
 		/// <summary>
 		/// Buttons the add media from library.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void AddMediaFromLibrary(UIBarButtonItem sender)
+		partial void AddMediaFromLibrary(UIButton sender)
 		{
 			var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
 			m_picker = imagePickerProvider.GetUIImagePickerController();
@@ -39,12 +37,12 @@ namespace BeeBaby
 		/// Buttons the next step.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void NextStep(UIBarButtonItem sender)
+		partial void NextStep(UIButton sender)
 		{
 			// Shows the spinner
 			BTProgressHUD.Show();
 
-			PerformSegue("segueEventStep", sender);
+			PerformSegue("segueMoment", sender);
 		}
 
 		/// <summary>
@@ -54,8 +52,10 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			btnNextStep.Title = "Next".Translate();
-			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
+			clnView.Source = m_collectionViewSource;
+
+			btnNextStep.SetTitle("Next".Translate(), UIControlState.Normal);
+			btnAddMediaFromLibrary.SetTitle("AddFromLib".Translate(), UIControlState.Normal);
 
 			BTProgressHUD.Dismiss();
 		}
@@ -66,67 +66,8 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
-			m_images = m_imageProvider.GetImagesForCurrentMoment(true);
-
-			this.CollectionView.ReloadData();
+			m_collectionViewSource.ReloadData(clnView);
 			base.ViewWillAppear(animated);
-		}
-
-		/// <summary>
-		/// Returns the number of sections.
-		/// </summary>
-		/// <param name="collectionView">Collection view.</param>
-		public override int NumberOfSections(UICollectionView collectionView)
-		{
-			return 1;
-		}
-
-		/// <summary>
-		/// Returns the items count.
-		/// </summary>
-		/// <param name="collectionView">Collection view.</param>
-		/// <param name="section">Section.</param>
-		public override int GetItemsCount(UICollectionView collectionView, int section)
-		{
-			return m_images.Count;
-		}
-
-		/// <summary>
-		/// Event responsible for returning the cell from the index.
-		/// </summary>
-		/// <returns>The cell.</returns>
-		/// <param name="collectionView">Collection view.</param>
-		/// <param name="indexPath">Index path.</param>
-		public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			var image = m_images[indexPath.Item];
-
-			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
-			cell.GetImagePhoto().Image = image.Image;
-			cell.MediaName = image.FileName;
-			cell.IsSelected = CurrentContext.Instance.Moment.SelectedMediaNames.Contains(image.FileName);
-			cell.UpdateStatus();
-
-			return cell;
-		}
-
-		/// <summary>
-		/// Event item selection cell.
-		/// </summary>
-		/// <param name="collectionView">Collection view.</param>
-		/// <param name="indexPath">Index path.</param>
-		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			CollectionViewCell cell = (CollectionViewCell)collectionView.CellForItem(indexPath);
-			cell.IsSelected = !cell.IsSelected;
-			cell.UpdateStatus();
-
-			if (cell.IsSelected) {
-				CurrentContext.Instance.Moment.SelectedMediaNames.Add(cell.MediaName);
-			} else {
-				CurrentContext.Instance.Moment.SelectedMediaNames.Remove(cell.MediaName);
-			}
 		}
 	}
 }

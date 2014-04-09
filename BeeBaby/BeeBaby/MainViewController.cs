@@ -64,7 +64,7 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show(); 
 
-			PerformSegue("cameraDone", sender);
+			PerformSegue("segueMedia", sender);
 			DismissViewController(true, null);
 		}
 	}

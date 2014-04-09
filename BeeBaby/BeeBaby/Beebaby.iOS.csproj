@@ -180,6 +180,7 @@
     <Compile Include="Placeholder.cs" />
     <Compile Include="ZoomMapViewDelegate.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
+    <Compile Include="ImageCollectionViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
