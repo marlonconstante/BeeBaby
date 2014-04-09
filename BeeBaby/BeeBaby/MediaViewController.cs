@@ -11,12 +11,12 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public partial class MediaCollectionViewController : UIViewController
+	public partial class MediaViewController : UIViewController
 	{
 		private UIImagePickerController m_picker;
 		private ImageCollectionViewSource m_collectionViewSource;
 
-		public MediaCollectionViewController(IntPtr handle) : base(handle)
+		public MediaViewController(IntPtr handle) : base(handle)
 		{
 			m_collectionViewSource = new ImageCollectionViewSource(this);
 		}
@@ -54,8 +54,8 @@ namespace BeeBaby
 
 			clnView.Source = m_collectionViewSource;
 
-			btnNextStep.SetTitle("Next".Translate(), UIControlState.Normal);
-			btnAddMediaFromLibrary.SetTitle("AddFromLib".Translate(), UIControlState.Normal);
+			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
+			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
 
 			BTProgressHUD.Dismiss();
 		}

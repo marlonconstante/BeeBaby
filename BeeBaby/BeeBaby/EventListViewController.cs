@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 using BigTed;
+using Application;
 
 namespace BeeBaby
 {
@@ -17,6 +18,9 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -25,7 +29,7 @@ namespace BeeBaby
 			m_events = m_eventService.GetAllEvents();
 			TableView.Source = new EventListViewSource(this, m_events.ToList());
 
-			BTProgressHUD.Dismiss(); //shows the spinner
+			BTProgressHUD.Dismiss();
 		}
 	}
 }

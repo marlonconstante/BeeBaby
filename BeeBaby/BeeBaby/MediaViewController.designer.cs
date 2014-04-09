@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby
 {
-	[Register ("MediaCollectionViewController")]
-	partial class MediaCollectionViewController
+	[Register ("MediaViewController")]
+	partial class MediaViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnAddMediaFromLibrary { get; set; }
