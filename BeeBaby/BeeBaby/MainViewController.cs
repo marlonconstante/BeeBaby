@@ -5,6 +5,7 @@ using MonoTouch.ObjCRuntime;
 using BeeBaby.ResourcesProviders;
 using Domain.Moment;
 using Application;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -60,6 +61,8 @@ namespace BeeBaby
 
 		partial void btnDone(UIBarButtonItem sender)
 		{
+			BTProgressHUD.Show(); //shows the spinner
+
 			PerformSegue("cameraDone", sender);
 			DismissViewController(true, null);
 		}

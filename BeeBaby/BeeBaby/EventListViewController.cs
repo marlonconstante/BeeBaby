@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -23,6 +24,8 @@ namespace BeeBaby
 			m_eventService = new EventService();
 			m_events = m_eventService.GetAllEvents();
 			TableView.Source = new EventListViewSource(this, m_events.ToList());
+
+			BTProgressHUD.Dismiss(); //shows the spinner
 		}
 	}
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using BeeBaby.ViewModels;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -40,16 +41,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIBarButtonItem sender)
 		{
-//			var imageNames = GetSelectedImagesNames();
-//
-//			//TODO: Remover quando a seleção de imagens estiver correta.
-//			for (int i = 0; i < imageNames.Count; i++)
-//			{
-//				imageNames[i] = imageNames[i].Split('/').Last();
-//			}
-//				
+			BTProgressHUD.Show(); //shows the spinner
 //			m_imageProvider.SavePermanentImages(imageNames);
-
 			PerformSegue("segueEventStep", sender);
 		}
 
@@ -59,6 +52,8 @@ namespace BeeBaby
 
 			btnNextStep.Title = "Next".Translate();
 			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
+
+			BTProgressHUD.Dismiss();
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -82,10 +77,10 @@ namespace BeeBaby
 
 		public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var imageView = m_images [indexPath.Item];
+			var imageView = m_images[indexPath.Item];
 
 			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(m_cellIdentifier, indexPath);
+			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(m_cellIdentifier, indexPath);
 			cell.GetImagePhoto().Image = imageView.Image;
 			cell.MediaName = imageView.FileName;
 			return cell;
@@ -93,12 +88,15 @@ namespace BeeBaby
 
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
+			CollectionViewCell cell = (CollectionViewCell)collectionView.CellForItem(indexPath);
 			cell.UpdateStatus();
 
-			if (cell.IsSelected) {
+			if (cell.IsSelected)
+			{
 				CurrentContext.Instance.Moment.SelectedMediaPaths.Add(cell.MediaName);
-			} else {
+			}
+			else
+			{
 				CurrentContext.Instance.Moment.SelectedMediaPaths.Remove(cell.MediaName);
 			}
 		}

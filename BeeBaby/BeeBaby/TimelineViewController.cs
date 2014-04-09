@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using Domain.Moment;
 using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -18,6 +19,7 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 			initTimeline();
+			BTProgressHUD.Dismiss(); //shows the spinner
 		}
 
 		private void initTimeline()
