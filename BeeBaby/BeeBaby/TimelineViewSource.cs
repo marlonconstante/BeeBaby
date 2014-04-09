@@ -63,12 +63,12 @@ namespace BeeBaby
 		{
 			switch (m_tableItems[indexPath.Row].GetType().Name)
 			{
-			case "Moment":
-				return "MomentCell";
-			case "Event":
-				return "EventCell";
-			default:
-				return "";
+				case "Moment":
+					return "MomentCell";
+				case "Event":
+					return "EventCell";
+				default:
+					return "";
 			}
 		}
 
@@ -79,12 +79,12 @@ namespace BeeBaby
 		{
 			switch (m_tableItems[indexPath.Row].GetType().Name)
 			{
-			case "Moment":
-				return 255f;
-			case "Event":
-				return 56f;
-			default:
-				return 0;
+				case "Moment":
+					return 255f;
+				case "Event":
+					return 56f;
+				default:
+					return 0;
 			}
 		}
 	}
