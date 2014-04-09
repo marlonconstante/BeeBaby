@@ -181,6 +181,14 @@
     <Compile Include="MediaViewController.designer.cs">
       <DependentUpon>MediaViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimelineMomentCell.cs" />
+    <Compile Include="TimelineMomentCell.designer.cs">
+      <DependentUpon>TimelineMomentCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimelineEventCell.cs" />
+    <Compile Include="TimelineEventCell.designer.cs">
+      <DependentUpon>TimelineEventCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
