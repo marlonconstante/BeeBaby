@@ -22,7 +22,8 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 			initTimeline();
-			BTProgressHUD.Dismiss(); //shows the spinner
+
+			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>

@@ -10,13 +10,13 @@ namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
-		private List<IAggregateRoot> m_tableItems;
 		private UIViewController m_viewController;
+		private IList<IAggregateRoot> m_tableItems;
 
-		public TimelineViewSource(UIViewController viewController, List<IAggregateRoot> items)
+		public TimelineViewSource(UIViewController viewController, IList<IAggregateRoot> items)
 		{
-			m_tableItems = items;
 			m_viewController = viewController;
+			m_tableItems = items;
 		}
 
 		/// <summary>
