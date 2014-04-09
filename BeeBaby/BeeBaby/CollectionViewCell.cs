@@ -61,8 +61,6 @@ namespace BeeBaby
 		/// </summary>
 		public void UpdateStatus()
 		{
-			IsSelected = !IsSelected;
-
 			GetViewOverlay().Hidden = !IsSelected;
 			GetImageCheckmark().Hidden = !IsSelected;
 		}

@@ -43,6 +43,7 @@ namespace BeeBaby
 		{
 			// Shows the spinner
 			BTProgressHUD.Show();
+
 			PerformSegue("segueEventStep", sender);
 		}
 
@@ -66,9 +67,8 @@ namespace BeeBaby
 		public override void ViewWillAppear(bool animated)
 		{
 			m_images = m_imageProvider.GetImagesForCurrentMoment(true);
-				
-			this.CollectionView.ReloadData();
 
+			this.CollectionView.ReloadData();
 			base.ViewWillAppear(animated);
 		}
 
@@ -105,6 +105,8 @@ namespace BeeBaby
 			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
 			cell.GetImagePhoto().Image = image.Image;
 			cell.MediaName = image.FileName;
+			cell.IsSelected = CurrentContext.Instance.Moment.SelectedMediaNames.Contains(image.FileName);
+			cell.UpdateStatus();
 
 			return cell;
 		}
@@ -117,6 +119,7 @@ namespace BeeBaby
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			CollectionViewCell cell = (CollectionViewCell)collectionView.CellForItem(indexPath);
+			cell.IsSelected = !cell.IsSelected;
 			cell.UpdateStatus();
 
 			if (cell.IsSelected) {

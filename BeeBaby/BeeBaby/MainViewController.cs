@@ -61,7 +61,8 @@ namespace BeeBaby
 
 		partial void btnDone(UIBarButtonItem sender)
 		{
-			BTProgressHUD.Show(); //shows the spinner
+			// Shows the spinner
+			BTProgressHUD.Show(); 
 
 			PerformSegue("cameraDone", sender);
 			DismissViewController(true, null);

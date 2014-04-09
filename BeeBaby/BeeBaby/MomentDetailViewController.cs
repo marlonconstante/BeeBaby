@@ -50,7 +50,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			BTProgressHUD.Show(); //shows the spinner
+			// Shows the spinner
+			BTProgressHUD.Show();
 
 			PerformSegue("segueSelectEvent", sender);
 		}
@@ -76,6 +77,9 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
+			// Shows the spinner
+			BTProgressHUD.Show(); 
+
 			var imageProvider = new ImageProvider();
 			var momentService = new MomentService();
 			var moment = CurrentContext.Instance.Moment;
@@ -94,8 +98,6 @@ namespace BeeBaby
 
 			imageProvider.SavePermanentImages(moment.SelectedMediaNames);
 			momentService.SaveMoment(moment);
-
-			BTProgressHUD.Show(); //shows the spinner
 
 			PerformSegue("segueSave", sender);
 		}
