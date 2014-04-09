@@ -5,7 +5,7 @@ namespace BeeBaby.ViewModels
 {
 	public class ImageViewModel
 	{
-		public ImageViewModel ()
+		public ImageViewModel()
 		{
 		}
 

@@ -61,13 +61,8 @@ namespace BeeBaby
 		/// </summary>
 		public void UpdateStatus()
 		{
-			var viewOverlay = GetViewOverlay();
-			viewOverlay.Hidden = !viewOverlay.Hidden;
-
-			var imageCheckmark = GetImageCheckmark();
-			imageCheckmark.Hidden = !imageCheckmark.Hidden;
-
-			IsSelected = !IsSelected;
+			GetViewOverlay().Hidden = !IsSelected;
+			GetImageCheckmark().Hidden = !IsSelected;
 		}
 	}
 }

@@ -4,7 +4,7 @@ namespace BeeBaby
 {
 	public class Placeholder
 	{
-		private string defaultText;
+		private string m_defaultText;
 
 		public Placeholder()
 		{
@@ -16,9 +16,9 @@ namespace BeeBaby
 		/// <param name="text">Text.</param>
 		public string GetInitialText(string text)
 		{
-			if (defaultText == null)
+			if (m_defaultText == null)
 			{
-				defaultText = text;
+				m_defaultText = text;
 			}
 			return isEmpty(text) ? "" : text;
 		}
@@ -29,7 +29,7 @@ namespace BeeBaby
 		/// <param name="text">Text.</param>
 		public string GetFinalText(string text)
 		{
-			return string.IsNullOrEmpty(text) ? defaultText : text;
+			return string.IsNullOrEmpty(text) ? m_defaultText : text;
 		}
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace BeeBaby
 		/// <param name="text">Text.</param>
 		public bool isEmpty(string text)
 		{
-			return text.Equals(defaultText);
+			return text.Equals(m_defaultText);
 		}
 	}
 }

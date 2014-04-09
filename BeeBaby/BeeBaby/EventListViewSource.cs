@@ -9,50 +9,41 @@ namespace BeeBaby
 {
 	public class EventListViewSource : UITableViewSource
 	{
-		List<Event> tableItems;
-		string m_cellIdentifier = "EventCell";
-		UIViewController m_viewController;
+		private static string s_cellIdentifier = "EventCell";
+		private List<Event> m_tableItems;
+		private UIViewController m_viewController;
 
-		public EventListViewSource (UIViewController viewController, List<Event> items)
+		public EventListViewSource(UIViewController viewController, List<Event> items)
 		{
-			tableItems = items;
+			m_tableItems = items;
 			m_viewController = viewController;
 		}
-
 
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override int RowsInSection(UITableView tableview, int section)
 		{
-			return tableItems.Count;
+			return m_tableItems.Count;
 		}
 
 		/// <summary>
-		/// Called when a row is touched
+		/// Called when a row is touched.
 		/// </summary>
-		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			CurrentContext.Instance.SelectedEvent = tableItems[indexPath.Row];
+			CurrentContext.Instance.SelectedEvent = m_tableItems[indexPath.Row];
 			m_viewController.NavigationController.PopViewControllerAnimated(true);
 		}
 
 		/// <summary>
-		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
+		/// Called by the TableView to get the actual UITableViewCell to render for the particular row.
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			// request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell (m_cellIdentifier);
-
-			var cellStyle = UITableViewCellStyle.Default;
-			// if there are no cells to reuse, create a new one
-			if (cell == null) {
-				cell = new UITableViewCell (cellStyle, m_cellIdentifier);
-			}
-
-			cell.TextLabel.Text = tableItems[indexPath.Row].Description;
-
+			// Request a recycled cell to save memory
+			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
+			cell.TextLabel.Text = m_tableItems[indexPath.Row].Description;
 			return cell;
 		}
 	}

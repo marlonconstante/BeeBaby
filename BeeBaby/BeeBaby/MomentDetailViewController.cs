@@ -6,16 +6,18 @@ using MonoTouch.CoreLocation;
 using Domain.Moment;
 using Application;
 using System.Drawing;
+using BeeBaby.ResourcesProviders;
 using BigTed;
 
 namespace BeeBaby
 {
 	public partial class MomentDetailViewController : UIViewController
 	{
-		private float m_mapViewHeight = -1;
+		private float m_mapViewHeight;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
+			m_mapViewHeight = -1;
 		}
 
 		public override void ViewDidDisappear(bool animated)
@@ -34,8 +36,7 @@ namespace BeeBaby
 			txtDescription.Delegate = new PlaceholderTextViewDelegate();
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
-			if (selectedEvent != null)
-			{
+			if (selectedEvent != null) {
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
@@ -49,7 +50,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			BTProgressHUD.Show(); //shows the spinner
+			// Shows the spinner
+			BTProgressHUD.Show();
 
 			PerformSegue("segueSelectEvent", sender);
 		}
@@ -75,6 +77,10 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
+			// Shows the spinner
+			BTProgressHUD.Show(); 
+
+			var imageProvider = new ImageProvider();
 			var momentService = new MomentService();
 			var moment = CurrentContext.Instance.Moment;
 
@@ -82,17 +88,16 @@ namespace BeeBaby
 			moment.Event = CurrentContext.Instance.SelectedEvent;
 			moment.Date = pckDate.Date;
 
-			if (!mapView.Hidden)
-			{
+			if (!mapView.Hidden) {
 				moment.Position = new GlobalPosition();
 				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
 			}
 
 			CurrentContext.Instance.Moment = moment;
-			momentService.SaveMoment(moment);
 
-			BTProgressHUD.Show(); //shows the spinner
+			imageProvider.SavePermanentImages(moment.SelectedMediaNames);
+			momentService.SaveMoment(moment);
 
 			PerformSegue("segueSave", sender);
 		}
@@ -103,10 +108,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void LocationChanged(UISwitch sender)
 		{
-			InvokeInBackground(() =>
-			{
-				if (m_mapViewHeight == -1)
-				{
+			InvokeInBackground(() => {
+				if (m_mapViewHeight == -1) {
 					m_mapViewHeight = mapView.Frame.Height;
 				}
 				mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;

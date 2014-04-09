@@ -32,7 +32,6 @@ namespace BeeBaby
 		/// </summary>
 		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
 		{
-
 			return GetHeight(indexPath);
 		}
 
@@ -61,14 +60,13 @@ namespace BeeBaby
 		/// </summary>
 		private string GetCellIdentifier(NSIndexPath indexPath)
 		{
-			switch (m_tableItems[indexPath.Row].GetType().Name)
-			{
-				case "Moment":
-					return "MomentCell";
-				case "Event":
-					return "EventCell";
-				default:
-					return "";
+			switch (m_tableItems[indexPath.Row].GetType().Name) {
+			case "Moment":
+				return "MomentCell";
+			case "Event":
+				return "EventCell";
+			default:
+				return "";
 			}
 		}
 
@@ -77,14 +75,13 @@ namespace BeeBaby
 		/// </summary>
 		private float GetHeight(NSIndexPath indexPath)
 		{
-			switch (m_tableItems[indexPath.Row].GetType().Name)
-			{
-				case "Moment":
-					return 255f;
-				case "Event":
-					return 56f;
-				default:
-					return 0;
+			switch (m_tableItems[indexPath.Row].GetType().Name) {
+			case "Moment":
+				return 255f;
+			case "Event":
+				return 56f;
+			default:
+				return 0;
 			}
 		}
 	}

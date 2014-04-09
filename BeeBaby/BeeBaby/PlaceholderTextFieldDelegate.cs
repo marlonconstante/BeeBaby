@@ -5,21 +5,29 @@ namespace BeeBaby
 {
 	public class PlaceholderTextFieldDelegate : UITextFieldDelegate
 	{
-		private Placeholder placeholder;
+		private Placeholder m_placeholder;
 
 		public PlaceholderTextFieldDelegate()
 		{
-			placeholder = new Placeholder();
+			m_placeholder = new Placeholder();
 		}
 
+		/// <summary>
+		/// Editings the started.
+		/// </summary>
+		/// <param name="textField">Text field.</param>
 		public override void EditingStarted(UITextField textField)
 		{
-			textField.Text = placeholder.GetInitialText(textField.Text);
+			textField.Text = m_placeholder.GetInitialText(textField.Text);
 		}
 
+		/// <summary>
+		/// Editings the ended.
+		/// </summary>
+		/// <param name="textField">Text field.</param>
 		public override void EditingEnded(UITextField textField)
 		{
-			textField.Text = placeholder.GetFinalText(textField.Text);
+			textField.Text = m_placeholder.GetFinalText(textField.Text);
 		}
 	}
 }
