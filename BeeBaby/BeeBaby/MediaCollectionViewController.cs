@@ -12,7 +12,7 @@ namespace BeeBaby
 {
 	public partial class MediaCollectionViewController : UICollectionViewController
 	{
-		private static NSString m_cellIdentifier = new NSString("GalleryCell");
+		private static NSString s_cellIdentifier = new NSString("GalleryCell");
 		private UIImagePickerController m_picker;
 		private IList<ImageViewModel> m_images;
 		private ImageProvider m_imageProvider;
@@ -40,19 +40,12 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIBarButtonItem sender)
 		{
-//			var imageNames = GetSelectedImagesNames();
-//
-//			//TODO: Remover quando a seleção de imagens estiver correta.
-//			for (int i = 0; i < imageNames.Count; i++)
-//			{
-//				imageNames[i] = imageNames[i].Split('/').Last();
-//			}
-//				
-//			m_imageProvider.SavePermanentImages(imageNames);
-
 			PerformSegue("segueEventStep", sender);
 		}
 
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -61,6 +54,10 @@ namespace BeeBaby
 			btnAddMediaFromLibrary.Title = "AddFromLib".Translate();
 		}
 
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
 			m_images = m_imageProvider.GetImagesForCurrentMoment(true);
@@ -70,36 +67,56 @@ namespace BeeBaby
 			base.ViewWillAppear(animated);
 		}
 
+		/// <summary>
+		/// Returns the number of sections.
+		/// </summary>
+		/// <param name="collectionView">Collection view.</param>
 		public override int NumberOfSections(UICollectionView collectionView)
 		{
 			return 1;
 		}
 
+		/// <summary>
+		/// Returns the items count.
+		/// </summary>
+		/// <param name="collectionView">Collection view.</param>
+		/// <param name="section">Section.</param>
 		public override int GetItemsCount(UICollectionView collectionView, int section)
 		{
 			return m_images.Count;
 		}
 
+		/// <summary>
+		/// Event responsible for returning the cell from the index.
+		/// </summary>
+		/// <returns>The cell.</returns>
+		/// <param name="collectionView">Collection view.</param>
+		/// <param name="indexPath">Index path.</param>
 		public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var imageView = m_images [indexPath.Item];
+			var image = m_images[indexPath.Item];
 
 			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(m_cellIdentifier, indexPath);
-			cell.GetImagePhoto().Image = imageView.Image;
-			cell.MediaName = imageView.FileName;
+			CollectionViewCell cell = (CollectionViewCell)collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
+			cell.GetImagePhoto().Image = image.Image;
+			cell.MediaName = image.FileName;
 			return cell;
 		}
 
+		/// <summary>
+		/// Event item selection cell.
+		/// </summary>
+		/// <param name="collectionView">Collection view.</param>
+		/// <param name="indexPath">Index path.</param>
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
+			CollectionViewCell cell = (CollectionViewCell)collectionView.CellForItem(indexPath);
 			cell.UpdateStatus();
 
 			if (cell.IsSelected) {
-				CurrentContext.Instance.Moment.SelectedMediaPaths.Add(cell.MediaName);
+				CurrentContext.Instance.Moment.SelectedMediaNames.Add(cell.MediaName);
 			} else {
-				CurrentContext.Instance.Moment.SelectedMediaPaths.Remove(cell.MediaName);
+				CurrentContext.Instance.Moment.SelectedMediaNames.Remove(cell.MediaName);
 			}
 		}
 	}

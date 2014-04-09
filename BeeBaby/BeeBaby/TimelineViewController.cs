@@ -14,19 +14,25 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 			initTimeline();
 		}
 
+		/// <summary>
+		/// Inits the timeline.
+		/// </summary>
 		private void initTimeline()
 		{
-			var m_momentService = new MomentService();
-			var m_events = m_momentService.GetAllMoments();
+			var momentService = new MomentService();
+			var moments = momentService.GetAllMoments();
 
 			List<IAggregateRoot> items = new List<IAggregateRoot>();
-			items.AddRange(m_events.ToList());
+			items.AddRange(moments.ToList());
 			items.Add(new Event());
 
 			tblView.Source = new TimelineViewSource(this, items);

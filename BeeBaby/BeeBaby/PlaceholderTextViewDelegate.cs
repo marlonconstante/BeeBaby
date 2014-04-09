@@ -5,21 +5,29 @@ namespace BeeBaby
 {
 	public class PlaceholderTextViewDelegate : UITextViewDelegate
 	{
-		private Placeholder placeholder;
+		private Placeholder m_placeholder;
 
 		public PlaceholderTextViewDelegate()
 		{
-			placeholder = new Placeholder();
+			m_placeholder = new Placeholder();
 		}
 
+		/// <summary>
+		/// Editings the started.
+		/// </summary>
+		/// <param name="textView">Text view.</param>
 		public override void EditingStarted(UITextView textView)
 		{
-			textView.Text = placeholder.GetInitialText(textView.Text);
+			textView.Text = m_placeholder.GetInitialText(textView.Text);
 		}
 
+		/// <summary>
+		/// Editings the ended.
+		/// </summary>
+		/// <param name="textView">Text view.</param>
 		public override void EditingEnded(UITextView textView)
 		{
-			textView.Text = placeholder.GetFinalText(textView.Text);
+			textView.Text = m_placeholder.GetFinalText(textView.Text);
 		}
 	}
 }

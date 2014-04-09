@@ -8,10 +8,8 @@ namespace BeeBaby
 	public class KeyboardNotification
 	{
 		private UIView m_view;
-
 		// Amount to scroll
 		private float m_scrollAmount = 0.0f;
-
 		// Extra offset
 		private float m_offset = 18.0f;
 
@@ -31,7 +29,8 @@ namespace BeeBaby
 		/// <summary>
 		/// Add tap gesture recognizer.
 		/// </summary>
-		private void AddGestureRecognizer() {
+		private void AddGestureRecognizer()
+		{
 			var gestureRecognizer = new UITapGestureRecognizer(() => m_view.EndEditing(true));
 			m_view.AddGestureRecognizer(gestureRecognizer);
 		}
@@ -62,10 +61,8 @@ namespace BeeBaby
 		/// <param name="view">View.</param>
 		private UIView GetFirstResponder(UIView view)
 		{
-			foreach (UIView element in view.Subviews)
-			{
-				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null))
-				{
+			foreach (UIView element in view.Subviews) {
+				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null)) {
 					return element;
 				}
 			}
@@ -82,6 +79,10 @@ namespace BeeBaby
 			ScrollTheView(false);
 		}
 
+		/// <summary>
+		/// Scrolls the view.
+		/// </summary>
+		/// <param name="up">If set to <c>true</c> up.</param>
 		private void ScrollTheView(bool up)
 		{
 			// Scroll the view up or down

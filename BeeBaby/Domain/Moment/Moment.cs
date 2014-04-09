@@ -12,7 +12,7 @@ namespace Domain.Moment
 	{
 		public Moment() : base()
 		{
-			SelectedMediaPaths = new List<string>();
+			SelectedMediaNames = new List<string>();
 		}
 
 		/// <summary>
@@ -52,10 +52,10 @@ namespace Domain.Moment
 		public DateTime Date { set; get; }
 
 		/// <summary>
-		/// Gets or sets the selected media paths.
+		/// Gets or sets the selected media names.
 		/// </summary>
-		/// <value>The selected media paths.</value>
-		public IList<string> SelectedMediaPaths { set; get; }
+		/// <value>The selected media names.</value>
+		public IList<string> SelectedMediaNames { set; get; }
 	}
 }
 
