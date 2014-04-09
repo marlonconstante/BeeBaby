@@ -52,6 +52,24 @@ namespace BeeBaby
 
 			// Request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell(cellIdentifier);
+
+			switch (cellIdentifier)
+			{
+				case "MomentCell":
+					Moment moment = m_tableItems[indexPath.Row] as Moment;
+					TimelineMomentCell cm = cell as TimelineMomentCell;
+					cm.LabelAge = "30 Dias";
+					cm.LabelDate = moment.Date.ToString();
+					//cm.LabelEventName = moment.Event.Description;
+
+
+					return cm;
+
+				case "EventCell":
+					TimelineEventCell ce = cell as TimelineEventCell;
+					return ce;
+			}
+
 			return cell;
 		}
 

@@ -42,7 +42,7 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			// Request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
+			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
 			cell.TextLabel.Text = m_tableItems[indexPath.Row].Description;
 			return cell;
 		}

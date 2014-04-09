@@ -304,7 +304,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentCell" rowHeight="255" id="FVc-uZ-2lW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentCell" rowHeight="255" id="FVc-uZ-2lW" customClass="TimelineMomentCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="255"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FVc-uZ-2lW" id="coH-4J-Mcz">
@@ -484,8 +484,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblAge" destination="z1D-ls-552" id="m3W-17-fNg"/>
+                                            <outlet property="lblDate" destination="eTL-rt-fIa" id="Uew-yx-nWf"/>
+                                            <outlet property="lblEventName" destination="tAx-tS-3EW" id="b1d-mv-Jz3"/>
+                                            <outlet property="lblWhere" destination="F6T-uc-FwH" id="QDg-Dl-kHy"/>
+                                            <outlet property="lblWho" destination="avP-uf-XxZ" id="Kid-Ed-WFU"/>
+                                            <outlet property="vwPhotos" destination="Edk-H4-Dct" id="DGX-eq-AMi"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="56" id="xCC-yF-cz5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="56" id="xCC-yF-cz5" customClass="TimelineEventCell">
                                         <rect key="frame" x="0.0" y="277" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xCC-yF-cz5" id="RG2-bx-nMR">
