@@ -8,19 +8,22 @@ using Skahal.Infrastructure.Framework.Domain;
 using BeeBaby.ResourcesProviders;
 using Domain.Media;
 using System.Drawing;
+using Domain.Baby;
 
 namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
 		UIViewController m_viewController;
-		IList<IAggregateRoot> m_tableItems;
+		IList<Moment> m_tableItems;
+		Baby m_baby;
 
 
-		public TimelineViewSource(UIViewController viewController, IList<IAggregateRoot> items)
+		public TimelineViewSource(UIViewController viewController, IList<Moment> items, Baby baby)
 		{
 			m_viewController = viewController;
 			m_tableItems = items;
+			m_baby = baby;
 		}
 
 		/// <summary>

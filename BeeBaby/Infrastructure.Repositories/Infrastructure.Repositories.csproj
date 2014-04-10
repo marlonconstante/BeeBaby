@@ -49,6 +49,9 @@
     <Compile Include="SqliteNet\Mapper\SqliteNetEventMapper.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetLocationMapper.cs" />
     <Compile Include="Memory\MemoryBabyRepository.cs" />
+    <Compile Include="SqliteNet\SqliteNetBabyRepository.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetBabyMapper.cs" />
+    <Compile Include="SqliteNet\Entities\BabyData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

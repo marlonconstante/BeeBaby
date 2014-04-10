@@ -7,6 +7,7 @@ using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Globalization;
 using Infrastructure.Globalization;
+using Domain.Baby;
 
 namespace Application
 {
@@ -30,6 +31,7 @@ namespace Application
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork));
+			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
 		}
 
 		static void MockEvents(MemoryUnitOfWork unitOfWork, MemoryEventRepository eventRepository)

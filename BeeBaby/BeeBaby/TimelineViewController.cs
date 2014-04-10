@@ -6,6 +6,7 @@ using Domain.Moment;
 using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
 using BigTed;
+using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -34,11 +35,9 @@ namespace BeeBaby
 			var momentService = new MomentService();
 			var moments = momentService.GetAllMoments();
 
-			List<IAggregateRoot> items = new List<IAggregateRoot>();
-			items.AddRange(moments.ToList());
-			items.Add(new Event());
+			var baby = new BabyService().GetBaby();
 
-			tblView.Source = new TimelineViewSource(this, items);
+			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
 		}
 	}
 }

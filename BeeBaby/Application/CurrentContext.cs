@@ -42,15 +42,5 @@ namespace Application
 			get;
 			set;
 		}
-
-		/// <summary>
-		/// Gets or sets the baby.
-		/// </summary>
-		/// <value>The baby.</value>
-		public Baby Baby 
-		{
-			get;
-			set;
-		}
 	}
 }

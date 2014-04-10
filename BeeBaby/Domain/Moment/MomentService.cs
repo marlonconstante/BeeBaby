@@ -55,7 +55,7 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments()
 		{
-			return MainRepository.FindAllAscending((o) => o.Id);
+			return MainRepository.FindAllDescending((o) => o.Date);
 		}
 	}
 }
