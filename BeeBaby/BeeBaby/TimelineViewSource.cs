@@ -77,7 +77,7 @@ namespace BeeBaby
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
 			TimelineMomentCell cm = cell as TimelineMomentCell;
 			cm.LabelAge = "30 Dias";
-			cm.LabelDate = moment.Date.ToString();
+			cm.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			//cm.LabelEventName = moment.Event.Description;
 			cm.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
 			cm.LabelWho = "Com a Vovó.";
