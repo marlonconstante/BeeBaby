@@ -39,10 +39,12 @@
   <ItemGroup>
     <Compile Include="Moment\MomentServiceTest.cs" />
     <Compile Include="Moment\EventServiceTest.cs" />
+    <Compile Include="Baby\BabyServiceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Moment\" />
+    <Folder Include="Baby\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

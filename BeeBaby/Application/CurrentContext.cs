@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain.Moment;
+using Domain.Baby;
 
 namespace Application
 {
@@ -32,7 +33,21 @@ namespace Application
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the selected event.
+		/// </summary>
+		/// <value>The selected event.</value>
 		public Event SelectedEvent
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the baby.
+		/// </summary>
+		/// <value>The baby.</value>
+		public Baby Baby 
 		{
 			get;
 			set;

@@ -44,11 +44,15 @@
     <Compile Include="Moment\EventService.cs" />
     <Compile Include="Moment\IEventRepository.cs" />
     <Compile Include="Moment\GlobalPosition.cs" />
+    <Compile Include="Baby\Baby.cs" />
+    <Compile Include="Baby\IBabyRepository.cs" />
+    <Compile Include="Baby\BabyService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Moment\" />
     <Folder Include="Media\" />
+    <Folder Include="Baby\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core" />
