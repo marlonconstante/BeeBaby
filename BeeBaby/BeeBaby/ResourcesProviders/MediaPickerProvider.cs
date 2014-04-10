@@ -14,11 +14,19 @@ namespace BeeBaby.ResourcesProviders
 			m_sourceType = sourceType;
 		}
 
+		/// <summary>
+		/// Determines if is camera available.
+		/// </summary>
+		/// <returns><c>true</c> if is camera available; otherwise, <c>false</c>.</returns>
 		public static bool IsCameraAvailable()
 		{
 			return UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
 		}
 
+		/// <summary>
+		/// Gets the user interface image picker controller.
+		/// </summary>
+		/// <returns>The user interface image picker controller.</returns>
 		public UIImagePickerController GetUIImagePickerController()
 		{
 			// Setup the UIImagePickerController
