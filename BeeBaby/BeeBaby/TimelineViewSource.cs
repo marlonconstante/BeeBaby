@@ -76,7 +76,7 @@ namespace BeeBaby
 			TimelineMomentCell cm = cell as TimelineMomentCell;
 			cm.LabelAge = "30 Dias";
 			cm.LabelDate = moment.Date.ToString();
-			cm.LabelEventName = moment.Event.Description;
+			//cm.LabelEventName = moment.Event.Description;
 			cm.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
 			cm.LabelWho = "Com a Vovó.";
 
@@ -89,7 +89,9 @@ namespace BeeBaby
 			foreach (var image in images)
 			{
 				var x = i * MediaBase.ImageThumbnailWidth;
-				cm.ViewPhotos.AddSubview(new UIImageView(new Rectangle(x, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight)));
+				var uiImageView = new UIImageView(new Rectangle(x, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
+				uiImageView.Image = image.Image;
+				cm.ViewPhotos.AddSubview(uiImageView);
 
 				i++;
 			}
