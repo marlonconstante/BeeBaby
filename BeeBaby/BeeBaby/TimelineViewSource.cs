@@ -13,8 +13,10 @@ namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
-		private UIViewController m_viewController;
-		private IList<IAggregateRoot> m_tableItems;
+		UIViewController m_viewController;
+		IList<IAggregateRoot> m_tableItems;
+		static int s_spaceBetweenPhotos = 10;
+
 
 		public TimelineViewSource(UIViewController viewController, IList<IAggregateRoot> items)
 		{
@@ -82,14 +84,16 @@ namespace BeeBaby
 
 			var provider = new ImageProvider(moment);
 			var images = provider.GetImagesForCurrentMoment(false, true);
-			cm.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth + 10) * images.Count, MediaBase.ImageThumbnailHeight);
+			cm.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth + s_spaceBetweenPhotos) * images.Count, MediaBase.ImageThumbnailHeight);
 
 			var i = 0;
 
 			foreach (var image in images)
 			{
-				var x = i * MediaBase.ImageThumbnailWidth;
-				x = i > 0 ? x + 10 : x;
+				var width = i > 0 ? MediaBase.ImageThumbnailWidth + s_spaceBetweenPhotos : MediaBase.ImageThumbnailWidth;
+
+				var x = i * width;
+				
 				var uiImageView = new UIImageView(new Rectangle(x, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 				uiImageView.Image = image.Image;
 				cm.ViewPhotos.AddSubview(uiImageView);
