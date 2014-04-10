@@ -20,6 +20,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			// Hides the status bar
+			NavigationController.NavigationBarHidden = true;
+		}
+
+		/// <summary>
 		/// View did appear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -57,6 +69,9 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenMedia(UIButton sender)
 		{
+			// Shows the status bar
+			NavigationController.NavigationBarHidden = false;
+
 			// Shows the spinner
 			BTProgressHUD.Show(); 
 
@@ -65,4 +80,3 @@ namespace BeeBaby
 		}
 	}
 }
-
