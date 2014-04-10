@@ -94,22 +94,34 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets the images for current moment.
 		/// </summary>
 		/// <returns>The images for current moment.</returns>
+		/// <param name="includeTemporary">If set to <c>true</c> include temporary.</param>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<ImageViewModel> GetImagesForCurrentMoment(bool thumbnails = false)
+		public IList<ImageViewModel> GetImagesForCurrentMoment(bool includeTemporary, bool thumbnails = false)
 		{
-			var temporaryDirectory = CreateTemporaryDirectory();
-			var fileNames = Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension))
-				.Where(f => 
-						thumbnails 
-						? f.Contains(m_thumbnailPrefix)
-						: !f.Contains(m_thumbnailPrefix)
-			    ).ToArray();
+			var fileNames = new List<string>();
+
+			if (includeTemporary)
+			{
+				var temporaryDirectory = CreateTemporaryDirectory();
+				fileNames.AddRange(Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension)));
+			}
+
+			var permanentDirectory = GetPermanentDirectory();
+			fileNames.AddRange(Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)));
+
+			fileNames = fileNames.Where(f => 
+				thumbnails 
+				? f.Contains(m_thumbnailPrefix)
+				: !f.Contains(m_thumbnailPrefix)
+			).ToList();
 
 			var images = new List<ImageViewModel>();
 
-			foreach (var fileName in fileNames) {
-				var data = NSData.FromFile(Path.Combine(temporaryDirectory, fileName));
-				var image = new ImageViewModel {
+			foreach (var fileName in fileNames)
+			{
+				var data = NSData.FromFile(fileName);
+				var image = new ImageViewModel
+				{
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};
@@ -127,7 +139,8 @@ namespace BeeBaby.ResourcesProviders
 		{
 			var temporaryDirectory = GetTemporaryDirectoryPath();
 			var permanentDirectory = GetPermanentDirectory();
-			foreach (var imageName in imagesNames) {
+			foreach (var imageName in imagesNames)
+			{
 				var source = Path.Combine(temporaryDirectory, imageName);
 				var destiny = Path.Combine(permanentDirectory, imageName);
 				File.Move(source, destiny);
@@ -140,16 +153,20 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="image">Image.</param>
 		public void SaveTemporaryImageOnApp(UIImage image)
 		{
-			using (NSData imageData = image.AsJPEG()) {
+			using (NSData imageData = image.AsJPEG())
+			{
 				NSError err;
-				if (!imageData.Save(CreateTemporaryFilePath(), false, out err)) {
+				if (!imageData.Save(CreateTemporaryFilePath(), false, out err))
+				{
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
 
-			using (NSData imageData = GenerateThumbnail(image).AsJPEG()) {
+			using (NSData imageData = GenerateThumbnail(image).AsJPEG())
+			{
 				NSError err;
-				if (!imageData.Save(CreateTemporaryFilePath(true), false, out err)) {
+				if (!imageData.Save(CreateTemporaryFilePath(true), false, out err))
+				{
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
@@ -197,17 +214,21 @@ namespace BeeBaby.ResourcesProviders
 			float marginVertical = 0;
 			float imageSize;
 
-			if (sourceWidth > sourceHeight) {
+			if (sourceWidth > sourceHeight)
+			{
 				marginHorizontal = (sourceWidth - sourceHeight) / 2;
 				imageSize = sourceHeight;
-			} else {
+			}
+			else
+			{
 				marginVertical = (sourceHeight - sourceWidth) / 2;
 				imageSize = sourceWidth;
 			}
 
 			// Crop the image at original size
 			UIImage cropped;
-			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize))) {
+			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
+			{
 				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation);
 			}
 			return cropped;

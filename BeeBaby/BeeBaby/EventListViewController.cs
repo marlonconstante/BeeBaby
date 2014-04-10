@@ -1,11 +1,9 @@
 using System;
 using System.Linq;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 using BigTed;
-using Application;
 
 namespace BeeBaby
 {

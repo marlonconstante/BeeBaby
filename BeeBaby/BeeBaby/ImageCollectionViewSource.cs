@@ -84,7 +84,7 @@ namespace BeeBaby
 		/// <param name="collectionView">Collection view.</param>
 		public void ReloadData(UICollectionView collectionView)
 		{
-			m_images = m_imageProvider.GetImagesForCurrentMoment(true);
+			m_images = m_imageProvider.GetImagesForCurrentMoment(true, true);
 			collectionView.ReloadData();
 		}
 	}
