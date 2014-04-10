@@ -13,6 +13,7 @@ navigation-bar {
 	background-color: #00aead;
 }
 
+.flash-label,
 navigation-bar,
 navigation-bar title,
 navigation-bar button,
@@ -58,6 +59,7 @@ navigation-bar back-indicator {
 	box-shadow: 0 1 0 0 #bacbc8;
 }
 
+.flash-label,
 .subtitle,
 .moment-label {
 	font-size: 13pt;
@@ -81,6 +83,23 @@ navigation-bar back-indicator {
 	border-radius: 5;
 	font-size: 13pt;
 	font-weight: bold;
+}
+
+.button-camera,
+.button-camera:highlighted,
+.button-camera:selected {
+	border:	2 solid #fff;
+	shape: ellipse;
+	-ios-tint-color: #fff;
+}
+
+.button-camera icon {
+	background-size: 42;
+}
+
+.preview-image {
+	border:	1 solid #fff;
+	border-radius: 1;
 }
 
 .event-label {
@@ -239,8 +258,21 @@ text-view {
 	background-image: url(location.svg);
 }
 
-.camera {
+.camera,
+.button-camera icon {
 	background-image: url(camera.svg);
+}
+
+.picture {
+	background-image: url(picture.svg);
+}
+
+.flash {
+	background-image: url(flash.svg);
+}
+
+.switch {
+	background-image: url(switch.svg);
 }
 
 .bubble {
