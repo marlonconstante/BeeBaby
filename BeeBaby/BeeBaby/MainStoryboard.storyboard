@@ -229,7 +229,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="mapViewConstraint" destination="QZg-PA-e5H" id="D7V-EL-tIf"/>
                         <outlet property="pckDate" destination="fKl-Fi-dxI" id="VGz-SB-uuI"/>
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
-                        <outlet property="viewDate" destination="VUV-1f-YlT" id="3Gj-qz-QHY"/>
+                        <outlet property="vwDate" destination="VUV-1f-YlT" id="wZ8-zh-S2I"/>
                         <segue destination="wjh-N5-O9g" kind="push" identifier="segueSelectEvent" id="jhm-aX-2LD"/>
                         <segue destination="dSV-Q6-u5O" kind="push" identifier="segueSave" id="VAW-Jl-QqI"/>
                     </connections>
