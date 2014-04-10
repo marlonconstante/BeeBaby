@@ -6,16 +6,16 @@ using BeeBaby.ResourcesProviders;
 using Domain.Moment;
 using Application;
 using BigTed;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public partial class MainViewController : UIViewController
+	public partial class CameraViewController : UIViewController
 	{
 		UIImagePickerController m_picker;
 
-		public MainViewController(IntPtr handle) : base(handle)
+		public CameraViewController(IntPtr handle) : base(handle)
 		{
-			// Custom initialization
 		}
 
 		/// <summary>
@@ -33,33 +33,28 @@ namespace BeeBaby
 			if (MediaPickerProvider.IsCameraAvailable()) {
 				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
 				m_picker = mediaPickerProvider.GetUIImagePickerController();
-
-				LoadCameraOverlayView();
+				m_picker.CameraOverlayView = this.View;
 
 				PresentViewController(m_picker, false, null);
 			} else {
-				btnDone(new UIBarButtonItem());
+				OpenMedia(btnOpenMedia);
 			}
 		}
 
 		/// <summary>
-		/// Loads the camera overlay view.
+		/// Takes the photo.
 		/// </summary>
-		void LoadCameraOverlayView()
-		{
-			// Setup the "OverlayView", basically the custom interface of the camera.
-			var nibObjects = NSBundle.MainBundle.LoadNib("OverlayView", this, null);
-			overlayView = (UIView) Runtime.GetNSObject(nibObjects.ValueAt(0));
-			overlayView.Frame = m_picker.CameraOverlayView.Frame;
-			m_picker.CameraOverlayView = overlayView;
-		}
-
-		partial void btnSnap(UIBarButtonItem sender)
+		/// <param name="sender">Sender.</param>
+		partial void TakePhoto(UIButton sender)
 		{
 			m_picker.TakePicture();
 		}
 
-		partial void btnDone(UIBarButtonItem sender)
+		/// <summary>
+		/// Opens the media.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void OpenMedia(UIButton sender)
 		{
 			// Shows the spinner
 			BTProgressHUD.Show(); 

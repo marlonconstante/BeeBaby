@@ -27,7 +27,7 @@ namespace BeeBaby
 			pckDate.Hidden = true;
 		}
 
-		public async override void ViewDidAppear(bool animated)
+		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
 

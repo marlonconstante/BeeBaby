@@ -770,23 +770,66 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-477" y="-1079"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="BGx-ks-rwc">
+        <!--Camera View Controller-->
+        <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <viewController id="ERu-9b-k8j" sceneMemberID="viewController">
+                <viewController id="rQl-PL-IFJ" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tue-FL-sap"/>
-                        <viewControllerLayoutGuide type="bottom" id="rO8-8A-DZT"/>
+                        <viewControllerLayoutGuide type="top" id="Rmd-Gj-FRB"/>
+                        <viewControllerLayoutGuide type="bottom" id="6JI-Rw-eJl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Apt-Bj-3hX">
+                    <view key="view" contentMode="scaleToFill" id="l9E-07-oys">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-og-VUf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeX-HZ-OaN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPG-NX-zxb">
+                                        <rect key="frame" x="10" y="10" width="27" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flash"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsM-AA-iTR">
+                                        <rect key="frame" x="28" y="23" width="12" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flash-label"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7i-gU-gTy">
+                                        <rect key="frame" x="283" y="10" width="27" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="switch"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="90E-20-cCz"/>
+                                    <constraint firstAttribute="height" constant="47" id="KFk-fg-Ljv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera-overlay"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5X-Yu-geP">
                                 <rect key="frame" x="0.0" y="473" width="320" height="95"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYR-Ec-EaQ">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX6-ac-dkX">
                                         <rect key="frame" x="15" y="50" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
@@ -796,17 +839,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="picture"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W41-cT-LWK">
-                                        <rect key="frame" x="275" y="50" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="preview-image"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKx-f1-h7p">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPJ-De-Kr0">
                                         <rect key="frame" x="123" y="11" width="74" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
@@ -815,69 +848,44 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="button-camera"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="TakePhoto:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="BEs-JZ-9cg"/>
+                                        </connections>
                                     </button>
-                                </subviews>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-A6-off">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zh-eH-YVg">
-                                        <rect key="frame" x="10" y="23" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbt-Za-ve4">
+                                        <rect key="frame" x="275" y="50" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flash"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="preview-image"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="OpenMedia:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tP3-BD-YKL"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-w1-btv">
-                                        <rect key="frame" x="283" y="23" width="27" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="switch"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gc-RQ-bah">
-                                        <rect key="frame" x="28" y="39" width="12" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flash-label"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="arz-ZL-12f"/>
+                                    <constraint firstAttribute="width" constant="320" id="eIJ-Xd-j9j"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera-overlay"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qrM-qX-cYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-25" y="-1826"/>
-        </scene>
-        <!--Main View Controller-->
-        <scene sceneID="rV5-Y2-ghB">
-            <objects>
-                <viewController id="rQl-PL-IFJ" customClass="MainViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rmd-Gj-FRB"/>
-                        <viewControllerLayoutGuide type="bottom" id="6JI-Rw-eJl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="l9E-07-oys">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-screen-background"/>
-                        </userDefinedRuntimeAttributes>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="C5X-Yu-geP" secondAttribute="bottom" id="C4H-LI-DkB"/>
+                            <constraint firstItem="OeX-HZ-OaN" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="CQL-Kf-pSs"/>
+                            <constraint firstItem="C5X-Yu-geP" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="tY6-1p-fPz"/>
+                            <constraint firstItem="OeX-HZ-OaN" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="u1L-4k-irT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Gz-EA-XTQ"/>
                     <connections>
+                        <outlet property="btnOpenMedia" destination="Fbt-Za-ve4" id="1Xz-js-YuP"/>
+                        <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
                         <segue destination="4UP-at-KPN" kind="push" identifier="segueMedia" id="2yy-uq-YpW"/>
                     </connections>
                 </viewController>

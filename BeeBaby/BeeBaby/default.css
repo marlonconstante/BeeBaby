@@ -97,6 +97,10 @@ navigation-bar back-indicator {
 	background-size: 42;
 }
 
+.camera-overlay {
+	background-color:rgba(0, 0, 0, 0.2);
+}
+
 .preview-image {
 	border:	1 solid #fff;
 	border-radius: 1;

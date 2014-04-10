@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -145,14 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MainViewController.cs" />
-    <Compile Include="MainViewController.designer.cs">
-      <DependentUpon>MainViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OverlayViewController.cs" />
-    <Compile Include="OverlayViewController.designer.cs">
-      <DependentUpon>OverlayViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImagePickerDelegate.cs" />
     <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
     <Compile Include="CollectionViewCell.cs" />
@@ -192,6 +184,10 @@
     <Compile Include="TimelineEventCell.designer.cs">
       <DependentUpon>TimelineEventCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="CameraViewController.cs" />
+    <Compile Include="CameraViewController.designer.cs">
+      <DependentUpon>CameraViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -201,7 +197,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="OverlayView.xib" />
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
     <InterfaceDefinition Include="ViewControllerBase.xib" />
   </ItemGroup>
