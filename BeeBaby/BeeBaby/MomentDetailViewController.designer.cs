@@ -28,7 +28,7 @@ namespace BeeBaby
 		MonoTouch.UIKit.UITextView txtDescription { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView viewDate { get; set; }
+		MonoTouch.UIKit.UIView vwDate { get; set; }
 
 		[Action ("LocationChanged:")]
 		partial void LocationChanged (MonoTouch.UIKit.UISwitch sender);
@@ -69,9 +69,9 @@ namespace BeeBaby
 				txtDescription = null;
 			}
 
-			if (viewDate != null) {
-				viewDate.Dispose ();
-				viewDate = null;
+			if (vwDate != null) {
+				vwDate.Dispose ();
+				vwDate = null;
 			}
 		}
 	}

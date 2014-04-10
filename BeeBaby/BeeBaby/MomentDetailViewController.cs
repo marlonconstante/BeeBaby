@@ -65,10 +65,10 @@ namespace BeeBaby
 			pckDate.Hidden = !pckDate.Hidden;
 
 			float height = pckDate.Frame.Height - 20f;
-			RectangleF frame = viewDate.Frame;
+			RectangleF frame = vwDate.Frame;
 			frame.Height += (pckDate.Hidden) ? -height : height;
 
-			viewDate.Frame = frame;
+			vwDate.Frame = frame;
 		}
 
 		/// <summary>

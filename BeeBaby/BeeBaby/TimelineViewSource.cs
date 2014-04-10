@@ -82,14 +82,14 @@ namespace BeeBaby
 
 			var provider = new ImageProvider(moment);
 			var images = provider.GetImagesForCurrentMoment(false, true);
-			cm.ViewPhotos.Frame = new RectangleF(0, 0, MediaBase.ImageThumbnailWidth * images.Count, MediaBase.ImageThumbnailHeight);
+			cm.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth + 10) * images.Count, MediaBase.ImageThumbnailHeight);
 
 			var i = 0;
 
 			foreach (var image in images)
 			{
 				var x = i * MediaBase.ImageThumbnailWidth;
-				x = i > 0 ? x + 5 : x;
+				x = i > 0 ? x + 10 : x;
 				var uiImageView = new UIImageView(new Rectangle(x, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 				uiImageView.Image = image.Image;
 				cm.ViewPhotos.AddSubview(uiImageView);
