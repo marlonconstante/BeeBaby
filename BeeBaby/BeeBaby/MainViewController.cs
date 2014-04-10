@@ -18,8 +18,6 @@ namespace BeeBaby
 			// Custom initialization
 		}
 
-		#region View lifecycle
-
 		/// <summary>
 		/// View did appear.
 		/// </summary>
@@ -28,30 +26,29 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			// create the moment, saves and generate a ID for future use.
+			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
-			var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
-			m_picker = imagePickerProvider.GetUIImagePickerController();
+			if (MediaPickerProvider.IsCameraAvailable()) {
+				var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
+				m_picker = imagePickerProvider.GetUIImagePickerController();
 
-			LoadOverlayView();
+				LoadCameraOverlayView();
 
-			PresentViewController(m_picker, false, null);
+				PresentViewController(m_picker, false, null);
+			} else {
+				btnDone(new UIBarButtonItem());
+			}
 		}
 
-		#endregion
-
-		void LoadOverlayView()
+		void LoadCameraOverlayView()
 		{
-			if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
-			{
-				// Setup the "OverlayView", basically the custom interface of the camera.
-				var nibObjects = NSBundle.MainBundle.LoadNib("OverlayView", this, null);
-				overlayView = (UIView)Runtime.GetNSObject(nibObjects.ValueAt(0));
-				overlayView.Frame = m_picker.CameraOverlayView.Frame;
-				m_picker.CameraOverlayView = overlayView;
-			}
+			// Setup the "OverlayView", basically the custom interface of the camera.
+			var nibObjects = NSBundle.MainBundle.LoadNib("OverlayView", this, null);
+			overlayView = (UIView) Runtime.GetNSObject(nibObjects.ValueAt(0));
+			overlayView.Frame = m_picker.CameraOverlayView.Frame;
+			m_picker.CameraOverlayView = overlayView;
 		}
 
 		partial void btnSnap(UIBarButtonItem sender)

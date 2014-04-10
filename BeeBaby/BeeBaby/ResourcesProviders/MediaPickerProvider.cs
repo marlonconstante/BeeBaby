@@ -14,11 +14,16 @@ namespace BeeBaby.ResourcesProviders
 			m_sourceType = sourceType;
 		}
 
+		public static bool IsCameraAvailable()
+		{
+			return UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
+		}
+
 		public UIImagePickerController GetUIImagePickerController()
 		{
 			// Setup the UIImagePickerController
 			var picker = new UIImagePickerController();
-			if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) && m_sourceType == UIImagePickerControllerSourceType.Camera)
+			if (IsCameraAvailable() && m_sourceType == UIImagePickerControllerSourceType.Camera)
 			{
 				picker.SourceType = UIImagePickerControllerSourceType.Camera;
 				picker.PrefersStatusBarHidden();
