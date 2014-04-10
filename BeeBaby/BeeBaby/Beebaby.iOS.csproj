@@ -139,6 +139,9 @@
     <BundleResource Include="Resources\bookmark.svg" />
     <BundleResource Include="Resources\separator.png" />
     <BundleResource Include="Resources\checkmark.svg" />
+    <BundleResource Include="Resources\picture.svg" />
+    <BundleResource Include="Resources\switch.svg" />
+    <BundleResource Include="Resources\flash.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
