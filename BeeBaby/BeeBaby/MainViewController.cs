@@ -42,6 +42,9 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Loads the camera overlay view.
+		/// </summary>
 		void LoadCameraOverlayView()
 		{
 			// Setup the "OverlayView", basically the custom interface of the camera.
