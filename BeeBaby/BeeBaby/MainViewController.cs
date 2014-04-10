@@ -31,8 +31,8 @@ namespace BeeBaby
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
 			if (MediaPickerProvider.IsCameraAvailable()) {
-				var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
-				m_picker = imagePickerProvider.GetUIImagePickerController();
+				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
+				m_picker = mediaPickerProvider.GetUIImagePickerController();
 
 				LoadCameraOverlayView();
 

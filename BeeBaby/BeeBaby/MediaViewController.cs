@@ -27,8 +27,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void AddMediaFromLibrary(UIButton sender)
 		{
-			var imagePickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
-			m_picker = imagePickerProvider.GetUIImagePickerController();
+			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
+			m_picker = mediaPickerProvider.GetUIImagePickerController();
 
 			PresentViewController(m_picker, false, null);
 		}
