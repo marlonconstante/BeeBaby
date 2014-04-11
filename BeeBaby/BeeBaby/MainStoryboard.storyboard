@@ -231,7 +231,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="wZ8-zh-S2I"/>
                         <segue destination="wjh-N5-O9g" kind="push" identifier="segueSelectEvent" id="jhm-aX-2LD"/>
-                        <segue destination="dSV-Q6-u5O" kind="push" identifier="segueSave" id="VAW-Jl-QqI"/>
+                        <segue destination="rSv-IU-3ut" kind="modal" identifier="segueSave" id="zqq-fT-qY6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -585,6 +585,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="XbC-sd-fcb" kind="modal" id="e6f-JL-h0m"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -597,7 +600,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPr-V8-YCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="-786"/>
+            <point key="canvasLocation" x="2036" y="593"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GeC-1Q-ZWB">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="rSv-IU-3ut" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SfS-ET-MYs"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ngj-Nh-ZUz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dSV-Q6-u5O" kind="relationship" relationship="rootViewController" id="ieB-Al-pES"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T87-u4-5xO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1476" y="-463"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">

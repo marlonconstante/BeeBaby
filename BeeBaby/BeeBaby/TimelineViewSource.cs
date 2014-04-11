@@ -18,7 +18,6 @@ namespace BeeBaby
 		IList<Moment> m_tableItems;
 		Baby m_baby;
 
-
 		public TimelineViewSource(UIViewController viewController, IList<Moment> items, Baby baby)
 		{
 			m_viewController = viewController;
@@ -64,7 +63,6 @@ namespace BeeBaby
 			{
 				case "MomentCell":
 					return PopulateMomentCell(cell, indexPath);
-					;
 
 				case "EventCell":
 					TimelineEventCell ce = cell as TimelineEventCell;

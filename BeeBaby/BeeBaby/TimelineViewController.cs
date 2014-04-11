@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
 using BigTed;
 using Domain.Baby;
+using FlyoutNavigation;
+using MonoTouch.Dialog;
 
 namespace BeeBaby
 {
@@ -22,6 +24,7 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
 			initTimeline();
 
 			BTProgressHUD.Dismiss();
