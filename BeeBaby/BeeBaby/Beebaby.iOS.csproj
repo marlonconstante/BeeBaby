@@ -109,6 +109,9 @@
     <Reference Include="BTProgressHUD">
       <HintPath>..\Components\btprogresshud-1.9\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
+    <Reference Include="FlyoutNavigation">
+      <HintPath>..\Components\flyoutnavigation-1.3\lib\ios\FlyoutNavigation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
@@ -193,6 +196,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="btprogresshud">
       <Version>1.9</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="flyoutnavigation">
+      <Version>1.3</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

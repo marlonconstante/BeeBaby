@@ -13,6 +13,12 @@ namespace BeeBaby
 	partial class TimelineViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel lblBabyAge { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblBabyName { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -20,6 +26,16 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
+			}
+
+			if (lblBabyName != null) {
+				lblBabyName.Dispose ();
+				lblBabyName = null;
+			}
+
+			if (lblBabyAge != null) {
+				lblBabyAge.Dispose ();
+				lblBabyAge = null;
 			}
 		}
 	}

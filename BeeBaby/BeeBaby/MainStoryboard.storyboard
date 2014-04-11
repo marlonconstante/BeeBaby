@@ -590,6 +590,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="lblBabyAge" destination="bFj-FL-7pL" id="izW-gz-JXN"/>
+                        <outlet property="lblBabyName" destination="i59-ne-fd6" id="Quv-73-hrA"/>
                         <outlet property="tblView" destination="Qro-Dy-vJe" id="Kse-SX-bdd"/>
                     </connections>
                 </viewController>

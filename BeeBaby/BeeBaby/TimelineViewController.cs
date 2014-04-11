@@ -37,6 +37,9 @@ namespace BeeBaby
 
 			var baby = new BabyService().GetBaby();
 
+			lblBabyName.Text = baby.Name;
+			lblBabyAge.Text = baby.Age;
+
 			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
 		}
 	}
