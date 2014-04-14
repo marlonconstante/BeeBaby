@@ -10,38 +10,26 @@ using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public partial class CollectionViewCell : UICollectionViewCell
+	public partial class ImageCollectionViewCell : UICollectionViewCell
 	{
-		public CollectionViewCell(IntPtr handle) : base(handle)
+		public ImageCollectionViewCell(IntPtr handle) : base(handle)
 		{
 			IsSelected = false;
 		}
 
 		/// <summary>
-		/// Gets the image photo.
+		/// Gets or sets the photo.
 		/// </summary>
-		/// <returns>The image photo.</returns>
-		public UIImageView GetImagePhoto()
-		{
-			return (UIImageView) this.ViewWithTag(1);
-		}
-
-		/// <summary>
-		/// Gets the view overlay.
-		/// </summary>
-		/// <returns>The view overlay.</returns>
-		private UIView GetViewOverlay()
-		{
-			return this.ViewWithTag(2);
-		}
-
-		/// <summary>
-		/// Gets the image checkmark.
-		/// </summary>
-		/// <returns>The image checkmark.</returns>
-		private UIImageView GetImageCheckmark()
-		{
-			return (UIImageView) this.ViewWithTag(3);
+		/// <value>The photo.</value>
+		public UIImage Photo {
+			get
+			{
+				return imgPhoto.Image;
+			}
+			set
+			{
+				imgPhoto.Image = value;
+			}
 		}
 
 		/// <summary>
@@ -61,8 +49,8 @@ namespace BeeBaby
 		/// </summary>
 		public void UpdateStatus()
 		{
-			GetViewOverlay().Hidden = !IsSelected;
-			GetImageCheckmark().Hidden = !IsSelected;
+			vwOverlay.Hidden = !IsSelected;
+			imgCheckmark.Hidden = !IsSelected;
 		}
 	}
 }

@@ -51,8 +51,8 @@ namespace BeeBaby
 			var image = m_images[indexPath.Item];
 
 			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
-			cell.GetImagePhoto().Image = image.Image;
+			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
+			cell.Photo = image.Image;
 			cell.MediaName = image.FileName;
 			cell.IsSelected = CurrentContext.Instance.Moment.SelectedMediaNames.Contains(image.FileName);
 			cell.UpdateStatus();
@@ -67,7 +67,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
+			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.CellForItem(indexPath);
 			cell.IsSelected = !cell.IsSelected;
 			cell.UpdateStatus();
 
