@@ -71,7 +71,7 @@ navigation-bar back-indicator {
 }
 
 .special-event-label,
-.time-box-row label {
+.time-box-label {
 	font-size: 14pt;
 	font-weight: normal;
 }
@@ -141,7 +141,7 @@ navigation-bar back-indicator {
 .subtitle,
 .follow,
 .row label,
-.time-box-row label,
+.time-box-label,
 .day-label,
 .moment-label,
 .special-event-label,
