@@ -2,13 +2,12 @@
 using MonoTouch.UIKit;
 using Domain.Moment;
 using System.Collections.Generic;
-using Application;
 using MonoTouch.Foundation;
-using Skahal.Infrastructure.Framework.Domain;
 using BeeBaby.ResourcesProviders;
 using Domain.Media;
 using System.Drawing;
 using Domain.Baby;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -90,16 +89,28 @@ namespace BeeBaby
 
 			foreach (var image in images)
 			{
-				var x = i * MediaBase.ImageThumbnailWidth;
+				var xCoord = i * MediaBase.ImageThumbnailWidth;
 				
-				var uiImageView = new UIImageView(new Rectangle(x, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
+				var uiImageView = new UIImageView(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
 				uiImageView.Image = image.Image;
+
+				UITapGestureRecognizer doubletap = new UITapGestureRecognizer();
+				doubletap.NumberOfTapsRequired = 2; // double tap
+				doubletap.AddTarget(this, new MonoTouch.ObjCRuntime.Selector("DoubleTapSelector"));
+				uiImageView.AddGestureRecognizer(doubletap); // detect when the scrollView is double-tapped
+
 				cm.ViewPhotos.AddSubview(uiImageView);
 
 				i++;
 			}
 
 			return cm;
+		}
+
+		[MonoTouch.Foundation.Export("DoubleTapSelector")]
+		public void OnDoubleTap(UIGestureRecognizer sender)
+		{
+			BTProgressHUD.Show();
 		}
 
 		/// <summary>

@@ -12,6 +12,10 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Gets or sets the label age.
+		/// </summary>
+		/// <value>The label age.</value>
 		public string LabelAge
 		{
 			get
@@ -24,6 +28,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the label date.
+		/// </summary>
+		/// <value>The label date.</value>
 		public string LabelDate
 		{
 			get
@@ -36,6 +44,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the name of the label event.
+		/// </summary>
+		/// <value>The name of the label event.</value>
 		public string LabelEventName
 		{
 			get
@@ -48,6 +60,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the label where.
+		/// </summary>
+		/// <value>The label where.</value>
 		public string LabelWhere
 		{
 			get
@@ -60,6 +76,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the label who.
+		/// </summary>
+		/// <value>The label who.</value>
 		public string LabelWho
 		{
 			get
@@ -72,6 +92,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the view photos.
+		/// </summary>
+		/// <value>The view photos.</value>
 		public UIView ViewPhotos
 		{
 			get
