@@ -77,7 +77,11 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void TakePhoto(UIButton sender)
 		{
+			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
+			UIView.Animate(0.3d, () => {
+				View.BackgroundColor = UIColor.Clear;
+			});
 		}
 
 		/// <summary>
