@@ -8,6 +8,7 @@ using Domain.Media;
 using System.Drawing;
 using Domain.Baby;
 using BigTed;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby
 {
@@ -16,6 +17,8 @@ namespace BeeBaby
 		UIViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
+		IList<ImageViewModel> m_images;
+		const string s_cellIdentifier = "MomentCell";
 
 		public TimelineViewSource(UIViewController viewController, IList<Moment> items, Baby baby)
 		{
@@ -33,116 +36,70 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Called by the TableView to determine the estimated height of the row
-		/// </summary>
-		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
-		{
-			return GetHeight(indexPath);
-		}
-
-		/// <summary>
-		/// Called by the TableView to determine the row height
-		/// </summary>
-		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
-		{
-			return GetHeight(indexPath);
-		}
-
-		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			string cellIdentifier = GetCellIdentifier(indexPath);
-
 			// Request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(cellIdentifier);
+			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
 
-			switch (cellIdentifier)
-			{
-				case "MomentCell":
-					return PopulateMomentCell(cell, indexPath);
-
-				case "EventCell":
-					TimelineEventCell ce = cell as TimelineEventCell;
-					return ce;
-			}
-
-			return cell;
+			return PopulateMomentCell(cell, indexPath);
 		}
 
 		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
-			TimelineMomentCell cm = cell as TimelineMomentCell;
-			cm.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
-			cm.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			Console.WriteLine(string.Format("{0} -> {1}", indexPath.Row, moment.Id));
+			TimelineMomentCell momentCell = cell as TimelineMomentCell;
+
+			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
+			momentCell.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			//cm.LabelEventName = moment.Event.Description;
-			cm.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
-			cm.LabelWho = "Com a Vovó.";
+			momentCell.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
+			momentCell.LabelWho = indexPath.Row.ToString();
 
 			var provider = new ImageProvider(moment);
-			var images = provider.GetImagesForCurrentMoment(false, true);
-			cm.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth) * images.Count, MediaBase.ImageThumbnailHeight);
+			m_images = provider.GetImagesForCurrentMoment(false, true);
+			provider = null;
+			moment = null;
+
+			momentCell.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth) * m_images.Count, MediaBase.ImageThumbnailHeight);
 
 			var i = 0;
 
-			foreach (var image in images)
+			foreach (var image in m_images)
 			{
 				var xCoord = i * MediaBase.ImageThumbnailWidth;
-				
-				var uiImageView = new UIImageView(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight));
-				uiImageView.Image = image.Image;
 
-				UITapGestureRecognizer doubletap = new UITapGestureRecognizer();
-				doubletap.NumberOfTapsRequired = 2; // double tap
-				doubletap.AddTarget(this, new MonoTouch.ObjCRuntime.Selector("DoubleTapSelector"));
-				uiImageView.AddGestureRecognizer(doubletap); // detect when the scrollView is double-tapped
+				using (var uiImageView = new UIImageView(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight)))
+				{
+					uiImageView.Image = image.Image;
+					uiImageView.UserInteractionEnabled = true;
 
-				cm.ViewPhotos.AddSubview(uiImageView);
+					var gestureRecognizer = new UITapGestureRecognizer();
+					gestureRecognizer.NumberOfTapsRequired = 2; // double tap
+					gestureRecognizer.AddTarget(this, new MonoTouch.ObjCRuntime.Selector("DoubleTapSelector"));
+//					var image1 = image;
+//					gestureRecognizer.AddTarget((t) => OnDoubleTap(image1));
+					uiImageView.AddGestureRecognizer(gestureRecognizer);
 
+
+					//momentCell.ViewPhotos.AddGestureRecognizer(gestureRecognizer); // detect when the scrollView is double-tapped
+
+					momentCell.ViewPhotos.AddSubview(uiImageView);
+				}
 				i++;
 			}
 
-			return cm;
+			m_images = null;
+
+			return momentCell;
 		}
 
 		[MonoTouch.Foundation.Export("DoubleTapSelector")]
-		public void OnDoubleTap(UIGestureRecognizer sender)
+		public void OnDoubleTap(ImageViewModel sender)
 		{
-			BTProgressHUD.Show();
-		}
-
-		/// <summary>
-		/// Get the cell identifier
-		/// </summary>
-		private string GetCellIdentifier(NSIndexPath indexPath)
-		{
-			switch (m_tableItems[indexPath.Row].GetType().Name)
-			{
-				case "Moment":
-					return "MomentCell";
-				case "Event":
-					return "EventCell";
-				default:
-					return "";
-			}
-		}
-
-		/// <summary>
-		/// Get the row height
-		/// </summary>
-		private float GetHeight(NSIndexPath indexPath)
-		{
-			switch (m_tableItems[indexPath.Row].GetType().Name)
-			{
-				case "Moment":
-					return 255f;
-				case "Event":
-					return 56f;
-				default:
-					return 0;
-			}
+			Console.WriteLine(string.Format("{0}", sender)); 
 		}
 	}
 }
