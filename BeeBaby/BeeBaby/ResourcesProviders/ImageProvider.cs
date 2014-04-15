@@ -172,6 +172,21 @@ namespace BeeBaby.ResourcesProviders
 			}
 		}
 
+		public UIImage GetImage(string imageName, bool thumbnail = false)
+		{
+			var permanentDirectory = GetPermanentDirectory();
+
+			if (!thumbnail)
+			{
+				imageName = imageName.Remove(0, m_thumbnailPrefix.Length);
+			}
+
+			var imagePath  = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)).FirstOrDefault(i => i.Contains(imageName));
+
+			var data = NSData.FromFile(imagePath);
+			return UIImage.LoadFromData(data);
+		}
+
 		/// <summary>
 		/// Generates the thumbnail.
 		/// </summary>
@@ -183,7 +198,7 @@ namespace BeeBaby.ResourcesProviders
 
 			return ResizeImage(croppedImage, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight);
 		}
-
+			
 		/// <summary>
 		/// Resizes the image.
 		/// </summary>

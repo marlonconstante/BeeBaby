@@ -193,6 +193,8 @@
       <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="OrientationNotification.cs" />
+    <Compile Include="UIThumbnailImageView.cs" />
+    <Compile Include="UIScrollViewImage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
