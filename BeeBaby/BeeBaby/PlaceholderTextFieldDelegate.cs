@@ -5,7 +5,7 @@ namespace BeeBaby
 {
 	public class PlaceholderTextFieldDelegate : UITextFieldDelegate
 	{
-		private Placeholder m_placeholder;
+		Placeholder m_placeholder;
 
 		public PlaceholderTextFieldDelegate()
 		{

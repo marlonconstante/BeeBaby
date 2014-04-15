@@ -4,7 +4,7 @@ namespace BeeBaby
 {
 	public class Placeholder
 	{
-		private string m_defaultText;
+		string m_defaultText;
 
 		public Placeholder()
 		{

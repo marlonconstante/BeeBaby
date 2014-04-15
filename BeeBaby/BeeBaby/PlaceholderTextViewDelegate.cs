@@ -5,7 +5,7 @@ namespace BeeBaby
 {
 	public class PlaceholderTextViewDelegate : UITextViewDelegate
 	{
-		private Placeholder m_placeholder;
+		Placeholder m_placeholder;
 
 		public PlaceholderTextViewDelegate()
 		{

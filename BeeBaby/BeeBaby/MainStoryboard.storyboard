@@ -868,8 +868,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" id="1Gz-EA-XTQ"/>
                     <connections>
+                        <outlet property="btnFlash" destination="BPG-NX-zxb" id="kfJ-Qj-Bkt"/>
                         <outlet property="btnOpenMedia" destination="Fbt-Za-ve4" id="1Xz-js-YuP"/>
+                        <outlet property="btnOpenTimeline" destination="gX6-ac-dkX" id="Pkb-Er-eng"/>
+                        <outlet property="btnSwitchCamera" destination="Z7i-gU-gTy" id="5Pk-Ai-SkY"/>
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
+                        <outlet property="lblFlash" destination="lsM-AA-iTR" id="LjC-Sf-zux"/>
                         <segue destination="4UP-at-KPN" kind="push" identifier="segueMedia" id="2yy-uq-YpW"/>
                     </connections>
                 </viewController>

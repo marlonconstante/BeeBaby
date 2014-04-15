@@ -192,6 +192,7 @@
     <Compile Include="ImageCollectionViewCell.designer.cs">
       <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrientationNotification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

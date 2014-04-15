@@ -8,6 +8,7 @@ using Application;
 using BigTed;
 using PixateFreestyleLib;
 using Domain.Baby;
+using MonoTouch.CoreGraphics;
 
 namespace BeeBaby
 {
@@ -38,6 +39,8 @@ namespace BeeBaby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+
+			new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();

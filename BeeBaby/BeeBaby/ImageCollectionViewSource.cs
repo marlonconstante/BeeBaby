@@ -10,10 +10,10 @@ namespace BeeBaby
 {
 	public class ImageCollectionViewSource : UICollectionViewSource
 	{
-		private static NSString s_cellIdentifier = new NSString("GalleryCell");
-		private UIViewController m_viewController;
-		private ImageProvider m_imageProvider;
-		private IList<ImageViewModel> m_images;
+		static NSString s_cellIdentifier = new NSString("GalleryCell");
+		UIViewController m_viewController;
+		ImageProvider m_imageProvider;
+		IList<ImageViewModel> m_images;
 
 		public ImageCollectionViewSource(UIViewController viewController)
 		{

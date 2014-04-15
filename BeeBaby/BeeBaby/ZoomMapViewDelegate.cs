@@ -6,11 +6,11 @@ namespace BeeBaby
 {
 	public class ZoomMapViewDelegate : MKMapViewDelegate
 	{
-		private double m_zoom;
+		double m_zoom;
 
 		public ZoomMapViewDelegate(double zoom)
 		{
-			this.m_zoom = zoom;
+			m_zoom = zoom;
 		}
 
 		/// <summary>
