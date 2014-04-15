@@ -13,7 +13,13 @@ namespace BeeBaby
 	partial class MomentDetailViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnDate { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblTime { get; set; }
 
 		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
@@ -72,6 +78,16 @@ namespace BeeBaby
 			if (vwDate != null) {
 				vwDate.Dispose ();
 				vwDate = null;
+			}
+
+			if (btnDate != null) {
+				btnDate.Dispose ();
+				btnDate = null;
+			}
+
+			if (lblTime != null) {
+				lblTime.Dispose ();
+				lblTime = null;
 			}
 		}
 	}

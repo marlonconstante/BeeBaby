@@ -218,7 +218,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnDate" destination="n9g-Jy-VuE" id="PfS-V1-F6U"/>
                         <outlet property="btnSelectEvent" destination="vGp-Ig-353" id="aeq-gL-p9H"/>
+                        <outlet property="lblTime" destination="5KU-P3-l3D" id="EW4-Bu-Rmb"/>
                         <outlet property="mapView" destination="5cT-qc-4it" id="Kyl-UM-70Q"/>
                         <outlet property="mapViewConstraint" destination="QZg-PA-e5H" id="D7V-EL-tIf"/>
                         <outlet property="pckDate" destination="fKl-Fi-dxI" id="VGz-SB-uuI"/>

@@ -24,8 +24,8 @@ namespace BeeBaby
 		{
 			base.ViewDidDisappear(animated);
 
-			pckDate.Hidden = true;
 
+			pckDate.Hidden = true;
 		}
 
 		public override void ViewDidAppear(bool animated)
@@ -42,8 +42,17 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+				
+			UpdateDateTimeInfo();
 
 			BTProgressHUD.Dismiss();
+		}
+
+		void UpdateDateTimeInfo()
+		{
+			var date = (DateTime)pckDate.Date;
+			btnDate.SetTitle(date.ToString("D"), UIControlState.Normal);
+			lblTime.Text = date.ToString("HH:m");
 		}
 
 		/// <summary>
@@ -70,7 +79,11 @@ namespace BeeBaby
 			RectangleF frame = vwDate.Frame;
 			frame.Height += (pckDate.Hidden) ? -height : height;
 
-			pckDate.ValueChanged += (s, args) => CurrentContext.Instance.Moment.Date = pckDate.Date;
+			pckDate.ValueChanged += (s, args) =>
+			{
+				CurrentContext.Instance.Moment.Date = pckDate.Date;
+				UpdateDateTimeInfo();
+			};
 
 			vwDate.Frame = frame;
 		}
