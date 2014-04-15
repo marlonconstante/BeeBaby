@@ -58,6 +58,20 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Switchs the camera.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SwitchCamera(UIButton sender)
+		{
+			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
+			View.BackgroundColor = UIColor.Black;
+			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
+				m_picker.CameraDevice = front ? UIImagePickerControllerCameraDevice.Rear : UIImagePickerControllerCameraDevice.Front;
+				View.BackgroundColor = UIColor.Clear;
+			}, null);
+		}
+
+		/// <summary>
 		/// Takes the photo.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
