@@ -96,7 +96,7 @@ namespace BeeBaby
 		/// Gets or sets the view photos.
 		/// </summary>
 		/// <value>The view photos.</value>
-		public UIView ViewPhotos
+		public UIScrollView ViewPhotos
 		{
 			get
 			{

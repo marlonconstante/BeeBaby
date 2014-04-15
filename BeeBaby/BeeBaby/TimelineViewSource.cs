@@ -63,7 +63,9 @@ namespace BeeBaby
 
 			var provider = new ImageProvider(moment);
 			m_images = provider.GetImagesForCurrentMoment(false, true);
-			momentCell.ViewPhotos.Frame = new RectangleF(0, 0, (MediaBase.ImageThumbnailWidth) * m_images.Count, MediaBase.ImageThumbnailHeight);
+			var viewWidth = (MediaBase.ImageThumbnailWidth) * m_images.Count;
+//			momentCell.ViewPhotos.Frame = new RectangleF(momentCell.ViewPhotos.Bounds.Left, momentCell.ViewPhotos.Bounds.Top, viewWidth, MediaBase.ImageThumbnailHeight);
+			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailHeight);
 
 			var i = 0;
 
