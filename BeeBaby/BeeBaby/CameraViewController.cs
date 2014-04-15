@@ -8,6 +8,7 @@ using Application;
 using BigTed;
 using PixateFreestyleLib;
 using Domain.Baby;
+using MonoTouch.CoreGraphics;
 
 namespace BeeBaby
 {
@@ -39,6 +40,8 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
+			new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
@@ -55,12 +58,30 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Switchs the camera.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SwitchCamera(UIButton sender)
+		{
+			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
+			View.BackgroundColor = UIColor.Black;
+			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
+				m_picker.CameraDevice = front ? UIImagePickerControllerCameraDevice.Rear : UIImagePickerControllerCameraDevice.Front;
+				View.BackgroundColor = UIColor.Clear;
+			}, null);
+		}
+
+		/// <summary>
 		/// Takes the photo.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void TakePhoto(UIButton sender)
 		{
+			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
+			UIView.Animate(0.3d, () => {
+				View.BackgroundColor = UIColor.Clear;
+			});
 		}
 
 		/// <summary>

@@ -7,7 +7,7 @@ namespace Application
 	public sealed class CurrentContext
 	{
 		private static CurrentContext s_instance;
-		//private Moment m_moment;
+
 		private CurrentContext()
 		{
 		}

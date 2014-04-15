@@ -13,27 +13,62 @@ namespace BeeBaby
 	partial class CameraViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnFlash { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton btnOpenMedia { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnOpenTimeline { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnSwitchCamera { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnTakePhoto { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblFlash { get; set; }
+
 		[Action ("OpenMedia:")]
 		partial void OpenMedia (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SwitchCamera:")]
+		partial void SwitchCamera (MonoTouch.UIKit.UIButton sender);
 
 		[Action ("TakePhoto:")]
 		partial void TakePhoto (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnFlash != null) {
+				btnFlash.Dispose ();
+				btnFlash = null;
+			}
+
 			if (btnOpenMedia != null) {
 				btnOpenMedia.Dispose ();
 				btnOpenMedia = null;
 			}
 
+			if (btnOpenTimeline != null) {
+				btnOpenTimeline.Dispose ();
+				btnOpenTimeline = null;
+			}
+
+			if (btnSwitchCamera != null) {
+				btnSwitchCamera.Dispose ();
+				btnSwitchCamera = null;
+			}
+
 			if (btnTakePhoto != null) {
 				btnTakePhoto.Dispose ();
 				btnTakePhoto = null;
+			}
+
+			if (lblFlash != null) {
+				lblFlash.Dispose ();
+				lblFlash = null;
 			}
 		}
 	}

@@ -151,10 +151,6 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ImagePickerDelegate.cs" />
     <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
-    <Compile Include="CollectionViewCell.cs" />
-    <Compile Include="CollectionViewCell.designer.cs">
-      <DependentUpon>CollectionViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="ResourcesProviders\ImageProvider.cs" />
     <Compile Include="MomentDetailViewController.cs" />
     <Compile Include="MomentDetailViewController.designer.cs">
@@ -192,6 +188,11 @@
     <Compile Include="CameraViewController.designer.cs">
       <DependentUpon>CameraViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageCollectionViewCell.cs" />
+    <Compile Include="ImageCollectionViewCell.designer.cs">
+      <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrientationNotification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

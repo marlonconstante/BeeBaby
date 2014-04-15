@@ -16,11 +16,11 @@ namespace BeeBaby.ResourcesProviders
 {
 	public class ImageProvider
 	{
-		private Moment m_currentMoment;
-		private string m_appDocumentsDirectory;
-		private const string m_temporaryDirectoryName = "temp";
-		private const string m_fileExtension = ".jpg";
-		private const string m_thumbnailPrefix = "thumbnail-";
+		Moment m_currentMoment;
+		string m_appDocumentsDirectory;
+		const string m_temporaryDirectoryName = "temp";
+		const string m_fileExtension = ".jpg";
+		const string m_thumbnailPrefix = "thumbnail-";
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.ResourcesProviders.ImageProvider"/> class.

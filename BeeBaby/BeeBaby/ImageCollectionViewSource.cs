@@ -10,10 +10,10 @@ namespace BeeBaby
 {
 	public class ImageCollectionViewSource : UICollectionViewSource
 	{
-		private static NSString s_cellIdentifier = new NSString("GalleryCell");
-		private UIViewController m_viewController;
-		private ImageProvider m_imageProvider;
-		private IList<ImageViewModel> m_images;
+		static NSString s_cellIdentifier = new NSString("GalleryCell");
+		UIViewController m_viewController;
+		ImageProvider m_imageProvider;
+		IList<ImageViewModel> m_images;
 
 		public ImageCollectionViewSource(UIViewController viewController)
 		{
@@ -51,8 +51,8 @@ namespace BeeBaby
 			var image = m_images[indexPath.Item];
 
 			// Request a recycled cell to save memory
-			CollectionViewCell cell = (CollectionViewCell) collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
-			cell.GetImagePhoto().Image = image.Image;
+			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
+			cell.Photo = image.Image;
 			cell.MediaName = image.FileName;
 			cell.IsSelected = CurrentContext.Instance.Moment.SelectedMediaNames.Contains(image.FileName);
 			cell.UpdateStatus();
@@ -67,7 +67,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			CollectionViewCell cell = (CollectionViewCell) collectionView.CellForItem(indexPath);
+			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.CellForItem(indexPath);
 			cell.IsSelected = !cell.IsSelected;
 			cell.UpdateStatus();
 

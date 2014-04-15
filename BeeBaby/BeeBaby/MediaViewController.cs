@@ -13,8 +13,8 @@ namespace BeeBaby
 {
 	public partial class MediaViewController : UIViewController
 	{
-		private UIImagePickerController m_picker;
-		private ImageCollectionViewSource m_collectionViewSource;
+		UIImagePickerController m_picker;
+		ImageCollectionViewSource m_collectionViewSource;
 
 		public MediaViewController(IntPtr handle) : base(handle)
 		{

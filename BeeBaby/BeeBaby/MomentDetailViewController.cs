@@ -13,7 +13,7 @@ namespace BeeBaby
 {
 	public partial class MomentDetailViewController : UIViewController
 	{
-		private float m_mapViewHeight;
+		float m_mapViewHeight;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{

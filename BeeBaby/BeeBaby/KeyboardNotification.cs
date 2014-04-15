@@ -7,11 +7,11 @@ namespace BeeBaby
 {
 	public class KeyboardNotification
 	{
-		private UIView m_view;
+		UIView m_view;
 		// Amount to scroll
-		private float m_scrollAmount = 0.0f;
+		float m_scrollAmount = 0.0f;
 		// Extra offset
-		private float m_offset = 18.0f;
+		float m_offset = 18.0f;
 
 		public KeyboardNotification(UIView view)
 		{
