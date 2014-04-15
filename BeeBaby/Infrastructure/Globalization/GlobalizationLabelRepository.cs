@@ -60,6 +60,9 @@ First = Primeiro
 Save = Salvar
 Albums = Álbuns
 WantThese = Quero essas >
+FlashAuto = Auto
+FlashOn = Com
+FlashOff = Sem
 ";
 		}
 	}
