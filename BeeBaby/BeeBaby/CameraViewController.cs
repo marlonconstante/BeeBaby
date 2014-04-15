@@ -54,11 +54,12 @@ namespace BeeBaby
 				m_picker.CameraOverlayView = this.View;
 
 				PresentViewController(m_picker, false, null);
+				ChangeFlashMode(btnFlash);
+
 			} else {
 				OpenMedia(btnOpenMedia);
 			}
 
-			ChangeFlashMode(btnFlash);
 		}
 
 		/// <summary>
