@@ -9,8 +9,8 @@ namespace Domain.Media
 	public class MediaBase: EntityWithIdBase<string>, IAggregateRoot
 	{
 		#region Constants
-		public const int ImageThumbnailWidth = 100;
-		public const int ImageThumbnailHeight = 100;
+		public const int ImageThumbnailWidth = 150;
+		public const int ImageThumbnailHeight = 150;
 		#endregion
 
 		/// <summary>
