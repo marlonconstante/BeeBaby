@@ -58,6 +58,30 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Changes the flash mode.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void ChangeFlashMode(UIButton sender)
+		{
+			UIImagePickerControllerCameraFlashMode cameraFlashMode;
+			switch (lblFlash.Text) {
+			case "Auto":
+				cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
+				lblFlash.Text = "On";
+				break;
+			case "On":
+				cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
+				lblFlash.Text = "Off";
+				break;
+			default:
+				cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
+				lblFlash.Text = "Auto";
+				break;
+			}
+			m_picker.CameraFlashMode = cameraFlashMode;
+		}
+
+		/// <summary>
 		/// Switchs the camera.
 		/// </summary>
 		/// <param name="sender">Sender.</param>

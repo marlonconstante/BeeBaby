@@ -30,6 +30,9 @@ namespace BeeBaby
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblFlash { get; set; }
 
+		[Action ("ChangeFlashMode:")]
+		partial void ChangeFlashMode (MonoTouch.UIKit.UIButton sender);
+
 		[Action ("OpenMedia:")]
 		partial void OpenMedia (MonoTouch.UIKit.UIButton sender);
 
