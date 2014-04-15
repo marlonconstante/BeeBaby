@@ -14,23 +14,21 @@ namespace BeeBaby
 		const float minZoom = 0.1f;
 		const float maxZoom = 3f;
 		float sizeToFitZoom = 1f;
-
 		UIImageView ivMain;
-
 		UITapGestureRecognizer grTap;
 		UITapGestureRecognizer grDoubleTap;
 
 		public event Action OnSingleTap;
 
-		public UIScrollViewImage ()
+		public UIScrollViewImage()
 		{
 			AutoresizingMask = UIViewAutoresizing.All;
 
-			ivMain = new UIImageView ();
+			ivMain = new UIImageView();
 			//			ivMain.AutoresizingMask = UIViewAutoresizing.All;
 			ivMain.ContentMode = UIViewContentMode.ScaleAspectFit;
 			//			ivMain.BackgroundColor = UIColor.Red; // DEBUG
-			AddSubview (ivMain);
+			AddSubview(ivMain);
 
 			// Setup zoom
 			MaximumZoomScale = maxZoom;
@@ -38,23 +36,30 @@ namespace BeeBaby
 			ShowsVerticalScrollIndicator = false;
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
-			ViewForZoomingInScrollView += (UIScrollView sv) => {
+			ViewForZoomingInScrollView += (UIScrollView sv) =>
+			{
 				return ivMain;
 			};
 
 			// Setup gestures
-			grTap = new UITapGestureRecognizer (() => {
-				if (OnSingleTap != null) {
+			grTap = new UITapGestureRecognizer(() =>
+			{
+				if (OnSingleTap != null)
+				{
 					OnSingleTap();
 				}
 			});
 			grTap.NumberOfTapsRequired = 1;
-			AddGestureRecognizer (grTap);
+			AddGestureRecognizer(grTap);
 
-			grDoubleTap = new UITapGestureRecognizer (() => {
-				if (ZoomScale >= defaultZoom) {
-					SetZoomScale (sizeToFitZoom, true);
-				} else {
+			grDoubleTap = new UITapGestureRecognizer(() =>
+			{
+				if (ZoomScale >= defaultZoom)
+				{
+					SetZoomScale(sizeToFitZoom, true);
+				}
+				else
+				{
 					//SetZoomScale (defaultZoom, true);
 
 					// Zoom to user specified point instead of center
@@ -64,18 +69,18 @@ namespace BeeBaby
 				}
 			});
 			grDoubleTap.NumberOfTapsRequired = 2;
-			AddGestureRecognizer (grDoubleTap);
+			AddGestureRecognizer(grDoubleTap);
 
 			// To use single tap and double tap gesture recognizers together. See for reference:
 			// http://stackoverflow.com/questions/8876202/uitapgesturerecognizer-single-tap-and-double-tap
-			grTap.RequireGestureRecognizerToFail (grDoubleTap);
+			grTap.RequireGestureRecognizerToFail(grDoubleTap);
 		}
 
 		public void SetImage(UIImage image)
 		{
 			ZoomScale = 1;
 			ivMain.Image = image;
-			ivMain.Frame = new RectangleF (new PointF(), image.Size);
+			ivMain.Frame = new RectangleF(new PointF(), image.Size);
 			ContentSize = image.Size;
 
 			float wScale = Frame.Width / image.Size.Width;
@@ -86,13 +91,13 @@ namespace BeeBaby
 			ZoomScale = MinimumZoomScale;
 
 			//
-			ivMain.Frame = CenterScrollViewContents ();
+			ivMain.Frame = CenterScrollViewContents();
 		}
 
-		public override void LayoutSubviews ()
+		public override void LayoutSubviews()
 		{
-			base.LayoutSubviews ();
-			ivMain.Frame = CenterScrollViewContents ();
+			base.LayoutSubviews();
+			ivMain.Frame = CenterScrollViewContents();
 		}
 
 		public override RectangleF Frame
@@ -105,42 +110,48 @@ namespace BeeBaby
 			{
 				base.Frame = value;
 
-				if (ivMain != null) {
+				if (ivMain != null)
+				{
 					ivMain.Frame = value;
 				}
 			}
 		}
 
-		public RectangleF CenterScrollViewContents ()
+		public RectangleF CenterScrollViewContents()
 		{
 			var boundsSize = Bounds.Size;
 			var contentsFrame = ivMain.Frame;
 
-			if (contentsFrame.Width < boundsSize.Width) {
+			if (contentsFrame.Width < boundsSize.Width)
+			{
 				contentsFrame.X = (boundsSize.Width - contentsFrame.Width) / 2;
-			} else {
+			}
+			else
+			{
 				contentsFrame.X = 0;
 			}
 
-			if (contentsFrame.Height < boundsSize.Height) {
+			if (contentsFrame.Height < boundsSize.Height)
+			{
 				contentsFrame.Y = (boundsSize.Height - contentsFrame.Height) / 2;
-			} else {
+			}
+			else
+			{
 				contentsFrame.Y = 0;
 			}
 
 			return contentsFrame;
 		}
-
 		// Reference:
 		// http://stackoverflow.com/a/11003277/548395
 		RectangleF GetZoomRect(float scale, PointF center)
 		{
-			var size = new SizeF (ivMain.Frame.Size.Height / scale, ivMain.Frame.Size.Width / scale);
+			var size = new SizeF(ivMain.Frame.Size.Height / scale, ivMain.Frame.Size.Width / scale);
 
 			var center2 = ConvertPointToView(center, ivMain);
 			var location2 = new PointF(center2.X - (size.Width / 2.0f),
-				center2.Y - (size.Height / 2.0f)
-			);
+				                center2.Y - (size.Height / 2.0f)
+			                );
 
 			var zoomRect = new RectangleF(location2, size);
 			return zoomRect;

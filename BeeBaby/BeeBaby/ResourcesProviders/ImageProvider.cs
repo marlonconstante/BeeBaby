@@ -37,7 +37,10 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The temporary directory path.</returns>
 		string GetTemporaryDirectoryPath()
 		{
-			return Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_currentMoment.Id);
+			var path = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_currentMoment.Id);
+			Directory.CreateDirectory(path);
+
+			return path;
 		}
 
 		/// <summary>
@@ -53,31 +56,12 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
-		/// Creates the temporary directory.
+		/// Generates the name of the file.
 		/// </summary>
-		/// <returns>The temporary directory.</returns>
-		private string CreateTemporaryDirectory()
+		/// <returns>The file name.</returns>
+		static string GenerateFileName()
 		{
-			var path = GetTemporaryDirectoryPath();
-			Directory.CreateDirectory(path);
-
-			return path;
-		}
-
-		/// <summary>
-		/// Creates the temporary file path.
-		/// </summary>
-		/// <returns>The temporary file path.</returns>
-		/// <param name="isThumbnail">If set to <c>true</c> is thumbnail.</param>
-		public string CreateTemporaryFilePath(bool isThumbnail = false)
-		{
-			var fileName = string.Concat(
-				               isThumbnail ? m_thumbnailPrefix : string.Empty,
-				               DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), 
-				               m_fileExtension);
-			var filePath = Path.Combine(CreateTemporaryDirectory(), fileName);
-
-			return filePath;
+			return string.Concat(DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), m_fileExtension);
 		}
 
 		/// <summary>
@@ -86,7 +70,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The temporary images names for current moment.</returns>
 		public IList<string> GetTemporaryImagesNamesForCurrentMoment()
 		{
-			var temporaryDirectory = CreateTemporaryDirectory();
+			var temporaryDirectory = GetTemporaryDirectoryPath();
 			return Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension));
 		}
 
@@ -102,7 +86,7 @@ namespace BeeBaby.ResourcesProviders
 
 			if (includeTemporary)
 			{
-				var temporaryDirectory = CreateTemporaryDirectory();
+				var temporaryDirectory = GetTemporaryDirectoryPath();
 				fileNames.AddRange(Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension)));
 			}
 
@@ -141,8 +125,17 @@ namespace BeeBaby.ResourcesProviders
 			var permanentDirectory = GetPermanentDirectory();
 			foreach (var imageName in imagesNames)
 			{
+				// Thumbnails
 				var source = Path.Combine(temporaryDirectory, imageName);
 				var destiny = Path.Combine(permanentDirectory, imageName);
+
+				File.Move(source, destiny);
+
+				// Images at full size
+				var imageFullSizedName = imageName.Remove(0, m_thumbnailPrefix.Length);
+				source = Path.Combine(temporaryDirectory, imageFullSizedName);
+				destiny = Path.Combine(permanentDirectory, imageFullSizedName);
+
 				File.Move(source, destiny);
 			}
 		}
@@ -153,10 +146,17 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="image">Image.</param>
 		public void SaveTemporaryImageOnApp(UIImage image)
 		{
+			var tempDir = GetTemporaryDirectoryPath();
+			var filename = GenerateFileName();
+
+			var fullImagePath = Path.Combine(tempDir, filename);
+			var thumbnailImagePath = Path.Combine(tempDir, string.Concat(m_thumbnailPrefix, filename));
+
+
 			using (NSData imageData = image.AsJPEG())
 			{
 				NSError err;
-				if (!imageData.Save(CreateTemporaryFilePath(), false, out err))
+				if (!imageData.Save(fullImagePath, false, out err))
 				{
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
@@ -165,7 +165,7 @@ namespace BeeBaby.ResourcesProviders
 			using (NSData imageData = GenerateThumbnail(image).AsJPEG())
 			{
 				NSError err;
-				if (!imageData.Save(CreateTemporaryFilePath(true), false, out err))
+				if (!imageData.Save(thumbnailImagePath, false, out err))
 				{
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
@@ -181,7 +181,8 @@ namespace BeeBaby.ResourcesProviders
 				imageName = imageName.Remove(0, m_thumbnailPrefix.Length);
 			}
 
-			var imagePath  = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)).FirstOrDefault(i => i.Contains(imageName));
+			var imagePath  = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension))
+				.FirstOrDefault(i => i.Equals(Path.Combine(GetPermanentDirectory(), imageName)));
 
 			var data = NSData.FromFile(imagePath);
 			return UIImage.LoadFromData(data);
