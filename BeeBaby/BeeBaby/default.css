@@ -76,6 +76,10 @@ navigation-bar back-indicator {
 	font-weight: normal;
 }
 
+.thumbnails-box {
+	box-shadow: 0 1 0 0 #b1bdbb;
+}
+
 .small-button,
 .small-button:highlighted,
 .small-button:selected {
