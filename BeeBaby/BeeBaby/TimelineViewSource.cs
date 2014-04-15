@@ -96,10 +96,10 @@ namespace BeeBaby
 			return momentCell;
 		}
 
-		[MonoTouch.Foundation.Export("DoubleTapSelector")]
-		public void OnDoubleTap(ImageViewModel sender)
-		{
-			Console.WriteLine(string.Format("{0}", sender)); 
-		}
+//		[MonoTouch.Foundation.Export("DoubleTapSelector")]
+//		public void OnDoubleTap(ImageViewModel sender)
+//		{
+//			Console.WriteLine(string.Format("{0}", sender)); 
+//		}
 	}
 }

@@ -40,7 +40,7 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+			new OrientationNotification(btnFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
