@@ -6,9 +6,8 @@ using BeeBaby.ResourcesProviders;
 using Domain.Moment;
 using Application;
 using BigTed;
-using PixateFreestyleLib;
 using Domain.Baby;
-using MonoTouch.CoreGraphics;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -16,8 +15,11 @@ namespace BeeBaby
 	{
 		UIImagePickerController m_picker;
 
+		UIImagePickerControllerCameraFlashMode m_cameraFlashMode;
+
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
+			m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
 		}
 
 		/// <summary>
@@ -40,7 +42,7 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			new OrientationNotification(btnFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+			new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
@@ -55,6 +57,8 @@ namespace BeeBaby
 			} else {
 				OpenMedia(btnOpenMedia);
 			}
+
+			ChangeFlashMode(btnFlash);
 		}
 
 		/// <summary>
@@ -63,22 +67,21 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void ChangeFlashMode(UIButton sender)
 		{
-			UIImagePickerControllerCameraFlashMode cameraFlashMode;
-			switch (lblFlash.Text) {
-			case "Auto":
-				cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
-				lblFlash.Text = "On";
+			switch (m_cameraFlashMode) {
+			case UIImagePickerControllerCameraFlashMode.Auto:
+				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
+				lblFlash.Text = "FlashOn".Translate();
 				break;
-			case "On":
-				cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
-				lblFlash.Text = "Off";
+			case UIImagePickerControllerCameraFlashMode.On:
+				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
+				lblFlash.Text = "FlashOff".Translate();
 				break;
 			default:
-				cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
-				lblFlash.Text = "Auto";
+				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
+				lblFlash.Text = "FlashAuto".Translate();
 				break;
 			}
-			m_picker.CameraFlashMode = cameraFlashMode;
+			m_picker.CameraFlashMode = m_cameraFlashMode;
 		}
 
 		/// <summary>

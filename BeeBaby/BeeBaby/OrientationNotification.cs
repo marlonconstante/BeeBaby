@@ -26,22 +26,25 @@ namespace BeeBaby
 		/// <returns>The device angle.</returns>
 		public static float GetDeviceAngle()
 		{
-			float rotate;
+			return (float) Math.PI * GetDeviceRotation() / 180;
+		}
+
+		/// <summary>
+		/// Gets the device rotation.
+		/// </summary>
+		/// <returns>The device rotation.</returns>
+		public static int GetDeviceRotation()
+		{
 			switch (UIDevice.CurrentDevice.Orientation) {
 			case UIDeviceOrientation.LandscapeLeft:
-				rotate = 90f;
-				break;
+				return 90;
 			case UIDeviceOrientation.PortraitUpsideDown:
-				rotate = 180f;
-				break;
+				return 180;
 			case UIDeviceOrientation.LandscapeRight:
-				rotate = 270f;
-				break;
+				return 270;
 			default:
-				rotate = 0f;
-				break;
+				return 0;
 			}
-			return (float) Math.PI * rotate / 180f;
 		}
 
 		/// <summary>
@@ -50,10 +53,17 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		private void DidRotation(NSNotification notification)
 		{
+			int deviceRotation = GetDeviceRotation();
+			bool landscape = deviceRotation == 90 || deviceRotation == 270;
 			CGAffineTransform transform = CGAffineTransform.MakeRotation(GetDeviceAngle());
 			UIView.Animate(0.2d, () => {
 				foreach (var view in m_views)
 				{
+					if (view.GetType() == typeof(UILabel))
+					{
+						UILabel label = (UILabel) view;
+						label.TextAlignment	= landscape ? UITextAlignment.Center : UITextAlignment.Left;
+					}
 					view.Transform = transform;
 				}
 			});
