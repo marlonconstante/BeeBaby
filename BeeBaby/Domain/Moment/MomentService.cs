@@ -55,7 +55,7 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments()
 		{
-			return MainRepository.FindAllDescending((o) => o.Date);
+			return MainRepository.FindAllDescending((m) => m.Event != null,  (o) => o.Date);
 		}
 
 		public Moment GetFirstMoment()
