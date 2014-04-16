@@ -1,8 +1,5 @@
 using System;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
 using Domain.Moment;
 using Application;
 using System.Drawing;
@@ -56,7 +53,7 @@ namespace BeeBaby
 		void UpdateDateTimeInfo()
 		{
 			var date = (DateTime)pckDate.Date;
-			btnDate.SetTitle(date.ToLocalTime().ToString("D", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
+			btnDate.SetTitle(date.ToLocalTime().ToString("d", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
 			lblTime.Text = date.ToLocalTime().ToString("HH:m", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 		}
 
@@ -83,6 +80,8 @@ namespace BeeBaby
 			float height = pckDate.Frame.Height - 20f;
 			RectangleF frame = vwDate.Frame;
 			frame.Height += (pckDate.Hidden) ? -height : height;
+
+			pckDate.MultipleTouchEnabled = true;
 
 			pckDate.ValueChanged += (s, args) =>
 			{

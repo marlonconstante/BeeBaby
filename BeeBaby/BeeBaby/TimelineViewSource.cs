@@ -57,14 +57,13 @@ namespace BeeBaby
 
 			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
 			momentCell.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
-			//cm.LabelEventName = moment.Event.Description;
+//			momentCell.LabelEventName = moment.Event.Description;
 			momentCell.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
 			momentCell.LabelWho = indexPath.Row.ToString();
 
 			var provider = new ImageProvider(moment);
 			m_images = provider.GetImagesForCurrentMoment(false, true);
 			var viewWidth = (MediaBase.ImageThumbnailWidth) * m_images.Count;
-//			momentCell.ViewPhotos.Frame = new RectangleF(momentCell.ViewPhotos.Bounds.Left, momentCell.ViewPhotos.Bounds.Top, viewWidth, MediaBase.ImageThumbnailHeight);
 			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailHeight);
 
 			var i = 0;
