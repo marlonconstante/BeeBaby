@@ -7,7 +7,7 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public partial class EventListViewController : UITableViewController
+	public partial class EventListViewController : UIViewController
 	{
 		IEnumerable<Event> m_events;
 		EventService m_eventService;
@@ -25,7 +25,7 @@ namespace BeeBaby
 
 			m_eventService = new EventService();
 			m_events = m_eventService.GetAllEvents();
-			TableView.Source = new EventListViewSource(this, m_events.ToList());
+			tblView.Source = new EventListViewSource(this, m_events.ToList());
 
 			BTProgressHUD.Dismiss();
 		}
