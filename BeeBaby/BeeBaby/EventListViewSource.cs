@@ -11,9 +11,9 @@ namespace BeeBaby
 	{
 		static string s_cellIdentifier = "EventCell";
 		UIViewController m_viewController;
-		List<Event> m_tableItems;
+		IList<Event> m_tableItems;
 
-		public EventListViewSource(UIViewController viewController, List<Event> items)
+		public EventListViewSource(UIViewController viewController, IList<Event> items)
 		{
 			m_viewController = viewController;
 			m_tableItems = items;
@@ -47,6 +47,17 @@ namespace BeeBaby
 			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
 			cell.TextLabel.Text = m_tableItems[indexPath.Row].Description;
 			return cell;
+		}
+
+		/// <summary>
+		/// Reloads the data.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="items">Items.</param>
+		public void ReloadData(UITableView tableView, IList<Event> items)
+		{
+			m_tableItems = items;
+			tableView.ReloadData();
 		}
 	}
 }

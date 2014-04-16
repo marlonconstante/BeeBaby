@@ -196,6 +196,7 @@
     <Compile Include="UIScrollViewImage.cs" />
     <Compile Include="UIImageViewClickable.cs" />
     <Compile Include="UIViewFullscreen.cs" />
+    <Compile Include="EventTableSearchBarDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

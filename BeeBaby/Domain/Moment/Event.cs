@@ -13,7 +13,5 @@ namespace Domain.Moment
 		/// </summary>
 		/// <value>The description.</value>
 		public string Description { set; get; }
-
 	}
 }
-

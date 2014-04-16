@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class EventListViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UISearchBar schBar { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -20,6 +23,11 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
+			}
+
+			if (schBar != null) {
+				schBar.Dispose ();
+				schBar = null;
 			}
 		}
 	}
