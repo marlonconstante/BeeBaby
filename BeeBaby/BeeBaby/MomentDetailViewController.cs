@@ -11,6 +11,7 @@ namespace BeeBaby
 	public partial class MomentDetailViewController : UIViewController
 	{
 		float m_mapViewHeight;
+		KeyboardNotification m_keyboardNotification;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -47,7 +48,11 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			new KeyboardNotification(View);
+			if (m_keyboardNotification == null)
+			{
+				m_keyboardNotification = new KeyboardNotification(View);
+			}
+
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
 			txtDescription.Delegate = new PlaceholderTextViewDelegate();
 

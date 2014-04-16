@@ -14,8 +14,8 @@ namespace BeeBaby
 	public partial class CameraViewController : UIViewController
 	{
 		UIImagePickerController m_picker;
-
 		UIImagePickerControllerCameraFlashMode m_cameraFlashMode;
+		OrientationNotification m_orientationNotification;
 
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
@@ -62,7 +62,10 @@ namespace BeeBaby
 				PresentViewController(m_picker, false, null);
 				ChangeFlashMode(btnFlash);
 
-				new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+				if (m_orientationNotification == null)
+				{
+					m_orientationNotification = new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+				}
 			}
 
 			View.BackgroundColor = UIColor.Clear;
