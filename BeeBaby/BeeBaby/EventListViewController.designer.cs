@@ -12,9 +12,15 @@ namespace BeeBaby
 	[Register ("EventListViewController")]
 	partial class EventListViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (tblView != null) {
+				tblView.Dispose ();
+				tblView = null;
+			}
 		}
 	}
 }

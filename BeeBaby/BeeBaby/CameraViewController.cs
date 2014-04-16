@@ -42,8 +42,6 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
-
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
@@ -56,10 +54,10 @@ namespace BeeBaby
 				PresentViewController(m_picker, false, null);
 				ChangeFlashMode(btnFlash);
 
+				new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 			} else {
 				OpenMedia(btnOpenMedia);
 			}
-
 		}
 
 		/// <summary>
