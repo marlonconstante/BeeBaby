@@ -17,14 +17,21 @@ namespace BeeBaby
 			m_mapViewHeight = -1;
 		}
 
+		/// <summary>
+		/// Views the did disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidDisappear(bool animated)
 		{
 			base.ViewDidDisappear(animated);
 
-
 			pckDate.Hidden = true;
 		}
 
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
@@ -32,6 +39,10 @@ namespace BeeBaby
 			UpdateDateTimeInfo();
 		}
 
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
@@ -41,8 +52,7 @@ namespace BeeBaby
 			txtDescription.Delegate = new PlaceholderTextViewDelegate();
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
-			if (selectedEvent != null)
-			{
+			if (selectedEvent != null) {
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
@@ -50,9 +60,12 @@ namespace BeeBaby
 			BTProgressHUD.Dismiss();
 		}
 
+		/// <summary>
+		/// Updates the date time info.
+		/// </summary>
 		void UpdateDateTimeInfo()
 		{
-			var date = (DateTime)pckDate.Date;
+			var date = (DateTime) pckDate.Date;
 			btnDate.SetTitle(date.ToLocalTime().ToString("d", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
 			lblTime.Text = date.ToLocalTime().ToString("HH:m", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 		}
@@ -83,8 +96,7 @@ namespace BeeBaby
 
 			pckDate.MultipleTouchEnabled = true;
 
-			pckDate.ValueChanged += (s, args) =>
-			{
+			pckDate.ValueChanged += (s, args) => {
 				CurrentContext.Instance.Moment.Date = pckDate.Date;
 				UpdateDateTimeInfo();
 			};
@@ -109,8 +121,7 @@ namespace BeeBaby
 			moment.Event = CurrentContext.Instance.SelectedEvent;
 			moment.Date = pckDate.Date;
 
-			if (!mapView.Hidden)
-			{
+			if (!mapView.Hidden) {
 				moment.Position = new GlobalPosition();
 				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
@@ -130,8 +141,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void LocationChanged(UISwitch sender)
 		{
-			if (m_mapViewHeight == -1)
-			{
+			if (m_mapViewHeight == -1) {
 				m_mapViewHeight = mapView.Frame.Height;
 			}
 			mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
