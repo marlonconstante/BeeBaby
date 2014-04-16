@@ -28,6 +28,13 @@ namespace BeeBaby
 			pckDate.Hidden = true;
 		}
 
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			UpdateDateTimeInfo();
+		}
+
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
@@ -42,8 +49,6 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
-				
-			UpdateDateTimeInfo();
 
 			BTProgressHUD.Dismiss();
 		}
@@ -51,8 +56,8 @@ namespace BeeBaby
 		void UpdateDateTimeInfo()
 		{
 			var date = (DateTime)pckDate.Date;
-			btnDate.SetTitle(date.ToString("D"), UIControlState.Normal);
-			lblTime.Text = date.ToString("HH:m");
+			btnDate.SetTitle(date.ToLocalTime().ToString("D", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
+			lblTime.Text = date.ToLocalTime().ToString("HH:m", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 		}
 
 		/// <summary>
