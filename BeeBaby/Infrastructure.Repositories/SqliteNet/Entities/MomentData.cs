@@ -7,18 +7,18 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 	public class MomentData: DataBase
 	{
 		/// <summary>
-		/// Gets or sets the title.
-		/// </summary>
-		/// <value>The title.</value>
-		[ManyToOne]
-		public EventData Event { set; get; }
-
-		/// <summary>
 		/// Gets or sets the event identifier.
 		/// </summary>
 		/// <value>The event identifier.</value>
 		[ForeignKey(typeof(EventData))] 
 		public string EventId { set; get; }
+
+		/// <summary>
+		/// Gets or sets the title.
+		/// </summary>
+		/// <value>The title.</value>
+		[ManyToOne]
+		public EventData Event { set; get; }
 
 		/// <summary>
 		/// Gets or sets the description.
@@ -39,18 +39,18 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		public double Latitude { set; get; }
 
 		/// <summary>
-		/// Gets or sets the location.
-		/// </summary>
-		/// <value>The location.</value>
-		[ManyToOne]
-		public LocationData Location { set; get; }
-
-		/// <summary>
 		/// Gets or sets the location identifier.
 		/// </summary>
 		/// <value>The location identifier.</value>
 		[ForeignKey(typeof(LocationData))] 
 		public string LocationId { set; get; }
+
+		/// <summary>
+		/// Gets or sets the location.
+		/// </summary>
+		/// <value>The location.</value>
+		[ManyToOne]
+		public LocationData Location { set; get; }
 
 		/// <summary>
 		/// Gets or sets the date.

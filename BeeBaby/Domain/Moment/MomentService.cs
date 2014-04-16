@@ -57,6 +57,11 @@ namespace Domain.Moment
 		{
 			return MainRepository.FindAllDescending((o) => o.Date);
 		}
+
+		public Moment GetFirstMoment()
+		{
+			return MainRepository.FindFirst();
+		}
 	}
 }
 

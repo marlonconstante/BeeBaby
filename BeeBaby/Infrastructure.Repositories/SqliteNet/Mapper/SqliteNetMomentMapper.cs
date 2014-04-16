@@ -2,11 +2,19 @@
 using Infrastructure.Repositories.Commons;
 using Domain.Moment;
 using Infrastructure.Repositories.SqliteNet.Entities;
+using Skahal.Infrastructure.Framework.Commons;
 
 namespace Infrastructure.Repositories.SqliteNet.Mapper
 {
 	internal class SqliteNetMomentMapper : IMapper<Moment, MomentData>
 	{
+		private IEventRepository m_eventRepository;
+
+		internal SqliteNetMomentMapper() : base()
+		{
+			m_eventRepository = DependencyService.Create<IEventRepository>();
+		}
+
 		#region IMapper implementation
 
 		public Moment ToDomainEntity(MomentData source)
@@ -18,7 +26,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new Moment();
 				result.Id = source.Id;
 				result.Description = source.Description;
-				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
+				result.Event = m_eventRepository.FindBy(source.EventId);
 				result.Position = new GlobalPosition()
 				{
 					Latitude = source.Latitude,
