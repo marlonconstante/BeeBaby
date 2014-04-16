@@ -55,8 +55,6 @@ namespace BeeBaby
 			Console.WriteLine(string.Format("{0} -> {1}", indexPath.Row, moment.Id));
 			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
-			var a = new MomentService().GetFirstMoment();
-
 			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
 			momentCell.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			momentCell.LabelEventName = moment.Event.Description;

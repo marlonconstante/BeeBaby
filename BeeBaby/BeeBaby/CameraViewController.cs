@@ -30,8 +30,19 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
+			View.BackgroundColor = UIColor.Black;
+
 			// Hides the status bar
 			NavigationController.NavigationBarHidden = true;
+
+			// Create the moment, saves and generate a ID for future use.
+			var momentService = new MomentService();
+			CurrentContext.Instance.Moment = momentService.CreateMoment();
+
+			if (!MediaPickerProvider.IsCameraAvailable())
+			{
+				OpenMedia(btnOpenMedia);
+			}
 		}
 
 		/// <summary>
@@ -42,11 +53,8 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			// Create the moment, saves and generate a ID for future use.
-			var momentService = new MomentService();
-			CurrentContext.Instance.Moment = momentService.CreateMoment();
-
-			if (MediaPickerProvider.IsCameraAvailable()) {
+			if (MediaPickerProvider.IsCameraAvailable())
+			{
 				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
 				m_picker = mediaPickerProvider.GetUIImagePickerController();
 				m_picker.CameraOverlayView = this.View;
@@ -55,9 +63,9 @@ namespace BeeBaby
 				ChangeFlashMode(btnFlash);
 
 				new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
-			} else {
-				OpenMedia(btnOpenMedia);
 			}
+
+			View.BackgroundColor = UIColor.Clear;
 		}
 
 		/// <summary>
