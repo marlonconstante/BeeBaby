@@ -8,6 +8,7 @@ using Application;
 using BigTed;
 using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
+using MonoTouch.AudioToolbox;
 
 namespace BeeBaby
 {
@@ -16,10 +17,21 @@ namespace BeeBaby
 		UIImagePickerController m_picker;
 		UIImagePickerControllerCameraFlashMode m_cameraFlashMode;
 		OrientationNotification m_orientationNotification;
+		SystemSound m_systemSound;
 
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
 			m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
+		}
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			loadSound();
 		}
 
 		/// <summary>
@@ -72,12 +84,30 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Loads the sound.
+		/// </summary>
+		void loadSound()
+		{
+			string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
+			m_systemSound = SystemSound.FromFile(filePath);
+		}
+
+		/// <summary>
+		/// Play the sound.
+		/// </summary>
+		void playSound()
+		{
+			m_systemSound.PlaySystemSound(); 
+		}
+
+		/// <summary>
 		/// Changes the flash mode.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void ChangeFlashMode(UIButton sender)
 		{
-			switch (m_cameraFlashMode) {
+			switch (m_cameraFlashMode)
+			{
 			case UIImagePickerControllerCameraFlashMode.Auto:
 				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
 				lblFlash.Text = "FlashOn".Translate();

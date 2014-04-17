@@ -146,6 +146,7 @@
     <BundleResource Include="Resources\picture.svg" />
     <BundleResource Include="Resources\switch.svg" />
     <BundleResource Include="Resources\flash.svg" />
+    <BundleResource Include="Resources\lake-waves.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
