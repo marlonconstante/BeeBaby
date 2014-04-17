@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rSv-IU-3ut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XbC-sd-fcb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -283,12 +283,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Timeline View Controller-->
         <scene sceneID="6UT-XL-r0v">
             <objects>
-                <viewController id="dSV-Q6-u5O" customClass="TimelineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimelineViewController" id="dSV-Q6-u5O" customClass="TimelineViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f2S-dr-MOg"/>
                         <viewControllerLayoutGuide type="bottom" id="WBp-Z0-5Io"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2f6-vZ-6fR">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2f6-vZ-6fR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -522,10 +522,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2036" y="593"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="GeC-1Q-ZWB">
             <objects>
-                <navigationController definesPresentationContext="YES" id="rSv-IU-3ut" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="rSv-IU-3ut" customClass="MenuViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="SfS-ET-MYs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ngj-Nh-ZUz">
                         <autoresizingMask key="autoresizingMask"/>
@@ -719,7 +719,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Camera View Controller-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <viewController id="rQl-PL-IFJ" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" id="rQl-PL-IFJ" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rmd-Gj-FRB"/>
                         <viewControllerLayoutGuide type="bottom" id="6JI-Rw-eJl"/>

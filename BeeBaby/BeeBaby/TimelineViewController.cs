@@ -17,7 +17,7 @@ namespace BeeBaby
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
 		}
-
+			
 		/// <summary>
 		/// Views the did load.
 		/// </summary>

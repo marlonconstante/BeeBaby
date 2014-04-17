@@ -197,6 +197,12 @@
     <Compile Include="UIImageViewClickable.cs" />
     <Compile Include="UIViewFullscreen.cs" />
     <Compile Include="EventTableSearchBarDelegate.cs" />
+    <Compile Include="MenuViewController.cs" />
+    <Compile Include="MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlideoutNavigationController.cs" />
+    <Compile Include="LeftMenuViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
