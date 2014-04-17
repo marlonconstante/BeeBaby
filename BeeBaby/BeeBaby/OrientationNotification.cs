@@ -35,7 +35,8 @@ namespace BeeBaby
 		/// <returns>The device rotation.</returns>
 		public static int GetDeviceRotation()
 		{
-			switch (UIDevice.CurrentDevice.Orientation) {
+			switch (UIDevice.CurrentDevice.Orientation)
+			{
 			case UIDeviceOrientation.LandscapeLeft:
 				return 90;
 			case UIDeviceOrientation.PortraitUpsideDown:

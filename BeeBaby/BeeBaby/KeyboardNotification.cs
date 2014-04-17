@@ -42,7 +42,8 @@ namespace BeeBaby
 		private void KeyboardUpNotification(NSNotification notification)
 		{
 			UIView firstResponder = GetFirstResponder(m_view);
-			if (firstResponder != null) {
+			if (firstResponder != null)
+			{
 				// Get the keyboard size
 				RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
@@ -61,8 +62,10 @@ namespace BeeBaby
 		/// <param name="view">View.</param>
 		private UIView GetFirstResponder(UIView view)
 		{
-			foreach (UIView element in view.Subviews) {
-				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null)) {
+			foreach (UIView element in view.Subviews)
+			{
+				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null))
+				{
 					return element;
 				}
 			}
