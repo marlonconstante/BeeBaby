@@ -9,29 +9,20 @@ using BigTed;
 using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
+using System.Threading;
 
 namespace BeeBaby
 {
 	public partial class CameraViewController : UIViewController
 	{
 		UIImagePickerController m_picker;
+		MediaPickerProvider m_mediaPickerProvider;
 		UIImagePickerControllerCameraFlashMode m_cameraFlashMode;
 		OrientationNotification m_orientationNotification;
 		SystemSound m_systemSound;
 
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
-			m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
-		}
-
-		/// <summary>
-		/// Views the did load.
-		/// </summary>
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-
-			loadSound();
 		}
 
 		/// <summary>
@@ -67,20 +58,32 @@ namespace BeeBaby
 
 			if (MediaPickerProvider.IsCameraAvailable())
 			{
-				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
-				m_picker = mediaPickerProvider.GetUIImagePickerController();
+				m_mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
+				m_picker = m_mediaPickerProvider.GetUIImagePickerController();
 				m_picker.CameraOverlayView = this.View;
 
 				PresentViewController(m_picker, false, null);
+
+				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
 				ChangeFlashMode(btnFlash);
 
-				if (m_orientationNotification == null)
-				{
-					m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
-				}
+				loadOrientationNotification();
+				loadSound();
 			}
 
 			View.BackgroundColor = UIColor.Clear;
+		}
+
+		/// <summary>
+		/// Loads the orientation notification.
+		/// </summary>
+		void loadOrientationNotification()
+		{
+			if (m_orientationNotification == null)
+			{
+				m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+			}
+
 		}
 
 		/// <summary>
@@ -88,8 +91,11 @@ namespace BeeBaby
 		/// </summary>
 		void loadSound()
 		{
-			string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
-			m_systemSound = SystemSound.FromFile(filePath);
+			if (m_systemSound == null)
+			{
+				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
+				m_systemSound = SystemSound.FromFile(filePath);
+			}
 		}
 
 		/// <summary>
@@ -162,7 +168,9 @@ namespace BeeBaby
 			NavigationController.NavigationBarHidden = false;
 
 			// Shows the spinner
-			BTProgressHUD.Show(); 
+			BTProgressHUD.Show();
+
+			m_mediaPickerProvider.Delegate.WaitForPendingTasks();
 
 			PerformSegue("segueMedia", sender);
 			DismissViewController(true, null);

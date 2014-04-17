@@ -12,6 +12,7 @@ namespace BeeBaby.ResourcesProviders
 		public MediaPickerProvider(UIImagePickerControllerSourceType sourceType)
 		{
 			m_sourceType = sourceType;
+			Delegate = new ImagePickerDelegate();
 		}
 
 		/// <summary>
@@ -43,12 +44,18 @@ namespace BeeBaby.ResourcesProviders
 				picker.SourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
 			}
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
-			picker.Delegate = new ImagePickerDelegate();
+			picker.Delegate = Delegate;
 
 			Console.WriteLine(CurrentContext.Instance.Moment.Id);
 
 			return picker;
 		}
+
+		/// <summary>
+		/// Gets or sets the delegate.
+		/// </summary>
+		/// <value>The delegate.</value>
+		public ImagePickerDelegate Delegate { set; get; }
 	}
 }
 
