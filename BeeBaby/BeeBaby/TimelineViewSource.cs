@@ -76,6 +76,7 @@ namespace BeeBaby
 				{
 					uiImageView.Image = image.Image;
 					uiImageView.UserInteractionEnabled = true;
+					uiImageView.MultipleTouchEnabled = true;
 					uiImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 					uiImageView.OnClick += () =>
 					{

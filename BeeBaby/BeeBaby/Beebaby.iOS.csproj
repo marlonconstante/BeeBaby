@@ -47,7 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
+    <CodesignKey>iPhone Developer: Giusepe Casagrande (7T24LVYM6A)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -146,6 +146,8 @@
     <BundleResource Include="Resources\picture.svg" />
     <BundleResource Include="Resources\switch.svg" />
     <BundleResource Include="Resources\flash.svg" />
+    <BundleResource Include="Resources\lake-waves.mp3" />
+    <BundleResource Include="Resources\music.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

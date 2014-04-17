@@ -30,9 +30,12 @@ namespace BeeBaby
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
 			UIViewController controller = (UIViewController)board.InstantiateViewController("TimelineViewController");
 
+			Window = UIApplication.SharedApplication.Windows [0];
 
-			Window = new UIWindow (UIScreen.MainScreen.Bounds);
+//			Window = new UIWindow (UIScreen.MainScreen.Bounds);
 			Menu = new SlideoutNavigationController ();
+			Menu.View.MultipleTouchEnabled = true;
+			Menu.View.UserInteractionEnabled = true;
 			Menu.SlideHeight = 9999f;
 			Menu.TopView = controller;
 			Menu.MenuViewLeft = new LeftMenuViewController ();
