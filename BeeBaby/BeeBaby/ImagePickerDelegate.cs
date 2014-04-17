@@ -12,8 +12,8 @@ namespace BeeBaby
 	{
 		ImageProvider m_imageProvider;
 		IList<Action> m_tasks;
-		Thread m_performTasks;
 		bool m_pendingTasks;
+		Thread m_performTasks;
 
 		public ImagePickerDelegate()
 		{
@@ -113,7 +113,7 @@ namespace BeeBaby
 		public void WaitForPendingTasks()
 		{
 			m_pendingTasks = false;
-			while (m_performTasks.IsAlive)
+			while (m_performTasks != null && m_performTasks.IsAlive)
 			{
 				Thread.Sleep(100);
 			}

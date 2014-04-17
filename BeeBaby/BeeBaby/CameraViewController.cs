@@ -67,8 +67,7 @@ namespace BeeBaby
 				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
 				ChangeFlashMode(btnFlash);
 
-				loadOrientationNotification();
-				loadSound();
+				LoadOrientationNotification();
 			}
 
 			View.BackgroundColor = UIColor.Clear;
@@ -77,24 +76,23 @@ namespace BeeBaby
 		/// <summary>
 		/// Loads the orientation notification.
 		/// </summary>
-		void loadOrientationNotification()
+		void LoadOrientationNotification()
 		{
 			if (m_orientationNotification == null)
 			{
 				m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 			}
-
 		}
 
 		/// <summary>
-		/// Loads the sound.
+		/// Stops the sound.
 		/// </summary>
-		void loadSound()
+		void StopSound()
 		{
-			if (m_systemSound == null)
+			if (m_systemSound != null)
 			{
-				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
-				m_systemSound = SystemSound.FromFile(filePath);
+				m_systemSound.Close();
+				m_systemSound = null;
 			}
 		}
 
@@ -104,7 +102,16 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void PlaySound(UIButton sender)
 		{
-			m_systemSound.PlaySystemSound(); 
+			if (m_systemSound == null)
+			{
+				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
+				m_systemSound = SystemSound.FromFile(filePath);
+				m_systemSound.PlaySystemSound();
+			}
+			else
+			{
+				StopSound();
+			}
 		}
 
 		/// <summary>
@@ -170,11 +177,12 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show();
 
-			if (MediaPickerProvider.IsCameraAvailable())
+			if (m_mediaPickerProvider != null)
 			{
 				m_mediaPickerProvider.Delegate.WaitForPendingTasks();
 			}
 
+			StopSound();
 			PerformSegue("segueMedia", sender);
 			DismissViewController(true, null);
 		}
