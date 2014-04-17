@@ -170,7 +170,10 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show();
 
-			m_mediaPickerProvider.Delegate.WaitForPendingTasks();
+			if (MediaPickerProvider.IsCameraAvailable())
+			{
+				m_mediaPickerProvider.Delegate.WaitForPendingTasks();
+			}
 
 			PerformSegue("segueMedia", sender);
 			DismissViewController(true, null);
