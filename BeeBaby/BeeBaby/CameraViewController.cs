@@ -76,7 +76,7 @@ namespace BeeBaby
 
 				if (m_orientationNotification == null)
 				{
-					m_orientationNotification = new OrientationNotification(btnFlash, lblFlash, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+					m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 				}
 			}
 
