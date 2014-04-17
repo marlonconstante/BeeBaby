@@ -76,7 +76,7 @@ namespace BeeBaby
 
 				if (m_orientationNotification == null)
 				{
-					m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
+					m_orientationNotification = new OrientationNotification(btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
 				}
 			}
 
@@ -95,7 +95,8 @@ namespace BeeBaby
 		/// <summary>
 		/// Play the sound.
 		/// </summary>
-		void playSound()
+		/// <param name="sender">Sender.</param>
+		partial void PlaySound(UIButton sender)
 		{
 			m_systemSound.PlaySystemSound(); 
 		}

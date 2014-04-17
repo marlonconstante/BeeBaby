@@ -275,6 +275,10 @@ text-view {
 	background-image: url(picture.svg);
 }
 
+.music {
+	background-image: url(music.svg);
+}
+
 .flash {
 	background-image: url(flash.svg);
 }

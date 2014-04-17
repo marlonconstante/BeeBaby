@@ -745,6 +745,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <action selector="SwitchCamera:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="Prx-5S-67g"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-hI-R5l">
+                                        <rect key="frame" x="247" y="10" width="27" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="music"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="PlaySound:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="SVa-jg-S1c"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxX-v9-Q3F">
                                         <rect key="frame" x="0.0" y="0.0" width="47" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -845,6 +858,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="btnFlash" destination="BPG-NX-zxb" id="kfJ-Qj-Bkt"/>
                         <outlet property="btnOpenMedia" destination="Fbt-Za-ve4" id="1Xz-js-YuP"/>
                         <outlet property="btnOpenTimeline" destination="gX6-ac-dkX" id="Pkb-Er-eng"/>
+                        <outlet property="btnSound" destination="eh5-hI-R5l" id="4EC-WN-PBt"/>
                         <outlet property="btnSwitchCamera" destination="Z7i-gU-gTy" id="5Pk-Ai-SkY"/>
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
                         <outlet property="lblFlash" destination="lsM-AA-iTR" id="LjC-Sf-zux"/>
