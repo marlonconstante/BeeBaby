@@ -3,12 +3,49 @@ using NUnit.Framework;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Domain.Moment;
+using Infrastructure.Repositories.Memory;
+using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.Commons;
 
 namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 {
 	[TestFixture()]
 	public class SqliteNetMomentMapperTest
 	{
+		MemoryEventRepository m_repository;
+		MemoryUnitOfWork m_unitOfWork;
+
+
+		#region Initialize
+		[TestFixtureSetUp]
+		public void InitializeTest()
+		{ 
+			m_unitOfWork = new MemoryUnitOfWork();
+			m_repository = new MemoryEventRepository(m_unitOfWork);
+
+			m_repository.Add(new Event()
+			{
+				Description = "Primeiro Sorriso"
+
+			});
+			m_repository.Add(new Event()
+			{
+				Description = "Primeiro Banho"
+
+			});
+			m_repository.Add(new Event()
+			{
+				Description = "Primeiro Passeio"
+
+			});
+
+			m_unitOfWork.Commit();
+
+			DependencyService.Register<IUnitOfWork>(m_unitOfWork);
+			DependencyService.Register<IEventRepository>(m_repository);
+		}
+		#endregion
+
 		[Test()]
 		public void ToRepository_Null_Null()
 		{

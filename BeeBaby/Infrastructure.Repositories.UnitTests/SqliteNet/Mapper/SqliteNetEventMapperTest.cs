@@ -2,7 +2,6 @@
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Domain.Moment;
-using Skahal.Infrastructure.Framework.Domain;
 
 namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 {
@@ -12,7 +11,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 		[Test()]
 		public void ToRepository_Null_Null()
 		{
-			Assert.AreEqual(null,  new SqliteNetEventMapper().ToRepositoryEntity(null));
+			Assert.AreEqual(null, new SqliteNetEventMapper().ToRepositoryEntity(null));
 		}
 
 		[Test()]
@@ -27,12 +26,18 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			var repositoryEntity = new EventData()
 			{
 				Id = "1",
-				Description = "Descrição"
+				Description = "Descrição",
+				StartAge = 1,
+				EndAge = 2,
+				Kind = 1
 			};
 
 			var actual = new SqliteNetEventMapper().ToDomainEntity(repositoryEntity);
 			Assert.AreEqual(repositoryEntity.Id, actual.Id);
 			Assert.AreEqual(repositoryEntity.Description, actual.Description);
+			Assert.AreEqual(repositoryEntity.StartAge, actual.StartAge);
+			Assert.AreEqual(repositoryEntity.EndAge, actual.EndAge);
+			Assert.AreEqual(EventType.Everyday, actual.Kind);
 		}
 
 		[Test()]
@@ -41,12 +46,19 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			var domainEntity = new Event()
 			{
 				Id = "1",
-				Description = "Descrição"
+				Description = "Descrição",
+				StartAge = 1,
+				EndAge = 2,
+				Kind = EventType.Everyday
 			};
 
 			var actual = new SqliteNetEventMapper().ToRepositoryEntity(domainEntity);
 			Assert.AreEqual(domainEntity.Id, actual.Id);
 			Assert.AreEqual(domainEntity.Description, actual.Description);
+			Assert.AreEqual(domainEntity.StartAge, actual.StartAge);
+			Assert.AreEqual(domainEntity.EndAge, actual.EndAge);
+			Assert.AreEqual(1, actual.Kind);
+
 		}
 	}
 }

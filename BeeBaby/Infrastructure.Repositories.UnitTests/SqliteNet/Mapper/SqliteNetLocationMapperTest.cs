@@ -6,6 +6,7 @@ using Domain.Moment;
 
 namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 {
+	[TestFixture()]
 	public class SqliteNetLocationMapperTest
 	{
 		[Test()]

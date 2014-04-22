@@ -1,5 +1,4 @@
-﻿using System;
-using Infrastructure.Repositories.Commons;
+﻿using Infrastructure.Repositories.Commons;
 using Domain.Moment;
 using Infrastructure.Repositories.SqliteNet.Entities;
 
