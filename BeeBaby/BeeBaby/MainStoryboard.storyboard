@@ -307,7 +307,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 meses e 3 semanas" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-FL-7pL">
-                                <rect key="frame" x="151" y="70" width="160" height="20"/>
+                                <rect key="frame" x="151" y="70" width="159" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -350,14 +350,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-P1-5dG">
-                                                            <rect key="frame" x="208" y="10" width="13" height="13"/>
+                                                            <rect key="frame" x="203" y="9" width="13" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="calendar"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11 maio" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTL-rt-fIa">
-                                                            <rect key="frame" x="220" y="6" width="61" height="21"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11 maio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTL-rt-fIa">
+                                                            <rect key="frame" x="221" y="6" width="61" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="highlightedColor"/>
@@ -441,7 +441,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-zW-74R">
-                                                            <rect key="frame" x="-4" y="41" width="306" height="150"/>
+                                                            <rect key="frame" x="-4" y="40" width="306" height="150"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="thumbnails-box"/>
@@ -484,7 +484,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="i59-ne-fd6" firstAttribute="leading" secondItem="2f6-vZ-6fR" secondAttribute="leading" constant="10" id="hGy-ZV-ZgP"/>
                             <constraint firstItem="i59-ne-fd6" firstAttribute="top" secondItem="f2S-dr-MOg" secondAttribute="bottom" constant="6" id="pnV-ly-pL5"/>
                             <constraint firstAttribute="bottom" secondItem="Qro-Dy-vJe" secondAttribute="bottom" constant="1" id="qx7-bo-DeB"/>
-                            <constraint firstAttribute="trailing" secondItem="bFj-FL-7pL" secondAttribute="trailing" constant="9" id="uwP-PI-ur5"/>
+                            <constraint firstAttribute="trailing" secondItem="bFj-FL-7pL" secondAttribute="trailing" constant="10" id="uwP-PI-ur5"/>
                             <constraint firstItem="bFj-FL-7pL" firstAttribute="leading" secondItem="i59-ne-fd6" secondAttribute="trailing" constant="9" id="w2V-79-K3d"/>
                             <constraint firstItem="Qro-Dy-vJe" firstAttribute="top" secondItem="bFj-FL-7pL" secondAttribute="bottom" constant="5" id="yaS-1d-W7x"/>
                         </constraints>
