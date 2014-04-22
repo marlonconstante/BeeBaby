@@ -26,7 +26,8 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new Moment();
 				result.Id = source.Id;
 				result.Description = source.Description;
-				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
+//				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
+				result.Event = m_eventRepository.FindBy(source.EventId);
 				result.Position = new GlobalPosition()
 				{
 					Latitude = source.Latitude,

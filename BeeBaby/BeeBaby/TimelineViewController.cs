@@ -33,6 +33,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Inits the timeline.
 		/// </summary>
+		/// 
 		private void initTimeline()
 		{
 			var momentService = new MomentService();
