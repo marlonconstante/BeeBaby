@@ -87,19 +87,23 @@ namespace BeeBaby
 			m_performTasks = new Thread(() => {
 				while (true)
 				{
-					bool haveTasks;
+					Action action = null;
 					lock (m_imageProvider)
 					{
-						if (haveTasks = m_tasks.Count > 0)
+						if (m_tasks.Count > 0)
 						{
-							m_tasks[0].Invoke();
+							action = m_tasks[0];
 							m_tasks.RemoveAt(0);
 						}
 					}
-					Thread.Sleep(100);
-					if (!haveTasks && !m_pendingTasks)
+					if (action != null)
+					{
+						action.Invoke();
+					} else if (!m_pendingTasks)
 					{
 						break;
+					} else {
+						Thread.Sleep(100);
 					}
 				}
 			});
