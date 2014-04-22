@@ -63,6 +63,9 @@ WantThese = Quero essas >
 FlashAuto = Auto
 FlashOn = Com
 FlashOff = Sem
+Name=Nome
+Gender=Sexo
+BirthDate=Data de Nascimento
 ";
 		}
 	}

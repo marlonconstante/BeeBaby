@@ -10,20 +10,29 @@ namespace Domain.Baby
 	public class Baby : EntityWithIdBase<string>, IAggregateRoot
 	{
 		/// <summary>
-		/// Gets or sets the birth date time.
+		/// Gets or sets the name.
 		/// </summary>
-		/// <value>The birth date time.</value>
-		public DateTime BirthDateTime
+		/// <value>The name.</value>
+		public string Name
 		{
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the name.
+		/// Gets or sets the gender.
 		/// </summary>
-		/// <value>The name.</value>
-		public string Name
+		/// <value>The gender.</value>
+		public Gender Gender {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the birth date time.
+		/// </summary>
+		/// <value>The birth date time.</value>
+		public DateTime BirthDateTime
 		{
 			get;
 			set;
@@ -57,4 +66,3 @@ namespace Domain.Baby
 		}
 	}
 }
-

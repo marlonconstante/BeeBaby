@@ -34,6 +34,15 @@ namespace Application
 		}
 
 		/// <summary>
+		/// Gets or sets the baby.
+		/// </summary>
+		/// <value>The baby.</value>
+		public Baby Baby {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the selected event.
 		/// </summary>
 		/// <value>The selected event.</value>

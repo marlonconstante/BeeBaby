@@ -42,7 +42,13 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show();
 
-			PerformSegue("segueMoment", sender);
+			if (CurrentContext.Instance.Baby == null)
+			{
+				PerformSegue("segueBaby", sender);
+			} else
+			{
+				PerformSegue("segueMoment", sender);
+			}
 		}
 
 		/// <summary>
@@ -53,9 +59,7 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			clnView.Source = m_collectionViewSource;
-
-			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
-			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
+			TranslateLabels();
 
 			BTProgressHUD.Dismiss();
 		}
@@ -68,6 +72,15 @@ namespace BeeBaby
 		{
 			m_collectionViewSource.ReloadData(clnView);
 			base.ViewWillAppear(animated);
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		void TranslateLabels()
+		{
+			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
+			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
 		}
 	}
 }

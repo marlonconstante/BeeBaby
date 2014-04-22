@@ -17,4 +17,3 @@ namespace Domain.Moment
 		public double Latitude { set; get; }
 	}
 }
-

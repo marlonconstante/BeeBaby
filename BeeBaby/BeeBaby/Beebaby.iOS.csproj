@@ -205,6 +205,10 @@
     </Compile>
     <Compile Include="SlideoutNavigationController.cs" />
     <Compile Include="LeftMenuViewController.cs" />
+    <Compile Include="BabyViewController.cs" />
+    <Compile Include="BabyViewController.designer.cs">
+      <DependentUpon>BabyViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -58,4 +58,3 @@ namespace Domain.Moment
 		public IList<string> SelectedMediaNames { set; get; }
 	}
 }
-
