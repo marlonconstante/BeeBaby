@@ -19,6 +19,8 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.Id = source.Id;
 				result.Name = source.Name;
 				result.BirthDateTime = source.BirthDateTime;
+				char[] c = { ' ' };
+				result.Gender = MapperHelper.ParseToDomainEnum<Gender>(source.Gender.ToString(), c);
 			}
 
 			return result;
@@ -34,6 +36,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.Id = source.Id;
 				result.Name = source.Name;
 				result.BirthDateTime = source.BirthDateTime;
+				result.Gender = (int)source.Gender;
 			}
 
 			return result;

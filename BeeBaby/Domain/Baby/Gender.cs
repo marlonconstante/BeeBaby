@@ -4,8 +4,8 @@ namespace Domain.Baby
 {
 	public enum Gender
 	{
-		Unknown,
-		Male,
-		Female
+		Unknown = 0,
+		Male = 1,
+		Female = 2
 	}
 }

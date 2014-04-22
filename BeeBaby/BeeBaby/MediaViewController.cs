@@ -45,7 +45,8 @@ namespace BeeBaby
 			if (CurrentContext.Instance.Baby == null)
 			{
 				PerformSegue("segueBaby", sender);
-			} else
+			}
+			else
 			{
 				PerformSegue("segueMoment", sender);
 			}

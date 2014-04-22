@@ -60,6 +60,8 @@ namespace BeeBaby
 			//TODO: Colocar chamado do serviço
 			CurrentContext.Instance.Baby = baby;
 
+			new BabyService().SaveBaby(baby);
+
 			PerformSegue("segueMoment", sender);
 		}
 	}

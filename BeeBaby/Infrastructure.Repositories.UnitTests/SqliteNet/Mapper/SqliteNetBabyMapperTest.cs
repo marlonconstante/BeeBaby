@@ -30,14 +30,16 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			{
 				Id = "1",
 				Name = "Nome",
-				BirthDateTime = date
-
+				BirthDateTime = date,
+				Gender = 1
 			};
 
 			var actual = new SqliteNetBabyMapper().ToDomainEntity(repositoryEntity);
 			Assert.AreEqual(repositoryEntity.Id, actual.Id);
 			Assert.AreEqual(repositoryEntity.Name, actual.Name);
 			Assert.AreEqual(repositoryEntity.BirthDateTime, actual.BirthDateTime);
+			Assert.AreEqual(Gender.Male, actual.Gender);
+
 		}
 
 		[Test()]
@@ -49,13 +51,15 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			{
 				Id = "1",
 				Name = "Nome",
-				BirthDateTime = date
+				BirthDateTime = date,
+				Gender =  Gender.Female
 			};
 
 			var actual = new SqliteNetBabyMapper().ToRepositoryEntity(domainEntity);
 			Assert.AreEqual(domainEntity.Id, actual.Id);
 			Assert.AreEqual(domainEntity.Name, actual.Name);
 			Assert.AreEqual(domainEntity.BirthDateTime, actual.BirthDateTime);
+			Assert.AreEqual(2, actual.Gender);
 		}
 	}
 }

@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			var eventData =  new EventData()
 			{
 				Id = "1",
-				Description = "Descrição"
+				Description = "Primeiro Sorriso"
 			};
 
 			var repositoryEntity = new MomentData()

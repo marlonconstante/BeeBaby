@@ -40,7 +40,9 @@ namespace BeeBaby
 
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
+			var babyService = new BabyService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
+			CurrentContext.Instance.Baby = babyService.GetBaby();
 
 			if (!MediaPickerProvider.IsCameraAvailable())
 			{
