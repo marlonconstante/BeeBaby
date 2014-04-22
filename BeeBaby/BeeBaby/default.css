@@ -3,13 +3,15 @@ navigation-bar button-appearance,
 button,
 button:highlighted,
 button:selected,
+segmented-control,
 text-field,
 text-view,
 label {
 	font-family: "Quicksand";
 }
 
-navigation-bar {
+navigation-bar,
+segmented-control {
 	background-color: #00aead;
 }
 
@@ -196,6 +198,12 @@ map-view {
 
 map-view label {
 	font-size: 12pt;
+}
+
+text-field {
+	border: 1 solid #00aead;
+	border-radius: 5;
+	padding: 5 0 0 10;
 }
 
 text-field,
