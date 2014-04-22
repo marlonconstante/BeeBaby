@@ -4,12 +4,8 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class UIScrollViewImage: UIScrollView
+	public class UIScrollViewImage : UIScrollView
 	{
-		/// <summary>
-		/// The double tap interval. Measured in ms
-		/// </summary>
-
 		const float defaultZoom = 2f;
 		const float minZoom = 0.1f;
 		const float maxZoom = 3f;
@@ -25,9 +21,7 @@ namespace BeeBaby
 			AutoresizingMask = UIViewAutoresizing.All;
 
 			ivMain = new UIImageView();
-			//			ivMain.AutoresizingMask = UIViewAutoresizing.All;
 			ivMain.ContentMode = UIViewContentMode.ScaleAspectFit;
-			//			ivMain.BackgroundColor = UIColor.Red; // DEBUG
 			AddSubview(ivMain);
 
 			// Setup zoom
@@ -36,14 +30,12 @@ namespace BeeBaby
 			ShowsVerticalScrollIndicator = false;
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
-			ViewForZoomingInScrollView += (UIScrollView sv) =>
-			{
+			ViewForZoomingInScrollView += (UIScrollView sv) => {
 				return ivMain;
 			};
 
 			// Setup gestures
-			grTap = new UITapGestureRecognizer(() =>
-			{
+			grTap = new UITapGestureRecognizer(() => {
 				if (OnSingleTap != null)
 				{
 					OnSingleTap();
@@ -52,16 +44,13 @@ namespace BeeBaby
 			grTap.NumberOfTapsRequired = 1;
 			AddGestureRecognizer(grTap);
 
-			grDoubleTap = new UITapGestureRecognizer(() =>
-			{
+			grDoubleTap = new UITapGestureRecognizer(() => {
 				if (ZoomScale >= defaultZoom)
 				{
 					SetZoomScale(sizeToFitZoom, true);
 				}
 				else
 				{
-					//SetZoomScale (defaultZoom, true);
-
 					// Zoom to user specified point instead of center
 					var point = grDoubleTap.LocationInView(grDoubleTap.View);
 					var zoomRect = GetZoomRect(defaultZoom, point);
@@ -76,6 +65,10 @@ namespace BeeBaby
 			grTap.RequireGestureRecognizerToFail(grDoubleTap);
 		}
 
+		/// <summary>
+		/// Sets the image.
+		/// </summary>
+		/// <param name="image">Image.</param>
 		public void SetImage(UIImage image)
 		{
 			ZoomScale = 1;
@@ -90,24 +83,28 @@ namespace BeeBaby
 			sizeToFitZoom = MinimumZoomScale;
 			ZoomScale = MinimumZoomScale;
 
-			//
 			ivMain.Frame = CenterScrollViewContents();
 		}
 
+		/// <Docs>Lays out subviews.</Docs>
+		/// <summary>
+		/// Layouts the subviews.
+		/// </summary>
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
 			ivMain.Frame = CenterScrollViewContents();
 		}
 
-		public override RectangleF Frame
-		{
-			get
-			{
+		/// <summary>
+		/// Gets or sets the frame.
+		/// </summary>
+		/// <value>The frame.</value>
+		public override RectangleF Frame {
+			get {
 				return base.Frame;
 			}
-			set
-			{
+			set {
 				base.Frame = value;
 
 				if (ivMain != null)
@@ -117,6 +114,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Centers the scroll view contents.
+		/// </summary>
+		/// <returns>The scroll view contents.</returns>
 		public RectangleF CenterScrollViewContents()
 		{
 			var boundsSize = Bounds.Size;
@@ -142,8 +143,15 @@ namespace BeeBaby
 
 			return contentsFrame;
 		}
-		// Reference:
-		// http://stackoverflow.com/a/11003277/548395
+
+		/// <summary>
+		/// Gets the zoom rect.
+		/// Reference:
+		/// http://stackoverflow.com/a/11003277/548395
+		/// </summary>
+		/// <returns>The zoom rect.</returns>
+		/// <param name="scale">Scale.</param>
+		/// <param name="center">Center.</param>
 		RectangleF GetZoomRect(float scale, PointF center)
 		{
 			var size = new SizeF(ivMain.Frame.Size.Height / scale, ivMain.Frame.Size.Width / scale);
@@ -158,4 +166,3 @@ namespace BeeBaby
 		}
 	}
 }
-

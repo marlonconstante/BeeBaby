@@ -11,6 +11,7 @@ namespace MonoTouch.SlideoutNavigation
 	public class SlideoutNavigationController : UIViewController
 	{
 		#region private attributes
+
 		private readonly ProxyNavigationController _internalMenuViewLeft;
 		private readonly ProxyNavigationController _internalMenuViewRight;
 		private readonly UIViewController _internalTopView;
@@ -31,8 +32,11 @@ namespace MonoTouch.SlideoutNavigation
 		private bool _rightMenuShowing = true;
 		private string _menuTextLeft = " < Menu Left";
 		private string _menuTextRight = "Right Menu > ";
+
 		#endregion private attributes
+
 		#region public attributes
+
 		/// <summary>
 		/// Gets or sets the color of the background.
 		/// </summary>
@@ -59,7 +63,7 @@ namespace MonoTouch.SlideoutNavigation
 			set {
 				if (_externalContentView == value)
 					return;
-				SelectView (value);
+				SelectView(value);
 			}
 		}
 
@@ -76,11 +80,12 @@ namespace MonoTouch.SlideoutNavigation
 					return;
 
 				if (!value)
-					Hide ();
+					Hide();
 
-				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0) {
-					var view = _internalTopNavigation.ViewControllers [0];
-					view.NavigationItem.LeftBarButtonItem = value ? CreateLeftMenuButton () : null;
+				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0)
+				{
+					var view = _internalTopNavigation.ViewControllers[0];
+					view.NavigationItem.LeftBarButtonItem = value ? CreateLeftMenuButton() : null;
 				}
 
 				_leftMenuEnabled = value;
@@ -100,11 +105,12 @@ namespace MonoTouch.SlideoutNavigation
 					return;
 
 				if (!value)
-					Hide ();
+					Hide();
 
-				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0) {
-					var view = _internalTopNavigation.ViewControllers [0];
-					view.NavigationItem.RightBarButtonItem = value ? CreateRightMenuButton () : null;
+				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0)
+				{
+					var view = _internalTopNavigation.ViewControllers[0];
+					view.NavigationItem.RightBarButtonItem = value ? CreateRightMenuButton() : null;
 				}
 
 				_rightMenuEnabled = value;
@@ -122,7 +128,7 @@ namespace MonoTouch.SlideoutNavigation
 			set {
 				if (_externalMenuViewLeft == value)
 					return;
-				_internalMenuViewLeft.SetController (value);
+				_internalMenuViewLeft.SetController(value);
 				_externalMenuViewLeft = value;
 				LeftMenuEnabled = true;
 			}
@@ -137,7 +143,7 @@ namespace MonoTouch.SlideoutNavigation
 			set {
 				if (_externalMenuViewRight == value)
 					return;
-				_internalMenuViewRight.SetController (value);
+				_internalMenuViewRight.SetController(value);
 				_externalMenuViewRight = value;
 				RightMenuEnabled = true;
 			}
@@ -185,11 +191,9 @@ namespace MonoTouch.SlideoutNavigation
 		///     Gets or sets the left menu button text.
 		/// </summary>
 		/// <value>The left menu button text.</value>
-		public string LeftMenuButtonText
-		{
+		public string LeftMenuButtonText {
 			get { return _menuTextLeft; }
-			set
-			{
+			set {
 				_menuTextLeft = value;
 				if (LeftMenuEnabled)
 				{
@@ -206,11 +210,9 @@ namespace MonoTouch.SlideoutNavigation
 		///     Gets or sets the right menu button text.
 		/// </summary>
 		/// <value>The right menu button text.</value>
-		public string RightMenuButtonText
-		{
+		public string RightMenuButtonText {
 			get { return _menuTextRight; }
-			set
-			{
+			set {
 				_menuTextRight = value;
 				if (RightMenuEnabled)
 				{
@@ -231,7 +233,7 @@ namespace MonoTouch.SlideoutNavigation
 			get { return _displayNavigationBarOnSideBarLeft; } 
 			set { 
 				_displayNavigationBarOnSideBarLeft = value; 
-				_internalMenuViewLeft.SetNavigationBarHidden (!value, false);
+				_internalMenuViewLeft.SetNavigationBarHidden(!value, false);
 			} 
 		}
 
@@ -243,14 +245,16 @@ namespace MonoTouch.SlideoutNavigation
 			get { return _displayNavigationBarOnSideBarRight; } 
 			set { 
 				_displayNavigationBarOnSideBarRight = value; 
-				_internalMenuViewRight.SetNavigationBarHidden (!value, false);
+				_internalMenuViewRight.SetNavigationBarHidden(!value, false);
 			} 
 		}
+
 		#endregion public attributes
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SlideoutNavigationController"/> class.
 		/// </summary>
-		public SlideoutNavigationController ()
+		public SlideoutNavigationController()
 		{
 			SlideSpeed = 0.2f;
 			SlideWidth = 245f;
@@ -267,14 +271,14 @@ namespace MonoTouch.SlideoutNavigation
 				View = { AutoresizingMask = UIViewAutoresizing.FlexibleHeight }
 			};
 
-			_internalMenuViewLeft.SetNavigationBarHidden (DisplayNavigationBarOnLeftMenu, false);
-			_internalMenuViewRight.SetNavigationBarHidden (DisplayNavigationBarOnRightMenu, false);
+			_internalMenuViewLeft.SetNavigationBarHidden(DisplayNavigationBarOnLeftMenu, false);
+			_internalMenuViewRight.SetNavigationBarHidden(DisplayNavigationBarOnRightMenu, false);
 
 			_internalTopView = new UIViewController { View = { UserInteractionEnabled = true } };
 			_internalTopView.View.Layer.MasksToBounds = false;
 
-			_tapGesture = new UITapGestureRecognizer ();
-			_tapGesture.AddTarget (() => Hide ());
+			_tapGesture = new UITapGestureRecognizer();
+			_tapGesture.AddTarget(() => Hide());
 			_tapGesture.NumberOfTapsRequired = 1;
 
 			_panGesture = new CustomGestureRecognizer {
@@ -282,8 +286,8 @@ namespace MonoTouch.SlideoutNavigation
 				MaximumNumberOfTouches = 1,
 				MinimumNumberOfTouches = 1
 			};
-			_panGesture.AddTarget (() => Pan (_internalTopView.View));
-			_internalTopView.View.AddGestureRecognizer (_panGesture);
+			_panGesture.AddTarget(() => Pan(_internalTopView.View));
+			_internalTopView.View.AddGestureRecognizer(_panGesture);
 		}
 
 		/// <summary>
@@ -292,23 +296,27 @@ namespace MonoTouch.SlideoutNavigation
 		/// <param name='view'>
 		/// View.
 		/// </param>
-		private void Pan (UIView view)
+		private void Pan(UIView view)
 		{
 			try
 			{
-				if (_panGesture.State == UIGestureRecognizerState.Began) {
+				if (_panGesture.State == UIGestureRecognizerState.Began)
+				{
 					_panOriginX = view.Frame.X;
 					_ignorePan = false;
 
-					if (!Visible) {
+					if (!Visible)
+					{
 						if (_panGesture.NumberOfTouches == 0)
 							return;
-						PointF touch = _panGesture.LocationOfTouch (0, view);
+						PointF touch = _panGesture.LocationOfTouch(0, view);
 						if (touch.Y > SlideHeight || _internalTopNavigation.NavigationBarHidden)
 							_ignorePan = true;
 					}
-				} else if (!_ignorePan && (_panGesture.State == UIGestureRecognizerState.Changed)) {
-					float t = _panGesture.TranslationInView (view).X;
+				}
+				else if (!_ignorePan && (_panGesture.State == UIGestureRecognizerState.Changed))
+				{
+					float t = _panGesture.TranslationInView(view).X;
 
 
 
@@ -331,64 +339,85 @@ namespace MonoTouch.SlideoutNavigation
 					}
 					else
 					{
-						if (t < -SlideWidth) 
+						if (t < -SlideWidth)
 						{
 							t = -SlideWidth;
-						} 
-						else if (t > SlideWidth) 
+						}
+						else if (t > SlideWidth)
 						{
 							t = SlideWidth;
 						} 
 					}
 
-					if (RightMenuEnabled && _panOriginX + t < 0) {
-						HideLeft ();
-						ShowRight ();
+					if (RightMenuEnabled && _panOriginX + t < 0)
+					{
+						HideLeft();
+						ShowRight();
 						ShowShadowRight();
-					} else if (LeftMenuEnabled && _panOriginX + t > 0) {
-						HideRight ();
-						ShowLeft ();
+					}
+					else if (LeftMenuEnabled && _panOriginX + t > 0)
+					{
+						HideRight();
+						ShowLeft();
 						ShowShadowLeft();
 					}
 
 					if ((LeftMenuEnabled && (_panOriginX + t) >= 0) || (RightMenuEnabled && (_panOriginX + t) <= 0))
-						view.Frame = new RectangleF (_panOriginX + t, view.Frame.Y, view.Frame.Width, view.Frame.Height);
-				} else if (!_ignorePan &&
-					(_panGesture.State == UIGestureRecognizerState.Ended ||
-						_panGesture.State == UIGestureRecognizerState.Cancelled)) {
-					float velocity = _panGesture.VelocityInView (view).X;
+						view.Frame = new RectangleF(_panOriginX + t, view.Frame.Y, view.Frame.Width, view.Frame.Height);
+				}
+				else if (!_ignorePan &&
+				           (_panGesture.State == UIGestureRecognizerState.Ended ||
+				           _panGesture.State == UIGestureRecognizerState.Cancelled))
+				{
+					float velocity = _panGesture.VelocityInView(view).X;
 
-					if (Visible) {
+					if (Visible)
+					{
 						if ((view.Frame.X < (SlideWidth / 2) && _leftMenuShowing) || (view.Frame.X > -(SlideWidth / 2) && _rightMenuShowing))
-							Hide ();
-						else if (_leftMenuShowing) {
-							UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
+							Hide();
+						else if (_leftMenuShowing)
+						{
+							UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
 								() => {
-								view.Frame = new RectangleF (SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
-							}, () => { });
-						} else if (_rightMenuShowing) {
-							UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
-								() => {
-								view.Frame = new RectangleF (-SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
-							}, () => { });
+									view.Frame = new RectangleF(SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
+								}, () => {
+							});
 						}
-					} else {
-						if (velocity > 800.0f || (view.Frame.X > (SlideWidth / 2))) {
-							if (LeftMenuEnabled)
-								ShowMenuLeft ();
-						} else if (velocity < -800.0f || (view.Frame.X < -(SlideWidth / 2))) {
-							if (RightMenuEnabled)
-								ShowMenuRight ();
-						} else {
-							UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
+						else if (_rightMenuShowing)
+						{
+							UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
 								() => {
-								view.Frame = new RectangleF (0, 0, view.Frame.Width, view.Frame.Height); }, () => { });
+									view.Frame = new RectangleF(-SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
+								}, () => {
+							});
+						}
+					}
+					else
+					{
+						if (velocity > 800.0f || (view.Frame.X > (SlideWidth / 2)))
+						{
+							if (LeftMenuEnabled)
+								ShowMenuLeft();
+						}
+						else if (velocity < -800.0f || (view.Frame.X < -(SlideWidth / 2)))
+						{
+							if (RightMenuEnabled)
+								ShowMenuRight();
+						}
+						else
+						{
+							UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
+								() => {
+									view.Frame = new RectangleF(0, 0, view.Frame.Width, view.Frame.Height);
+								}, () => {
+							});
 						}
 					}
 				}
 			}
-			catch (Exception e) {
-				Console.WriteLine ("SlideoutNavigation Pan Exception: " + e);
+			catch (Exception e)
+			{
+				Console.WriteLine("SlideoutNavigation Pan Exception: " + e);
 			}
 		}
 
@@ -398,63 +427,63 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Views the did load.
 		/// </summary>
-		public override void ViewDidLoad ()
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 
-			_internalTopView.View.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height);
-			_internalMenuViewLeft.View.Frame = new RectangleF (0, 0, SlideWidth, View.Frame.Height);
-			_internalMenuViewRight.View.Frame = new RectangleF (View.Frame.Width - SlideWidth, 0, SlideWidth, View.Frame.Height);
+			_internalTopView.View.Frame = new RectangleF(0, 0, View.Frame.Width, View.Frame.Height);
+			_internalMenuViewLeft.View.Frame = new RectangleF(0, 0, SlideWidth, View.Frame.Height);
+			_internalMenuViewRight.View.Frame = new RectangleF(View.Frame.Width - SlideWidth, 0, SlideWidth, View.Frame.Height);
 
 			//Add the list View
-			AddChildViewController (_internalMenuViewLeft);
-			AddChildViewController (_internalMenuViewRight);
-			View.AddSubview (_internalMenuViewLeft.View);
-			View.AddSubview (_internalMenuViewRight.View);
+			AddChildViewController(_internalMenuViewLeft);
+			AddChildViewController(_internalMenuViewRight);
+			View.AddSubview(_internalMenuViewLeft.View);
+			View.AddSubview(_internalMenuViewRight.View);
 
 			//Add the parent view
-			AddChildViewController (_internalTopView);
-			View.AddSubview (_internalTopView.View);
+			AddChildViewController(_internalTopView);
+			View.AddSubview(_internalTopView.View);
 		}
 
-		public override void ViewWillAppear (bool animated)
+		public override void ViewWillAppear(bool animated)
 		{
-			base.ViewWillAppear (animated);
+			base.ViewWillAppear(animated);
 			if (NavigationController != null)
-				NavigationController.SetNavigationBarHidden (true, true);
+				NavigationController.SetNavigationBarHidden(true, true);
 		}
 
-		public override void ViewWillDisappear (bool animated)
+		public override void ViewWillDisappear(bool animated)
 		{
-			base.ViewWillDisappear (animated);
+			base.ViewWillDisappear(animated);
 			if (NavigationController != null)
-				NavigationController.SetNavigationBarHidden (false, true);
+				NavigationController.SetNavigationBarHidden(false, true);
 		}
 
 		/// <summary>
 		/// Shows the shadow of the left side of the top view.
 		/// </summary>
-		private void ShowShadowLeft ()
+		private void ShowShadowLeft()
 		{
-			ShowShadow (-5);
+			ShowShadow(-5);
 		}
 
 		/// <summary>
 		/// Shows the shadow of the right side of the top view.
 		/// </summary>
-		private void ShowShadowRight ()
+		private void ShowShadowRight()
 		{
-			ShowShadow (5);
+			ShowShadow(5);
 		}
 
-		private void ShowShadow (float position)
+		private void ShowShadow(float position)
 		{
 			//Dont need to call this twice if its already shown
 			if (!LayerShadowing || _shadowShown)
 				return;
 
-			_internalTopView.View.Layer.ShadowOffset = new SizeF (position, 0);
-			_internalTopView.View.Layer.ShadowPath = UIBezierPath.FromRect (_internalTopView.View.Bounds).CGPath;
+			_internalTopView.View.Layer.ShadowOffset = new SizeF(position, 0);
+			_internalTopView.View.Layer.ShadowPath = UIBezierPath.FromRect(_internalTopView.View.Bounds).CGPath;
 			_internalTopView.View.Layer.ShadowRadius = 4.0f;
 			_internalTopView.View.Layer.ShadowOpacity = ShadowOpacity;
 			_internalTopView.View.Layer.ShadowColor = UIColor.Black.CGColor;
@@ -465,13 +494,13 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Hides the shadow of the top view
 		/// </summary>
-		private void HideShadow ()
+		private void HideShadow()
 		{
 			//Dont need to call this twice if its already hidden
 			if (!LayerShadowing || !_shadowShown)
 				return;
 
-			_internalTopView.View.Layer.ShadowOffset = new SizeF (0, 0);
+			_internalTopView.View.Layer.ShadowOffset = new SizeF(0, 0);
 			_internalTopView.View.Layer.ShadowRadius = 0.0f;
 			_internalTopView.View.Layer.ShadowOpacity = 0.0f;
 			_internalTopView.View.Layer.ShadowColor = UIColor.Clear.CGColor;
@@ -481,40 +510,39 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Open the left menu programmaticly.
 		/// </summary>
-		public void ShowMenuLeft ()
+		public void ShowMenuLeft()
 		{
 			//Don't show if already shown
 			if (Visible)
 				return;
 			Visible = true;
 
-			ShowLeft ();
-			HideRight ();
+			ShowLeft();
+			HideRight();
 			//Show some shadow!
-			ShowShadowLeft ();
+			ShowShadowLeft();
 
-			_internalMenuViewLeft.View.Frame = new RectangleF (0, 0, SlideWidth, View.Bounds.Height);
+			_internalMenuViewLeft.View.Frame = new RectangleF(0, 0, SlideWidth, View.Bounds.Height);
 			if (MenuViewLeft != null)
 				MenuViewLeft.ViewWillAppear(true);
 
 			UIView view = _internalTopView.View;
-			UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
+			UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
 				() => view.Frame = new RectangleF(SlideWidth, 0, view.Frame.Width, view.Frame.Height),
-				() =>
-			{
-				if (view.Subviews.Length > 0)
-					view.Subviews [0].UserInteractionEnabled = false;
-				view.AddGestureRecognizer (_tapGesture);
+				() => {
+					if (view.Subviews.Length > 0)
+						view.Subviews[0].UserInteractionEnabled = false;
+					view.AddGestureRecognizer(_tapGesture);
 
-				if (MenuViewLeft != null)
-					MenuViewLeft.ViewDidAppear(true);
-			});
+					if (MenuViewLeft != null)
+						MenuViewLeft.ViewDidAppear(true);
+				});
 		}
 
 		/// <summary>
 		/// Shows the left menu view, this is done to prevent the two menu's from being displayed at the same time.
 		/// </summary>
-		private void ShowLeft ()
+		private void ShowLeft()
 		{
 			if (_leftMenuShowing)
 				return;
@@ -525,7 +553,7 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Hides the left menu view, this is done to prevent the two menu's from being displayed at the same time.
 		/// </summary>
-		private void HideLeft ()
+		private void HideLeft()
 		{
 			if (!_leftMenuShowing)
 				return;
@@ -536,37 +564,37 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Open the right menu programmaticly
 		/// </summary>
-		public void ShowMenuRight ()
+		public void ShowMenuRight()
 		{
 			if (Visible)
 				return;
 			Visible = true;
 
-			ShowRight ();
-			HideLeft ();
+			ShowRight();
+			HideLeft();
 
-			ShowShadowRight ();
+			ShowShadowRight();
 
-			_internalMenuViewRight.View.Frame = new RectangleF (View.Frame.Width - SlideWidth, 0, SlideWidth, View.Bounds.Height);
+			_internalMenuViewRight.View.Frame = new RectangleF(View.Frame.Width - SlideWidth, 0, SlideWidth, View.Bounds.Height);
 			if (MenuViewRight != null)
 				MenuViewRight.ViewWillAppear(true);
 
 			UIView view = _internalTopView.View;
-			UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
+			UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut,
 				() => view.Frame = new RectangleF(-SlideWidth, 0, view.Frame.Width, view.Frame.Height),
 				() => {
-				if (view.Subviews.Length > 0)
-					view.Subviews [0].UserInteractionEnabled = false;
-				view.AddGestureRecognizer (_tapGesture);
-				if (MenuViewRight != null)
-					MenuViewRight.ViewDidAppear(true);
-			});
+					if (view.Subviews.Length > 0)
+						view.Subviews[0].UserInteractionEnabled = false;
+					view.AddGestureRecognizer(_tapGesture);
+					if (MenuViewRight != null)
+						MenuViewRight.ViewDidAppear(true);
+				});
 		}
 
 		/// <summary>
 		/// Shows the right menu view, this is done to prevent the two menu's from being displayed at the same time.
 		/// </summary>
-		private void ShowRight ()
+		private void ShowRight()
 		{
 			if (_rightMenuShowing)
 				return;
@@ -577,7 +605,7 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Hides the right menu view, this is done to prevent the two menu's from being displayed at the same time.
 		/// </summary>
-		private void HideRight ()
+		private void HideRight()
 		{
 			if (!_rightMenuShowing)
 				return;
@@ -588,17 +616,17 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Creates the menu button for the left side.
 		/// </summary>
-		protected virtual UIBarButtonItem CreateLeftMenuButton ()
+		protected virtual UIBarButtonItem CreateLeftMenuButton()
 		{
-			return new UIBarButtonItem (LeftMenuButtonText, UIBarButtonItemStyle.Plain, (s, e) => ShowMenuLeft ());
+			return new UIBarButtonItem(LeftMenuButtonText, UIBarButtonItemStyle.Plain, (s, e) => ShowMenuLeft());
 		}
 
 		/// <summary>
 		/// Creates the menu button for the right side.
 		/// </summary>
-		protected virtual UIBarButtonItem CreateRightMenuButton ()
+		protected virtual UIBarButtonItem CreateRightMenuButton()
 		{
-			return new UIBarButtonItem (RightMenuButtonText, UIBarButtonItemStyle.Plain, (s, e) => ShowMenuRight ());
+			return new UIBarButtonItem(RightMenuButtonText, UIBarButtonItemStyle.Plain, (s, e) => ShowMenuRight());
 		}
 
 		/// <summary>
@@ -607,39 +635,39 @@ namespace MonoTouch.SlideoutNavigation
 		/// <param name='view'>
 		/// View.
 		/// </param>
-		public void SelectView (UIViewController view)
+		public void SelectView(UIViewController view)
 		{
-			if (_internalTopNavigation != null) {
-				_internalTopNavigation.RemoveFromParentViewController ();
-				_internalTopNavigation.View.RemoveFromSuperview ();
-				_internalTopNavigation.Dispose ();
+			if (_internalTopNavigation != null)
+			{
+				_internalTopNavigation.RemoveFromParentViewController();
+				_internalTopNavigation.View.RemoveFromSuperview();
+				_internalTopNavigation.Dispose();
 			}
 
-			_internalTopNavigation = new UINavigationController (view) {
-				View =
-				{
+			_internalTopNavigation = new UINavigationController(view) {
+				View = {
 					Frame = new RectangleF(0, 0,
 						_internalTopView.View.Frame.Width,
 						_internalTopView.View.Frame.Height)
 				}
 			};
-			_internalTopView.AddChildViewController (_internalTopNavigation);
-			_internalTopView.View.AddSubview (_internalTopNavigation.View);
+			_internalTopView.AddChildViewController(_internalTopNavigation);
+			_internalTopView.View.AddSubview(_internalTopNavigation.View);
 
 			if (LeftMenuEnabled)
-				view.NavigationItem.LeftBarButtonItem = CreateLeftMenuButton ();
+				view.NavigationItem.LeftBarButtonItem = CreateLeftMenuButton();
 			if (RightMenuEnabled)
-				view.NavigationItem.RightBarButtonItem = CreateRightMenuButton ();
+				view.NavigationItem.RightBarButtonItem = CreateRightMenuButton();
 
 			_externalContentView = view;
 
-			Hide ();
+			Hide();
 		}
 
 		/// <summary>
 		/// Hide the menu's and returns the topview to the center.
 		/// </summary>
-		public void Hide (bool animate = true)
+		public void Hide(bool animate = true)
 		{
 			//Don't hide if its not visible.
 			if (!Visible)
@@ -649,20 +677,22 @@ namespace MonoTouch.SlideoutNavigation
 			UIView view = _internalTopView.View;
 
 			NSAction animation = () => {
-				view.Frame = new RectangleF (0, 0, view.Frame.Width, view.Frame.Height); };
+				view.Frame = new RectangleF(0, 0, view.Frame.Width, view.Frame.Height);
+			};
 			NSAction finished = () => {
 				if (view.Subviews.Length > 0)
-					view.Subviews [0].UserInteractionEnabled = true;
-				view.RemoveGestureRecognizer (_tapGesture);
+					view.Subviews[0].UserInteractionEnabled = true;
+				view.RemoveGestureRecognizer(_tapGesture);
 				//Hide the shadow when not needed to increase performance of the top layer!
-				HideShadow ();
+				HideShadow();
 			};
 
 			if (animate)
-				UIView.Animate (SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut, animation, finished);
-			else {
-				animation ();
-				finished ();
+				UIView.Animate(SlideSpeed, 0, UIViewAnimationOptions.CurveEaseInOut, animation, finished);
+			else
+			{
+				animation();
+				finished();
 			}
 		}
 
@@ -675,7 +705,7 @@ namespace MonoTouch.SlideoutNavigation
 		/// <param name='toInterfaceOrientation'>
 		/// If set to <c>true</c> to interface orientation.
 		/// </param>
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;
 		}
@@ -685,10 +715,10 @@ namespace MonoTouch.SlideoutNavigation
 		/// </summary>
 		/// <param name='image'>Image to be displayed as the background</param>
 		/// <param name='metrics'>Metrics.</param>
-		public void SetMenuNavigationBackgroundImage (UIImage image, UIBarMetrics metrics)
+		public void SetMenuNavigationBackgroundImage(UIImage image, UIBarMetrics metrics)
 		{
-			_internalMenuViewLeft.NavigationBar.SetBackgroundImage (image, metrics);
-			_internalMenuViewRight.NavigationBar.SetBackgroundImage (image, metrics);
+			_internalMenuViewLeft.NavigationBar.SetBackgroundImage(image, metrics);
+			_internalMenuViewRight.NavigationBar.SetBackgroundImage(image, metrics);
 		}
 
 		/// <summary>
@@ -696,11 +726,13 @@ namespace MonoTouch.SlideoutNavigation
 		/// </summary>
 		/// <param name='image'>Image to be displayed as the background</param>
 		/// <param name='metrics'>Metrics.</param>
-		public void SetTopNavigationBackgroundImage (UIImage image, UIBarMetrics metrics)
+		public void SetTopNavigationBackgroundImage(UIImage image, UIBarMetrics metrics)
 		{
-			_internalTopNavigation.NavigationBar.SetBackgroundImage (image, metrics);
+			_internalTopNavigation.NavigationBar.SetBackgroundImage(image, metrics);
 		}
+
 		#region Nested type: ProxyNavigationController
+
 		///<summary>
 		/// A proxy class for the navigation controller.
 		/// This allows the menu view to make requests to the navigation controller
@@ -722,10 +754,10 @@ namespace MonoTouch.SlideoutNavigation
 			/// <param name='viewController'>
 			/// View controller.
 			/// </param>
-			public void SetController (UIViewController viewController)
+			public void SetController(UIViewController viewController)
 			{
-				base.PopToRootViewController (false);
-				base.PushViewController (viewController, false);
+				base.PopToRootViewController(false);
+				base.PushViewController(viewController, false);
 			}
 
 			/// <Docs>
@@ -740,14 +772,15 @@ namespace MonoTouch.SlideoutNavigation
 			/// <param name='animated'>
 			/// Animated.
 			/// </param>
-			public override void PushViewController (UIViewController viewController, bool animated)
+			public override void PushViewController(UIViewController viewController, bool animated)
 			{
-				ParentController.SelectView (viewController);
+				ParentController.SelectView(viewController);
 			}
 		}
-		#endregion
-		#region Nested type: SlideoutPanDelegate
 
+		#endregion
+
+		#region Nested type: SlideoutPanDelegate
 
 		private class CustomGestureRecognizer : UIPanGestureRecognizer
 		{
@@ -778,7 +811,6 @@ namespace MonoTouch.SlideoutNavigation
 			//			}
 		}
 
-
 		///<summary>
 		/// A custom UIGestureRecognizerDelegate activated only when the controller 
 		/// is visible or touch is within the 44.0f boundary.
@@ -789,7 +821,7 @@ namespace MonoTouch.SlideoutNavigation
 		{
 			private readonly SlideoutNavigationController _controller;
 
-			public SlideoutPanDelegate (SlideoutNavigationController controller)
+			public SlideoutPanDelegate(SlideoutNavigationController controller)
 			{
 				_controller = controller;
 			}
@@ -799,17 +831,18 @@ namespace MonoTouch.SlideoutNavigation
 				if (_controller.Visible)
 					return true;
 
-				var rec = (UIPanGestureRecognizer)recognizer;
+				var rec = (UIPanGestureRecognizer) recognizer;
 				var velocity = rec.VelocityInView(_controller._internalTopView.View);
 				return Math.Abs(velocity.X) > Math.Abs(velocity.Y);
 			}
 
-			public override bool ShouldReceiveTouch (UIGestureRecognizer recognizer, UITouch touch)
+			public override bool ShouldReceiveTouch(UIGestureRecognizer recognizer, UITouch touch)
 			{
 				return (_controller.Visible ||
-					(touch.LocationInView (_controller._internalTopView.View).Y <= _controller.SlideHeight)) && (_controller.LeftMenuEnabled || _controller.RightMenuEnabled);
+				(touch.LocationInView(_controller._internalTopView.View).Y <= _controller.SlideHeight)) && (_controller.LeftMenuEnabled || _controller.RightMenuEnabled);
 			}
 		}
+
 		#endregion
 	}
 }

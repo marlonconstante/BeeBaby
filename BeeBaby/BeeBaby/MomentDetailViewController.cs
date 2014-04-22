@@ -72,7 +72,7 @@ namespace BeeBaby
 		{
 			var date = (DateTime) pckDate.Date;
 			btnDate.SetTitle(date.ToLocalTime().ToString("d", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
-			lblTime.Text = date.ToLocalTime().ToString("HH:m", System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			lblTime.Text = date.ToLocalTime().ToString("HH:mm", System.Globalization.DateTimeFormatInfo.CurrentInfo);
 		}
 
 		/// <summary>

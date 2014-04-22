@@ -11,26 +11,25 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
-			UIViewController controller = (UIViewController)board.InstantiateViewController("TimelineViewController");
+			UIViewController controller = (UIViewController) board.InstantiateViewController("TimelineViewController");
 
-			Root.Add(new Section()
-			{
+			Root.Add(new Section() {
 				new StyledStringElement("Home", () => NavigationController.PushViewController(controller, true)),
-				new StyledStringElement("About", () =>
-				{
+				new StyledStringElement("About", () => {
 					NavigationController.PushViewController(controller, true);
 				}),
-				new StyledStringElement("Stuff", () =>
-				{
+				new StyledStringElement("Stuff", () => {
 					NavigationController.PushViewController(controller, true);
 				}),
-				new StyledStringElement("Full Screen", () =>
-				{
+				new StyledStringElement("Full Screen", () => {
 					NavigationController.PushViewController(controller, true);
 				})
 			});
