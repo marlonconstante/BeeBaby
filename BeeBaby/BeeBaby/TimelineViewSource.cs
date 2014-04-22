@@ -78,8 +78,7 @@ namespace BeeBaby
 					uiImageView.UserInteractionEnabled = true;
 					uiImageView.MultipleTouchEnabled = true;
 					uiImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-					uiImageView.OnClick += () =>
-					{
+					uiImageView.OnClick += () => {
 						if (vMain == null)
 						{
 							vMain = new UIViewFullscreen();

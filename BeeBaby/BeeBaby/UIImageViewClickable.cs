@@ -4,26 +4,33 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class UIImageViewClickable: UIImageView
+	public class UIImageViewClickable : UIImageView
 	{
 		UITapGestureRecognizer grTap;
 
 		event Action onCl;
 
-		public event Action OnClick
+		public UIImageViewClickable(RectangleF frame) : base(frame)
 		{
-			add
-			{
+		}
+
+		/// <summary>
+		/// Occurs when on click.
+		/// </summary>
+		public event Action OnClick {
+			add {
 				onCl += value;
 				UpdateUserInteractionFlag();
 			}
-			remove
-			{
+			remove {
 				onCl -= value;
 				UpdateUserInteractionFlag();
 			}
 		}
 
+		/// <summary>
+		/// Updates the user interaction flag.
+		/// </summary>
 		void UpdateUserInteractionFlag()
 		{
 			UserInteractionEnabled = ((onCl != null) && (onCl.GetInvocationList().Length > 0));
@@ -31,8 +38,7 @@ namespace BeeBaby
 			{
 				if (grTap == null)
 				{
-					grTap = new UITapGestureRecognizer(() =>
-					{
+					grTap = new UITapGestureRecognizer(() => {
 						if (onCl != null)
 						{
 							onCl();
@@ -51,10 +57,5 @@ namespace BeeBaby
 				}
 			}
 		}
-
-		public UIImageViewClickable(RectangleF frame) : base(frame)
-		{
-		}
 	}
 }
-

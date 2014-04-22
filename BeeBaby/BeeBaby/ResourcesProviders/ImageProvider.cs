@@ -104,8 +104,7 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var fileName in fileNames)
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageViewModel
-				{
+				var image = new ImageViewModel {
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};
@@ -143,15 +142,15 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Saves the temporary image on app.
 		/// </summary>
+		/// <returns>The temporary image name on app.</returns>
 		/// <param name="image">Image.</param>
-		public void SaveTemporaryImageOnApp(UIImage image)
+		public string SaveTemporaryImageOnApp(UIImage image)
 		{
 			var tempDir = GetTemporaryDirectoryPath();
-			var filename = GenerateFileName();
+			var fileName = GenerateFileName();
 
-			var fullImagePath = Path.Combine(tempDir, filename);
-			var thumbnailImagePath = Path.Combine(tempDir, string.Concat(m_thumbnailPrefix, filename));
-
+			var fullImagePath = Path.Combine(tempDir, fileName);
+			var thumbnailImagePath = Path.Combine(tempDir, GetThumbnailImageName(fileName));
 
 			using (NSData imageData = image.AsJPEG())
 			{
@@ -170,8 +169,26 @@ namespace BeeBaby.ResourcesProviders
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
+
+			return fileName;
 		}
 
+		/// <summary>
+		/// Gets the name of the thumbnail image.
+		/// </summary>
+		/// <returns>The thumbnail image name.</returns>
+		/// <param name="imageName">Image name.</param>
+		public string GetThumbnailImageName(string imageName)
+		{
+			return string.Concat(m_thumbnailPrefix, imageName);
+		}
+
+		/// <summary>
+		/// Gets the image.
+		/// </summary>
+		/// <returns>The image.</returns>
+		/// <param name="imageName">Image name.</param>
+		/// <param name="thumbnail">If set to <c>true</c> thumbnail.</param>
 		public UIImage GetImage(string imageName, bool thumbnail = false)
 		{
 			var permanentDirectory = GetPermanentDirectory();
@@ -181,7 +198,7 @@ namespace BeeBaby.ResourcesProviders
 				imageName = imageName.Remove(0, m_thumbnailPrefix.Length);
 			}
 
-			var imagePath  = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension))
+			var imagePath = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension))
 				.FirstOrDefault(i => i.Equals(Path.Combine(GetPermanentDirectory(), imageName)));
 
 			var data = NSData.FromFile(imagePath);
@@ -199,7 +216,7 @@ namespace BeeBaby.ResourcesProviders
 
 			return ResizeImage(croppedImage, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight);
 		}
-			
+
 		/// <summary>
 		/// Resizes the image.
 		/// </summary>
