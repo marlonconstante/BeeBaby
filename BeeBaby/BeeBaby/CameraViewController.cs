@@ -107,6 +107,9 @@ namespace BeeBaby
 				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
 				m_systemSound = SystemSound.FromFile(filePath);
 				m_systemSound.PlaySystemSound();
+				m_systemSound.AddSystemSoundCompletion(() => {
+					m_systemSound.PlaySystemSound();
+				});
 			}
 			else
 			{
