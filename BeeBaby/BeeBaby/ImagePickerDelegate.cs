@@ -33,7 +33,7 @@ namespace BeeBaby
 				lock (m_imageProvider)
 				{
 					m_tasks.Add(() => {
-						SaveTemporaryImageOnApp(info);
+						SaveTemporaryImageOnApp(info, false);
 					});
 				}
 				if (m_performTasks == null)
@@ -43,7 +43,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				SaveTemporaryImageOnApp(info);
+				SaveTemporaryImageOnApp(info, true);
 				picker.DismissViewController(true, null);
 			}
 		}
@@ -72,10 +72,15 @@ namespace BeeBaby
 		/// Saves the temporary image on app.
 		/// </summary>
 		/// <param name="info">Info.</param>
-		void SaveTemporaryImageOnApp(NSDictionary info)
+		void SaveTemporaryImageOnApp(NSDictionary info, bool selected)
 		{
 			UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage);
-			m_imageProvider.SaveTemporaryImageOnApp(photo);
+			var fileName = m_imageProvider.SaveTemporaryImageOnApp(photo);
+			if (selected)
+			{
+				var thumbnailImageName = m_imageProvider.GetThumbnailImageName(fileName);
+				CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+			}
 		}
 
 		/// <summary>
@@ -99,10 +104,13 @@ namespace BeeBaby
 					if (action != null)
 					{
 						action.Invoke();
-					} else if (!m_pendingTasks)
+					}
+					else if (!m_pendingTasks)
 					{
 						break;
-					} else {
+					}
+					else
+					{
 						Thread.Sleep(100);
 					}
 				}
