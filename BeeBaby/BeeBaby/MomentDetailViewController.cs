@@ -32,18 +32,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Translates the labels.
-		/// </summary>
-		void TranslateLabels()
-		{
-			lblMomentAbout.Text = "MomentAbout".Translate();
-			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
-			lblLocation.Text = "WhichWas".Translate();
-			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
-			txtDescription.Text = "MomentRemember".Translate();
-		}
-
-		/// <summary>
 		/// Views the did disappear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -86,6 +74,18 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		void TranslateLabels()
+		{
+			lblMomentAbout.Text = "MomentAbout".Translate();
+			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
+			lblLocation.Text = "WhichWas".Translate();
+			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
+			txtDescription.Text = "MomentRemember".Translate();
 		}
 
 		/// <summary>
