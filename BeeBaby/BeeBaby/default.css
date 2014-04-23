@@ -203,7 +203,6 @@ map-view label {
 .input-text {
 	border: 1 solid #00aead;
 	border-radius: 5;
-	padding-top: 5;
 	padding-left: 8;
 	font-size: 16pt;
 }
@@ -212,15 +211,7 @@ text-field,
 text-field label,
 text-view {
 	font-size: 15pt;
-}
-
-text-field,
-text-field label {
-	padding-top: 4;
-}
-
-text-view {
-	padding-top: 3;
+	padding-top: 2;
 }
 
 .follow {
