@@ -200,16 +200,26 @@ map-view label {
 	font-size: 12pt;
 }
 
-text-field {
+.input-text {
 	border: 1 solid #00aead;
 	border-radius: 5;
-	padding: 5 0 0 10;
+	padding-top: 5;
+	padding-left: 8;
+	font-size: 16pt;
 }
 
 text-field,
 text-field label,
 text-view {
-	font-size: 14.5pt;
+	font-size: 15pt;
+}
+
+text-field,
+text-field label {
+	padding-top: 4;
+}
+
+text-view {
 	padding-top: 3;
 }
 

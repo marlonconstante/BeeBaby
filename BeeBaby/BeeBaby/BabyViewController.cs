@@ -52,15 +52,16 @@ namespace BeeBaby
 			// Shows the spinner
 			BTProgressHUD.Show(); 
 
+			var babyService = new BabyService();
 			var baby = new Baby();
+
 			baby.Name = txtName.Text;
 			baby.Gender = (Gender) segGender.SelectedSegment + 1;
 			baby.BirthDateTime = pckBirthDate.Date;
 
-			//TODO: Colocar chamado do serviço
 			CurrentContext.Instance.Baby = baby;
 
-			new BabyService().SaveBaby(baby);
+			babyService.SaveBaby(baby);
 
 			PerformSegue("segueMoment", sender);
 		}
