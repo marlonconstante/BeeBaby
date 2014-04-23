@@ -592,10 +592,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="Masculino">
-                                                <size key="contentOffset" width="0.0" height="3"/>
+                                                <size key="contentOffset" width="0.0" height="1"/>
                                             </segment>
                                             <segment title="Feminino">
-                                                <size key="contentOffset" width="0.0" height="3"/>
+                                                <size key="contentOffset" width="0.0" height="1"/>
                                             </segment>
                                         </segments>
                                     </segmentedControl>
