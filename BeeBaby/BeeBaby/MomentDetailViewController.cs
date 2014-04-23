@@ -13,6 +13,7 @@ namespace BeeBaby
 	{
 		float m_mapViewHeight;
 		KeyboardNotification m_keyboardNotification;
+		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -66,8 +67,9 @@ namespace BeeBaby
 				m_keyboardNotification = new KeyboardNotification(View);
 			}
 
+			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
+			txtDescription.Delegate = m_txtDescriptionDelegate;
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
-			txtDescription.Delegate = new PlaceholderTextViewDelegate();
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
 			if (selectedEvent != null) {
@@ -139,13 +141,13 @@ namespace BeeBaby
 		partial void Save(UIButton sender)
 		{
 			// Shows the spinner
-			BTProgressHUD.Show(); 
+			BTProgressHUD.Show();
 
 			var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
 			var momentService = new MomentService();
 			var moment = CurrentContext.Instance.Moment;
 
-			moment.Description = txtDescription.Text;
+			moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
 			moment.Event = CurrentContext.Instance.SelectedEvent;
 			moment.Date = pckDate.Date;
 
