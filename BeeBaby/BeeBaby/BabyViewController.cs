@@ -41,6 +41,8 @@ namespace BeeBaby
 			lblName.Text = "Name".Translate();
 			lblGender.Text = "Gender".Translate();
 			lblBirthDate.Text = "BirthDate".Translate();
+			segGender.SetTitle("Male".Translate(), 0);
+			segGender.SetTitle("Female".Translate(), 1);
 		}
 
 		/// <summary>

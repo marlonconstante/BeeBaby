@@ -5,6 +5,7 @@ using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
 using BigTed;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -16,6 +17,30 @@ namespace BeeBaby
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
 			m_mapViewHeight = -1;
+		}
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			TranslateLabels();
+
+			BTProgressHUD.Dismiss();
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		void TranslateLabels()
+		{
+			lblMomentAbout.Text = "MomentAbout".Translate();
+			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
+			lblLocation.Text = "WhichWas".Translate();
+			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
+			txtDescription.Text = "MomentRemember".Translate();
 		}
 
 		/// <summary>
@@ -61,8 +86,6 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
