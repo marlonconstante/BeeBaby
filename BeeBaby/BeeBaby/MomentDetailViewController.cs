@@ -12,7 +12,6 @@ namespace BeeBaby
 	public partial class MomentDetailViewController : UIViewController
 	{
 		float m_mapViewHeight;
-		KeyboardNotification m_keyboardNotification;
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
@@ -28,6 +27,12 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			TranslateLabels();
+
+			new KeyboardNotification(View);
+
+			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
+			txtDescription.Delegate = m_txtDescriptionDelegate;
+			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
 
 			BTProgressHUD.Dismiss();
 		}
@@ -61,15 +66,6 @@ namespace BeeBaby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-
-			if (m_keyboardNotification == null)
-			{
-				m_keyboardNotification = new KeyboardNotification(View);
-			}
-
-			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
-			txtDescription.Delegate = m_txtDescriptionDelegate;
-			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
 			if (selectedEvent != null) {

@@ -71,8 +71,9 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
-			m_collectionViewSource.ReloadData(clnView);
 			base.ViewWillAppear(animated);
+
+			m_collectionViewSource.ReloadData(clnView);
 		}
 
 		/// <summary>

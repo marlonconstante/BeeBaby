@@ -32,6 +32,5 @@ namespace BeeBaby
 
 			BTProgressHUD.Dismiss();
 		}
-
 	}
 }
