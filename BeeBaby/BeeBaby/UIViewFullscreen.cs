@@ -1,6 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -39,14 +40,25 @@ namespace BeeBaby
 			Frame = window.Frame;
 			sviMain.Frame = window.Frame;
 			sviMain.SetImage(iImage);
-			sviMain.OnSingleTap += () => {
+			sviMain.OnSingleTap += () =>
+			{
 				Hide();
 			};
+				
+			UIButton button = new UIButton(UIButtonType.RoundedRect);
+			button.Frame = new RectangleF(20,20,100,50);
+			button.SetTitle("Share", UIControlState.Normal);
+			button.TouchUpInside += (sender, e) => {
+				Console.WriteLine("You touch my tra la la");
+			}; 
+
+			AddSubview(button);
 
 			window.AddSubview(this);
 
 			Alpha = 0f;
-			UIView.Animate(AnimationDuration, () => {
+			UIView.Animate(AnimationDuration, () =>
+			{
 				Alpha = 1f;
 			});
 		}
@@ -65,9 +77,11 @@ namespace BeeBaby
 				else
 				{
 					Alpha = 1f;
-					UIView.Animate(AnimationDuration, () => {
+					UIView.Animate(AnimationDuration, () =>
+					{
 						Alpha = 0f;
-					}, () => {
+					}, () =>
+					{
 						RemoveFromSuperview();
 					});
 				}
