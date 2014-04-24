@@ -12,7 +12,7 @@ using MonoTouch.Dialog;
 
 namespace BeeBaby
 {
-	public partial class TimelineViewController : UIViewController
+	public partial class TimelineViewController : ViewController
 	{
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{

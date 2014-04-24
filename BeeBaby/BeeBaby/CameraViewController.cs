@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace BeeBaby
 {
-	public partial class CameraViewController : UIViewController
+	public partial class CameraViewController : ViewController
 	{
 		UIImagePickerController m_picker;
 		MediaPickerProvider m_mediaPickerProvider;

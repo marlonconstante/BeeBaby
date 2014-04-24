@@ -213,6 +213,7 @@
     <Compile Include="DealsViewController.designer.cs">
       <DependentUpon>DealsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

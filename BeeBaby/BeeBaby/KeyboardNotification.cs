@@ -22,17 +22,6 @@ namespace BeeBaby
 
 			// Keyboard Down
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardDownNotification);
-
-			AddGestureRecognizer();
-		}
-
-		/// <summary>
-		/// Add tap gesture recognizer.
-		/// </summary>
-		private void AddGestureRecognizer()
-		{
-			var gestureRecognizer = new UITapGestureRecognizer(() => m_view.EndEditing(true));
-			m_view.AddGestureRecognizer(gestureRecognizer);
 		}
 
 		/// <summary>

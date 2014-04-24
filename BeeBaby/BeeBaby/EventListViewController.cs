@@ -7,7 +7,7 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public partial class EventListViewController : UIViewController
+	public partial class EventListViewController : ViewController
 	{
 		IList<Event> m_events;
 		EventService m_eventService;

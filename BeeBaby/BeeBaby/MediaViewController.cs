@@ -11,7 +11,7 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public partial class MediaViewController : UIViewController
+	public partial class MediaViewController : ViewController
 	{
 		UIImagePickerController m_picker;
 		ImageCollectionViewSource m_collectionViewSource;
