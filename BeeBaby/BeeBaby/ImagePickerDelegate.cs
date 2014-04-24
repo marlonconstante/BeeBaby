@@ -5,6 +5,7 @@ using BeeBaby.ResourcesProviders;
 using Application;
 using System.Collections.Generic;
 using System.Threading;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -66,6 +67,9 @@ namespace BeeBaby
 		public override void WillShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
 		{
 			UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+
+			// Dismiss the spinner
+			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>

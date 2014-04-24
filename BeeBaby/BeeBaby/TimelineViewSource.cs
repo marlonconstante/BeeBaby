@@ -7,7 +7,6 @@ using BeeBaby.ResourcesProviders;
 using Domain.Media;
 using System.Drawing;
 using Domain.Baby;
-using BigTed;
 using BeeBaby.ViewModels;
 using MonoTouch.ObjCRuntime;
 

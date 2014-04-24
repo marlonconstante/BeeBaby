@@ -4,18 +4,32 @@ using Domain.Moment;
 using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
-using BigTed;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
-	public partial class MomentDetailViewController : UIViewController
+	public partial class MomentDetailViewController : ViewController
 	{
 		float m_mapViewHeight;
-		KeyboardNotification m_keyboardNotification;
+		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
 			m_mapViewHeight = -1;
+		}
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			new KeyboardNotification(View);
+
+			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
+			txtDescription.Delegate = m_txtDescriptionDelegate;
+			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
 		}
 
 		/// <summary>
@@ -48,21 +62,23 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			if (m_keyboardNotification == null)
-			{
-				m_keyboardNotification = new KeyboardNotification(View);
-			}
-
-			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
-			txtDescription.Delegate = new PlaceholderTextViewDelegate();
-
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
 			if (selectedEvent != null) {
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+		}
 
-			BTProgressHUD.Dismiss();
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		public override void TranslateLabels()
+		{
+			lblMomentAbout.Text = "MomentAbout".Translate();
+			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
+			lblLocation.Text = "WhichWas".Translate();
+			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
+			txtDescription.Text = "MomentRemember".Translate();
 		}
 
 		/// <summary>
@@ -81,10 +97,9 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
-			PerformSegue("segueSelectEvent", sender);
+			ShowProgressWhilePerforming(() => {
+				PerformSegue("segueSelectEvent", sender);
+			}, false);
 		}
 
 		/// <summary>
@@ -115,29 +130,28 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show(); 
+			ShowProgressWhilePerforming(() => {
+				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
+				var momentService = new MomentService();
+				var moment = CurrentContext.Instance.Moment;
 
-			var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
-			var momentService = new MomentService();
-			var moment = CurrentContext.Instance.Moment;
+				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
+				moment.Event = CurrentContext.Instance.SelectedEvent;
+				moment.Date = pckDate.Date;
 
-			moment.Description = txtDescription.Text;
-			moment.Event = CurrentContext.Instance.SelectedEvent;
-			moment.Date = pckDate.Date;
+				if (!mapView.Hidden) {
+					moment.Position = new GlobalPosition();
+					moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
+					moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
+				}
 
-			if (!mapView.Hidden) {
-				moment.Position = new GlobalPosition();
-				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
-				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
-			}
+				CurrentContext.Instance.Moment = moment;
 
-			CurrentContext.Instance.Moment = moment;
+				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
+				momentService.SaveMoment(moment);
 
-			imageProvider.SavePermanentImages(moment.SelectedMediaNames);
-			momentService.SaveMoment(moment);
-
-			PerformSegue("segueSave", sender);
+				PerformSegue("segueSave", sender);
+			}, false);
 		}
 
 		/// <summary>

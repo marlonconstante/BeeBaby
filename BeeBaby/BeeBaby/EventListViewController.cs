@@ -3,11 +3,10 @@ using System.Linq;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
-using BigTed;
 
 namespace BeeBaby
 {
-	public partial class EventListViewController : UIViewController
+	public partial class EventListViewController : ViewController
 	{
 		IList<Event> m_events;
 		EventService m_eventService;
@@ -29,9 +28,6 @@ namespace BeeBaby
 			EventListViewSource eventListViewSource = new EventListViewSource(this, m_events);
 			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_events);
 			tblView.Source = eventListViewSource;
-
-			BTProgressHUD.Dismiss();
 		}
-
 	}
 }

@@ -43,5 +43,10 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>English</string>
+		<string>Portuguese</string>
+	</array>
 </dict>
 </plist>

@@ -63,9 +63,15 @@ WantThese = Quero essas >
 FlashAuto = Auto
 FlashOn = Com
 FlashOff = Sem
-Name=Nome
-Gender=Sexo
-BirthDate=Data de Nascimento
+Name = Nome
+Gender = Sexo
+BirthDate = Data de Nascimento
+Male = Masculino
+Female = Feminino
+MomentAbout = Este momento é sobre:
+SelectEvent = Escolha um acontecimento
+WhichWas = Onde foi?
+MomentRemember = O que você gostaria de lembrar sobre este momento?
 ";
 		}
 	}

@@ -10,8 +10,6 @@ namespace BeeBaby
 		UIView m_view;
 		// Amount to scroll
 		float m_scrollAmount = 0.0f;
-		// Extra offset
-		float m_offset = 18.0f;
 
 		public KeyboardNotification(UIView view)
 		{
@@ -22,17 +20,6 @@ namespace BeeBaby
 
 			// Keyboard Down
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardDownNotification);
-
-			AddGestureRecognizer();
-		}
-
-		/// <summary>
-		/// Add tap gesture recognizer.
-		/// </summary>
-		private void AddGestureRecognizer()
-		{
-			var gestureRecognizer = new UITapGestureRecognizer(() => m_view.EndEditing(true));
-			m_view.AddGestureRecognizer(gestureRecognizer);
 		}
 
 		/// <summary>
@@ -48,7 +35,7 @@ namespace BeeBaby
 				RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
 				// Calculate how far we need to scroll
-				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + m_offset);
+				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height);
 				m_scrollAmount = (rectangle.Height - (m_view.Frame.Size.Height - bottom));
 
 				// Perform the scrolling

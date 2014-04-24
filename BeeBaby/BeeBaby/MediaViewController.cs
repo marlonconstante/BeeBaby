@@ -7,11 +7,10 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using BeeBaby.ViewModels;
-using BigTed;
 
 namespace BeeBaby
 {
-	public partial class MediaViewController : UIViewController
+	public partial class MediaViewController : ViewController
 	{
 		UIImagePickerController m_picker;
 		ImageCollectionViewSource m_collectionViewSource;
@@ -39,17 +38,16 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
-			if (CurrentContext.Instance.Baby == null)
-			{
-				PerformSegue("segueBaby", sender);
-			}
-			else
-			{
-				PerformSegue("segueMoment", sender);
-			}
+			ShowProgressWhilePerforming(() => {
+				if (CurrentContext.Instance.Baby == null)
+				{
+					PerformSegue("segueBaby", sender);
+				}
+				else
+				{
+					PerformSegue("segueMoment", sender);
+				}
+			}, false);
 		}
 
 		/// <summary>
@@ -60,9 +58,6 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			clnView.Source = m_collectionViewSource;
-			TranslateLabels();
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
@@ -71,14 +66,15 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
-			m_collectionViewSource.ReloadData(clnView);
 			base.ViewWillAppear(animated);
+
+			m_collectionViewSource.ReloadData(clnView);
 		}
 
 		/// <summary>
 		/// Translates the labels.
 		/// </summary>
-		void TranslateLabels()
+		public override void TranslateLabels()
 		{
 			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
 			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);

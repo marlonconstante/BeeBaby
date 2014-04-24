@@ -5,14 +5,13 @@ using MonoTouch.UIKit;
 using Domain.Moment;
 using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
-using BigTed;
 using Domain.Baby;
 using FlyoutNavigation;
 using MonoTouch.Dialog;
 
 namespace BeeBaby
 {
-	public partial class TimelineViewController : UIViewController
+	public partial class TimelineViewController : ViewController
 	{
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
@@ -26,8 +25,6 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			initTimeline();
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
