@@ -217,6 +217,7 @@ text-view {
 .image-share-title {
 	color: #ffffff;
 	font-size: 22pt;
+	letter-spacing: 0.75px;
 	font-weight: bold;
 	font-family: "Roboto Condensed";
 	box-shadow: 0 1 0 0 #000000;
@@ -224,6 +225,7 @@ text-view {
 
 .image-share-where-label{
 	color: #ffffff;
+	letter-spacing: 0.75px;
 	font-size: 16pt;
 	font-weight: bold;
 	font-family: "Quicksand";
