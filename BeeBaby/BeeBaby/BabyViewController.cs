@@ -14,19 +14,9 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Views the did load.
-		/// </summary>
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-
-			TranslateLabels();
-		}
-
-		/// <summary>
 		/// Translates the labels.
 		/// </summary>
-		void TranslateLabels()
+		public override void TranslateLabels()
 		{
 			lblName.Text = "Name".Translate();
 			lblGender.Text = "Gender".Translate();

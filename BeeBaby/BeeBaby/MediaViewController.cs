@@ -58,7 +58,6 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			clnView.Source = m_collectionViewSource;
-			TranslateLabels();
 		}
 
 		/// <summary>
@@ -75,7 +74,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Translates the labels.
 		/// </summary>
-		void TranslateLabels()
+		public override void TranslateLabels()
 		{
 			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
 			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);

@@ -19,6 +19,8 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			AddEditingTapGestureRecognizer();
+
+			TranslateLabels();
 		}
 
 		/// <summary>
@@ -43,6 +45,13 @@ namespace BeeBaby
 
 			// Dismiss the spinner
 			BTProgressHUD.Dismiss();
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		public virtual void TranslateLabels()
+		{
 		}
 
 		/// <summary>

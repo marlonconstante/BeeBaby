@@ -25,8 +25,6 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			TranslateLabels();
-
 			new KeyboardNotification(View);
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
@@ -74,7 +72,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Translates the labels.
 		/// </summary>
-		void TranslateLabels()
+		public override void TranslateLabels()
 		{
 			lblMomentAbout.Text = "MomentAbout".Translate();
 			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
