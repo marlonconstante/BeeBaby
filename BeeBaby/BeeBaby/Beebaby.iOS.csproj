@@ -214,6 +214,10 @@
       <DependentUpon>DealsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewController.cs" />
+    <Compile Include="TextField.cs" />
+    <Compile Include="TextField.designer.cs">
+      <DependentUpon>TextField.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

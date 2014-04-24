@@ -23,11 +23,6 @@ namespace BeeBaby
 
 			TranslateLabels();
 
-			txtName.ShouldReturn += (textField) => { 
-				textField.ResignFirstResponder();
-				return true; 
-			};
-
 			BTProgressHUD.Dismiss();
 		}
 
