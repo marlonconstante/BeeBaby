@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using BeeBaby.ViewModels;
-using BigTed;
 
 namespace BeeBaby
 {
@@ -39,9 +38,6 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
 			if (CurrentContext.Instance.Baby == null)
 			{
 				PerformSegue("segueBaby", sender);
@@ -61,8 +57,6 @@ namespace BeeBaby
 
 			clnView.Source = m_collectionViewSource;
 			TranslateLabels();
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>

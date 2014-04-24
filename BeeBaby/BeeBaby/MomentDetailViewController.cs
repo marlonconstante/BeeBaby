@@ -4,7 +4,6 @@ using Domain.Moment;
 using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
-using BigTed;
 using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
@@ -33,8 +32,6 @@ namespace BeeBaby
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
@@ -102,9 +99,6 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
 			PerformSegue("segueSelectEvent", sender);
 		}
 
@@ -136,9 +130,6 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
 			var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
 			var momentService = new MomentService();
 			var moment = CurrentContext.Instance.Moment;

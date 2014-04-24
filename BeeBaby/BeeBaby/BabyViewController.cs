@@ -2,7 +2,6 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
-using BigTed;
 using Domain.Baby;
 using Application;
 
@@ -22,8 +21,6 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			TranslateLabels();
-
-			BTProgressHUD.Dismiss();
 		}
 
 		/// <summary>
@@ -44,9 +41,6 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show(); 
-
 			var babyService = new BabyService();
 			var baby = new Baby();
 

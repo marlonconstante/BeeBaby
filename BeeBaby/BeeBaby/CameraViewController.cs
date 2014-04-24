@@ -5,7 +5,6 @@ using MonoTouch.ObjCRuntime;
 using BeeBaby.ResourcesProviders;
 using Domain.Moment;
 using Application;
-using BigTed;
 using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
@@ -176,20 +175,19 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenMedia(UIButton sender)
 		{
-			// Shows the status bar
-			NavigationController.NavigationBarHidden = false;
+			ShowProgressWhilePerforming(() => {
+				// Shows the status bar
+				NavigationController.NavigationBarHidden = false;
 
-			// Shows the spinner
-			BTProgressHUD.Show();
+				if (m_mediaPickerProvider != null)
+				{
+					m_mediaPickerProvider.Delegate.WaitForPendingTasks();
+				}
 
-			if (m_mediaPickerProvider != null)
-			{
-				m_mediaPickerProvider.Delegate.WaitForPendingTasks();
-			}
-
-			StopSound();
-			PerformSegue("segueMedia", sender);
-			DismissViewController(true, null);
+				StopSound();
+				PerformSegue("segueMedia", sender);
+				DismissViewController(true, null);
+			}, false);
 		}
 	}
 }

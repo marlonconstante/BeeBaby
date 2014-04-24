@@ -1,5 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
+using BigTed;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -17,6 +19,53 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			AddEditingTapGestureRecognizer();
+		}
+
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			// Shows the spinner
+			BTProgressHUD.Show();
+		}
+
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			// Dismiss the spinner
+			BTProgressHUD.Dismiss();
+		}
+
+		/// <summary>
+		/// Shows the progress while performing.
+		/// </summary>
+		/// <param name="action">Action.</param>
+		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
+		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
+		{
+			// Shows the spinner
+			BTProgressHUD.Show();
+
+			InvokeInBackground(() => {
+				InvokeOnMainThread(() => {
+					action();
+
+					if (closeProgressWhenFinished)
+					{
+						// Dismiss the spinner
+						BTProgressHUD.Dismiss();
+					}
+				});
+			});
 		}
 
 		/// <summary>
