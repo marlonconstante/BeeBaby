@@ -213,6 +213,55 @@ text-view {
 	padding-top: 3;
 }
 
+.image-share-title {
+	color: #ffffff;
+	font-size: 22pt;
+	font-weight: bold;
+	font-family: "Roboto Condensed";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+.image-share-where-label{
+	color: #ffffff;
+	font-size: 16pt;
+	font-weight: bold;
+	font-family: "Quicksand";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+.image-share-age-label{
+	color: #ffffff;
+	font-size: 14pt;
+	font-weight: regular;
+	font-family: "Quicksand";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+.image-share-day{
+	color: #ffffff;
+	font-size: 26pt;
+	font-weight: bold;
+	font-family: "Roboto Condensed";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+.image-share-month{
+	color: #ffffff;
+	font-size: 16pt;
+	font-weight: bold;
+	font-family: "Roboto Condensed";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+.image-share-year{
+	color: #ffffff;
+	font-size: 14pt;
+	font-weight: light;
+	font-family: "Roboto Condensed";
+	box-shadow: 0 1 0 0 #000000;
+}
+
+
 .follow {
 	font-weight: bold;
 	font-size: 17pt;

@@ -148,6 +148,12 @@
     <BundleResource Include="Resources\flash.svg" />
     <BundleResource Include="Resources\lake-waves.mp3" />
     <BundleResource Include="Resources\music.svg" />
+    <BundleResource Include="Resources\RobotoCondensed-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -212,6 +218,10 @@
     <Compile Include="DealsViewController.cs" />
     <Compile Include="DealsViewController.designer.cs">
       <DependentUpon>DealsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageShareViewController.cs" />
+    <Compile Include="ImageShareViewController.designer.cs">
+      <DependentUpon>ImageShareViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

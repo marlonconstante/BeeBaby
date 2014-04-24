@@ -30,6 +30,12 @@
 	<string>0.1</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>RobotoCondensed-BoldItalic.ttf</string>
+		<string>RobotoCondensed-Italic.ttf</string>
+		<string>RobotoCondensed-Bold.ttf</string>
+		<string>RobotoCondensed-Light.ttf</string>
+		<string>RobotoCondensed-LightItalic.ttf</string>
+		<string>RobotoCondensed-Regular.ttf</string>
 		<string>Quicksand_Book.otf</string>
 		<string>Quicksand_Bold.otf</string>
 	</array>

@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoTouch.UIKit;
+using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
@@ -26,7 +27,7 @@ namespace BeeBaby
 		/// <param name="image">Image.</param>
 		public void SetImage(UIImage image)
 		{
-			iImage = image;
+			iImage = ImageProvider.CreateImageForShare(image);
 		}
 
 		/// <summary>

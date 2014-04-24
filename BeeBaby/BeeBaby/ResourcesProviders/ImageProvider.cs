@@ -104,7 +104,8 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var fileName in fileNames)
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageViewModel {
+				var image = new ImageViewModel
+				{
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};
@@ -232,6 +233,34 @@ namespace BeeBaby.ResourcesProviders
 			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
 			UIGraphics.EndImageContext();
 			return resultImage;
+		}
+
+		/// <summary>
+		/// Creates the image for share.
+		/// </summary>
+		/// <returns>The image for share.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		public static UIImage CreateImageForShare(UIImage sourceImage)
+		{
+			var croppedImage = CropImage(sourceImage, sourceImage.Size.Width, sourceImage.Size.Height);
+
+			var board = UIStoryboard.FromName("MainStoryboard", null);
+			var controller = (ImageShareViewController) board.InstantiateViewController("ImageShareViewController");
+			controller.LoadView();
+
+			UIGraphics.BeginImageContextWithOptions(new SizeF(320, 320), false, 0f);
+			var context = UIGraphics.GetCurrentContext();
+
+
+			controller.BackgroundImageView.Image = croppedImage;
+//			controller.Label.Text = "Texto da Label";
+			controller.View.Layer.RenderInContext(context);
+
+			var img = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+
+
+			return img;
 		}
 
 		/// <summary>
