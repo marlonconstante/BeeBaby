@@ -99,7 +99,9 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			PerformSegue("segueSelectEvent", sender);
+			ShowProgressWhilePerforming(() => {
+				PerformSegue("segueSelectEvent", sender);
+			}, false);
 		}
 
 		/// <summary>
@@ -130,26 +132,28 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
-			var momentService = new MomentService();
-			var moment = CurrentContext.Instance.Moment;
+			ShowProgressWhilePerforming(() => {
+				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
+				var momentService = new MomentService();
+				var moment = CurrentContext.Instance.Moment;
 
-			moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
-			moment.Event = CurrentContext.Instance.SelectedEvent;
-			moment.Date = pckDate.Date;
+				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
+				moment.Event = CurrentContext.Instance.SelectedEvent;
+				moment.Date = pckDate.Date;
 
-			if (!mapView.Hidden) {
-				moment.Position = new GlobalPosition();
-				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
-				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
-			}
+				if (!mapView.Hidden) {
+					moment.Position = new GlobalPosition();
+					moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
+					moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
+				}
 
-			CurrentContext.Instance.Moment = moment;
+				CurrentContext.Instance.Moment = moment;
 
-			imageProvider.SavePermanentImages(moment.SelectedMediaNames);
-			momentService.SaveMoment(moment);
+				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
+				momentService.SaveMoment(moment);
 
-			PerformSegue("segueSave", sender);
+				PerformSegue("segueSave", sender);
+			}, false);
 		}
 
 		/// <summary>

@@ -41,18 +41,20 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			var babyService = new BabyService();
-			var baby = new Baby();
+			ShowProgressWhilePerforming(() => {
+				var babyService = new BabyService();
+				var baby = new Baby();
 
-			baby.Name = txtName.Text;
-			baby.Gender = (Gender) segGender.SelectedSegment + 1;
-			baby.BirthDateTime = pckBirthDate.Date;
+				baby.Name = txtName.Text;
+				baby.Gender = (Gender) segGender.SelectedSegment + 1;
+				baby.BirthDateTime = pckBirthDate.Date;
 
-			CurrentContext.Instance.Baby = baby;
+				CurrentContext.Instance.Baby = baby;
 
-			babyService.SaveBaby(baby);
+				babyService.SaveBaby(baby);
 
-			PerformSegue("segueMoment", sender);
+				PerformSegue("segueMoment", sender);
+			}, false);
 		}
 	}
 }

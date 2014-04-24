@@ -38,14 +38,16 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIButton sender)
 		{
-			if (CurrentContext.Instance.Baby == null)
-			{
-				PerformSegue("segueBaby", sender);
-			}
-			else
-			{
-				PerformSegue("segueMoment", sender);
-			}
+			ShowProgressWhilePerforming(() => {
+				if (CurrentContext.Instance.Baby == null)
+				{
+					PerformSegue("segueBaby", sender);
+				}
+				else
+				{
+					PerformSegue("segueMoment", sender);
+				}
+			}, false);
 		}
 
 		/// <summary>
