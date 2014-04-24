@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
-    <BundleResource Include="placeholder.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Quicksand_Book.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -243,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
-    <InterfaceDefinition Include="ViewControllerBase.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ResourcesProviders\" />
