@@ -274,6 +274,10 @@ text-view {
 	transform: rotate(90);
 }
 
+.bee {
+	background-image: url(bee.svg);
+}
+
 .bee-baby {
 	background-image: url(bee-baby.svg);
 }
@@ -322,8 +326,16 @@ text-view {
 	background-image: url(calendar.svg);
 }
 
+.calendar-clear {
+	background-image: url(calendar-clear.svg);
+}
+
 .location {
 	background-image: url(location.svg);
+}
+
+.location-clear {
+	background-image: url(location-clear.svg);
 }
 
 .camera,

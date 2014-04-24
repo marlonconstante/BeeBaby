@@ -138,8 +138,6 @@
     <BundleResource Include="Resources\heart.svg" />
     <BundleResource Include="Resources\heart-empty.svg" />
     <BundleResource Include="Resources\bee-baby.svg" />
-    <BundleResource Include="Resources\photo-1.jpg" />
-    <BundleResource Include="Resources\photo-2.jpg" />
     <BundleResource Include="Resources\bookmark.svg" />
     <BundleResource Include="Resources\separator.png" />
     <BundleResource Include="Resources\checkmark.svg" />
@@ -154,6 +152,9 @@
     <BundleResource Include="Resources\RobotoCondensed-Light.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\location-clear.svg" />
+    <BundleResource Include="Resources\calendar-clear.svg" />
+    <BundleResource Include="Resources\bee.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
