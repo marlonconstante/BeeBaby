@@ -82,7 +82,7 @@ namespace BeeBaby
 						{
 							vMain = new UIViewFullscreen();
 						}
-						vMain.SetImage(provider.GetImage(image.FileName));
+						vMain.SetImage(provider.GetImage(image.FileName), moment);
 						vMain.Show();
 					};
 

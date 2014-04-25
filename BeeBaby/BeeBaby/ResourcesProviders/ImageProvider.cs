@@ -240,7 +240,7 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The image for share.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		public static UIImage CreateImageForShare(UIImage sourceImage)
+		public static UIImage CreateImageForShare(UIImage sourceImage, Moment moment)
 		{
 			var croppedImage = CropImage(sourceImage, sourceImage.Size.Width, sourceImage.Size.Height);
 
@@ -252,8 +252,7 @@ namespace BeeBaby.ResourcesProviders
 			var context = UIGraphics.GetCurrentContext();
 
 
-			controller.BackgroundImageView.Image = croppedImage;
-//			controller.Label.Text = "Texto da Label";
+			controller.SetInformation(moment, croppedImage, CurrentContext.Instance.Baby);
 			controller.View.Layer.RenderInContext(context);
 
 			var img = UIGraphics.GetImageFromCurrentImageContext();

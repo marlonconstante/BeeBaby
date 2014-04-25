@@ -16,7 +16,22 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIImageView ivwBackgroundImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblLabel { get; set; }
+		MonoTouch.UIKit.UILabel lblAge { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblDay { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblEvent { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblMonth { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblWhere { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblYear { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIView vwMainView { get; set; }
@@ -28,14 +43,39 @@ namespace BeeBaby
 				ivwBackgroundImage = null;
 			}
 
-			if (lblLabel != null) {
-				lblLabel.Dispose ();
-				lblLabel = null;
+			if (lblEvent != null) {
+				lblEvent.Dispose ();
+				lblEvent = null;
 			}
 
 			if (vwMainView != null) {
 				vwMainView.Dispose ();
 				vwMainView = null;
+			}
+
+			if (lblWhere != null) {
+				lblWhere.Dispose ();
+				lblWhere = null;
+			}
+
+			if (lblAge != null) {
+				lblAge.Dispose ();
+				lblAge = null;
+			}
+
+			if (lblDay != null) {
+				lblDay.Dispose ();
+				lblDay = null;
+			}
+
+			if (lblMonth != null) {
+				lblMonth.Dispose ();
+				lblMonth = null;
+			}
+
+			if (lblYear != null) {
+				lblYear.Dispose ();
+				lblYear = null;
 			}
 		}
 	}

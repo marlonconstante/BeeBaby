@@ -4,6 +4,7 @@ using BeeBaby.ResourcesProviders;
 using System.Drawing;
 using MonoTouch.FacebookConnect;
 using Skahal.Infrastructure.Framework.Globalization;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -13,6 +14,7 @@ namespace BeeBaby
 		UIScrollViewImage sviMain;
 		public bool UseAnimation = true;
 		public float AnimationDuration = 0.3f;
+		Moment m_moment;
 
 		public UIViewFullscreen()
 		{
@@ -28,9 +30,10 @@ namespace BeeBaby
 		/// Sets the image.
 		/// </summary>
 		/// <param name="image">Image.</param>
-		public void SetImage(UIImage image)
+		public void SetImage(UIImage image, Moment moment)
 		{
 			iImage = image;
+			m_moment = moment;
 		}
 
 		/// <summary>
@@ -50,7 +53,7 @@ namespace BeeBaby
 			UIButton button = new UIButton(UIButtonType.RoundedRect);
 			button.Frame = new RectangleF(20, 20, 100, 50);
 			button.SetTitle("Share", UIControlState.Normal);
-			button.TouchUpInside += (sender, e) => ShareImage(iImage); 
+			button.TouchUpInside += (sender, e) => ShareImage(iImage, m_moment); 
 
 			AddSubview(button);
 
@@ -63,9 +66,9 @@ namespace BeeBaby
 			});
 		}
 
-		void ShareImage(UIImage sourceImage)
+		void ShareImage(UIImage sourceImage, Moment moment)
 		{
-			var image = ImageProvider.CreateImageForShare(sourceImage);
+			var image = ImageProvider.CreateImageForShare(sourceImage, moment);
 			bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
 			if (ios6ShareDialog)
 			{
