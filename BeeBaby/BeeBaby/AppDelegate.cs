@@ -74,6 +74,10 @@ namespace BeeBaby
 			ProgressHUD.Shared.SetStyleClass("progress");
 		}
 
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// Raises the activated event.
+		/// </summary>
+		/// <param name="application">Application.</param>
 		public override void OnActivated (UIApplication application)
 		{
 			// We need to properly handle activation of the application with regards to SSO

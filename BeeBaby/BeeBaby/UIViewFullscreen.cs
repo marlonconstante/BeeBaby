@@ -5,6 +5,7 @@ using System.Drawing;
 using MonoTouch.FacebookConnect;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Moment;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -52,8 +53,9 @@ namespace BeeBaby
 				
 			UIButton button = new UIButton(UIButtonType.RoundedRect);
 			button.Frame = new RectangleF(20, 20, 100, 50);
-			button.SetTitle("Share", UIControlState.Normal);
+			button.SetTitle("Share".Translate(), UIControlState.Normal);
 			button.TouchUpInside += (sender, e) => ShareImage(iImage, m_moment); 
+			button.SetStyleClass("share-button");
 
 			AddSubview(button);
 

@@ -53,6 +53,7 @@ namespace Infrastructure.Globalization
 		protected string GetCultureText(string cultureName)
 		{
 			return @"
+Share = Compartilhar
 Baby = Bebê
 Photo = Foto
 TimeLine = Linha do Tempo

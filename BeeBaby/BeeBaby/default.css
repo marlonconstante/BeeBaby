@@ -61,6 +61,17 @@ navigation-bar back-indicator {
 	box-shadow: 0 1 0 0 #bacbc8;
 }
 
+.share-button,
+.share-button:highlighted,
+.share-button:selected {
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0);
+	border: 1 solid #fff;
+	border-radius: 5;
+	font-size: 12pt;
+	font-weight: normal;
+}
+
 .flash-label,
 .subtitle,
 .moment-label {
