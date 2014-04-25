@@ -149,7 +149,7 @@ navigation-bar back-indicator {
 }
 
 .card-separator {
-	color: #fff;
+	background-color: #fff;
 }
 
 .subtitle,
@@ -250,17 +250,17 @@ text-view {
 }
 
 .image-share-title {
-	font-size: 22pt;
+	font-size: 25pt;
 	font-weight: bold;
 }
 
 .image-share-where-label {
-	font-size: 16pt;
+	font-size: 17pt;
 	font-weight: bold;
 }
 
 .image-share-age-label {
-	font-size: 14pt;
+	font-size: 13pt;
 	font-weight: regular;
 }
 
@@ -275,7 +275,7 @@ text-view {
 }
 
 .image-share-year {
-	font-size: 14pt;
+	font-size: 12pt;
 	font-weight: light;
 }
 

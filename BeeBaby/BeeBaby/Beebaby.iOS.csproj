@@ -228,6 +228,10 @@
     <Compile Include="TextField.designer.cs">
       <DependentUpon>TextField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Label.cs" />
+    <Compile Include="Label.designer.cs">
+      <DependentUpon>Label.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
