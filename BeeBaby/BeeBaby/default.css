@@ -150,6 +150,7 @@ navigation-bar back-indicator {
 
 .card-separator {
 	background-color: #fff;
+	box-shadow: 0 0 1 0 rgba(0, 0, 0, 0.1);
 }
 
 .subtitle,
@@ -234,7 +235,19 @@ text-view {
 .image-share-year {
 	color: #fff;
 	letter-spacing: 0.75px;
-	box-shadow: 0 1 0 0 #000;
+}
+
+.image-share-title,
+.image-share-logo {
+	box-shadow: 0 0 1 0 #000;
+}
+
+.image-share-where-label,
+.image-share-age-label,
+.image-share-day,
+.image-share-month,
+.image-share-year {
+	box-shadow: 1 1 0 0 #000;
 }
 
 .image-share-title,
