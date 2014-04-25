@@ -54,15 +54,33 @@ namespace Domain.Baby
 		/// <param name="birthDateTime">Birth date time.</param>
 		public static string FormatAge(DateTime birthDateTime, DateTime baseDate)
 		{
-			var days = (baseDate - birthDateTime).Days;
-			if (days < 60)
+			var minutes = (baseDate - birthDateTime).Minutes;
+
+			if (minutes < 120)
 			{
-				return string.Format("{0} {1}", days, "Days".Translate());
+				return string.Format("{0} {1}", minutes, "Minutes".Translate());
 			}
-			else
+
+			var hours = minutes / 60;
+			if (minutes >= 120 && hours < 24)
 			{
-				return string.Format("{0} {1} {2} {3} {4}", days / 30, "Months".Translate(), "and".Translate(), days % 30, "Days".Translate());
+				return string.Format("{0} {1} {2} {3} {4}", hours, "Hours".Translate(), "and".Translate(), minutes % 60, "Minutes".Translate());
 			}
+				
+			var days = hours / 24;
+			if (days >= 2 && days < 30)
+			{
+				return string.Format("{0} {1} {2} {3} {4}", days, "Days".Translate(), "and".Translate(), hours % 24, "Hours".Translate());
+			}
+
+			var months = days / 30;
+			if (months >= 2 && months < 12)
+			{
+				return string.Format("{0} {1} {2} {3} {4}", months, "Months".Translate(), "and".Translate(), days % 30, "Days".Translate());
+			}
+
+			var years = months / 12;
+			return string.Format("{0} {1} {2} {3} {4}", years, "Years".Translate(), "and".Translate(), months % 12, "Months".Translate());
 		}
 	}
 }
