@@ -2,6 +2,8 @@
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 using System.Drawing;
+using MonoTouch.FacebookConnect;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -28,7 +30,7 @@ namespace BeeBaby
 		/// <param name="image">Image.</param>
 		public void SetImage(UIImage image)
 		{
-			iImage = ImageProvider.CreateImageForShare(image);
+			iImage = image;
 		}
 
 		/// <summary>
@@ -46,11 +48,9 @@ namespace BeeBaby
 			};
 				
 			UIButton button = new UIButton(UIButtonType.RoundedRect);
-			button.Frame = new RectangleF(20,20,100,50);
+			button.Frame = new RectangleF(20, 20, 100, 50);
 			button.SetTitle("Share", UIControlState.Normal);
-			button.TouchUpInside += (sender, e) => {
-				Console.WriteLine("You touch my tra la la");
-			}; 
+			button.TouchUpInside += (sender, e) => ShareImage(iImage); 
 
 			AddSubview(button);
 
@@ -61,6 +61,27 @@ namespace BeeBaby
 			{
 				Alpha = 1f;
 			});
+		}
+
+		void ShareImage(UIImage sourceImage)
+		{
+			var image = ImageProvider.CreateImageForShare(sourceImage);
+			bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
+			if (ios6ShareDialog)
+			{
+				FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
+					, null, image, null, (result, error) =>
+				{
+					if (error != null)
+						InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
+					else if (result == FBOSIntegratedShareDialogResult.Succeeded)
+						InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
+				});
+			}
+			else
+			{
+				Console.WriteLine("Erro ao dar Share no Facebook.");
+			}
 		}
 
 		/// <summary>

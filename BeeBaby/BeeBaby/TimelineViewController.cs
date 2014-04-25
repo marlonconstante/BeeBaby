@@ -6,7 +6,6 @@ using Domain.Moment;
 using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
 using Domain.Baby;
-using FlyoutNavigation;
 using MonoTouch.Dialog;
 
 namespace BeeBaby
