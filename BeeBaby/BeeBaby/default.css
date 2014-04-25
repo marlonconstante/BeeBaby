@@ -149,7 +149,7 @@ navigation-bar back-indicator {
 }
 
 .card-separator {
-	color: #fff;
+	background-color: #fff;
 }
 
 .subtitle,
@@ -195,6 +195,10 @@ button.highlighted:selected {
 	font-size: 16pt;
 }
 
+.progress {
+	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
+}
+
 .row {
 	background-color: #fff;
 	box-shadow: 0 1 0 0 #b6bcba;
@@ -222,56 +226,58 @@ text-view {
 	padding-top: 2;
 }
 
-.image-share-title {
-	color: #ffffff;
-	font-size: 22pt;
+.image-share-title,
+.image-share-where-label,
+.image-share-age-label,
+.image-share-day,
+.image-share-month,
+.image-share-year {
+	color: #fff;
 	letter-spacing: 0.75px;
-	font-weight: bold;
+	box-shadow: 0 1 0 0 #000;
+}
+
+.image-share-title,
+.image-share-day,
+.image-share-month,
+.image-share-year {
 	font-family: "Roboto Condensed";
-	box-shadow: 0 1 0 0 #000000;
 }
 
-.image-share-where-label{
-	color: #ffffff;
-	letter-spacing: 0.75px;
-	font-size: 16pt;
+.image-share-where-label,
+.image-share-age-label {
+	font-family: "Quicksand";
+}
+
+.image-share-title {
+	font-size: 25pt;
 	font-weight: bold;
-	font-family: "Quicksand";
-	box-shadow: 0 1 0 0 #000000;
 }
 
-.image-share-age-label{
-	color: #ffffff;
-	font-size: 14pt;
+.image-share-where-label {
+	font-size: 17pt;
+	font-weight: bold;
+}
+
+.image-share-age-label {
+	font-size: 13pt;
 	font-weight: regular;
-	font-family: "Quicksand";
-	box-shadow: 0 1 0 0 #000000;
 }
 
-.image-share-day{
-	color: #ffffff;
+.image-share-day {
 	font-size: 26pt;
 	font-weight: bold;
-	font-family: "Roboto Condensed";
-	box-shadow: 0 1 0 0 #000000;
 }
 
-.image-share-month{
-	color: #ffffff;
+.image-share-month {
 	font-size: 16pt;
 	font-weight: bold;
-	font-family: "Roboto Condensed";
-	box-shadow: 0 1 0 0 #000000;
 }
 
-.image-share-year{
-	color: #ffffff;
-	font-size: 14pt;
+.image-share-year {
+	font-size: 12pt;
 	font-weight: light;
-	font-family: "Roboto Condensed";
-	box-shadow: 0 1 0 0 #000000;
 }
-
 
 .follow {
 	font-weight: bold;

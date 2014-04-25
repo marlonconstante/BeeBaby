@@ -8,6 +8,8 @@ using MonoTouch.SlideoutNavigation;
 using MonoTouch.Dialog;
 using BeeBaby;
 using MonoTouch.FacebookConnect;
+using BigTed;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -69,6 +71,7 @@ namespace BeeBaby
 			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
 			DomainConfig.RegisterDependencies(connection);
 			DomainConfig.InitializeGlobalization();
+			ProgressHUD.Shared.SetStyleClass("progress");
 		}
 
 		public override void OnActivated (UIApplication application)
