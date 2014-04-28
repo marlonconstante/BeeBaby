@@ -35,6 +35,12 @@ namespace Domain.Moment
 		{
 			return MainRepository.FindAllAscending((o) => o.Id);
 		}
+
+		public IEnumerable<Event> GetSuggestedEvents(Baby.Baby baby)
+		{
+			return MainRepository.FindAllAscending(0, 5, (e) => baby.AgeInDays >= e.StartAge && baby.AgeInDays <= e.EndAge,
+				(o) => o.EndAge);
+		}
 	}
 }
 

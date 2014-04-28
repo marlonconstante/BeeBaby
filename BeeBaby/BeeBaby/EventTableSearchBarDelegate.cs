@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
@@ -8,12 +9,12 @@ namespace BeeBaby
 	public class EventTableSearchBarDelegate : UISearchBarDelegate
 	{
 		EventListViewSource m_eventListViewSource;
-		IList<Event> m_events;
+		IEnumerable<Event> m_events;
 
-		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, IList<Event> events)
+		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, IEnumerable<Event> events, IEnumerable<Event> otherEvents)
 		{
 			m_eventListViewSource = eventListViewSource;
-			m_events = events;
+			m_events = events.Union(otherEvents);
 		}
 
 		/// <summary>
@@ -23,6 +24,7 @@ namespace BeeBaby
 		/// <param name="searchText">Search text.</param>
 		public override void TextChanged(UISearchBar searchBar, string searchText)
 		{
+			m_eventListViewSource.IsSearching = true;
 			var tableView = searchBar.Superview as UITableView;
 			m_eventListViewSource.ReloadData(tableView, GetFilteredEvents(searchText));
 		}
@@ -33,6 +35,7 @@ namespace BeeBaby
 		/// <param name="searchBar">Search bar.</param>
 		public override void SearchButtonClicked(UISearchBar searchBar)
 		{
+			m_eventListViewSource.IsSearching = false;
 			searchBar.ResignFirstResponder();
 		}
 
@@ -43,13 +46,7 @@ namespace BeeBaby
 		/// <param name="searchText">Search text.</param>
 		IList<Event> GetFilteredEvents(String searchText)
 		{
-			List<Event> filteredEvents = new List<Event>();
-			foreach (Event ev in m_events) {
-				if (ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) {
-					filteredEvents.Add(ev);
-				}
-			}
-			return filteredEvents;
+			return m_events.Where(e => e.Description.ToLower().Contains(searchText.ToLower())).ToList();
 		}
 	}
 }

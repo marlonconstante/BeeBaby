@@ -14,7 +14,7 @@ namespace BeeBaby
 		public void SetInformation(Moment moment, UIImage backgroundImage, Baby baby)
 		{
 			ivwBackgroundImage.Image = backgroundImage;
-			lblAge.Text = baby.Age;
+			lblAge.Text = baby.AgeInWords;
 			lblDay.Text = moment.Date.ToString("dd");
 			lblEvent.Text = moment.Event.Description;
 			lblMonth.Text = moment.Date.ToString("MMMMM");

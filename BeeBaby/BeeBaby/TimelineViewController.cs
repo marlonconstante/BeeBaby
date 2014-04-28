@@ -38,7 +38,7 @@ namespace BeeBaby
 			var baby = babyService.GetBaby();
 
 			lblBabyName.Text = baby.Name;
-			lblBabyAge.Text = baby.Age;
+			lblBabyAge.Text = baby.AgeInWords;
 
 			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
 		}

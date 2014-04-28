@@ -39,7 +39,15 @@ namespace Domain.Baby
 			set;
 		}
 
-		public string Age
+		public int AgeInDays
+		{
+			get
+			{
+				return Convert.ToInt32((DateTime.Now - BirthDateTime).TotalDays);
+			}
+		}
+
+		public string AgeInWords
 		{
 			get
 			{

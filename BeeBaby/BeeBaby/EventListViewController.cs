@@ -3,12 +3,14 @@ using System.Linq;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
+using Application;
 
 namespace BeeBaby
 {
 	public partial class EventListViewController : ViewController
 	{
-		IList<Event> m_events;
+		IList<Event> m_suggestedEvents;
+		IList<Event> m_otherEvents;
 		EventService m_eventService;
 
 		public EventListViewController(IntPtr handle) : base(handle)
@@ -23,10 +25,11 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
-			m_events = m_eventService.GetAllEvents().ToList();
+			m_suggestedEvents = m_eventService.GetSuggestedEvents(CurrentContext.Instance.Baby).ToList();
+			m_otherEvents = m_eventService.GetAllEvents().Except(m_suggestedEvents).ToList();
 
-			EventListViewSource eventListViewSource = new EventListViewSource(this, m_events);
-			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_events);
+			EventListViewSource eventListViewSource = new EventListViewSource(this, m_suggestedEvents, m_otherEvents);
+			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_suggestedEvents, m_otherEvents);
 			tblView.SeparatorInset = UIEdgeInsets.Zero;
 			tblView.Source = eventListViewSource;
 		}
