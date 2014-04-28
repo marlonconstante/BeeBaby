@@ -25,13 +25,10 @@ namespace BeeBaby
 			get;
 			set;
 		}
-
 		// Get your own App ID at developers.facebook.com/apps
 		const string FacebookAppId = "1445498505688180";
-//		const string FacebookUrlSchemeSuffix = "fb1445498505688180";
+		//		const string FacebookUrlSchemeSuffix = "fb1445498505688180";
 		const string DisplayName = "BeeBaby";
-
-
 		// This method is invoked when the application is about to move from active to inactive state.
 		// OpenGL applications should use this method to pause.
 		public override void OnResignActivation(UIApplication application)
@@ -60,11 +57,9 @@ namespace BeeBaby
 		{
 			FBSettings.DefaultAppID = FacebookAppId;
 			FBSettings.DefaultDisplayName = DisplayName;
-//			FBSettings.DefaultUrlSchemeSuffix = FacebookUrlSchemeSuffix;
-
 
 			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
-
+		
 			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			var dbPath = Path.Combine(home, "BeeBaby.sql");
 
@@ -74,7 +69,11 @@ namespace BeeBaby
 			ProgressHUD.Shared.SetStyleClass("progress");
 		}
 
-		public override void OnActivated (UIApplication application)
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// Raises the activated event.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		public override void OnActivated(UIApplication application)
 		{
 			// We need to properly handle activation of the application with regards to SSO
 			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
