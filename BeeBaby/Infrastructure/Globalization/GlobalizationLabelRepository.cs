@@ -53,10 +53,13 @@ namespace Infrastructure.Globalization
 		protected string GetCultureText(string cultureName)
 		{
 			return @"
+Name = Nome
+Gender = Sexo
 Share = Compartilhar
 Baby = Bebê
 Photo = Foto
 TimeLine = Linha do Tempo
+Schedule = Horário
 First = Primeiro
 Save = Salvar
 Albums = Álbuns
@@ -64,15 +67,14 @@ WantThese = Quero essas >
 FlashAuto = Auto
 FlashOn = Com
 FlashOff = Sem
-Name = Nome
-Gender = Sexo
-BirthDate = Data de Nascimento
 Male = Masculino
 Female = Feminino
 MomentAbout = Este momento é sobre:
 SelectEvent = Escolha um acontecimento
 WhichWas = Onde foi?
 MomentRemember = O que você gostaria de lembrar sobre este momento?
+WhatsBabyName = Qual o nome do bebê?
+WhatDayHeWasBorn = Que dia ele nasceu?
 ";
 		}
 	}
