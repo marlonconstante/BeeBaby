@@ -24,6 +24,17 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			NavigationController.NavigationBarHidden = IsNavigationBarHidden();
+		}
+
+		/// <summary>
 		/// Views the will disappear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -52,6 +63,15 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void TranslateLabels()
 		{
+		}
+
+		/// <summary>
+		/// Determines whether this instance is navigation bar hidden.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is navigation bar hidden; otherwise, <c>false</c>.</returns>
+		public virtual bool IsNavigationBarHidden()
+		{
+			return false;
 		}
 
 		/// <summary>

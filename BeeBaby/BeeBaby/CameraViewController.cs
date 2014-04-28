@@ -34,9 +34,6 @@ namespace BeeBaby
 
 			View.BackgroundColor = UIColor.Black;
 
-			// Hides the status bar
-			NavigationController.NavigationBarHidden = true;
-
 			// Create the moment, saves and generate a ID for future use.
 			var momentService = new MomentService();
 			var babyService = new BabyService();
@@ -72,6 +69,16 @@ namespace BeeBaby
 			}
 
 			View.BackgroundColor = UIColor.Clear;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is navigation bar hidden.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsNavigationBarHidden()
+		{
+			return true;
 		}
 
 		/// <summary>
@@ -176,8 +183,6 @@ namespace BeeBaby
 		partial void OpenMedia(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				// Shows the status bar
-				NavigationController.NavigationBarHidden = false;
 
 				if (m_mediaPickerProvider != null)
 				{
