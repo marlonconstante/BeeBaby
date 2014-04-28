@@ -23,19 +23,19 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			initTimeline();
+			InitTimeline();
 		}
 
 		/// <summary>
 		/// Inits the timeline.
 		/// </summary>
 		/// 
-		private void initTimeline()
+		private void InitTimeline()
 		{
 			var momentService = new MomentService();
+			var babyService = new BabyService();
 			var moments = momentService.GetAllMoments();
-
-			var baby = new BabyService().GetBaby();
+			var baby = babyService.GetBaby();
 
 			lblBabyName.Text = baby.Name;
 			lblBabyAge.Text = baby.Age;
