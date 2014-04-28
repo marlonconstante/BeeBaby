@@ -44,8 +44,11 @@ namespace BeeBaby
 			}
 			else
 			{
-				SaveTemporaryImageOnApp(info, true);
-				picker.DismissViewController(true, null);
+				ActionProgress actionProgress = new ActionProgress(() => {
+					SaveTemporaryImageOnApp(info, true);
+					picker.DismissViewController(true, null);
+				}, false);
+				actionProgress.Execute();
 			}
 		}
 

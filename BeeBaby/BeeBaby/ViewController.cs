@@ -24,6 +24,17 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			NavigationController.NavigationBarHidden = IsNavigationBarHidden();
+		}
+
+		/// <summary>
 		/// Views the will disappear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -55,26 +66,23 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Determines whether this instance is navigation bar hidden.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is navigation bar hidden; otherwise, <c>false</c>.</returns>
+		public virtual bool IsNavigationBarHidden()
+		{
+			return false;
+		}
+
+		/// <summary>
 		/// Shows the progress while performing.
 		/// </summary>
 		/// <param name="action">Action.</param>
 		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
 		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
-			InvokeInBackground(() => {
-				InvokeOnMainThread(() => {
-					action();
-
-					if (closeProgressWhenFinished)
-					{
-						// Dismiss the spinner
-						BTProgressHUD.Dismiss();
-					}
-				});
-			});
+			ActionProgress actionProgress = new ActionProgress(action, closeProgressWhenFinished);
+			actionProgress.Execute();
 		}
 
 		/// <summary>

@@ -232,6 +232,7 @@
     <Compile Include="Label.designer.cs">
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
+    <Compile Include="ActionProgress.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
