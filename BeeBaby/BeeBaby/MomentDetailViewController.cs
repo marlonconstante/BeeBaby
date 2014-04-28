@@ -114,8 +114,6 @@ namespace BeeBaby
 			RectangleF frame = vwDate.Frame;
 			frame.Height += (pckDate.Hidden) ? -height : height;
 
-			pckDate.MultipleTouchEnabled = true;
-
 			pckDate.ValueChanged += (s, args) => {
 				CurrentContext.Instance.Moment.Date = pckDate.Date;
 				UpdateDateTimeInfo();

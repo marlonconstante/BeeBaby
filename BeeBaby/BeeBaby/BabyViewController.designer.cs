@@ -13,7 +13,10 @@ namespace BeeBaby
 	partial class BabyViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBirthDate { get; set; }
+		MonoTouch.UIKit.UILabel lblBirthDay { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblBirthTime { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblGender { get; set; }
@@ -22,7 +25,10 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblName { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIDatePicker pckBirthDate { get; set; }
+		MonoTouch.UIKit.UIDatePicker pckBirthDay { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIDatePicker pckBirthTime { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
@@ -30,24 +36,31 @@ namespace BeeBaby
 		[Outlet]
 		MonoTouch.UIKit.UITextField txtName { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIView vwBirthDay { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView vwBirthTime { get; set; }
+
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectBirthDay:")]
+		partial void SelectBirthDay (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectBirthTime:")]
+		partial void SelectBirthTime (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (pckBirthDate != null) {
-				pckBirthDate.Dispose ();
-				pckBirthDate = null;
+			if (lblBirthDay != null) {
+				lblBirthDay.Dispose ();
+				lblBirthDay = null;
 			}
 
-			if (lblBirthDate != null) {
-				lblBirthDate.Dispose ();
-				lblBirthDate = null;
-			}
-
-			if (segGender != null) {
-				segGender.Dispose ();
-				segGender = null;
+			if (lblBirthTime != null) {
+				lblBirthTime.Dispose ();
+				lblBirthTime = null;
 			}
 
 			if (lblGender != null) {
@@ -55,14 +68,39 @@ namespace BeeBaby
 				lblGender = null;
 			}
 
+			if (lblName != null) {
+				lblName.Dispose ();
+				lblName = null;
+			}
+
+			if (pckBirthDay != null) {
+				pckBirthDay.Dispose ();
+				pckBirthDay = null;
+			}
+
+			if (pckBirthTime != null) {
+				pckBirthTime.Dispose ();
+				pckBirthTime = null;
+			}
+
+			if (segGender != null) {
+				segGender.Dispose ();
+				segGender = null;
+			}
+
 			if (txtName != null) {
 				txtName.Dispose ();
 				txtName = null;
 			}
 
-			if (lblName != null) {
-				lblName.Dispose ();
-				lblName = null;
+			if (vwBirthDay != null) {
+				vwBirthDay.Dispose ();
+				vwBirthDay = null;
+			}
+
+			if (vwBirthTime != null) {
+				vwBirthTime.Dispose ();
+				vwBirthTime = null;
 			}
 		}
 	}

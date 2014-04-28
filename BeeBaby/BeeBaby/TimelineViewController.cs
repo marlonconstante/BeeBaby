@@ -30,7 +30,7 @@ namespace BeeBaby
 		/// Inits the timeline.
 		/// </summary>
 		/// 
-		private void InitTimeline()
+		void InitTimeline()
 		{
 			var momentService = new MomentService();
 			var babyService = new BabyService();

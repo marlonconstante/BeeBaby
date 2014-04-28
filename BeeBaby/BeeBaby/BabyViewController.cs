@@ -18,11 +18,28 @@ namespace BeeBaby
 		/// </summary>
 		public override void TranslateLabels()
 		{
-			lblName.Text = "Name".Translate();
+			lblName.Text = "WhatsBabyName".Translate();
 			lblGender.Text = "Gender".Translate();
-			lblBirthDate.Text = "BirthDate".Translate();
+			lblBirthDay.Text = "WhatDayHeWasBorn".Translate();
+			lblBirthTime.Text = "Schedule".Translate();
 			segGender.SetTitle("Male".Translate(), 0);
 			segGender.SetTitle("Female".Translate(), 1);
+		}
+
+		/// <summary>
+		/// Selects the birth day.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SelectBirthDay(UIButton sender)
+		{
+		}
+
+		/// <summary>
+		/// Selects the birth time.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SelectBirthTime(UIButton sender)
+		{
 		}
 
 		/// <summary>
@@ -37,7 +54,7 @@ namespace BeeBaby
 
 				baby.Name = txtName.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment + 1;
-				baby.BirthDateTime = pckBirthDate.Date;
+				//baby.BirthDateTime = pckBirthDate.Date;
 
 				CurrentContext.Instance.Baby = baby;
 
