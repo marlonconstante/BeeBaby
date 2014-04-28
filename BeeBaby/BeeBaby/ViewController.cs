@@ -61,20 +61,8 @@ namespace BeeBaby
 		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
 		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
 		{
-			// Shows the spinner
-			BTProgressHUD.Show();
-
-			InvokeInBackground(() => {
-				InvokeOnMainThread(() => {
-					action();
-
-					if (closeProgressWhenFinished)
-					{
-						// Dismiss the spinner
-						BTProgressHUD.Dismiss();
-					}
-				});
-			});
+			ActionProgress actionProgress = new ActionProgress(action, closeProgressWhenFinished);
+			actionProgress.Execute();
 		}
 
 		/// <summary>
