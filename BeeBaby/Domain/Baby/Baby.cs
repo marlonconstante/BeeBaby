@@ -73,7 +73,7 @@ namespace Domain.Baby
 			var hours = minutes / 60;
 			if (minutes >= 120 && hours < 24)
 			{
-				return string.Format("{0} {1} {2} {3} {4}", hours.ToString("D"), "Hours".Translate(), "and".Translate(), (minutes % 60).ToString("D"), "Minutes".Translate());
+				return string.Format("{0} {1} {2} {3} {4}", Math.Floor(hours), "Hours".Translate(), "and".Translate(), Math.Floor((minutes % 60)), "Minutes".Translate());
 			}
 				
 			var days = hours / 24;

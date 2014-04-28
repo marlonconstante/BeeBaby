@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Domain;
 using System.Collections.Generic;
@@ -38,8 +39,14 @@ namespace Domain.Moment
 
 		public IEnumerable<Event> GetSuggestedEvents(Baby.Baby baby)
 		{
-			return MainRepository.FindAllAscending(0, 5, (e) => baby.AgeInDays >= e.StartAge && baby.AgeInDays <= e.EndAge,
-				(o) => o.EndAge);
+			var moments = new MomentService().GetAllMoments();
+
+			var events = MainRepository.FindAllAscending(
+				             (e) => (baby.AgeInDays >= e.StartAge && baby.AgeInDays <= e.EndAge),
+				             (o) => o.EndAge);
+
+			var ea = events.Where(e => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0).Take(5);
+			return ea;
 		}
 	}
 }
