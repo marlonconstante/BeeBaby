@@ -18,6 +18,8 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			KeyboardNotification.Add(this);
+
 			AddEditingTapGestureRecognizer();
 
 			TranslateLabels();
@@ -41,6 +43,8 @@ namespace BeeBaby
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
+
+			EndEditing();
 
 			// Shows the spinner
 			BTProgressHUD.Show();
@@ -66,10 +70,34 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Starts the editing.
+		/// </summary>
+		public virtual void StartEditing()
+		{
+		}
+
+		/// <summary>
+		/// Ends the editing.
+		/// </summary>
+		public virtual void EndEditing()
+		{
+			View.EndEditing(true);
+		}
+
+		/// <summary>
 		/// Determines whether this instance is navigation bar hidden.
 		/// </summary>
 		/// <returns><c>true</c> if this instance is navigation bar hidden; otherwise, <c>false</c>.</returns>
 		public virtual bool IsNavigationBarHidden()
+		{
+			return false;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is keyboard animation.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is keyboard animation; otherwise, <c>false</c>.</returns>
+		public virtual bool IsKeyboardAnimation()
 		{
 			return false;
 		}
@@ -90,7 +118,8 @@ namespace BeeBaby
 		/// </summary>
 		void AddEditingTapGestureRecognizer()
 		{
-			var gestureRecognizer = new UITapGestureRecognizer(() => View.EndEditing(true));
+			var gestureRecognizer = new UITapGestureRecognizer(() => EndEditing());
+			gestureRecognizer.Delegate = new GestureRecognizerDelegate();
 			gestureRecognizer.CancelsTouchesInView = false;
 			View.AddGestureRecognizer(gestureRecognizer);
 		}
