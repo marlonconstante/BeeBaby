@@ -154,6 +154,7 @@
     <BundleResource Include="Resources\location-clear.svg" />
     <BundleResource Include="Resources\calendar-clear.svg" />
     <BundleResource Include="Resources\bee.svg" />
+    <BundleResource Include="Resources\clock.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

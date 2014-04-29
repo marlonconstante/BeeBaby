@@ -46,7 +46,7 @@ namespace BeeBaby
 		{
 			m_datePicker.Hidden = !m_datePicker.Hidden;
 
-			float height = m_datePicker.Frame.Height - 20f;
+			float height = m_datePicker.Frame.Height - 35f;
 			RectangleF frame = Frame;
 			frame.Height += (m_datePicker.Hidden) ? -height : height;
 
