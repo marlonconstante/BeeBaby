@@ -1,4 +1,6 @@
 ﻿using System;
+using SQLiteNetExtensions.Attributes;
+using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
@@ -27,6 +29,9 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The kind.</value>
 		public int Kind { get; set; }
+
+		[OneToMany]
+		public List<MomentData> Moments { get; set; }
 	}
 }
 

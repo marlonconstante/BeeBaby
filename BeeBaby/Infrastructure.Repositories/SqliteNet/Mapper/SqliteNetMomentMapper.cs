@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Infrastructure.Repositories.Commons;
 using Domain.Moment;
 using Infrastructure.Repositories.SqliteNet.Entities;
@@ -26,8 +27,8 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new Moment();
 				result.Id = source.Id;
 				result.Description = source.Description;
-//				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
-				result.Event = m_eventRepository.FindBy(source.EventId);
+				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
+//				result.Event = m_eventRepository.FindBy(source.EventId);
 				result.Position = new GlobalPosition()
 				{
 					Latitude = source.Latitude,
@@ -35,7 +36,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				};
 				result.Location = new SqliteNetLocationMapper().ToDomainEntity(source.Location);
 				result.Date = source.Date;
-				result.Babies = MapperHelper.ToDomainEntities(source.Babies, new SqliteNetBabyMapper());
+				result.Babies = MapperHelper.ToDomainEntities(source.Babies, new SqliteNetBabyMapper()).ToList();
 			}
 
 			return result;
@@ -60,7 +61,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 					result.Longitude = source.Position.Longitude;
 				}
 				result.Date = source.Date;
-				result.Babies = MapperHelper.ToRepositoryEntities(source.Babies, new SqliteNetBabyMapper());
+				result.Babies = MapperHelper.ToRepositoryEntities(source.Babies, new SqliteNetBabyMapper()).ToList();
 			}
 
 			return result;
