@@ -64,6 +64,6 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The babies.</value>
 		[ManyToMany(typeof(MomentsBabies))]
-		public IList<BabyData> Babies { set; get; }
+		public List<BabyData> Babies { set; get; }
 	}
 }

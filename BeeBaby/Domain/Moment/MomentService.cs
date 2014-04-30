@@ -56,7 +56,7 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
 		{
-			return MainRepository.FindByBaby(baby.Id);
+			return MainRepository.FindByBaby(baby.Id).Where(m => m.Event != null);
 		}
 
 		public Moment GetFirstMoment()

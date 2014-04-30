@@ -29,6 +29,21 @@ namespace Infrastructure.Repositories.SqliteNet
 
 			return result;
 		}
+
+		protected override void PersistNewItem(Moment item)
+		{
+			base.PersistNewItem(item);
+
+			foreach (var baby in item.Babies)
+			{
+				m_connection.Insert(new MomentsBabies
+				{
+					BabyId = baby.Id,
+					MomentId = item.Id
+				});
+			}
+
+		}
 	}
 }
 

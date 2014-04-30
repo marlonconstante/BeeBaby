@@ -45,8 +45,8 @@ namespace Domain.Moment
 			var events = MainRepository.FindAllAscending(
 				             (e) => (baby.AgeInDays >= e.StartAge && baby.AgeInDays <= e.EndAge),
 				(o) => o.EndAge).ToList();
-//			var result = events.Where(e => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0).Take(5);
-			var result = events.Where(e => e.Kind == EventType.Achivment).Take(5);
+			var result = events.Where(e => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0).Take(5);
+//			var result = events.Where(e => e.Kind == EventType.Achivment).Take(5);
 			return result;
 		}
 	}

@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using SQLite.Net;
 using Infrastructure.Repositories.Commons;
 using Skahal.Infrastructure.Framework.Repositories;
+using SQLiteNetExtensions.Extensions;
 
 namespace Infrastructure.Repositories.SqliteNet
 {
@@ -32,19 +33,25 @@ namespace Infrastructure.Repositories.SqliteNet
 
 		public override IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter)
 		{
-			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+			var table = LoadChildren();
+
+			return InitializeQuery(MapperHelper.ToDomainEntities(table, Mapper).AsQueryable(), filter)
 					.Skip(offset).Take(limit);
 		}
 
 		public override IEnumerable<TEntity> FindAllAscending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy)
 		{
-			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+			var table = LoadChildren();
+
+			return InitializeQuery(MapperHelper.ToDomainEntities(table, Mapper).AsQueryable(), filter)
 					.OrderBy(orderBy.Compile()).Skip(offset).Take(limit);
 		}
 
 		public override IEnumerable<TEntity> FindAllDescending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy)
 		{
-			return InitializeQuery(MapperHelper.ToDomainEntities(m_connection.Table<TRepositoryEntity>(), Mapper).AsQueryable(), filter)
+			var table = LoadChildren();
+
+			return InitializeQuery(MapperHelper.ToDomainEntities(table, Mapper).AsQueryable(), filter)
 					.OrderByDescending(orderBy.Compile()).Skip(offset).Take(limit);
 		}
 
@@ -61,7 +68,7 @@ namespace Infrastructure.Repositories.SqliteNet
 
 		protected override void PersistUpdatedItem(TEntity item)
 		{
-			m_connection.Update(Mapper.ToRepositoryEntity(item));
+			m_connection.UpdateWithChildren(Mapper.ToRepositoryEntity(item));
 		}
 
 		protected override void PersistDeletedItem(TEntity item)
@@ -71,16 +78,24 @@ namespace Infrastructure.Repositories.SqliteNet
 
 		private IQueryable<TEntity> InitializeQuery(IQueryable<TEntity> entities, Expression<Func<TEntity, bool>> filter)
 		{
-			if (filter == null)
-			{
-				return entities;
-			}
-			else
+			if (filter != null)
 			{
 				return entities.Where(e => filter.Compile()(e));
 			}
+
+			return entities;
 		}
 
+
+		TableQuery<TRepositoryEntity> LoadChildren()
+		{
+			var table = m_connection.Table<TRepositoryEntity>();
+			foreach (var item in table)
+			{
+				m_connection.GetChildren(item);
+			}
+			return table;
+		}
 		#endregion
 	}
 }
