@@ -71,6 +71,7 @@ namespace BeeBaby.ResourcesProviders
 		public IList<string> GetTemporaryImagesNamesForCurrentMoment()
 		{
 			var temporaryDirectory = GetTemporaryDirectoryPath();
+
 			return Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension));
 		}
 
@@ -104,8 +105,7 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var fileName in fileNames)
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageViewModel
-				{
+				var image = new ImageViewModel {
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};
@@ -153,7 +153,7 @@ namespace BeeBaby.ResourcesProviders
 			var fullImagePath = Path.Combine(tempDir, fileName);
 			var thumbnailImagePath = Path.Combine(tempDir, GetThumbnailImageName(fileName));
 
-			using (NSData imageData = image.AsJPEG())
+			using (NSData imageData = image.AsJPEG(MediaBase.ImageCompressionQuality))
 			{
 				NSError err;
 				if (!imageData.Save(fullImagePath, false, out err))
@@ -162,7 +162,7 @@ namespace BeeBaby.ResourcesProviders
 				}
 			}
 
-			using (NSData imageData = GenerateThumbnail(image).AsJPEG())
+			using (NSData imageData = GenerateThumbnail(image).AsJPEG(MediaBase.ImageCompressionQuality))
 			{
 				NSError err;
 				if (!imageData.Save(thumbnailImagePath, false, out err))
@@ -203,6 +203,7 @@ namespace BeeBaby.ResourcesProviders
 				.FirstOrDefault(i => i.Equals(Path.Combine(GetPermanentDirectory(), imageName)));
 
 			var data = NSData.FromFile(imagePath);
+
 			return UIImage.LoadFromData(data);
 		}
 
@@ -213,25 +214,48 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="sourceImage">Source image.</param>
 		private UIImage GenerateThumbnail(UIImage sourceImage)
 		{
-			var croppedImage = CropImage(sourceImage, sourceImage.Size.Width, sourceImage.Size.Height);
-
-			return ResizeImage(croppedImage, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight);
+			return CroppedImageResize(sourceImage, MediaBase.ImageThumbnailSize);
 		}
 
 		/// <summary>
-		/// Resizes the image.
+		/// Croppeds the image resize.
 		/// </summary>
-		/// <returns>The image.</returns>
+		/// <returns>The image resize.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		/// <param name="newWidth">New width.</param>
-		/// <param name="newHeight">New height.</param>
-		static UIImage ResizeImage(UIImage sourceImage, int newWidth, int newHeight)
+		/// <param name="size">Size.</param>
+		static UIImage CroppedImageResize(UIImage sourceImage, float size)
 		{
-			var size = new Size(newWidth, newHeight);
-			UIGraphics.BeginImageContextWithOptions(size, true, 0f);
-			sourceImage.Draw(new Rectangle(0, 0, newWidth, newHeight));
-			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
-			UIGraphics.EndImageContext();
+			UIImage resultImage;
+
+			float width = sourceImage.Size.Width;
+			float height = sourceImage.Size.Height;
+			float marginHorizontal = 0;
+			float marginVertical = 0;
+
+			if (width > height)
+			{
+				width = width / (height / size);
+				height = size;
+				marginHorizontal = (width - height) / 2;
+			}
+			else
+			{
+				height = height / (width / size);
+				width = size;
+				marginVertical = (height - width) / 2;
+			}
+
+			UIGraphics.BeginImageContextWithOptions(new SizeF(size, size), true, 0f);
+			try
+			{
+				sourceImage.Draw(new RectangleF(-marginHorizontal, -marginVertical, width, height));
+				resultImage = UIGraphics.GetImageFromCurrentImageContext();
+			}
+			finally
+			{
+				UIGraphics.EndImageContext();
+			}
+
 			return resultImage;
 		}
 
@@ -242,58 +266,34 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="sourceImage">Source image.</param>
 		public static UIImage CreateImageForShare(UIImage sourceImage, Moment moment)
 		{
-			var croppedImage = CropImage(sourceImage, sourceImage.Size.Width, sourceImage.Size.Height);
+			UIImage resultImage;
 
 			var board = UIStoryboard.FromName("MainStoryboard", null);
 			var controller = (ImageShareViewController) board.InstantiateViewController("ImageShareViewController");
 			controller.LoadView();
 
-			UIGraphics.BeginImageContextWithOptions(new SizeF(320, 320), false, 0f);
-			var context = UIGraphics.GetCurrentContext();
+			RectangleF frame = controller.View.Frame;
 
-
-			controller.SetInformation(moment, croppedImage, CurrentContext.Instance.Baby);
-			controller.View.Layer.RenderInContext(context);
-
-			var img = UIGraphics.GetImageFromCurrentImageContext();
-			UIGraphics.EndImageContext();
-
-
-			return img;
-		}
-
-		/// <summary>
-		/// Crops the image.
-		/// </summary>
-		/// <returns>The image.</returns>
-		/// <param name="sourceImage">Source image.</param>
-		/// <param name="sourceWidth">Source width.</param>
-		/// <param name="sourceHeight">Source height.</param>
-		static UIImage CropImage(UIImage sourceImage, float sourceWidth, float sourceHeight)
-		{
-			float marginHorizontal = 0;
-			float marginVertical = 0;
-			float imageSize;
-
-			if (sourceWidth > sourceHeight)
+			using (var image = CroppedImageResize(sourceImage, frame.Width))
 			{
-				marginHorizontal = (sourceWidth - sourceHeight) / 2;
-				imageSize = sourceHeight;
-			}
-			else
-			{
-				marginVertical = (sourceHeight - sourceWidth) / 2;
-				imageSize = sourceWidth;
+				controller.SetInformation(moment, image, CurrentContext.Instance.Baby);
 			}
 
-			// Crop the image at original size
-			UIImage cropped;
-			using (CGImage cr = sourceImage.CGImage.WithImageInRect(new RectangleF(marginHorizontal, marginVertical, imageSize, imageSize)))
+			UIGraphics.BeginImageContextWithOptions(new SizeF(frame.Width, frame.Height), false, 0f);
+			try
 			{
-				cropped = UIImage.FromImage(cr, 0f, sourceImage.Orientation);
+				using (var context = UIGraphics.GetCurrentContext())
+				{
+					controller.View.Layer.RenderInContext(context);
+					resultImage = UIGraphics.GetImageFromCurrentImageContext();
+				}
 			}
-			return cropped;
+			finally
+			{
+				UIGraphics.EndImageContext();
+			}
+
+			return resultImage;
 		}
 	}
 }
-

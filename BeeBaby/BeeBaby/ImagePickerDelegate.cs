@@ -81,12 +81,14 @@ namespace BeeBaby
 		/// <param name="info">Info.</param>
 		void SaveTemporaryImageOnApp(NSDictionary info, bool selected)
 		{
-			UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage);
-			var fileName = m_imageProvider.SaveTemporaryImageOnApp(photo);
-			if (selected)
+			using (UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
-				var thumbnailImageName = m_imageProvider.GetThumbnailImageName(fileName);
-				CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+				var fileName = m_imageProvider.SaveTemporaryImageOnApp(photo);
+				if (selected)
+				{
+					var thumbnailImageName = m_imageProvider.GetThumbnailImageName(fileName);
+					CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+				}
 			}
 		}
 
@@ -118,7 +120,7 @@ namespace BeeBaby
 					}
 					else
 					{
-						Thread.Sleep(100);
+						Thread.Sleep(300);
 					}
 				}
 			});
@@ -134,7 +136,7 @@ namespace BeeBaby
 			m_pendingTasks = false;
 			while (m_performTasks != null && m_performTasks.IsAlive)
 			{
-				Thread.Sleep(100);
+				Thread.Sleep(300);
 			}
 		}
 	}
