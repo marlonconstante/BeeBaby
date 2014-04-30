@@ -9,6 +9,7 @@ using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
 using System.Threading;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -38,7 +39,7 @@ namespace BeeBaby
 			var momentService = new MomentService();
 			var babyService = new BabyService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
-			CurrentContext.Instance.CurrentBaby = babyService.GetBaby();
+			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 
 			if (!MediaPickerProvider.IsCameraAvailable())
 			{

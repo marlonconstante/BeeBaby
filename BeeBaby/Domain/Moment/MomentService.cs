@@ -49,14 +49,14 @@ namespace Domain.Moment
 
 			return moment;
 		}
-			
+
 		/// <summary>
 		/// Gets all moments.
 		/// </summary>
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
 		{
-			return MainRepository.FindByBaby(baby.Id).Where(m => m.Event != null);
+			return MainRepository.FindAllDescending((m) => m.Date).Where(m => m.Event != null && m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0);
 		}
 
 		public Moment GetFirstMoment()

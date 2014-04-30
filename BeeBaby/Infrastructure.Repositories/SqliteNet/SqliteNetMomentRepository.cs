@@ -5,6 +5,7 @@ using Infrastructure.Repositories.SqliteNet.Entities;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure.Repositories.SqliteNet
 {
@@ -13,21 +14,6 @@ namespace Infrastructure.Repositories.SqliteNet
 		public SqliteNetMomentRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetMomentMapper(), unitOfWork)
 		{
 			connection.CreateTable<MomentData>();
-		}
-
-		public IEnumerable<Moment> FindByBaby(string babyId)
-		{
-//			var momentsData = m_connection.Table<MomentData>().Where(m => m.Babies.Count(b => b.Id.Equals(babyId)) > 0);
-			var momentsData = m_connection.Table<MomentData>();//.Where(m => m.Babies.Count(b => b.Id.Equals(babyId)) > 0);
-
-			IList<Moment> result = new List<Moment>();
-
-			foreach (var item in momentsData)
-			{
-				result.Add(Mapper.ToDomainEntity(item));
-			}
-
-			return result;
 		}
 
 		protected override void PersistNewItem(Moment item)

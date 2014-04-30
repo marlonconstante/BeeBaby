@@ -76,7 +76,7 @@ namespace Infrastructure.Repositories.SqliteNet
 			m_connection.Delete(Mapper.ToRepositoryEntity(item));
 		}
 
-		private IQueryable<TEntity> InitializeQuery(IQueryable<TEntity> entities, Expression<Func<TEntity, bool>> filter)
+		IQueryable<TEntity> InitializeQuery(IQueryable<TEntity> entities, Expression<Func<TEntity, bool>> filter)
 		{
 			if (filter != null)
 			{
@@ -87,9 +87,10 @@ namespace Infrastructure.Repositories.SqliteNet
 		}
 
 
-		TableQuery<TRepositoryEntity> LoadChildren()
+		IList<TRepositoryEntity> LoadChildren()
 		{
-			var table = m_connection.Table<TRepositoryEntity>();
+
+			var table = m_connection.Table<TRepositoryEntity>().ToList();
 			foreach (var item in table)
 			{
 				m_connection.GetChildren(item);

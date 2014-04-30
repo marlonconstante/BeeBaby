@@ -239,6 +239,7 @@
       <DependentUpon>ViewDatePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="GestureRecognizerDelegate.cs" />
+    <Compile Include="Util\PreferencesEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -258,6 +259,7 @@
     <Folder Include="ResourcesProviders\" />
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

@@ -16,7 +16,7 @@ namespace BeeBaby
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
 		}
-			
+
 		/// <summary>
 		/// Views the did load.
 		/// </summary>
@@ -34,9 +34,8 @@ namespace BeeBaby
 		void InitTimeline()
 		{
 			var momentService = new MomentService();
-			var babyService = new BabyService();
-			var moments = momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
-			var baby = babyService.GetBaby();
+			var baby = CurrentContext.Instance.CurrentBaby;
+			var moments = momentService.GetAllMoments(baby);
 
 			lblBabyName.Text = baby.Name;
 			lblBabyAge.Text = baby.AgeInWords;

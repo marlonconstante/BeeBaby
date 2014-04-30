@@ -67,7 +67,7 @@ namespace Domain.Baby
 
 			if (minutes < 120)
 			{
-				return string.Format("{0} {1}", minutes, "Minutes".Translate());
+				return string.Format("{0} {1}", Math.Floor(minutes), "Minutes".Translate());
 			}
 
 			var hours = minutes / 60;
