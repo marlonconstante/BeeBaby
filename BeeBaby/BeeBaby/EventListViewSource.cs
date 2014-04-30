@@ -11,17 +11,10 @@ namespace BeeBaby
 {
 	public class EventListViewSource : UITableViewSource
 	{
-		public bool IsSearching
-		{
-			get;
-			set;
-		}
-
 		static string s_cellIdentifier = "EventCell";
 		UIViewController m_viewController;
 		IList<Event> m_suggestedTableItems;
 		IList<Event> m_otherEventsTableItems;
-
 
 		public EventListViewSource(UIViewController viewController, IList<Event> suggetedItems, IList<Event> otherItems)
 		{
@@ -40,7 +33,6 @@ namespace BeeBaby
 			{
 				return m_suggestedTableItems.Count;
 			}
-
 			return m_otherEventsTableItems.Count;
 		}
 
@@ -62,7 +54,6 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-
 			if (indexPath.Section == 0)
 			{
 				cell.TextLabel.Text = m_suggestedTableItems[indexPath.Row].Description;
@@ -71,7 +62,6 @@ namespace BeeBaby
 			{
 				cell.TextLabel.Text = m_otherEventsTableItems[indexPath.Row].Description;
 			}
-
 			return cell;
 		}
 
@@ -85,8 +75,9 @@ namespace BeeBaby
 		public override int NumberOfSections(UITableView tableView)
 		{
 			if (IsSearching)
+			{
 				return 1;
-
+			}
 			return 2;
 		}
 
@@ -101,8 +92,9 @@ namespace BeeBaby
 		public override string TitleForHeader(UITableView tableView, int section)
 		{
 			if (section == 0)
+			{
 				return "Suggestions".Translate();
-
+			}
 			return "All Other Events".Translate();
 		}
 
@@ -115,6 +107,15 @@ namespace BeeBaby
 		{
 			m_suggestedTableItems = items;
 			tableView.ReloadData();
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is searching.
+		/// </summary>
+		/// <value><c>true</c> if this instance is searching; otherwise, <c>false</c>.</value>
+		public bool IsSearching {
+			get;
+			set;
 		}
 	}
 }

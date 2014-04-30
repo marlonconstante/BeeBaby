@@ -13,9 +13,6 @@ namespace BeeBaby
 	partial class MomentDetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnDate { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIButton btnSave { get; set; }
 
 		[Outlet]
@@ -28,16 +25,10 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblMomentAbout { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblTime { get; set; }
-
-		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint mapViewConstraint { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIDatePicker pckDate { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UITextView txtDescription { get; set; }
@@ -51,9 +42,6 @@ namespace BeeBaby
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
 
-		[Action ("SelectDate:")]
-		partial void SelectDate (MonoTouch.UIKit.UIButton sender);
-
 		[Action ("SelectEvent:")]
 		partial void SelectEvent (MonoTouch.UIKit.UIButton sender);
 		
@@ -62,6 +50,11 @@ namespace BeeBaby
 			if (btnSave != null) {
 				btnSave.Dispose ();
 				btnSave = null;
+			}
+
+			if (btnSelectEvent != null) {
+				btnSelectEvent.Dispose ();
+				btnSelectEvent = null;
 			}
 
 			if (lblLocation != null) {
@@ -74,21 +67,6 @@ namespace BeeBaby
 				lblMomentAbout = null;
 			}
 
-			if (btnDate != null) {
-				btnDate.Dispose ();
-				btnDate = null;
-			}
-
-			if (btnSelectEvent != null) {
-				btnSelectEvent.Dispose ();
-				btnSelectEvent = null;
-			}
-
-			if (lblTime != null) {
-				lblTime.Dispose ();
-				lblTime = null;
-			}
-
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;
@@ -97,11 +75,6 @@ namespace BeeBaby
 			if (mapViewConstraint != null) {
 				mapViewConstraint.Dispose ();
 				mapViewConstraint = null;
-			}
-
-			if (pckDate != null) {
-				pckDate.Dispose ();
-				pckDate = null;
 			}
 
 			if (txtDescription != null) {

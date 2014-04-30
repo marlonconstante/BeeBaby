@@ -25,12 +25,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblName { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIDatePicker pckBirthDay { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIDatePicker pckBirthTime { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
 
 		[Outlet]
@@ -44,12 +38,6 @@ namespace BeeBaby
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectBirthDay:")]
-		partial void SelectBirthDay (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectBirthTime:")]
-		partial void SelectBirthTime (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -71,16 +59,6 @@ namespace BeeBaby
 			if (lblName != null) {
 				lblName.Dispose ();
 				lblName = null;
-			}
-
-			if (pckBirthDay != null) {
-				pckBirthDay.Dispose ();
-				pckBirthDay = null;
-			}
-
-			if (pckBirthTime != null) {
-				pckBirthTime.Dispose ();
-				pckBirthTime = null;
 			}
 
 			if (segGender != null) {

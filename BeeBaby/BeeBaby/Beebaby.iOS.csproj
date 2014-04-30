@@ -154,6 +154,7 @@
     <BundleResource Include="Resources\location-clear.svg" />
     <BundleResource Include="Resources\calendar-clear.svg" />
     <BundleResource Include="Resources\bee.svg" />
+    <BundleResource Include="Resources\clock.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -233,6 +234,11 @@
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
     <Compile Include="ActionProgress.cs" />
+    <Compile Include="ViewDatePicker.cs" />
+    <Compile Include="ViewDatePicker.designer.cs">
+      <DependentUpon>ViewDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestureRecognizerDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

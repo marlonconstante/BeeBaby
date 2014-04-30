@@ -62,16 +62,16 @@ namespace BeeBaby
 
 			var provider = new ImageProvider(moment);
 			m_images = provider.GetImagesForCurrentMoment(false, true);
-			var viewWidth = (MediaBase.ImageThumbnailWidth) * m_images.Count;
-			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailHeight);
+			var viewWidth = (MediaBase.ImageThumbnailSize) * m_images.Count;
+			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailSize);
 
 			var i = 0;
 
 			foreach (var image in m_images)
 			{
-				var xCoord = i * MediaBase.ImageThumbnailWidth;
+				var xCoord = i * MediaBase.ImageThumbnailSize;
 
-				using (var uiImageView = new UIImageViewClickable(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailWidth, MediaBase.ImageThumbnailHeight)))
+				using (var uiImageView = new UIImageViewClickable(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
 				{
 					uiImageView.Image = image.Image;
 					uiImageView.UserInteractionEnabled = true;

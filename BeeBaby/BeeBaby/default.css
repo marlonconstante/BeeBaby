@@ -359,6 +359,10 @@ text-view {
 	background-image: url(separator.png);
 }
 
+.clock {
+	background-image: url(clock.svg);
+}
+
 .calendar {
 	background-image: url(calendar.svg);
 }

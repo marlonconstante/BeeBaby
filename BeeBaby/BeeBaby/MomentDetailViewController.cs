@@ -25,22 +25,9 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			new KeyboardNotification(View);
-
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
-		}
-
-		/// <summary>
-		/// Views the did disappear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidDisappear(bool animated)
-		{
-			base.ViewDidDisappear(animated);
-
-			pckDate.Hidden = true;
 		}
 
 		/// <summary>
@@ -51,7 +38,7 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			UpdateDateTimeInfo();
+			ViewDate.UpdateInfo();
 		}
 
 		/// <summary>
@@ -63,10 +50,21 @@ namespace BeeBaby
 			base.ViewDidAppear(animated);
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
-			if (selectedEvent != null) {
+			if (selectedEvent != null)
+			{
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+		}
+
+		/// <summary>
+		/// Determines whether this instance is keyboard animation.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsKeyboardAnimation()
+		{
+			return true;
 		}
 
 		/// <summary>
@@ -82,13 +80,23 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Updates the date time info.
+		/// Starts the editing.
 		/// </summary>
-		void UpdateDateTimeInfo()
+		public override void StartEditing()
 		{
-			var date = (DateTime) pckDate.Date;
-			btnDate.SetTitle(date.ToLocalTime().ToString("d", System.Globalization.DateTimeFormatInfo.CurrentInfo), UIControlState.Normal);
-			lblTime.Text = date.ToLocalTime().ToString("HH:mm", System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			base.StartEditing();
+
+			ViewDate.Hide();
+		}
+
+		/// <summary>
+		/// Ends the editing.
+		/// </summary>
+		public override void EndEditing()
+		{
+			base.EndEditing();
+
+			ViewDate.Hide();
 		}
 
 		/// <summary>
@@ -100,26 +108,6 @@ namespace BeeBaby
 			ShowProgressWhilePerforming(() => {
 				PerformSegue("segueSelectEvent", sender);
 			}, false);
-		}
-
-		/// <summary>
-		/// Selects the date.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SelectDate(UIButton sender)
-		{
-			pckDate.Hidden = !pckDate.Hidden;
-
-			float height = pckDate.Frame.Height - 20f;
-			RectangleF frame = vwDate.Frame;
-			frame.Height += (pckDate.Hidden) ? -height : height;
-
-			pckDate.ValueChanged += (s, args) => {
-				CurrentContext.Instance.Moment.Date = pckDate.Date;
-				UpdateDateTimeInfo();
-			};
-
-			vwDate.Frame = frame;
 		}
 
 		/// <summary>
@@ -135,18 +123,20 @@ namespace BeeBaby
 
 				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
 				moment.Event = CurrentContext.Instance.SelectedEvent;
-				moment.Date = pckDate.Date;
+				moment.Date = ViewDate.GetDateTime();
 
-				if (!mapView.Hidden) {
+				if (!mapView.Hidden)
+				{
 					moment.Position = new GlobalPosition();
 					moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 					moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
 				}
 
-				CurrentContext.Instance.Moment = moment;
-
 				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
 				momentService.SaveMoment(moment);
+
+				CurrentContext.Instance.Moment = null;
+				CurrentContext.Instance.SelectedEvent = null;
 
 				PerformSegue("segueSave", sender);
 			}, false);
@@ -158,11 +148,24 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void LocationChanged(UISwitch sender)
 		{
-			if (m_mapViewHeight == -1) {
+			if (m_mapViewHeight == -1)
+			{
 				m_mapViewHeight = mapView.Frame.Height;
 			}
 			mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
 			mapView.Hidden = !sender.On;
+		}
+
+		/// <summary>
+		/// Gets the view date.
+		/// </summary>
+		/// <value>The view date.</value>
+		public ViewDatePicker ViewDate {
+			get
+			{
+
+				return (ViewDatePicker) vwDate;
+			}
 		}
 	}
 }

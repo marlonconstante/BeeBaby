@@ -15,6 +15,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			ViewBirthDay.UpdateInfo();
+			ViewBirthTime.UpdateInfo();
+		}
+
+		/// <summary>
 		/// Translates the labels.
 		/// </summary>
 		public override void TranslateLabels()
@@ -28,19 +40,25 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Selects the birth day.
+		/// Starts the editing.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SelectBirthDay(UIButton sender)
+		public override void StartEditing()
 		{
+			base.StartEditing();
+
+			ViewBirthDay.Hide();
+			ViewBirthTime.Hide();
 		}
 
 		/// <summary>
-		/// Selects the birth time.
+		/// Ends the editing.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SelectBirthTime(UIButton sender)
+		public override void EndEditing()
 		{
+			base.EndEditing();
+
+			ViewBirthDay.Hide();
+			ViewBirthTime.Hide();
 		}
 
 		/// <summary>
@@ -52,10 +70,11 @@ namespace BeeBaby
 			ShowProgressWhilePerforming(() => {
 				var babyService = new BabyService();
 				var baby = new Baby();
+				var birthDateTime = ViewBirthDay.GetText("dd/MM/yyyy") + " " + ViewBirthTime.GetText("HH:mm");
 
 				baby.Name = txtName.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment + 1;
-				//baby.BirthDateTime = pckBirthDate.Date;
+				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
 
 				CurrentContext.Instance.CurrentBaby = baby;
 
@@ -66,6 +85,28 @@ namespace BeeBaby
 
 				PerformSegue("segueMoment", sender);
 			}, false);
+		}
+
+		/// <summary>
+		/// Gets the view birth day.
+		/// </summary>
+		/// <value>The view birth day.</value>
+		public ViewDatePicker ViewBirthDay {
+			get {
+
+				return (ViewDatePicker) vwBirthDay;
+			}
+		}
+
+		/// <summary>
+		/// Gets the view birth time.
+		/// </summary>
+		/// <value>The view birth time.</value>
+		public ViewDatePicker ViewBirthTime {
+			get {
+
+				return (ViewDatePicker) vwBirthTime;
+			}
 		}
 	}
 }

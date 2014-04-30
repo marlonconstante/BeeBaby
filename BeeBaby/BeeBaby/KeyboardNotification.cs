@@ -7,13 +7,13 @@ namespace BeeBaby
 {
 	public class KeyboardNotification
 	{
-		UIView m_view;
+		ViewController m_viewController;
 		// Amount to scroll
 		float m_scrollAmount = 0.0f;
 
-		public KeyboardNotification(UIView view)
+		private KeyboardNotification(ViewController viewController)
 		{
-			m_view = view;
+			m_viewController = viewController;
 
 			// Keyboard Up
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyboardUpNotification);
@@ -26,20 +26,38 @@ namespace BeeBaby
 		/// Keyboard Up Notification.
 		/// </summary>
 		/// <param name="notification">Notification.</param>
-		private void KeyboardUpNotification(NSNotification notification)
+		void KeyboardUpNotification(NSNotification notification)
 		{
-			UIView firstResponder = GetFirstResponder(m_view);
-			if (firstResponder != null)
+			m_viewController.StartEditing();
+
+			if (m_viewController.IsKeyboardAnimation())
 			{
-				// Get the keyboard size
-				RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
+				UIView firstResponder = GetFirstResponder(m_viewController.View);
+				if (firstResponder != null)
+				{
+					// Get the keyboard size
+					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
-				// Calculate how far we need to scroll
-				float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height);
-				m_scrollAmount = (rectangle.Height - (m_view.Frame.Size.Height - bottom));
+					// Calculate how far we need to scroll
+					float bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height);
+					m_scrollAmount = (rectangle.Height - (m_viewController.View.Frame.Size.Height - bottom));
 
+					// Perform the scrolling
+					ScrollTheView(true);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Keyboard Down Notification.
+		/// </summary>
+		/// <param name="notification">Notification.</param>
+		void KeyboardDownNotification(NSNotification notification)
+		{
+			if (m_viewController.IsKeyboardAnimation())
+			{
 				// Perform the scrolling
-				ScrollTheView(true);
+				ScrollTheView(false);
 			}
 		}
 
@@ -47,7 +65,7 @@ namespace BeeBaby
 		/// Get the first input that responds view.
 		/// </summary>
 		/// <param name="view">View.</param>
-		private UIView GetFirstResponder(UIView view)
+		UIView GetFirstResponder(UIView view)
 		{
 			foreach (UIView element in view.Subviews)
 			{
@@ -60,30 +78,29 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Keyboard Down Notification.
-		/// </summary>
-		/// <param name="notification">Notification.</param>
-		private void KeyboardDownNotification(NSNotification notification)
-		{
-			// Perform the scrolling
-			ScrollTheView(false);
-		}
-
-		/// <summary>
 		/// Scrolls the view.
 		/// </summary>
 		/// <param name="up">If set to <c>true</c> up.</param>
-		private void ScrollTheView(bool up)
+		void ScrollTheView(bool up)
 		{
 			// Scroll the view up or down
-			UIView.BeginAnimations(string.Empty, System.IntPtr.Zero);
+			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
 			UIView.SetAnimationDuration(0.3);
 
-			RectangleF frame = m_view.Frame;
+			RectangleF frame = m_viewController.View.Frame;
 			frame.Y += up ? -m_scrollAmount : m_scrollAmount;
-			m_view.Frame = frame;
+			m_viewController.View.Frame = frame;
 
 			UIView.CommitAnimations();
+		}
+
+		/// <summary>
+		/// Add the specified viewController.
+		/// </summary>
+		/// <param name="viewController">View controller.</param>
+		public static KeyboardNotification Add(ViewController viewController)
+		{
+			return new KeyboardNotification(viewController);
 		}
 	}
 }
