@@ -35,6 +35,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				};
 				result.Location = new SqliteNetLocationMapper().ToDomainEntity(source.Location);
 				result.Date = source.Date;
+				result.Babies = MapperHelper.ToDomainEntities(source.Babies, new SqliteNetBabyMapper());
 			}
 
 			return result;
@@ -59,6 +60,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 					result.Longitude = source.Position.Longitude;
 				}
 				result.Date = source.Date;
+				result.Babies = MapperHelper.ToRepositoryEntities(source.Babies, new SqliteNetBabyMapper());
 			}
 
 			return result;

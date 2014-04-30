@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -56,9 +57,12 @@ namespace BeeBaby
 				baby.Gender = (Gender) segGender.SelectedSegment + 1;
 				//baby.BirthDateTime = pckBirthDate.Date;
 
-				CurrentContext.Instance.Baby = baby;
+				CurrentContext.Instance.CurrentBaby = baby;
 
 				babyService.SaveBaby(baby);
+
+				CurrentContext.Instance.Moment.Babies.Add(baby);
+				new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 
 				PerformSegue("segueMoment", sender);
 			}, false);

@@ -12,6 +12,12 @@ namespace Infrastructure.Repositories.SqliteNet
 		public SqliteNetBabyRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetBabyMapper(), unitOfWork)
 		{
 			connection.CreateTable<BabyData>();
+			connection.CreateTable<MomentsBabies>();
+			if (CountAll(null) <= 0)
+			{
+				connection.ExecuteScalar<BabyData>("Insert Into BabyData (Id, Name, BirthDateTime, Gender) values ('1', ?, ?, ?)", "Bebê Um", DateTime.Now, 0);
+				connection.ExecuteScalar<BabyData>("Insert Into BabyData (Id, Name, BirthDateTime, Gender) values ('2', ?, ?, ?)", "Bebê Dois", DateTime.Now, 1);
+			}
 		}
 	}
 }

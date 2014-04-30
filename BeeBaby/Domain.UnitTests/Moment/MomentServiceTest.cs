@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Media;
+using Domain.Baby;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using NUnit.Framework;
@@ -74,15 +75,26 @@ namespace Domain.UnitTests.Moment
 		{
 			DependencyService.Register<IUnitOfWork>(new MemoryUnitOfWork());
 			DependencyService.Register<IMomentRepository>(new MemoryMomentRepository(null));
+
+			var baby = new Domain.Baby.Baby
+			{
+				Id = "1"
+			};
+
 			var target = new MomentService();
 
-			Assert.AreEqual(0, target.GetAllMoments().Count());
+			Assert.AreEqual(0, target.GetAllMoments(baby).Count());
 		}
 
 		[Test()]
 		public void GetAllMoments_NoArgs_AllMoments()
 		{
-			var actual = m_target.GetAllMoments();
+			var baby = new Domain.Baby.Baby
+			{
+				Id = "1"
+			};
+
+			var actual = m_target.GetAllMoments(baby);
 			Assert.AreEqual(3, actual.Count());
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
@@ -53,9 +54,9 @@ namespace Domain.Moment
 		/// Gets all moments.
 		/// </summary>
 		/// <returns>The all moments.</returns>
-		public IEnumerable<Moment> GetAllMoments()
+		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
 		{
-			return MainRepository.FindAllDescending((m) => m.Event != null,  (o) => o.Date);
+			return MainRepository.FindByBaby(baby.Id);
 		}
 
 		public Moment GetFirstMoment()

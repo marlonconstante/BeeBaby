@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Domain;
 using Domain.Baby;
 using MonoTouch.Dialog;
+using Application;
 
 namespace BeeBaby
 {
@@ -34,7 +35,7 @@ namespace BeeBaby
 		{
 			var momentService = new MomentService();
 			var babyService = new BabyService();
-			var moments = momentService.GetAllMoments();
+			var moments = momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
 			var baby = babyService.GetBaby();
 
 			lblBabyName.Text = baby.Name;

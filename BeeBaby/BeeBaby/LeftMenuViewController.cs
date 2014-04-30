@@ -2,6 +2,8 @@
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
+using Application;
+using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -35,7 +37,14 @@ namespace BeeBaby
 				}),
 				new StyledStringElement("Full Screen", () => {
 					NavigationController.PushViewController(controller, true);
+				}),
+				new StyledStringElement("Baby 1", () => {
+					CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("1");
+				}),
+				new StyledStringElement("Baby 2", () => {
+					CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("2");
 				})
+
 			});
 		}
 	}

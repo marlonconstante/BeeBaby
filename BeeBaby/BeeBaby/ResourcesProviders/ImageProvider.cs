@@ -252,7 +252,7 @@ namespace BeeBaby.ResourcesProviders
 			var context = UIGraphics.GetCurrentContext();
 
 
-			controller.SetInformation(moment, croppedImage, CurrentContext.Instance.Baby);
+			controller.SetInformation(moment, croppedImage, CurrentContext.Instance.CurrentBaby);
 			controller.View.Layer.RenderInContext(context);
 
 			var img = UIGraphics.GetImageFromCurrentImageContext();

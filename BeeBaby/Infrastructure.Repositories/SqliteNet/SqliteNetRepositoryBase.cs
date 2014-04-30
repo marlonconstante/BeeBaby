@@ -13,7 +13,7 @@ namespace Infrastructure.Repositories.SqliteNet
 		where TEntity : IAggregateRoot, new()
 		where TRepositoryEntity : IEntity, new()
 	{
-		SQLiteConnection m_connection;
+		protected SQLiteConnection m_connection;
 
 		protected IMapper<TEntity, TRepositoryEntity> Mapper { get; private set; }
 

@@ -25,7 +25,7 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
-			m_suggestedEvents = m_eventService.GetSuggestedEvents(CurrentContext.Instance.Baby).ToList();
+			m_suggestedEvents = m_eventService.GetSuggestedEvents(CurrentContext.Instance.CurrentBaby).ToList();
 			m_otherEvents = m_eventService.GetAllEvents().Except(m_suggestedEvents).ToList();
 
 			EventListViewSource eventListViewSource = new EventListViewSource(this, m_suggestedEvents, m_otherEvents);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
+using System.Globalization;
 
 namespace Domain.Baby
 {
@@ -45,6 +46,15 @@ namespace Domain.Baby
 		public Baby GetBaby()
 		{
 			return MainRepository.FindFirst();
+		}
+
+		/// <summary>
+		/// Gets the baby.
+		/// </summary>
+		/// <returns>The baby.</returns>
+		public Baby GetBaby(string id)
+		{
+			return MainRepository.FindBy(id);
 		}
 	}
 }

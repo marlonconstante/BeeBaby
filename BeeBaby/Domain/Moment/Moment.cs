@@ -13,6 +13,7 @@ namespace Domain.Moment
 		public Moment() : base()
 		{
 			SelectedMediaNames = new List<string>();
+			Babies = new List<Baby.Baby>();
 		}
 
 		/// <summary>
@@ -56,5 +57,11 @@ namespace Domain.Moment
 		/// </summary>
 		/// <value>The selected media names.</value>
 		public IList<string> SelectedMediaNames { set; get; }
+
+		/// <summary>
+		/// Gets or sets the baby.
+		/// </summary>
+		/// <value>The baby.</value>
+		public IList<Baby.Baby> Babies { set; get; }
 	}
 }

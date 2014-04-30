@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Moment;
 using SQLiteNetExtensions.Attributes;
+using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
@@ -57,5 +58,12 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The date.</value>
 		public DateTime Date { set; get; }
+
+		/// <summary>
+		/// Gets or sets the babies.
+		/// </summary>
+		/// <value>The babies.</value>
+		[ManyToMany(typeof(MomentsBabies))]
+		public IList<BabyData> Babies { set; get; }
 	}
 }

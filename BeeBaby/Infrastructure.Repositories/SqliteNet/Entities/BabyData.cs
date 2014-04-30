@@ -1,4 +1,6 @@
 ﻿using System;
+using SQLiteNetExtensions.Attributes;
+using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
@@ -33,6 +35,12 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the moments.
+		/// </summary>
+		/// <value>The moments.</value>
+		[ManyToMany(typeof(MomentsBabies))]
+		public List<MomentData> Moments { set; get; }
 	}
 }
 

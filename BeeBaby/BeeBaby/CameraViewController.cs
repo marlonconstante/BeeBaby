@@ -38,7 +38,7 @@ namespace BeeBaby
 			var momentService = new MomentService();
 			var babyService = new BabyService();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
-			CurrentContext.Instance.Baby = babyService.GetBaby();
+			CurrentContext.Instance.CurrentBaby = babyService.GetBaby();
 
 			if (!MediaPickerProvider.IsCameraAvailable())
 			{

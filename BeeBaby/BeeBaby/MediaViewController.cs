@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using BeeBaby.ViewModels;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -39,12 +40,14 @@ namespace BeeBaby
 		partial void NextStep(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				if (CurrentContext.Instance.Baby == null)
+				if (CurrentContext.Instance.CurrentBaby == null)
 				{
 					PerformSegue("segueBaby", sender);
 				}
 				else
 				{
+					CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+					new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 					PerformSegue("segueMoment", sender);
 				}
 			}, false);
