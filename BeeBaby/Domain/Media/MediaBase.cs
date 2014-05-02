@@ -10,6 +10,7 @@ namespace Domain.Media
 	{
 		#region Constants
 		public const int ImageThumbnailSize = 150;
+		public const int ImageShareSize = 320;
 		public const float ImageCompressionQuality = 0.7f;
 		#endregion
 

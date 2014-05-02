@@ -272,14 +272,12 @@ namespace BeeBaby.ResourcesProviders
 			var controller = (ImageShareViewController) board.InstantiateViewController("ImageShareViewController");
 			controller.LoadView();
 
-			RectangleF frame = controller.View.Frame;
-
-			using (var image = CroppedImageResize(sourceImage, frame.Width))
+			using (var image = CroppedImageResize(sourceImage, MediaBase.ImageShareSize))
 			{
 				controller.SetInformation(moment, image, CurrentContext.Instance.CurrentBaby);
 			}
 
-			UIGraphics.BeginImageContextWithOptions(new SizeF(frame.Width, frame.Height), false, 0f);
+			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
 			try
 			{
 				using (var context = UIGraphics.GetCurrentContext())
