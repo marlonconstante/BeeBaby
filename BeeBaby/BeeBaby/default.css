@@ -105,7 +105,7 @@ navigation-bar back-indicator {
 .button-camera,
 .button-camera:highlighted,
 .button-camera:selected {
-	border:	2 solid #fff;
+	border:	3 solid #fff;
 	shape: ellipse;
 	-ios-tint-color: #fff;
 }
@@ -116,11 +116,6 @@ navigation-bar back-indicator {
 
 .camera-overlay {
 	background-color:rgba(0, 0, 0, 0.2);
-}
-
-.preview-image {
-	border:	1 solid #fff;
-	border-radius: 1;
 }
 
 .event-label {
