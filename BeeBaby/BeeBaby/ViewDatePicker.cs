@@ -2,6 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -10,10 +11,12 @@ namespace BeeBaby
 		UIDatePicker m_datePicker;
 		UIButton m_button;
 		UILabel m_label;
+		string m_longDateMask;
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
 			IgnoreHide = false;
+			m_longDateMask = "LongDateMask".Translate();
 
 			foreach (UIView element in Subviews)
 			{
@@ -63,11 +66,11 @@ namespace BeeBaby
 			switch (m_datePicker.Mode)
 			{
 			case UIDatePickerMode.DateAndTime:
-				m_button.SetTitle(GetText("d"), UIControlState.Normal);
+				m_button.SetTitle(GetText(m_longDateMask), UIControlState.Normal);
 				m_label.Text = GetText("HH:mm");
 				break;
 			case UIDatePickerMode.Date:
-				m_button.SetTitle(GetText("D"), UIControlState.Normal);
+				m_button.SetTitle(GetText(m_longDateMask), UIControlState.Normal);
 				break;
 			case UIDatePickerMode.Time:
 				m_button.SetTitle(GetText("HH:mm"), UIControlState.Normal);

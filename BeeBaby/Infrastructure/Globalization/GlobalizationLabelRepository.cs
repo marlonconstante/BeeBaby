@@ -53,6 +53,7 @@ namespace Infrastructure.Globalization
 		protected string GetCultureText(string cultureName)
 		{
 			return @"
+LongDateMask = d 'de' MMMMM 'de' yyyy
 Name = Nome
 Gender = Sexo
 Share = Compartilhar
