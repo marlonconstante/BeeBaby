@@ -384,6 +384,10 @@ text-view {
 	background-image: url(camera.svg);
 }
 
+.target-camera {
+	background-image: url(target-camera.svg);
+}
+
 .picture {
 	background-image: url(picture.svg);
 }

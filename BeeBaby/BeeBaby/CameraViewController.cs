@@ -59,7 +59,7 @@ namespace BeeBaby
 			{
 				m_mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
 				m_picker = m_mediaPickerProvider.GetUIImagePickerController();
-				m_picker.CameraOverlayView = this.View;
+				m_picker.CameraOverlayView = View;
 
 				PresentViewController(m_picker, false, null);
 

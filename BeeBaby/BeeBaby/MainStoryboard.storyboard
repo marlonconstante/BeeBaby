@@ -1073,10 +1073,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera-overlay"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-vY-8uK">
+                                <rect key="frame" x="113" y="236" width="95" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="6zd-fY-lB0"/>
+                                    <constraint firstAttribute="height" constant="95" id="jEv-i0-5qS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="target-camera"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CQe-vY-8uK" secondAttribute="trailing" constant="112" id="57X-Gb-zVf"/>
                             <constraint firstAttribute="bottom" secondItem="C5X-Yu-geP" secondAttribute="bottom" id="C4H-LI-DkB"/>
                             <constraint firstItem="OeX-HZ-OaN" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="CQL-Kf-pSs"/>
+                            <constraint firstAttribute="centerY" secondItem="CQe-vY-8uK" secondAttribute="centerY" id="rOD-FC-lYr"/>
                             <constraint firstItem="C5X-Yu-geP" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="tY6-1p-fPz"/>
                             <constraint firstItem="OeX-HZ-OaN" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="u1L-4k-irT"/>
                         </constraints>
