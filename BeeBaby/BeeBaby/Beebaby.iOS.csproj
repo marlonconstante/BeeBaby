@@ -156,6 +156,8 @@
     <BundleResource Include="Resources\bee.svg" />
     <BundleResource Include="Resources\clock.svg" />
     <BundleResource Include="Resources\target-camera.svg" />
+    <BundleResource Include="Resources\timeline.svg" />
+    <BundleResource Include="Resources\pictures.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

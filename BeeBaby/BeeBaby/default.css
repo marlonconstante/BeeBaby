@@ -392,6 +392,14 @@ text-view {
 	background-image: url(picture.svg);
 }
 
+.pictures {
+	background-image: url(pictures.svg);
+}
+
+.timeline {
+	background-image: url(timeline.svg);
+}
+
 .music {
 	background-image: url(music.svg);
 }
