@@ -901,21 +901,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="rYa-Dr-IAd">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="k4C-dG-TVr">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T8C-LH-Ug7">
-                                <rect key="frame" x="273" y="6" width="31" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rYa-Dr-IAd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnAddMediaFromLibrary" destination="HTC-QG-Bjq" id="hcf-3T-mhE"/>

@@ -31,12 +31,6 @@ navigation-bar button:selected {
 	font-weight: normal;
 }
 
-navigation-bar back-indicator {
-    background-image: url(comeback.svg);
-    background-size: 21;
-    background-padding: 1;
-}
-
 .navigation-button,
 .navigation-button:highlighted,
 .navigation-button:selected,
@@ -344,6 +338,10 @@ text-view {
 
 .checkmark {
 	background-image: url(checkmark.svg);
+}
+
+.comeback {
+	background-image: url(comeback.svg);
 }
 
 .comments {

@@ -243,6 +243,7 @@
     </Compile>
     <Compile Include="GestureRecognizerDelegate.cs" />
     <Compile Include="Util\PreferencesEditor.cs" />
+    <Compile Include="NavigationButtonItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

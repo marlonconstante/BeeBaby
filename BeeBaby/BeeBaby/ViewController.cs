@@ -2,6 +2,8 @@
 using MonoTouch.UIKit;
 using BigTed;
 using MonoTouch.Foundation;
+using System.Drawing;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -23,6 +25,52 @@ namespace BeeBaby
 			AddEditingTapGestureRecognizer();
 
 			TranslateLabels();
+
+			AddTitleView();
+			AddLeftBarButtonItem();
+			AddRightBarButtonItem();
+		}
+
+		/// <summary>
+		/// Adds the title view.
+		/// </summary>
+		void AddTitleView()
+		{
+			UIImageView imageView = new UIImageView(new RectangleF(0f, 0f, 82f, 36f));
+			imageView.SetStyleClass("bee-baby");
+			NavigationItem.TitleView = imageView;
+		}
+
+		/// <summary>
+		/// Adds the left bar button item.
+		/// </summary>
+		void AddLeftBarButtonItem()
+		{
+			NavigationButtonItem navigationButtonItem = null;
+			if (GetType() != NavigationController.ViewControllers[0].GetType())
+			{
+				navigationButtonItem =
+					new NavigationButtonItem(new RectangleF(0f, 0f, 18f, 24f)
+					, -6f
+					, (sender, args) => {
+						NavigationController.PopViewControllerAnimated(true);
+					}, "comeback");
+			}
+			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Adds the right bar button item.
+		/// </summary>
+		void AddRightBarButtonItem()
+		{
+			var navigationButtonItem =
+				new NavigationButtonItem(new RectangleF(0f, 0f, 34f, 34f)
+				, 6f
+				, (sender, args) => {
+					NavigationController.PopToRootViewController(true);
+				}, "camera");
+			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
 		}
 
 		/// <summary>
