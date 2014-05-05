@@ -22,6 +22,36 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			clnView.Source = m_collectionViewSource;
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			m_collectionViewSource.ReloadData(clnView);
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		public override void TranslateLabels()
+		{
+			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
+			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
+		}
+
+		/// <summary>
 		/// Buttons the add media from library.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -51,36 +81,6 @@ namespace BeeBaby
 					PerformSegue("segueMoment", sender);
 				}
 			}, false);
-		}
-
-		/// <summary>
-		/// Views the did load.
-		/// </summary>
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-
-			clnView.Source = m_collectionViewSource;
-		}
-
-		/// <summary>
-		/// Views the will appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
-			m_collectionViewSource.ReloadData(clnView);
-		}
-
-		/// <summary>
-		/// Translates the labels.
-		/// </summary>
-		public override void TranslateLabels()
-		{
-			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
-			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
 		}
 	}
 }
