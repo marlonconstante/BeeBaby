@@ -18,7 +18,6 @@ namespace BeeBaby
 
 		public MediaViewController(IntPtr handle) : base(handle)
 		{
-			m_collectionViewSource = new ImageCollectionViewSource(this);
 		}
 
 		/// <summary>
@@ -28,6 +27,7 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			m_collectionViewSource = new ImageCollectionViewSource(this);
 			clnView.Source = m_collectionViewSource;
 		}
 

@@ -20,8 +20,7 @@ namespace BeeBaby
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		public override UIWindow Window
-		{
+		public override UIWindow Window {
 			get;
 			set;
 		}
@@ -66,7 +65,21 @@ namespace BeeBaby
 			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
 			DomainConfig.RegisterDependencies(connection);
 			DomainConfig.InitializeGlobalization();
-			ProgressHUD.Shared.SetStyleClass("progress");
+
+			InitProgressHUD();
+		}
+
+		/// <summary>
+		/// Inits the ProgressHUD.
+		/// </summary>
+		void InitProgressHUD()
+		{
+			var hud = ProgressHUD.Shared;
+			hud.SetStyleClass("progress");
+
+			var frame = hud.Frame;
+			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
+			hud.Frame = frame;
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
