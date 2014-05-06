@@ -26,52 +26,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Adds the title view.
-		/// </summary>
-		void AddTitleView()
-		{
-			UIImageView imageView = new UIImageView(new RectangleF(0f, 0f, 82f, 36f));
-			imageView.SetStyleClass("bee-baby");
-			NavigationItem.TitleView = imageView;
-		}
-
-		/// <summary>
-		/// Adds the left bar button item.
-		/// </summary>
-		void AddLeftBarButtonItem()
-		{
-			NavigationButtonItem navigationButtonItem = null;
-			if (IsAddLeftBarButtonItem())
-			{
-				navigationButtonItem =
-					new NavigationButtonItem(LeftBarButtonFrame()
-					, -6f
-					, (sender, args) => {
-						LeftBarButtonAction();
-					}, LeftBarButtonStyleClass());
-			}
-			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
-		}
-
-		/// <summary>
-		/// Adds the right bar button item.
-		/// </summary>
-		void AddRightBarButtonItem()
-		{
-			NavigationButtonItem navigationButtonItem = null;
-			if (IsAddRightBarButtonItem())
-			{
-				navigationButtonItem =
-					new NavigationButtonItem(RightBarButtonFrame()
-						, 6f
-						, (sender, args) => {
-							RightBarButtonAction();
-						}, RightBarButtonStyleClass());
-			}
-			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
-		}
-
-		/// <summary>
 		/// Determines whether this instance is add left bar button item.
 		/// </summary>
 		/// <returns><c>true</c> if this instance is add left bar button item; otherwise, <c>false</c>.</returns>
@@ -158,6 +112,73 @@ namespace BeeBaby
 		void UpdateNavigationBar()
 		{
 			NavigationController.NavigationBarHidden = !IsShowStatusBar();
+		}
+
+		/// <summary>
+		/// Adds the title view.
+		/// </summary>
+		void AddTitleView()
+		{
+			UIView titleView;
+			if (TitleScreen != null)
+			{
+				UILabel label = new UILabel();
+				label.Text = TitleScreen;
+				label.SizeToFit();
+				label.SetStyleClass("title-label");
+				titleView = label;
+			}
+			else
+			{
+				titleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
+				titleView.SetStyleClass("bee-baby");
+			}
+			NavigationItem.TitleView = titleView;
+		}
+
+		/// <summary>
+		/// Adds the left bar button item.
+		/// </summary>
+		void AddLeftBarButtonItem()
+		{
+			NavigationButtonItem navigationButtonItem = null;
+			if (IsAddLeftBarButtonItem())
+			{
+				navigationButtonItem =
+					new NavigationButtonItem(LeftBarButtonFrame()
+						, -6f
+						, (sender, args) => {
+					LeftBarButtonAction();
+				}, LeftBarButtonStyleClass());
+			}
+			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Adds the right bar button item.
+		/// </summary>
+		void AddRightBarButtonItem()
+		{
+			NavigationButtonItem navigationButtonItem = null;
+			if (IsAddRightBarButtonItem())
+			{
+				navigationButtonItem =
+					new NavigationButtonItem(RightBarButtonFrame()
+						, 6f
+						, (sender, args) => {
+					RightBarButtonAction();
+				}, RightBarButtonStyleClass());
+			}
+			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Gets or sets the title screen.
+		/// </summary>
+		/// <value>The title screen.</value>
+		public string TitleScreen {
+			get;
+			set;
 		}
 	}
 }

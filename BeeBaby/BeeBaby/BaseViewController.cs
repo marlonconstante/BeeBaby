@@ -3,7 +3,6 @@ using MonoTouch.UIKit;
 using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
-using PixateFreestyleLib;
 
 namespace BeeBaby
 {

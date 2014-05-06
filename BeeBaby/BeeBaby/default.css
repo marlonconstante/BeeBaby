@@ -15,6 +15,7 @@ segmented-control {
 	background-color: #00aead;
 }
 
+.title-label,
 .flash-label,
 navigation-bar,
 navigation-bar title,
@@ -110,6 +111,10 @@ navigation-bar button:selected {
 
 .camera-overlay {
 	background-color:rgba(0, 0, 0, 0.2);
+}
+
+.title-label {
+	font-size: 18pt;
 }
 
 .event-label {
