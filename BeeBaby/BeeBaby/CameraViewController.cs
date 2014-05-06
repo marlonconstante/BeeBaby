@@ -23,6 +23,7 @@ namespace BeeBaby
 
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
+			CreateMoment();
 		}
 
 		/// <summary>
@@ -34,17 +35,6 @@ namespace BeeBaby
 			base.ViewWillAppear(animated);
 
 			View.BackgroundColor = UIColor.Black;
-
-			// Create the moment, saves and generate a ID for future use.
-			var momentService = new MomentService();
-			var babyService = new BabyService();
-			CurrentContext.Instance.Moment = momentService.CreateMoment();
-			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
-
-			if (!MediaPickerProvider.IsCameraAvailable())
-			{
-				OpenMedia(btnOpenMedia);
-			}
 		}
 
 		/// <summary>
@@ -66,10 +56,10 @@ namespace BeeBaby
 				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
 				ChangeFlashMode(btnFlash);
 
-				LoadOrientationNotification();
+				View.BackgroundColor = UIColor.Clear;
 			}
 
-			View.BackgroundColor = UIColor.Clear;
+			LoadOrientationNotification();
 		}
 
 		/// <summary>
@@ -80,6 +70,15 @@ namespace BeeBaby
 		public override bool IsNavigationBarHidden()
 		{
 			return true;
+		}
+
+		/// <summary>
+		/// Creates the moment.
+		/// </summary>
+		void CreateMoment()
+		{
+			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
+			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 		}
 
 		/// <summary>
@@ -192,7 +191,6 @@ namespace BeeBaby
 
 				StopSound();
 				PerformSegue("segueMedia", sender);
-				DismissViewController(true, null);
 			}, false);
 		}
 	}
