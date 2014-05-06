@@ -1253,7 +1253,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zqq-fT-qY6"/>
         <segue reference="74t-Pu-020"/>
+        <segue reference="zqq-fT-qY6"/>
     </inferredMetricsTieBreakers>
 </document>
