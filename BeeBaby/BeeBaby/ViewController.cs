@@ -47,14 +47,14 @@ namespace BeeBaby
 		void AddLeftBarButtonItem()
 		{
 			NavigationButtonItem navigationButtonItem = null;
-			if (GetType() != NavigationController.ViewControllers[0].GetType())
+			if (IsAddLeftBarButtonItem())
 			{
 				navigationButtonItem =
-					new NavigationButtonItem(new RectangleF(0f, 0f, 18f, 24f)
+					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
 					, (sender, args) => {
 						LeftBarButtonAction();
-					}, "comeback");
+					}, LeftBarButtonStyleClass());
 			}
 			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
 		}
@@ -64,13 +64,35 @@ namespace BeeBaby
 		/// </summary>
 		void AddRightBarButtonItem()
 		{
-			var navigationButtonItem =
-				new NavigationButtonItem(new RectangleF(0f, 0f, 34f, 34f)
-				, 6f
-				, (sender, args) => {
-					RightBarButtonAction();
-				}, "camera");
+			NavigationButtonItem navigationButtonItem = null;
+			if (IsAddRightBarButtonItem())
+			{
+				navigationButtonItem =
+					new NavigationButtonItem(RightBarButtonFrame()
+						, 6f
+						, (sender, args) => {
+							RightBarButtonAction();
+						}, RightBarButtonStyleClass());
+			}
 			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Determines whether this instance is add left bar button item.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is add left bar button item; otherwise, <c>false</c>.</returns>
+		public virtual bool IsAddLeftBarButtonItem()
+		{
+			return GetType() != NavigationController.ViewControllers[0].GetType();
+		}
+
+		/// <summary>
+		/// Lefts the bar button frame.
+		/// </summary>
+		/// <returns>The bar button frame.</returns>
+		public virtual RectangleF LeftBarButtonFrame()
+		{
+			return new RectangleF(0f, 0f, 18f, 24f);
 		}
 
 		/// <summary>
@@ -82,11 +104,47 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Lefts the bar button style class.
+		/// </summary>
+		/// <returns>The bar button style class.</returns>
+		public virtual string LeftBarButtonStyleClass()
+		{
+			return "comeback";
+		}
+
+		/// <summary>
+		/// Determines whether this instance is add right bar button item.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is add right bar button item; otherwise, <c>false</c>.</returns>
+		public virtual bool IsAddRightBarButtonItem()
+		{
+			return true;
+		}
+
+		/// <summary>
+		/// Rights the bar button frame.
+		/// </summary>
+		/// <returns>The bar button frame.</returns>
+		public virtual RectangleF RightBarButtonFrame()
+		{
+			return new RectangleF(0f, 0f, 34f, 34f);
+		}
+
+		/// <summary>
 		/// Rights the bar button action.
 		/// </summary>
 		public virtual void RightBarButtonAction()
 		{
 			NavigationController.PopToRootViewController(true);
+		}
+
+		/// <summary>
+		/// Rights the bar button style class.
+		/// </summary>
+		/// <returns>The bar button style class.</returns>
+		public virtual string RightBarButtonStyleClass()
+		{
+			return "camera";
 		}
 
 		/// <summary>
