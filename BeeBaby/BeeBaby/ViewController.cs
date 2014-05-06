@@ -53,7 +53,7 @@ namespace BeeBaby
 					new NavigationButtonItem(new RectangleF(0f, 0f, 18f, 24f)
 					, -6f
 					, (sender, args) => {
-						NavigationController.PopViewControllerAnimated(true);
+						LeftBarButtonAction();
 					}, "comeback");
 			}
 			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
@@ -68,9 +68,25 @@ namespace BeeBaby
 				new NavigationButtonItem(new RectangleF(0f, 0f, 34f, 34f)
 				, 6f
 				, (sender, args) => {
-					NavigationController.PopToRootViewController(true);
+					RightBarButtonAction();
 				}, "camera");
 			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Lefts the bar button action.
+		/// </summary>
+		public virtual void LeftBarButtonAction()
+		{
+			NavigationController.PopViewControllerAnimated(true);
+		}
+
+		/// <summary>
+		/// Rights the bar button action.
+		/// </summary>
+		public virtual void RightBarButtonAction()
+		{
+			NavigationController.PopToRootViewController(true);
 		}
 
 		/// <summary>
@@ -81,7 +97,7 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			NavigationController.NavigationBarHidden = IsNavigationBarHidden();
+			UpdateStatusBar();
 		}
 
 		/// <summary>
@@ -130,6 +146,16 @@ namespace BeeBaby
 		public virtual void EndEditing()
 		{
 			View.EndEditing(true);
+		}
+
+		/// <summary>
+		/// Updates the status bar.
+		/// </summary>
+		void UpdateStatusBar()
+		{
+			var navigationBarHidden = IsNavigationBarHidden();
+			UIApplication.SharedApplication.SetStatusBarHidden(navigationBarHidden, UIStatusBarAnimation.None);
+			NavigationController.NavigationBarHidden = navigationBarHidden;
 		}
 
 		/// <summary>
