@@ -9,43 +9,50 @@ namespace BeeBaby
 {
 	public partial class MenuViewController : UINavigationController
 	{
-
-		public UIWindow Window
-		{
-			get;
-			set;
-		}
-
-		public SlideoutNavigationController Menu { get; private set; }
-
-
 		public MenuViewController(IntPtr handle) : base(handle)
 		{
 		}
 
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
 
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
-			UIViewController controller = (UIViewController)board.InstantiateViewController("TimelineViewController");
+			UIViewController controller = (UIViewController) board.InstantiateViewController("TimelineViewController");
 
-			Window = UIApplication.SharedApplication.Windows [0];
-
-//			Window = new UIWindow (UIScreen.MainScreen.Bounds);
-			Menu = new SlideoutNavigationController ();
+			Menu = new SlideoutNavigationController();
 			Menu.View.MultipleTouchEnabled = true;
 			Menu.View.UserInteractionEnabled = true;
 			Menu.SlideHeight = 9999f;
 			Menu.TopView = controller;
-			Menu.MenuViewLeft = new LeftMenuViewController ();
-//			Menu.MenuViewRight = new DummyControllerRight ();
-
+			Menu.MenuViewLeft = new LeftMenuViewController();
 			Menu.RightMenuEnabled = false;
 
+			Window = UIApplication.SharedApplication.Windows[0];
 			Window.RootViewController = Menu;
-			Window.MakeKeyAndVisible ();
+			Window.MakeKeyAndVisible();
+		}
 
+		/// <summary>
+		/// Gets or sets the window.
+		/// </summary>
+		/// <value>The window.</value>
+		public UIWindow Window {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets the menu.
+		/// </summary>
+		/// <value>The menu.</value>
+		public SlideoutNavigationController Menu {
+			get;
+			private set;
 		}
 	}
 }
