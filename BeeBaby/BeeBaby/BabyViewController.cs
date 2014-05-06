@@ -5,6 +5,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
 using Domain.Moment;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -76,11 +77,13 @@ namespace BeeBaby
 				baby.Gender = (Gender) segGender.SelectedSegment + 1;
 				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
 
-				CurrentContext.Instance.CurrentBaby = baby;
-
 				babyService.SaveBaby(baby);
 
+				CurrentContext.Instance.CurrentBaby = baby;
 				CurrentContext.Instance.Moment.Babies.Add(baby);
+
+				PreferencesEditor.SaveLastUsedBaby(baby.Id);
+
 				new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 
 				PerformSegue("segueMoment", sender);
