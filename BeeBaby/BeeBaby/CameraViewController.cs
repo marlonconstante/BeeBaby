@@ -23,6 +23,14 @@ namespace BeeBaby
 
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
+		}
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
 			CreateMoment();
 		}
 
@@ -79,6 +87,7 @@ namespace BeeBaby
 		{
 			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
 			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
+			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;
 		}
 
 		/// <summary>
@@ -164,6 +173,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Opens the timeline.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void OpenTimeline(UIButton sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				PerformSegue("segueTimeline", sender);
+				DismissViewController(true, null);
+			}, false);
+		}
+
+		/// <summary>
 		/// Takes the photo.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -183,12 +204,10 @@ namespace BeeBaby
 		partial void OpenMedia(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-
 				if (m_mediaPickerProvider != null)
 				{
 					m_mediaPickerProvider.Delegate.WaitForPendingTasks();
 				}
-
 				StopSound();
 				PerformSegue("segueMedia", sender);
 			}, false);

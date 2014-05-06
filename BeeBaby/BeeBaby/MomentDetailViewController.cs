@@ -140,6 +140,7 @@ namespace BeeBaby
 				CurrentContext.Instance.SelectedEvent = null;
 
 				PerformSegue("segueTimeline", sender);
+				DismissViewController(true, null);
 			}, false);
 		}
 

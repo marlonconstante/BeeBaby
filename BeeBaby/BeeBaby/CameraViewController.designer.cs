@@ -39,6 +39,9 @@ namespace BeeBaby
 		[Action ("OpenMedia:")]
 		partial void OpenMedia (MonoTouch.UIKit.UIButton sender);
 
+		[Action ("OpenTimeline:")]
+		partial void OpenTimeline (MonoTouch.UIKit.UIButton sender);
+
 		[Action ("PlaySound:")]
 		partial void PlaySound (MonoTouch.UIKit.UIButton sender);
 
@@ -65,6 +68,11 @@ namespace BeeBaby
 				btnOpenTimeline = null;
 			}
 
+			if (btnSound != null) {
+				btnSound.Dispose ();
+				btnSound = null;
+			}
+
 			if (btnSwitchCamera != null) {
 				btnSwitchCamera.Dispose ();
 				btnSwitchCamera = null;
@@ -78,11 +86,6 @@ namespace BeeBaby
 			if (lblFlash != null) {
 				lblFlash.Dispose ();
 				lblFlash = null;
-			}
-
-			if (btnSound != null) {
-				btnSound.Dispose ();
-				btnSound = null;
 			}
 		}
 	}
