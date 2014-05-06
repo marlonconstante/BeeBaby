@@ -72,6 +72,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void TranslateLabels()
 		{
+			TitleScreen = "Moment".Translate();
 			lblMomentAbout.Text = "MomentAbout".Translate();
 			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
 			lblLocation.Text = "WhichWas".Translate();

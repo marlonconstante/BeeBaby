@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 using Application;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -32,6 +33,14 @@ namespace BeeBaby
 			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_suggestedEvents, m_otherEvents);
 			tblView.SeparatorInset = UIEdgeInsets.Zero;
 			tblView.Source = eventListViewSource;
+		}
+
+		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		public override void TranslateLabels()
+		{
+			TitleScreen = "Event".Translate();
 		}
 	}
 }
