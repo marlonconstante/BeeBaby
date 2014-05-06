@@ -138,7 +138,7 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;
 
-				PerformSegue("segueSave", sender);
+				PerformSegue("segueTimeline", sender);
 			}, false);
 		}
 
@@ -161,9 +161,7 @@ namespace BeeBaby
 		/// </summary>
 		/// <value>The view date.</value>
 		public ViewDatePicker ViewDate {
-			get
-			{
-
+			get {
 				return (ViewDatePicker) vwDate;
 			}
 		}

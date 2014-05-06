@@ -158,6 +158,8 @@
     <BundleResource Include="Resources\target-camera.svg" />
     <BundleResource Include="Resources\timeline.svg" />
     <BundleResource Include="Resources\pictures.svg" />
+    <BundleResource Include="Resources\cancel.svg" />
+    <BundleResource Include="Resources\menu.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

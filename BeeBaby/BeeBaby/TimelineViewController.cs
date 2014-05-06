@@ -42,5 +42,15 @@ namespace BeeBaby
 
 			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
 		}
+
+		/// <summary>
+		/// Rights the bar button action.
+		/// </summary>
+		public override void RightBarButtonAction()
+		{
+			ShowProgressWhilePerforming(() => {
+				PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
+			}, false);
+		}
 	}
 }
