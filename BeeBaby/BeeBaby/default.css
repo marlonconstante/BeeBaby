@@ -340,6 +340,10 @@ text-view {
 	background-image: url(checkmark.svg);
 }
 
+.cancel {
+	background-image: url(cancel.svg);
+}
+
 .comeback {
 	background-image: url(comeback.svg);
 }
@@ -370,6 +374,10 @@ text-view {
 
 .location-clear {
 	background-image: url(location-clear.svg);
+}
+
+.menu {
+	background-image: url(menu.svg);
 }
 
 .camera,
