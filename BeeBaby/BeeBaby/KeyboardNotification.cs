@@ -7,11 +7,11 @@ namespace BeeBaby
 {
 	public class KeyboardNotification
 	{
-		ViewController m_viewController;
+		BaseViewController m_viewController;
 		// Amount to scroll
 		float m_scrollAmount = 0.0f;
 
-		private KeyboardNotification(ViewController viewController)
+		private KeyboardNotification(BaseViewController viewController)
 		{
 			m_viewController = viewController;
 
@@ -98,7 +98,7 @@ namespace BeeBaby
 		/// Add the specified viewController.
 		/// </summary>
 		/// <param name="viewController">View controller.</param>
-		public static KeyboardNotification Add(ViewController viewController)
+		public static KeyboardNotification Add(BaseViewController viewController)
 		{
 			return new KeyboardNotification(viewController);
 		}

@@ -8,7 +8,7 @@ using Domain.Moment;
 
 namespace BeeBaby
 {
-	public partial class BabyViewController : ViewController
+	public partial class BabyViewController : NavigationViewController
 	{
 		public BabyViewController(IntPtr handle) : base(handle)
 		{

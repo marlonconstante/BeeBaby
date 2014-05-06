@@ -7,7 +7,7 @@ using Application;
 
 namespace BeeBaby
 {
-	public partial class EventListViewController : ViewController
+	public partial class EventListViewController : NavigationViewController
 	{
 		IList<Event> m_suggestedEvents;
 		IList<Event> m_otherEvents;

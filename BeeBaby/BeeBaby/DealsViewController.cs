@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class DealsViewController : ViewController
+	public partial class DealsViewController : NavigationViewController
 	{
 		public DealsViewController (IntPtr handle) : base (handle)
 		{

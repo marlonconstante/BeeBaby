@@ -11,7 +11,7 @@ using Domain.Moment;
 
 namespace BeeBaby
 {
-	public partial class MediaViewController : ViewController
+	public partial class MediaViewController : NavigationViewController
 	{
 		UIImagePickerController m_picker;
 		ImageCollectionViewSource m_collectionViewSource;

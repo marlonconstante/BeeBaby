@@ -13,7 +13,7 @@ using BeeBaby.Util;
 
 namespace BeeBaby
 {
-	public partial class CameraViewController : ViewController
+	public partial class CameraViewController : NavigationViewController
 	{
 		UIImagePickerController m_picker;
 		MediaPickerProvider m_mediaPickerProvider;
@@ -63,13 +63,13 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Determines whether this instance is navigation bar hidden.
+		/// Determines whether this instance is show status bar.
 		/// </summary>
 		/// <returns>true</returns>
 		/// <c>false</c>
-		public override bool IsNavigationBarHidden()
+		public override bool IsShowStatusBar()
 		{
-			return true;
+			return false;
 		}
 
 		/// <summary>

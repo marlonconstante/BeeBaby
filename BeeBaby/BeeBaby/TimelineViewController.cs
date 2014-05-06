@@ -11,7 +11,7 @@ using Application;
 
 namespace BeeBaby
 {
-	public partial class TimelineViewController : ViewController
+	public partial class TimelineViewController : NavigationViewController
 	{
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{

@@ -8,7 +8,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
-	public partial class MomentDetailViewController : ViewController
+	public partial class MomentDetailViewController : NavigationViewController
 	{
 		float m_mapViewHeight;
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;

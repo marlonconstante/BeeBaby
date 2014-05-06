@@ -7,9 +7,9 @@ using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public class ViewController : UIViewController
+	public class NavigationViewController : BaseViewController
 	{
-		public ViewController(IntPtr handle) : base(handle)
+		public NavigationViewController(IntPtr handle) : base(handle)
 		{
 		}
 
@@ -19,12 +19,6 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			KeyboardNotification.Add(this);
-
-			AddEditingTapGestureRecognizer();
-
-			TranslateLabels();
 
 			AddTitleView();
 			AddLeftBarButtonItem();
@@ -155,105 +149,15 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			UpdateStatusBar();
+			UpdateNavigationBar();
 		}
 
 		/// <summary>
-		/// Views the will disappear.
+		/// Updates the navigation bar.
 		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillDisappear(bool animated)
+		void UpdateNavigationBar()
 		{
-			base.ViewWillDisappear(animated);
-
-			EndEditing();
-
-			// Shows the spinner
-			BTProgressHUD.Show();
-		}
-
-		/// <summary>
-		/// Views the did appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
-
-			// Dismiss the spinner
-			BTProgressHUD.Dismiss();
-		}
-
-		/// <summary>
-		/// Translates the labels.
-		/// </summary>
-		public virtual void TranslateLabels()
-		{
-		}
-
-		/// <summary>
-		/// Starts the editing.
-		/// </summary>
-		public virtual void StartEditing()
-		{
-		}
-
-		/// <summary>
-		/// Ends the editing.
-		/// </summary>
-		public virtual void EndEditing()
-		{
-			View.EndEditing(true);
-		}
-
-		/// <summary>
-		/// Updates the status bar.
-		/// </summary>
-		void UpdateStatusBar()
-		{
-			var navigationBarHidden = IsNavigationBarHidden();
-			UIApplication.SharedApplication.SetStatusBarHidden(navigationBarHidden, UIStatusBarAnimation.None);
-			NavigationController.NavigationBarHidden = navigationBarHidden;
-		}
-
-		/// <summary>
-		/// Determines whether this instance is navigation bar hidden.
-		/// </summary>
-		/// <returns><c>true</c> if this instance is navigation bar hidden; otherwise, <c>false</c>.</returns>
-		public virtual bool IsNavigationBarHidden()
-		{
-			return false;
-		}
-
-		/// <summary>
-		/// Determines whether this instance is keyboard animation.
-		/// </summary>
-		/// <returns><c>true</c> if this instance is keyboard animation; otherwise, <c>false</c>.</returns>
-		public virtual bool IsKeyboardAnimation()
-		{
-			return false;
-		}
-
-		/// <summary>
-		/// Shows the progress while performing.
-		/// </summary>
-		/// <param name="action">Action.</param>
-		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
-		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
-		{
-			ActionProgress actionProgress = new ActionProgress(action, closeProgressWhenFinished);
-			actionProgress.Execute();
-		}
-
-		/// <summary>
-		/// Adds the editing tap gesture recognizer.
-		/// </summary>
-		void AddEditingTapGestureRecognizer()
-		{
-			var gestureRecognizer = new UITapGestureRecognizer(() => EndEditing());
-			gestureRecognizer.Delegate = new GestureRecognizerDelegate();
-			gestureRecognizer.CancelsTouchesInView = false;
-			View.AddGestureRecognizer(gestureRecognizer);
+			NavigationController.NavigationBarHidden = !IsShowStatusBar();
 		}
 	}
 }
