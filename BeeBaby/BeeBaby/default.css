@@ -217,9 +217,16 @@ button.highlighted:selected {
 	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
 }
 
+.input-text,
 .row {
 	background-color: #fff;
 	box-shadow: 0 1 0 0 #b6bcba;
+}
+
+.form-button,
+.form-button:highlighted,
+.form-button:selected {
+	box-shadow: 0 -1 0 0 #b6bcba;
 }
 
 map-view {
@@ -231,9 +238,7 @@ map-view label {
 }
 
 .input-text {
-	border: 1 solid #00aead;
-	border-radius: 5;
-	padding-left: 8;
+	padding-left: 10;
 }
 
 text-field,
