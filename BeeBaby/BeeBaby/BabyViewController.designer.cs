@@ -13,13 +13,7 @@ namespace BeeBaby
 	partial class BabyViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBirthDay { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel lblBirthTime { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel lblGender { get; set; }
+		MonoTouch.UIKit.UILabel lblBirthDate { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblName { get; set; }
@@ -41,19 +35,9 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (lblBirthDay != null) {
-				lblBirthDay.Dispose ();
-				lblBirthDay = null;
-			}
-
-			if (lblBirthTime != null) {
-				lblBirthTime.Dispose ();
-				lblBirthTime = null;
-			}
-
-			if (lblGender != null) {
-				lblGender.Dispose ();
-				lblGender = null;
+			if (lblBirthDate != null) {
+				lblBirthDate.Dispose ();
+				lblBirthDate = null;
 			}
 
 			if (lblName != null) {

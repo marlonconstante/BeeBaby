@@ -88,13 +88,19 @@ navigation-bar button:selected {
 	box-shadow: 0 2 1 0 #b1bdbb;
 }
 
+segmented-control label,
+.small-button,
+.small-button:highlighted,
+.small-button:selected {
+	font-size: 13pt;
+	font-weight: bold;
+}
+
 .small-button,
 .small-button:highlighted,
 .small-button:selected {
 	background-color: #dadacb;
 	border-radius: 5;
-	font-size: 13pt;
-	font-weight: bold;
 }
 
 .button-camera,
@@ -128,6 +134,7 @@ navigation-bar button:selected {
 	font-weight: bold;
 }
 
+.form-label,
 .special-message-label {
 	font-size: 15pt;
 	font-weight: bold;
@@ -135,6 +142,10 @@ navigation-bar button:selected {
 
 .default-screen-background {
 	background-color: #fff;
+}
+
+.form-screen-background {
+	background-color: #e6e6e5;
 }
 
 .screen-background,
@@ -161,6 +172,7 @@ navigation-bar button:selected {
 .subtitle,
 .follow,
 .row label,
+.form-label,
 .time-box-label,
 .day-label,
 .moment-label,

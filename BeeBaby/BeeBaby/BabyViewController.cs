@@ -33,11 +33,10 @@ namespace BeeBaby
 		public override void TranslateLabels()
 		{
 			lblName.Text = "WhatsBabyName".Translate();
-			lblGender.Text = "Gender".Translate();
-			lblBirthDay.Text = "WhatDayHeWasBorn".Translate();
-			lblBirthTime.Text = "Schedule".Translate();
+			lblBirthDate.Text = "WhenWasHeBorn".Translate();
 			segGender.SetTitle("Male".Translate(), 0);
 			segGender.SetTitle("Female".Translate(), 1);
+			segGender.SetTitle("Unknown".Translate(), 2);
 		}
 
 		/// <summary>
@@ -74,7 +73,7 @@ namespace BeeBaby
 				var birthDateTime = ViewBirthDay.GetText("dd/MM/yyyy") + " " + ViewBirthTime.GetText("HH:mm");
 
 				baby.Name = txtName.Text;
-				baby.Gender = (Gender) segGender.SelectedSegment + 1;
+				baby.Gender = (Gender) segGender.SelectedSegment;
 				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
 
 				babyService.SaveBaby(baby);

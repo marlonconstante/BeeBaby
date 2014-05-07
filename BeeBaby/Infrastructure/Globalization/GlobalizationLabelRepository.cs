@@ -55,12 +55,10 @@ namespace Infrastructure.Globalization
 			return @"
 LongDateMask = d 'de' MMMMM 'de' yyyy
 Name = Nome
-Gender = Sexo
 Share = Compartilhar
 Baby = Bebê
 Photo = Foto
 TimeLine = Linha do Tempo
-Schedule = Horário
 First = Primeiro
 Save = Salvar
 Albums = Álbuns
@@ -70,6 +68,7 @@ FlashOn = Com
 FlashOff = Sem
 Male = Masculino
 Female = Feminino
+Unknown = Não sei
 ChoosePhotos = Escolher Fotos
 Event = Evento
 Moment = Momento
@@ -77,8 +76,8 @@ MomentAbout = Este momento é sobre:
 SelectEvent = Escolha um acontecimento
 WhichWas = Onde foi?
 MomentRemember = O que você gostaria de lembrar sobre este momento?
-WhatsBabyName = Qual o nome do bebê?
-WhatDayHeWasBorn = Que dia ele nasceu?
+WhatsBabyName = Qual é o nome do bebê?
+WhenWasHeBorn = Quando ele nasceu?
 ";
 		}
 	}
