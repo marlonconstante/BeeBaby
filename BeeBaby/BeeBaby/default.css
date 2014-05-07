@@ -357,10 +357,6 @@ text-view {
 	background-image: url(comments.svg);
 }
 
-.separator {
-	background-image: url(separator.png);
-}
-
 .clock {
 	background-image: url(clock.svg);
 }

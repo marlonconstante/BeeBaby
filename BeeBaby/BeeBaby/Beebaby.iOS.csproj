@@ -160,6 +160,7 @@
     <BundleResource Include="Resources\pictures.svg" />
     <BundleResource Include="Resources\cancel.svg" />
     <BundleResource Include="Resources\menu.svg" />
+    <BundleResource Include="Resources\background-profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
