@@ -103,6 +103,17 @@ segmented-control label,
 	border-radius: 5;
 }
 
+.photo-profile {
+	border:	1 solid #fff;
+	shape: ellipse;
+	-ios-tint-color: #fff;
+}
+
+.photo-profile image-view {
+	shape: ellipse;
+	background-image: url(photo-profile.png);
+}
+
 .button-camera,
 .button-camera:highlighted,
 .button-camera:selected {
@@ -116,7 +127,7 @@ segmented-control label,
 }
 
 .camera-overlay {
-	background-color:rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .title-label {
