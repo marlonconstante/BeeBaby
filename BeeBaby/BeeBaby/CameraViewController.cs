@@ -24,6 +24,7 @@ namespace BeeBaby
 		public CameraViewController(IntPtr handle) : base(handle)
 		{
 		}
+
 		/// <summary>
 		/// Views the did load.
 		/// </summary>
@@ -178,9 +179,19 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenTimeline(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			NSAction segueTimeline = () => {
 				PerformSegue("segueTimeline", sender);
 				DismissViewController(true, null);
+			};
+			ShowProgressWhilePerforming(() => {
+				if (m_picker != null)
+				{
+					m_picker.DismissViewController(false, segueTimeline);
+				}
+				else
+				{
+					segueTimeline();
+				}
 			}, false);
 		}
 
@@ -210,6 +221,10 @@ namespace BeeBaby
 				}
 				StopSound();
 				PerformSegue("segueMedia", sender);
+				if (m_picker != null)
+				{
+					m_picker.DismissViewController(false, null);
+				}
 			}, false);
 		}
 	}
