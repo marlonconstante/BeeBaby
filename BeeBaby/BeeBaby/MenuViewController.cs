@@ -2,7 +2,6 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.SlideoutNavigation;
-using System.Drawing;
 
 namespace BeeBaby
 {

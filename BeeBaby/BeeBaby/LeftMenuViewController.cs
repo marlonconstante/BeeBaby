@@ -5,6 +5,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using Domain.Baby;
 using BeeBaby.Util;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -21,6 +22,15 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			EdgesForExtendedLayout = UIRectEdge.None;
+			TableView.Bounces = false;
+
+			UIImageView imageView = new UIImageView(new RectangleF(0f, 0f, 320f, 195f));
+			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+			imageView.ClipsToBounds = true;
+			imageView.Image = UIImage.FromFile("background-profile.png");
+			TableView.TableHeaderView = imageView;
 
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
 			UIViewController controller = (UIViewController) board.InstantiateViewController("TimelineViewController");
