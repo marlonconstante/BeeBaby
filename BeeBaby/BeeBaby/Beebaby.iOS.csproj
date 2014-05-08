@@ -250,6 +250,7 @@
     <Compile Include="NavigationViewController.cs" />
     <Compile Include="BaseViewController.cs" />
     <Compile Include="MapAnnotation.cs" />
+    <Compile Include="ProfileView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -109,11 +109,6 @@ segmented-control label,
 	-ios-tint-color: #fff;
 }
 
-.photo-profile image-view {
-	shape: ellipse;
-	background-image: url(photo-profile.png);
-}
-
 .button-camera,
 .button-camera:highlighted,
 .button-camera:selected {
