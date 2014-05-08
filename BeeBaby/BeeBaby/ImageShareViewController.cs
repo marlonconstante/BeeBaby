@@ -11,6 +11,12 @@ namespace BeeBaby
 		{
 		}
 
+		/// <summary>
+		/// Sets the information.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		/// <param name="backgroundImage">Background image.</param>
+		/// <param name="baby">Baby.</param>
 		public void SetInformation(Moment moment, UIImage backgroundImage, Baby baby)
 		{
 			ivwBackgroundImage.Image = backgroundImage;
