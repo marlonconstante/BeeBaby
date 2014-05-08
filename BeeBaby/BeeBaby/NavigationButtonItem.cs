@@ -8,19 +8,19 @@ namespace BeeBaby
 	public class NavigationButtonItem : UIBarButtonItem
 	{
 		public NavigationButtonItem(RectangleF frame, float paddingLeft, EventHandler eventHandler, string styleClass) :
-			base(MakeButtonItem(frame, paddingLeft, eventHandler, styleClass))
+			base(BuildButtonItem(frame, paddingLeft, eventHandler, styleClass))
 		{
 		}
 
 		/// <summary>
-		/// Makes the button item.
+		/// Builds the button item.
 		/// </summary>
 		/// <returns>The button item.</returns>
 		/// <param name="frame">Frame.</param>
 		/// <param name="paddingLeft">Padding left.</param>
 		/// <param name="eventHandler">Event handler.</param>
 		/// <param name="styleClass">Style class.</param>
-		static UIView MakeButtonItem(RectangleF frame, float paddingLeft, EventHandler eventHandler, string styleClass)
+		static UIView BuildButtonItem(RectangleF frame, float paddingLeft, EventHandler eventHandler, string styleClass)
 		{
 			var buttonFrame = frame;
 			buttonFrame.X += paddingLeft;
