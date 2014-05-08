@@ -251,6 +251,9 @@
     <Compile Include="BaseViewController.cs" />
     <Compile Include="MapAnnotation.cs" />
     <Compile Include="ProfileView.cs" />
+    <Compile Include="ProfileView.designer.cs">
+      <DependentUpon>ProfileView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

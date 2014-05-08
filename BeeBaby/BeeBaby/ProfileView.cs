@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MonoTouch.UIKit;
 using System.Drawing;
 using PixateFreestyleLib;
@@ -32,7 +32,9 @@ namespace BeeBaby
 		/// </summary>
 		void AddBackgroundProfile()
 		{
-			AddSubview(BuildImageView(Frame, UIImage.FromFile("background-profile.png")));
+			var frame = new RectangleF(0f, 0f, Frame.Width, Frame.Height);
+			AddSubview(BuildImageView(frame, UIImage.FromFile("background-profile.png")));
+			ClipsToBounds = true;
 		}
 
 		/// <summary>
