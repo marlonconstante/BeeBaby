@@ -2,6 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.SlideoutNavigation;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -25,10 +26,12 @@ namespace BeeBaby
 			Menu = new SlideoutNavigationController();
 			Menu.View.MultipleTouchEnabled = true;
 			Menu.View.UserInteractionEnabled = true;
+			Menu.RightMenuEnabled = false;
+			Menu.DisplayNavigationBarOnLeftMenu = false;
+			Menu.ShadowOpacity = 0.1f;
 			Menu.SlideHeight = 9999f;
 			Menu.TopView = controller;
 			Menu.MenuViewLeft = new LeftMenuViewController();
-			Menu.RightMenuEnabled = false;
 
 			Window = UIApplication.SharedApplication.Windows[0];
 			Window.RootViewController = Menu;
