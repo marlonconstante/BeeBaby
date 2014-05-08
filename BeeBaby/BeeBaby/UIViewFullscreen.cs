@@ -73,22 +73,26 @@ namespace BeeBaby
 		/// <param name="moment">Moment.</param>
 		void ShareImage(UIImage sourceImage, Moment moment)
 		{
-			var image = ImageProvider.CreateImageForShare(sourceImage, moment);
-			bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
-			if (ios6ShareDialog)
-			{
-				FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
-					, null, image, null, (result, error) => {
-					if (error != null)
-						InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
-					else if (result == FBOSIntegratedShareDialogResult.Succeeded)
-						InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
-				});
-			}
-			else
-			{
-				Console.WriteLine("Erro ao dar Share no Facebook.");
-			}
+			ActionProgress actionProgress = new ActionProgress(() => {
+				var image = ImageProvider.CreateImageForShare(sourceImage, moment);
+				sviMain.SetImage(image);
+				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
+				if (ios6ShareDialog)
+				{
+					FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
+						, null, image, null, (result, error) => {
+						if (error != null)
+							InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
+						else if (result == FBOSIntegratedShareDialogResult.Succeeded)
+							InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
+					});
+				}
+				else
+				{
+					Console.WriteLine("Erro ao dar Share no Facebook.");
+				}
+			});
+			actionProgress.Execute();
 		}
 
 		/// <summary>
