@@ -155,8 +155,8 @@ namespace BeeBaby
 				m_mapViewHeight = mapView.Frame.Height;
 			}
 			mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
-			mapView.Hidden = !sender.On;
 			mapView.ShowsUserLocation = sender.On;
+			mapView.Hidden = !sender.On;
 		}
 
 		/// <summary>
