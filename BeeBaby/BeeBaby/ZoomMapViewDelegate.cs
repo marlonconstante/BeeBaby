@@ -38,15 +38,17 @@ namespace BeeBaby
 		/// <param name="mapView">MapView.</param>
 		private void changeZoomMap(MKMapView mapView)
 		{
-			if (mapView.UserLocation != null) {
+			if (mapView.UserLocation != null)
+			{
 				CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
-				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f) {
+				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f)
+				{
 					MKCoordinateSpan span = new MKCoordinateSpan(m_zoom, m_zoom);
 					MKCoordinateRegion region = new MKCoordinateRegion(coordinate, span);
-					mapView.SetRegion(region, false);
+					mapView.Region = region;
+					mapView.ClipsToBounds = true;
 				}
 			}
 		}
 	}
 }
-
