@@ -24,6 +24,8 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			EdgesForExtendedLayout = UIRectEdge.None;
+			TableView.SeparatorInset = UIEdgeInsets.Zero;
+			TableView.RowHeight = 32f;
 			TableView.Bounces = false;
 			TableView.TableHeaderView = new ProfileView(new RectangleF(0f, 0f, 245f, 195f));
 
