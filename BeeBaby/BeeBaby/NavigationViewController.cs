@@ -146,10 +146,10 @@ namespace BeeBaby
 			{
 				navigationButtonItem =
 					new NavigationButtonItem(LeftBarButtonFrame()
-						, -6f
-						, (sender, args) => {
-					LeftBarButtonAction();
-				}, LeftBarButtonStyleClass());
+					, -6f
+					, (sender, args) => {
+						LeftBarButtonAction();
+					}, LeftBarButtonStyleClass());
 			}
 			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
 		}
@@ -164,10 +164,10 @@ namespace BeeBaby
 			{
 				navigationButtonItem =
 					new NavigationButtonItem(RightBarButtonFrame()
-						, 6f
-						, (sender, args) => {
-					RightBarButtonAction();
-				}, RightBarButtonStyleClass());
+					, 6f
+					, (sender, args) => {
+						RightBarButtonAction();
+					}, RightBarButtonStyleClass());
 			}
 			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
 		}
