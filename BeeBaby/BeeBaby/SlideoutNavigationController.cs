@@ -537,6 +537,8 @@ namespace MonoTouch.SlideoutNavigation
 					if (MenuViewLeft != null)
 						MenuViewLeft.ViewDidAppear(true);
 				});
+
+			UIApplication.SharedApplication.SetStatusBarHidden(Visible, UIStatusBarAnimation.None);
 		}
 
 		/// <summary>
@@ -589,6 +591,8 @@ namespace MonoTouch.SlideoutNavigation
 					if (MenuViewRight != null)
 						MenuViewRight.ViewDidAppear(true);
 				});
+
+			UIApplication.SharedApplication.SetStatusBarHidden(Visible, UIStatusBarAnimation.None);
 		}
 
 		/// <summary>
@@ -685,6 +689,8 @@ namespace MonoTouch.SlideoutNavigation
 				view.RemoveGestureRecognizer(_tapGesture);
 				//Hide the shadow when not needed to increase performance of the top layer!
 				HideShadow();
+
+				UIApplication.SharedApplication.SetStatusBarHidden(Visible, UIStatusBarAnimation.None);
 			};
 
 			if (animate)
