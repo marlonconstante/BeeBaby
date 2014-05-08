@@ -46,8 +46,7 @@ namespace BeeBaby
 			Frame = window.Frame;
 			sviMain.Frame = window.Frame;
 			sviMain.SetImage(iImage);
-			sviMain.OnSingleTap += () =>
-			{
+			sviMain.OnSingleTap += () => {
 				Hide();
 			};
 				
@@ -62,12 +61,16 @@ namespace BeeBaby
 			window.AddSubview(this);
 
 			Alpha = 0f;
-			UIView.Animate(AnimationDuration, () =>
-			{
+			UIView.Animate(AnimationDuration, () => {
 				Alpha = 1f;
 			});
 		}
 
+		/// <summary>
+		/// Shares the image.
+		/// </summary>
+		/// <param name="sourceImage">Source image.</param>
+		/// <param name="moment">Moment.</param>
 		void ShareImage(UIImage sourceImage, Moment moment)
 		{
 			var image = ImageProvider.CreateImageForShare(sourceImage, moment);
@@ -75,8 +78,7 @@ namespace BeeBaby
 			if (ios6ShareDialog)
 			{
 				FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
-					, null, image, null, (result, error) =>
-				{
+					, null, image, null, (result, error) => {
 					if (error != null)
 						InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
 					else if (result == FBOSIntegratedShareDialogResult.Succeeded)
@@ -103,11 +105,9 @@ namespace BeeBaby
 				else
 				{
 					Alpha = 1f;
-					UIView.Animate(AnimationDuration, () =>
-					{
+					UIView.Animate(AnimationDuration, () => {
 						Alpha = 0f;
-					}, () =>
-					{
+					}, () => {
 						RemoveFromSuperview();
 					});
 				}
