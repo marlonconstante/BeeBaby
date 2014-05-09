@@ -39,26 +39,26 @@ namespace BeeBaby
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
 			UIViewController controller = (UIViewController) board.InstantiateViewController("TimelineViewController");
 			UIViewController dealsController = (UIViewController) board.InstantiateViewController("DealsViewController");
-
+		
 			IList<MenuItem> menuItems = new List<MenuItem>();
-			menuItems.Add(new MenuItem("Home", () => {
+			menuItems.Add(new MenuItem("Linha do Tempo", "timeline", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("About", () => {
+			menuItems.Add(new MenuItem("About", "", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("Deals".Translate(), () => {
+			menuItems.Add(new MenuItem("Deals".Translate(), "", () => {
 				NavigationController.PushViewController(dealsController, true);
 			}));
-			menuItems.Add(new MenuItem("Full Screen", () => {
+			menuItems.Add(new MenuItem("Full Screen", "", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("Baby 1", () => {
+			menuItems.Add(new MenuItem("Baby 1", "", () => {
 				CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("1");
 				PreferencesEditor.SaveLastUsedBaby("1");
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("Baby 2", () => {
+			menuItems.Add(new MenuItem("Baby 2", "", () => {
 				CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("2");
 				PreferencesEditor.SaveLastUsedBaby("2");
 				NavigationController.PushViewController(controller, true);

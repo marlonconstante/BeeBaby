@@ -8,17 +8,27 @@ namespace BeeBaby
 {
 	public class MenuItem
 	{
-		public MenuItem(string text, Action action)
+		public MenuItem(string title, string iconStyleClass, Action action)
 		{
-			Text = text;
+			Title = title;
+			IconStyleClass = iconStyleClass;
 			Action = action;
 		}
 
 		/// <summary>
-		/// Gets or sets the text.
+		/// Gets or sets the title.
 		/// </summary>
-		/// <value>The text.</value>
-		public string Text {
+		/// <value>The title.</value>
+		public string Title {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the icon style class.
+		/// </summary>
+		/// <value>The icon style class.</value>
+		public string IconStyleClass {
 			get;
 			set;
 		}

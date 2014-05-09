@@ -53,11 +53,11 @@ namespace BeeBaby
 		{
 			MenuItem menuItem = m_tableItems[indexPath.Row] as MenuItem;
 
-			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-			cell.TextLabel.Text = menuItem.Text;
+			MenuCell cell = (MenuCell) tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
+			cell.IconStyleClass = menuItem.IconStyleClass;
+			cell.Title = menuItem.Title;
 
 			return cell;
 		}
 	}
 }
-

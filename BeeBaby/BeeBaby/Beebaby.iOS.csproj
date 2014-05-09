@@ -259,6 +259,10 @@
     <Compile Include="MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuCell.cs" />
+    <Compile Include="MenuCell.designer.cs">
+      <DependentUpon>MenuCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

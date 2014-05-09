@@ -51,7 +51,6 @@ namespace Domain.Baby
 		{
 			get
 			{
-
 				return FormatAge(BirthDateTime, DateTime.Now);
 			}
 		}
