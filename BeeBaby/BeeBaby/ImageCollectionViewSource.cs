@@ -10,7 +10,7 @@ namespace BeeBaby
 {
 	public class ImageCollectionViewSource : UICollectionViewSource
 	{
-		static NSString s_cellIdentifier = new NSString("GalleryCell");
+		const string s_cellIdentifier = "GalleryCell";
 		UIViewController m_viewController;
 		ImageProvider m_imageProvider;
 		IList<ImageViewModel> m_images;
@@ -51,7 +51,7 @@ namespace BeeBaby
 			var image = m_images[indexPath.Item];
 
 			// Request a recycled cell to save memory
-			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.DequeueReusableCell(s_cellIdentifier, indexPath);
+			ImageCollectionViewCell cell = (ImageCollectionViewCell) collectionView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
 			cell.Photo = image.Image;
 			cell.MediaName = image.FileName;
 			cell.IsSelected = CurrentContext.Instance.Moment.SelectedMediaNames.Contains(image.FileName);

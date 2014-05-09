@@ -9,18 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby
 {
-	[Register ("MenuViewController")]
-	partial class MenuViewController
+	[Register ("MenuNavigationController")]
+	partial class MenuNavigationController
 	{
-		[Outlet]
-		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (tblView != null) {
-				tblView.Dispose ();
-				tblView = null;
-			}
 		}
 	}
 }

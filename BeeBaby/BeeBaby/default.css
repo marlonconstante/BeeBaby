@@ -12,6 +12,11 @@ label {
 	font-family: "Quicksand";
 }
 
+.table-view table-view-cell:selected {
+	background-color: #cedbdb;
+}
+
+.table-menu table-view-cell:selected,
 table-view-headerfooter-view,
 navigation-bar,
 segmented-control {
@@ -80,6 +85,10 @@ navigation-bar button:selected {
 .time-box {
 	background-color: #f1f1e9;
 	box-shadow: 0 1 0 0 #b1bdbb;
+}
+
+.table-menu {
+	separator-color: #bbc7c6;
 }
 
 .table-menu table-view-cell label {
@@ -255,10 +264,11 @@ button.highlighted:selected {
 .table-view table-view-cell:nth-child(odd) {
   background-color: #f2f5f5;
 }
- 
+
 table-view-headerfooter-view label {
 	font-size: 15pt;
 	font-weight: normal;
+	text-align: center;
 }
 
 map-view {

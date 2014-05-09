@@ -213,12 +213,7 @@
     <Compile Include="UIImageViewClickable.cs" />
     <Compile Include="UIViewFullscreen.cs" />
     <Compile Include="EventTableSearchBarDelegate.cs" />
-    <Compile Include="MenuViewController.cs" />
-    <Compile Include="MenuViewController.designer.cs">
-      <DependentUpon>MenuViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="SlideoutNavigationController.cs" />
-    <Compile Include="LeftMenuViewController.cs" />
     <Compile Include="BabyViewController.cs" />
     <Compile Include="BabyViewController.designer.cs">
       <DependentUpon>BabyViewController.cs</DependentUpon>
@@ -253,6 +248,16 @@
     <Compile Include="ProfileView.cs" />
     <Compile Include="ProfileView.designer.cs">
       <DependentUpon>ProfileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuViewSource.cs" />
+    <Compile Include="ViewModels\MenuItem.cs" />
+    <Compile Include="MenuNavigationController.cs" />
+    <Compile Include="MenuNavigationController.designer.cs">
+      <DependentUpon>MenuNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuViewController.cs" />
+    <Compile Include="MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

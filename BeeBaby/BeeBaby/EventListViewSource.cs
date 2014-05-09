@@ -11,7 +11,7 @@ namespace BeeBaby
 {
 	public class EventListViewSource : UITableViewSource
 	{
-		static string s_cellIdentifier = "EventCell";
+		const string s_cellIdentifier = "EventCell";
 		UIViewController m_viewController;
 		IList<Event> m_suggestedTableItems;
 		IList<Event> m_otherEventsTableItems;

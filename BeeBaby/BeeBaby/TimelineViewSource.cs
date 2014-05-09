@@ -14,11 +14,11 @@ namespace BeeBaby
 {
 	public class TimelineViewSource : UITableViewSource
 	{
+		const string s_cellIdentifier = "MomentCell";
 		UIViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
 		IList<ImageViewModel> m_images;
-		const string s_cellIdentifier = "MomentCell";
 		UIImageView _imageView;
 		UIViewFullscreen vMain;
 
