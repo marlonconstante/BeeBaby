@@ -22,24 +22,32 @@ namespace BeeBaby
 		UIImageView _imageView;
 		UIViewFullscreen vMain;
 
-		public TimelineViewSource(UIViewController viewController, IList<Moment> items, Baby baby)
+		public TimelineViewSource(UIViewController viewController, IList<Moment> moments, Baby baby)
 		{
 			m_viewController = viewController;
-			m_tableItems = items;
+			m_tableItems = moments;
 			m_baby = baby;
 		}
 
+		/// <Docs>Table view displaying the rows.</Docs>
 		/// <summary>
-		/// Called by the TableView to determine how many cells to create for that particular section
+		/// Rowses the in section.
 		/// </summary>
-		public override int RowsInSection(UITableView tableview, int section)
+		/// <returns>The in section.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="section">Section.</param>
+		public override int RowsInSection(UITableView tableView, int section)
 		{
 			return m_tableItems.Count;
 		}
 
+		/// <Docs>Table view requesting the cell.</Docs>
 		/// <summary>
-		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
+		/// Gets the cell.
 		/// </summary>
+		/// <returns>The cell.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			// Request a recycled cell to save memory
@@ -48,6 +56,12 @@ namespace BeeBaby
 			return PopulateMomentCell(cell, indexPath);
 		}
 
+		/// <summary>
+		/// Populates the moment cell.
+		/// </summary>
+		/// <returns>The moment cell.</returns>
+		/// <param name="cell">Cell.</param>
+		/// <param name="indexPath">Index path.</param>
 		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
