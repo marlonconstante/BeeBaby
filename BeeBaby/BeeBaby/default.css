@@ -3,6 +3,8 @@ navigation-bar button-appearance,
 button,
 button:highlighted,
 button:selected,
+table-view-cell label,
+table-view-headerfooter-view label,
 segmented-control,
 text-field,
 text-view,
@@ -10,6 +12,7 @@ label {
 	font-family: "Quicksand";
 }
 
+table-view-headerfooter-view,
 navigation-bar,
 segmented-control {
 	background-color: #00aead;
@@ -17,6 +20,7 @@ segmented-control {
 
 .title-label,
 .flash-label,
+table-view-headerfooter-view label,
 navigation-bar,
 navigation-bar title,
 navigation-bar button,
@@ -78,6 +82,12 @@ navigation-bar button:selected {
 	box-shadow: 0 1 0 0 #b1bdbb;
 }
 
+.table-menu table-view-cell label {
+	font-size: 16pt;
+	font-weight: normal;
+}
+
+.table-view table-view-cell label,
 .special-event-label,
 .time-box-label {
 	font-size: 14pt;
@@ -154,6 +164,8 @@ segmented-control label,
 	background-color: #e6e6e5;
 }
 
+.table-menu,
+.table-menu table-view-cell,
 .screen-background,
 .default-button,
 .default-button:highlighted,
@@ -186,6 +198,7 @@ segmented-control label,
 .special-message-label,
 text-field,
 text-view,
+table-view-cell label,
 .small-button,
 .small-button:highlighted,
 .small-button:selected,
@@ -233,6 +246,19 @@ button.highlighted:selected {
 .form-button:highlighted,
 .form-button:selected {
 	box-shadow: 0 -1 0 0 #b6bcba;
+}
+
+.table-view table-view-cell {
+  background-color: #fff;
+}
+
+.table-view table-view-cell:nth-child(odd) {
+  background-color: #f2f5f5;
+}
+ 
+table-view-headerfooter-view label {
+	font-size: 15pt;
+	font-weight: normal;
 }
 
 map-view {
