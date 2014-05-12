@@ -26,6 +26,8 @@ segmented-control {
 .title-label,
 .flash-label,
 table-view-headerfooter-view label,
+.table-menu table-view-cell label:highlighted,
+.table-menu table-view-cell label:selected,
 navigation-bar,
 navigation-bar title,
 navigation-bar button,
@@ -87,8 +89,13 @@ navigation-bar button:selected {
 	box-shadow: 0 1 0 0 #b1bdbb;
 }
 
-.table-menu {
-	separator-color: #bbc7c6;
+.table-menu table-view-cell {
+	background-image: url(menu-item-background.png);
+}
+
+.table-menu table-view-cell:highlighted,
+.table-menu table-view-cell:selected {
+	background-image: url(menu-item-selected-background.png);
 }
 
 .table-menu table-view-cell label {
