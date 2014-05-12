@@ -468,6 +468,12 @@ text-view {
 	background-image: url(timeline.svg);
 }
 
+.timeline-clear,
+.table-menu table-view-cell .timeline:highlighted,
+.table-menu table-view-cell .timeline:selected {
+	background-image: url(timeline-clear.svg);
+}
+
 .music {
 	background-image: url(music.svg);
 }

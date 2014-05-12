@@ -164,6 +164,7 @@
     <BundleResource Include="Resources\photo-profile.png" />
     <BundleResource Include="Resources\menu-item-background.png" />
     <BundleResource Include="Resources\menu-item-selected-background.png" />
+    <BundleResource Include="Resources\timeline-clear.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

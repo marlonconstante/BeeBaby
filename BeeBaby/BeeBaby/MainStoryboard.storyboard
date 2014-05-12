@@ -997,7 +997,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="timeline"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="timeline-clear"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="OpenTimeline:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tF9-tO-9rF"/>
