@@ -165,6 +165,19 @@
     <BundleResource Include="Resources\menu-item-background.png" />
     <BundleResource Include="Resources\menu-item-selected-background.png" />
     <BundleResource Include="Resources\timeline-clear.svg" />
+    <BundleResource Include="Resources\market-clear.svg" />
+    <BundleResource Include="Resources\market.svg" />
+    <BundleResource Include="Resources\profile-clear.svg" />
+    <BundleResource Include="Resources\profile.svg" />
+    <BundleResource Include="Resources\gear-clear.svg" />
+    <BundleResource Include="Resources\gear.svg" />
+    <BundleResource Include="Resources\about-clear.svg" />
+    <BundleResource Include="Resources\about.svg" />
+    <BundleResource Include="Resources\invite-clear.svg" />
+    <BundleResource Include="Resources\invite.svg" />
+    <BundleResource Include="Resources\family-clear.svg" />
+    <BundleResource Include="Resources\family.svg" />
+    <BundleResource Include="Resources\logoff.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

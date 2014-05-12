@@ -379,6 +379,10 @@ text-view {
 	background-image: url(bee-baby.svg);
 }
 
+.logoff {
+	background-image: url(logoff.svg);
+}
+
 .checklist {
 	background-image: url(checklist.svg);
 }
@@ -472,6 +476,66 @@ text-view {
 .table-menu table-view-cell .timeline:highlighted,
 .table-menu table-view-cell .timeline:selected {
 	background-image: url(timeline-clear.svg);
+}
+
+.market {
+	background-image: url(market.svg);
+}
+
+.market-clear,
+.table-menu table-view-cell .market:highlighted,
+.table-menu table-view-cell .market:selected {
+	background-image: url(market-clear.svg);
+}
+
+.profile {
+	background-image: url(profile.svg);
+}
+
+.profile-clear,
+.table-menu table-view-cell .profile:highlighted,
+.table-menu table-view-cell .profile:selected {
+	background-image: url(profile-clear.svg);
+}
+
+.gear {
+	background-image: url(gear.svg);
+}
+
+.gear-clear,
+.table-menu table-view-cell .gear:highlighted,
+.table-menu table-view-cell .gear:selected {
+	background-image: url(gear-clear.svg);
+}
+
+.about {
+	background-image: url(about.svg);
+}
+
+.about-clear,
+.table-menu table-view-cell .about:highlighted,
+.table-menu table-view-cell .about:selected {
+	background-image: url(about-clear.svg);
+}
+
+.invite {
+	background-image: url(invite.svg);
+}
+
+.invite-clear,
+.table-menu table-view-cell .invite:highlighted,
+.table-menu table-view-cell .invite:selected {
+	background-image: url(invite-clear.svg);
+}
+
+.family {
+	background-image: url(family.svg);
+}
+
+.family-clear,
+.table-menu table-view-cell .family:highlighted,
+.table-menu table-view-cell .family:selected {
+	background-image: url(family-clear.svg);
 }
 
 .music {
