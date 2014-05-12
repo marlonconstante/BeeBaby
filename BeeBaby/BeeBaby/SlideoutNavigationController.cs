@@ -84,8 +84,8 @@ namespace MonoTouch.SlideoutNavigation
 
 				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0)
 				{
-					var view = _internalTopNavigation.ViewControllers[0];
-					view.NavigationItem.LeftBarButtonItem = value ? CreateLeftMenuButton() : null;
+					//var view = _internalTopNavigation.ViewControllers[0];
+					//view.NavigationItem.LeftBarButtonItem = value ? CreateLeftMenuButton() : null;
 				}
 
 				_leftMenuEnabled = value;
@@ -109,8 +109,8 @@ namespace MonoTouch.SlideoutNavigation
 
 				if (_internalTopNavigation != null && _internalTopNavigation.ViewControllers.Length > 0)
 				{
-					var view = _internalTopNavigation.ViewControllers[0];
-					view.NavigationItem.RightBarButtonItem = value ? CreateRightMenuButton() : null;
+					//var view = _internalTopNavigation.ViewControllers[0];
+					//view.NavigationItem.RightBarButtonItem = value ? CreateRightMenuButton() : null;
 				}
 
 				_rightMenuEnabled = value;
@@ -200,8 +200,8 @@ namespace MonoTouch.SlideoutNavigation
 					if (_internalTopNavigation.ViewControllers == null || _internalTopNavigation.ViewControllers.Length < 1)
 						return;
 
-					UIViewController view = _internalTopNavigation.ViewControllers[0];
-					view.NavigationItem.LeftBarButtonItem = LeftMenuEnabled ? CreateLeftMenuButton() : null;
+					//UIViewController view = _internalTopNavigation.ViewControllers[0];
+					//view.NavigationItem.LeftBarButtonItem = LeftMenuEnabled ? CreateLeftMenuButton() : null;
 				}
 			}
 		}
@@ -219,8 +219,8 @@ namespace MonoTouch.SlideoutNavigation
 					if (_internalTopNavigation.ViewControllers == null || _internalTopNavigation.ViewControllers.Length < 1)
 						return;
 
-					UIViewController view = _internalTopNavigation.ViewControllers[0];
-					view.NavigationItem.RightBarButtonItem = RightMenuEnabled ? CreateRightMenuButton() : null;
+					//UIViewController view = _internalTopNavigation.ViewControllers[0];
+					//view.NavigationItem.RightBarButtonItem = RightMenuEnabled ? CreateRightMenuButton() : null;
 				}
 			}
 		}
@@ -659,9 +659,9 @@ namespace MonoTouch.SlideoutNavigation
 			_internalTopView.View.AddSubview(_internalTopNavigation.View);
 
 			if (LeftMenuEnabled)
-				view.NavigationItem.LeftBarButtonItem = CreateLeftMenuButton();
+				//view.NavigationItem.LeftBarButtonItem = CreateLeftMenuButton();
 			if (RightMenuEnabled)
-				view.NavigationItem.RightBarButtonItem = CreateRightMenuButton();
+				//view.NavigationItem.RightBarButtonItem = CreateRightMenuButton();
 
 			_externalContentView = view;
 
