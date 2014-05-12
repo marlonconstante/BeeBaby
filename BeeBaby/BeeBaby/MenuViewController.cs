@@ -25,7 +25,6 @@ namespace BeeBaby
 				
 			EdgesForExtendedLayout = UIRectEdge.None;
 
-			tblView.SeparatorInset = UIEdgeInsets.Zero;
 			tblView.TableHeaderView = new ProfileView(new RectangleF(0f, 0f, 245f, 195f));
 			tblView.Source = new MenuViewSource(this, GetMenuItems());
 		}

@@ -31,7 +31,6 @@ namespace BeeBaby
 
 			EventListViewSource eventListViewSource = new EventListViewSource(this, m_suggestedEvents, m_otherEvents);
 			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_suggestedEvents, m_otherEvents);
-			tblView.SeparatorInset = UIEdgeInsets.Zero;
 			tblView.Source = eventListViewSource;
 		}
 
