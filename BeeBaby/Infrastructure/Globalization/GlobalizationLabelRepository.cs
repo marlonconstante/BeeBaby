@@ -58,7 +58,6 @@ Name = Nome
 Share = Compartilhar
 Baby = Bebê
 Photo = Foto
-TimeLine = Linha do Tempo
 First = Primeiro
 Save = Salvar
 Albums = Álbuns
@@ -78,6 +77,14 @@ WhichWas = Onde foi?
 MomentRemember = O que você gostaria de lembrar sobre este momento?
 WhatsBabyName = Qual é o nome do bebê?
 WhenWasHeBorn = Quando ele nasceu?
+Timeline = Linha do tempo
+ProductsForYourChild = Produtos para o seu filho
+MyProfile = Meu perfil
+InviteFriends = Convidar amigos
+ManageFamily = Gerenciar família
+Configurations = Configurações
+About = Sobre
+Exit = Sair
 ";
 		}
 	}

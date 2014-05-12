@@ -29,7 +29,8 @@ namespace BeeBaby
 			Menu.RightMenuEnabled = false;
 			Menu.DisplayNavigationBarOnLeftMenu = false;
 			Menu.ShadowOpacity = 0.1f;
-			Menu.SlideHeight = 9999f;
+			Menu.SlideWidth = 250f;
+			Menu.SlideHeight = 999f;
 			Menu.TopView = controller;
 			Menu.MenuViewLeft = menuViewController;
 

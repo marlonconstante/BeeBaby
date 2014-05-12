@@ -25,7 +25,7 @@ namespace BeeBaby
 				
 			EdgesForExtendedLayout = UIRectEdge.None;
 
-			tblView.TableHeaderView = new ProfileView(new RectangleF(0f, 0f, 245f, 195f));
+			tblView.TableHeaderView = new ProfileView(new RectangleF(0f, 0f, 250f, 195f));
 			tblView.Source = new MenuViewSource(this, GetMenuItems());
 		}
 
@@ -40,26 +40,28 @@ namespace BeeBaby
 			UIViewController dealsController = (UIViewController) board.InstantiateViewController("DealsViewController");
 		
 			IList<MenuItem> menuItems = new List<MenuItem>();
-			menuItems.Add(new MenuItem("Linha do Tempo", "timeline", () => {
+			menuItems.Add(new MenuItem("Timeline".Translate(), "timeline", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("About", "", () => {
-				NavigationController.PushViewController(controller, true);
-			}));
-			menuItems.Add(new MenuItem("Deals".Translate(), "", () => {
+			menuItems.Add(new MenuItem("ProductsForYourChild".Translate(), "market", () => {
 				NavigationController.PushViewController(dealsController, true);
 			}));
-			menuItems.Add(new MenuItem("Full Screen", "", () => {
+			menuItems.Add(new MenuItem("MyProfile".Translate(), "profile", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("Baby 1", "", () => {
-				CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("1");
-				PreferencesEditor.SaveLastUsedBaby("1");
+			menuItems.Add(new MenuItem("InviteFriends".Translate(), "invite", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
-			menuItems.Add(new MenuItem("Baby 2", "", () => {
-				CurrentContext.Instance.CurrentBaby = new BabyService().GetBaby("2");
-				PreferencesEditor.SaveLastUsedBaby("2");
+			menuItems.Add(new MenuItem("ManageFamily".Translate(), "family", () => {
+				NavigationController.PushViewController(controller, true);
+			}));
+			menuItems.Add(new MenuItem("Configurations".Translate(), "gear", () => {
+				NavigationController.PushViewController(controller, true);
+			}));
+			menuItems.Add(new MenuItem("About".Translate(), "about", () => {
+				NavigationController.PushViewController(controller, true);
+			}));
+			menuItems.Add(new MenuItem("Exit".Translate(), "logoff", () => {
 				NavigationController.PushViewController(controller, true);
 			}));
 
