@@ -55,15 +55,17 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void LeftBarButtonAction()
 		{
-			if (IsContainsMenu())
-			{
-				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
-				slideoutNavigation.ShowMenuLeft();
-			}
-			else
-			{
-				NavigationController.PopViewControllerAnimated(true);
-			}
+			ShowProgressWhilePerforming(() => {
+				if (IsContainsMenu())
+				{
+					var slideoutNavigation = (SlideoutNavigationController) RootViewController;
+					slideoutNavigation.ShowMenuLeft();
+				}
+				else
+				{
+					NavigationController.PopViewControllerAnimated(true);
+				}
+			}, false);
 		}
 
 		/// <summary>
@@ -105,17 +107,17 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void RightBarButtonAction()
 		{
-			if (IsContainsMenu())
-			{
-				ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() => {
+				if (IsContainsMenu())
+				{
 					RootViewController.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
 					DismissViewController(true, null);
-				}, false);
-			}
-			else
-			{
-				NavigationController.PopToRootViewController(true);
-			}
+				}
+				else
+				{
+					NavigationController.PopToRootViewController(true);
+				}
+			}, false);
 		}
 
 		/// <summary>

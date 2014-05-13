@@ -55,9 +55,11 @@ namespace BeeBaby
 		/// </summary>
 		public override void LeftBarButtonAction()
 		{
-			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
+			ShowProgressWhilePerforming(() => {
+				CurrentContext.Instance.Moment = new MomentService().CreateMoment();
 
-			UpdateImageCollectionView(true);
+				UpdateImageCollectionView(true);
+			});
 		}
 
 		/// <summary>
