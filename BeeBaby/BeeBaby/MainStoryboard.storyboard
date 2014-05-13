@@ -209,7 +209,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="mapViewConstraint" destination="QZg-PA-e5H" id="D7V-EL-tIf"/>
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
-                        <segue destination="rSv-IU-3ut" kind="modal" identifier="segueTimeline" modalTransitionStyle="crossDissolve" id="zqq-fT-qY6"/>
                         <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueSelectEvent" id="Maa-si-q2R"/>
                     </connections>
                 </viewController>
@@ -501,12 +500,32 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="lblBabyAge" destination="bFj-FL-7pL" id="izW-gz-JXN"/>
                         <outlet property="lblBabyName" destination="i59-ne-fd6" id="Quv-73-hrA"/>
                         <outlet property="tblView" destination="Qro-Dy-vJe" id="Kse-SX-bdd"/>
-                        <segue destination="XbC-sd-fcb" kind="modal" identifier="segueCamera" modalTransitionStyle="crossDissolve" id="aD3-hp-ozv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPr-V8-YCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-25" y="169"/>
+        </scene>
+        <!--Slideout Navigation Controller-->
+        <scene sceneID="P3O-Jh-7yP">
+            <objects>
+                <viewController storyboardIdentifier="SlideoutNavigationController" id="ebN-f3-L5i" customClass="SlideoutNavigationController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CBV-Sg-Ecr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wj0-1V-w6B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ltI-XE-ijy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="XbC-sd-fcb" kind="modal" identifier="segueCamera" modalTransitionStyle="crossDissolve" id="dGz-nM-aBy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CBQ-UZ-k1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1119" y="169"/>
         </scene>
         <!--Menu Navigation Controller-->
         <scene sceneID="GeC-1Q-ZWB">
@@ -900,6 +919,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationBar>
                     <connections>
                         <segue destination="rQl-PL-IFJ" kind="relationship" relationship="rootViewController" id="prv-Ak-Kc9"/>
+                        <segue destination="rSv-IU-3ut" kind="modal" identifier="segueTimeline" modalTransitionStyle="crossDissolve" id="gpm-Kc-nq2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIB-QK-vnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1069,7 +1089,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
                         <outlet property="lblFlash" destination="lsM-AA-iTR" id="LjC-Sf-zux"/>
                         <segue destination="4UP-at-KPN" kind="push" identifier="segueMedia" id="2yy-uq-YpW"/>
-                        <segue destination="rSv-IU-3ut" kind="modal" identifier="segueTimeline" modalTransitionStyle="crossDissolve" id="4ke-u8-KBa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
@@ -1221,7 +1240,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWM-JI-QaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="-335"/>
+            <point key="canvasLocation" x="454" y="169"/>
         </scene>
         <!--Deals View Controller-->
         <scene sceneID="Q0l-YW-0bD">
@@ -1249,7 +1268,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpv-7o-SWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="169"/>
+            <point key="canvasLocation" x="-25" y="957"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="rg0-5s-hDI">
@@ -1320,7 +1339,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbY-gF-pqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="905"/>
+            <point key="canvasLocation" x="-575" y="957"/>
         </scene>
     </scenes>
     <resources>
@@ -1332,7 +1351,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4ke-u8-KBa"/>
         <segue reference="1Vb-ym-Jjb"/>
     </inferredMetricsTieBreakers>
 </document>

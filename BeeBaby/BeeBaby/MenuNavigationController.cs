@@ -1,7 +1,6 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.SlideoutNavigation;
 
 namespace BeeBaby
 {
@@ -20,41 +19,23 @@ namespace BeeBaby
 			base.ViewWillAppear(animated);
 
 			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
-			UIViewController controller = (UIViewController) board.InstantiateViewController("TimelineViewController");
-			UIViewController menuViewController = (UIViewController) board.InstantiateViewController("MenuViewController");
+			var slideoutNavigation = (SlideoutNavigationController) board.InstantiateViewController("SlideoutNavigationController");
+			var menu = (MenuViewController) board.InstantiateViewController("MenuViewController");
+			var timeline = (TimelineViewController) board.InstantiateViewController("TimelineViewController");
 
-			Menu = new SlideoutNavigationController();
-			Menu.View.MultipleTouchEnabled = true;
-			Menu.View.UserInteractionEnabled = true;
-			Menu.RightMenuEnabled = false;
-			Menu.DisplayNavigationBarOnLeftMenu = false;
-			Menu.ShadowOpacity = 0.1f;
-			Menu.SlideWidth = 250f;
-			Menu.SlideHeight = 999f;
-			Menu.TopView = controller;
-			Menu.MenuViewLeft = menuViewController;
+			slideoutNavigation.View.MultipleTouchEnabled = true;
+			slideoutNavigation.View.UserInteractionEnabled = true;
+			slideoutNavigation.RightMenuEnabled = false;
+			slideoutNavigation.DisplayNavigationBarOnLeftMenu = false;
+			slideoutNavigation.ShadowOpacity = 0.1f;
+			slideoutNavigation.SlideWidth = 250f;
+			slideoutNavigation.SlideHeight = 999f;
+			slideoutNavigation.TopView = timeline;
+			slideoutNavigation.MenuViewLeft = menu;
 
-			Window = UIApplication.SharedApplication.Windows[0];
-			Window.RootViewController = Menu;
-			Window.MakeKeyAndVisible();
-		}
-
-		/// <summary>
-		/// Gets or sets the window.
-		/// </summary>
-		/// <value>The window.</value>
-		public UIWindow Window {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets the menu.
-		/// </summary>
-		/// <value>The menu.</value>
-		public SlideoutNavigationController Menu {
-			get;
-			private set;
+			var window = UIApplication.SharedApplication.Windows[0];
+			window.RootViewController = slideoutNavigation;
+			window.MakeKeyAndVisible();
 		}
 	}
 }

@@ -180,7 +180,7 @@ namespace BeeBaby
 		partial void OpenTimeline(UIButton sender)
 		{
 			NSAction segueTimeline = () => {
-				PerformSegue("segueTimeline", sender);
+				NavigationController.PerformSegue("segueTimeline", sender);
 				DismissViewController(true, null);
 			};
 			ShowProgressWhilePerforming(() => {

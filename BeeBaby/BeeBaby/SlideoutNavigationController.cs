@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace MonoTouch.SlideoutNavigation
+namespace BeeBaby
 {
 	/// <summary>
 	/// Slideout view controller.
 	/// </summary>
-	public class SlideoutNavigationController : UIViewController
+	public partial class SlideoutNavigationController : UIViewController
 	{
 		#region private attributes
 
@@ -254,7 +254,7 @@ namespace MonoTouch.SlideoutNavigation
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SlideoutNavigationController"/> class.
 		/// </summary>
-		public SlideoutNavigationController()
+		public SlideoutNavigationController (IntPtr handle) : base (handle)
 		{
 			SlideSpeed = 0.2f;
 			SlideWidth = 245f;
@@ -366,8 +366,8 @@ namespace MonoTouch.SlideoutNavigation
 						view.Frame = new RectangleF(_panOriginX + t, view.Frame.Y, view.Frame.Width, view.Frame.Height);
 				}
 				else if (!_ignorePan &&
-				           (_panGesture.State == UIGestureRecognizerState.Ended ||
-				           _panGesture.State == UIGestureRecognizerState.Cancelled))
+					(_panGesture.State == UIGestureRecognizerState.Ended ||
+						_panGesture.State == UIGestureRecognizerState.Cancelled))
 				{
 					float velocity = _panGesture.VelocityInView(view).X;
 
@@ -381,7 +381,7 @@ namespace MonoTouch.SlideoutNavigation
 								() => {
 									view.Frame = new RectangleF(SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
 								}, () => {
-							});
+								});
 						}
 						else if (_rightMenuShowing)
 						{
@@ -389,7 +389,7 @@ namespace MonoTouch.SlideoutNavigation
 								() => {
 									view.Frame = new RectangleF(-SlideWidth, view.Frame.Y, view.Frame.Width, view.Frame.Height);
 								}, () => {
-							});
+								});
 						}
 					}
 					else
@@ -410,7 +410,7 @@ namespace MonoTouch.SlideoutNavigation
 								() => {
 									view.Frame = new RectangleF(0, 0, view.Frame.Width, view.Frame.Height);
 								}, () => {
-							});
+								});
 						}
 					}
 				}
@@ -663,7 +663,7 @@ namespace MonoTouch.SlideoutNavigation
 			if (RightMenuEnabled)
 				//view.NavigationItem.RightBarButtonItem = CreateRightMenuButton();
 
-			_externalContentView = view;
+				_externalContentView = view;
 
 			Hide();
 		}
@@ -845,7 +845,7 @@ namespace MonoTouch.SlideoutNavigation
 			public override bool ShouldReceiveTouch(UIGestureRecognizer recognizer, UITouch touch)
 			{
 				return (_controller.Visible ||
-				(touch.LocationInView(_controller._internalTopView.View).Y <= _controller.SlideHeight)) && (_controller.LeftMenuEnabled || _controller.RightMenuEnabled);
+					(touch.LocationInView(_controller._internalTopView.View).Y <= _controller.SlideHeight)) && (_controller.LeftMenuEnabled || _controller.RightMenuEnabled);
 			}
 		}
 

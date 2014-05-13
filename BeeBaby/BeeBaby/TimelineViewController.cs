@@ -9,7 +9,6 @@ using Domain.Baby;
 using MonoTouch.Dialog;
 using Application;
 using System.Drawing;
-using MonoTouch.SlideoutNavigation;
 
 namespace BeeBaby
 {
@@ -67,8 +66,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void LeftBarButtonAction()
 		{
-			var menu = (SlideoutNavigationController) UIApplication.SharedApplication.Windows[0].RootViewController;
-			menu.ShowMenuLeft();
+			SlideoutNavigation.ShowMenuLeft();
 		}
 
 		/// <summary>
@@ -86,9 +84,20 @@ namespace BeeBaby
 		public override void RightBarButtonAction()
 		{
 			ShowProgressWhilePerforming(() => {
-				PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
+				SlideoutNavigation.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
 				DismissViewController(true, null);
 			}, false);
+		}
+
+		/// <summary>
+		/// Gets the slideout navigation.
+		/// </summary>
+		/// <value>The slideout navigation.</value>
+		public SlideoutNavigationController SlideoutNavigation
+		{
+			get {
+				return (SlideoutNavigationController) UIApplication.SharedApplication.Windows[0].RootViewController;
+			}
 		}
 	}
 }

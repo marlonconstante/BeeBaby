@@ -4,7 +4,6 @@ using Application;
 using SQLite.Net;
 using System;
 using System.IO;
-using MonoTouch.SlideoutNavigation;
 using MonoTouch.Dialog;
 using BeeBaby;
 using MonoTouch.FacebookConnect;
