@@ -74,7 +74,7 @@ namespace BeeBaby
 		void ShareImage(UIImage sourceImage, Moment moment)
 		{
 			ActionProgress actionProgress = new ActionProgress(() => {
-				var image = ImageProvider.CreateImageForShare(sourceImage, moment);
+				var image = new ImageProvider().CreateImageForShare(sourceImage, moment);
 				sviMain.SetImage(image);
 				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
 				if (ios6ShareDialog)

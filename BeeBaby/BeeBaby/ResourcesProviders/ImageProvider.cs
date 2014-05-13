@@ -2,7 +2,6 @@
 using System.Linq;
 using Application;
 using System.IO;
-using Domain.Moment;
 using System.Globalization;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
@@ -16,7 +15,7 @@ namespace BeeBaby.ResourcesProviders
 {
 	public class ImageProvider
 	{
-		Moment m_currentMoment;
+		string m_name;
 		string m_appDocumentsDirectory;
 		const string m_temporaryDirectoryName = "temp";
 		const string m_fileExtension = ".jpg";
@@ -25,9 +24,9 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.ResourcesProviders.ImageProvider"/> class.
 		/// </summary>
-		public ImageProvider(Moment moment)
+		public ImageProvider(string name = "")
 		{
-			m_currentMoment = moment;
+			m_name = name;
 			m_appDocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 		}
 
@@ -37,7 +36,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The temporary directory path.</returns>
 		string GetTemporaryDirectoryPath()
 		{
-			var path = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_currentMoment.Id);
+			var path = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_name);
 			Directory.CreateDirectory(path);
 
 			return path;
@@ -49,7 +48,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The permanent directory.</returns>
 		string GetPermanentDirectory()
 		{
-			var permanentDirectory = Path.Combine(m_appDocumentsDirectory, m_currentMoment.Id);
+			var permanentDirectory = Path.Combine(m_appDocumentsDirectory, m_name);
 			Directory.CreateDirectory(permanentDirectory);
 
 			return permanentDirectory;
@@ -59,7 +58,7 @@ namespace BeeBaby.ResourcesProviders
 		/// Generates the name of the file.
 		/// </summary>
 		/// <returns>The file name.</returns>
-		static string GenerateFileName()
+		string GenerateFileName()
 		{
 			return string.Concat(DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), m_fileExtension);
 		}
@@ -143,15 +142,25 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Saves the temporary image on app.
 		/// </summary>
-		/// <returns>The temporary image name on app.</returns>
+		/// <returns>The temporary image on app.</returns>
 		/// <param name="image">Image.</param>
 		public string SaveTemporaryImageOnApp(UIImage image)
 		{
-			var tempDir = GetTemporaryDirectoryPath();
 			var fileName = GenerateFileName();
+			SaveImageOnApp(image, fileName, GetTemporaryDirectoryPath());
+			return fileName;
+		}
 
-			var fullImagePath = Path.Combine(tempDir, fileName);
-			var thumbnailImagePath = Path.Combine(tempDir, GetThumbnailImageName(fileName));
+		/// <summary>
+		/// Saves the image on app.
+		/// </summary>
+		/// <param name="image">Image.</param>
+		/// <param name="fileName">File name.</param>
+		/// <param name="directoryPath">Directory path.</param>
+		public void SaveImageOnApp(UIImage image, string fileName, string directoryPath)
+		{
+			var fullImagePath = Path.Combine(directoryPath, fileName);
+			var thumbnailImagePath = Path.Combine(directoryPath, GetThumbnailImageName(fileName));
 
 			using (NSData imageData = image.AsJPEG(MediaBase.ImageCompressionQuality))
 			{
@@ -170,8 +179,6 @@ namespace BeeBaby.ResourcesProviders
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
-
-			return fileName;
 		}
 
 		/// <summary>
@@ -223,7 +230,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The image resize.</returns>
 		/// <param name="sourceImage">Source image.</param>
 		/// <param name="size">Size.</param>
-		static UIImage CroppedImageResize(UIImage sourceImage, float size)
+		UIImage CroppedImageResize(UIImage sourceImage, float size)
 		{
 			UIImage resultImage;
 
@@ -264,7 +271,7 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The image for share.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		public static UIImage CreateImageForShare(UIImage sourceImage, Moment moment)
+		public UIImage CreateImageForShare(UIImage sourceImage, Moment moment)
 		{
 			UIImage resultImage;
 

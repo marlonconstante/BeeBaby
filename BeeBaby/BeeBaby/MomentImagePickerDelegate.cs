@@ -9,16 +9,16 @@ using BigTed;
 
 namespace BeeBaby
 {
-	public class ImagePickerDelegate : UIImagePickerControllerDelegate
+	public class MomentImagePickerDelegate : UIImagePickerControllerDelegate
 	{
 		ImageProvider m_imageProvider;
 		IList<Action> m_tasks;
 		bool m_pendingTasks;
 		Thread m_performTasks;
 
-		public ImagePickerDelegate()
+		public MomentImagePickerDelegate()
 		{
-			m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
+			m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 			m_tasks = new List<Action>();
 		}
 

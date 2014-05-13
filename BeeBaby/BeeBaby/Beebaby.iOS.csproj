@@ -182,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ImagePickerDelegate.cs" />
     <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
     <Compile Include="ResourcesProviders\ImageProvider.cs" />
     <Compile Include="MomentDetailViewController.cs" />
@@ -283,6 +282,7 @@
     <Compile Include="SlideoutNavigationController.designer.cs">
       <DependentUpon>SlideoutNavigationController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MomentImagePickerDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

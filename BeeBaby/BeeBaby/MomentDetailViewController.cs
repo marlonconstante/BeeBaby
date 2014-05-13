@@ -118,7 +118,7 @@ namespace BeeBaby
 		partial void Save(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment);
+				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
 				var moment = CurrentContext.Instance.Moment;
 

@@ -74,7 +74,7 @@ namespace BeeBaby
 			momentCell.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
 			momentCell.LabelWho = indexPath.Row.ToString();
 
-			var provider = new ImageProvider(moment);
+			var provider = new ImageProvider(moment.Id);
 			m_images = provider.GetImagesForCurrentMoment(false, true);
 			var viewWidth = (MediaBase.ImageThumbnailSize) * m_images.Count;
 			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailSize);

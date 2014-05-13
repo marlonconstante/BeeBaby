@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using PixateFreestyleLib;
 using Domain.Media;
+using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
@@ -48,7 +49,10 @@ namespace BeeBaby
 
 			var frame = new RectangleF(pos, pos, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
 			var imageView = BuildImageView(frame, UIImage.FromFile("photo-profile.png"), () => {
+				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
+				var m_picker = mediaPickerProvider.GetUIImagePickerController();
 
+				Window.RootViewController.PresentViewController(m_picker, false, null);
 			});
 			imageView.Layer.CornerRadius = 45f;
 
