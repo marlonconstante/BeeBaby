@@ -55,17 +55,17 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void LeftBarButtonAction()
 		{
-			ShowProgressWhilePerforming(() => {
-				if (IsContainsMenu())
-				{
-					var slideoutNavigation = (SlideoutNavigationController) RootViewController;
-					slideoutNavigation.ShowMenuLeft();
-				}
-				else
-				{
+			if (IsContainsMenu())
+			{
+				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
+				slideoutNavigation.ShowMenuLeft();
+			}
+			else
+			{
+				ShowProgressWhilePerforming(() => {
 					NavigationController.PopViewControllerAnimated(true);
-				}
-			}, false);
+				}, false);
+			}
 		}
 
 		/// <summary>
@@ -182,8 +182,8 @@ namespace BeeBaby
 					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
 					, (sender, args) => {
-						LeftBarButtonAction();
-					}, LeftBarButtonStyleClass());
+					LeftBarButtonAction();
+				}, LeftBarButtonStyleClass());
 			}
 			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
 		}
@@ -200,8 +200,8 @@ namespace BeeBaby
 					new NavigationButtonItem(RightBarButtonFrame()
 					, 6f
 					, (sender, args) => {
-						RightBarButtonAction();
-					}, RightBarButtonStyleClass());
+					RightBarButtonAction();
+				}, RightBarButtonStyleClass());
 			}
 			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
 		}
@@ -219,8 +219,7 @@ namespace BeeBaby
 		/// Gets or sets the root view controller.
 		/// </summary>
 		/// <value>The root view controller.</value>
-		public UIViewController RootViewController
-		{
+		public UIViewController RootViewController {
 			get {
 				return UIApplication.SharedApplication.Windows[0].RootViewController;
 			}
