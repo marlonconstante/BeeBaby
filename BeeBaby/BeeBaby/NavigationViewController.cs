@@ -31,7 +31,7 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is add left bar button item; otherwise, <c>false</c>.</returns>
 		public virtual bool IsAddLeftBarButtonItem()
 		{
-			return GetType() != NavigationController.ViewControllers[0].GetType();
+			return IsContainsMenu() || GetType() != NavigationController.ViewControllers[0].GetType();
 		}
 
 		/// <summary>
@@ -40,7 +40,14 @@ namespace BeeBaby
 		/// <returns>The bar button frame.</returns>
 		public virtual RectangleF LeftBarButtonFrame()
 		{
-			return new RectangleF(0f, 0f, 18f, 24f);
+			if (IsContainsMenu())
+			{
+				return new RectangleF(0f, 0f, 24f, 24f);
+			}
+			else
+			{
+				return new RectangleF(0f, 0f, 18f, 24f);
+			}
 		}
 
 		/// <summary>
@@ -48,7 +55,15 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void LeftBarButtonAction()
 		{
-			NavigationController.PopViewControllerAnimated(true);
+			if (IsContainsMenu())
+			{
+				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
+				slideoutNavigation.ShowMenuLeft();
+			}
+			else
+			{
+				NavigationController.PopViewControllerAnimated(true);
+			}
 		}
 
 		/// <summary>
@@ -57,7 +72,14 @@ namespace BeeBaby
 		/// <returns>The bar button style class.</returns>
 		public virtual string LeftBarButtonStyleClass()
 		{
-			return "comeback";
+			if (IsContainsMenu())
+			{
+				return "menu";
+			}
+			else
+			{
+				return "comeback";
+			}
 		}
 
 		/// <summary>
@@ -83,7 +105,17 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void RightBarButtonAction()
 		{
-			NavigationController.PopToRootViewController(true);
+			if (IsContainsMenu())
+			{
+				ShowProgressWhilePerforming(() => {
+					RootViewController.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
+					DismissViewController(true, null);
+				}, false);
+			}
+			else
+			{
+				NavigationController.PopToRootViewController(true);
+			}
 		}
 
 		/// <summary>
@@ -170,6 +202,29 @@ namespace BeeBaby
 					}, RightBarButtonStyleClass());
 			}
 			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
+		}
+
+		/// <summary>
+		/// Determines whether this instance is contains menu.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is contains menu; otherwise, <c>false</c>.</returns>
+		public bool IsContainsMenu()
+		{
+			return RootViewController.GetType() == typeof(SlideoutNavigationController);
+		}
+
+		/// <summary>
+		/// Gets or sets the root view controller.
+		/// </summary>
+		/// <value>The root view controller.</value>
+		public UIViewController RootViewController
+		{
+			get {
+				return UIApplication.SharedApplication.Windows[0].RootViewController;
+			}
+			set {
+				UIApplication.SharedApplication.Windows[0].RootViewController = value;
+			}
 		}
 
 		/// <summary>

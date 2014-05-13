@@ -30,6 +30,8 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			RootViewController = NavigationController;
+
 			base.ViewDidLoad();
 
 			CreateMoment();
