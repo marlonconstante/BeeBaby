@@ -2,6 +2,7 @@
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Domain.Baby
 {
@@ -40,6 +41,18 @@ namespace Domain.Baby
 		}
 
 		/// <summary>
+		/// Creates the baby.
+		/// </summary>
+		/// <returns>The baby.</returns>
+		public Baby CreateBaby()
+		{
+			var baby = new Baby();
+			SaveBaby(baby);
+
+			return baby;
+		}
+
+		/// <summary>
 		/// Gets the baby.
 		/// </summary>
 		/// <returns>The baby.</returns>
@@ -56,6 +69,14 @@ namespace Domain.Baby
 		{
 			return MainRepository.FindBy(id);
 		}
+
+		/// <summary>
+		/// Gets all babys.
+		/// </summary>
+		/// <returns>The all babys.</returns>
+		public IEnumerable<Baby> GetAllBabys()
+		{
+			return MainRepository.FindAll();
+		}
 	}
 }
-

@@ -4,8 +4,6 @@ using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
-using Domain.Moment;
-using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -69,7 +67,7 @@ namespace BeeBaby
 		{
 			ShowProgressWhilePerforming(() => {
 				var babyService = new BabyService();
-				var baby = new Baby();
+				var baby = CurrentContext.Instance.CurrentBaby;
 				var birthDateTime = ViewBirthDay.GetText("dd/MM/yyyy") + " " + ViewBirthTime.GetText("HH:mm");
 
 				baby.Name = txtName.Text;
@@ -77,13 +75,6 @@ namespace BeeBaby
 				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
 
 				babyService.SaveBaby(baby);
-
-				CurrentContext.Instance.CurrentBaby = baby;
-				CurrentContext.Instance.Moment.Babies.Add(baby);
-
-				PreferencesEditor.SaveLastUsedBaby(baby.Id);
-
-				new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 
 				PerformSegue("segueMoment", sender);
 			}, false);

@@ -41,6 +41,7 @@ namespace BeeBaby
 		
 			IList<MenuItem> menuItems = new List<MenuItem>();
 			menuItems.Add(new MenuItem("Timeline".Translate(), "timeline", () => {
+				//Vir selecionado e fazer pop???
 				NavigationController.PushViewController(controller, true);
 			}));
 			menuItems.Add(new MenuItem("ProductsForYourChild".Translate(), "market", () => {

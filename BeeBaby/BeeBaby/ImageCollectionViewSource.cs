@@ -13,7 +13,7 @@ namespace BeeBaby
 		const string s_cellIdentifier = "GalleryCell";
 		UIViewController m_viewController;
 		ImageProvider m_imageProvider;
-		IList<ImageViewModel> m_images;
+		IList<ImageModel> m_images;
 
 		public ImageCollectionViewSource(UIViewController viewController)
 		{
@@ -84,7 +84,7 @@ namespace BeeBaby
 		/// <param name="collectionView">Collection view.</param>
 		public void ReloadData(UICollectionView collectionView)
 		{
-			m_images = m_imageProvider.GetImagesForCurrentMoment(true, true);
+			m_images = m_imageProvider.GetImages(true, true);
 			collectionView.ReloadData();
 		}
 	}

@@ -9,10 +9,10 @@ namespace BeeBaby.ResourcesProviders
 	{
 		UIImagePickerControllerSourceType m_sourceType;
 
-		public MediaPickerProvider(UIImagePickerControllerSourceType sourceType)
+		public MediaPickerProvider(UIImagePickerControllerSourceType sourceType, ImagePickerDelegate imagePickerDelegate)
 		{
 			m_sourceType = sourceType;
-			Delegate = new MomentImagePickerDelegate();
+			Delegate = imagePickerDelegate;
 		}
 
 		/// <summary>
@@ -46,8 +46,6 @@ namespace BeeBaby.ResourcesProviders
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 			picker.Delegate = Delegate;
 
-			Console.WriteLine(CurrentContext.Instance.Moment.Id);
-
 			return picker;
 		}
 
@@ -55,7 +53,6 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets or sets the delegate.
 		/// </summary>
 		/// <value>The delegate.</value>
-		public MomentImagePickerDelegate Delegate { set; get; }
+		public ImagePickerDelegate Delegate { set; get; }
 	}
 }
-

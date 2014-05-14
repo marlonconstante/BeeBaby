@@ -31,6 +31,7 @@ namespace BeeBaby
 		/// Sets the image.
 		/// </summary>
 		/// <param name="image">Image.</param>
+		/// <param name="moment">Moment.</param>
 		public void SetImage(UIImage image, Moment moment)
 		{
 			iImage = image;

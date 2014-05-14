@@ -124,6 +124,8 @@ namespace BeeBaby
 
 				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
 				moment.Event = CurrentContext.Instance.SelectedEvent;
+				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+
 				moment.Date = ViewDate.GetDateTime();
 
 				if (!mapView.Hidden)

@@ -9,6 +9,8 @@ using Application;
 using BeeBaby.ViewModels;
 using Domain.Moment;
 using System.Drawing;
+using BeeBaby.Util;
+using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -77,7 +79,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void AddMediaFromLibrary(UIButton sender)
 		{
-			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum);
+			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
+			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
 			var m_picker = mediaPickerProvider.GetUIImagePickerController();
 
 			PresentViewController(m_picker, false, null);
@@ -92,6 +95,11 @@ namespace BeeBaby
 			ShowProgressWhilePerforming(() => {
 				if (CurrentContext.Instance.CurrentBaby == null)
 				{
+					var baby = new BabyService().CreateBaby();
+
+					CurrentContext.Instance.CurrentBaby = baby;
+					PreferencesEditor.SaveLastUsedBaby(baby.Id);
+
 					PerformSegue("segueBaby", sender);
 				}
 				else

@@ -32,4 +32,3 @@ namespace Infrastructure.Repositories.SqliteNet
 		}
 	}
 }
-

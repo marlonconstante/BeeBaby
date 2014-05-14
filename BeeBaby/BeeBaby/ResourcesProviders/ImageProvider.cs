@@ -10,6 +10,7 @@ using Domain.Media;
 using System.Drawing;
 using MonoTouch.CoreGraphics;
 using BeeBaby.ViewModels;
+using Domain.Moment;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -31,15 +32,15 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
-		/// Gets the temporary directory path.
+		/// Gets the temporary directory.
 		/// </summary>
-		/// <returns>The temporary directory path.</returns>
-		string GetTemporaryDirectoryPath()
+		/// <returns>The temporary directory.</returns>
+		string GetTemporaryDirectory()
 		{
-			var path = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_name);
-			Directory.CreateDirectory(path);
+			var temporaryDirectory = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName, m_name);
+			Directory.CreateDirectory(temporaryDirectory);
 
-			return path;
+			return temporaryDirectory;
 		}
 
 		/// <summary>
@@ -60,33 +61,22 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The file name.</returns>
 		string GenerateFileName()
 		{
-			return string.Concat(DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture), m_fileExtension);
+			return DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture);
 		}
 
 		/// <summary>
-		/// Gets the temporary images names for current moment.
+		/// Gets the images.
 		/// </summary>
-		/// <returns>The temporary images names for current moment.</returns>
-		public IList<string> GetTemporaryImagesNamesForCurrentMoment()
-		{
-			var temporaryDirectory = GetTemporaryDirectoryPath();
-
-			return Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension));
-		}
-
-		/// <summary>
-		/// Gets the images for current moment.
-		/// </summary>
-		/// <returns>The images for current moment.</returns>
+		/// <returns>The images.</returns>
 		/// <param name="includeTemporary">If set to <c>true</c> include temporary.</param>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<ImageViewModel> GetImagesForCurrentMoment(bool includeTemporary, bool thumbnails = false)
+		public IList<ImageModel> GetImages(bool includeTemporary, bool thumbnails = false)
 		{
 			var fileNames = new List<string>();
 
 			if (includeTemporary)
 			{
-				var temporaryDirectory = GetTemporaryDirectoryPath();
+				var temporaryDirectory = GetTemporaryDirectory();
 				fileNames.AddRange(Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension)));
 			}
 
@@ -99,12 +89,12 @@ namespace BeeBaby.ResourcesProviders
 				: !f.Contains(m_thumbnailPrefix)
 			).ToList();
 
-			var images = new List<ImageViewModel>();
+			var images = new List<ImageModel>();
 
 			foreach (var fileName in fileNames)
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageViewModel {
+				var image = new ImageModel {
 					Image = UIImage.LoadFromData(data),
 					FileName = fileName.Split('/').Last()
 				};
@@ -120,7 +110,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="imagesNames">Images names.</param>
 		public void SavePermanentImages(IList<string> imagesNames)
 		{
-			var temporaryDirectory = GetTemporaryDirectoryPath();
+			var temporaryDirectory = GetTemporaryDirectory();
 			var permanentDirectory = GetPermanentDirectory();
 			foreach (var imageName in imagesNames)
 			{
@@ -144,21 +134,38 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The temporary image on app.</returns>
 		/// <param name="image">Image.</param>
-		public string SaveTemporaryImageOnApp(UIImage image)
+		/// <param name="fileName">File name.</param>
+		public string SaveTemporaryImageOnApp(UIImage image, string fileName = null)
 		{
-			var fileName = GenerateFileName();
-			SaveImageOnApp(image, fileName, GetTemporaryDirectoryPath());
-			return fileName;
+			return SaveImageOnApp(image, fileName, GetTemporaryDirectory());
+		}
+
+		/// <summary>
+		/// Saves the permanent image on app.
+		/// </summary>
+		/// <returns>The permanent image on app.</returns>
+		/// <param name="image">Image.</param>
+		/// <param name="fileName">File name.</param>
+		public string SavePermanentImageOnApp(UIImage image, string fileName = null)
+		{
+			return SaveImageOnApp(image, fileName, GetPermanentDirectory());
 		}
 
 		/// <summary>
 		/// Saves the image on app.
 		/// </summary>
+		/// <returns>The file name.</returns>
 		/// <param name="image">Image.</param>
 		/// <param name="fileName">File name.</param>
 		/// <param name="directoryPath">Directory path.</param>
-		public void SaveImageOnApp(UIImage image, string fileName, string directoryPath)
+		string SaveImageOnApp(UIImage image, string fileName, string directoryPath)
 		{
+			if (String.IsNullOrEmpty(fileName))
+			{
+				fileName = GenerateFileName();
+			}
+			fileName = string.Concat(fileName, m_fileExtension);
+
 			var fullImagePath = Path.Combine(directoryPath, fileName);
 			var thumbnailImagePath = Path.Combine(directoryPath, GetThumbnailImageName(fileName));
 
@@ -179,6 +186,8 @@ namespace BeeBaby.ResourcesProviders
 					Console.WriteLine("Saving of file failed: " + err.Description);
 				}
 			}
+
+			return fileName;
 		}
 
 		/// <summary>
@@ -207,11 +216,17 @@ namespace BeeBaby.ResourcesProviders
 			}
 
 			var imagePath = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension))
-				.FirstOrDefault(i => i.Equals(Path.Combine(GetPermanentDirectory(), imageName)));
+				.FirstOrDefault(i => i.Contains(Path.Combine(GetPermanentDirectory(), imageName)));
 
-			var data = NSData.FromFile(imagePath);
-
-			return UIImage.LoadFromData(data);
+			if (imagePath != null)
+			{
+				var data = NSData.FromFile(imagePath);
+				return UIImage.LoadFromData(data);
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		/// <summary>

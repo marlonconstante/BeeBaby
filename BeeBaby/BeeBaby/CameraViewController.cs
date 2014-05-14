@@ -58,7 +58,8 @@ namespace BeeBaby
 
 			if (MediaPickerProvider.IsCameraAvailable())
 			{
-				m_mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera);
+				var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
+				m_mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera, imagePickerDelegate);
 				m_picker = m_mediaPickerProvider.GetUIImagePickerController();
 				m_picker.CameraOverlayView = View;
 
@@ -219,7 +220,8 @@ namespace BeeBaby
 			ShowProgressWhilePerforming(() => {
 				if (m_mediaPickerProvider != null)
 				{
-					m_mediaPickerProvider.Delegate.WaitForPendingTasks();
+					var imagePickerDelegate = (MomentImagePickerDelegate) m_mediaPickerProvider.Delegate;
+					imagePickerDelegate.WaitForPendingTasks();
 				}
 				StopSound();
 				PerformSegue("segueMedia", sender);

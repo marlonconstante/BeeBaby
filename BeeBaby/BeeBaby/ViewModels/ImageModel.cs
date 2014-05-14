@@ -3,9 +3,9 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby.ViewModels
 {
-	public class ImageViewModel
+	public class ImageModel
 	{
-		public ImageViewModel()
+		public ImageModel()
 		{
 		}
 

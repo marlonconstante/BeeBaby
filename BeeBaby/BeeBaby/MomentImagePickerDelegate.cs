@@ -5,20 +5,19 @@ using BeeBaby.ResourcesProviders;
 using Application;
 using System.Collections.Generic;
 using System.Threading;
-using BigTed;
+using Domain.Moment;
 
 namespace BeeBaby
 {
-	public class MomentImagePickerDelegate : UIImagePickerControllerDelegate
+	public class MomentImagePickerDelegate : ImagePickerDelegate
 	{
-		ImageProvider m_imageProvider;
 		IList<Action> m_tasks;
 		bool m_pendingTasks;
 		Thread m_performTasks;
 
-		public MomentImagePickerDelegate()
+		public MomentImagePickerDelegate(Moment moment)
 		{
-			m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
+			ImageProvider = new ImageProvider(moment.Id);
 			m_tasks = new List<Action>();
 		}
 
@@ -31,7 +30,7 @@ namespace BeeBaby
 		{
 			if (picker.SourceType == UIImagePickerControllerSourceType.Camera)
 			{
-				lock (m_imageProvider)
+				lock (ImageProvider)
 				{
 					m_tasks.Add(() => {
 						SaveTemporaryImageOnApp(info, false);
@@ -53,40 +52,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Finisheds the picking image.
-		/// </summary>
-		/// <param name="picker">Picker.</param>
-		/// <param name="image">Image.</param>
-		public override void FinishedPickingImage(UIImagePickerController picker, UIImage image, NSDictionary editingInfo)
-		{
-			m_imageProvider.SaveTemporaryImageOnApp(image);
-		}
-
-		/// <summary>
-		/// Wills the show view controller.
-		/// </summary>
-		/// <param name="navigationController">Navigation controller.</param>
-		/// <param name="viewController">View controller.</param>
-		public override void WillShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
-		{
-			UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
-
-			// Dismiss the spinner
-			BTProgressHUD.Dismiss();
-		}
-
-		/// <summary>
 		/// Saves the temporary image on app.
 		/// </summary>
 		/// <param name="info">Info.</param>
+		/// <param name="selected">If set to <c>true</c> selected.</param>
 		void SaveTemporaryImageOnApp(NSDictionary info, bool selected)
 		{
 			using (UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
-				var fileName = m_imageProvider.SaveTemporaryImageOnApp(photo);
+				var fileName = ImageProvider.SaveTemporaryImageOnApp(photo);
 				if (selected)
 				{
-					var thumbnailImageName = m_imageProvider.GetThumbnailImageName(fileName);
+					var thumbnailImageName = ImageProvider.GetThumbnailImageName(fileName);
 					CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
 				}
 			}
@@ -102,7 +79,7 @@ namespace BeeBaby
 				while (true)
 				{
 					Action action = null;
-					lock (m_imageProvider)
+					lock (ImageProvider)
 					{
 						if (m_tasks.Count > 0)
 						{

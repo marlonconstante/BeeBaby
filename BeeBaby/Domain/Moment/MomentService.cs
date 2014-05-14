@@ -59,10 +59,13 @@ namespace Domain.Moment
 			return MainRepository.FindAllDescending((m) => m.Date).Where(m => m.Event != null && m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0);
 		}
 
+		/// <summary>
+		/// Gets the first moment.
+		/// </summary>
+		/// <returns>The first moment.</returns>
 		public Moment GetFirstMoment()
 		{
 			return MainRepository.FindFirst();
 		}
 	}
 }
-

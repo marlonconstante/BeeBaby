@@ -18,7 +18,7 @@ namespace BeeBaby
 		UIViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
-		IList<ImageViewModel> m_images;
+		IList<ImageModel> m_images;
 		UIImageView _imageView;
 		UIViewFullscreen vMain;
 
@@ -74,18 +74,16 @@ namespace BeeBaby
 			momentCell.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
 			momentCell.LabelWho = indexPath.Row.ToString();
 
-			var provider = new ImageProvider(moment.Id);
-			m_images = provider.GetImagesForCurrentMoment(false, true);
-			var viewWidth = (MediaBase.ImageThumbnailSize) * m_images.Count;
-			momentCell.ViewPhotos.ContentSize = new SizeF(viewWidth, MediaBase.ImageThumbnailSize);
+			var imageProvider = new ImageProvider(moment.Id);
+			m_images = imageProvider.GetImages(false, true);
 
-			var i = 0;
+			var scrollWidth = m_images.Count * MediaBase.ImageThumbnailSize;
+			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
+			var index = 0;
 			foreach (var image in m_images)
 			{
-				var xCoord = i * MediaBase.ImageThumbnailSize;
-
-				using (var uiImageView = new UIImageViewClickable(new Rectangle(xCoord, 0, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
+				using (var uiImageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
 				{
 					uiImageView.Image = image.Image;
 					uiImageView.UserInteractionEnabled = true;
@@ -96,13 +94,13 @@ namespace BeeBaby
 						{
 							vMain = new UIViewFullscreen();
 						}
-						vMain.SetImage(provider.GetImage(image.FileName), moment);
+						vMain.SetImage(imageProvider.GetImage(image.FileName), moment);
 						vMain.Show();
 					};
 
 					momentCell.ViewPhotos.AddSubview(uiImageView);
 				}
-				i++;
+				index++;
 			}
 
 			m_images = null;

@@ -202,7 +202,6 @@
     <Compile Include="PlaceholderTextFieldDelegate.cs" />
     <Compile Include="Placeholder.cs" />
     <Compile Include="ZoomMapViewDelegate.cs" />
-    <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ImageCollectionViewSource.cs" />
     <Compile Include="MediaViewController.cs" />
     <Compile Include="MediaViewController.designer.cs">
@@ -283,6 +282,10 @@
       <DependentUpon>SlideoutNavigationController.cs</DependentUpon>
     </Compile>
     <Compile Include="MomentImagePickerDelegate.cs" />
+    <Compile Include="BabyImagePickerDelegate.cs" />
+    <Compile Include="ImagePickerDelegate.cs" />
+    <Compile Include="ViewModels\BabyProfile.cs" />
+    <Compile Include="ViewModels\ImageModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace Domain.Media
 		public const int ImageThumbnailSize = 150;
 		public const int ImageShareSize = 320;
 		public const float ImageCompressionQuality = 0.7f;
+		public const string PhotoProfileName = "profile-photo";
 		public const float PhotoProfileSize = 98f;
 		public const float PhotoProfileInnerSize = 90f;
 		#endregion

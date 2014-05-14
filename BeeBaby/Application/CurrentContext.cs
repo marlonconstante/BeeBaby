@@ -34,9 +34,9 @@ namespace Application
 		}
 
 		/// <summary>
-		/// Gets or sets the baby.
+		/// Gets or sets the current baby.
 		/// </summary>
-		/// <value>The baby.</value>
+		/// <value>The current baby.</value>
 		public Baby CurrentBaby {
 			get;
 			set;
