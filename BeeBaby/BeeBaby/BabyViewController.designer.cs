@@ -25,10 +25,10 @@ namespace BeeBaby
 		MonoTouch.UIKit.UITextField txtName { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwBirthDay { get; set; }
+		BeeBaby.ViewDatePicker vwBirthDay { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwBirthTime { get; set; }
+		BeeBaby.ViewDatePicker vwBirthTime { get; set; }
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);

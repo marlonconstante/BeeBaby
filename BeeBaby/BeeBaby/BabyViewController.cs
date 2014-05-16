@@ -14,6 +14,16 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			Load(CurrentContext.Instance.CurrentBaby);
+		}
+
+		/// <summary>
 		/// Views the will appear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -21,8 +31,8 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			ViewBirthDay.UpdateInfo();
-			ViewBirthTime.UpdateInfo();
+			vwBirthDay.UpdateInfo();
+			vwBirthTime.UpdateInfo();
 		}
 
 		/// <summary>
@@ -44,8 +54,8 @@ namespace BeeBaby
 		{
 			base.StartEditing();
 
-			ViewBirthDay.Hide();
-			ViewBirthTime.Hide();
+			vwBirthDay.Hide();
+			vwBirthTime.Hide();
 		}
 
 		/// <summary>
@@ -55,8 +65,20 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 
-			ViewBirthDay.Hide();
-			ViewBirthTime.Hide();
+			vwBirthDay.Hide();
+			vwBirthTime.Hide();
+		}
+
+		/// <summary>
+		/// Load the specified baby.
+		/// </summary>
+		/// <param name="baby">Baby.</param>
+		void Load(Baby baby)
+		{
+			txtName.Text = baby.Name;
+			segGender.SelectedSegment = (int) baby.Gender;
+			vwBirthDay.SetDateTime(baby.BirthDateTime);
+			vwBirthTime.SetDateTime(baby.BirthDateTime);
 		}
 
 		/// <summary>
@@ -65,10 +87,11 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
+			var containsMenu = IsContainsMenu();
 			ShowProgressWhilePerforming(() => {
 				var babyService = new BabyService();
 				var baby = CurrentContext.Instance.CurrentBaby;
-				var birthDateTime = ViewBirthDay.GetText("dd/MM/yyyy") + " " + ViewBirthTime.GetText("HH:mm");
+				var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
 
 				baby.Name = txtName.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment;
@@ -76,30 +99,11 @@ namespace BeeBaby
 
 				babyService.SaveBaby(baby);
 
-				PerformSegue("segueMoment", sender);
-			}, false);
-		}
-
-		/// <summary>
-		/// Gets the view birth day.
-		/// </summary>
-		/// <value>The view birth day.</value>
-		public ViewDatePicker ViewBirthDay {
-			get {
-
-				return (ViewDatePicker) vwBirthDay;
-			}
-		}
-
-		/// <summary>
-		/// Gets the view birth time.
-		/// </summary>
-		/// <value>The view birth time.</value>
-		public ViewDatePicker ViewBirthTime {
-			get {
-
-				return (ViewDatePicker) vwBirthTime;
-			}
+				if (!containsMenu)
+				{
+					PerformSegue("segueMoment", sender);
+				}
+			}, containsMenu);
 		}
 	}
 }
