@@ -29,7 +29,6 @@ namespace BeeBaby
 			slideoutNavigation.DisplayNavigationBarOnLeftMenu = false;
 			slideoutNavigation.ShadowOpacity = 0.1f;
 			slideoutNavigation.SlideWidth = 250f;
-			slideoutNavigation.SlideHeight = 999f;
 			slideoutNavigation.TopView = timeline;
 			slideoutNavigation.MenuViewLeft = menu;
 
