@@ -121,6 +121,15 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Sets the date time.
+		/// </summary>
+		/// <param name="dateTime">Date time.</param>
+		public void SetDateTime(DateTime dateTime)
+		{
+			m_datePicker.Date = dateTime;
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewDatePicker"/> ignore hide.
 		/// </summary>
 		/// <value><c>true</c> if ignore hide; otherwise, <c>false</c>.</value>
