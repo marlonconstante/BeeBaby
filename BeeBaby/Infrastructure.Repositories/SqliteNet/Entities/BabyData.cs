@@ -39,8 +39,7 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// Gets or sets the moments.
 		/// </summary>
 		/// <value>The moments.</value>
-		[ManyToMany(typeof(MomentsBabies))]
-		public List<MomentData> Moments { set; get; }
+		///[ManyToMany(typeof(MomentsBabies))]
+		///public List<MomentData> Moments { set; get; }
 	}
 }
-
