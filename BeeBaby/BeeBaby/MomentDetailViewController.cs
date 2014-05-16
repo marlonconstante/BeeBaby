@@ -38,7 +38,7 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			ViewDate.UpdateInfo();
+			vwDate.UpdateInfo();
 		}
 
 		/// <summary>
@@ -87,7 +87,7 @@ namespace BeeBaby
 		{
 			base.StartEditing();
 
-			ViewDate.Hide();
+			vwDate.Hide();
 		}
 
 		/// <summary>
@@ -97,7 +97,7 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 
-			ViewDate.Hide();
+			vwDate.Hide();
 		}
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace BeeBaby
 				moment.Event = CurrentContext.Instance.SelectedEvent;
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
-				moment.Date = ViewDate.GetDateTime();
+				moment.Date = vwDate.GetDateTime();
 
 				if (!mapView.Hidden)
 				{
@@ -159,16 +159,6 @@ namespace BeeBaby
 			mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
 			mapView.ShowsUserLocation = sender.On;
 			mapView.Hidden = !sender.On;
-		}
-
-		/// <summary>
-		/// Gets the view date.
-		/// </summary>
-		/// <value>The view date.</value>
-		public ViewDatePicker ViewDate {
-			get {
-				return (ViewDatePicker) vwDate;
-			}
 		}
 	}
 }

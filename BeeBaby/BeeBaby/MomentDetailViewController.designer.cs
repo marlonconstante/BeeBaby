@@ -34,7 +34,7 @@ namespace BeeBaby
 		MonoTouch.UIKit.UITextView txtDescription { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwDate { get; set; }
+		BeeBaby.ViewDatePicker vwDate { get; set; }
 
 		[Action ("LocationChanged:")]
 		partial void LocationChanged (MonoTouch.UIKit.UISwitch sender);
