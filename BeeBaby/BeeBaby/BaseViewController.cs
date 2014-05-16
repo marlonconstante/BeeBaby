@@ -104,6 +104,28 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Determines whether this instance is contains menu.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is contains menu; otherwise, <c>false</c>.</returns>
+		public bool IsContainsMenu()
+		{
+			return RootViewController.GetType() == typeof(SlideoutNavigationController);
+		}
+
+		/// <summary>
+		/// Gets or sets the root view controller.
+		/// </summary>
+		/// <value>The root view controller.</value>
+		public UIViewController RootViewController {
+			get {
+				return UIApplication.SharedApplication.Windows[0].RootViewController;
+			}
+			set {
+				UIApplication.SharedApplication.Windows[0].RootViewController = value;
+			}
+		}
+
+		/// <summary>
 		/// Shows the progress while performing.
 		/// </summary>
 		/// <param name="action">Action.</param>
