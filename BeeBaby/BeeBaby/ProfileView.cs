@@ -13,27 +13,62 @@ namespace BeeBaby
 {
 	public partial class ProfileView : UIView
 	{
-		UIImage m_photoProfile;
-		const float s_profilePadding = 10f;
+		const float s_padding = 10f;
+		bool m_menu;
+		RectangleF m_frame;
+		UIImage m_defaultPhoto;
+		UIView m_viewProfiles;
+		UIButton m_buttonSelectedBaby;
 
 		public ProfileView(IntPtr handle) : base(handle)
 		{
-			InitProfile();
+			InitProfile(false);
 		}
 
 		public ProfileView(RectangleF frame) : base(frame)
 		{
-			InitProfile();
+			InitProfile(true);
+		}
+
+		/// <summary>
+		/// Updates the baby profiles.
+		/// </summary>
+		public void UpdateBabyProfiles()
+		{
+			if (m_viewProfiles != null)
+			{
+				m_viewProfiles.RemoveFromSuperview();
+			}
+
+			m_viewProfiles = BuildViewProfiles();
+			AddSubview(m_viewProfiles);
+
+			if (m_menu)
+			{
+				if (m_buttonSelectedBaby != null)
+				{
+					m_buttonSelectedBaby.RemoveFromSuperview();
+				}
+
+				m_buttonSelectedBaby = BuildButtonSelectedBaby(CurrentContext.Instance.CurrentBaby);
+				AddSubview(m_buttonSelectedBaby);
+			}
 		}
 
 		/// <summary>
 		/// Inits the profile.
 		/// </summary>
-		void InitProfile()
+		/// <param name="menu">If set to <c>true</c> menu.</param>
+		void InitProfile(bool menu)
 		{
-			m_photoProfile = UIImage.FromFile("photo-profile.png");
+			m_menu = menu;
+			m_frame = Frame;
+			m_defaultPhoto = UIImage.FromFile("photo-profile.png");
 			AddBackgroundProfile();
-			AddSubview(BuildViewProfiles());
+			if (!menu)
+			{
+				UpdateBabyProfiles();
+			}
 		}
 
 		/// <summary>
@@ -41,28 +76,23 @@ namespace BeeBaby
 		/// </summary>
 		void AddBackgroundProfile()
 		{
-			var frame = new RectangleF(0f, 0f, Frame.Width, Frame.Height);
+			var frame = new RectangleF(0f, 0f, m_frame.Width, m_frame.Height);
 			AddSubview(BuildImageView(frame, UIImage.FromFile("background-profile.png")));
 			ClipsToBounds = true;
 		}
 
 		/// <summary>
-		/// Gets the baby profiles.
+		/// Opens the baby view controller.
 		/// </summary>
-		/// <returns>The baby profiles.</returns>
-		IList<BabyProfile> GetBabyProfiles()
+		void OpenBabyViewController()
 		{
-			IList<BabyProfile> babyProfiles = new List<BabyProfile>();
-			foreach (var baby in new BabyService().GetAllBabys())
+			var rootViewController = Window.RootViewController;
+			if (rootViewController.GetType() == typeof(SlideoutNavigationController))
 			{
-				var imagePickerDelegate = new BabyImagePickerDelegate(baby);
-				babyProfiles.Add(new BabyProfile() {
-					Baby = baby,
-					Image = GetPhotoProfile(imagePickerDelegate.ImageProvider),
-					Delegate = imagePickerDelegate
-				});
+				var slideoutNavigation = (SlideoutNavigationController) rootViewController;
+				var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
+				menu.PushViewController("BabyViewController", true);
 			}
-			return babyProfiles;
 		}
 
 		/// <summary>
@@ -75,56 +105,151 @@ namespace BeeBaby
 			UIImage photoProfile = imageProvider.GetImage(MediaBase.PhotoProfileName, true);
 			if (photoProfile == null)
 			{
-				photoProfile = m_photoProfile;
+				photoProfile = m_defaultPhoto;
 			}
 			return photoProfile;
+		}
+
+		/// <summary>
+		/// Gets the baby profiles.
+		/// </summary>
+		/// <returns>The baby profiles.</returns>
+		IList<BabyProfile> GetBabyProfiles()
+		{
+			IList<BabyProfile> babyProfiles = new List<BabyProfile>();
+			foreach (var baby in new BabyService().GetAllBabys())
+			{
+				babyProfiles.Add(BuildBabyProfile(baby));
+			}
+			return babyProfiles;
+		}
+
+		/// <summary>
+		/// Builds the baby profile.
+		/// </summary>
+		/// <returns>The baby profile.</returns>
+		/// <param name="baby">Baby.</param>
+		BabyProfile BuildBabyProfile(Baby baby)
+		{
+			var imagePickerDelegate = new BabyImagePickerDelegate(baby);
+			var babyProfile = new BabyProfile() {
+				Baby = baby,
+				Image = GetPhotoProfile(imagePickerDelegate.ImageProvider),
+				Delegate = imagePickerDelegate
+			};
+
+			return babyProfile;
+		}
+
+		/// <summary>
+		/// Builds the button selected baby.
+		/// </summary>
+		/// <returns>The button selected baby.</returns>
+		/// <param name="baby">Baby.</param>
+		UIButton BuildButtonSelectedBaby(Baby baby)
+		{
+			var width = m_frame.Width - (s_padding * 2);
+			var height = 64f;
+			var y = m_frame.Height - height;
+
+			UIButton button = new UIButton(new RectangleF(s_padding, y, width, height));
+			button.SetStyleClass("baby-button");
+			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
+			button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
+			button.SetTitle(baby.Name + " >", UIControlState.Normal);
+			button.TouchUpInside += (sender, e) => {
+				OpenBabyViewController();
+			};
+
+			return button;
+		}
+
+		/// <summary>
+		/// Builds the view profile.
+		/// </summary>
+		/// <returns>The view profile.</returns>
+		/// <param name="babyProfile">Baby profile.</param>
+		/// <param name="index">Index.</param>
+		UIView BuildViewProfile(BabyProfile babyProfile, int index = -1)
+		{
+			var x = (m_frame.Width / 2f) - (MediaBase.PhotoProfileSize / 2f);
+			var y = (m_frame.Height / 2f) - (MediaBase.PhotoProfileSize / 2f);
+
+			if (index >= 0)
+			{
+				x = index * (MediaBase.PhotoProfileSize + s_padding) + s_padding;
+			}
+
+			UIView view = new UIView(new RectangleF(x, y, MediaBase.PhotoProfileSize, MediaBase.PhotoProfileSize));
+			view.SetStyleClass("photo-profile");
+			view.AddSubview(BuildImageViewProfile(babyProfile));
+
+			return view;
 		}
 
 		/// <summary>
 		/// Builds the view profiles.
 		/// </summary>
 		/// <returns>The view profiles.</returns>
-		UIScrollView BuildViewProfiles()
+		UIView BuildViewProfiles()
 		{
-			IList<BabyProfile> babyProfiles = GetBabyProfiles();
-
-			var scrollTotalWidth = babyProfiles.Count * (MediaBase.PhotoProfileSize + s_profilePadding) + s_profilePadding;
-			var scrollWidth = Math.Min(Frame.Width, scrollTotalWidth);
-			var scrollX = (Frame.Width / 2f) - (scrollWidth / 2f);
-			var scrollY = (Frame.Height / 2f) - (MediaBase.PhotoProfileSize / 2f);
-			var imagePosition = (MediaBase.PhotoProfileSize - MediaBase.PhotoProfileInnerSize) / 2;
-			var imageFrame = new RectangleF(imagePosition, imagePosition, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
-
-			UIScrollView scrollView = new UIScrollView(new RectangleF(scrollX, scrollY, scrollWidth, MediaBase.PhotoProfileSize + s_profilePadding));
-			scrollView.ContentSize = new SizeF(scrollTotalWidth, MediaBase.PhotoProfileSize + s_profilePadding);
-
-			var index = 0;
-			foreach (var babyProfile in babyProfiles)
+			if (m_menu)
 			{
-				using (var imageView = BuildImageView(imageFrame, babyProfile.Image))
-				{
-					imageView.OnClick += () => {
-						babyProfile.Delegate.CompletionHandler = () => {
-							imageView.Image = GetPhotoProfile(babyProfile.Delegate.ImageProvider);
-						};
-
-						var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, babyProfile.Delegate);
-						var m_picker = mediaPickerProvider.GetUIImagePickerController();
-
-						Window.RootViewController.PresentViewController(m_picker, false, null);
-					};
-					imageView.Layer.CornerRadius = 45f;
-
-					UIView view = new UIView(new RectangleF(index * (MediaBase.PhotoProfileSize + s_profilePadding) + s_profilePadding, 0f, MediaBase.PhotoProfileSize, MediaBase.PhotoProfileSize));
-					view.SetStyleClass("photo-profile");
-					view.AddSubview(imageView);
-
-					scrollView.AddSubview(view);
-				}
-				index++;
+				return BuildViewProfile(BuildBabyProfile(CurrentContext.Instance.CurrentBaby));
 			}
+			else
+			{
+				IList<BabyProfile> babyProfiles = GetBabyProfiles();
 
-			return scrollView;
+				var totalWidth = babyProfiles.Count * (MediaBase.PhotoProfileSize + s_padding) + s_padding;
+				var width = Math.Min(m_frame.Width, totalWidth);
+				var x = (m_frame.Width / 2f) - (width / 2f);
+
+				UIScrollView scrollView = new UIScrollView(new RectangleF(x, 0f, width, m_frame.Height));
+				scrollView.ContentSize = new SizeF(totalWidth, m_frame.Height);
+
+				var index = 0;
+				foreach (var babyProfile in babyProfiles)
+				{
+					scrollView.AddSubview(BuildViewProfile(babyProfile, index));
+					index++;
+				}
+
+				return scrollView;
+			}
+		}
+
+		/// <summary>
+		/// Builds the image view profile.
+		/// </summary>
+		/// <returns>The image view profile.</returns>
+		/// <param name="babyProfile">Baby profile.</param>
+		UIImageViewClickable BuildImageViewProfile(BabyProfile babyProfile)
+		{
+			var position = (MediaBase.PhotoProfileSize - MediaBase.PhotoProfileInnerSize) / 2;
+			var frame = new RectangleF(position, position, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
+
+			UIImageViewClickable imageView = BuildImageView(frame, babyProfile.Image);
+			imageView.OnClick += () => {
+				if (m_menu)
+				{
+					OpenBabyViewController();
+				}
+				else
+				{
+					babyProfile.Delegate.CompletionHandler = () => {
+						imageView.Image = GetPhotoProfile(babyProfile.Delegate.ImageProvider);
+					};
+
+					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, babyProfile.Delegate);
+					var m_picker = mediaPickerProvider.GetUIImagePickerController();
+
+					Window.RootViewController.PresentViewController(m_picker, false, null);
+				}
+			};
+			imageView.Layer.CornerRadius = 45f;
+
+			return imageView;
 		}
 
 		/// <summary>
