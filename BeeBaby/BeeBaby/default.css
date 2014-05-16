@@ -28,6 +28,9 @@ segmented-control {
 table-view-headerfooter-view label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
+.baby-button,
+.baby-button:highlighted,
+.baby-button:selected,
 navigation-bar,
 navigation-bar title,
 navigation-bar button,
@@ -242,6 +245,7 @@ button:selected {
 	color: #00aead;
 }
 
+.follow,
 button,
 button:highlighted,
 button:selected {
@@ -368,11 +372,6 @@ text-view {
 .image-share-year {
 	font-size: 12pt;
 	font-weight: light;
-}
-
-.follow {
-	font-size: 17pt;
-	font-weight: bold;
 }
 
 .ninety-degrees {
