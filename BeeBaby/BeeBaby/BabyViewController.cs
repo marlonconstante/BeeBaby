@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -22,6 +23,8 @@ namespace BeeBaby
 
 			vwBirthDay.MoveScroll = true;
 			vwBirthTime.MoveScroll = true;
+
+			vwBirthDay.NextViews = new List<UIView> { vwBirthTime };
 
 			Load(CurrentContext.Instance.CurrentBaby);
 		}

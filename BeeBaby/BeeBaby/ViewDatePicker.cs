@@ -3,6 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using Skahal.Infrastructure.Framework.Globalization;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -50,15 +51,23 @@ namespace BeeBaby
 		{
 			m_datePicker.Hidden = !m_datePicker.Hidden;
 
-			var height = m_datePicker.Frame.Height - 35f;
+			var height = (m_datePicker.Frame.Height - 33f) * (m_datePicker.Hidden ? -1f : 1f);
 
 			if (MoveScroll)
 			{
-				Scroller.Move(this.Superview, 0f, (m_datePicker.Hidden) ? height : -height);
+				Scroller.Move(this.Superview, 0f, height * -1f);
+
+				if (NextViews != null)
+				{
+					foreach (var view in NextViews)
+					{
+						Scroller.Move(view, 0f, height);
+					}
+				}
 			}
 
 			RectangleF frame = Frame;
-			frame.Height += (m_datePicker.Hidden) ? -height : height;
+			frame.Height += height;
 			Frame = frame;
 
 			IgnoreHide = false;
@@ -133,6 +142,15 @@ namespace BeeBaby
 		public void SetDateTime(DateTime dateTime)
 		{
 			m_datePicker.Date = dateTime;
+		}
+
+		/// <summary>
+		/// Gets or sets the next views.
+		/// </summary>
+		/// <value>The next views.</value>
+		public IList<UIView> NextViews {
+			get;
+			set;
 		}
 
 		/// <summary>
