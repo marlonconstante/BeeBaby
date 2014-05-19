@@ -59,20 +59,20 @@ namespace BeeBaby
 
 				if (NextViews != null)
 				{
-					foreach (var view in NextViews)
-					{
-						Scroller.Move(view, 0f, height);
-					}
+					InvokeInBackground(() => {
+						InvokeOnMainThread(() => {
+							foreach (var view in NextViews)
+							{
+								Scroller.Move(view, 0f, height);
+							}
+						});
+					});
 				}
 			}
 
-			InvokeInBackground(() => {
-				InvokeOnMainThread(() => {
-					RectangleF frame = Frame;
-					frame.Height += height;
-					Frame = frame;
-				});
-			});
+			RectangleF frame = Frame;
+			frame.Height += height;
+			Frame = frame;
 
 			IgnoreHide = false;
 		}
