@@ -286,6 +286,7 @@
     <Compile Include="ImagePickerDelegate.cs" />
     <Compile Include="ViewModels\BabyProfile.cs" />
     <Compile Include="ViewModels\ImageModel.cs" />
+    <Compile Include="Scroller.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

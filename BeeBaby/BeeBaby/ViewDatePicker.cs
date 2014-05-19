@@ -16,6 +16,7 @@ namespace BeeBaby
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
 			IgnoreHide = false;
+			MoveScroll = false;
 			m_longDateMask = "LongDateMask".Translate();
 
 			foreach (UIView element in Subviews)
@@ -49,10 +50,15 @@ namespace BeeBaby
 		{
 			m_datePicker.Hidden = !m_datePicker.Hidden;
 
-			float height = m_datePicker.Frame.Height - 35f;
+			var height = m_datePicker.Frame.Height - 35f;
+
+			if (MoveScroll)
+			{
+				Scroller.Move(this.Superview, 0f, (m_datePicker.Hidden) ? height : -height);
+			}
+
 			RectangleF frame = Frame;
 			frame.Height += (m_datePicker.Hidden) ? -height : height;
-
 			Frame = frame;
 
 			IgnoreHide = false;
@@ -127,6 +133,15 @@ namespace BeeBaby
 		public void SetDateTime(DateTime dateTime)
 		{
 			m_datePicker.Date = dateTime;
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewDatePicker"/> move scroll.
+		/// </summary>
+		/// <value><c>true</c> if move scroll; otherwise, <c>false</c>.</value>
+		public bool MoveScroll {
+			get;
+			set;
 		}
 
 		/// <summary>

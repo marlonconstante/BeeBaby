@@ -20,6 +20,9 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			vwBirthDay.MoveScroll = true;
+			vwBirthTime.MoveScroll = true;
+
 			Load(CurrentContext.Instance.CurrentBaby);
 		}
 
