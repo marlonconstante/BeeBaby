@@ -555,7 +555,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDB-0b-O9k">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDB-0b-O9k">
                                 <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -716,6 +716,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="5YM-qT-VmJ"/>
+                                    <constraint firstAttribute="height" constant="456" id="ivQ-XU-lDZ"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzD-b8-8xL">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
@@ -738,6 +742,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="FzD-b8-8xL" secondAttribute="bottom" id="2tl-CS-TfG"/>
+                            <constraint firstItem="zDB-0b-O9k" firstAttribute="top" secondItem="tQ3-G9-Eau" secondAttribute="top" constant="64" id="Aow-Uf-CG6"/>
+                            <constraint firstItem="zDB-0b-O9k" firstAttribute="leading" secondItem="tQ3-G9-Eau" secondAttribute="leading" id="gL7-YO-XN2"/>
                             <constraint firstItem="FzD-b8-8xL" firstAttribute="leading" secondItem="tQ3-G9-Eau" secondAttribute="leading" id="tbC-sI-fd9"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
