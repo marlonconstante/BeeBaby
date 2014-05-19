@@ -27,14 +27,14 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
-                                <rect key="frame" x="0.0" y="226" width="320" height="188"/>
+                                <rect key="frame" x="0.0" y="226" width="320" height="226"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="aGs-uI-JdM"/>
                                 </constraints>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-7K-8Yo">
-                                <rect key="frame" x="0.0" y="432" width="320" height="87"/>
+                                <rect key="frame" x="0.0" y="470" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -189,7 +189,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstAttribute="trailing" secondItem="5cT-qc-4it" secondAttribute="trailing" id="9yc-Eg-7vB"/>
                             <constraint firstAttribute="trailing" secondItem="b1H-we-1LJ" secondAttribute="trailing" id="Hlw-IM-9bn"/>
                             <constraint firstAttribute="bottom" secondItem="RSR-7K-8Yo" secondAttribute="bottom" constant="49" id="HsG-bv-nwh"/>
-                            <constraint firstAttribute="bottom" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="154" id="QZg-PA-e5H"/>
+                            <constraint firstAttribute="bottom" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="116" id="QZg-PA-e5H"/>
                             <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="226" id="V1p-Fe-FS4"/>
                             <constraint firstItem="RSR-7K-8Yo" firstAttribute="top" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="18" id="anN-uf-Tup"/>
                             <constraint firstAttribute="bottom" secondItem="b1H-we-1LJ" secondAttribute="bottom" id="mp8-Ci-vEQ"/>
