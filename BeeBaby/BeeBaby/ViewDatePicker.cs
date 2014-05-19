@@ -66,9 +66,13 @@ namespace BeeBaby
 				}
 			}
 
-			RectangleF frame = Frame;
-			frame.Height += height;
-			Frame = frame;
+			InvokeInBackground(() => {
+				InvokeOnMainThread(() => {
+					RectangleF frame = Frame;
+					frame.Height += height;
+					Frame = frame;
+				});
+			});
 
 			IgnoreHide = false;
 		}
