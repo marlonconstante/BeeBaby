@@ -51,7 +51,7 @@ namespace BeeBaby
 		{
 			m_datePicker.Hidden = !m_datePicker.Hidden;
 
-			var height = (m_datePicker.Frame.Height - 33f) * (m_datePicker.Hidden ? -1f : 1f);
+			var height = (m_datePicker.Frame.Height - 35f) * (m_datePicker.Hidden ? -1f : 1f);
 
 			if (MoveScroll)
 			{
