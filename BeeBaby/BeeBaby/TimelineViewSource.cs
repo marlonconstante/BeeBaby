@@ -19,9 +19,7 @@ namespace BeeBaby
 		UIViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
-		IList<ImageModel> m_images;
-		UIImageView _imageView;
-		UIViewFullscreen vMain;
+		UIViewFullscreen m_vwFullscreen;
 
 		public TimelineViewSource(UIViewController viewController, IList<Moment> moments, Baby baby)
 		{
@@ -75,35 +73,33 @@ namespace BeeBaby
 			momentCell.LabelWhere = moment.Location.Name;
 
 			var imageProvider = new ImageProvider(moment.Id);
-			m_images = imageProvider.GetImages(false, true);
+			IList<ImageModel> images = imageProvider.GetImages(false, true);
 
-			var scrollWidth = m_images.Count * MediaBase.ImageThumbnailSize;
+			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
 			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
 			var index = 0;
-			foreach (var image in m_images)
+			foreach (var image in images)
 			{
-				using (var uiImageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
+				using (var imageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
 				{
-					uiImageView.Image = image.Image;
-					uiImageView.UserInteractionEnabled = true;
-					uiImageView.MultipleTouchEnabled = true;
-					uiImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-					uiImageView.OnClick += () => {
-						if (vMain == null)
+					imageView.Image = image.Image;
+					imageView.UserInteractionEnabled = true;
+					imageView.MultipleTouchEnabled = true;
+					imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+					imageView.OnClick += () => {
+						if (m_vwFullscreen == null)
 						{
-							vMain = new UIViewFullscreen();
+							m_vwFullscreen = new UIViewFullscreen();
 						}
-						vMain.SetImage(imageProvider.GetImage(image.FileName), moment);
-						vMain.Show();
+						m_vwFullscreen.SetImage(imageProvider.GetImage(image.FileName), moment);
+						m_vwFullscreen.Show();
 					};
 
-					momentCell.ViewPhotos.AddSubview(uiImageView);
+					momentCell.ViewPhotos.AddSubview(imageView);
 				}
 				index++;
 			}
-
-			m_images = null;
 
 			return momentCell;
 		}
