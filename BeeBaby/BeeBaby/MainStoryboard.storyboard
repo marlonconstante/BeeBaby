@@ -27,7 +27,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
-                                <rect key="frame" x="0.0" y="286" width="320" height="166"/>
+                                <rect key="frame" x="0.0" y="294" width="320" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="aGs-uI-JdM"/>
@@ -63,8 +63,8 @@ de lembrar sobre este momento?</string>
                                     <action selector="Save:" destination="UAi-dU-234" eventType="touchUpInside" id="lsd-Wy-tLV"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-wj-PQM">
-                                <rect key="frame" x="0.0" y="182" width="320" height="105"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-wj-PQM">
+                                <rect key="frame" x="0.0" y="181" width="320" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMw-AQ-qLa">
@@ -115,8 +115,8 @@ de lembrar sobre este momento?</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUV-1f-YlT" customClass="ViewDatePicker">
-                                <rect key="frame" x="0.0" y="137" width="320" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUV-1f-YlT" customClass="ViewDatePicker">
+                                <rect key="frame" x="0.0" y="136" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:40" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-P3-l3D">
@@ -197,8 +197,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
+                                <rect key="frame" x="0.0" y="92" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="33" minY="1" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Escolha um acontecimento">
@@ -211,8 +211,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="SelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="Hij-54-swU"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=">" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK2-UN-gfl">
-                                <rect key="frame" x="295" y="104" width="15" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=">" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK2-UN-gfl">
+                                <rect key="frame" x="295" y="103" width="15" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="pGc-3V-cro"/>
@@ -224,8 +224,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="follow"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
-                                <rect key="frame" x="9" y="106" width="16" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
+                                <rect key="frame" x="9" y="106" width="16" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="K1e-g7-dTN"/>
@@ -246,11 +246,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="vGp-Ig-353" firstAttribute="top" secondItem="RTc-JH-Pq5" secondAttribute="bottom" constant="3" id="KNF-fO-lZs"/>
                             <constraint firstAttribute="bottom" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="120" id="QZg-PA-e5H"/>
                             <constraint firstItem="VUV-1f-YlT" firstAttribute="top" secondItem="vGp-Ig-353" secondAttribute="bottom" constant="1" id="SWp-HW-LEu"/>
-                            <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="226" id="V1p-Fe-FS4"/>
+                            <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="294" id="V1p-Fe-FS4"/>
                             <constraint firstItem="oMU-wj-PQM" firstAttribute="leading" secondItem="5cT-qc-4it" secondAttribute="leading" id="Ywm-Je-uzE"/>
                             <constraint firstItem="qh2-32-0Kn" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" constant="9" id="Zxf-RV-keh"/>
                             <constraint firstItem="RTc-JH-Pq5" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" constant="10" id="aFe-lc-yhn"/>
-
                             <constraint firstItem="RSR-7K-8Yo" firstAttribute="top" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="18" id="anN-uf-Tup"/>
                             <constraint firstItem="oMU-wj-PQM" firstAttribute="top" secondItem="VUV-1f-YlT" secondAttribute="bottom" constant="1" id="bci-df-f3p"/>
                             <constraint firstItem="oMU-wj-PQM" firstAttribute="trailing" secondItem="VUV-1f-YlT" secondAttribute="trailing" id="cOs-oV-ZpY"/>
