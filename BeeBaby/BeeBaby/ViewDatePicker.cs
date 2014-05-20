@@ -63,7 +63,7 @@ namespace BeeBaby
 						InvokeOnMainThread(() => {
 							foreach (var view in NextViews)
 							{
-								Scroller.Move(view, 0f, height);
+								Scroller.Move(view, 0f, height, false);
 							}
 						});
 					});

@@ -11,15 +11,16 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Move the specified view, x and y.
+		/// Move the specified view, x, y and animated.
 		/// </summary>
 		/// <param name="view">View.</param>
 		/// <param name="x">The x coordinate.</param>
 		/// <param name="y">The y coordinate.</param>
-		public static void Move(UIView view, float x, float y)
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public static void Move(UIView view, float x, float y, bool animated = true)
 		{
 			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
-			UIView.SetAnimationDuration(0.3d);
+			UIView.SetAnimationDuration(animated ? 0.3d : 0d);
 
 			RectangleF frame = view.Frame;
 			frame.X += x; 
