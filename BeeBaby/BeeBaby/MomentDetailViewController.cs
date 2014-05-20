@@ -38,7 +38,8 @@ namespace BeeBaby
 			m_autoCompleteTable.ScrollEnabled = true;
 			m_autoCompleteTable.Hidden = true;
 
-			txtLocalName.ShouldReturn += (textField) => { 
+			txtLocalName.ShouldReturn += (textField) =>
+			{ 
 				m_autoCompleteTable.Hidden = true;
 				textField.ResignFirstResponder();
 				return true; 
@@ -68,14 +69,14 @@ namespace BeeBaby
 			try
 			{
 				suggestions = wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
-					.OrderByDescending(x => x.StartsWith(source	, StringComparison.InvariantCultureIgnoreCase))
+					.OrderByDescending(x => x.StartsWith(source, StringComparison.InvariantCultureIgnoreCase))
 					.Select(x => x).ToArray();
 
 				if (suggestions.Length != 0)
 				{
-						m_autoCompleteTable.Hidden = false;
-						m_autoCompleteTable.Source = new AutoCompleteTableSource(suggestions, this);
-						m_autoCompleteTable.ReloadData();
+					m_autoCompleteTable.Hidden = false;
+					m_autoCompleteTable.Source = new AutoCompleteTableSource(suggestions, this);
+					m_autoCompleteTable.ReloadData();
 				}
 				else
 				{
@@ -199,28 +200,31 @@ namespace BeeBaby
 
 				moment.Date = vwDate.DateTime;
 
+
+				var location = new Location()
+				{
+					Name = txtLocalName.Text,
+				};
+
 				if (!mapView.Hidden)
 				{
 					moment.Position = new GlobalPosition();
 					moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 					moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
-				}
 
-				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
-				momentService.SaveMoment(moment);
-
-
-				var location = new Location()
-				{
-					Name = txtLocalName.Text,
-					Position = new GlobalPosition()
+					location.Position = new GlobalPosition()
 					{
 						Latitude = moment.Position.Latitude,
 						Longitude = moment.Position.Longitude
-					}
-				};
+					};
+				}
 
-				new LocationService().SaveLocation(location, !mapView.Hidden);
+				location = new LocationService().SaveLocation(location, !mapView.Hidden);
+
+				moment.Location = location;
+
+				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
+				momentService.SaveMoment(moment);
 
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;

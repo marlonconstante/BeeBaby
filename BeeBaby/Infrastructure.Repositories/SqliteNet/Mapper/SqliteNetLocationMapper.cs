@@ -36,8 +36,12 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new LocationData();
 				result.Id = source.Id;
 				result.Name = source.Name;
-				result.Latitude = source.Position.Latitude;
-				result.Longitude = source.Position.Longitude;
+
+				if (source.Position != null)
+				{
+					result.Latitude = source.Position.Latitude;
+					result.Longitude = source.Position.Longitude;
+				}
 			}
 
 			return result;

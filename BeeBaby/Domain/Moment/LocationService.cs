@@ -2,6 +2,7 @@
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Moment
 {
@@ -44,17 +45,43 @@ namespace Domain.Moment
 		/// <param name="saveCoordinates">If set to <c>true</c> save coordinates.</param>
 		public Location SaveLocation(Location location, bool saveCoordinates)
 		{
-			var oldLocation = MainRepository.FindBy(location.Id);
-			if (!saveCoordinates)
+
+//			var oldLocation = MainRepository.FindBy(location.Id);
+//			if (!saveCoordinates)
+//			{
+//				if (oldLocation != null)
+//				{
+//					location.Position = oldLocation.Position;
+//				}
+//				else
+//				{
+//					location.Position = null;
+//				}
+//			}
+//
+//			MainRepository[location.Id] = location;
+//			UnitOfWork.Commit();
+//
+//			return location;
+
+
+			var oldLocation = MainRepository.FindAll().FirstOrDefault(f => f.Name.Equals(location.Name, StringComparison.OrdinalIgnoreCase));
+
+			if (oldLocation != null)
 			{
-				if (oldLocation != null)
+				if (!saveCoordinates)
 				{
 					location.Position = oldLocation.Position;
 				}
-				else
-				{
-					location.Position = null;
-				}
+				location.Id = oldLocation.Id;
+				MainRepository[oldLocation.Id] = location;
+				UnitOfWork.Commit();
+				return location;
+			}
+
+			if (!saveCoordinates)
+			{
+				location.Position = null;
 			}
 
 			MainRepository[location.Id] = location;
