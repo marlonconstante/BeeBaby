@@ -25,9 +25,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblWhere { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblWho { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIScrollView vwPhotos { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -50,11 +47,6 @@ namespace BeeBaby
 			if (lblWhere != null) {
 				lblWhere.Dispose ();
 				lblWhere = null;
-			}
-
-			if (lblWho != null) {
-				lblWho.Dispose ();
-				lblWho = null;
 			}
 
 			if (vwPhotos != null) {

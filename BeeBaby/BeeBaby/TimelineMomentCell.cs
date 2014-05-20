@@ -63,19 +63,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets or sets the label who.
-		/// </summary>
-		/// <value>The label who.</value>
-		public string LabelWho {
-			get {
-				return lblWho.Text;
-			}
-			set {
-				lblWho.Text = value;
-			}
-		}
-
-		/// <summary>
 		/// Gets or sets the view photos.
 		/// </summary>
 		/// <value>The view photos.</value>

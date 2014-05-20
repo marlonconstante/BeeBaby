@@ -170,11 +170,6 @@ segmented-control label,
 	font-weight: bold;
 }
 
-.day-label {
-	font-size: 12pt;
-	font-weight: bold;
-}
-
 .form-label,
 .special-message-label {
 	font-size: 15pt;
@@ -217,7 +212,6 @@ segmented-control label,
 .row label,
 .form-label,
 .time-box-label,
-.day-label,
 .moment-label,
 .special-event-label,
 .special-message-label,
