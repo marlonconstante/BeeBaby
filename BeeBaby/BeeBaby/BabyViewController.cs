@@ -83,8 +83,8 @@ namespace BeeBaby
 		{
 			txtName.Text = baby.Name;
 			segGender.SelectedSegment = (int) baby.Gender;
-			vwBirthDay.SetDateTime(baby.BirthDateTime);
-			vwBirthTime.SetDateTime(baby.BirthDateTime);
+			vwBirthDay.DateTime = baby.BirthDateTime;
+			vwBirthTime.DateTime = baby.BirthDateTime;
 		}
 
 		/// <summary>
@@ -101,7 +101,7 @@ namespace BeeBaby
 
 				baby.Name = txtName.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment;
-				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
+				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
 
 				babyService.SaveBaby(baby);
 

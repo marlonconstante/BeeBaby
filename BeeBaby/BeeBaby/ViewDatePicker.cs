@@ -117,35 +117,21 @@ namespace BeeBaby
 		/// <param name="mask">Mask.</param>
 		public string GetText(string mask)
 		{
-			return GetLocalTime().ToString(mask, System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			return DateTime.ToString(mask, System.Globalization.DateTimeFormatInfo.CurrentInfo);
 		}
-
+			
 		/// <summary>
-		/// Gets the local time.
+		/// Gets or sets the date time.
 		/// </summary>
-		/// <returns>The local time.</returns>
-		public DateTime GetLocalTime()
-		{
-			return GetDateTime().ToLocalTime();
-		}
-
-		/// <summary>
-		/// Gets the date time.
-		/// </summary>
-		/// <returns>The date time.</returns>
-		public DateTime GetDateTime()
-		{
-			DateTime dateTime = m_datePicker.Date;
-			return dateTime.ToUniversalTime();
-		}
-
-		/// <summary>
-		/// Sets the date time.
-		/// </summary>
-		/// <param name="dateTime">Date time.</param>
-		public void SetDateTime(DateTime dateTime)
-		{
-			m_datePicker.Date = dateTime;
+		/// <value>The date time.</value>
+		public DateTime DateTime {
+			get {
+				var date = (DateTime) m_datePicker.Date;
+				return date.ToLocalTime();
+			}
+			set {
+				m_datePicker.Date = value.ToUniversalTime();
+			}
 		}
 
 		/// <summary>
