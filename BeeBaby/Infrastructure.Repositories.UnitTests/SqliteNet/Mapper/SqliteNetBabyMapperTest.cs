@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			Assert.AreEqual(repositoryEntity.Id, actual.Id);
 			Assert.AreEqual(repositoryEntity.Name, actual.Name);
 			Assert.AreEqual(repositoryEntity.BirthDateTime, actual.BirthDateTime);
-			Assert.AreEqual(Gender.Male, actual.Gender);
+			Assert.AreEqual(Gender.Female, actual.Gender);
 
 		}
 
@@ -52,7 +52,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 				Id = "1",
 				Name = "Nome",
 				BirthDateTime = date,
-				Gender =  Gender.Female
+				Gender =  Gender.Unknown
 			};
 
 			var actual = new SqliteNetBabyMapper().ToRepositoryEntity(domainEntity);

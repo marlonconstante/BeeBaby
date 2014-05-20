@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using MonoTouch.UIKit;
 using Domain.Moment;
 using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
+using System.Threading;
 
 namespace BeeBaby
 {
@@ -12,6 +14,8 @@ namespace BeeBaby
 	{
 		float m_mapViewHeight;
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
+		UITableView m_autoCompleteTable;
+		string[] wordCollection = { "blah", "bleh", "blop", "boing", "derp", "deep" };
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -26,8 +30,73 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
+
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
+
+			m_autoCompleteTable = new UITableView(new RectangleF(0, 64, 320, 120));
+			m_autoCompleteTable.ScrollEnabled = true;
+			m_autoCompleteTable.Hidden = true;
+
+			txtLocalName.ShouldReturn += (textField) => { 
+				m_autoCompleteTable.Hidden = true;
+				textField.ResignFirstResponder();
+				return true; 
+			};
+
+			this.View.AddSubview(m_autoCompleteTable);
+
+			txtLocalName.ShouldChangeCharacters += (sender, something, e) =>
+			{
+				UpdateSuggestions(e);
+				return true;
+			};
+
+			wordCollection = new LocationService().GetAllLocations().Select(l => l.Name).ToArray<string>();
+		}
+
+		/// <summary>
+		/// Updates the suggestions.
+		/// </summary>
+		/// <param name="e">E.</param>
+		public void UpdateSuggestions(string e)
+		{
+			string[] suggestions = null;
+
+			var source = e != string.Empty ? string.Concat(txtLocalName.Text, e).ToLowerInvariant() : txtLocalName.Text.Substring(0, txtLocalName.Text.Length - 1).ToLowerInvariant();
+
+			try
+			{
+				suggestions = wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
+					.OrderByDescending(x => x.StartsWith(source	, StringComparison.InvariantCultureIgnoreCase))
+					.Select(x => x).ToArray();
+
+				if (suggestions.Length != 0)
+				{
+						m_autoCompleteTable.Hidden = false;
+						m_autoCompleteTable.Source = new AutoCompleteTableSource(suggestions, this);
+						m_autoCompleteTable.ReloadData();
+				}
+				else
+				{
+					m_autoCompleteTable.Hidden = true;
+				}
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Error: Can't retrieve suggestions");
+			}
+		}
+
+		/// <summary>
+		/// Sets the auto complete text.
+		/// </summary>
+		/// <param name="finalString">Final string.</param>
+		public void SetAutoCompleteText(string finalString)
+		{
+			txtLocalName.Text = finalString;
+			txtLocalName.ResignFirstResponder();
+			m_autoCompleteTable.Hidden = true;
 		}
 
 		/// <summary>
@@ -96,7 +165,7 @@ namespace BeeBaby
 		public override void EndEditing()
 		{
 			base.EndEditing();
-
+			m_autoCompleteTable.Hidden = true;
 			vwDate.Hide();
 		}
 
@@ -106,7 +175,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				PerformSegue("segueSelectEvent", sender);
 			}, false);
 		}
@@ -117,7 +187,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
 				var moment = CurrentContext.Instance.Moment;
@@ -137,6 +208,19 @@ namespace BeeBaby
 
 				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
 				momentService.SaveMoment(moment);
+
+
+				var location = new Location()
+				{
+					Name = txtLocalName.Text,
+					Position = new GlobalPosition()
+					{
+						Latitude = moment.Position.Latitude,
+						Longitude = moment.Position.Longitude
+					}
+				};
+
+				new LocationService().SaveLocation(location, !mapView.Hidden);
 
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;

@@ -25,13 +25,17 @@ namespace Application
 //			var eventRepository = new MemoryEventRepository(unitOfWork);
 //			MockEvents(unitOfWork, eventRepository);
 //			DependencyService.Register<IEventRepository>(eventRepository);
-//
+//			var locationRepository = new MemoryLocationRepository(unitOfWork);
+//			MockLocation(unitOfWork, locationRepository);
+//			DependencyService.Register<ILocationRepository>(locationRepository);
+
 
 			var unitOfWork = new MemoryUnitOfWork();
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork));
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
+			DependencyService.Register<ILocationRepository>(new SqliteNetLocationRepository(connection, unitOfWork));
 		}
 
 		static void MockEvents(MemoryUnitOfWork unitOfWork, MemoryEventRepository eventRepository)
@@ -51,9 +55,36 @@ namespace Application
 			unitOfWork.Commit();
 		}
 
+		static void MockLocation(MemoryUnitOfWork unitOfWork, MemoryLocationRepository locationRepository)
+		{
+			locationRepository.Add(new Location()
+			{
+				Id = "1",
+				Name = "Casa da Vovó",
+				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+			});
+
+			locationRepository.Add(new Location()
+			{
+				Id = "2",
+				Name = "Minha Casa",
+				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+			});
+
+			locationRepository.Add(new Location()
+			{
+				Id = "3",
+				Name = "Escolinha",
+				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+			});
+
+			unitOfWork.Commit();
+
+		}
+
 		public static void InitializeGlobalization()
 		{
-			GlobalizationService.Initialize (new GlobalizationLabelRepository());
+			GlobalizationService.Initialize(new GlobalizationLabelRepository());
 		}
 	}
 }

@@ -53,6 +53,8 @@
     <Compile Include="SqliteNet\Mapper\SqliteNetBabyMapper.cs" />
     <Compile Include="SqliteNet\Entities\BabyData.cs" />
     <Compile Include="SqliteNet\Entities\MomentsBabies.cs" />
+    <Compile Include="Memory\MemoryLocationRepository.cs" />
+    <Compile Include="SqliteNet\SqliteNetLocationRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

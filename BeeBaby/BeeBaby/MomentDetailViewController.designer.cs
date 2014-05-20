@@ -34,6 +34,9 @@ namespace BeeBaby
 		MonoTouch.UIKit.UITextView txtDescription { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UITextField txtLocalName { get; set; }
+
+		[Outlet]
 		BeeBaby.ViewDatePicker vwDate { get; set; }
 
 		[Action ("LocationChanged:")]
@@ -85,6 +88,11 @@ namespace BeeBaby
 			if (vwDate != null) {
 				vwDate.Dispose ();
 				vwDate = null;
+			}
+
+			if (txtLocalName != null) {
+				txtLocalName.Dispose ();
+				txtLocalName = null;
 			}
 		}
 	}

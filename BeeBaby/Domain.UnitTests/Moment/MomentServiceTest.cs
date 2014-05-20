@@ -26,6 +26,11 @@ namespace Domain.UnitTests.Moment
 		{ 
 			m_unitOfWork = new MemoryUnitOfWork();
 			m_repository = new MemoryMomentRepository(m_unitOfWork);
+
+			var baby = new Domain.Baby.Baby
+			{
+				Id = "1"
+			};
 		
 			var momentKind = new Event()
 			{
@@ -41,7 +46,8 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Event = momentKind
+				Event = momentKind,
+				Babies = { baby }
 			});
 			m_repository.Add(new Domain.Moment.Moment()
 			{
@@ -51,7 +57,8 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Event = momentKind
+				Event = momentKind,
+				Babies = { baby }
 			});
 			m_repository.Add(new Domain.Moment.Moment()
 			{
@@ -61,7 +68,8 @@ namespace Domain.UnitTests.Moment
 				{
 					new Photo() 
 				},
-				Event = momentKind
+				Event = momentKind,
+				Babies = { baby }
 			});
 
 			m_unitOfWork.Commit();
