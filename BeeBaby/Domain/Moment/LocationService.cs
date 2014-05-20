@@ -42,46 +42,13 @@ namespace Domain.Moment
 		/// </summary>
 		/// <returns>The location.</returns>
 		/// <param name="location">Location.</param>
-		/// <param name="saveCoordinates">If set to <c>true</c> save coordinates.</param>
-		public Location SaveLocation(Location location, bool saveCoordinates)
+		public Location SaveLocation(Location location)
 		{
-
-//			var oldLocation = MainRepository.FindBy(location.Id);
-//			if (!saveCoordinates)
-//			{
-//				if (oldLocation != null)
-//				{
-//					location.Position = oldLocation.Position;
-//				}
-//				else
-//				{
-//					location.Position = null;
-//				}
-//			}
-//
-//			MainRepository[location.Id] = location;
-//			UnitOfWork.Commit();
-//
-//			return location;
-
-
-			var oldLocation = MainRepository.FindAll().FirstOrDefault(f => f.Name.Equals(location.Name, StringComparison.OrdinalIgnoreCase));
+			var oldLocation = GetLocationByName(location.Name);
 
 			if (oldLocation != null)
 			{
-				if (!saveCoordinates)
-				{
-					location.Position = oldLocation.Position;
-				}
-				location.Id = oldLocation.Id;
-				MainRepository[oldLocation.Id] = location;
-				UnitOfWork.Commit();
-				return location;
-			}
-
-			if (!saveCoordinates)
-			{
-				location.Position = null;
+				return oldLocation;
 			}
 
 			MainRepository[location.Id] = location;
@@ -98,6 +65,16 @@ namespace Domain.Moment
 		public Location GetLocation(string id)
 		{
 			return MainRepository.FindBy(id);
+		}
+
+		/// <summary>
+		/// Gets the name of the location by.
+		/// </summary>
+		/// <returns>The location by name.</returns>
+		/// <param name="name">Name.</param>
+		public Location GetLocationByName(string name)
+		{
+			return MainRepository.FindAll().FirstOrDefault(f => f.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 		}
 	}
 }

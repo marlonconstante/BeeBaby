@@ -19,9 +19,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblLocation { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UILabel lblMomentAbout { get; set; }
 
 		[Outlet]
@@ -60,11 +57,6 @@ namespace BeeBaby
 				btnSelectEvent = null;
 			}
 
-			if (lblLocation != null) {
-				lblLocation.Dispose ();
-				lblLocation = null;
-			}
-
 			if (lblMomentAbout != null) {
 				lblMomentAbout.Dispose ();
 				lblMomentAbout = null;
@@ -85,14 +77,14 @@ namespace BeeBaby
 				txtDescription = null;
 			}
 
-			if (vwDate != null) {
-				vwDate.Dispose ();
-				vwDate = null;
-			}
-
 			if (txtLocalName != null) {
 				txtLocalName.Dispose ();
 				txtLocalName = null;
+			}
+
+			if (vwDate != null) {
+				vwDate.Dispose ();
+				vwDate = null;
 			}
 		}
 	}

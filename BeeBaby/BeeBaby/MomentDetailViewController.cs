@@ -96,6 +96,8 @@ namespace BeeBaby
 		public void SetAutoCompleteText(string finalString)
 		{
 			txtLocalName.Text = finalString;
+			var location = new LocationService().GetLocationByName(finalString);
+			mapView.SetCenterCoordinate(new MonoTouch.CoreLocation.CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude), true);
 			txtLocalName.ResignFirstResponder();
 			m_autoCompleteTable.Hidden = true;
 		}
@@ -145,7 +147,6 @@ namespace BeeBaby
 			TitleScreen = "Moment".Translate();
 			lblMomentAbout.Text = "MomentAbout".Translate();
 			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
-			lblLocation.Text = "WhichWas".Translate();
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
 			txtDescription.Text = "MomentRemember".Translate();
 		}
@@ -200,26 +201,21 @@ namespace BeeBaby
 
 				moment.Date = vwDate.DateTime;
 
+				moment.Position = new GlobalPosition();
+				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
+				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
 
 				var location = new Location()
 				{
 					Name = txtLocalName.Text,
-				};
-
-				if (!mapView.Hidden)
-				{
-					moment.Position = new GlobalPosition();
-					moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
-					moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
-
-					location.Position = new GlobalPosition()
+					Position = new GlobalPosition()
 					{
 						Latitude = moment.Position.Latitude,
 						Longitude = moment.Position.Longitude
-					};
-				}
+					}
+				};
 
-				location = new LocationService().SaveLocation(location, !mapView.Hidden);
+				location = new LocationService().SaveLocation(location);
 
 				moment.Location = location;
 

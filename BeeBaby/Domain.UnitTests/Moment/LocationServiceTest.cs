@@ -73,26 +73,10 @@ namespace Domain.UnitTests.Moment
 			var actual = m_target.GetAllLocations();
 			Assert.AreEqual(3, actual.Count());
 		}
-		//			- Não tem nenhum local e cria sem localização
-		[Test()]
-		public void SaveLocation_NewLocationFalse_SavedLocationWithoutCoord()
-		{
-			var location = new Location()
-			{
-				Id = "New 123",
-				Name = "Nova Localização",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
-			};
 
-			m_target.SaveLocation(location, false);
-
-			var actual = m_target.GetLocation(location.Id);
-			Assert.AreEqual(location.Name, actual.Name);
-			Assert.IsNull(actual.Position);
-		}
 		//			- Não tem nenhum local e cria com localização
 		[Test()]
-		public void SaveLocation_NewLocationTrue_SavedLocationWithCoord()
+		public void SaveLocation_NewLocation_SavedLocationWithCoord()
 		{
 			var location = new Location()
 			{
@@ -101,13 +85,14 @@ namespace Domain.UnitTests.Moment
 				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
 			};
 
-			m_target.SaveLocation(location, true);
+			m_target.SaveLocation(location);
 
 			var actual = m_target.GetLocation(location.Id);
 			Assert.AreEqual(location.Name, actual.Name);
 			Assert.AreEqual(location.Position.Latitude, actual.Position.Latitude);
 			Assert.AreEqual(location.Position.Longitude, actual.Position.Longitude);
 		}
+
 		//			- Seleciona o Local já existente e não atualiza
 		[Test()]
 		public void SaveLocation_ExistingLocationFalse_SavedLocationWithoutChangingLocation()
@@ -119,31 +104,13 @@ namespace Domain.UnitTests.Moment
 				Position = new GlobalPosition() { Latitude = 5, Longitude = 5 }
 			};
 
-			m_target.SaveLocation(location, false);
+			m_target.SaveLocation(location);
 
 			var actual = m_target.GetLocation(location.Id);
 			Assert.AreEqual(location.Name, actual.Name);
 			Assert.AreEqual(1, actual.Position.Latitude);
 			Assert.AreEqual(2, actual.Position.Longitude);
 
-		}
-		//			- Seleciona o Local já existente e atualiza
-		[Test()]
-		public void SaveLocation_ExistingLocationFalse_SavedLocationLocationChanged()
-		{
-			var location = new Location()
-			{
-				Id = "1",
-				Name = "Name 1",
-				Position = new GlobalPosition() { Latitude = 5, Longitude = 5 }
-			};
-
-			m_target.SaveLocation(location, true);
-
-			var actual = m_target.GetLocation(location.Id);
-			Assert.AreEqual(location.Name, actual.Name);
-			Assert.AreEqual(location.Position.Latitude, actual.Position.Latitude);
-			Assert.AreEqual(location.Position.Longitude, actual.Position.Longitude);
 		}
 	}
 }
