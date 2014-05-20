@@ -9,6 +9,7 @@ using System.Drawing;
 using Domain.Baby;
 using BeeBaby.ViewModels;
 using MonoTouch.ObjCRuntime;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -69,10 +70,9 @@ namespace BeeBaby
 			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
 			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
-			momentCell.LabelDate = moment.Date.ToString("M", System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			momentCell.LabelEventName = moment.Event.Description;
 			momentCell.LabelWhere = string.Format("{0} - {1}", moment.Position.Longitude, moment.Position.Latitude);
-			momentCell.LabelWho = indexPath.Row.ToString();
 
 			var imageProvider = new ImageProvider(moment.Id);
 			m_images = imageProvider.GetImages(false, true);

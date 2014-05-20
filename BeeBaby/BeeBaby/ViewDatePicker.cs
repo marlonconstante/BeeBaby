@@ -3,6 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using Skahal.Infrastructure.Framework.Globalization;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -16,6 +17,7 @@ namespace BeeBaby
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
 			IgnoreHide = false;
+			MoveScroll = false;
 			m_longDateMask = "LongDateMask".Translate();
 
 			foreach (UIView element in Subviews)
@@ -49,10 +51,27 @@ namespace BeeBaby
 		{
 			m_datePicker.Hidden = !m_datePicker.Hidden;
 
-			float height = m_datePicker.Frame.Height - 35f;
-			RectangleF frame = Frame;
-			frame.Height += (m_datePicker.Hidden) ? -height : height;
+			var height = (m_datePicker.Frame.Height - 35f) * (m_datePicker.Hidden ? -1f : 1f);
 
+			if (MoveScroll)
+			{
+				Scroller.Move(this.Superview, 0f, height * -1f);
+
+				if (NextViews != null)
+				{
+					InvokeInBackground(() => {
+						InvokeOnMainThread(() => {
+							foreach (var view in NextViews)
+							{
+								Scroller.Move(view, 0f, height, false);
+							}
+						});
+					});
+				}
+			}
+
+			RectangleF frame = Frame;
+			frame.Height += height;
 			Frame = frame;
 
 			IgnoreHide = false;
@@ -98,35 +117,39 @@ namespace BeeBaby
 		/// <param name="mask">Mask.</param>
 		public string GetText(string mask)
 		{
-			return GetLocalTime().ToString(mask, System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			return DateTime.ToString(mask, System.Globalization.DateTimeFormatInfo.CurrentInfo);
+		}
+			
+		/// <summary>
+		/// Gets or sets the date time.
+		/// </summary>
+		/// <value>The date time.</value>
+		public DateTime DateTime {
+			get {
+				var date = (DateTime) m_datePicker.Date;
+				return date.ToLocalTime();
+			}
+			set {
+				m_datePicker.Date = value.ToUniversalTime();
+			}
 		}
 
 		/// <summary>
-		/// Gets the local time.
+		/// Gets or sets the next views.
 		/// </summary>
-		/// <returns>The local time.</returns>
-		public DateTime GetLocalTime()
-		{
-			return GetDateTime().ToLocalTime();
+		/// <value>The next views.</value>
+		public IList<UIView> NextViews {
+			get;
+			set;
 		}
 
 		/// <summary>
-		/// Gets the date time.
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewDatePicker"/> move scroll.
 		/// </summary>
-		/// <returns>The date time.</returns>
-		public DateTime GetDateTime()
-		{
-			DateTime dateTime = m_datePicker.Date;
-			return dateTime.ToUniversalTime();
-		}
-
-		/// <summary>
-		/// Sets the date time.
-		/// </summary>
-		/// <param name="dateTime">Date time.</param>
-		public void SetDateTime(DateTime dateTime)
-		{
-			m_datePicker.Date = dateTime;
+		/// <value><c>true</c> if move scroll; otherwise, <c>false</c>.</value>
+		public bool MoveScroll {
+			get;
+			set;
 		}
 
 		/// <summary>

@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -19,6 +20,11 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			vwBirthDay.MoveScroll = true;
+			vwBirthTime.MoveScroll = true;
+
+			vwBirthDay.NextViews = new List<UIView> { vwBirthTime };
 
 			Load(CurrentContext.Instance.CurrentBaby);
 		}
@@ -77,8 +83,8 @@ namespace BeeBaby
 		{
 			txtName.Text = baby.Name;
 			segGender.SelectedSegment = (int) baby.Gender;
-			vwBirthDay.SetDateTime(baby.BirthDateTime);
-			vwBirthTime.SetDateTime(baby.BirthDateTime);
+			vwBirthDay.DateTime = baby.BirthDateTime;
+			vwBirthTime.DateTime = baby.BirthDateTime;
 		}
 
 		/// <summary>
@@ -95,7 +101,7 @@ namespace BeeBaby
 
 				baby.Name = txtName.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment;
-				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null).ToUniversalTime();
+				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
 
 				babyService.SaveBaby(baby);
 

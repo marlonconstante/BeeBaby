@@ -197,7 +197,7 @@ namespace BeeBaby
 				moment.Event = CurrentContext.Instance.SelectedEvent;
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
-				moment.Date = vwDate.GetDateTime();
+				moment.Date = vwDate.DateTime;
 
 				if (!mapView.Hidden)
 				{
