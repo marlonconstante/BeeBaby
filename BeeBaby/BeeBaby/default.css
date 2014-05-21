@@ -296,6 +296,10 @@ map-view label {
 	padding-left: 10;
 }
 
+.input-text.location-name {
+	padding-left: 32;
+}
+
 text-field,
 text-field label,
 text-view {

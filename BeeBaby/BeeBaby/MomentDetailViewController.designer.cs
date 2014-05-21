@@ -25,9 +25,6 @@ namespace BeeBaby
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint mapViewConstraint { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UITextView txtDescription { get; set; }
 
 		[Outlet]
@@ -35,9 +32,6 @@ namespace BeeBaby
 
 		[Outlet]
 		BeeBaby.ViewDatePicker vwDate { get; set; }
-
-		[Action ("LocationChanged:")]
-		partial void LocationChanged (MonoTouch.UIKit.UISwitch sender);
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
@@ -65,11 +59,6 @@ namespace BeeBaby
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;
-			}
-
-			if (mapViewConstraint != null) {
-				mapViewConstraint.Dispose ();
-				mapViewConstraint = null;
 			}
 
 			if (txtDescription != null) {

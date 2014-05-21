@@ -12,14 +12,12 @@ namespace BeeBaby
 {
 	public partial class MomentDetailViewController : NavigationViewController
 	{
-		float m_mapViewHeight;
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		UITableView m_autoCompleteTable;
 		string[] wordCollection = { "blah", "bleh", "blop", "boing", "derp", "deep" };
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
-			m_mapViewHeight = -1;
 		}
 
 		/// <summary>
@@ -228,21 +226,6 @@ namespace BeeBaby
 				NavigationController.PerformSegue("segueTimeline", sender);
 				DismissViewController(true, null);
 			}, false);
-		}
-
-		/// <summary>
-		/// Controls the display of the map.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void LocationChanged(UISwitch sender)
-		{
-			if (m_mapViewHeight == -1)
-			{
-				m_mapViewHeight = mapView.Frame.Height;
-			}
-			mapViewConstraint.Constant += (sender.On) ? -m_mapViewHeight : m_mapViewHeight;
-			mapView.ShowsUserLocation = sender.On;
-			mapView.Hidden = !sender.On;
 		}
 	}
 }
