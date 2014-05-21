@@ -25,10 +25,10 @@ namespace BeeBaby
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView txtDescription { get; set; }
+		BeeBaby.TextView txtDescription { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField txtLocalName { get; set; }
+		BeeBaby.TextField txtLocalName { get; set; }
 
 		[Outlet]
 		BeeBaby.ViewDatePicker vwDate { get; set; }

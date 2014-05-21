@@ -288,6 +288,11 @@
     <Compile Include="ViewModels\ImageModel.cs" />
     <Compile Include="AutoCompleteTableSource.cs" />
     <Compile Include="Scroller.cs" />
+    <Compile Include="IKeyboardSupport.cs" />
+    <Compile Include="TextView.cs" />
+    <Compile Include="TextView.designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

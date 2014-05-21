@@ -22,7 +22,7 @@ namespace BeeBaby
 		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField txtName { get; set; }
+		BeeBaby.TextField txtName { get; set; }
 
 		[Outlet]
 		BeeBaby.ViewDatePicker vwBirthDay { get; set; }

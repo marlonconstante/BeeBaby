@@ -1,18 +1,15 @@
 using System;
+
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class TextField : UITextField, IKeyboardSupport
+	public partial class TextView : UITextView, IKeyboardSupport
 	{
-		public TextField(IntPtr handle) : base(handle)
+		public TextView (IntPtr handle) : base (handle)
 		{
 			IsKeyboardAnimation = false;
-			ShouldReturn += (textField) => { 
-				textField.ResignFirstResponder();
-				return true; 
-			};
 		}
 
 		/// <summary>

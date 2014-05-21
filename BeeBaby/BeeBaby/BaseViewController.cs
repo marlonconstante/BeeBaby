@@ -95,15 +95,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Determines whether this instance is keyboard animation.
-		/// </summary>
-		/// <returns><c>true</c> if this instance is keyboard animation; otherwise, <c>false</c>.</returns>
-		public virtual bool IsKeyboardAnimation()
-		{
-			return false;
-		}
-
-		/// <summary>
 		/// Determines whether this instance is contains menu.
 		/// </summary>
 		/// <returns><c>true</c> if this instance is contains menu; otherwise, <c>false</c>.</returns>

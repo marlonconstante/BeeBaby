@@ -47,10 +47,11 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void MoveScroll(bool up, NSNotification notification)
 		{
-			if (m_viewController.IsKeyboardAnimation())
+			UIView firstResponder = GetFirstResponder(m_viewController.View);
+			if (firstResponder != null && firstResponder is IKeyboardSupport)
 			{
-				UIView firstResponder = GetFirstResponder(m_viewController.View);
-				if (firstResponder != null)
+				var keyboardSupport = (IKeyboardSupport) firstResponder;
+				if (keyboardSupport.IsKeyboardAnimation)
 				{
 					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 

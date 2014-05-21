@@ -297,6 +297,7 @@ map-view label {
 }
 
 .input-text.location-name {
+	padding-top: 0;
 	padding-left: 32;
 }
 

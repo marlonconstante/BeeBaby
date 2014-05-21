@@ -28,8 +28,9 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
-
 			txtDescription.Delegate = m_txtDescriptionDelegate;
+			txtDescription.IsKeyboardAnimation = true;
+
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
 
 			m_autoCompleteTable = new UITableView(new RectangleF(0, 64, 320, 120));
@@ -39,7 +40,6 @@ namespace BeeBaby
 			txtLocalName.ShouldReturn += (textField) =>
 			{ 
 				m_autoCompleteTable.Hidden = true;
-				textField.ResignFirstResponder();
 				return true; 
 			};
 
@@ -83,7 +83,7 @@ namespace BeeBaby
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("Error: Can't retrieve suggestions");
+				Console.WriteLine("Erro ao buscar as sugestões.");
 			}
 		}
 
@@ -125,16 +125,6 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
-		}
-
-		/// <summary>
-		/// Determines whether this instance is keyboard animation.
-		/// </summary>
-		/// <returns>true</returns>
-		/// <c>false</c>
-		public override bool IsKeyboardAnimation()
-		{
-			return true;
 		}
 
 		/// <summary>
