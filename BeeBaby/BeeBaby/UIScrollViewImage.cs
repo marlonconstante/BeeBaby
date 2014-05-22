@@ -6,7 +6,7 @@ namespace BeeBaby
 {
 	public class UIScrollViewImage : UIScrollView
 	{
-		const float s_defaultZoom = 2f;
+		const float s_defaultZoom = 1f;
 		const float s_minZoom = 0.1f;
 		const float s_maxZoom = 3f;
 		float m_sizeToFitZoom = 1f;
@@ -28,6 +28,7 @@ namespace BeeBaby
 			ShowsVerticalScrollIndicator = false;
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
+
 			ViewForZoomingInScrollView += (UIScrollView sv) => {
 				return m_imageView;
 			};
@@ -69,15 +70,25 @@ namespace BeeBaby
 		/// <param name="image">Image.</param>
 		public void SetImage(UIImage image)
 		{
-			ZoomScale = 1;
+			ZoomScale = s_defaultZoom;
 			m_imageView.Image = image;
 			m_imageView.Frame = new RectangleF(new PointF(), image.Size);
 			ContentSize = image.Size;
 
-			float wScale = Frame.Width / image.Size.Width;
-			float hScale = Frame.Height / image.Size.Height;
+			float widthScale;
+			float heightScale;
+			if (OrientationNotification.IsLandscape())
+			{
+				widthScale = Frame.Height / image.Size.Width;
+				heightScale = Frame.Width / image.Size.Height;
+			}
+			else
+			{
+				widthScale = Frame.Width / image.Size.Width;
+				heightScale = Frame.Height / image.Size.Height;
+			}
 
-			MinimumZoomScale = Math.Min(wScale, hScale);
+			MinimumZoomScale = Math.Min(widthScale, heightScale);
 			m_sizeToFitZoom = MinimumZoomScale;
 			ZoomScale = MinimumZoomScale;
 
@@ -123,20 +134,20 @@ namespace BeeBaby
 
 			if (contentsFrame.Width < boundsSize.Width)
 			{
-				contentsFrame.X = (boundsSize.Width - contentsFrame.Width) / 2;
+				contentsFrame.X = (boundsSize.Width - contentsFrame.Width) / 2f;
 			}
 			else
 			{
-				contentsFrame.X = 0;
+				contentsFrame.X = 0f;
 			}
 
 			if (contentsFrame.Height < boundsSize.Height)
 			{
-				contentsFrame.Y = (boundsSize.Height - contentsFrame.Height) / 2;
+				contentsFrame.Y = (boundsSize.Height - contentsFrame.Height) / 2f;
 			}
 			else
 			{
-				contentsFrame.Y = 0;
+				contentsFrame.Y = 0f;
 			}
 
 			return contentsFrame;
@@ -154,13 +165,11 @@ namespace BeeBaby
 		{
 			var size = new SizeF(m_imageView.Frame.Size.Height / scale, m_imageView.Frame.Size.Width / scale);
 
-			var center2 = ConvertPointToView(center, m_imageView);
-			var location2 = new PointF(center2.X - (size.Width / 2.0f),
-				                center2.Y - (size.Height / 2.0f)
-			                );
+			var imageCenter = ConvertPointToView(center, m_imageView);
+			var location = new PointF(imageCenter.X - (size.Width / 2f),
+				               imageCenter.Y - (size.Height / 2f));
 
-			var zoomRect = new RectangleF(location2, size);
-			return zoomRect;
+			return new RectangleF(location, size);
 		}
 
 		/// <summary>

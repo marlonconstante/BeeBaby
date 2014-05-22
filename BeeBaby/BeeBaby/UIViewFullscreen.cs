@@ -42,7 +42,7 @@ namespace BeeBaby
 		{
 			var window = UIApplication.SharedApplication.Windows[0];
 			Frame = window.Frame;
-			m_scrollImage.Frame = window.Frame;
+			m_scrollImage.Frame = Frame;
 			m_scrollImage.SetImage(m_image);
 			m_scrollImage.OnSingleTap += () => {
 				Hide();
@@ -61,6 +61,8 @@ namespace BeeBaby
 			Alpha = 0f;
 			UIView.Animate(AnimationDuration, () => {
 				Alpha = 1f;
+			}, () => {
+				UIApplication.SharedApplication.SetStatusBarHidden(true, UIStatusBarAnimation.None);
 			});
 		}
 
@@ -98,6 +100,8 @@ namespace BeeBaby
 		/// </summary>
 		public void Hide()
 		{
+			UIApplication.SharedApplication.SetStatusBarHidden(false, UIStatusBarAnimation.None);
+
 			if (Superview != null)
 			{
 				if (!UseAnimation)
@@ -121,14 +125,17 @@ namespace BeeBaby
 		/// </summary>
 		void LoadOrientationNotification()
 		{
-			OrientationNotification.Add(m_scrollImage);
+			var orientationNotification = OrientationNotification.Add(m_scrollImage);
+			orientationNotification.RotationFinished += () => {
+				m_scrollImage.Frame = Frame;
+				m_scrollImage.SetImage(m_image);
+			};
 		}
 
 		/// <summary>
 		/// The use animation.
 		/// </summary>
 		public bool UseAnimation = true;
-
 		/// <summary>
 		/// The duration of the animation.
 		/// </summary>

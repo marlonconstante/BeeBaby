@@ -179,6 +179,7 @@
     <BundleResource Include="Resources\family.svg" />
     <BundleResource Include="Resources\logoff.svg" />
     <BundleResource Include="Resources\menu-item-logoff-background.png" />
+    <BundleResource Include="Resources\share.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -292,6 +293,10 @@
     <Compile Include="TextView.cs" />
     <Compile Include="TextView.designer.cs">
       <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FullscreenViewController.cs" />
+    <Compile Include="FullscreenViewController.designer.cs">
+      <DependentUpon>FullscreenViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
