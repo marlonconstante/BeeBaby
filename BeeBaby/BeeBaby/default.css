@@ -25,6 +25,7 @@ segmented-control {
 
 .title-label,
 .flash-label,
+.fullscreen label,
 table-view-headerfooter-view label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
@@ -176,6 +177,27 @@ segmented-control label,
 	font-weight: bold;
 }
 
+.fullscreen {
+	background-color: #000;
+}
+
+.fullscreen label {
+	font-size: 14pt;
+}
+
+.fullscreen .top-label {
+	font-weight: bold;
+}
+
+.card-separator {
+	box-shadow: 0 0 1 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-overlay {
+	background-color: rgba(42, 181, 88, 0.5);
+}
+
+.card-separator,
 .default-screen-background {
 	background-color: #fff;
 }
@@ -196,15 +218,6 @@ segmented-control label,
 .selected-cell {
 	background-color: #58c5cd;
 	opacity: 0.5;
-}
-
-.card-overlay {
-	background-color: rgba(42, 181, 88, 0.5);
-}
-
-.card-separator {
-	background-color: #fff;
-	box-shadow: 0 0 1 0 rgba(0, 0, 0, 0.1);
 }
 
 .subtitle,
@@ -419,6 +432,10 @@ text-view {
 
 .checkmark {
 	background-image: url(checkmark.svg);
+}
+
+.share {
+	background-image: url(share.svg);
 }
 
 .cancel {

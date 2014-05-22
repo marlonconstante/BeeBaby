@@ -179,6 +179,7 @@
     <BundleResource Include="Resources\family.svg" />
     <BundleResource Include="Resources\logoff.svg" />
     <BundleResource Include="Resources\menu-item-logoff-background.png" />
+    <BundleResource Include="Resources\share.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
