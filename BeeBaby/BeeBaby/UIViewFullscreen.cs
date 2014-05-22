@@ -11,19 +11,16 @@ namespace BeeBaby
 {
 	public class UIViewFullscreen : UIView
 	{
-		UIImage iImage;
-		UIScrollViewImage sviMain;
-		public bool UseAnimation = true;
-		public float AnimationDuration = 0.3f;
+		UIImage m_image;
+		UIScrollViewImage m_scrollImage;
 		Moment m_moment;
 
 		public UIViewFullscreen()
 		{
-			var cBackground = new UIColor(0.0f, 0.0f, 0.0f, 1.0f);
-			BackgroundColor = cBackground;
+			BackgroundColor = UIColor.Black;
 
-			sviMain = new UIScrollViewImage();
-			AddSubview(sviMain);
+			m_scrollImage = new UIScrollViewImage();
+			AddSubview(m_scrollImage);
 			LoadOrientationNotification();
 		}
 
@@ -34,7 +31,7 @@ namespace BeeBaby
 		/// <param name="moment">Moment.</param>
 		public void SetImage(UIImage image, Moment moment)
 		{
-			iImage = image;
+			m_image = image;
 			m_moment = moment;
 		}
 
@@ -45,16 +42,16 @@ namespace BeeBaby
 		{
 			var window = UIApplication.SharedApplication.Windows[0];
 			Frame = window.Frame;
-			sviMain.Frame = window.Frame;
-			sviMain.SetImage(iImage);
-			sviMain.OnSingleTap += () => {
+			m_scrollImage.Frame = window.Frame;
+			m_scrollImage.SetImage(m_image);
+			m_scrollImage.OnSingleTap += () => {
 				Hide();
 			};
 				
 			UIButton button = new UIButton(UIButtonType.RoundedRect);
 			button.Frame = new RectangleF(20, 20, 100, 50);
 			button.SetTitle("Share".Translate(), UIControlState.Normal);
-			button.TouchUpInside += (sender, e) => ShareImage(iImage, m_moment); 
+			button.TouchUpInside += (sender, e) => ShareImage(m_image, m_moment); 
 			button.SetStyleClass("share-button");
 
 			AddSubview(button);
@@ -76,7 +73,7 @@ namespace BeeBaby
 		{
 			ActionProgress actionProgress = new ActionProgress(() => {
 				var image = new ImageProvider().CreateImageForShare(sourceImage, moment);
-				sviMain.SetImage(image);
+				m_scrollImage.SetImage(image);
 				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
 				if (ios6ShareDialog)
 				{
@@ -124,7 +121,17 @@ namespace BeeBaby
 		/// </summary>
 		void LoadOrientationNotification()
 		{
-			OrientationNotification.Add(sviMain);
+			OrientationNotification.Add(m_scrollImage);
 		}
+
+		/// <summary>
+		/// The use animation.
+		/// </summary>
+		public bool UseAnimation = true;
+
+		/// <summary>
+		/// The duration of the animation.
+		/// </summary>
+		public float AnimationDuration = 0.3f;
 	}
 }

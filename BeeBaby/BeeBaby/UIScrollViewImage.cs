@@ -6,63 +6,61 @@ namespace BeeBaby
 {
 	public class UIScrollViewImage : UIScrollView
 	{
-		const float defaultZoom = 2f;
-		const float minZoom = 0.1f;
-		const float maxZoom = 3f;
-		float sizeToFitZoom = 1f;
-		UIImageView ivMain;
-		UITapGestureRecognizer grTap;
-		UITapGestureRecognizer grDoubleTap;
-
-		public event Action OnSingleTap;
+		const float s_defaultZoom = 2f;
+		const float s_minZoom = 0.1f;
+		const float s_maxZoom = 3f;
+		float m_sizeToFitZoom = 1f;
+		UIImageView m_imageView;
+		UITapGestureRecognizer m_singleTap;
+		UITapGestureRecognizer m_doubleTap;
 
 		public UIScrollViewImage()
 		{
 			AutoresizingMask = UIViewAutoresizing.All;
 
-			ivMain = new UIImageView();
-			ivMain.ContentMode = UIViewContentMode.ScaleAspectFit;
-			AddSubview(ivMain);
+			m_imageView = new UIImageView();
+			m_imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+			AddSubview(m_imageView);
 
 			// Setup zoom
-			MaximumZoomScale = maxZoom;
-			MinimumZoomScale = minZoom;
+			MaximumZoomScale = s_maxZoom;
+			MinimumZoomScale = s_minZoom;
 			ShowsVerticalScrollIndicator = false;
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
 			ViewForZoomingInScrollView += (UIScrollView sv) => {
-				return ivMain;
+				return m_imageView;
 			};
 
 			// Setup gestures
-			grTap = new UITapGestureRecognizer(() => {
+			m_singleTap = new UITapGestureRecognizer(() => {
 				if (OnSingleTap != null)
 				{
 					OnSingleTap();
 				}
 			});
-			grTap.NumberOfTapsRequired = 1;
-			AddGestureRecognizer(grTap);
+			m_singleTap.NumberOfTapsRequired = 1;
+			AddGestureRecognizer(m_singleTap);
 
-			grDoubleTap = new UITapGestureRecognizer(() => {
-				if (ZoomScale >= defaultZoom)
+			m_doubleTap = new UITapGestureRecognizer(() => {
+				if (ZoomScale >= s_defaultZoom)
 				{
-					SetZoomScale(sizeToFitZoom, true);
+					SetZoomScale(m_sizeToFitZoom, true);
 				}
 				else
 				{
 					// Zoom to user specified point instead of center
-					var point = grDoubleTap.LocationInView(grDoubleTap.View);
-					var zoomRect = GetZoomRect(defaultZoom, point);
+					var point = m_doubleTap.LocationInView(m_doubleTap.View);
+					var zoomRect = GetZoomRect(s_defaultZoom, point);
 					ZoomToRect(zoomRect, true);
 				}
 			});
-			grDoubleTap.NumberOfTapsRequired = 2;
-			AddGestureRecognizer(grDoubleTap);
+			m_doubleTap.NumberOfTapsRequired = 2;
+			AddGestureRecognizer(m_doubleTap);
 
 			// To use single tap and double tap gesture recognizers together. See for reference:
 			// http://stackoverflow.com/questions/8876202/uitapgesturerecognizer-single-tap-and-double-tap
-			grTap.RequireGestureRecognizerToFail(grDoubleTap);
+			m_singleTap.RequireGestureRecognizerToFail(m_doubleTap);
 		}
 
 		/// <summary>
@@ -72,18 +70,18 @@ namespace BeeBaby
 		public void SetImage(UIImage image)
 		{
 			ZoomScale = 1;
-			ivMain.Image = image;
-			ivMain.Frame = new RectangleF(new PointF(), image.Size);
+			m_imageView.Image = image;
+			m_imageView.Frame = new RectangleF(new PointF(), image.Size);
 			ContentSize = image.Size;
 
 			float wScale = Frame.Width / image.Size.Width;
 			float hScale = Frame.Height / image.Size.Height;
 
 			MinimumZoomScale = Math.Min(wScale, hScale);
-			sizeToFitZoom = MinimumZoomScale;
+			m_sizeToFitZoom = MinimumZoomScale;
 			ZoomScale = MinimumZoomScale;
 
-			ivMain.Frame = CenterScrollViewContents();
+			m_imageView.Frame = CenterScrollViewContents();
 		}
 
 		/// <Docs>Lays out subviews.</Docs>
@@ -93,7 +91,7 @@ namespace BeeBaby
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
-			ivMain.Frame = CenterScrollViewContents();
+			m_imageView.Frame = CenterScrollViewContents();
 		}
 
 		/// <summary>
@@ -107,9 +105,9 @@ namespace BeeBaby
 			set {
 				base.Frame = value;
 
-				if (ivMain != null)
+				if (m_imageView != null)
 				{
-					ivMain.Frame = value;
+					m_imageView.Frame = value;
 				}
 			}
 		}
@@ -121,7 +119,7 @@ namespace BeeBaby
 		public RectangleF CenterScrollViewContents()
 		{
 			var boundsSize = Bounds.Size;
-			var contentsFrame = ivMain.Frame;
+			var contentsFrame = m_imageView.Frame;
 
 			if (contentsFrame.Width < boundsSize.Width)
 			{
@@ -154,9 +152,9 @@ namespace BeeBaby
 		/// <param name="center">Center.</param>
 		RectangleF GetZoomRect(float scale, PointF center)
 		{
-			var size = new SizeF(ivMain.Frame.Size.Height / scale, ivMain.Frame.Size.Width / scale);
+			var size = new SizeF(m_imageView.Frame.Size.Height / scale, m_imageView.Frame.Size.Width / scale);
 
-			var center2 = ConvertPointToView(center, ivMain);
+			var center2 = ConvertPointToView(center, m_imageView);
 			var location2 = new PointF(center2.X - (size.Width / 2.0f),
 				                center2.Y - (size.Height / 2.0f)
 			                );
@@ -164,5 +162,10 @@ namespace BeeBaby
 			var zoomRect = new RectangleF(location2, size);
 			return zoomRect;
 		}
+
+		/// <summary>
+		/// Occurs when on single tap.
+		/// </summary>
+		public event Action OnSingleTap;
 	}
 }
