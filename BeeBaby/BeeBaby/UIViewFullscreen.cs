@@ -61,6 +61,8 @@ namespace BeeBaby
 			Alpha = 0f;
 			UIView.Animate(AnimationDuration, () => {
 				Alpha = 1f;
+			}, () => {
+				UIApplication.SharedApplication.SetStatusBarHidden(true, UIStatusBarAnimation.None);
 			});
 		}
 
@@ -98,6 +100,8 @@ namespace BeeBaby
 		/// </summary>
 		public void Hide()
 		{
+			UIApplication.SharedApplication.SetStatusBarHidden(false, UIStatusBarAnimation.None);
+
 			if (Superview != null)
 			{
 				if (!UseAnimation)
