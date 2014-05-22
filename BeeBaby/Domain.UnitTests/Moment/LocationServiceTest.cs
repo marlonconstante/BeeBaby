@@ -31,21 +31,21 @@ namespace Domain.UnitTests.Moment
 			{
 				Id = "1",
 				Name = "Name 1",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 2 }
 			});
 
 			m_repository.Add(new Location()
 			{
 				Id = "2",
 				Name = "Name 2",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 2 }
 			});
 
 			m_repository.Add(new Location()
 			{
 				Id = "3",
 				Name = "Name 3",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 2 }
 			});
 
 			m_unitOfWork.Commit();
@@ -82,7 +82,7 @@ namespace Domain.UnitTests.Moment
 			{
 				Id = "New 123",
 				Name = "Nova Localização",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 2 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 2 }
 			};
 
 			m_target.SaveLocation(location);
@@ -101,7 +101,7 @@ namespace Domain.UnitTests.Moment
 			{
 				Id = "1",
 				Name = "Name 1",
-				Position = new GlobalPosition() { Latitude = 5, Longitude = 5 }
+				Position = new Coordinates() { Latitude = 5, Longitude = 5 }
 			};
 
 			m_target.SaveLocation(location);

@@ -38,7 +38,7 @@ namespace Domain.Moment
 		/// Gets or sets the position.
 		/// </summary>
 		/// <value>The position.</value>
-		public GlobalPosition Position { set; get; }
+		public Coordinates Position { set; get; }
 
 		/// <summary>
 		/// Gets or sets the local.

@@ -17,7 +17,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new Location();
 				result.Id = source.Id;
 				result.Name = source.Name;
-				result.Position = new GlobalPosition()
+				result.Position = new Coordinates()
 				{
 					Latitude = source.Latitude,
 					Longitude = source.Longitude

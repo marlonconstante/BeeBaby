@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			{
 				Id = "1",
 				Name = "Nome",
-				Position = new GlobalPosition()
+				Position = new Coordinates()
 				{
 					Longitude = 1.1f,
 					Latitude = 1.2f

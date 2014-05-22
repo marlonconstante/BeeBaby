@@ -61,21 +61,21 @@ namespace Application
 			{
 				Id = "1",
 				Name = "Casa da Vovó",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 1 }
 			});
 
 			locationRepository.Add(new Location()
 			{
 				Id = "2",
 				Name = "Minha Casa",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 1 }
 			});
 
 			locationRepository.Add(new Location()
 			{
 				Id = "3",
 				Name = "Escolinha",
-				Position = new GlobalPosition() { Latitude = 1, Longitude = 1 }
+				Position = new Coordinates() { Latitude = 1, Longitude = 1 }
 			});
 
 			unitOfWork.Commit();

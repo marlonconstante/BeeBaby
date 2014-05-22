@@ -7,6 +7,7 @@ using System.Drawing;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -14,7 +15,8 @@ namespace BeeBaby
 	{
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		UITableView m_autoCompleteTable;
-		string[] wordCollection = { "blah", "bleh", "blop", "boing", "derp", "deep" };
+		string[] wordCollection;
+		IEnumerable<Location> m_locations;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -31,7 +33,7 @@ namespace BeeBaby
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			txtDescription.IsKeyboardAnimation = true;
 
-			mapView.Delegate = new ZoomMapViewDelegate(0.001d);
+			mapView.Delegate = new ZoomMapViewDelegate(0.001d, this);
 
 			m_autoCompleteTable = new UITableView(new RectangleF(0, 64, 320, 120));
 			m_autoCompleteTable.ScrollEnabled = true;
@@ -51,7 +53,27 @@ namespace BeeBaby
 				return true;
 			};
 
-			wordCollection = new LocationService().GetAllLocations().Select(l => l.Name).ToArray<string>();
+			m_locations = new LocationService().GetAllLocations();
+			wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
+
+			if (mapView.UserLocation.Location != null)
+			{
+				LoadNearLocation();
+			}
+		}
+
+		/// <summary>
+		/// Loads the near location.
+		/// </summary>
+		public void LoadNearLocation()
+		{
+			var currentPlace = new Coordinates(mapView.UserLocation.Location.Coordinate.Latitude, mapView.UserLocation.Location.Coordinate.Longitude);
+			var nearest = m_locations.OrderBy(l => l.Position.DistanceFrom(currentPlace)).FirstOrDefault();
+
+			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 100)
+			{
+				SetAutoCompleteText(nearest.Name);
+			}
 		}
 
 		/// <summary>
@@ -189,14 +211,14 @@ namespace BeeBaby
 
 				moment.Date = vwDate.DateTime;
 
-				moment.Position = new GlobalPosition();
+				moment.Position = new Coordinates();
 				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
 
 				var location = new Location()
 				{
 					Name = txtLocalName.Text,
-					Position = new GlobalPosition()
+					Position = new Coordinates()
 					{
 						Latitude = moment.Position.Latitude,
 						Longitude = moment.Position.Longitude

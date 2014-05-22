@@ -29,7 +29,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.Description = source.Description;
 //				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
 				result.Event = m_eventRepository.FindBy(source.EventId);
-				result.Position = new GlobalPosition()
+				result.Position = new Coordinates()
 				{
 					Latitude = source.Latitude,
 					Longitude = source.Longitude

@@ -111,7 +111,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 				Description = "Descrição"
 			};
 
-			var local = new GlobalPosition
+			var local = new Coordinates
 			{
 				Latitude = 12,
 				Longitude = 34

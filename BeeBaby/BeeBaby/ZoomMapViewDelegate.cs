@@ -7,10 +7,12 @@ namespace BeeBaby
 	public class ZoomMapViewDelegate : MKMapViewDelegate
 	{
 		double m_zoom;
+		MomentDetailViewController m_controller;
 
-		public ZoomMapViewDelegate(double zoom)
+		public ZoomMapViewDelegate(double zoom, MomentDetailViewController controller)
 		{
 			m_zoom = zoom;
+			m_controller = controller;
 		}
 
 		/// <summary>
@@ -21,6 +23,7 @@ namespace BeeBaby
 		public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
 		{
 			changeZoomMap(mapView);
+			m_controller.LoadNearLocation();
 		}
 
 		/// <summary>
