@@ -1200,10 +1200,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-25" y="957"/>
         </scene>
-        <!--View Controller-->
+        <!--Fullscreen View Controller-->
         <scene sceneID="72K-aW-CtN">
             <objects>
-                <viewController id="7Po-98-263" sceneMemberID="viewController">
+                <viewController id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gdd-rz-Mzh"/>
                         <viewControllerLayoutGuide type="bottom" id="T5G-EM-69S"/>

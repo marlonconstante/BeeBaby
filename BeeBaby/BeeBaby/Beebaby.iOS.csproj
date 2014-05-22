@@ -294,6 +294,10 @@
     <Compile Include="TextView.designer.cs">
       <DependentUpon>TextView.cs</DependentUpon>
     </Compile>
+    <Compile Include="FullscreenViewController.cs" />
+    <Compile Include="FullscreenViewController.designer.cs">
+      <DependentUpon>FullscreenViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
