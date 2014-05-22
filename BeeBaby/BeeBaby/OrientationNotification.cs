@@ -10,7 +10,7 @@ namespace BeeBaby
 	{
 		UIView[] m_views;
 
-		public OrientationNotification(params UIView[] views)
+		private OrientationNotification(params UIView[] views)
 		{
 			m_views = views;
 
@@ -61,6 +61,15 @@ namespace BeeBaby
 					view.Transform = transform;
 				}
 			});
+		}
+
+		/// <summary>
+		/// Add the specified views.
+		/// </summary>
+		/// <param name="views">Views.</param>
+		public static OrientationNotification Add(params UIView[] views)
+		{
+			return new OrientationNotification(views);
 		}
 	}
 }

@@ -124,7 +124,7 @@ namespace BeeBaby
 		/// </summary>
 		void LoadOrientationNotification()
 		{
-			new OrientationNotification(sviMain);
+			OrientationNotification.Add(sviMain);
 		}
 	}
 }
