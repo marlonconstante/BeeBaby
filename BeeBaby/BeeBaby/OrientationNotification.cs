@@ -21,19 +21,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets the device angle.
+		/// Devices the angle.
 		/// </summary>
-		/// <returns>The device angle.</returns>
-		public static float GetDeviceAngle()
+		/// <returns>The angle.</returns>
+		public float DeviceAngle()
 		{
-			return (float) Math.PI * GetDeviceRotation() / 180;
+			return (float) Math.PI * DeviceRotation() / 180;
 		}
 
 		/// <summary>
-		/// Gets the device rotation.
+		/// Devices the rotation.
 		/// </summary>
-		/// <returns>The device rotation.</returns>
-		public static int GetDeviceRotation()
+		/// <returns>The rotation.</returns>
+		public int DeviceRotation()
 		{
 			switch (UIDevice.CurrentDevice.Orientation)
 			{
@@ -52,15 +52,45 @@ namespace BeeBaby
 		/// Dids the rotation.
 		/// </summary>
 		/// <param name="notification">Notification.</param>
-		private void DidRotation(NSNotification notification)
+		void DidRotation(NSNotification notification = null)
 		{
-			CGAffineTransform transform = CGAffineTransform.MakeRotation(GetDeviceAngle());
-			UIView.Animate(0.2d, () => {
+			CGAffineTransform transform = CGAffineTransform.MakeRotation(DeviceAngle());
+			UIView.Animate(0.3d, () => {
 				foreach (var view in m_views)
 				{
 					view.Transform = transform;
 				}
+			},  () => {
+				if (RotationFinished != null)
+				{
+					RotationFinished();
+				}
 			});
+		}
+
+		/// <summary>
+		/// Occurs when rotation finished.
+		/// </summary>
+		public event Action RotationFinished;
+
+		/// <summary>
+		/// Determines if is portrait.
+		/// </summary>
+		/// <returns><c>true</c> if is portrait; otherwise, <c>false</c>.</returns>
+		public static bool IsPortrait() {
+			var orientation = UIDevice.CurrentDevice.Orientation;
+			return orientation == UIDeviceOrientation.Portrait ||
+				orientation == UIDeviceOrientation.PortraitUpsideDown;
+		}
+
+		/// <summary>
+		/// Determines if is landscape.
+		/// </summary>
+		/// <returns><c>true</c> if is landscape; otherwise, <c>false</c>.</returns>
+		public static bool IsLandscape() {
+			var orientation = UIDevice.CurrentDevice.Orientation;
+			return orientation == UIDeviceOrientation.LandscapeLeft ||
+			orientation == UIDeviceOrientation.LandscapeRight;
 		}
 
 		/// <summary>
@@ -69,7 +99,9 @@ namespace BeeBaby
 		/// <param name="views">Views.</param>
 		public static OrientationNotification Add(params UIView[] views)
 		{
-			return new OrientationNotification(views);
+			var orientationNotification = new OrientationNotification(views);
+			orientationNotification.DidRotation();
+			return orientationNotification;
 		}
 	}
 }

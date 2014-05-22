@@ -42,7 +42,7 @@ namespace BeeBaby
 		{
 			var window = UIApplication.SharedApplication.Windows[0];
 			Frame = window.Frame;
-			m_scrollImage.Frame = window.Frame;
+			m_scrollImage.Frame = Frame;
 			m_scrollImage.SetImage(m_image);
 			m_scrollImage.OnSingleTap += () => {
 				Hide();
@@ -121,14 +121,17 @@ namespace BeeBaby
 		/// </summary>
 		void LoadOrientationNotification()
 		{
-			OrientationNotification.Add(m_scrollImage);
+			var orientationNotification = OrientationNotification.Add(m_scrollImage);
+			orientationNotification.RotationFinished += () => {
+				m_scrollImage.Frame = Frame;
+				m_scrollImage.SetImage(m_image);
+			};
 		}
 
 		/// <summary>
 		/// The use animation.
 		/// </summary>
 		public bool UseAnimation = true;
-
 		/// <summary>
 		/// The duration of the animation.
 		/// </summary>
