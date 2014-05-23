@@ -11,6 +11,8 @@ namespace BeeBaby
 {
 	public partial class FullscreenViewController : BaseViewController
 	{
+		Moment m_moment;
+
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -52,7 +54,7 @@ namespace BeeBaby
 		partial void Share(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				var image = new ImageProvider().CreateImageForShare(imgPhoto.Image, Moment);
+				var image = new ImageProvider().CreateImageForShare(imgPhoto.Image, m_moment);
 				imgPhoto.Image = image;
 
 				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
@@ -81,6 +83,8 @@ namespace BeeBaby
 		/// <param name="photo">Photo.</param>
 		public void SetInformation(Moment moment, Baby baby, UIImage photo)
 		{
+			m_moment = moment;
+
 			imgPhoto.Image = photo;
 			lblAge.Text = baby.AgeInWords;
 			lblEvent.Text = moment.Event.Description;
