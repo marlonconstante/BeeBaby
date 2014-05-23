@@ -15,16 +15,16 @@ namespace BeeBaby
 		/// Sets the information.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		/// <param name="backgroundImage">Background image.</param>
 		/// <param name="baby">Baby.</param>
-		public void SetInformation(Moment moment, UIImage backgroundImage, Baby baby)
+		/// <param name="backgroundImage">Background image.</param>
+		public void SetInformation(Moment moment, Baby baby, UIImage backgroundImage)
 		{
 			ivwBackgroundImage.Image = backgroundImage;
 			lblAge.Text = baby.AgeInWords;
 			lblDay.Text = moment.Date.ToString("dd");
 			lblEvent.Text = moment.Event.Description;
 			lblMonth.Text = moment.Date.ToString("MMMMM");
-			lblWhere.Text = "Lighthouse SA";
+			lblWhere.Text = moment.Location.Name;
 			lblYear.Text = moment.Date.ToString("yyyy");
 		}
 	}

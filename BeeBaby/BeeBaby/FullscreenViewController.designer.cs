@@ -14,12 +14,34 @@ namespace BeeBaby
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIImageView imgPhoto { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblAge { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblEvent { get; set; }
+
+		[Action ("Close:")]
+		partial void Close (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("Share:")]
+		partial void Share (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (imgPhoto != null) {
 				imgPhoto.Dispose ();
 				imgPhoto = null;
+			}
+
+			if (lblAge != null) {
+				lblAge.Dispose ();
+				lblAge = null;
+			}
+
+			if (lblEvent != null) {
+				lblEvent.Dispose ();
+				lblEvent = null;
 			}
 		}
 	}

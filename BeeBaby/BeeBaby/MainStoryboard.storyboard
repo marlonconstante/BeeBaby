@@ -1243,6 +1243,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="cancel"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Close:" destination="7Po-98-263" eventType="touchUpInside" id="Ins-ad-SMG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Com 5 meses e 3 semanas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-93-BzT">
                                 <rect key="frame" x="56" y="10" width="208" height="21"/>
@@ -1281,6 +1284,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="share"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Share:" destination="7Po-98-263" eventType="touchUpInside" id="OiV-7f-77w"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -1307,6 +1313,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <connections>
                         <outlet property="imgPhoto" destination="zNC-Al-MRF" id="jz1-d0-pt2"/>
+                        <outlet property="lblAge" destination="ZKD-93-BzT" id="l3p-j5-Pbi"/>
+                        <outlet property="lblEvent" destination="ShB-kI-3RO" id="Rvk-ZG-E1D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hza-by-KEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

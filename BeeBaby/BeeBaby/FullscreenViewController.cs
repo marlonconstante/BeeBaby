@@ -1,14 +1,17 @@
 using System;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Domain.Moment;
+using BeeBaby.ResourcesProviders;
+using MonoTouch.FacebookConnect;
+using Skahal.Infrastructure.Framework.Globalization;
+using Domain.Baby;
 
 namespace BeeBaby
 {
 	public partial class FullscreenViewController : BaseViewController
 	{
-		public FullscreenViewController (IntPtr handle) : base (handle)
+		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
 		}
 
@@ -32,25 +35,55 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets or sets the moment.
+		/// Close the specified sender.
 		/// </summary>
-		/// <value>The moment.</value>
-		public Moment Moment {
-			get;
-			set;
+		/// <param name="sender">Sender.</param>
+		partial void Close(UIButton sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				DismissViewController(true, null);
+			}, false);
 		}
 
 		/// <summary>
-		/// Gets or sets the photo.
+		/// Share the specified sender.
 		/// </summary>
-		/// <value>The photo.</value>
-		public UIImage Photo {
-			get {
-				return imgPhoto.Image;
-			}
-			set {
-				imgPhoto.Image = value;
-			}
+		/// <param name="sender">Sender.</param>
+		partial void Share(UIButton sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				var image = new ImageProvider().CreateImageForShare(imgPhoto.Image, Moment);
+				imgPhoto.Image = image;
+
+				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
+				if (ios6ShareDialog)
+				{
+					FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
+						,null, image, null, (result, error) => {
+							if (error != null)
+								InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
+							else if (result == FBOSIntegratedShareDialogResult.Succeeded)
+								InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
+						});
+				}
+				else
+				{
+					Console.WriteLine("Erro ao dar Share no Facebook.");
+				}
+			});
+		}
+
+		/// <summary>
+		/// Sets the information.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		/// <param name="baby">Baby.</param>
+		/// <param name="photo">Photo.</param>
+		public void SetInformation(Moment moment, Baby baby, UIImage photo)
+		{
+			imgPhoto.Image = photo;
+			lblAge.Text = baby.AgeInWords;
+			lblEvent.Text = moment.Event.Description;
 		}
 	}
 }

@@ -10,6 +10,7 @@ using Domain.Baby;
 using BeeBaby.ViewModels;
 using MonoTouch.ObjCRuntime;
 using Skahal.Infrastructure.Framework.Globalization;
+using Application;
 
 namespace BeeBaby
 {
@@ -103,8 +104,7 @@ namespace BeeBaby
 					imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 					imageView.OnClick += () => {
 						m_viewController.PresentViewController(m_fullscreenController, false, null);
-						m_fullscreenController.Photo = imageProvider.GetImage(image.FileName);
-						m_fullscreenController.Moment = moment;
+						m_fullscreenController.SetInformation(moment, CurrentContext.Instance.CurrentBaby, imageProvider.GetImage(image.FileName));
 					};
 
 					momentCell.ViewPhotos.AddSubview(imageView);

@@ -296,7 +296,7 @@ namespace BeeBaby.ResourcesProviders
 
 			using (var image = CroppedImageResize(sourceImage, MediaBase.ImageShareSize))
 			{
-				controller.SetInformation(moment, image, CurrentContext.Instance.CurrentBaby);
+				controller.SetInformation(moment, CurrentContext.Instance.CurrentBaby, image);
 			}
 
 			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
