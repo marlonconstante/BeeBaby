@@ -298,6 +298,10 @@
     <Compile Include="FullscreenViewController.designer.cs">
       <DependentUpon>FullscreenViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MomentNavigationController.cs" />
+    <Compile Include="MomentNavigationController.designer.cs">
+      <DependentUpon>MomentNavigationController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

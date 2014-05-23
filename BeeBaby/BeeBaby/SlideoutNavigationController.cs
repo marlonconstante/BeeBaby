@@ -291,6 +291,15 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets the supported interface orientations.
+		/// </summary>
+		/// <returns>The supported interface orientations.</returns>
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
+
+		/// <summary>
 		/// Pan the specified view.
 		/// </summary>
 		/// <param name='view'>

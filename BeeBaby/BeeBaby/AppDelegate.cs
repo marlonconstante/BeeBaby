@@ -47,6 +47,46 @@ namespace BeeBaby
 		{
 		}
 
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <summary>
+		/// Gets the supported interface orientations.
+		/// </summary>
+		/// <returns>The supported interface orientations.</returns>
+		/// <param name="application">Application.</param>
+		/// <param name="window">Window.</param>
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow window)
+		{
+			UIViewController topViewController = TopViewController(window);
+			if (topViewController != null)
+			{
+				return topViewController.GetSupportedInterfaceOrientations();
+			}
+			else
+			{
+				return UIInterfaceOrientationMask.Portrait;
+			}
+		}
+
+		/// <summary>
+		/// Tops the view controller.
+		/// </summary>
+		/// <returns>The view controller.</returns>
+		/// <param name="window">Window.</param>
+		UIViewController TopViewController(UIWindow window)
+		{
+			UIViewController topViewController = (window != null) ? window.RootViewController : null;
+
+			if (topViewController != null)
+			{
+				while (topViewController.PresentedViewController != null)
+				{
+					topViewController = topViewController.PresentedViewController;
+				}
+			}
+
+			return topViewController;
+		}
+
 		/// <summary>
 		/// Finisheds the launching.
 		/// </summary>
