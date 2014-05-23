@@ -145,12 +145,6 @@
     <BundleResource Include="Resources\flash.svg" />
     <BundleResource Include="Resources\lake-waves.mp3" />
     <BundleResource Include="Resources\music.svg" />
-    <BundleResource Include="Resources\RobotoCondensed-Bold.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\RobotoCondensed-Light.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
     <BundleResource Include="Resources\location-clear.svg" />
     <BundleResource Include="Resources\calendar-clear.svg" />
     <BundleResource Include="Resources\bee.svg" />
@@ -180,6 +174,24 @@
     <BundleResource Include="Resources\logoff.svg" />
     <BundleResource Include="Resources\menu-item-logoff-background.png" />
     <BundleResource Include="Resources\share.svg" />
+    <BundleResource Include="Resources\RobotoCondensed-Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-BoldItalic.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-Italic.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-Light.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-LightItalic.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

@@ -8,14 +8,13 @@ namespace BeeBaby
 	{
 		public Label(IntPtr handle) : base(handle)
 		{
-			UpdateLineHeight(Font.PointSize);
 		}
 
 		/// <summary>
 		/// Updates the height of the line.
 		/// </summary>
 		/// <param name="lineHeight">Line height.</param>
-		public void UpdateLineHeight(float lineHeight)
+		void UpdateLineHeight(float lineHeight)
 		{
 			NSMutableParagraphStyle style = new NSMutableParagraphStyle();
 			style.MinimumLineHeight = lineHeight;
@@ -25,6 +24,20 @@ namespace BeeBaby
 			attributedString.AddAttribute(new NSString("NSParagraphStyle"), style, new NSRange(0, attributedString.Length));
 
 			AttributedText = attributedString;
+		}
+
+		/// <summary>
+		/// Gets or sets the text.
+		/// </summary>
+		/// <value>The text.</value>
+		public override string Text {
+			get {
+				return base.Text;
+			}
+			set {
+				base.Text = value;
+				UpdateLineHeight(Font.PointSize);
+			}
 		}
 	}
 }
