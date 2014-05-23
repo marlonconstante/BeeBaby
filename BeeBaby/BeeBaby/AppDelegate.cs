@@ -68,26 +68,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Tops the view controller.
-		/// </summary>
-		/// <returns>The view controller.</returns>
-		/// <param name="window">Window.</param>
-		UIViewController TopViewController(UIWindow window)
-		{
-			UIViewController topViewController = (window != null) ? window.RootViewController : null;
-
-			if (topViewController != null)
-			{
-				while (topViewController.PresentedViewController != null)
-				{
-					topViewController = topViewController.PresentedViewController;
-				}
-			}
-
-			return topViewController;
-		}
-
-		/// <summary>
 		/// Finisheds the launching.
 		/// </summary>
 		/// <param name="application">Application.</param>
@@ -108,6 +88,37 @@ namespace BeeBaby
 			InitProgressHUD();
 		}
 
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// Raises the activated event.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		public override void OnActivated(UIApplication application)
+		{
+			// We need to properly handle activation of the application with regards to SSO
+			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
+			FBSession.ActiveSession.HandleDidBecomeActive();
+		}
+
+		/// <summary>
+		/// Tops the view controller.
+		/// </summary>
+		/// <returns>The view controller.</returns>
+		/// <param name="window">Window.</param>
+		UIViewController TopViewController(UIWindow window)
+		{
+			UIViewController topViewController = (window != null) ? window.RootViewController : null;
+
+			if (topViewController != null)
+			{
+				while (topViewController.PresentedViewController != null)
+				{
+					topViewController = topViewController.PresentedViewController;
+				}
+			}
+
+			return topViewController;
+		}
+
 		/// <summary>
 		/// Inits the ProgressHUD.
 		/// </summary>
@@ -119,17 +130,6 @@ namespace BeeBaby
 			var frame = hud.Frame;
 			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
-		}
-
-		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
-		/// Raises the activated event.
-		/// </summary>
-		/// <param name="application">Application.</param>
-		public override void OnActivated(UIApplication application)
-		{
-			// We need to properly handle activation of the application with regards to SSO
-			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
-			FBSession.ActiveSession.HandleDidBecomeActive();
 		}
 	}
 }
