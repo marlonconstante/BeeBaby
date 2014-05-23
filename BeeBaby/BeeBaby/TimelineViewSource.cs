@@ -19,13 +19,27 @@ namespace BeeBaby
 		UIViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
-		UIViewFullscreen m_vwFullscreen;
+		FullscreenViewController m_fullscreenController;
 
 		public TimelineViewSource(UIViewController viewController, IList<Moment> moments, Baby baby)
 		{
 			m_viewController = viewController;
 			m_tableItems = moments;
 			m_baby = baby;
+
+			LoadFullscreenViewController();
+		}
+
+		/// <summary>
+		/// Loads the fullscreen view controller.
+		/// </summary>
+		void LoadFullscreenViewController()
+		{
+			if (m_fullscreenController == null)
+			{
+				var board = UIStoryboard.FromName("MainStoryboard", null);
+				m_fullscreenController = (FullscreenViewController) board.InstantiateViewController("FullscreenViewController");
+			}
 		}
 
 		/// <Docs>Table view displaying the rows.</Docs>
@@ -88,12 +102,9 @@ namespace BeeBaby
 					imageView.MultipleTouchEnabled = true;
 					imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 					imageView.OnClick += () => {
-						if (m_vwFullscreen == null)
-						{
-							m_vwFullscreen = new UIViewFullscreen();
-						}
-						m_vwFullscreen.SetImage(imageProvider.GetImage(image.FileName), moment);
-						m_vwFullscreen.Show();
+						m_viewController.PresentViewController(m_fullscreenController, false, null);
+						m_fullscreenController.Photo = imageProvider.GetImage(image.FileName);
+						m_fullscreenController.Moment = moment;
 					};
 
 					momentCell.ViewPhotos.AddSubview(imageView);

@@ -12,9 +12,15 @@ namespace BeeBaby
 	[Register ("FullscreenViewController")]
 	partial class FullscreenViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIImageView imgPhoto { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgPhoto != null) {
+				imgPhoto.Dispose ();
+				imgPhoto = null;
+			}
 		}
 	}
 }
