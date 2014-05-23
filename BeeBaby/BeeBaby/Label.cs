@@ -8,7 +8,7 @@ namespace BeeBaby
 	{
 		public Label(IntPtr handle) : base(handle)
 		{
-			UpdateLineHeight(this.Font.PointSize);
+			UpdateLineHeight(Font.PointSize);
 		}
 
 		/// <summary>

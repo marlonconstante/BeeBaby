@@ -23,7 +23,7 @@ namespace BeeBaby
 			lblAge.Text = baby.AgeInWords;
 			lblDay.Text = moment.Date.ToString("dd");
 			lblEvent.Text = moment.Event.Description;
-			lblMonth.Text = moment.Date.ToString("MMMMM");
+			lblMonth.Text = moment.Date.ToString("MMM");
 			lblWhere.Text = moment.Location.Name;
 			lblYear.Text = moment.Date.ToString("yyyy");
 		}
