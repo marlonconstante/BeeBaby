@@ -89,6 +89,8 @@ namespace BeeBaby
 		/// </summary>
 		void CreateMoment()
 		{
+			new ImageProvider().DeleteTemporaryFiles();
+
 			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
 			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;

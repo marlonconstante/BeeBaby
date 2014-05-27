@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using Domain.Moment;
 using Domain.Baby;
 using Application;
+using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
@@ -30,6 +31,8 @@ namespace BeeBaby
 		/// 
 		void InitTimeline()
 		{
+			new ImageProvider().DeleteTemporaryFiles();
+
 			var baby = CurrentContext.Instance.CurrentBaby;
 			var moments = new MomentService().GetAllMoments(baby);
 
