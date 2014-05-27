@@ -12,6 +12,7 @@ using MonoTouch.ObjCRuntime;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Linq;
+using System.Diagnostics;
 
 namespace BeeBaby
 {
@@ -19,7 +20,7 @@ namespace BeeBaby
 	{
 		const string s_cellIdentifier = "MomentCell";
 		UIViewController m_viewController;
-		IList<Moment> m_tableItems;
+		static IList<Moment> m_tableItems;
 		Baby m_baby;
 		FullscreenViewController m_fullscreenController;
 
@@ -79,6 +80,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
 		{
+			var watch = Stopwatch.StartNew();
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
 			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
@@ -86,36 +88,36 @@ namespace BeeBaby
 			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			momentCell.LabelEventName = moment.Event.Description;
 			momentCell.LabelWhere = moment.Location.Name;
-//
-//			var imageProvider = new ImageProvider(moment.Id);
-//			IList<ImageModel> images = imageProvider.GetImages(false, true);
-//
-//			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-//			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
-//			IList<UIImageViewClickable> imageViews = new List<UIImageViewClickable>();
-//
-//			var index = 0;
-//			foreach (var image in images)
-//			{
-//				using (var imageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize)))
-//				{
-////						imageView.Image = image.Image;
-////						imageView.UserInteractionEnabled = true;
-////						imageView.MultipleTouchEnabled = true;
-////						imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-////						imageView.OnClick += () =>
-////						{
-////							m_viewController.PresentViewController(m_fullscreenController, false, null);
-////							m_fullscreenController.SetInformation(moment, CurrentContext.Instance.CurrentBaby, imageProvider.GetImage(image.FileName));
-////						};
-////					momentCell.ViewPhotos.AddSubview(imageView);
-//
-//				}
-//				index++;
-//			}
-//
 
+			var imageProvider = new ImageProvider(moment.Id);
+			IList<ImageModel> images = imageProvider.GetImages(false, true);
 
+			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
+			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+
+			var imageViews = new List<UIImageViewClickable>();
+
+			var index = 0;
+			foreach (var image in images)
+			{
+				var imageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
+				
+				imageView.Image = image.Image;
+				imageView.UserInteractionEnabled = true;
+				imageView.MultipleTouchEnabled = true;
+				imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+				imageView.Opaque = true;
+				imageView.OnClick += () =>
+				{
+					m_viewController.PresentViewController(m_fullscreenController, false, null);
+					m_fullscreenController.SetInformation(moment, CurrentContext.Instance.CurrentBaby, imageProvider.GetImage(image.FileName));
+				};
+				imageViews.Add(imageView);
+				
+				index++;
+			}
+				
+			momentCell.ViewPhotos.AddSubviews(imageViews.ToArray());
 
 			return momentCell;
 		}
