@@ -12,10 +12,10 @@ namespace BeeBaby
 	public class EventListViewSource : UITableViewSource
 	{
 		const string s_cellIdentifier = "EventCell";
-		UIViewController m_viewController;
+		EventListViewController m_viewController;
 		IList<Event> m_otherEventsTableItems;
 
-		public EventListViewSource(UIViewController viewController, IList<Event> otherItems)
+		public EventListViewSource(EventListViewController viewController, IList<Event> otherItems)
 		{
 			m_viewController = viewController;
 			m_otherEventsTableItems = otherItems;
@@ -74,7 +74,7 @@ namespace BeeBaby
 			return 1;
 		}
 
-			/// <summary>
+		/// <summary>
 		/// Reloads the data.
 		/// </summary>
 		/// <param name="tableView">Table view.</param>
@@ -83,6 +83,24 @@ namespace BeeBaby
 		{
 			m_otherEventsTableItems = items;
 			tableView.ReloadData();
+		}
+
+		/// <Docs>Table view containing the section.</Docs>
+		/// <summary>
+		/// Called to populate the header for the specified section.
+		/// </summary>
+		/// <see langword="null"></see>
+		/// <returns>The for header.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="section">Section.</param>
+		public override string TitleForHeader(UITableView tableView, int section)
+		{
+			if (m_viewController.ShowFirstsEvents)
+			{
+				return "First Time that I ".Translate();
+			}
+
+			return null;
 		}
 
 		/// <summary>
