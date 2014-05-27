@@ -192,17 +192,36 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
-                        <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueSelectEvent" id="Maa-si-q2R"/>
+                        <segue destination="RwF-vb-pzo" kind="push" identifier="segueSelectEvent" id="hMM-lH-evd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="987" y="-1407"/>
         </scene>
-        <!--Event List View Controller-->
+        <!--Events List Tab View Controller-->
+        <scene sceneID="xSZ-ar-Z6P">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="RwF-vb-pzo" customClass="EventsListTabViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="aPF-fk-8G7"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="cDe-WC-vPv">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mnJ-tT-oAJ" kind="relationship" relationship="viewControllers" id="jpZ-wB-8yK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xq8-bp-v3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="-1407"/>
+        </scene>
+        <!--Event List View Controller - Item-->
         <scene sceneID="2Un-uh-d7S">
             <objects>
-                <viewController id="mnJ-tT-oAJ" customClass="EventListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventList" id="mnJ-tT-oAJ" customClass="EventListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KdA-al-yac"/>
                         <viewControllerLayoutGuide type="bottom" id="WJ6-OO-heC"/>
@@ -212,11 +231,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="632"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="wbj-kZ-VNW"/>
-                                </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="OQy-eW-gLs">
                                     <rect key="frame" x="0.0" y="64" width="320" height="44"/>
@@ -248,15 +264,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="A2C-DE-fUa"/>
-                            <constraint firstAttribute="bottom" secondItem="qCH-eT-BbT" secondAttribute="bottom" id="ZLz-Ht-lx7"/>
-                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="pUs-wk-gCB"/>
-                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="ry2-ot-SWJ"/>
+                            <constraint firstAttribute="bottom" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="-64" id="NbH-N8-TKi"/>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="Uaw-Y1-2Al"/>
+                            <constraint firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="VXk-yy-TV0"/>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="XAt-4O-9CR"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-screen-background"/>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ag9-JA-hcL"/>
                     <navigationItem key="navigationItem" id="Szy-Yb-HR1"/>
                     <connections>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
@@ -265,7 +282,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-Ve-kS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="-1079"/>
+            <point key="canvasLocation" x="1932" y="-1783"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="6UT-XL-r0v">

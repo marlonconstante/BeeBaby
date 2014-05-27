@@ -10,8 +10,11 @@ namespace BeeBaby
 {
 	public partial class EventListViewController : NavigationViewController
 	{
-		IList<Event> m_suggestedEvents;
-		IList<Event> m_otherEvents;
+		public bool ShowEverydayEvents { get; set; }
+
+		public bool ShowFirstsEvents { get; set; }
+
+		IList<Event> m_events;
 		EventService m_eventService;
 
 		public EventListViewController(IntPtr handle) : base(handle)
@@ -26,11 +29,14 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
-			m_suggestedEvents = m_eventService.GetSuggestedEvents(CurrentContext.Instance.CurrentBaby).ToList();
-			m_otherEvents = m_eventService.GetAllEvents().Except(m_suggestedEvents).ToList();
-
-			EventListViewSource eventListViewSource = new EventListViewSource(this, m_suggestedEvents, m_otherEvents);
-			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, m_suggestedEvents, m_otherEvents);
+			var allEvents = m_eventService.GetAllEvents();
+			m_events = allEvents
+				.Where(e => (ShowFirstsEvents && e.Kind == EventType.Achivment) ||
+			(ShowEverydayEvents && e.Kind == EventType.Everyday))
+				.ToList();
+					
+			EventListViewSource eventListViewSource = new EventListViewSource(this, m_events);
+			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, allEvents);
 			tblView.Source = eventListViewSource;
 		}
 

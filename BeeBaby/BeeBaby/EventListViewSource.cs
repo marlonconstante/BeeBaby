@@ -13,13 +13,11 @@ namespace BeeBaby
 	{
 		const string s_cellIdentifier = "EventCell";
 		UIViewController m_viewController;
-		IList<Event> m_suggestedTableItems;
 		IList<Event> m_otherEventsTableItems;
 
-		public EventListViewSource(UIViewController viewController, IList<Event> suggestedItems, IList<Event> otherItems)
+		public EventListViewSource(UIViewController viewController, IList<Event> otherItems)
 		{
 			m_viewController = viewController;
-			m_suggestedTableItems = suggestedItems;
 			m_otherEventsTableItems = otherItems;
 			IsSearching = false;
 		}
@@ -33,10 +31,6 @@ namespace BeeBaby
 		/// <param name="section">Section.</param>
 		public override int RowsInSection(UITableView tableView, int section)
 		{
-			if (section == 0)
-			{
-				return m_suggestedTableItems.Count;
-			}
 			return m_otherEventsTableItems.Count;
 		}
 
@@ -48,7 +42,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			CurrentContext.Instance.SelectedEvent = m_suggestedTableItems[indexPath.Row];
+			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
 			m_viewController.NavigationController.PopViewControllerAnimated(true);
 		}
 
@@ -62,14 +56,9 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-			if (indexPath.Section == 0)
-			{
-				cell.TextLabel.Text = m_suggestedTableItems[indexPath.Row].Description;
-			}
-			else
-			{
-				cell.TextLabel.Text = m_otherEventsTableItems[indexPath.Row].Description;
-			}
+
+			cell.TextLabel.Text = m_otherEventsTableItems[indexPath.Row].Description;
+
 			return cell;
 		}
 
@@ -82,38 +71,17 @@ namespace BeeBaby
 		/// <param name="tableView">Table view.</param>
 		public override int NumberOfSections(UITableView tableView)
 		{
-			if (IsSearching)
-			{
-				return 1;
-			}
-			return 2;
+			return 1;
 		}
 
-		/// <Docs>Table view containing the section.</Docs>
-		/// <summary>
-		/// Called to populate the header for the specified section.
-		/// </summary>
-		/// <see langword="null"></see>
-		/// <returns>The for header.</returns>
-		/// <param name="tableView">Table view.</param>
-		/// <param name="section">Section.</param>
-		public override string TitleForHeader(UITableView tableView, int section)
-		{
-			if (section == 0)
-			{
-				return "Suggestions".Translate();
-			}
-			return "All Other Events".Translate();
-		}
-
-		/// <summary>
+			/// <summary>
 		/// Reloads the data.
 		/// </summary>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="items">Items.</param>
 		public void ReloadData(UITableView tableView, IList<Event> items)
 		{
-			m_suggestedTableItems = items;
+			m_otherEventsTableItems = items;
 			tableView.ReloadData();
 		}
 
@@ -121,7 +89,8 @@ namespace BeeBaby
 		/// Gets or sets a value indicating whether this instance is searching.
 		/// </summary>
 		/// <value><c>true</c> if this instance is searching; otherwise, <c>false</c>.</value>
-		public bool IsSearching {
+		public bool IsSearching
+		{
 			get;
 			set;
 		}

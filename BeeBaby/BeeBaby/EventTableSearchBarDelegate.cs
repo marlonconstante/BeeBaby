@@ -11,10 +11,10 @@ namespace BeeBaby
 		EventListViewSource m_eventListViewSource;
 		IEnumerable<Event> m_events;
 
-		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, IEnumerable<Event> events, IEnumerable<Event> otherEvents)
+		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, IEnumerable<Event> events)
 		{
 			m_eventListViewSource = eventListViewSource;
-			m_events = events.Union(otherEvents);
+			m_events = events;
 		}
 
 		/// <summary>
