@@ -76,6 +76,8 @@ namespace BeeBaby
 			menuItems.Add(new MenuItem("ProductsForYourChild".Translate(), "market", () => {
 				PushViewController("DealsViewController");
 			}));
+
+			/************************************************************************
 			menuItems.Add(new MenuItem("MyProfile".Translate(), "profile", () => {
 			}));
 			menuItems.Add(new MenuItem("InviteFriends".Translate(), "invite", () => {
@@ -88,6 +90,7 @@ namespace BeeBaby
 			}));
 			menuItems.Add(new MenuItem("Exit".Translate(), "logoff", () => {
 			}));
+			************************************************************************/
 
 			return menuItems;
 		}

@@ -172,7 +172,6 @@
     <BundleResource Include="Resources\family-clear.svg" />
     <BundleResource Include="Resources\family.svg" />
     <BundleResource Include="Resources\logoff.svg" />
-    <BundleResource Include="Resources\menu-item-logoff-background.png" />
     <BundleResource Include="Resources\share.svg" />
     <BundleResource Include="Resources\RobotoCondensed-Bold.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
