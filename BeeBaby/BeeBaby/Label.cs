@@ -1,6 +1,7 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -8,6 +9,7 @@ namespace BeeBaby
 	{
 		public Label(IntPtr handle) : base(handle)
 		{
+			MaxHeight = 300f;
 		}
 
 		/// <summary>
@@ -27,6 +29,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Sizes to fit.
+		/// </summary>
+		public override void SizeToFit()
+		{
+			var size = StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
+			if (size.Height > Frame.Height)
+			{
+				base.SizeToFit();
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the text.
 		/// </summary>
 		/// <value>The text.</value>
@@ -37,7 +51,17 @@ namespace BeeBaby
 			set {
 				base.Text = value;
 				UpdateLineHeight(Font.PointSize);
+				SizeToFit();
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets the height of the max.
+		/// </summary>
+		/// <value>The height of the max.</value>
+		public float MaxHeight {
+			get;
+			set;
 		}
 	}
 }
