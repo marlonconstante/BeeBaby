@@ -19,6 +19,42 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			AddSingleTapGestureRecognizer();
+		}
+
+		/// <summary>
+		/// Adds the single tap gesture recognizer.
+		/// </summary>
+		void AddSingleTapGestureRecognizer()
+		{
+			var singleTap = new UITapGestureRecognizer(() => {
+				ShowOrHideSubviews();
+			});
+			singleTap.NumberOfTapsRequired = 1;
+			View.AddGestureRecognizer(singleTap);
+		}
+
+		/// <summary>
+		/// Show or hide subviews.
+		/// </summary>
+		void ShowOrHideSubviews()
+		{
+			foreach (var view in View.Subviews)
+			{
+				if (view.GetType() != typeof(UIScrollView))
+				{
+					view.Hidden = !view.Hidden;
+				}
+			}
+		}
+
+		/// <summary>
 		/// Gets the supported interface orientations.
 		/// </summary>
 		/// <returns>The supported interface orientations.</returns>
@@ -62,12 +98,12 @@ namespace BeeBaby
 				if (ios6ShareDialog)
 				{
 					FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
-						,null, image, null, (result, error) => {
-							if (error != null)
-								InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
-							else if (result == FBOSIntegratedShareDialogResult.Succeeded)
-								InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
-						});
+						, null, image, null, (result, error) => {
+						if (error != null)
+							InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
+						else if (result == FBOSIntegratedShareDialogResult.Succeeded)
+							InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
+					});
 				}
 				else
 				{
@@ -85,7 +121,8 @@ namespace BeeBaby
 		public void SetInformation(Moment moment, Baby baby, UIImage photo)
 		{
 			imgPhoto.Image = photo;
-			lblAge.Text = baby.AgeInWords;
+			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
+
 			lblEvent.Text = moment.Event.Description;
 
 			m_photo = photo;

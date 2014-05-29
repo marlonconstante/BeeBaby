@@ -97,12 +97,6 @@ navigation-bar button:selected {
 	background-image: url(menu-item-background.png);
 }
 
-.table-menu table-view-cell:last-child,
-.table-menu table-view-cell:last-child:highlighted,
-.table-menu table-view-cell:last-child:selected {
-	background-image: url(menu-item-logoff-background.png);
-}
-
 .table-menu table-view-cell:highlighted,
 .table-menu table-view-cell:selected {
 	background-image: url(menu-item-selected-background.png);
@@ -189,6 +183,10 @@ segmented-control label,
 	font-weight: bold;
 }
 
+.fullscreen .overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
 .card-separator {
 	box-shadow: 0 0 1 0 rgba(0, 0, 0, 0.1);
 }
@@ -231,8 +229,6 @@ segmented-control label,
 text-field,
 text-view,
 table-view-cell label,
-.table-menu table-view-cell:last-child label:highlighted,
-.table-menu table-view-cell:last-child label:selected,
 .small-button,
 .small-button:highlighted,
 .small-button:selected,

@@ -1,5 +1,4 @@
 using System;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
@@ -7,7 +6,7 @@ namespace BeeBaby
 {
 	public partial class MomentNavigationController : UINavigationController
 	{
-		public MomentNavigationController (IntPtr handle) : base (handle)
+		public MomentNavigationController(IntPtr handle) : base(handle)
 		{
 		}
 

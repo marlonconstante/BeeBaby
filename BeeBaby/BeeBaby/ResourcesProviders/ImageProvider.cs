@@ -65,23 +65,45 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
+		/// Deletes the temporary files.
+		/// </summary>
+		public void DeleteTemporaryFiles()
+		{
+			var temporaryDirectory = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName);
+			Directory.CreateDirectory(temporaryDirectory);
+
+			Directory.EnumerateDirectories(temporaryDirectory)
+				.ToList().ForEach(directoryName => {
+				if (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name))
+				{
+					Directory.EnumerateFiles(directoryName)
+							.ToList().ForEach(fileName => File.Delete(fileName));
+
+					Directory.Delete(directoryName);
+				}
+			});
+		}
+
+		/// <summary>
 		/// Gets the images.
 		/// </summary>
 		/// <returns>The images.</returns>
-		/// <param name="includeTemporary">If set to <c>true</c> include temporary.</param>
+		/// <param name="temporary">If set to <c>true</c> temporary.</param>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<ImageModel> GetImages(bool includeTemporary, bool thumbnails = false)
+		public IList<ImageModel> GetImages(bool temporary, bool thumbnails = false)
 		{
 			var fileNames = new List<string>();
 
-			if (includeTemporary)
+			if (temporary)
 			{
 				var temporaryDirectory = GetTemporaryDirectory();
 				fileNames.AddRange(Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension)));
 			}
-
-			var permanentDirectory = GetPermanentDirectory();
-			fileNames.AddRange(Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)));
+			else
+			{
+				var permanentDirectory = GetPermanentDirectory();
+				fileNames.AddRange(Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)));
+			}
 
 			fileNames = fileNames.Where(f => 
 				thumbnails 

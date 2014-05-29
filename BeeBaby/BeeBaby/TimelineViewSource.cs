@@ -87,7 +87,7 @@ namespace BeeBaby
 			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
 			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
 			momentCell.LabelEventName = moment.Event.Description;
-			momentCell.LabelWhere = moment.Location.Name;
+			momentCell.LabelWhere = moment.Location.PlaceName;
 
 			var imageProvider = new ImageProvider(moment.Id);
 			IList<ImageModel> images = imageProvider.GetImages(false, true);

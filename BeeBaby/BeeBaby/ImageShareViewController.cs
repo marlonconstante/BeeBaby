@@ -24,7 +24,7 @@ namespace BeeBaby
 			lblDay.Text = moment.Date.ToString("dd");
 			lblEvent.Text = moment.Event.Description;
 			lblMonth.Text = moment.Date.ToString("MMM");
-			lblWhere.Text = moment.Location.Name;
+			lblWhere.Text = moment.Location.PlaceName;
 			lblYear.Text = moment.Date.ToString("yyyy");
 		}
 	}

@@ -54,6 +54,7 @@ namespace Infrastructure.Globalization
 		{
 			return @"
 LongDateMask = d 'de' MMMMM 'de' yyyy
+AnyPlace = Um lugar qualquer
 Name = Nome
 Share = Compartilhar
 Baby = Bebê
