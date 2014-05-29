@@ -13,21 +13,120 @@ namespace BeeBaby
 	partial class EventListViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag1 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag2 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag3 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag4 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag5 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag6 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag7 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag8 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnTag9 { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UISearchBar schBar { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
+
+		[Action ("SelectTag1:")]
+		partial void SelectTag1 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag2:")]
+		partial void SelectTag2 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag3:")]
+		partial void SelectTag3 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag4:")]
+		partial void SelectTag4 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag5:")]
+		partial void SelectTag5 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag6:")]
+		partial void SelectTag6 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag7:")]
+		partial void SelectTag7 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag8:")]
+		partial void SelectTag8 (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SelectTag9:")]
+		partial void SelectTag9 (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (tblView != null) {
-				tblView.Dispose ();
-				tblView = null;
+			if (btnTag1 != null) {
+				btnTag1.Dispose ();
+				btnTag1 = null;
+			}
+
+			if (btnTag2 != null) {
+				btnTag2.Dispose ();
+				btnTag2 = null;
+			}
+
+			if (btnTag3 != null) {
+				btnTag3.Dispose ();
+				btnTag3 = null;
+			}
+
+			if (btnTag4 != null) {
+				btnTag4.Dispose ();
+				btnTag4 = null;
+			}
+
+			if (btnTag5 != null) {
+				btnTag5.Dispose ();
+				btnTag5 = null;
+			}
+
+			if (btnTag6 != null) {
+				btnTag6.Dispose ();
+				btnTag6 = null;
+			}
+
+			if (btnTag7 != null) {
+				btnTag7.Dispose ();
+				btnTag7 = null;
+			}
+
+			if (btnTag8 != null) {
+				btnTag8.Dispose ();
+				btnTag8 = null;
+			}
+
+			if (btnTag9 != null) {
+				btnTag9.Dispose ();
+				btnTag9 = null;
 			}
 
 			if (schBar != null) {
 				schBar.Dispose ();
 				schBar = null;
+			}
+
+			if (tblView != null) {
+				tblView.Dispose ();
+				tblView = null;
 			}
 		}
 	}

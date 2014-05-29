@@ -3,10 +3,35 @@ using Skahal.Infrastructure.Framework.Domain;
 
 namespace Domain.Moment
 {
+	/// <summary>
+	/// Event type.
+	/// </summary>
 	public enum EventType
 	{
 		Achivment = 0,
 		Everyday = 1
+	}
+
+	/// <summary>
+	/// Tag type.
+	/// </summary>
+	public enum TagType
+	{
+		Casa = 0,
+		Olhinhos = 1,
+		Fraldas = 2,
+		Mamando = 3,
+		Soninho = 4,
+		Nascimento = 5,
+		Sono = 6,
+		Brincadeiras = 7,
+		Sorriso = 8,
+		Banho = 9,
+		Passeio = 10,
+		Colo = 11,
+		Familia = 12,
+		Eventos = 13,
+		Corpinho = 14
 	}
 
 	/// <summary>
@@ -37,5 +62,11 @@ namespace Domain.Moment
 		/// </summary>
 		/// <value>The kind.</value>
 		public EventType Kind { get; set; }
+
+		/// <summary>
+		/// Gets or sets the tag.
+		/// </summary>
+		/// <value>The tag.</value>
+		public TagType Tag{ get; set; }
 	}
 }

@@ -21,6 +21,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.EndAge = source.EndAge;
 				char[] c = {' '};
 				result.Kind = MapperHelper.ParseToDomainEnum<EventType>(source.Kind.ToString(), c);
+				result.Tag = MapperHelper.ParseToDomainEnum<TagType>(source.Tag.ToString(), c);
 			}
 
 			return result;
@@ -38,6 +39,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result.StartAge = source.StartAge;
 				result.EndAge = source.EndAge;
 				result.Kind = (int)source.Kind;
+				result.Tag = (int)source.Tag;
 			}
 
 			return result;

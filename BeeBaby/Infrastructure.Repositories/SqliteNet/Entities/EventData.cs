@@ -32,6 +32,12 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 
 		[OneToMany]
 		public List<MomentData> Moments { get; set; }
+
+		/// <summary>
+		/// Gets or sets the tag.
+		/// </summary>
+		/// <value>The tag.</value>
+		public int Tag { get; set; }
 	}
 }
 
