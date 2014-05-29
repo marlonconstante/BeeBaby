@@ -70,14 +70,11 @@ namespace BeeBaby
 			TitleScreen = "Event".Translate();
 		}
 
-		partial void SelectTag1(UIButton sender)
-		{
-			SelectTag(sender);
-		}
-
-
-
-		void SelectTag(UIButton sender)
+		/// <summary>
+		/// Selects the tag.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void SelectTag(MonoTouch.UIKit.UIButton sender)
 		{
 			if (m_isFiltredByTag)
 			{
@@ -91,6 +88,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Filters the table by tag.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
 		void FilterTableByTag(UIButton sender)
 		{
 			var selectedValue = (TagType)Enum.Parse(typeof(TagType), sender.TitleLabel.Text);
@@ -100,6 +101,10 @@ namespace BeeBaby
 			m_isFiltredByTag = true;
 		}
 
+		/// <summary>
+		/// Sets the view source.
+		/// </summary>
+		/// <param name="events">Events.</param>
 		void SetViewSource(IList<Event> events)
 		{
 			EventListViewSource eventListViewSource = new EventListViewSource(this, events);

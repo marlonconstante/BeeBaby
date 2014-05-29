@@ -45,32 +45,8 @@ namespace BeeBaby
 		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
 
-		[Action ("SelectTag1:")]
-		partial void SelectTag1 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag2:")]
-		partial void SelectTag2 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag3:")]
-		partial void SelectTag3 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag4:")]
-		partial void SelectTag4 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag5:")]
-		partial void SelectTag5 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag6:")]
-		partial void SelectTag6 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag7:")]
-		partial void SelectTag7 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag8:")]
-		partial void SelectTag8 (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectTag9:")]
-		partial void SelectTag9 (MonoTouch.UIKit.UIButton sender);
+		[Action ("SelectTag:")]
+		partial void SelectTag (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

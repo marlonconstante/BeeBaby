@@ -275,7 +275,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag1:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="2Bl-vR-KaT"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="iM9-1u-vKw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgJ-IW-m4u">
@@ -286,7 +286,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag4:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="pwe-fI-NSf"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="U5h-2N-Lji"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSF-Qg-z8s">
@@ -297,7 +297,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag7:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="vWJ-Tk-XxK"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="SNn-d4-COf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-fI-LQu">
@@ -308,7 +308,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag2:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="aXT-pd-6hC"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="WRm-w8-iSm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsO-sa-b3v">
@@ -319,7 +319,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag5:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="4GL-wf-dPq"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="yB0-Eq-rmR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ase-ed-EJY">
@@ -330,7 +330,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag8:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="42D-iO-ufb"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="bl1-Rm-Ypu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-Ni-opr">
@@ -341,7 +341,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag3:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="rmc-hK-sVe"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="TN2-9C-Y1z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdc-BK-zZR">
@@ -352,7 +352,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag6:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="q8U-yL-AdM"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="5R1-hW-Kei"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKG-2d-NVe">
@@ -363,7 +363,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SelectTag9:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="mh3-Xi-SnT"/>
+                                            <action selector="SelectTag:" destination="mnJ-tT-oAJ" eventType="touchUpInside" id="R4e-Jo-KVT"/>
                                         </connections>
                                     </button>
                                 </subviews>
