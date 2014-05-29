@@ -183,6 +183,10 @@ segmented-control label,
 	font-weight: bold;
 }
 
+.fullscreen .overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
 .card-separator {
 	box-shadow: 0 0 1 0 rgba(0, 0, 0, 0.1);
 }
