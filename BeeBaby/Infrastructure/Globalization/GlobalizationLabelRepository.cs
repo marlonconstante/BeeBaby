@@ -54,6 +54,19 @@ namespace Infrastructure.Globalization
 		{
 			return @"
 LongDateMask = d 'de' MMMMM 'de' yyyy
+Year = ano
+Years = anos
+Month = mês
+Months = meses
+Day = dia
+Days = dias
+Hour = hora
+Hours = horas
+Minute = minuto
+Minutes = minutos
+Second = segundo
+Seconds = segundos
+And = e
 AnyPlace = Um lugar qualquer
 Name = Nome
 Share = Compartilhar

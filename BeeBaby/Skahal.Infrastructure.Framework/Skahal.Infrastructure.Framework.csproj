@@ -65,6 +65,7 @@
     <Compile Include="Globalization\GlobalizationLabel.cs" />
     <Compile Include="Globalization\GlobalizationService.cs" />
     <Compile Include="Globalization\IGlobalizationLabelRepository.cs" />
+    <Compile Include="Commons\TimeSpanExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
