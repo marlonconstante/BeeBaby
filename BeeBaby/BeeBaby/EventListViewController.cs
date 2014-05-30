@@ -24,7 +24,7 @@ namespace BeeBaby
 
 		IList<Event> m_events;
 		EventService m_eventService;
-		bool m_isFiltredByTag;
+		string m_selectedTag;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -48,7 +48,7 @@ namespace BeeBaby
 			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, allEvents);
 			tblView.Source = eventListViewSource;
 
-			m_isFiltredByTag = false;
+			m_selectedTag = string.Empty;
 
 			SetTitle(btnTag1, TagType.Sono);
 			SetTitle(btnTag2, TagType.Sorriso);
@@ -76,16 +76,40 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectTag(MonoTouch.UIKit.UIButton sender)
 		{
-			if (m_isFiltredByTag)
+			if (m_selectedTag != string.Empty && m_selectedTag != sender.TitleLabel.Text)
+			{
+				DeselectAllTags();
+				FilterTableByTag(sender);
+				sender.Selected = true;
+			}
+			else if (m_selectedTag != string.Empty)
 			{
 				SetViewSource(m_events);
 				tblView.ReloadData();
-				m_isFiltredByTag = false;
+				m_selectedTag = string.Empty;
+				sender.Selected = false;
 			}
 			else
 			{
 				FilterTableByTag(sender);
+				sender.Selected = true;
 			}
+		}
+
+		/// <summary>
+		/// Deselects all tags.
+		/// </summary>
+		void DeselectAllTags()
+		{
+			btnTag1.Selected = false;
+			btnTag2.Selected = false;
+			btnTag3.Selected = false;
+			btnTag4.Selected = false;
+			btnTag5.Selected = false;
+			btnTag6.Selected = false;
+			btnTag7.Selected = false;
+			btnTag8.Selected = false;
+			btnTag9.Selected = false;
 		}
 
 		/// <summary>
@@ -98,7 +122,7 @@ namespace BeeBaby
 			var filtredEvents = m_events.Where(e => e.Tag == selectedValue).ToList();
 			SetViewSource(filtredEvents);
 			tblView.ReloadData();
-			m_isFiltredByTag = true;
+			m_selectedTag = sender.TitleLabel.Text;
 		}
 
 		/// <summary>
