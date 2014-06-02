@@ -25,6 +25,7 @@ namespace BeeBaby
 		IList<Event> m_events;
 		EventService m_eventService;
 		string m_selectedTag;
+		EventListViewSource m_eventListViewSource;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -38,15 +39,13 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
+
 			var allEvents = m_eventService.GetAllEvents();
-			m_events = allEvents
-				.Where(e => (ShowFirstsEvents && e.Kind == EventType.Achivment) ||
-			(ShowEverydayEvents && e.Kind == EventType.Everyday))
-				.ToList();
+			m_events = LoadEvents(allEvents);
 					
-			EventListViewSource eventListViewSource = new EventListViewSource(this, m_events);
-			schBar.Delegate = new EventTableSearchBarDelegate(eventListViewSource, allEvents);
-			tblView.Source = eventListViewSource;
+			m_eventListViewSource = new EventListViewSource(this, m_events);
+			schBar.Delegate = new EventTableSearchBarDelegate(m_eventListViewSource, this, allEvents);
+			tblView.Source = m_eventListViewSource;
 
 			m_selectedTag = string.Empty;
 
@@ -60,6 +59,12 @@ namespace BeeBaby
 			SetTitle(btnTag8, TagType.Eventos);
 			SetTitle(btnTag9, TagType.Corpinho);
 
+			NavigationController.NavigationBar.Translucent = false;
+		}
+
+		public IList<Event> LoadEvents(IEnumerable<Event> events)
+		{
+			return events.Where(e => (ShowFirstsEvents && e.Kind == EventType.Achivment) || (ShowEverydayEvents && e.Kind == EventType.Everyday)).ToList();
 		}
 
 		/// <summary>
@@ -99,7 +104,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Deselects all tags.
 		/// </summary>
-		void DeselectAllTags()
+		public void DeselectAllTags()
 		{
 			btnTag1.Selected = false;
 			btnTag2.Selected = false;
@@ -131,8 +136,7 @@ namespace BeeBaby
 		/// <param name="events">Events.</param>
 		void SetViewSource(IList<Event> events)
 		{
-			EventListViewSource eventListViewSource = new EventListViewSource(this, events);
-			tblView.Source = eventListViewSource;
+			m_eventListViewSource.ReloadData(tblView, events);
 		}
 
 		/// <summary>

@@ -32,10 +32,12 @@ namespace BeeBaby
 			view2.ShowFirstsEvents = true;
 			tab2 = view2;
 			tab2.Title = "Firsts".Translate();
-			var tabs = new UIViewController []{
+			var tabs = new []{
 				tab1, tab2
 			};
 			ViewControllers = tabs;
+
+			TabBar.Translucent = false;
 		}
 	}
 }
