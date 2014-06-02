@@ -10,11 +10,13 @@ namespace BeeBaby
 	{
 		EventListViewSource m_eventListViewSource;
 		IEnumerable<Event> m_events;
+		EventListViewController m_eventViewController;
 
-		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, IEnumerable<Event> events)
+		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, EventListViewController eventViewController, IEnumerable<Event> events)
 		{
 			m_eventListViewSource = eventListViewSource;
 			m_events = events;
+			m_eventViewController = eventViewController;
 		}
 
 		/// <summary>
@@ -24,9 +26,14 @@ namespace BeeBaby
 		/// <param name="searchText">Search text.</param>
 		public override void TextChanged(UISearchBar searchBar, string searchText)
 		{
-			m_eventListViewSource.IsSearching = true;
 			var tableView = searchBar.Superview as UITableView;
-			m_eventListViewSource.ReloadData(tableView, GetFilteredEvents(searchText));
+			m_eventViewController.DeselectAllTags();
+
+			var events = (searchText != string.Empty) ? 
+				GetFilteredEvents(searchText) :
+				m_eventViewController.LoadEvents(m_events);
+
+			m_eventListViewSource.ReloadData(tableView, events);
 		}
 
 		/// <summary>
@@ -35,7 +42,6 @@ namespace BeeBaby
 		/// <param name="searchBar">Search bar.</param>
 		public override void SearchButtonClicked(UISearchBar searchBar)
 		{
-			m_eventListViewSource.IsSearching = false;
 			searchBar.ResignFirstResponder();
 		}
 

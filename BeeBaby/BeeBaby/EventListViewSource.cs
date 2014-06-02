@@ -19,7 +19,6 @@ namespace BeeBaby
 		{
 			m_viewController = viewController;
 			m_otherEventsTableItems = otherItems;
-			IsSearching = false;
 		}
 
 		/// <Docs>Table view displaying the rows.</Docs>
@@ -97,20 +96,10 @@ namespace BeeBaby
 		{
 			if (m_viewController.ShowFirstsEvents)
 			{
-				return "First Time that I ".Translate();
+				return "First time that I... ".Translate();
 			}
 
 			return null;
-		}
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this instance is searching.
-		/// </summary>
-		/// <value><c>true</c> if this instance is searching; otherwise, <c>false</c>.</value>
-		public bool IsSearching
-		{
-			get;
-			set;
 		}
 	}
 }
