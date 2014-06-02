@@ -92,23 +92,30 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void NextStep(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				if (CurrentContext.Instance.CurrentBaby == null)
-				{
-					var baby = new BabyService().CreateBaby();
+			if (CurrentContext.Instance.Moment.SelectedMediaNames.Count == 0)
+			{
+				new UIAlertView("IllustrateMoment".Translate(), "TakePictureOrImportAlbum".Translate(), null, "GotIt".Translate(), null).Show();
+			}
+			else
+			{
+				ShowProgressWhilePerforming(() => {
+					if (CurrentContext.Instance.CurrentBaby == null)
+					{
+						var baby = new BabyService().CreateBaby();
 
-					CurrentContext.Instance.CurrentBaby = baby;
-					PreferencesEditor.SaveLastUsedBaby(baby.Id);
+						CurrentContext.Instance.CurrentBaby = baby;
+						PreferencesEditor.SaveLastUsedBaby(baby.Id);
 
-					PerformSegue("segueBaby", sender);
-				}
-				else
-				{
-					CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
-					new MomentService().SaveMoment(CurrentContext.Instance.Moment);
-					PerformSegue("segueMoment", sender);
-				}
-			}, false);
+						PerformSegue("segueBaby", sender);
+					}
+					else
+					{
+						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+						new MomentService().SaveMoment(CurrentContext.Instance.Moment);
+						PerformSegue("segueMoment", sender);
+					}
+				}, false);
+			}
 		}
 
 		/// <summary>

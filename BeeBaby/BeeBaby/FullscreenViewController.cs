@@ -94,20 +94,26 @@ namespace BeeBaby
 				var image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
 				imgPhoto.Image = image;
 
-				bool ios6ShareDialog = FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession);
-				if (ios6ShareDialog)
+				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 				{
-					FBDialogs.PresentOSIntegratedShareDialogModally(UIApplication.SharedApplication.Windows[0].RootViewController
-						, null, image, null, (result, error) => {
+					FBDialogs.PresentOSIntegratedShareDialogModally(RootViewController, null, image, null, (result, error) => {
 						if (error != null)
-							InvokeOnMainThread(() => new UIAlertView("Error", error.Description, null, "Ok", null).Show());
+						{
+							InvokeOnMainThread(() => {
+								new UIAlertView("Warning".Translate(), error.Description, null, "OK", null).Show();
+							});
+						}
 						else if (result == FBOSIntegratedShareDialogResult.Succeeded)
-							InvokeOnMainThread(() => new UIAlertView("Success".Translate(), "Moment successfully posted to Facebook".Translate(), null, "Ok", null).Show());
+						{
+							InvokeOnMainThread(() => {
+								new UIAlertView("Information".Translate(), "SharedMomentFacebook".Translate(), null, "OK", null).Show();
+							});
+						}
 					});
 				}
 				else
 				{
-					Console.WriteLine("Erro ao dar Share no Facebook.");
+					Console.WriteLine("Não foi possível compartilhar o momento no Facebook.");
 				}
 			});
 		}
