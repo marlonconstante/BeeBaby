@@ -317,6 +317,10 @@
     <Compile Include="EventsListTabViewController.designer.cs">
       <DependentUpon>EventsListTabViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Button.cs" />
+    <Compile Include="Button.designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
