@@ -33,7 +33,7 @@ namespace BeeBaby
 				lock (ImageProvider)
 				{
 					m_tasks.Add(() => {
-						SaveTemporaryImageOnApp(info, false);
+						SaveTemporaryImageOnApp(info);
 					});
 				}
 				if (m_performTasks == null)
@@ -44,7 +44,7 @@ namespace BeeBaby
 			else
 			{
 				ActionProgress actionProgress = new ActionProgress(() => {
-					SaveTemporaryImageOnApp(info, true);
+					SaveTemporaryImageOnApp(info);
 					picker.DismissViewController(true, null);
 				}, false);
 				actionProgress.Execute();
@@ -56,7 +56,7 @@ namespace BeeBaby
 		/// </summary>
 		/// <param name="info">Info.</param>
 		/// <param name="selected">If set to <c>true</c> selected.</param>
-		void SaveTemporaryImageOnApp(NSDictionary info, bool selected)
+		void SaveTemporaryImageOnApp(NSDictionary info, bool selected = true)
 		{
 			using (UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
