@@ -148,6 +148,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <inset key="contentEdgeInsets" minX="33" minY="1" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Escolha um acontecimento">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -155,9 +158,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="navigation-button"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="SelectEvent:" destination="UAi-dU-234" eventType="touchUpInside" id="Hij-54-swU"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
                                 <rect key="frame" x="9" y="106" width="16" height="16"/>
@@ -192,12 +192,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
-                        <segue destination="RwF-vb-pzo" kind="push" identifier="segueSelectEvent" id="hMM-lH-evd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="987" y="-1407"/>
+            <point key="canvasLocation" x="1969" y="-1289"/>
         </scene>
         <!--Events List Tab View Controller-->
         <scene sceneID="xSZ-ar-Z6P">
@@ -217,7 +216,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xq8-bp-v3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="-1407"/>
+            <point key="canvasLocation" x="975" y="-1579"/>
         </scene>
         <!--Event List View Controller - Item-->
         <scene sceneID="2Un-uh-d7S">
@@ -465,11 +464,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="btnTag9" destination="SKG-2d-NVe" id="VTD-lB-RIv"/>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
                         <outlet property="tblView" destination="qCH-eT-BbT" id="ays-fV-7Yz"/>
+                        <segue destination="UAi-dU-234" kind="push" identifier="segueMoment" id="aR7-vp-laA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-Ve-kS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="-1783"/>
+            <point key="canvasLocation" x="1444" y="-1579"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="6UT-XL-r0v">
@@ -1035,8 +1035,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="btnAddMediaFromLibrary" destination="HTC-QG-Bjq" id="hcf-3T-mhE"/>
                         <outlet property="btnNextStep" destination="RG4-eh-7pr" id="h8l-Jx-bbw"/>
                         <outlet property="clnView" destination="870-n5-F8r" id="Gjt-4r-KQ9"/>
-                        <segue destination="UAi-dU-234" kind="push" identifier="segueMoment" id="74t-Pu-020"/>
                         <segue destination="blw-p8-7ZO" kind="push" identifier="segueBaby" id="c8K-Cg-AN5"/>
+                        <segue destination="RwF-vb-pzo" kind="push" identifier="segueSelectEvent" id="Hln-9t-iL5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VG5-0J-RfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1628,7 +1628,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1Vb-ym-Jjb"/>
         <segue reference="irg-GR-Fau"/>
+        <segue reference="aR7-vp-laA"/>
     </inferredMetricsTieBreakers>
 </document>
