@@ -141,11 +141,21 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Determines whether this instance is translucent navigation bar.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is translucent navigation bar; otherwise, <c>false</c>.</returns>
+		public virtual bool IsTranslucentNavigationBar()
+		{
+			return true;
+		}
+
+		/// <summary>
 		/// Updates the navigation bar.
 		/// </summary>
 		void UpdateNavigationBar()
 		{
 			NavigationController.NavigationBarHidden = !IsShowStatusBar();
+			NavigationController.NavigationBar.Translucent = IsTranslucentNavigationBar();
 		}
 
 		/// <summary>

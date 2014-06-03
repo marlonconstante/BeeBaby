@@ -58,8 +58,16 @@ namespace BeeBaby
 			SetTitle(btnTag7, TagType.Colo);
 			SetTitle(btnTag8, TagType.Eventos);
 			SetTitle(btnTag9, TagType.Corpinho);
+		}
 
-			NavigationController.NavigationBar.Translucent = false;
+		/// <summary>
+		/// Determines whether this instance is translucent navigation bar.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsTranslucentNavigationBar()
+		{
+			return false;
 		}
 
 		public IList<Event> LoadEvents(IEnumerable<Event> events)
