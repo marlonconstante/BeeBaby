@@ -6,13 +6,13 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public partial class Button : UIButton
+	public partial class View : UIView
 	{
-		public Button(IntPtr handle) : base(handle)
+		public View(IntPtr handle) : base(handle)
 		{
 		}
 
-		public Button(RectangleF frame) : base(frame)
+		public View(RectangleF frame) : base(frame)
 		{
 		}
 

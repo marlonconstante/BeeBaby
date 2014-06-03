@@ -321,6 +321,11 @@
     <Compile Include="Button.designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
     </Compile>
+    <Compile Include="TouchArea.cs" />
+    <Compile Include="View.cs" />
+    <Compile Include="View.designer.cs">
+      <DependentUpon>View.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

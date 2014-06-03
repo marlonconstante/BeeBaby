@@ -20,16 +20,16 @@ namespace BeeBaby
 		/// <param name="paddingLeft">Padding left.</param>
 		/// <param name="eventHandler">Event handler.</param>
 		/// <param name="styleClass">Style class.</param>
-		static UIView BuildButtonItem(RectangleF frame, float paddingLeft, EventHandler eventHandler, string styleClass)
+		static View BuildButtonItem(RectangleF frame, float paddingLeft, EventHandler eventHandler, string styleClass)
 		{
 			var buttonFrame = frame;
 			buttonFrame.X += paddingLeft;
 
-			UIButton button = new UIButton(buttonFrame);
+			Button button = new Button(buttonFrame);
 			button.SetStyleClass(styleClass);
 			button.TouchUpInside += eventHandler;
 
-			UIView view = new UIView(frame);
+			View view = new View(frame);
 			view.AddSubview(button);
 			return view;
 		}

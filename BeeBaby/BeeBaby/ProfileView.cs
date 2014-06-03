@@ -11,14 +11,14 @@ using Domain.Baby;
 
 namespace BeeBaby
 {
-	public partial class ProfileView : UIView
+	public partial class ProfileView : View
 	{
 		const float s_padding = 10f;
 		bool m_menu;
 		RectangleF m_frame;
 		UIImage m_defaultPhoto;
 		UIView m_viewProfiles;
-		UIButton m_buttonSelectedBaby;
+		Button m_buttonSelectedBaby;
 
 		public ProfileView(IntPtr handle) : base(handle)
 		{
@@ -146,13 +146,13 @@ namespace BeeBaby
 		/// </summary>
 		/// <returns>The button selected baby.</returns>
 		/// <param name="baby">Baby.</param>
-		UIButton BuildButtonSelectedBaby(Baby baby)
+		Button BuildButtonSelectedBaby(Baby baby)
 		{
 			var width = m_frame.Width - (s_padding * 2);
 			var height = 64f;
 			var y = m_frame.Height - height;
 
-			UIButton button = new UIButton(new RectangleF(s_padding, y, width, height));
+			Button button = new Button(new RectangleF(s_padding, y, width, height));
 			button.SetStyleClass("baby-button");
 			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
 			button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
