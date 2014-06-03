@@ -39,5 +39,16 @@ namespace BeeBaby
 
 			TabBar.Translucent = false;
 		}
+
+		/// <summary>
+		/// Gets the navigation item.
+		/// </summary>
+		/// <value>The navigation item.</value>
+		public override UINavigationItem NavigationItem {
+			get {
+				var selectedTab = SelectedViewController;
+				return (selectedTab != null) ? selectedTab.NavigationItem : base.NavigationItem;
+			}
+		}
 	}
 }
