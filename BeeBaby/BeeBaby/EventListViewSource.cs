@@ -55,8 +55,10 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-
 			cell.TextLabel.Text = m_otherEventsTableItems[indexPath.Row].Description;
+
+			Console.WriteLine("{0} - {1}", m_otherEventsTableItems[indexPath.Row].Description, m_otherEventsTableItems[indexPath.Row].Kind);
+
 
 			return cell;
 		}

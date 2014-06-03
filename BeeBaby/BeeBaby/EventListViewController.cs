@@ -64,7 +64,8 @@ namespace BeeBaby
 
 		public IList<Event> LoadEvents(IEnumerable<Event> events)
 		{
-			return events.Where(e => (ShowFirstsEvents && e.Kind == EventType.Achivment) || (ShowEverydayEvents && e.Kind == EventType.Everyday)).ToList();
+			var eventType = ShowFirstsEvents ? EventType.Achivment : EventType.Everyday;
+			return m_eventService.GetEventsOrdered(CurrentContext.Instance.CurrentBaby, eventType).ToList();
 		}
 
 		/// <summary>
