@@ -9,28 +9,30 @@ namespace BeeBaby
 	public partial class EventsListTabViewController : UITabBarController
 	{
 		UIStoryboard m_board;
-		UIViewController m_firstTab, m_secondTab;
+		EventListViewController m_firstTab, m_secondTab;
 
-		public EventsListTabViewController (IntPtr handle) : base (handle)
+		public EventsListTabViewController(IntPtr handle) : base(handle)
 		{
 		}
 
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
 		public override void ViewDidLoad()
 		{
 			m_board = UIStoryboard.FromName("MainStoryboard", null);
-			EventListViewController view = (EventListViewController)m_board.InstantiateViewController("EventList");
-			EventListViewController view2 = (EventListViewController)m_board.InstantiateViewController("EventList");
 
-			view.ShowEverydayEvents = true;
-			view.ShowFirstsEvents = false;
-			m_firstTab = view;
+			m_firstTab = (EventListViewController) m_board.InstantiateViewController("EventList");
 			m_firstTab.Title = "EveryDay".Translate();
+			m_firstTab.ShowEverydayEvents = true;
+			m_firstTab.ShowFirstsEvents = false;
 
-			view2.ShowEverydayEvents = false;
-			view2.ShowFirstsEvents = true;
-			m_secondTab = view2;
+			m_secondTab = (EventListViewController) m_board.InstantiateViewController("EventList");
 			m_secondTab.Title = "Firsts".Translate();
-			var tabs = new []{
+			m_secondTab.ShowEverydayEvents = false;
+			m_secondTab.ShowFirstsEvents = true;
+
+			var tabs = new [] {
 				m_firstTab, m_secondTab
 			};
 			ViewControllers = tabs;
