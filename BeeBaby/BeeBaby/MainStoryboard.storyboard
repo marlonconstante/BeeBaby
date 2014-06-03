@@ -886,7 +886,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="txtName" destination="Xqq-1w-zmk" id="EtN-kr-meb"/>
                         <outlet property="vwBirthDay" destination="qP1-Xc-ecW" id="rRy-NP-Cq7"/>
                         <outlet property="vwBirthTime" destination="qcZ-yd-0ey" id="Y7B-WN-Qtf"/>
-                        <segue destination="UAi-dU-234" kind="push" identifier="segueMoment" id="1Vb-ym-Jjb"/>
+                        <segue destination="RwF-vb-pzo" kind="push" identifier="segueMoment" id="jFh-Kd-QWF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLl-GD-09a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1628,7 +1628,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="jFh-Kd-QWF"/>
         <segue reference="irg-GR-Fau"/>
-        <segue reference="aR7-vp-laA"/>
     </inferredMetricsTieBreakers>
 </document>
