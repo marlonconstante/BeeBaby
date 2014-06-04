@@ -73,6 +73,9 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void FinishedLaunching(UIApplication application)
 		{
+//			FlurryAnalytics.Flurry.SetCrashReportingEnabled(true);
+			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
+
 			FBSettings.DefaultAppID = FacebookAppId;
 			FBSettings.DefaultDisplayName = DisplayName;
 
