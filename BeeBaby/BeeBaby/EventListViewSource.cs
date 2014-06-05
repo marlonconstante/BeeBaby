@@ -42,7 +42,10 @@ namespace BeeBaby
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
-			m_viewController.PerformSegue("segueMoment", this);
+			ActionProgress actionProgress = new ActionProgress(() => {
+				m_viewController.PerformSegue("segueMoment", this);
+			}, false);
+			actionProgress.Execute();
 		}
 
 		/// <Docs>Table view requesting the cell.</Docs>
