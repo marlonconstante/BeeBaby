@@ -6,7 +6,7 @@ namespace BeeBaby
 {
 	public class TouchArea
 	{
-		const int s_inset = -5;
+		const int s_inset = -10;
 
 		private TouchArea()
 		{
