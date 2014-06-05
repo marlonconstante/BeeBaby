@@ -21,12 +21,15 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			Load(CurrentContext.Instance.CurrentBaby);
+
 			vwBirthDay.MoveScroll = true;
 			vwBirthTime.MoveScroll = true;
 
 			vwBirthDay.NextViews = new List<UIView> { vwBirthTime };
 
-			Load(CurrentContext.Instance.CurrentBaby);
+			vwBirthDay.Init(UIDatePickerMode.Date);
+			vwBirthTime.Init(UIDatePickerMode.Time);
 		}
 
 		/// <summary>

@@ -29,6 +29,8 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			vwDate.Init(UIDatePickerMode.DateAndTime);
+
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			txtDescription.IsKeyboardAnimation = true;
