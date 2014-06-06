@@ -42,7 +42,8 @@ namespace BeeBaby
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
-			ActionProgress actionProgress = new ActionProgress(() => {
+			ActionProgress actionProgress = new ActionProgress(() =>
+			{
 				m_viewController.PerformSegue("segueMoment", this);
 			}, false);
 			actionProgress.Execute();
@@ -99,12 +100,7 @@ namespace BeeBaby
 		/// <param name="section">Section.</param>
 		public override string TitleForHeader(UITableView tableView, int section)
 		{
-			if (m_viewController.ShowFirstsEvents)
-			{
-				return "First time that I... ".Translate();
-			}
-
-			return null;
+			return "Suggested Events".Translate();
 		}
 	}
 }

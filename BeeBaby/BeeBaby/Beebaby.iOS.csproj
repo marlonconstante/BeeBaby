@@ -194,6 +194,7 @@
     <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\Familia.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -328,6 +329,10 @@
     <Compile Include="View.cs" />
     <Compile Include="View.designer.cs">
       <DependentUpon>View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIButtonScrollView.cs" />
+    <Compile Include="UIButtonScrollView.designer.cs">
+      <DependentUpon>UIButtonScrollView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

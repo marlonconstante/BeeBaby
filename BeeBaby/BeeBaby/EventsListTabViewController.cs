@@ -22,30 +22,31 @@ namespace BeeBaby
 		{
 			m_board = UIStoryboard.FromName("MainStoryboard", null);
 
-			m_firstTab = (EventListViewController) m_board.InstantiateViewController("EventList");
+			m_firstTab = (EventListViewController)m_board.InstantiateViewController("EventList");
 			m_firstTab.Title = "EveryDay".Translate();
 			m_firstTab.ShowEverydayEvents = true;
 			m_firstTab.ShowFirstsEvents = false;
 
-			m_secondTab = (EventListViewController) m_board.InstantiateViewController("EventList");
+			m_secondTab = (EventListViewController)m_board.InstantiateViewController("EventList");
 			m_secondTab.Title = "Firsts".Translate();
 			m_secondTab.ShowEverydayEvents = false;
 			m_secondTab.ShowFirstsEvents = true;
 
-			var tabs = new [] {
+			var tabs = new []
+			{
 				m_firstTab, m_secondTab
 			};
 			ViewControllers = tabs;
-
-			TabBar.Translucent = false;
 		}
 
 		/// <summary>
 		/// Gets the navigation item.
 		/// </summary>
 		/// <value>The navigation item.</value>
-		public override UINavigationItem NavigationItem {
-			get {
+		public override UINavigationItem NavigationItem
+		{
+			get
+			{
 				var selectedTab = SelectedViewController;
 				return (selectedTab != null) ? selectedTab.NavigationItem : base.NavigationItem;
 			}
