@@ -186,12 +186,12 @@ de lembrar sobre este momento?</string>
                                 </prototypes>
                             </tableView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
-                                <rect key="frame" x="0.0" y="355" width="320" height="213"/>
+                                <rect key="frame" x="0.0" y="325" width="320" height="243"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Este momento é sobre..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-am-eMk">
-                                <rect key="frame" x="0.0" y="334" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="304" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -205,7 +205,7 @@ de lembrar sobre este momento?</string>
                             <constraint firstItem="wIr-X6-KYK" firstAttribute="bottom" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="235" id="C51-ZG-ow0"/>
                             <constraint firstItem="wIr-X6-KYK" firstAttribute="top" secondItem="F4U-am-eMk" secondAttribute="bottom" id="M4w-rb-GHe"/>
                             <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="OYp-Oz-T0l"/>
-                            <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="1" id="Ofb-dR-SK7"/>
+                            <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="-29" id="Ofb-dR-SK7"/>
                             <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" constant="1" id="Xw1-1r-ZZu"/>
                             <constraint firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="kAI-4A-btc"/>
                             <constraint firstAttribute="bottom" secondItem="wIr-X6-KYK" secondAttribute="bottom" id="oRb-d5-82G"/>
