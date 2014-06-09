@@ -105,6 +105,24 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Releases the properties.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		public static void ReleaseProperties(Object instance)
+		{
+			var type = instance.GetType();
+			foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+			{
+				var value = property.GetValue(instance);
+				if (value != null)
+				{
+					Dispose(value);
+					property.SetValue(instance, null);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Releases the fields.
 		/// </summary>
 		/// <param name="instance">Instance.</param>
