@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public class CollectionViewSource : UICollectionViewSource
+	public abstract class CollectionViewSource : UICollectionViewSource
 	{
 		public CollectionViewSource()
 		{

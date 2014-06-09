@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public class TableViewSource : UITableViewSource
+	public abstract class TableViewSource : UITableViewSource
 	{
 		public TableViewSource()
 		{
