@@ -145,5 +145,22 @@ namespace BeeBaby
 		{
 			UIApplication.SharedApplication.SetStatusBarHidden(!IsShowStatusBar(), UIStatusBarAnimation.None);
 		}
+
+		/// <summary>
+		/// Dispose the specified disposing.
+		/// </summary>
+		/// <param name="disposing">If set to <c>true</c> disposing.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				Discard.ReleaseSubviews(View);
+				Discard.ReleaseOutlets(this);
+				Discard.ReleaseProperties(this);
+				Discard.ReleaseFields(this);
+			}
+
+			base.Dispose(disposing);
+		}
 	}
 }

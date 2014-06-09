@@ -329,6 +329,9 @@
     <Compile Include="View.designer.cs">
       <DependentUpon>View.cs</DependentUpon>
     </Compile>
+    <Compile Include="CollectionViewCell.cs" />
+    <Compile Include="CollectionViewSource.cs" />
+    <Compile Include="Discard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
