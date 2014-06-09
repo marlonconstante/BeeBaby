@@ -8,7 +8,6 @@ using Domain.Media;
 using System.Drawing;
 using Domain.Baby;
 using BeeBaby.ViewModels;
-using MonoTouch.ObjCRuntime;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Linq;
@@ -16,11 +15,11 @@ using System.Diagnostics;
 
 namespace BeeBaby
 {
-	public class TimelineViewSource : UITableViewSource
+	public class TimelineViewSource : TableViewSource
 	{
 		const string s_cellIdentifier = "MomentCell";
 		UIViewController m_viewController;
-		static IList<Moment> m_tableItems;
+		IList<Moment> m_tableItems;
 		Baby m_baby;
 		FullscreenViewController m_fullscreenController;
 

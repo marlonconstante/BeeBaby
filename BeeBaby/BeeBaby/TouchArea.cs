@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public class TouchArea
+	public abstract class TouchArea
 	{
 		const int s_inset = -10;
 

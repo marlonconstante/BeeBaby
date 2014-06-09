@@ -8,15 +8,15 @@ namespace BeeBaby
 {
 	public class EventTableSearchBarDelegate : UISearchBarDelegate
 	{
+		EventListViewController m_eventViewController;
 		EventListViewSource m_eventListViewSource;
 		IEnumerable<Event> m_events;
-		EventListViewController m_eventViewController;
 
-		public EventTableSearchBarDelegate(EventListViewSource eventListViewSource, EventListViewController eventViewController, IEnumerable<Event> events)
+		public EventTableSearchBarDelegate(EventListViewController eventViewController, EventListViewSource eventListViewSource, IEnumerable<Event> events)
 		{
+			m_eventViewController = eventViewController;
 			m_eventListViewSource = eventListViewSource;
 			m_events = events;
-			m_eventViewController = eventViewController;
 		}
 
 		/// <summary>

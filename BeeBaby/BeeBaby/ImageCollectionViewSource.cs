@@ -8,7 +8,7 @@ using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
-	public class ImageCollectionViewSource : UICollectionViewSource
+	public class ImageCollectionViewSource : CollectionViewSource
 	{
 		const string s_cellIdentifier = "GalleryCell";
 		UIViewController m_viewController;

@@ -4,7 +4,7 @@ using Domain.Baby;
 
 namespace BeeBaby.ViewModels
 {
-	public class BabyProfile
+	public class BabyProfile : IDisposable
 	{
 		public BabyProfile()
 		{
@@ -27,5 +27,17 @@ namespace BeeBaby.ViewModels
 		/// </summary>
 		/// <value>The delegate.</value>
 		public BabyImagePickerDelegate Delegate { set; get; }
+
+		/// <summary>
+		/// Releases all resource used by the <see cref="BeeBaby.ViewModels.BabyProfile"/> object.
+		/// </summary>
+		/// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="BeeBaby.ViewModels.BabyProfile"/>. The
+		/// <see cref="Dispose"/> method leaves the <see cref="BeeBaby.ViewModels.BabyProfile"/> in an unusable state. After
+		/// calling <see cref="Dispose"/>, you must release all references to the <see cref="BeeBaby.ViewModels.BabyProfile"/>
+		/// so the garbage collector can reclaim the memory that the <see cref="BeeBaby.ViewModels.BabyProfile"/> was occupying.</remarks>
+		public void Dispose()
+		{
+			Discard.ReleaseProperties(this);
+		}
 	}
 }

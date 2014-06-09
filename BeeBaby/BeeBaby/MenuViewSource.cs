@@ -6,7 +6,7 @@ using MonoTouch.Dialog;
 
 namespace BeeBaby
 {
-	public class MenuViewSource : UITableViewSource
+	public class MenuViewSource : TableViewSource
 	{
 		const string s_cellIdentifier = "MenuCell";
 		UIViewController m_viewController;

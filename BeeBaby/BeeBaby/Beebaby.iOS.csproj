@@ -241,9 +241,7 @@
       <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="OrientationNotification.cs" />
-    <Compile Include="UIScrollViewImage.cs" />
     <Compile Include="UIImageViewClickable.cs" />
-    <Compile Include="UIViewFullscreen.cs" />
     <Compile Include="EventTableSearchBarDelegate.cs" />
     <Compile Include="BabyViewController.cs" />
     <Compile Include="BabyViewController.designer.cs">
@@ -339,6 +337,11 @@
     <Compile Include="EventViewCell.designer.cs">
       <DependentUpon>EventViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="CollectionViewCell.cs" />
+    <Compile Include="CollectionViewSource.cs" />
+    <Compile Include="Discard.cs" />
+    <Compile Include="TableViewSource.cs" />
+    <Compile Include="TableViewCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
