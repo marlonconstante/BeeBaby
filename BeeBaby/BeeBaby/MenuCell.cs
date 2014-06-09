@@ -5,7 +5,7 @@ using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public partial class MenuCell : UITableViewCell
+	public partial class MenuCell : TableViewCell
 	{
 		public MenuCell(IntPtr handle) : base(handle)
 		{

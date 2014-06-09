@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class TimelineMomentCell : UITableViewCell
+	public partial class TimelineMomentCell : TableViewCell
 	{
 		public TimelineMomentCell(IntPtr handle) : base(handle)
 		{
