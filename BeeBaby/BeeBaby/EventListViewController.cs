@@ -44,7 +44,7 @@ namespace BeeBaby
 			m_events = LoadEvents(allEvents);
 					
 			m_eventListViewSource = new EventListViewSource(this, m_events);
-			schBar.Delegate = new EventTableSearchBarDelegate(m_eventListViewSource, this, allEvents);
+			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
 			tblView.Source = m_eventListViewSource;
 
 			m_selectedTag = string.Empty;
