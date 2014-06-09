@@ -58,11 +58,14 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-			cell.TextLabel.Text = m_otherEventsTableItems[indexPath.Row].Description;
+			EventViewCell cell = (EventViewCell)tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
+			cell.EventDescription = m_otherEventsTableItems[indexPath.Row].Description;
+
+//			var tagName = Enum.GetName(typeof(TagType), m_otherEventsTableItems[indexPath.Row].Tag);
+			var imageName = "tagBee.png";//string.Format("{0}.png", tagName);
+			cell.TagIcon = new UIImage(imageName);
 
 			Console.WriteLine("{0} - {1}", m_otherEventsTableItems[indexPath.Row].Description, m_otherEventsTableItems[indexPath.Row].Kind);
-
 
 			return cell;
 		}
@@ -88,19 +91,6 @@ namespace BeeBaby
 		{
 			m_otherEventsTableItems = items;
 			tableView.ReloadData();
-		}
-
-		/// <Docs>Table view containing the section.</Docs>
-		/// <summary>
-		/// Called to populate the header for the specified section.
-		/// </summary>
-		/// <see langword="null"></see>
-		/// <returns>The for header.</returns>
-		/// <param name="tableView">Table view.</param>
-		/// <param name="section">Section.</param>
-		public override string TitleForHeader(UITableView tableView, int section)
-		{
-			return "Suggested Events".Translate();
 		}
 	}
 }

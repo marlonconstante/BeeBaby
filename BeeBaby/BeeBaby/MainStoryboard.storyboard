@@ -156,14 +156,17 @@ de lembrar sobre este momento?</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
                                 <rect key="frame" x="0.0" y="342" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
-                                <rect key="frame" x="0.0" y="1" width="320" height="332"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="307"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="307" id="Me6-k1-uDn"/>
+                                </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="OQy-eW-gLs">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -171,37 +174,57 @@ de lembrar sobre este momento?</string>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="30" reuseIdentifier="EventCell" textLabel="5Xq-Hq-51U" imageView="0Ys-yg-UFC" style="IBUITableViewCellStyleDefault" id="gxC-T5-zWJ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="EventCell" id="gxC-T5-zWJ" customClass="EventViewCell">
                                         <rect key="frame" x="0.0" y="70" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="gxC-T5-zWJ" id="BbR-65-cxt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Xq-Hq-51U">
-                                                    <rect key="frame" x="73" y="0.0" width="232" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tagBee.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vm7-Ih-NXH">
+                                                    <rect key="frame" x="20" y="6" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="bTU-aJ-xhS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUX-Bt-4T6">
+                                                    <rect key="frame" x="60" y="6" width="253" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="tagBee.png" id="0Ys-yg-UFC">
-                                                    <rect key="frame" x="15" y="0.0" width="43" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cUX-Bt-4T6" firstAttribute="leading" secondItem="Vm7-Ih-NXH" secondAttribute="trailing" constant="8" symbolic="YES" id="2Jk-Sp-ZSe"/>
+                                                <constraint firstItem="cUX-Bt-4T6" firstAttribute="bottom" secondItem="Vm7-Ih-NXH" secondAttribute="bottom" id="55e-rN-Qc2"/>
+                                                <constraint firstAttribute="trailing" secondItem="cUX-Bt-4T6" secondAttribute="trailing" constant="7" id="5Ne-9D-rdo"/>
+                                                <constraint firstItem="Vm7-Ih-NXH" firstAttribute="leading" secondItem="BbR-65-cxt" secondAttribute="leading" constant="20" symbolic="YES" id="5ia-jy-tKe"/>
+                                                <constraint firstItem="Vm7-Ih-NXH" firstAttribute="top" secondItem="BbR-65-cxt" secondAttribute="top" constant="6" id="Lsn-XQ-0ep"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vm7-Ih-NXH" secondAttribute="bottom" constant="5" id="Rzl-q3-Orw"/>
+                                                <constraint firstItem="cUX-Bt-4T6" firstAttribute="top" secondItem="Vm7-Ih-NXH" secondAttribute="top" id="WD9-u1-x7b"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="imgEventTagIcon" destination="Vm7-Ih-NXH" id="eTQ-of-e98"/>
+                                            <outlet property="lblEventDesc" destination="cUX-Bt-4T6" id="LPV-us-IcO"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3kY-EJ-uPQ">
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="3kY-EJ-uPQ">
                                 <rect key="frame" x="0.0" y="307" width="320" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Este momento é sobre..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-am-eMk">
-                                        <rect key="frame" x="0.0" y="6" width="320" height="33"/>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Este momento é sobre..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-am-eMk">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="TZw-g7-4Fp"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -209,7 +232,7 @@ de lembrar sobre este momento?</string>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tag-scroll-title"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <pageControl contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-sD-k4E">
+                                    <pageControl contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-sD-k4E">
                                         <rect key="frame" x="0.0" y="224" width="320" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,11 +241,32 @@ de lembrar sobre este momento?</string>
                                     </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="F4U-am-eMk" firstAttribute="trailing" secondItem="vTW-sD-k4E" secondAttribute="trailing" id="0xG-wq-KVc"/>
+                                    <constraint firstItem="vTW-sD-k4E" firstAttribute="leading" secondItem="3kY-EJ-uPQ" secondAttribute="leading" id="1co-tF-g42"/>
+                                    <constraint firstAttribute="bottom" secondItem="vTW-sD-k4E" secondAttribute="bottom" id="3bn-7K-ZLk"/>
+                                    <constraint firstAttribute="trailing" secondItem="vTW-sD-k4E" secondAttribute="trailing" id="c52-iO-IJy"/>
+                                    <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="3kY-EJ-uPQ" secondAttribute="top" id="gR7-Xg-MQs"/>
+                                    <constraint firstItem="vTW-sD-k4E" firstAttribute="leading" secondItem="F4U-am-eMk" secondAttribute="leading" id="vmk-iK-lUF"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tag-view-box"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="wIr-X6-KYK" secondAttribute="leading" id="7yn-s0-Xyg"/>
+                            <constraint firstAttribute="bottom" secondItem="wIr-X6-KYK" secondAttribute="bottom" constant="26" id="DIZ-Q3-ype"/>
+                            <constraint firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="ENW-VS-p6o"/>
+                            <constraint firstAttribute="bottom" secondItem="3kY-EJ-uPQ" secondAttribute="bottom" id="Eua-FZ-Ugm"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="GmE-Ev-RMZ"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="top" secondItem="KdA-al-yac" secondAttribute="bottom" constant="243" id="I6z-PG-WuV"/>
+                            <constraint firstItem="wIr-X6-KYK" firstAttribute="top" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="35" id="R8f-Ye-FNR"/>
+                            <constraint firstItem="wIr-X6-KYK" firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="ULT-x6-bPl"/>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="aK6-ck-EXR"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="wIr-X6-KYK" secondAttribute="leading" id="jaS-Zg-joH"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="trailing" secondItem="wIr-X6-KYK" secondAttribute="trailing" id="mxw-8M-GLD"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-screen-background"/>
                         </userDefinedRuntimeAttributes>

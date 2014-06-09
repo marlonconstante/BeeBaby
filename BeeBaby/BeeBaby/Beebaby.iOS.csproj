@@ -335,6 +335,10 @@
     <Compile Include="UIButtonScrollView.designer.cs">
       <DependentUpon>UIButtonScrollView.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventViewCell.cs" />
+    <Compile Include="EventViewCell.designer.cs">
+      <DependentUpon>EventViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -17,16 +17,18 @@ label {
 }
 
 .table-menu table-view-cell:selected,
-table-view-headerfooter-view,
 navigation-bar,
 segmented-control {
 	background-color: #00aead;
+}
+.table-view-headerfooter-view{
+	background-color: #dce5e5;
+	box-shadow: 0 -1 0 0 #c8c7cc;
 }
 
 .title-label,
 .flash-label,
 .fullscreen label,
-table-view-headerfooter-view label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
 .baby-button,
@@ -38,6 +40,13 @@ navigation-bar button,
 navigation-bar button:highlighted,
 navigation-bar button:selected {
 	color: #fff;
+}
+
+.table-view-headerfooter-view label{
+	color: #4d5f5c;
+	font-size: 10pt;
+	font-weight: normal;
+	text-align: left;
 }
 
 navigation-bar button,
