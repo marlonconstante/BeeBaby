@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class EventListViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIPageControl pcrPager { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UISearchBar schBar { get; set; }
 
 		[Outlet]
@@ -26,19 +29,24 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (scrView != null) {
-				scrView.Dispose ();
-				scrView = null;
-			}
-
 			if (schBar != null) {
 				schBar.Dispose ();
 				schBar = null;
 			}
 
+			if (scrView != null) {
+				scrView.Dispose ();
+				scrView = null;
+			}
+
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
+			}
+
+			if (pcrPager != null) {
+				pcrPager.Dispose ();
+				pcrPager = null;
 			}
 		}
 	}

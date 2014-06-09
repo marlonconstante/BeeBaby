@@ -573,6 +573,25 @@ text-view {
     animation: bubble;
  	animation-duration: 3s;
 }
+.tag-button-text {
+	font-family: "Quicksand";
+	font-weight: bold;
+	color: #4D5F5C;
+	font-size: 14pt;
+}
+
+.tag-scroll-title {
+	font-family: "Quicksand";
+	font-weight: light;
+	color: #034e59;
+	font-size: 17pt;
+}
+
+.tag-view-box {
+	box-shadow: 0 -1 0 0 #c8c7cc;
+}
+
+
 
 @keyframes bubble {
     from {

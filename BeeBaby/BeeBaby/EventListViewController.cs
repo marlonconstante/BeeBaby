@@ -6,6 +6,7 @@ using Domain.Moment;
 using Application;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Drawing;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -27,7 +28,10 @@ namespace BeeBaby
 		EventService m_eventService;
 		string m_selectedTag;
 		EventListViewSource m_eventListViewSource;
-		const float s_buttonSize = 106f;
+		const float s_buttonSizeX = 106f;
+		const float s_buttonSizeY = 100f;
+		const float s_imageSize = 70f;
+		const float s_buttonTitleHeight = 20f;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -50,11 +54,21 @@ namespace BeeBaby
 
 			m_selectedTag = string.Empty;
 
+			scrView.Scrolled += ScrollEvent;
+
 			ConfigureScrollView();
-
 			AddButtons();
-
 			View.AddSubview(scrView);
+		}
+
+		/// <summary>
+		/// Scrolls the event.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
+		void ScrollEvent(object sender, EventArgs e)
+		{
+			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -72,11 +86,11 @@ namespace BeeBaby
 				scrView.AddSubview(button);
 				if (up)
 				{
-					y = s_buttonSize;
+					y = s_buttonSizeY;
 				}
 				else
 				{
-					x = x + s_buttonSize;
+					x = x + s_buttonSizeX;
 					y = 0;
 				}
 				up = !up;
@@ -92,7 +106,7 @@ namespace BeeBaby
 		/// <param name="tag">Tag.</param>
 		UIButton CreateButton(float x, float y, TagType tag)
 		{
-			var button = new UIButton(new RectangleF(x, y, s_buttonSize, s_buttonSize));
+			var button = new UIButton(new RectangleF(x, y, s_buttonSizeX, s_buttonSizeY));
 			button.BackgroundColor = UIColor.Clear;
 			SetTitle(button, tag);
 			SetImage(button, tag);
@@ -106,9 +120,8 @@ namespace BeeBaby
 //			var tagName = Enum.GetName(typeof(TagType), tag);
 			var imageName = "Familia.png";//string.Format("{0}.png", tagName);
 			var iconImage = new UIImage(imageName);
-			var imageSize = 70f;
-			var x = (s_buttonSize - imageSize) / 2;
-			var imageView = new UIImageView(new RectangleF(x, 10, imageSize, imageSize));
+			var x = (s_buttonSizeX - s_imageSize) / 2;
+			var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
 			imageView.ContentMode = UIViewContentMode.ScaleToFill;
 			imageView.Image = iconImage;
 			button.AddSubview(imageView);
@@ -120,13 +133,15 @@ namespace BeeBaby
 		void ConfigureScrollView()
 		{
 			var numberOfTags = Enum.GetNames(typeof(TagType)).Length;
-			var scrollWidth = numberOfTags * s_buttonSize;
+			var scrollWidth = numberOfTags * s_buttonSizeX;
 
-			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSize * 2);
+			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.UserInteractionEnabled = true;
 			scrView.MultipleTouchEnabled = true;
 			scrView.PagingEnabled = true;
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
+
+			pcrPager.Pages = (int)Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -219,11 +234,11 @@ namespace BeeBaby
 		/// <param name="tag">Tag.</param>
 		void SetTitle(UIButton button, TagType tag)
 		{
-			var y = s_buttonSize - 20;
 			var text = Enum.GetName(typeof(TagType), tag).Translate();
-			var label = new UILabel(new RectangleF(0, y, s_buttonSize, 20));
+			var label = new UILabel(new RectangleF(0, s_imageSize, s_buttonSizeX, 20));
 			label.Text = text;
 			label.TextAlignment = UITextAlignment.Center;
+			label.SetStyleClass("tag-button-text");
 
 			button.AddSubview(label);
 		}
