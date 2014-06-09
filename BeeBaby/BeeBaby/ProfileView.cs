@@ -38,6 +38,7 @@ namespace BeeBaby
 			if (m_viewProfiles != null)
 			{
 				m_viewProfiles.RemoveFromSuperview();
+				Discard.ReleaseSubviews(m_viewProfiles);
 			}
 
 			m_viewProfiles = BuildViewProfiles();
@@ -48,6 +49,7 @@ namespace BeeBaby
 				if (m_buttonSelectedBaby != null)
 				{
 					m_buttonSelectedBaby.RemoveFromSuperview();
+					Discard.ReleaseSubviews(m_buttonSelectedBaby);
 				}
 
 				m_buttonSelectedBaby = BuildButtonSelectedBaby(CurrentContext.Instance.CurrentBaby);

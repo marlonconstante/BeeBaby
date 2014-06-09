@@ -8,7 +8,7 @@ using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public partial class ViewDatePicker : UIView
+	public partial class ViewDatePicker : View
 	{
 		UILabel m_label;
 		UIImageView m_image;
