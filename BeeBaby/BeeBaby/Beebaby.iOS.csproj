@@ -239,9 +239,7 @@
       <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="OrientationNotification.cs" />
-    <Compile Include="UIScrollViewImage.cs" />
     <Compile Include="UIImageViewClickable.cs" />
-    <Compile Include="UIViewFullscreen.cs" />
     <Compile Include="EventTableSearchBarDelegate.cs" />
     <Compile Include="BabyViewController.cs" />
     <Compile Include="BabyViewController.designer.cs">
