@@ -5,7 +5,7 @@ namespace BeeBaby
 {
 	public class TableViewCell : UITableViewCell
 	{
-		public TableViewCell()
+		public TableViewCell(IntPtr handle) : base(handle)
 		{
 		}
 
