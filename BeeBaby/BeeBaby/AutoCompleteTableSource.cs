@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
-	public class AutoCompleteTableSource : UITableViewSource
+	public class AutoCompleteTableSource : TableViewSource
 	{
 		const string s_cellIdentifier = "suggestionCell";
 		string[] m_suggestions;

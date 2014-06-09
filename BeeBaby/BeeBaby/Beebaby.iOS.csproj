@@ -332,6 +332,7 @@
     <Compile Include="CollectionViewCell.cs" />
     <Compile Include="CollectionViewSource.cs" />
     <Compile Include="Discard.cs" />
+    <Compile Include="TableViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

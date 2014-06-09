@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace BeeBaby
 {
-	public class TimelineViewSource : UITableViewSource
+	public class TimelineViewSource : TableViewSource
 	{
 		const string s_cellIdentifier = "MomentCell";
 		UIViewController m_viewController;

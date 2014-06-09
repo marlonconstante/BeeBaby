@@ -9,7 +9,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
-	public class EventListViewSource : UITableViewSource
+	public class EventListViewSource : TableViewSource
 	{
 		const string s_cellIdentifier = "EventCell";
 		EventListViewController m_viewController;
