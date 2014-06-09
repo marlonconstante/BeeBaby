@@ -6,7 +6,7 @@ using MonoTouch.CoreGraphics;
 
 namespace BeeBaby
 {
-	public class MenuItem
+	public class MenuItem : IDisposable
 	{
 		public MenuItem(string title, string iconStyleClass, Action action)
 		{
@@ -40,6 +40,18 @@ namespace BeeBaby
 		public Action Action {
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Releases all resource used by the <see cref="BeeBaby.MenuItem"/> object.
+		/// </summary>
+		/// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="BeeBaby.MenuItem"/>. The
+		/// <see cref="Dispose"/> method leaves the <see cref="BeeBaby.MenuItem"/> in an unusable state. After calling
+		/// <see cref="Dispose"/>, you must release all references to the <see cref="BeeBaby.MenuItem"/> so the garbage
+		/// collector can reclaim the memory that the <see cref="BeeBaby.MenuItem"/> was occupying.</remarks>
+		public void Dispose()
+		{
+			Discard.ReleaseProperties(this);
 		}
 	}
 }
