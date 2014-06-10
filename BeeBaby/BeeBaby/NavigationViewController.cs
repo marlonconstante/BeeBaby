@@ -9,6 +9,10 @@ namespace BeeBaby
 {
 	public abstract class NavigationViewController : BaseViewController
 	{
+		UIView m_titleView;
+		NavigationButtonItem m_leftBarButtonItem;
+		NavigationButtonItem m_rightBarButtonItem;
+
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -23,6 +27,17 @@ namespace BeeBaby
 			AddTitleView();
 			AddLeftBarButtonItem();
 			AddRightBarButtonItem();
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			UpdateNavigationBar();
 		}
 
 		/// <summary>
@@ -53,7 +68,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Lefts the bar button action.
 		/// </summary>
-		public virtual void LeftBarButtonAction()
+		/// <param name="sender">Sender.</param>
+		/// <param name="ev">Event.</param>
+		public virtual void LeftBarButtonAction(object sender, EventArgs ev)
 		{
 			if (IsContainsMenu())
 			{
@@ -105,7 +122,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Rights the bar button action.
 		/// </summary>
-		public virtual void RightBarButtonAction()
+		/// <param name="sender">Sender.</param>
+		/// <param name="ev">Event.</param>
+		public virtual void RightBarButtonAction(object sender, EventArgs ev)
 		{
 			ShowProgressWhilePerforming(() => {
 				if (IsContainsMenu())
@@ -127,17 +146,6 @@ namespace BeeBaby
 		public virtual string RightBarButtonStyleClass()
 		{
 			return "camera";
-		}
-
-		/// <summary>
-		/// Views the will appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
-			UpdateNavigationBar();
 		}
 
 		/// <summary>
@@ -163,21 +171,20 @@ namespace BeeBaby
 		/// </summary>
 		void AddTitleView()
 		{
-			UIView titleView;
 			if (TitleScreen != null)
 			{
 				UILabel label = new UILabel();
 				label.Text = TitleScreen;
 				label.SizeToFit();
 				label.SetStyleClass("title-label");
-				titleView = label;
+				m_titleView = label;
 			}
 			else
 			{
-				titleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
-				titleView.SetStyleClass("bee-baby");
+				m_titleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
+				m_titleView.SetStyleClass("bee-baby");
 			}
-			NavigationItem.TitleView = titleView;
+			NavigationItem.TitleView = m_titleView;
 		}
 
 		/// <summary>
@@ -185,17 +192,15 @@ namespace BeeBaby
 		/// </summary>
 		void AddLeftBarButtonItem()
 		{
-			NavigationButtonItem navigationButtonItem = null;
 			if (IsAddLeftBarButtonItem())
 			{
-				navigationButtonItem =
+				m_leftBarButtonItem =
 					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
-					, (sender, args) => {
-					LeftBarButtonAction();
-				}, LeftBarButtonStyleClass());
+					, LeftBarButtonStyleClass());
+				ControlEvents.Add(new ControlEvent(m_leftBarButtonItem.Button, LeftBarButtonAction, ControlEventType.TouchUpInside));
 			}
-			NavigationItem.SetLeftBarButtonItem(navigationButtonItem, true);
+			NavigationItem.SetLeftBarButtonItem(m_leftBarButtonItem, true);
 		}
 
 		/// <summary>
@@ -203,17 +208,15 @@ namespace BeeBaby
 		/// </summary>
 		void AddRightBarButtonItem()
 		{
-			NavigationButtonItem navigationButtonItem = null;
 			if (IsAddRightBarButtonItem())
 			{
-				navigationButtonItem =
+				m_rightBarButtonItem =
 					new NavigationButtonItem(RightBarButtonFrame()
 					, 6f
-					, (sender, args) => {
-					RightBarButtonAction();
-				}, RightBarButtonStyleClass());
+					, RightBarButtonStyleClass());
+				ControlEvents.Add(new ControlEvent(m_rightBarButtonItem.Button, RightBarButtonAction, ControlEventType.TouchUpInside));
 			}
-			NavigationItem.SetRightBarButtonItem(navigationButtonItem, true);
+			NavigationItem.SetRightBarButtonItem(m_rightBarButtonItem, true);
 		}
 
 		/// <summary>

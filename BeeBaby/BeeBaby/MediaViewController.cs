@@ -55,7 +55,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Lefts the bar button action.
 		/// </summary>
-		public override void LeftBarButtonAction()
+		/// <param name="sender">Sender.</param>
+		/// <param name="ev">Event.</param>
+		public override void LeftBarButtonAction(object sender, EventArgs ev)
 		{
 			ShowProgressWhilePerforming(() => {
 				CurrentContext.Instance.Moment = new MomentService().CreateMoment();
