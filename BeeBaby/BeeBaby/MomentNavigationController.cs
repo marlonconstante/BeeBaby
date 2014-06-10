@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class MomentNavigationController : UINavigationController
+	public partial class MomentNavigationController : UINavigationController, INavigationController
 	{
 		public MomentNavigationController(IntPtr handle) : base(handle)
 		{
@@ -17,6 +17,14 @@ namespace BeeBaby
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
 		{
 			return UIInterfaceOrientationMask.Portrait;
+		}
+
+		/// <summary>
+		/// Gets the current view controller.
+		/// </summary>
+		/// <returns>The current view controller.</returns>
+		public UIViewController GetCurrentViewController() {
+			return TopViewController;
 		}
 	}
 }
