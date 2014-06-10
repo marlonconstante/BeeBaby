@@ -8,12 +8,8 @@ namespace BeeBaby
 {
 	public class OrientationNotification : Notification
 	{
-		UIView[] m_views;
-
-		private OrientationNotification(params UIView[] views)
+		protected OrientationNotification()
 		{
-			m_views = views;
-
 			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 
 			// Orientation Did Change Notification
@@ -56,7 +52,7 @@ namespace BeeBaby
 		{
 			CGAffineTransform transform = CGAffineTransform.MakeRotation(DeviceAngle());
 			UIView.Animate(0.3d, () => {
-				foreach (var view in m_views)
+				foreach (var view in GetSupportedOrientationViews())
 				{
 					view.Transform = transform;
 				}
@@ -66,6 +62,20 @@ namespace BeeBaby
 					RotationFinished();
 				}
 			});
+		}
+
+		/// <summary>
+		/// Gets the supported orientation views.
+		/// </summary>
+		/// <returns>The supported orientation views.</returns>
+		IEnumerable<UIView> GetSupportedOrientationViews()
+		{
+			var viewController = CurrentViewController;
+			if (viewController is BaseViewController)
+			{
+				return ((BaseViewController) viewController).GetSupportedOrientationViews();
+			}
+			return new UIView[] { };
 		}
 
 		/// <summary>
@@ -94,12 +104,11 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Add the specified views.
+		/// Add this instance.
 		/// </summary>
-		/// <param name="views">Views.</param>
-		public static OrientationNotification Add(params UIView[] views)
+		public static OrientationNotification Add()
 		{
-			var orientationNotification = new OrientationNotification(views);
+			var orientationNotification = new OrientationNotification();
 			orientationNotification.DidRotation();
 			return orientationNotification;
 		}

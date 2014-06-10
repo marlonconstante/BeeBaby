@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -59,6 +60,15 @@ namespace BeeBaby
 
 			// Dismiss the spinner
 			BTProgressHUD.Dismiss();
+		}
+
+		/// <summary>
+		/// Gets the supported orientation views.
+		/// </summary>
+		/// <returns>The supported orientation views.</returns>
+		public virtual IEnumerable<UIView> GetSupportedOrientationViews()
+		{
+			return new UIView[] { };
 		}
 
 		/// <summary>

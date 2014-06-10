@@ -89,6 +89,7 @@ namespace BeeBaby
 			DomainConfig.InitializeGlobalization();
 
 			KeyboardNotification.Add();
+			OrientationNotification.Add();
 
 			InitProgressHUD();
 		}

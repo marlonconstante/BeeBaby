@@ -7,7 +7,7 @@ namespace BeeBaby
 {
 	public class KeyboardNotification : Notification
 	{
-		private KeyboardNotification()
+		protected KeyboardNotification()
 		{
 			// Keyboard Up
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyboardUpNotification);

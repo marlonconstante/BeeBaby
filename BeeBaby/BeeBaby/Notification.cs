@@ -5,7 +5,7 @@ namespace BeeBaby
 {
 	public abstract class Notification
 	{
-		private Notification()
+		protected Notification()
 		{
 		}
 
