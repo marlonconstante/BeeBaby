@@ -11,6 +11,7 @@ namespace BeeBaby
 	{
 		public BaseViewController(IntPtr handle) : base(handle)
 		{
+			ControlEvents = new List<ControlEvent>();
 		}
 
 		/// <summary>
@@ -34,6 +35,11 @@ namespace BeeBaby
 			base.ViewWillAppear(animated);
 
 			UpdateStatusBar();
+
+			foreach (var controlEvent in ControlEvents)
+			{
+				controlEvent.Enable();
+			}
 		}
 
 		/// <summary>
@@ -45,6 +51,11 @@ namespace BeeBaby
 			base.ViewWillDisappear(animated);
 
 			EndEditing();
+
+			foreach (var controlEvent in ControlEvents)
+			{
+				controlEvent.Disable();
+			}
 
 			// Shows the spinner
 			BTProgressHUD.Show();
@@ -152,6 +163,15 @@ namespace BeeBaby
 		void UpdateStatusBar()
 		{
 			UIApplication.SharedApplication.SetStatusBarHidden(!IsShowStatusBar(), UIStatusBarAnimation.None);
+		}
+
+		/// <summary>
+		/// Gets or sets the control events.
+		/// </summary>
+		/// <value>The control events.</value>
+		public List<ControlEvent> ControlEvents {
+			get;
+			set;
 		}
 
 		/// <summary>
