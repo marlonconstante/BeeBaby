@@ -316,10 +316,6 @@
     <Compile Include="MomentNavigationController.designer.cs">
       <DependentUpon>MomentNavigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventsListTabViewController.cs" />
-    <Compile Include="EventsListTabViewController.designer.cs">
-      <DependentUpon>EventsListTabViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Button.cs" />
     <Compile Include="Button.designer.cs">
       <DependentUpon>Button.cs</DependentUpon>

@@ -23,12 +23,14 @@ namespace BeeBaby
 
 		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
-
-		[Action ("SelectTag:")]
-		partial void SelectTag (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (pcrPager != null) {
+				pcrPager.Dispose ();
+				pcrPager = null;
+			}
+
 			if (schBar != null) {
 				schBar.Dispose ();
 				schBar = null;
@@ -42,11 +44,6 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
-			}
-
-			if (pcrPager != null) {
-				pcrPager.Dispose ();
-				pcrPager = null;
 			}
 		}
 	}

@@ -29,6 +29,7 @@ namespace BeeBaby
 		string m_selectedTag;
 		IList<string> m_buttonNamesList;
 		EventListViewSource m_eventListViewSource;
+
 		const float s_buttonSizeX = 106f;
 		const float s_buttonSizeY = 100f;
 		const float s_imageSize = 70f;
@@ -65,7 +66,19 @@ namespace BeeBaby
 
 			ConfigureScrollView();
 			AddButtons();
+
 			View.AddSubview(scrView);
+		}
+			
+		/// <summary>
+		/// Views the did disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidDisappear(bool animated)
+		{
+			base.ViewDidDisappear(animated);
+
+			scrView.Scrolled -= ScrollEvent;
 		}
 
 		/// <summary>
@@ -129,8 +142,9 @@ namespace BeeBaby
 		{
 			var imageName = "Familia.png";//string.Format("{0}.png", tagName);
 			var iconImage = new UIImage(imageName);
-			var x = (s_buttonSizeX - s_imageSize) / 2;
+			const float x = (s_buttonSizeX - s_imageSize) / 2;
 			var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
+
 			imageView.ContentMode = UIViewContentMode.ScaleToFill;
 			imageView.Image = iconImage;
 			button.AddSubview(imageView);
@@ -142,7 +156,7 @@ namespace BeeBaby
 		void ConfigureScrollView()
 		{
 			var numberOfTags = Enum.GetNames(typeof(TagType)).Length;
-			var scrollWidth = numberOfTags * s_buttonSizeX;
+			var scrollWidth = (float)(Math.Truncate(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.UserInteractionEnabled = true;
@@ -185,6 +199,8 @@ namespace BeeBaby
 				DeselectAllTags();
 				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
+				sender.BackgroundColor = UIColor.Blue;
+
 			}
 			else if (m_selectedTag != string.Empty)
 			{
@@ -198,6 +214,7 @@ namespace BeeBaby
 			{
 				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
+				sender.BackgroundColor = UIColor.Blue;
 			}
 		}
 
@@ -224,29 +241,26 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void FilterTableByTag(UITagButton sender)
 		{
-			var selectedValue = sender.TagName;
+			m_selectedTag = sender.TagName;
+
 			List<Event> filtredEvents = new List<Event>();
 
-			if (selectedValue == s_firstsTagName)
+			if (m_selectedTag == s_firstsTagName)
 			{
 			}
-			else if (selectedValue == s_recomendationTagName)
+			else if (m_selectedTag == s_recomendationTagName)
 			{
 			}
-			else if (selectedValue == s_everydayTagName)
+			else if (m_selectedTag == s_everydayTagName)
 			{
 			}
 			else
 			{
-				filtredEvents  = m_events.Where(e => e.Tag.ToString() == selectedValue).ToList();
+				filtredEvents  = m_events.Where(e => e.Tag.ToString() == m_selectedTag).ToList();
 			}
 				
 			SetViewSource(filtredEvents);
 			tblView.ReloadData();
-
-			m_selectedTag = sender.TagName;
-			sender.Selected = !sender.Selected;
-			sender.BackgroundColor = UIColor.Blue;
 		}
 
 		/// <summary>
