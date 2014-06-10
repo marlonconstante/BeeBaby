@@ -342,6 +342,9 @@
     <Compile Include="Discard.cs" />
     <Compile Include="TableViewSource.cs" />
     <Compile Include="TableViewCell.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="INavigationController.cs" />
+    <Compile Include="Windows.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

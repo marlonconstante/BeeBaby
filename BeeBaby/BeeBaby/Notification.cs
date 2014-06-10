@@ -15,7 +15,7 @@ namespace BeeBaby
 		/// <value>The current view controller.</value>
 		public UIViewController CurrentViewController {
 			get {
-				return Windows.TopViewController(UIApplication.SharedApplication.Windows[0]);
+				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
 		}
 

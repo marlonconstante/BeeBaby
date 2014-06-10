@@ -56,7 +56,7 @@ namespace BeeBaby
 		/// <param name="window">Window.</param>
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow window)
 		{
-			UIViewController topViewController = TopViewController(window);
+			UIViewController topViewController = Windows.GetTopViewController(window);
 			if (topViewController != null)
 			{
 				return topViewController.GetSupportedInterfaceOrientations();
@@ -88,6 +88,8 @@ namespace BeeBaby
 			DomainConfig.RegisterDependencies(connection);
 			DomainConfig.InitializeGlobalization();
 
+			KeyboardNotification.Add();
+
 			InitProgressHUD();
 		}
 
@@ -100,26 +102,6 @@ namespace BeeBaby
 			// We need to properly handle activation of the application with regards to SSO
 			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
 			FBSession.ActiveSession.HandleDidBecomeActive();
-		}
-
-		/// <summary>
-		/// Tops the view controller.
-		/// </summary>
-		/// <returns>The view controller.</returns>
-		/// <param name="window">Window.</param>
-		UIViewController TopViewController(UIWindow window)
-		{
-			UIViewController topViewController = (window != null) ? window.RootViewController : null;
-
-			if (topViewController != null)
-			{
-				while (topViewController.PresentedViewController != null)
-				{
-					topViewController = topViewController.PresentedViewController;
-				}
-			}
-
-			return topViewController;
 		}
 
 		/// <summary>

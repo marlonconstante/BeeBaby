@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class BaseViewController : UIViewController
+	public abstract class BaseViewController : UIViewController
 	{
 		public BaseViewController(IntPtr handle) : base(handle)
 		{
@@ -18,8 +18,6 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			KeyboardNotification.Add(this);
 
 			AddEditingTapGestureRecognizer();
 
