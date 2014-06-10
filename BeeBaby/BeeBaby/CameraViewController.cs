@@ -10,6 +10,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
 using System.Threading;
 using BeeBaby.Util;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -18,7 +19,6 @@ namespace BeeBaby
 		UIImagePickerController m_picker;
 		MediaPickerProvider m_mediaPickerProvider;
 		UIImagePickerControllerCameraFlashMode m_cameraFlashMode;
-		OrientationNotification m_orientationNotification;
 		SystemSound m_systemSound;
 
 		public CameraViewController(IntPtr handle) : base(handle)
@@ -70,8 +70,19 @@ namespace BeeBaby
 
 				View.BackgroundColor = UIColor.Clear;
 			}
+		}
 
-			LoadOrientationNotification();
+		/// <summary>
+		/// Gets the supported orientation views.
+		/// </summary>
+		/// <returns>The supported orientation views.</returns>
+		public override IEnumerable<UIView> GetSupportedOrientationViews()
+		{
+			if (IsViewLoaded)
+			{
+				return new UIView[] { btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia };
+			}
+			return base.GetSupportedOrientationViews();
 		}
 
 		/// <summary>
@@ -94,17 +105,6 @@ namespace BeeBaby
 			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
 			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;
-		}
-
-		/// <summary>
-		/// Loads the orientation notification.
-		/// </summary>
-		void LoadOrientationNotification()
-		{
-			if (m_orientationNotification == null)
-			{
-				m_orientationNotification = OrientationNotification.Add(btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia);
-			}
 		}
 
 		/// <summary>

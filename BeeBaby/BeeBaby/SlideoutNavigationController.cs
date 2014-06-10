@@ -8,7 +8,7 @@ namespace BeeBaby
 	/// <summary>
 	/// Slideout view controller.
 	/// </summary>
-	public partial class SlideoutNavigationController : UIViewController
+	public partial class SlideoutNavigationController : UIViewController, INavigationController
 	{
 		#region private attributes
 
@@ -744,6 +744,14 @@ namespace BeeBaby
 		public void SetTopNavigationBackgroundImage(UIImage image, UIBarMetrics metrics)
 		{
 			_internalTopNavigation.NavigationBar.SetBackgroundImage(image, metrics);
+		}
+
+		/// <summary>
+		/// Gets the current view controller.
+		/// </summary>
+		/// <returns>The current view controller.</returns>
+		public UIViewController GetCurrentViewController() {
+			return _internalTopNavigation.TopViewController;
 		}
 
 		#region Nested type: ProxyNavigationController

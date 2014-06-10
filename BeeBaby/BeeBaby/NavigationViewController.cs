@@ -7,7 +7,7 @@ using PixateFreestyleLib;
 
 namespace BeeBaby
 {
-	public class NavigationViewController : BaseViewController
+	public abstract class NavigationViewController : BaseViewController
 	{
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{

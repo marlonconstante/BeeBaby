@@ -40,7 +40,7 @@ namespace BeeBaby
 			if (m_fullscreenController == null)
 			{
 				var board = UIStoryboard.FromName("MainStoryboard", null);
-				m_fullscreenController = (FullscreenViewController)board.InstantiateViewController("FullscreenViewController");
+				m_fullscreenController = (FullscreenViewController) board.InstantiateViewController("FullscreenViewController");
 			}
 		}
 
@@ -106,8 +106,7 @@ namespace BeeBaby
 				imageView.MultipleTouchEnabled = true;
 				imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 				imageView.Opaque = true;
-				imageView.OnClick += () =>
-				{
+				imageView.OnClick += () => {
 					m_viewController.PresentViewController(m_fullscreenController, false, null);
 					m_fullscreenController.SetInformation(moment, CurrentContext.Instance.CurrentBaby, imageProvider.GetImage(image.FileName));
 				};

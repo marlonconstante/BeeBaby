@@ -3,10 +3,11 @@ using MonoTouch.UIKit;
 using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
-	public class BaseViewController : UIViewController
+	public abstract class BaseViewController : UIViewController
 	{
 		public BaseViewController(IntPtr handle) : base(handle)
 		{
@@ -18,8 +19,6 @@ namespace BeeBaby
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			KeyboardNotification.Add(this);
 
 			AddEditingTapGestureRecognizer();
 
@@ -61,6 +60,15 @@ namespace BeeBaby
 
 			// Dismiss the spinner
 			BTProgressHUD.Dismiss();
+		}
+
+		/// <summary>
+		/// Gets the supported orientation views.
+		/// </summary>
+		/// <returns>The supported orientation views.</returns>
+		public virtual IEnumerable<UIView> GetSupportedOrientationViews()
+		{
+			return new UIView[] { };
 		}
 
 		/// <summary>
