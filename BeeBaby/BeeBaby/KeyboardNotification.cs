@@ -5,14 +5,10 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class KeyboardNotification
+	public class KeyboardNotification : Notification
 	{
-		BaseViewController m_viewController;
-
-		private KeyboardNotification(BaseViewController viewController)
+		private KeyboardNotification()
 		{
-			m_viewController = viewController;
-
 			// Keyboard Up
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyboardUpNotification);
 
@@ -26,7 +22,11 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void KeyboardUpNotification(NSNotification notification)
 		{
-			m_viewController.StartEditing();
+			var viewController = CurrentViewController;
+			if (viewController is BaseViewController)
+			{
+				((BaseViewController) viewController).StartEditing();
+			}
 
 			MoveScroll(true, notification);
 		}
@@ -47,7 +47,8 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void MoveScroll(bool up, NSNotification notification)
 		{
-			UIView firstResponder = GetFirstResponder(m_viewController.View);
+			var viewController = CurrentViewController;
+			UIView firstResponder = GetFirstResponder(viewController.View);
 			if (firstResponder != null && firstResponder is IKeyboardSupport)
 			{
 				var keyboardSupport = (IKeyboardSupport) firstResponder;
@@ -56,9 +57,9 @@ namespace BeeBaby
 					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
 					var bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height);
-					var height = (rectangle.Height - (m_viewController.View.Frame.Height - bottom));
+					var height = (rectangle.Height - (viewController.View.Frame.Height - bottom));
 
-					Scroller.Move(m_viewController.View, 0f, up ? -height : height);
+					Scroller.Move(viewController.View, 0f, up ? -height : height);
 				}
 			}
 		}
@@ -80,12 +81,11 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Add the specified viewController.
+		/// Add this instance.
 		/// </summary>
-		/// <param name="viewController">View controller.</param>
-		public static KeyboardNotification Add(BaseViewController viewController)
+		public static KeyboardNotification Add()
 		{
-			return new KeyboardNotification(viewController);
+			return new KeyboardNotification();
 		}
 	}
 }

@@ -6,7 +6,7 @@ using MonoTouch.CoreGraphics;
 
 namespace BeeBaby
 {
-	public class OrientationNotification
+	public class OrientationNotification : Notification
 	{
 		UIView[] m_views;
 
