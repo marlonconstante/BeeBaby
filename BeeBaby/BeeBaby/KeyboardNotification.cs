@@ -81,9 +81,9 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Add this instance.
+		/// Initialize this instance.
 		/// </summary>
-		public static KeyboardNotification Add()
+		public static KeyboardNotification Initialize()
 		{
 			return new KeyboardNotification();
 		}

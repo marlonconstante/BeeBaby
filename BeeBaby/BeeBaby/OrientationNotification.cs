@@ -104,9 +104,9 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Add this instance.
+		/// Initialize this instance.
 		/// </summary>
-		public static OrientationNotification Add()
+		public static OrientationNotification Initialize()
 		{
 			var orientationNotification = new OrientationNotification();
 			orientationNotification.DidRotation();

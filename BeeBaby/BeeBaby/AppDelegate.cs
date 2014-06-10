@@ -88,8 +88,8 @@ namespace BeeBaby
 			DomainConfig.RegisterDependencies(connection);
 			DomainConfig.InitializeGlobalization();
 
-			KeyboardNotification.Add();
-			OrientationNotification.Add();
+			KeyboardNotification.Initialize();
+			OrientationNotification.Initialize();
 
 			InitProgressHUD();
 		}
