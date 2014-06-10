@@ -32,6 +32,18 @@ namespace Domain.Moment
 		Familia = 12,
 		Eventos = 13,
 		Corpinho = 14
+
+//		LittleBody = 0,
+//		Family = 1,
+//		Ride = 2,
+//		Sleepy = 3,
+//		Bath = 4,
+//		Smile = 5,
+//		Lapy = 6,
+//		Play = 7,
+//		Celebrations = 8,
+//		Birth = 9,
+//		Pregnancy = 10
 	}
 
 	/// <summary>

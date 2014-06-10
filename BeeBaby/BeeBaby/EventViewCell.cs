@@ -7,7 +7,7 @@ using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class EventViewCell : UITableViewCell
+	public partial class EventViewCell : TableViewCell
 	{
 		public EventViewCell (IntPtr handle) : base (handle)
 		{

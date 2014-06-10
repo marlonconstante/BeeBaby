@@ -27,14 +27,22 @@ namespace BeeBaby
 		IList<Event> m_events;
 		EventService m_eventService;
 		string m_selectedTag;
+		IList<string> m_buttonNamesList;
 		EventListViewSource m_eventListViewSource;
+
 		const float s_buttonSizeX = 106f;
 		const float s_buttonSizeY = 100f;
 		const float s_imageSize = 70f;
 		const float s_buttonTitleHeight = 20f;
 
+		const string s_recomendationTagName = "Recomendation";
+		const string s_firstsTagName = "Firsts";
+		const string s_everydayTagName = "Everyday";
+
+
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
+			CreateButtonsList();
 		}
 
 		/// <summary>
@@ -58,7 +66,19 @@ namespace BeeBaby
 
 			ConfigureScrollView();
 			AddButtons();
+
 			View.AddSubview(scrView);
+		}
+			
+		/// <summary>
+		/// Views the did disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidDisappear(bool animated)
+		{
+			base.ViewDidDisappear(animated);
+
+			scrView.Scrolled -= ScrollEvent;
 		}
 
 		/// <summary>
@@ -79,11 +99,13 @@ namespace BeeBaby
 			var up = true;
 			var x = 0f;
 			var y = 0f;
-			var valuesAsArray = Enum.GetValues(typeof(TagType));
-			foreach (var item in valuesAsArray)
+
+			foreach (var item in m_buttonNamesList)
 			{
-				var button = CreateButton(x, y, (TagType)item);
+				//var tag = (TagType)Enum.Parse(typeof(TagType), item);
+				var button = CreateButton(x, y, item);
 				scrView.AddSubview(button);
+
 				if (up)
 				{
 					y = s_buttonSizeY;
@@ -103,25 +125,26 @@ namespace BeeBaby
 		/// <returns>The button.</returns>
 		/// <param name="x">The x coordinate.</param>
 		/// <param name="y">The y coordinate.</param>
-		/// <param name="tag">Tag.</param>
-		UIButton CreateButton(float x, float y, TagType tag)
+		/// <param name="tagName">Tag name.</param>
+		UITagButton CreateButton(float x, float y, string tagName)
 		{
-			var button = new UIButton(new RectangleF(x, y, s_buttonSizeX, s_buttonSizeY));
+			var button = new UITagButton(new RectangleF(x, y, s_buttonSizeX, s_buttonSizeY));
 			button.BackgroundColor = UIColor.Clear;
-			SetTitle(button, tag);
-			SetImage(button, tag);
-			button.TouchUpInside += (sender, e) => FilterTableByTag(button);
+			button.TagName = tagName;
+			SetTitle(button, tagName);
+			SetImage(button, tagName);
+			button.TouchUpInside += (sender, e) => SelectTag2(button);
 			button.MultipleTouchEnabled = true;
 			return button;
 		}
 
-		void SetImage(UIButton button, TagType tag)
+		void SetImage(UITagButton button, string tagName)
 		{
-//			var tagName = Enum.GetName(typeof(TagType), tag);
 			var imageName = "Familia.png";//string.Format("{0}.png", tagName);
 			var iconImage = new UIImage(imageName);
-			var x = (s_buttonSizeX - s_imageSize) / 2;
+			const float x = (s_buttonSizeX - s_imageSize) / 2;
 			var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
+
 			imageView.ContentMode = UIViewContentMode.ScaleToFill;
 			imageView.Image = iconImage;
 			button.AddSubview(imageView);
@@ -133,7 +156,7 @@ namespace BeeBaby
 		void ConfigureScrollView()
 		{
 			var numberOfTags = Enum.GetNames(typeof(TagType)).Length;
-			var scrollWidth = numberOfTags * s_buttonSizeX;
+			var scrollWidth = (float)(Math.Truncate(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.UserInteractionEnabled = true;
@@ -167,13 +190,17 @@ namespace BeeBaby
 		/// Selects the tag.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void SelectTag(MonoTouch.UIKit.UIButton sender)
+		void SelectTag2(UIButton sender)
 		{
-			if (m_selectedTag != string.Empty && m_selectedTag != sender.TitleLabel.Text)
+			var button = (UITagButton)sender;
+
+			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{
 				DeselectAllTags();
-				FilterTableByTag(sender);
+				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
+				sender.BackgroundColor = UIColor.Blue;
+
 			}
 			else if (m_selectedTag != string.Empty)
 			{
@@ -181,11 +208,13 @@ namespace BeeBaby
 				tblView.ReloadData();
 				m_selectedTag = string.Empty;
 				sender.Selected = false;
+				sender.BackgroundColor = UIColor.Clear;
 			}
 			else
 			{
-				FilterTableByTag(sender);
+				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
+				sender.BackgroundColor = UIColor.Blue;
 			}
 		}
 
@@ -194,28 +223,44 @@ namespace BeeBaby
 		/// </summary>
 		public void DeselectAllTags()
 		{
-//			btnTag1.Selected = false;
-//			btnTag2.Selected = false;
-//			btnTag3.Selected = false;
-//			btnTag4.Selected = false;
-//			btnTag5.Selected = false;
-//			btnTag6.Selected = false;
-//			btnTag7.Selected = false;
-//			btnTag8.Selected = false;
-//			btnTag9.Selected = false;
+			foreach (UIView item in scrView.Subviews)
+			{
+				var button = item as UITagButton;
+				if (button != null && button.Selected)
+				{
+					item.BackgroundColor = UIColor.Clear;
+					button.Selected = false;
+					break;
+				}
+			}
 		}
 
 		/// <summary>
 		/// Filters the table by tag.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		void FilterTableByTag(UIButton sender)
+		void FilterTableByTag(UITagButton sender)
 		{
-//			var selectedValue = (TagType)Enum.Parse(typeof(TagType), sender.TitleLabel.Text);
-//			var filtredEvents = m_events.Where(e => e.Tag == selectedValue).ToList();
-//			SetViewSource(filtredEvents);
-//			tblView.ReloadData();
-//			m_selectedTag = sender.TitleLabel.Text;
+			m_selectedTag = sender.TagName;
+
+			List<Event> filtredEvents = new List<Event>();
+
+			if (m_selectedTag == s_firstsTagName)
+			{
+			}
+			else if (m_selectedTag == s_recomendationTagName)
+			{
+			}
+			else if (m_selectedTag == s_everydayTagName)
+			{
+			}
+			else
+			{
+				filtredEvents  = m_events.Where(e => e.Tag.ToString() == m_selectedTag).ToList();
+			}
+				
+			SetViewSource(filtredEvents);
+			tblView.ReloadData();
 		}
 
 		/// <summary>
@@ -231,10 +276,10 @@ namespace BeeBaby
 		/// Sets the title.
 		/// </summary>
 		/// <param name="button">Button.</param>
-		/// <param name="tag">Tag.</param>
-		void SetTitle(UIButton button, TagType tag)
+		/// <param name="tagName">Tag name.</param>
+		void SetTitle(UITagButton button, string tagName)
 		{
-			var text = Enum.GetName(typeof(TagType), tag).Translate();
+			var text = tagName.Translate();
 			var label = new UILabel(new RectangleF(0, s_imageSize, s_buttonSizeX, 20));
 			label.Text = text;
 			label.TextAlignment = UITextAlignment.Center;
@@ -242,5 +287,22 @@ namespace BeeBaby
 
 			button.AddSubview(label);
 		}
+
+		/// <summary>
+		/// Creates the buttons list.
+		/// </summary>
+		void CreateButtonsList()
+		{
+			m_buttonNamesList = new List<string>();
+			m_buttonNamesList.Add(s_recomendationTagName);
+			m_buttonNamesList.Add(s_firstsTagName);
+			m_buttonNamesList.Add(s_everydayTagName);
+
+			foreach (var item in Enum.GetValues(typeof(TagType)))
+			{
+				m_buttonNamesList.Add(item.ToString());
+			}
+		}
+
 	}
 }
