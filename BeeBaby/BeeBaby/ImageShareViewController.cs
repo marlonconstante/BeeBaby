@@ -5,7 +5,7 @@ using Domain.Baby;
 
 namespace BeeBaby
 {
-	public partial class ImageShareViewController : UIViewController
+	public partial class ImageShareViewController : BaseViewController
 	{
 		public ImageShareViewController(IntPtr handle) : base(handle)
 		{
