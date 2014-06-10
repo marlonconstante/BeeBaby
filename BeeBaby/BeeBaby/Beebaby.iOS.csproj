@@ -342,6 +342,7 @@
     <Compile Include="Discard.cs" />
     <Compile Include="TableViewSource.cs" />
     <Compile Include="TableViewCell.cs" />
+    <Compile Include="UITagButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
