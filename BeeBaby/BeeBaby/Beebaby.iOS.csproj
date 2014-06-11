@@ -196,6 +196,36 @@
     </BundleResource>
     <BundleResource Include="Resources\Familia.png" />
     <BundleResource Include="Resources\tagBee.png" />
+    <BundleResource Include="Resources\school_sm.png" />
+    <BundleResource Include="Resources\lapy_sm.png" />
+    <BundleResource Include="Resources\smile_sm.png" />
+    <BundleResource Include="Resources\pregnancy_sm.png" />
+    <BundleResource Include="Resources\celebrations_sm.png" />
+    <BundleResource Include="Resources\birth_sm.png" />
+    <BundleResource Include="Resources\bath_sm.png" />
+    <BundleResource Include="Resources\family_sm.png" />
+    <BundleResource Include="Resources\ride_sm.png" />
+    <BundleResource Include="Resources\sleepy_sm.png" />
+    <BundleResource Include="Resources\firsts_sm.png" />
+    <BundleResource Include="Resources\everyday_sm.png" />
+    <BundleResource Include="Resources\recomendations_sm.png" />
+    <BundleResource Include="Resources\icon_sm.psd" />
+    <BundleResource Include="Resources\littlebody_sm.png" />
+    <BundleResource Include="Resources\recomendations.png" />
+    <BundleResource Include="Resources\everyday.png" />
+    <BundleResource Include="Resources\firsts.png" />
+    <BundleResource Include="Resources\sleepy.png" />
+    <BundleResource Include="Resources\ride.png" />
+    <BundleResource Include="Resources\littlebody.png" />
+    <BundleResource Include="Resources\Pregnancy.png" />
+    <BundleResource Include="Resources\smile.png" />
+    <BundleResource Include="Resources\lapy.png" />
+    <BundleResource Include="Resources\school.png" />
+    <BundleResource Include="Resources\family.png" />
+    <BundleResource Include="Resources\bath.png" />
+    <BundleResource Include="Resources\birth.png" />
+    <BundleResource Include="Resources\celebrations.png" />
+    <BundleResource Include="Resources\hover.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

@@ -30,7 +30,8 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 				StartAge = 1,
 				EndAge = 2,
 				Kind = 1,
-				Tag = 2
+				Tag = 2, 
+				Priority = 3
 			};
 
 			var actual = new SqliteNetEventMapper().ToDomainEntity(repositoryEntity);
@@ -38,8 +39,9 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			Assert.AreEqual(repositoryEntity.Description, actual.Description);
 			Assert.AreEqual(repositoryEntity.StartAge, actual.StartAge);
 			Assert.AreEqual(repositoryEntity.EndAge, actual.EndAge);
-			Assert.AreEqual(TagType.Fraldas, actual.Tag);
+			Assert.AreEqual(TagType.Ride, actual.Tag);
 			Assert.AreEqual(EventType.Everyday, actual.Kind);
+			Assert.AreEqual(repositoryEntity.Priority, actual.Priority);
 		}
 
 		[Test()]
@@ -52,7 +54,8 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 				StartAge = 1,
 				EndAge = 2,
 				Kind = EventType.Everyday,
-				Tag = TagType.Eventos
+				Tag = TagType.School,
+				Priority = 5
 			};
 
 			var actual = new SqliteNetEventMapper().ToRepositoryEntity(domainEntity);
@@ -61,7 +64,8 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			Assert.AreEqual(domainEntity.StartAge, actual.StartAge);
 			Assert.AreEqual(domainEntity.EndAge, actual.EndAge);
 			Assert.AreEqual(1, actual.Kind);
-			Assert.AreEqual(13, actual.Tag);
+			Assert.AreEqual(11, actual.Tag);
+			Assert.AreEqual(domainEntity.Priority, actual.Priority);
 		}
 	}
 }

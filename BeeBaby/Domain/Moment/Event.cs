@@ -17,33 +17,17 @@ namespace Domain.Moment
 	/// </summary>
 	public enum TagType
 	{
-		Casa = 0,
-		Olhinhos = 1,
-		Fraldas = 2,
-		Mamando = 3,
-		Soninho = 4,
-		Nascimento = 5,
-		Sono = 6,
-		Brincadeiras = 7,
-		Sorriso = 8,
-		Banho = 9,
-		Passeio = 10,
-		Colo = 11,
-		Familia = 12,
-		Eventos = 13,
-		Corpinho = 14
-
-//		LittleBody = 0,
-//		Family = 1,
-//		Ride = 2,
-//		Sleepy = 3,
-//		Bath = 4,
-//		Smile = 5,
-//		Lapy = 6,
-//		Play = 7,
-//		Celebrations = 8,
-//		Birth = 9,
-//		Pregnancy = 10
+		LittleBody = 0,
+		Family = 1,
+		Ride = 2,
+		Sleepy = 3,
+		Bath = 4,
+		Smile = 5,
+		Lapy = 6,
+		Celebrations = 7,
+		Birth = 8,
+		Pregnancy = 9,
+		School = 10
 	}
 
 	/// <summary>
@@ -79,6 +63,12 @@ namespace Domain.Moment
 		/// Gets or sets the tag.
 		/// </summary>
 		/// <value>The tag.</value>
-		public TagType Tag{ get; set; }
+		public TagType Tag { get; set; }
+
+		/// <summary>
+		/// Gets or sets the Order.
+		/// </summary>
+		/// <value>The Order.</value>
+		public int Priority { get; set; }
 	}
 }

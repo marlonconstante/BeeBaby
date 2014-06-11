@@ -35,7 +35,7 @@ namespace BeeBaby
 		const float s_imageSize = 70f;
 		const float s_buttonTitleHeight = 20f;
 
-		const string s_recomendationTagName = "Recomendation";
+		const string s_recomendationTagName = "Recomendations";
 		const string s_firstsTagName = "Firsts";
 		const string s_everydayTagName = "Everyday";
 
@@ -69,7 +69,7 @@ namespace BeeBaby
 
 			View.AddSubview(scrView);
 		}
-			
+
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
@@ -122,14 +122,35 @@ namespace BeeBaby
 			button.TagName = tagName;
 			SetTitle(button, tagName);
 			SetImage(button, tagName);
-			button.TouchUpInside += (sender, e) => SelectTag2(button);
+			button.TouchUpInside += (sender, e) => SelectTag(button);
 			button.MultipleTouchEnabled = true;
 			return button;
 		}
 
+		static void SelectButton(UITagButton sender, bool selected)
+		{
+			sender.Selected = selected;
+			if (selected)
+			{
+
+				var iconImage = new UIImage("hover.png");
+				const float x = (s_buttonSizeX - s_imageSize) / 2;
+				var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
+
+				imageView.ContentMode = UIViewContentMode.ScaleToFill;
+				imageView.Image = iconImage;
+				sender.AddSubview(imageView);
+			}
+			else
+			{
+				if (sender.Subviews.Length > 2)
+					sender.Subviews[3].RemoveFromSuperview();
+			}
+		}
+
 		void SetImage(UITagButton button, string tagName)
 		{
-			var imageName = "Familia.png";//string.Format("{0}.png", tagName);
+			var imageName = string.Format("{0}.png", tagName.ToLower());
 			var iconImage = new UIImage(imageName);
 			const float x = (s_buttonSizeX - s_imageSize) / 2;
 			var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
@@ -179,7 +200,7 @@ namespace BeeBaby
 		/// Selects the tag.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		void SelectTag2(UIButton sender)
+		void SelectTag(UIButton sender)
 		{
 			var button = (UITagButton)sender;
 
@@ -188,7 +209,7 @@ namespace BeeBaby
 				DeselectAllTags();
 				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
-				sender.BackgroundColor = UIColor.Blue;
+				SelectButton(button, true);
 
 			}
 			else if (m_selectedTag != string.Empty)
@@ -197,13 +218,13 @@ namespace BeeBaby
 				tblView.ReloadData();
 				m_selectedTag = string.Empty;
 				sender.Selected = false;
-				sender.BackgroundColor = UIColor.Clear;
+				SelectButton(button, false);
 			}
 			else
 			{
 				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
-				sender.BackgroundColor = UIColor.Blue;
+				SelectButton(button, true);
 			}
 		}
 
@@ -217,8 +238,7 @@ namespace BeeBaby
 				var button = item as UITagButton;
 				if (button != null && button.Selected)
 				{
-					item.BackgroundColor = UIColor.Clear;
-					button.Selected = false;
+					SelectButton(button, false);
 					break;
 				}
 			}
@@ -236,16 +256,20 @@ namespace BeeBaby
 
 			if (m_selectedTag == s_firstsTagName)
 			{
+				filtredEvents = m_events.Where(e => e.Kind == EventType.Achivment).ToList();
 			}
 			else if (m_selectedTag == s_recomendationTagName)
 			{
+				var babyAge = CurrentContext.Instance.CurrentBaby.AgeInDays;
+				filtredEvents = m_events.Where(e => e.StartAge >= babyAge && e.EndAge <= babyAge).ToList();
 			}
 			else if (m_selectedTag == s_everydayTagName)
 			{
+				filtredEvents = m_events.Where(e => e.Kind == EventType.Everyday).ToList();
 			}
 			else
 			{
-				filtredEvents  = m_events.Where(e => e.Tag.ToString() == m_selectedTag).ToList();
+				filtredEvents = m_events.Where(e => e.Tag.ToString() == m_selectedTag).ToList();
 			}
 				
 			SetViewSource(filtredEvents);

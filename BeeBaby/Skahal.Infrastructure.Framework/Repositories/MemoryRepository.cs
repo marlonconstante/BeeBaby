@@ -79,13 +79,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
 		}
 
         /// <summary>
-        /// Finds all entities that matches the filter in a ascending order.
+        /// Finds all entities that matches the filter in a ascending Order.
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="offset">The offset to start the result.</param>
         /// <param name="limit">The result count limit.</param>
         /// <param name="filter">The entities filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public override IEnumerable<TEntity> FindAllAscending<TOrderByKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
         {            
             ExceptionHelper.ThrowIfNull("orderBy", orderBy);
@@ -97,13 +97,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities that matches the filter in a descending order.
+        /// Finds all entities that matches the filter in a descending Order.
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="offset">The offset to start the result.</param>
         /// <param name="limit">The result count limit.</param>
         /// <param name="filter">The entities filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public override IEnumerable<TEntity> FindAllDescending<TOrderByKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
         {            
             ExceptionHelper.ThrowIfNull("orderBy", orderBy);

@@ -65,11 +65,11 @@ namespace Skahal.Infrastructure.Framework.Repositories
 
         #region FindAllAscending
         /// <summary>
-        /// Finds all entities  in a ascending order
+        /// Finds all entities  in a ascending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">The repository.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllAscending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -77,12 +77,12 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities that matches the filter in a ascending order
+        /// Finds all entities that matches the filter in a ascending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">The repository.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllAscending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -90,13 +90,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities in a ascending order
+        /// Finds all entities in a ascending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">Repository.</param>
         /// <param name="offset">Offset.</param>
         /// <param name="limit">Limit.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllAscending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, int offset, int limit, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -104,13 +104,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities in a ascending order
+        /// Finds all entities in a ascending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">Repository.</param>
         /// <param name="offset">Offset.</param>
         /// <param name="limit">Limit.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAll<TEntity, TOrderByKey>(this IRepository<TEntity> repository, int offset, long limit, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -120,11 +120,11 @@ namespace Skahal.Infrastructure.Framework.Repositories
 
         #region FindAllDescending
         /// <summary>
-        /// Finds all entities  in a descending order
+        /// Finds all entities  in a descending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">The repository.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllDescending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -132,12 +132,12 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities that matches the filter in a descending order
+        /// Finds all entities that matches the filter in a descending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">The repository.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllDescending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -145,13 +145,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities in a descending order
+        /// Finds all entities in a descending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">Repository.</param>
         /// <param name="offset">Offset.</param>
         /// <param name="limit">Limit.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllDescending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, int offset, int limit, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -159,13 +159,13 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds all entities in a descending order
+        /// Finds all entities in a descending Order
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="repository">Repository.</param>
         /// <param name="offset">Offset.</param>
         /// <param name="limit">Limit.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public static IEnumerable<TEntity> FindAllDescending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, int offset, long limit, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
         {
@@ -213,12 +213,12 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds the first entity that match the filter in an ascending order.
+        /// Finds the first entity that match the filter in an ascending Order.
         /// </summary>
         /// <typeparam name="TEntity">The entity type.</typeparam>
         /// <param name="repository">The repository.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         /// <returns>The first entity that match the filter or null if none match.</returns>
         public static TEntity FindFirstAscending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot
@@ -227,12 +227,12 @@ namespace Skahal.Infrastructure.Framework.Repositories
         }
 
         /// <summary>
-        /// Finds the first entity that match the filter in an descending order.
+        /// Finds the first entity that match the filter in an descending Order.
         /// </summary>
         /// <typeparam name="TEntity">The entity type.</typeparam>
         /// <param name="repository">The repository.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         /// <returns>The first entity that match the filter or null if none match.</returns>
         public static TEntity FindFirstDescending<TEntity, TOrderByKey>(this IRepository<TEntity> repository, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderByKey>> orderBy)
             where TEntity : IAggregateRoot

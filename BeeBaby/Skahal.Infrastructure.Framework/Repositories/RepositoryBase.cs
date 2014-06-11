@@ -53,23 +53,23 @@ namespace Skahal.Infrastructure.Framework.Repositories
 		public abstract IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter);
 
         /// <summary>
-        /// Finds all entities that matches the filter in a ascending order.
+        /// Finds all entities that matches the filter in a ascending Order.
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="offset">The offset to start the result.</param>
         /// <param name="limit">The result count limit.</param>
         /// <param name="filter">The entities filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public abstract IEnumerable<TEntity> FindAllAscending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy);
 
         /// <summary>
-        /// Finds all entities that matches the filter in a descending order.
+        /// Finds all entities that matches the filter in a descending Order.
         /// </summary>
         /// <returns>The found entities.</returns>
         /// <param name="offset">The offset to start the result.</param>
         /// <param name="limit">The result count limit.</param>
         /// <param name="filter">The entities filter.</param>
-        /// <param name="orderBy">The order.</param>
+        /// <param name="orderBy">The Order.</param>
         public abstract IEnumerable<TEntity> FindAllDescending<TKey>(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> orderBy);
 
 		/// <summary>

@@ -43,11 +43,11 @@ namespace Domain.Moment
 			var moments = momentService.GetAllMoments(baby).ToList();
 
 			var events = MainRepository.FindAllAscending(
-				             (e) => e.Kind == eventType,
-				             (o) => ((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000)
-			             ).ToList();
+				             (o) => o.Priority //((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000)
+			             );
 
 			var result = events.Where(e => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0);
+
 			return result;
 		}
 	}

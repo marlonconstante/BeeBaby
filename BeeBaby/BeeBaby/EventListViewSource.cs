@@ -58,11 +58,13 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
+			var moment = m_otherEventsTableItems[indexPath.Row];
 			EventViewCell cell = (EventViewCell)tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-			cell.EventDescription = m_otherEventsTableItems[indexPath.Row].Description;
+			cell.EventDescription = moment.Description;
 
-//			var tagName = Enum.GetName(typeof(TagType), m_otherEventsTableItems[indexPath.Row].Tag);
-			var imageName = "tagBee.png";//string.Format("{0}.png", tagName);
+
+			var tagName = Enum.GetName(typeof(TagType), m_otherEventsTableItems[indexPath.Row].Tag).ToLower();
+			var imageName = (moment.Kind == EventType.Achivment) ? "firsts_sm.png" : string.Format("{0}_sm.png", tagName);
 			cell.TagIcon = new UIImage(imageName);
 
 			Console.WriteLine("{0} - {1}", m_otherEventsTableItems[indexPath.Row].Description, m_otherEventsTableItems[indexPath.Row].Kind);

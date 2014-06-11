@@ -38,6 +38,12 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// </summary>
 		/// <value>The tag.</value>
 		public int Tag { get; set; }
+
+		/// <summary>
+		/// Gets or sets the Order.
+		/// </summary>
+		/// <value>The Order.</value>
+		public int Priority { get; set; }
 	}
 }
 
