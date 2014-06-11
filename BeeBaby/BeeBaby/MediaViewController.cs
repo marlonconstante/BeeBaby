@@ -83,9 +83,9 @@ namespace BeeBaby
 		{
 			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
 			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
-			var m_picker = mediaPickerProvider.GetUIImagePickerController();
+			var picker = mediaPickerProvider.GetUIImagePickerController();
 
-			PresentViewController(m_picker, false, null);
+			PresentViewController(picker, false, null);
 		}
 
 		/// <summary>

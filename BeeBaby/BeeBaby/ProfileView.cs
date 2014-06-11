@@ -242,9 +242,9 @@ namespace BeeBaby
 					};
 
 					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, babyProfile.Delegate);
-					var m_picker = mediaPickerProvider.GetUIImagePickerController();
+					var picker = mediaPickerProvider.GetUIImagePickerController();
 
-					Window.RootViewController.PresentViewController(m_picker, false, null);
+					Window.RootViewController.PresentViewController(picker, false, null);
 				}
 			};
 			imageView.Layer.CornerRadius = 45f;
