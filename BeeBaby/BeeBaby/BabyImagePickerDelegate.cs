@@ -37,9 +37,12 @@ namespace BeeBaby
 		/// <param name="info">Info.</param>
 		void SavePermanentImageOnApp(NSDictionary info)
 		{
-			using (UIImage photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
+			using (var photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
-				ImageProvider.SavePermanentImageOnApp(photo, MediaBase.PhotoProfileName);
+				using (var thumbnail = ImageProvider.GenerateThumbnail(photo))
+				{
+					ImageProvider.SavePermanentImageOnApp(thumbnail, MediaBase.PhotoProfileName);
+				}
 			}
 		}
 

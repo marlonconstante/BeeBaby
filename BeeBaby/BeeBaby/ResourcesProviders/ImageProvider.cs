@@ -256,7 +256,7 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The thumbnail.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		private UIImage GenerateThumbnail(UIImage sourceImage)
+		public UIImage GenerateThumbnail(UIImage sourceImage)
 		{
 			return CroppedImageResize(sourceImage, MediaBase.ImageThumbnailSize);
 		}
