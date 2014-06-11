@@ -105,6 +105,20 @@ ManageFamily = Gerenciar família
 Configurations = Configurações
 About = Sobre
 Exit = Sair
+LittleBody = Corpinho
+Family = Família
+Ride = Passeio
+Sleepy = Soninho
+Bath = Banho
+Smile = Sorriso
+Lapy = Colinho
+Celebrations = Comemorações
+Birth = Nascimento
+Pregnancy = Gravidez
+School = Escolinha
+Recomendations = Recomendações
+Everyday = Cotidiano
+Firsts = Primeiros
 ";
 		}
 	}
