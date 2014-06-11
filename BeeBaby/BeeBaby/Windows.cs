@@ -20,9 +20,14 @@ namespace BeeBaby
 
 			if (topViewController != null)
 			{
-				while (topViewController.PresentedViewController != null)
+				while (true)
 				{
-					topViewController = topViewController.PresentedViewController;
+					var presentedViewController = topViewController.PresentedViewController;
+					if (presentedViewController == null || presentedViewController is UIImagePickerController)
+					{
+						break;
+					}
+					topViewController = presentedViewController;
 				}
 
 				if (topViewController is INavigationController)
