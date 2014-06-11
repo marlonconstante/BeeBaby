@@ -157,7 +157,7 @@ de lembrar sobre este momento?</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
-                                <rect key="frame" x="0.0" y="342" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="340" width="320" height="202"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
@@ -218,12 +218,12 @@ de lembrar sobre este momento?</string>
                                 <rect key="frame" x="0.0" y="307" width="320" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Este momento é sobre..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-am-eMk">
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Este momento é sobre..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-am-eMk">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="TZw-g7-4Fp"/>
+                                            <constraint firstAttribute="height" constant="33" id="EqE-dn-XVK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -242,12 +242,12 @@ de lembrar sobre este momento?</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="F4U-am-eMk" firstAttribute="trailing" secondItem="vTW-sD-k4E" secondAttribute="trailing" id="0xG-wq-KVc"/>
                                     <constraint firstItem="vTW-sD-k4E" firstAttribute="leading" secondItem="3kY-EJ-uPQ" secondAttribute="leading" id="1co-tF-g42"/>
                                     <constraint firstAttribute="bottom" secondItem="vTW-sD-k4E" secondAttribute="bottom" id="3bn-7K-ZLk"/>
                                     <constraint firstAttribute="trailing" secondItem="vTW-sD-k4E" secondAttribute="trailing" id="c52-iO-IJy"/>
-                                    <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="3kY-EJ-uPQ" secondAttribute="top" id="gR7-Xg-MQs"/>
-                                    <constraint firstItem="vTW-sD-k4E" firstAttribute="leading" secondItem="F4U-am-eMk" secondAttribute="leading" id="vmk-iK-lUF"/>
+                                    <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="3kY-EJ-uPQ" secondAttribute="top" id="cFL-SA-GoR"/>
+                                    <constraint firstItem="F4U-am-eMk" firstAttribute="leading" secondItem="vTW-sD-k4E" secondAttribute="leading" id="eHF-uB-8T4"/>
+                                    <constraint firstItem="F4U-am-eMk" firstAttribute="trailing" secondItem="vTW-sD-k4E" secondAttribute="trailing" id="qEQ-d4-rzz"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tag-view-box"/>
@@ -257,15 +257,17 @@ de lembrar sobre este momento?</string>
                         <constraints>
                             <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="wIr-X6-KYK" secondAttribute="leading" id="7yn-s0-Xyg"/>
                             <constraint firstAttribute="bottom" secondItem="wIr-X6-KYK" secondAttribute="bottom" constant="26" id="DIZ-Q3-ype"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="bottom" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="261" id="EDT-KY-i7u"/>
                             <constraint firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="ENW-VS-p6o"/>
                             <constraint firstAttribute="bottom" secondItem="3kY-EJ-uPQ" secondAttribute="bottom" id="Eua-FZ-Ugm"/>
                             <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="GmE-Ev-RMZ"/>
                             <constraint firstItem="3kY-EJ-uPQ" firstAttribute="top" secondItem="KdA-al-yac" secondAttribute="bottom" constant="243" id="I6z-PG-WuV"/>
-                            <constraint firstItem="wIr-X6-KYK" firstAttribute="top" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="35" id="R8f-Ye-FNR"/>
+                            <constraint firstItem="F4U-am-eMk" firstAttribute="top" secondItem="wIr-X6-KYK" secondAttribute="top" constant="-33" id="MUs-2o-fa9"/>
                             <constraint firstItem="wIr-X6-KYK" firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="ULT-x6-bPl"/>
                             <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="aK6-ck-EXR"/>
                             <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="wIr-X6-KYK" secondAttribute="leading" id="jaS-Zg-joH"/>
                             <constraint firstItem="3kY-EJ-uPQ" firstAttribute="trailing" secondItem="wIr-X6-KYK" secondAttribute="trailing" id="mxw-8M-GLD"/>
+                            <constraint firstItem="wIr-X6-KYK" firstAttribute="top" secondItem="qCH-eT-BbT" secondAttribute="bottom" constant="33" id="vRp-d1-Yw2"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-screen-background"/>
