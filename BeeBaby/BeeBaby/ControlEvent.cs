@@ -23,17 +23,17 @@ namespace BeeBaby
 		{
 			switch (m_type)
 			{
-			case ControlEventType.TouchUpInside:
-				((UIControl) m_control).TouchUpInside += m_eventHandler;
-				break;
-			case ControlEventType.ValueChanged:
-				((UIControl) m_control).ValueChanged += m_eventHandler;
-				break;
-			case ControlEventType.Scrolled:
-				((UIScrollView) m_control).Scrolled += m_eventHandler;
-				break;
-			default:
-				break;
+				case ControlEventType.TouchUpInside:
+					((UIControl)m_control).TouchUpInside += m_eventHandler;
+					break;
+				case ControlEventType.ValueChanged:
+					((UIControl)m_control).ValueChanged += m_eventHandler;
+					break;
+				case ControlEventType.Scrolled:
+					((UIScrollView)m_control).Scrolled += m_eventHandler;
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -44,17 +44,17 @@ namespace BeeBaby
 		{
 			switch (m_type)
 			{
-			case ControlEventType.TouchUpInside:
-				((UIControl) m_control).TouchUpInside -= m_eventHandler;
-				break;
-			case ControlEventType.ValueChanged:
-				((UIControl) m_control).ValueChanged -= m_eventHandler;
-				break;
-			case ControlEventType.Scrolled:
-				((UIScrollView) m_control).Scrolled -= m_eventHandler;
-				break;
-			default:
-				break;
+				case ControlEventType.TouchUpInside:
+					((UIControl)m_control).TouchUpInside -= m_eventHandler;
+					break;
+				case ControlEventType.ValueChanged:
+					((UIControl)m_control).ValueChanged -= m_eventHandler;
+					break;
+				case ControlEventType.Scrolled:
+					((UIScrollView)m_control).Scrolled -= m_eventHandler;
+					break;
+				default:
+					break;
 			}
 		}
 

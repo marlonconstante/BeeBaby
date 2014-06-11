@@ -62,7 +62,7 @@ namespace BeeBaby
 
 			m_selectedTag = string.Empty;
 
-			scrView.Scrolled += ScrollEvent;
+			ControlEvents.Add(new ControlEvent(scrView, ScrollEvent, ControlEventType.Scrolled));
 
 			ConfigureScrollView();
 			AddButtons();
@@ -70,17 +70,6 @@ namespace BeeBaby
 			View.AddSubview(scrView);
 		}
 			
-		/// <summary>
-		/// Views the did disappear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidDisappear(bool animated)
-		{
-			base.ViewDidDisappear(animated);
-
-			scrView.Scrolled -= ScrollEvent;
-		}
-
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
