@@ -344,6 +344,7 @@
     <Compile Include="Windows.cs" />
     <Compile Include="ControlEvent.cs" />
     <Compile Include="ControlEventType.cs" />
+    <Compile Include="Views.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

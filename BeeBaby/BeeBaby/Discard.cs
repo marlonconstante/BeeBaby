@@ -38,22 +38,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets the subviews.
-		/// </summary>
-		/// <returns>The subviews.</returns>
-		/// <param name="view">View.</param>
-		static List<UIView> GetSubviews(UIView view)
-		{
-			List<UIView> subviews = new List<UIView>();
-			foreach (var subview in view.Subviews)
-			{
-				subviews.AddRange(GetSubviews(subview));
-				subviews.Add(subview);
-			}
-			return subviews;
-		}
-
-		/// <summary>
 		/// Releases the values.
 		/// </summary>
 		/// <param name="values">Values.</param>
@@ -81,7 +65,7 @@ namespace BeeBaby
 		/// <param name="view">View.</param>
 		public static void ReleaseSubviews(UIView view)
 		{
-			var subviews = GetSubviews(view);
+			var subviews = Views.GetSubviews(view);
 			subviews.Add(view);
 			foreach (var subview in subviews)
 			{
