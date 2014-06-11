@@ -16,7 +16,6 @@ namespace BeeBaby
 		const float s_padding = 10f;
 		bool m_menu;
 		RectangleF m_frame;
-		UIImage m_defaultPhoto;
 		UIView m_viewProfiles;
 		Button m_buttonSelectedBaby;
 
@@ -65,7 +64,6 @@ namespace BeeBaby
 		{
 			m_menu = menu;
 			m_frame = Frame;
-			m_defaultPhoto = UIImage.FromFile("photo-profile.png");
 			AddBackgroundProfile();
 			if (!menu)
 			{
@@ -107,7 +105,7 @@ namespace BeeBaby
 			UIImage photoProfile = imageProvider.GetImage(MediaBase.PhotoProfileName, true);
 			if (photoProfile == null)
 			{
-				photoProfile = m_defaultPhoto;
+				photoProfile = UIImage.FromFile("photo-profile.png");
 			}
 			return photoProfile;
 		}
