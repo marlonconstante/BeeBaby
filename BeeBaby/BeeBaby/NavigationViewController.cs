@@ -68,9 +68,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Lefts the bar button action.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="ev">Event.</param>
-		public virtual void LeftBarButtonAction(object sender, EventArgs ev)
+		public virtual void LeftBarButtonAction()
 		{
 			if (IsContainsMenu())
 			{
@@ -122,9 +120,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Rights the bar button action.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="ev">Event.</param>
-		public virtual void RightBarButtonAction(object sender, EventArgs ev)
+		public virtual void RightBarButtonAction()
 		{
 			ShowProgressWhilePerforming(() => {
 				if (IsContainsMenu())
@@ -198,7 +194,12 @@ namespace BeeBaby
 					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
 					, LeftBarButtonStyleClass());
-				ControlEvents.Add(new ControlEvent(m_leftBarButtonItem.Button, LeftBarButtonAction, ControlEventType.TouchUpInside));
+
+				var proxy = new EventProxy<NavigationViewController, EventArgs>(this);
+				proxy.Action = (target, sender, args) => {
+					target.LeftBarButtonAction();
+				};
+				m_leftBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
 			NavigationItem.SetLeftBarButtonItem(m_leftBarButtonItem, true);
 		}
@@ -214,7 +215,12 @@ namespace BeeBaby
 					new NavigationButtonItem(RightBarButtonFrame()
 					, 6f
 					, RightBarButtonStyleClass());
-				ControlEvents.Add(new ControlEvent(m_rightBarButtonItem.Button, RightBarButtonAction, ControlEventType.TouchUpInside));
+
+				var proxy = new EventProxy<NavigationViewController, EventArgs>(this);
+				proxy.Action = (target, sender, args) => {
+					target.RightBarButtonAction();
+				};
+				m_rightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
 			NavigationItem.SetRightBarButtonItem(m_rightBarButtonItem, true);
 		}
