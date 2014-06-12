@@ -372,8 +372,6 @@
     <Compile Include="Notification.cs" />
     <Compile Include="INavigationController.cs" />
     <Compile Include="Windows.cs" />
-    <Compile Include="ControlEvent.cs" />
-    <Compile Include="ControlEventType.cs" />
     <Compile Include="Views.cs" />
     <Compile Include="EventProxy.cs" />
     <Compile Include="BabyImageView.cs" />
