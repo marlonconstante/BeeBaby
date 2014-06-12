@@ -79,7 +79,6 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
 		{
-			var watch = Stopwatch.StartNew();
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
 			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
@@ -94,22 +93,29 @@ namespace BeeBaby
 			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
 			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
-			var imageViews = new List<UIImageViewClickable>();
+			var imageViews = new List<MomentImageView>();
 
 			var index = 0;
 			foreach (var image in images)
 			{
-				var imageView = new UIImageViewClickable(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
-				
+				var imageView = new MomentImageView(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
+
+				imageView.Moment = moment;
+				imageView.FileName = image.FileName;
 				imageView.Image = image.Image;
 				imageView.UserInteractionEnabled = true;
 				imageView.MultipleTouchEnabled = true;
 				imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 				imageView.Opaque = true;
-				imageView.OnClick += () => {
-					m_viewController.PresentViewController(m_fullscreenController, false, null);
-					m_fullscreenController.SetInformation(moment, CurrentContext.Instance.CurrentBaby, imageProvider.GetImage(image.FileName));
+
+				var proxy = new EventProxy<TimelineViewSource, EventArgs>(this);
+				proxy.Action = (target, sender, args) => {
+					var momentImageView = (MomentImageView) sender;
+					target.m_viewController.PresentViewController(target.m_fullscreenController, false, null);
+					target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
 				};
+				imageView.Clicked += proxy.HandleEvent;
+
 				imageViews.Add(imageView);
 				
 				index++;
