@@ -375,6 +375,7 @@
     <Compile Include="ControlEvent.cs" />
     <Compile Include="ControlEventType.cs" />
     <Compile Include="Views.cs" />
+    <Compile Include="EventProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
