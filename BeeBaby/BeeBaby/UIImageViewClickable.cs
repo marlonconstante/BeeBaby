@@ -6,24 +6,24 @@ namespace BeeBaby
 {
 	public class UIImageViewClickable : UIImageView
 	{
-		UITapGestureRecognizer grTap;
+		UITapGestureRecognizer m_tap;
 
-		event Action onCl;
+		EventHandler m_clicked;
 
 		public UIImageViewClickable(RectangleF frame) : base(frame)
 		{
 		}
 
 		/// <summary>
-		/// Occurs when on click.
+		/// Occurs when clicked.
 		/// </summary>
-		public event Action OnClick {
+		public event EventHandler Clicked {
 			add {
-				onCl += value;
+				m_clicked += value;
 				UpdateUserInteractionFlag();
 			}
 			remove {
-				onCl -= value;
+				m_clicked -= value;
 				UpdateUserInteractionFlag();
 			}
 		}
@@ -33,27 +33,27 @@ namespace BeeBaby
 		/// </summary>
 		void UpdateUserInteractionFlag()
 		{
-			UserInteractionEnabled = ((onCl != null) && (onCl.GetInvocationList().Length > 0));
+			UserInteractionEnabled = ((m_clicked != null) && (m_clicked.GetInvocationList().Length > 0));
 			if (UserInteractionEnabled)
 			{
-				if (grTap == null)
+				if (m_tap == null)
 				{
-					grTap = new UITapGestureRecognizer(() => {
-						if (onCl != null)
+					m_tap = new UITapGestureRecognizer(() => {
+						if (m_clicked != null)
 						{
-							onCl();
+							m_clicked(this, EventArgs.Empty);
 						}
 					});
-					grTap.CancelsTouchesInView = true;
-					AddGestureRecognizer(grTap);
+					m_tap.CancelsTouchesInView = true;
+					AddGestureRecognizer(m_tap);
 				}
 			}
 			else
 			{
-				if (grTap != null)
+				if (m_tap != null)
 				{
-					RemoveGestureRecognizer(grTap);
-					grTap = null;
+					RemoveGestureRecognizer(m_tap);
+					m_tap = null;
 				}
 			}
 		}

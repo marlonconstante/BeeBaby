@@ -376,6 +376,7 @@
     <Compile Include="ControlEventType.cs" />
     <Compile Include="Views.cs" />
     <Compile Include="EventProxy.cs" />
+    <Compile Include="BabyImageView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
