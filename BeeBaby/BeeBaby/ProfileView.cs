@@ -157,9 +157,12 @@ namespace BeeBaby
 			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
 			button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
 			button.SetTitle(baby.Name + " >", UIControlState.Normal);
-			button.TouchUpInside += (sender, e) => {
-				OpenBabyViewController();
+
+			var proxy = new EventProxy<ProfileView, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				target.OpenBabyViewController();
 			};
+			button.TouchUpInside += proxy.HandleEvent;
 
 			return button;
 		}
@@ -224,30 +227,36 @@ namespace BeeBaby
 		/// </summary>
 		/// <returns>The image view profile.</returns>
 		/// <param name="babyProfile">Baby profile.</param>
-		UIImageViewClickable BuildImageViewProfile(BabyProfile babyProfile)
+		BabyImageView BuildImageViewProfile(BabyProfile babyProfile)
 		{
 			var position = (MediaBase.PhotoProfileSize - MediaBase.PhotoProfileInnerSize) / 2;
 			var frame = new RectangleF(position, position, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
 
-			UIImageViewClickable imageView = BuildImageView(frame, babyProfile.Image);
-			imageView.OnClick += () => {
-				if (m_menu)
+			BabyImageView imageView = BuildImageView(frame, babyProfile.Image);
+			imageView.BabyProfile = babyProfile;
+			imageView.Layer.CornerRadius = 45f;
+
+			var proxy = new EventProxy<ProfileView, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				if (target.m_menu)
 				{
-					OpenBabyViewController();
+					target.OpenBabyViewController();
 				}
 				else
 				{
-					babyProfile.Delegate.CompletionHandler = () => {
-						imageView.Image = GetPhotoProfile(babyProfile.Delegate.ImageProvider);
+					var babyImageView = (BabyImageView) sender;
+					var imagePickerDelegate = babyImageView.BabyProfile.Delegate;
+					imagePickerDelegate.CompletionHandler = () => {
+						babyImageView.Image = target.GetPhotoProfile(imagePickerDelegate.ImageProvider);
 					};
 
-					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, babyProfile.Delegate);
+					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
 					var picker = mediaPickerProvider.GetUIImagePickerController();
 
 					Window.RootViewController.PresentViewController(picker, false, null);
 				}
 			};
-			imageView.Layer.CornerRadius = 45f;
+			imageView.Clicked += proxy.HandleEvent;
 
 			return imageView;
 		}
@@ -258,9 +267,9 @@ namespace BeeBaby
 		/// <returns>The image view.</returns>
 		/// <param name="frame">Frame.</param>
 		/// <param name="image">Image.</param>
-		UIImageViewClickable BuildImageView(RectangleF frame, UIImage image)
+		BabyImageView BuildImageView(RectangleF frame, UIImage image)
 		{
-			UIImageViewClickable imageView = new UIImageViewClickable(frame);
+			BabyImageView imageView = new BabyImageView(frame);
 			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 			imageView.ClipsToBounds = true;
 			imageView.Image = image;
