@@ -12,24 +12,6 @@ namespace BeeBaby
 {
 	public partial class EventListViewController : NavigationViewController
 	{
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="BeeBaby.EventListViewController"/> show everyday events.
-		/// </summary>
-		/// <value><c>true</c> if show everyday events; otherwise, <c>false</c>.</value>
-		public bool ShowEverydayEvents { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="BeeBaby.EventListViewController"/> show firsts events.
-		/// </summary>
-		/// <value><c>true</c> if show firsts events; otherwise, <c>false</c>.</value>
-		public bool ShowFirstsEvents { get; set; }
-
-		IList<Event> m_events;
-		EventService m_eventService;
-		string m_selectedTag;
-		IList<string> m_buttonNamesList;
-		EventListViewSource m_eventListViewSource;
-
 		const float s_buttonSizeX = 106f;
 		const float s_buttonSizeY = 100f;
 		const float s_imageSize = 70f;
@@ -39,6 +21,11 @@ namespace BeeBaby
 		const string s_firstsTagName = "Firsts";
 		const string s_everydayTagName = "Everyday";
 
+		string m_selectedTag;
+		IList<string> m_buttonNamesList;
+		IList<Event> m_events;
+		EventService m_eventService;
+		EventListViewSource m_eventListViewSource;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -62,7 +49,11 @@ namespace BeeBaby
 
 			m_selectedTag = string.Empty;
 
-			ControlEvents.Add(new ControlEvent(scrView, ScrollEvent, ControlEventType.Scrolled));
+			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				target.ScrollEvent();
+			};
+			scrView.Scrolled += proxy.HandleEvent;
 
 			ConfigureScrollView();
 			AddButtons();
@@ -73,11 +64,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="e">E.</param>
-		void ScrollEvent(object sender, EventArgs e)
+		void ScrollEvent()
 		{
-			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
+			pcrPager.CurrentPage = (int) Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -120,14 +109,26 @@ namespace BeeBaby
 			var button = new UITagButton(new RectangleF(x, y, s_buttonSizeX, s_buttonSizeY));
 			button.BackgroundColor = UIColor.Clear;
 			button.TagName = tagName;
+			button.MultipleTouchEnabled = true;
+
+			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				target.SelectTag((UIButton) sender);
+			};
+			button.TouchUpInside += proxy.HandleEvent;
+
 			SetTitle(button, tagName);
 			SetImage(button, tagName);
-			button.TouchUpInside += (sender, e) => SelectTag(button);
-			button.MultipleTouchEnabled = true;
+
 			return button;
 		}
 
-		static void SelectButton(UITagButton sender, bool selected)
+		/// <summary>
+		/// Selects the button.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="selected">If set to <c>true</c> selected.</param>
+		void SelectButton(UITagButton sender, bool selected)
 		{
 			sender.Selected = selected;
 			if (selected)
@@ -148,6 +149,11 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Sets the image.
+		/// </summary>
+		/// <param name="button">Button.</param>
+		/// <param name="tagName">Tag name.</param>
 		void SetImage(UITagButton button, string tagName)
 		{
 			var imageName = string.Format("{0}.png", tagName.ToLower());
@@ -166,7 +172,7 @@ namespace BeeBaby
 		void ConfigureScrollView()
 		{
 			var numberOfTags = Enum.GetNames(typeof(TagType)).Length;
-			var scrollWidth = (float)(Math.Truncate(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
+			var scrollWidth = (float) (Math.Truncate(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.UserInteractionEnabled = true;
@@ -174,7 +180,7 @@ namespace BeeBaby
 			scrView.PagingEnabled = true;
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 
-			pcrPager.Pages = (int)Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
+			pcrPager.Pages = (int) Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -202,12 +208,12 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void SelectTag(UIButton sender)
 		{
-			var button = (UITagButton)sender;
+			var button = (UITagButton) sender;
 
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{
 				DeselectAllTags();
-				FilterTableByTag((UITagButton)sender);
+				FilterTableByTag((UITagButton) sender);
 				sender.Selected = true;
 				SelectButton(button, true);
 
@@ -222,7 +228,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				FilterTableByTag((UITagButton)sender);
+				FilterTableByTag((UITagButton) sender);
 				sender.Selected = true;
 				SelectButton(button, true);
 			}
@@ -317,5 +323,16 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.EventListViewController"/> show everyday events.
+		/// </summary>
+		/// <value><c>true</c> if show everyday events; otherwise, <c>false</c>.</value>
+		public bool ShowEverydayEvents { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.EventListViewController"/> show firsts events.
+		/// </summary>
+		/// <value><c>true</c> if show firsts events; otherwise, <c>false</c>.</value>
+		public bool ShowFirstsEvents { get; set; }
 	}
 }
