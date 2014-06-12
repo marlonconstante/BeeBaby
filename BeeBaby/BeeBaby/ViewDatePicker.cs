@@ -70,7 +70,13 @@ namespace BeeBaby
 			m_button.ContentEdgeInsets = new UIEdgeInsets(1f, 33f, 0f, 0f);
 			m_button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 			m_button.SetStyleClass("highlighted");
-			m_button.TouchUpInside += (sender, e) => UpdateFrame();
+
+			var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				target.UpdateFrame();
+			};
+			m_button.TouchUpInside += proxy.HandleEvent;
+
 			AddSubview(m_button);
 		}
 
@@ -85,10 +91,14 @@ namespace BeeBaby
 					m_datePicker.Mode = m_mode;
 					m_datePicker.Date = DateTime;
 					m_datePicker.Hidden = true;
-					m_datePicker.ValueChanged += (s, args) => {
-						DateTime = m_datePicker.Date;
-						UpdateInfo();
+
+					var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
+					proxy.Action = (target, sender, args) => {
+						target.DateTime = ((UIDatePicker) sender).Date;
+						target.UpdateInfo();
 					};
+					m_datePicker.ValueChanged += proxy.HandleEvent;
+
 					AddSubview(m_datePicker);
 				});
 			});
