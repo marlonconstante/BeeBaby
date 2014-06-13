@@ -50,7 +50,8 @@ namespace BeeBaby
 			m_selectedTag = string.Empty;
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) => {
+			proxy.Action = (target, sender, args) =>
+			{
 				target.ScrollEvent();
 			};
 			scrView.Scrolled += proxy.HandleEvent;
@@ -66,7 +67,7 @@ namespace BeeBaby
 		/// </summary>
 		void ScrollEvent()
 		{
-			pcrPager.CurrentPage = (int) Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
+			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -112,8 +113,9 @@ namespace BeeBaby
 			button.MultipleTouchEnabled = true;
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) => {
-				target.SelectTag((UIButton) sender);
+			proxy.Action = (target, sender, args) =>
+			{
+				target.SelectTag((UIButton)sender);
 			};
 			button.TouchUpInside += proxy.HandleEvent;
 
@@ -170,8 +172,8 @@ namespace BeeBaby
 		/// </summary>
 		void ConfigureScrollView()
 		{
-			var numberOfTags = Enum.GetNames(typeof(TagType)).Length;
-			var scrollWidth = (float) (Math.Truncate(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
+			var numberOfTags = m_buttonNamesList.Count;
+			var scrollWidth = (float)(Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.UserInteractionEnabled = true;
@@ -179,7 +181,7 @@ namespace BeeBaby
 			scrView.PagingEnabled = true;
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 
-			pcrPager.Pages = (int) Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
+			pcrPager.Pages = (int)Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -207,12 +209,12 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void SelectTag(UIButton sender)
 		{
-			var button = (UITagButton) sender;
+			var button = (UITagButton)sender;
 
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{
 				DeselectAllTags();
-				FilterTableByTag((UITagButton) sender);
+				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
 				SelectButton(button, true);
 
@@ -227,7 +229,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				FilterTableByTag((UITagButton) sender);
+				FilterTableByTag((UITagButton)sender);
 				sender.Selected = true;
 				SelectButton(button, true);
 			}
