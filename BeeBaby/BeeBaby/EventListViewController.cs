@@ -133,8 +133,7 @@ namespace BeeBaby
 			sender.Selected = selected;
 			if (selected)
 			{
-
-				var iconImage = new UIImage("hover.png");
+				var iconImage = UIImage.FromFile("hover.png");
 				const float x = (s_buttonSizeX - s_imageSize) / 2;
 				var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
 
@@ -157,7 +156,7 @@ namespace BeeBaby
 		void SetImage(UITagButton button, string tagName)
 		{
 			var imageName = string.Format("{0}.png", tagName.ToLower());
-			var iconImage = new UIImage(imageName);
+			var iconImage = UIImage.FromFile(imageName);
 			const float x = (s_buttonSizeX - s_imageSize) / 2;
 			var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
 
