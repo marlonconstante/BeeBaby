@@ -5,11 +5,11 @@ namespace BeeBaby
 	public class EventProxy<TDelegate, TEventArgs> : IDisposable
 		where TDelegate : class where TEventArgs : EventArgs
 	{
-		WeakReference m_weakDelegate;
+		WeakDelegate<TDelegate> m_weakDelegate;
 
 		public EventProxy(TDelegate delegateInstance)
 		{
-			m_weakDelegate = new WeakReference(delegateInstance);
+			m_weakDelegate = new WeakDelegate<TDelegate>(delegateInstance);
 		}
 
 		/// <summary>
@@ -19,7 +19,7 @@ namespace BeeBaby
 		/// <param name="args">Arguments.</param>
 		public void HandleEvent(object sender, TEventArgs args)
 		{
-			var target = m_weakDelegate.Target as TDelegate;
+			var target = m_weakDelegate.Target;
 
 			if (Action != null && target != null)
 			{
