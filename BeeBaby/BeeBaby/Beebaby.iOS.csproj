@@ -380,6 +380,7 @@
     <Compile Include="EventProxy.cs" />
     <Compile Include="BabyImageView.cs" />
     <Compile Include="MomentImageView.cs" />
+    <Compile Include="WeakDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

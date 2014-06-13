@@ -8,6 +8,7 @@ using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Threading;
 using System.Collections.Generic;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -41,19 +42,7 @@ namespace BeeBaby
 			m_autoCompleteTable.ScrollEnabled = true;
 			m_autoCompleteTable.Hidden = true;
 
-			txtLocalName.ShouldReturn += (textField) =>
-			{ 
-				m_autoCompleteTable.Hidden = true;
-				return true; 
-			};
-
 			this.View.AddSubview(m_autoCompleteTable);
-
-			txtLocalName.ShouldChangeCharacters += (sender, something, e) =>
-			{
-				UpdateSuggestions(e);
-				return true;
-			};
 
 			m_locations = new LocationService().GetAllLocations();
 			wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
@@ -62,6 +51,39 @@ namespace BeeBaby
 			{
 				LoadNearLocation();
 			}
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			vwDate.UpdateInfo();
+
+			txtLocalName.ShouldReturn += InputLocalShouldReturn;
+			txtLocalName.ShouldChangeCharacters += InputLocalShouldChangeCharacters;
+
+			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
+			if (selectedEvent != null)
+			{
+				CurrentContext.Instance.Moment.Event = selectedEvent;
+				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
+			}
+		}
+
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			txtLocalName.ShouldReturn -= InputLocalShouldReturn;
+			txtLocalName.ShouldChangeCharacters -= InputLocalShouldChangeCharacters;
 		}
 
 		/// <summary>
@@ -79,15 +101,29 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Updates the suggestions.
+		/// Inputs the local should return.
 		/// </summary>
-		/// <param name="e">E.</param>
-		public void UpdateSuggestions(string e)
+		/// <returns><c>true</c>, if local should return was input, <c>false</c> otherwise.</returns>
+		/// <param name="textField">Text field.</param>
+		public bool InputLocalShouldReturn(UITextField textField)
+		{
+			m_autoCompleteTable.Hidden = true;
+
+			return true;
+		}
+
+		/// <summary>
+		/// Inputs the local should change characters.
+		/// </summary>
+		/// <returns><c>true</c>, if local should change characters was input, <c>false</c> otherwise.</returns>
+		/// <param name="textField">Text field.</param>
+		/// <param name="range">Range.</param>
+		/// <param name="replacementString">Replacement string.</param>
+		public bool InputLocalShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
 		{
 			string[] suggestions = null;
 
-			var source = e != string.Empty ? string.Concat(txtLocalName.Text, e).ToLowerInvariant() : txtLocalName.Text.Substring(0, txtLocalName.Text.Length - 1).ToLowerInvariant();
-
+			var source = replacementString != string.Empty ? string.Concat(textField.Text, replacementString).ToLowerInvariant() : textField.Text.Substring(0, textField.Text.Length - 1).ToLowerInvariant();
 			try
 			{
 				suggestions = wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
@@ -109,6 +145,8 @@ namespace BeeBaby
 			{
 				Console.WriteLine("Erro ao buscar as sugestões.");
 			}
+
+			return true;
 		}
 
 		/// <summary>
@@ -122,33 +160,6 @@ namespace BeeBaby
 			mapView.SetCenterCoordinate(new MonoTouch.CoreLocation.CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude), true);
 			txtLocalName.ResignFirstResponder();
 			m_autoCompleteTable.Hidden = true;
-		}
-
-		/// <summary>
-		/// Views the will appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
-			vwDate.UpdateInfo();
-		}
-
-		/// <summary>
-		/// Views the did appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
-
-			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
-			if (selectedEvent != null)
-			{
-				CurrentContext.Instance.Moment.Event = selectedEvent;
-				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
-			}
 		}
 
 		/// <summary>
@@ -189,8 +200,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SelectEvent(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() =>
-			{
+			ShowProgressWhilePerforming(() => {
 				PerformSegue("segueSelectEvent", sender);
 			}, false);
 		}
@@ -201,8 +211,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() =>
-			{
+			ShowProgressWhilePerforming(() => {
 				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
 				var moment = CurrentContext.Instance.Moment;
@@ -217,11 +226,9 @@ namespace BeeBaby
 				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
 				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
 
-				var location = new Location()
-				{
+				var location = new Location() {
 					Name = txtLocalName.Text,
-					Position = new Coordinates()
-					{
+					Position = new Coordinates() {
 						Latitude = moment.Position.Latitude,
 						Longitude = moment.Position.Longitude
 					}
