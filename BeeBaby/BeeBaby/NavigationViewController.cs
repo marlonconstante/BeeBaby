@@ -122,17 +122,7 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void RightBarButtonAction()
 		{
-			ShowProgressWhilePerforming(() => {
-				if (IsContainsMenu())
-				{
-					RootViewController.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
-					DismissViewController(true, null);
-				}
-				else
-				{
-					NavigationController.PopToRootViewController(true);
-				}
-			}, false);
+			OpenCamera();
 		}
 
 		/// <summary>
@@ -151,6 +141,23 @@ namespace BeeBaby
 		public virtual bool IsTranslucentNavigationBar()
 		{
 			return true;
+		}
+
+		/// <summary>
+		/// Opens the camera.
+		/// </summary>
+		public void OpenCamera()
+		{
+			ShowProgressWhilePerforming(() => {
+				if (IsContainsMenu())
+				{
+					RootViewController.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
+				}
+				else
+				{
+					NavigationController.PopToRootViewController(true);
+				}
+			}, false);
 		}
 
 		/// <summary>

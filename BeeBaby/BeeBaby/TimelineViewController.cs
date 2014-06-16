@@ -6,6 +6,7 @@ using Domain.Moment;
 using Domain.Baby;
 using Application;
 using BeeBaby.ResourcesProviders;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -22,7 +23,28 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			LoadBaby();
+		}
+
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
 			InitTimeline();
+		}
+
+		/// <summary>
+		/// Loads the baby.
+		/// </summary>
+		void LoadBaby()
+		{
+			new ImageProvider().DeleteTemporaryFiles();
+
+			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 		}
 
 		/// <summary>
@@ -31,15 +53,21 @@ namespace BeeBaby
 		/// 
 		void InitTimeline()
 		{
-			new ImageProvider().DeleteTemporaryFiles();
-
 			var baby = CurrentContext.Instance.CurrentBaby;
-			var moments = new MomentService().GetAllMoments(baby);
+			if (baby == null)
+			{
+				OpenCamera();
+			}
+			else
+			{
+				var moments = new MomentService().GetAllMoments(baby);
 
-			lblBabyName.Text = baby.Name;
-			lblBabyAge.Text = baby.AgeInWords;
+				lblBabyName.Text = baby.Name;
+				lblBabyAge.Text = baby.AgeInWords;
 
-			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+				tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+				tblView.ReloadData();
+			}
 		}
 	}
 }

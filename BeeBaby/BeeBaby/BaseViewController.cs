@@ -108,7 +108,8 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is contains menu; otherwise, <c>false</c>.</returns>
 		public bool IsContainsMenu()
 		{
-			return RootViewController.GetType() == typeof(SlideoutNavigationController);
+			var viewController = RootViewController;
+			return viewController.GetType() == typeof(SlideoutNavigationController) && viewController.PresentedViewController == null;
 		}
 
 		/// <summary>
@@ -118,9 +119,6 @@ namespace BeeBaby
 		public UIViewController RootViewController {
 			get {
 				return UIApplication.SharedApplication.Windows[0].RootViewController;
-			}
-			set {
-				UIApplication.SharedApplication.Windows[0].RootViewController = value;
 			}
 		}
 
