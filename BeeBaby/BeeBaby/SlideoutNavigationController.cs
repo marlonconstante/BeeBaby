@@ -668,9 +668,7 @@ namespace BeeBaby
 		{
 			if (_internalTopNavigation != null)
 			{
-				_internalTopNavigation.RemoveFromParentViewController();
-				_internalTopNavigation.View.RemoveFromSuperview();
-				_internalTopNavigation.Dispose();
+				Discard.ReleaseNavigation(_internalTopNavigation);
 			}
 
 			_internalTopNavigation = new UINavigationController(view) {

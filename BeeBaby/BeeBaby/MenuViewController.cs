@@ -110,7 +110,6 @@ namespace BeeBaby
 			else
 			{
 				ActionProgress actionProgress = new ActionProgress(() => {
-					NavigationController.PopToRootViewController(false);
 					NavigationController.PushViewController((UIViewController) m_board.InstantiateViewController(storyboardId), false);
 					if (deselectRows)
 					{

@@ -182,7 +182,8 @@ namespace BeeBaby
 		partial void OpenTimeline(UIButton sender)
 		{
 			NSAction segueTimeline = () => {
-				PresentingViewController.DismissViewController(true, null);
+				PresentingViewController.DismissViewController(false, null);
+				Discard.ReleaseNavigation(NavigationController);
 			};
 			ShowProgressWhilePerforming(() => {
 				if (m_picker != null)
