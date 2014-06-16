@@ -55,6 +55,7 @@
     <Compile Include="SqliteNet\Entities\MomentsBabies.cs" />
     <Compile Include="Memory\MemoryLocationRepository.cs" />
     <Compile Include="SqliteNet\SqliteNetLocationRepository.cs" />
+    <Compile Include="Dropbox\DropboxRepositoryBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -62,6 +63,7 @@
     <Folder Include="SqliteNet\" />
     <Folder Include="Commons\" />
     <Folder Include="SqliteNet\Mapper\" />
+    <Folder Include="Dropbox\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HelperSharp">
@@ -70,11 +72,20 @@
     <Reference Include="SQLiteNetExtensions">
       <HintPath>..\references\SqliteNet\SQLiteNetExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\references\JsonNet\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.3.0\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="BobbyTables">
+      <HintPath>..\packages\BobbyTables.1.3.2\lib\portable-net40+sl50+wp80+win\BobbyTables.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

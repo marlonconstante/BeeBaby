@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{85B112B9-548C-4568-91F1-F62577CDF404}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -38,11 +38,13 @@
     <Compile Include="SqliteNet\Mapper\SqliteNetMomentMapperTest.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetLocationMapperTest.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetBabyMapperTest.cs" />
+    <Compile Include="Dropbox\DropboxRepositoryBaseTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="SqliteNet\" />
     <Folder Include="SqliteNet\Mapper\" />
+    <Folder Include="Dropbox\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
