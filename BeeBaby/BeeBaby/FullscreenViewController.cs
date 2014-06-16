@@ -96,7 +96,7 @@ namespace BeeBaby
 
 				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 				{
-					FBDialogs.PresentOSIntegratedShareDialogModally(RootViewController, null, image, null, (result, error) => {
+					FBDialogs.PresentOSIntegratedShareDialogModally(this, null, image, null, (result, error) => {
 						if (error != null)
 						{
 							InvokeOnMainThread(() => {
