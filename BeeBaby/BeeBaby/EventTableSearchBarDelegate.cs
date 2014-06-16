@@ -33,6 +33,8 @@ namespace BeeBaby
 				GetFilteredEvents(searchText) :
 				m_eventViewController.LoadEvents(m_events);
 
+			m_eventViewController.ClearSelectedTag();
+
 			m_eventListViewSource.ReloadData(tableView, events);
 		}
 
@@ -44,7 +46,19 @@ namespace BeeBaby
 		{
 			searchBar.ResignFirstResponder();
 		}
-
+			
+		/// <Docs>To be added.</Docs>
+		/// <remarks>To be added.</remarks>
+		/// <summary>
+		/// Determines whether this instance cancel button clicked the specified searchBar.
+		/// </summary>
+		/// <returns><c>true</c> if this instance cancel button clicked the specified searchBar; otherwise, <c>false</c>.</returns>
+		/// <param name="searchBar">Search bar.</param>
+		public override void CancelButtonClicked(UISearchBar searchBar)
+		{
+			searchBar.Text = string.Empty;
+		}
+			
 		/// <summary>
 		/// Gets the filtered events.
 		/// </summary>

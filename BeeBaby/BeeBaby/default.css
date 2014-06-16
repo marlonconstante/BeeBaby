@@ -42,6 +42,12 @@ navigation-bar button:selected {
 	color: #fff;
 }
 
+search-bar button,
+search-bar button:highlighted,
+search-bar button:selected {
+    font-size: 14pt;
+}
+
 .table-view-headerfooter-view label{
 	color: #4d5f5c;
 	font-size: 10pt;

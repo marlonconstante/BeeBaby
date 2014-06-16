@@ -152,11 +152,11 @@ de lembrar sobre este momento?</string>
                         <viewControllerLayoutGuide type="top" id="KdA-al-yac"/>
                         <viewControllerLayoutGuide type="bottom" id="WJ6-OO-heC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yIf-i5-BUP">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yIf-i5-BUP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
+                            <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
                                 <rect key="frame" x="0.0" y="340" width="320" height="202"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>

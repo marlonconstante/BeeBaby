@@ -44,7 +44,9 @@ namespace BeeBaby
 			var allEvents = m_eventService.GetAllEvents();
 			m_events = LoadEvents(allEvents);
 			m_eventListViewSource = new EventListViewSource(this, m_events);
+
 			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
+
 			tblView.Source = m_eventListViewSource;
 
 			m_selectedTag = string.Empty;
@@ -328,6 +330,15 @@ namespace BeeBaby
 			{
 				m_buttonNamesList.Add(item.ToString());
 			}
+		}
+
+		/// <summary>
+		/// Clears the selected tag.
+		/// </summary>
+		public void ClearSelectedTag()
+		{
+			DeselectAllTags();
+			m_selectedTag = string.Empty;
 		}
 
 		/// <summary>
