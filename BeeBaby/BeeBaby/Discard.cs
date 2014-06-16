@@ -29,11 +29,6 @@ namespace BeeBaby
 				{
 					ReleaseImage((UIImageView) value);
 				}
-				if (value is IDisposable)
-				{
-					var disposable = (IDisposable) value;
-					disposable.Dispose();
-				}
 			}
 		}
 
@@ -55,8 +50,21 @@ namespace BeeBaby
 		/// <param name="imageView">Image view.</param>
 		static void ReleaseImage(UIImageView imageView)
 		{
-			Dispose(imageView.Image);
+			imageView.Image.Dispose();
 			imageView.Image = null;
+		}
+
+		/// <summary>
+		/// Releases the navigation.
+		/// </summary>
+		/// <param name="navigationController">Navigation controller.</param>
+		public static void ReleaseNavigation(UINavigationController navigationController)
+		{
+			navigationController.PopToRootViewController(false);
+			navigationController.RemoveFromParentViewController();
+			navigationController.View.RemoveFromSuperview();
+			navigationController.TopViewController.Dispose();
+			navigationController.Dispose();
 		}
 
 		/// <summary>
@@ -81,10 +89,10 @@ namespace BeeBaby
 		public static void ReleaseOutlets(Object instance)
 		{
 			var type = instance.GetType();
-			var method = type.GetMethod("ReleaseDesignerOutlets", BindingFlags.Instance | BindingFlags.NonPublic);
+			var method = type.GetMethod("ReleaseDesignerOutlets", BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
 			if (method != null)
 			{
-				method.Invoke(instance, null);
+				//method.Invoke(instance, null);
 			}
 		}
 
@@ -95,13 +103,16 @@ namespace BeeBaby
 		public static void ReleaseProperties(Object instance)
 		{
 			var type = instance.GetType();
-			foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+			foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic))
 			{
-				var value = property.GetValue(instance);
-				if (value != null)
+				if (property.CanRead && property.CanWrite)
 				{
-					Dispose(value);
-					property.SetValue(instance, null);
+					var value = property.GetValue(instance);
+					if (value != null)
+					{
+						Dispose(value);
+						property.SetValue(instance, null);
+					}
 				}
 			}
 		}
@@ -113,7 +124,7 @@ namespace BeeBaby
 		public static void ReleaseFields(Object instance)
 		{
 			var type = instance.GetType();
-			foreach (var field in type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+			foreach (var field in type.GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic))
 			{
 				var value = field.GetValue(instance);
 				if (value != null)

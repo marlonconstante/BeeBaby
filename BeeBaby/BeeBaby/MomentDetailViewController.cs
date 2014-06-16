@@ -244,7 +244,8 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;
 
-				PresentingViewController.DismissViewController(true, null);
+				PresentingViewController.DismissViewController(false, null);
+				Discard.ReleaseNavigation(NavigationController);
 			}, false);
 		}
 	}

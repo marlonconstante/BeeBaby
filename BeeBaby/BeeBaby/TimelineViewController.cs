@@ -12,7 +12,7 @@ namespace BeeBaby
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
-		bool m_openCamera = true;
+		static bool m_openCamera = true;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
