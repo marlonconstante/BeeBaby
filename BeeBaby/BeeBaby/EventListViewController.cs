@@ -62,6 +62,12 @@ namespace BeeBaby
 			View.AddSubview(scrView);
 		}
 
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
+		}
+
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
