@@ -12,6 +12,8 @@ namespace BeeBaby
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
+		bool m_openCamera = true;
+
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -34,7 +36,15 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
-			InitTimeline();
+			if (m_openCamera)
+			{
+				OpenCamera();
+				m_openCamera = false;
+			}
+			else
+			{
+				InitTimeline();
+			}
 		}
 
 		/// <summary>
@@ -54,20 +64,13 @@ namespace BeeBaby
 		void InitTimeline()
 		{
 			var baby = CurrentContext.Instance.CurrentBaby;
-			if (baby == null)
-			{
-				OpenCamera();
-			}
-			else
-			{
-				var moments = new MomentService().GetAllMoments(baby);
+			var moments = new MomentService().GetAllMoments(baby);
 
-				lblBabyName.Text = baby.Name;
-				lblBabyAge.Text = baby.AgeInWords;
+			lblBabyName.Text = baby.Name;
+			lblBabyAge.Text = baby.AgeInWords;
 
-				tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
-				tblView.ReloadData();
-			}
+			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+			tblView.ReloadData();
 		}
 	}
 }
