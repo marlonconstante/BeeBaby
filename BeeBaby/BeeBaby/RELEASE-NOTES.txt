@@ -1,1 +1,4 @@
-BeeBaby Test 00003
+BeeBaby Test 00004
+
+Melhorias de performance
++ estabilidade
