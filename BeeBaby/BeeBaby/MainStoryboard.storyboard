@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XbC-sd-fcb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -298,7 +298,7 @@ de lembrar sobre este momento?</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laura" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i59-ne-fd6">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i59-ne-fd6">
                                 <rect key="frame" x="10" y="70" width="132" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -312,7 +312,7 @@ de lembrar sobre este momento?</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="subtitle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 meses e 3 semanas" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-FL-7pL">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-FL-7pL">
                                 <rect key="frame" x="151" y="70" width="159" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,9 +430,9 @@ de lembrar sobre este momento?</string>
                             <constraint firstItem="Qro-Dy-vJe" firstAttribute="top" secondItem="i59-ne-fd6" secondAttribute="bottom" constant="5" id="FKt-gF-uae"/>
                             <constraint firstAttribute="trailing" secondItem="Qro-Dy-vJe" secondAttribute="trailing" constant="-2" id="QJV-0k-AaB"/>
                             <constraint firstItem="Qro-Dy-vJe" firstAttribute="leading" secondItem="2f6-vZ-6fR" secondAttribute="leading" constant="2" id="SPM-xc-YDP"/>
-                            <constraint firstItem="bFj-FL-7pL" firstAttribute="top" secondItem="f2S-dr-MOg" secondAttribute="bottom" constant="6" id="Wls-OO-sdM"/>
+                            <constraint firstItem="bFj-FL-7pL" firstAttribute="top" secondItem="2f6-vZ-6fR" secondAttribute="top" constant="70" id="UwP-UX-6DD"/>
+                            <constraint firstItem="i59-ne-fd6" firstAttribute="top" secondItem="2f6-vZ-6fR" secondAttribute="top" constant="70" id="gku-Xe-4Fk"/>
                             <constraint firstItem="i59-ne-fd6" firstAttribute="leading" secondItem="2f6-vZ-6fR" secondAttribute="leading" constant="10" id="hGy-ZV-ZgP"/>
-                            <constraint firstItem="i59-ne-fd6" firstAttribute="top" secondItem="f2S-dr-MOg" secondAttribute="bottom" constant="6" id="pnV-ly-pL5"/>
                             <constraint firstAttribute="bottom" secondItem="Qro-Dy-vJe" secondAttribute="bottom" constant="1" id="qx7-bo-DeB"/>
                             <constraint firstAttribute="trailing" secondItem="bFj-FL-7pL" secondAttribute="trailing" constant="10" id="uwP-PI-ur5"/>
                             <constraint firstItem="bFj-FL-7pL" firstAttribute="leading" secondItem="i59-ne-fd6" secondAttribute="trailing" constant="9" id="w2V-79-K3d"/>
@@ -475,22 +475,6 @@ de lembrar sobre este momento?</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBQ-UZ-k1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1119" y="169"/>
-        </scene>
-        <!--Menu Navigation Controller-->
-        <scene sceneID="GeC-1Q-ZWB">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="rSv-IU-3ut" customClass="MenuNavigationController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="SfS-ET-MYs"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ngj-Nh-ZUz">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="dSV-Q6-u5O" kind="relationship" relationship="rootViewController" id="ieB-Al-pES"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T87-u4-5xO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-575" y="169"/>
         </scene>
         <!--Baby View Controller-->
         <scene sceneID="IJi-aZ-den">
@@ -772,7 +756,6 @@ de lembrar sobre este momento?</string>
                     </navigationBar>
                     <connections>
                         <segue destination="rQl-PL-IFJ" kind="relationship" relationship="rootViewController" id="prv-Ak-Kc9"/>
-                        <segue destination="rSv-IU-3ut" kind="modal" identifier="segueTimeline" modalTransitionStyle="crossDissolve" id="gpm-Kc-nq2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIB-QK-vnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1335,7 +1318,7 @@ de lembrar sobre este momento?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbY-gF-pqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-575" y="957"/>
+            <point key="canvasLocation" x="-575" y="169"/>
         </scene>
     </scenes>
     <resources>

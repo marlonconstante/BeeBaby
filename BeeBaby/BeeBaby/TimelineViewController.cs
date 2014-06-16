@@ -6,11 +6,14 @@ using Domain.Moment;
 using Domain.Baby;
 using Application;
 using BeeBaby.ResourcesProviders;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
+		bool m_openCamera = true;
+
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -22,7 +25,36 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			InitTimeline();
+			LoadBaby();
+		}
+
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			if (m_openCamera)
+			{
+				OpenCamera();
+				m_openCamera = false;
+			}
+			else
+			{
+				InitTimeline();
+			}
+		}
+
+		/// <summary>
+		/// Loads the baby.
+		/// </summary>
+		void LoadBaby()
+		{
+			new ImageProvider().DeleteTemporaryFiles();
+
+			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 		}
 
 		/// <summary>
@@ -31,8 +63,6 @@ namespace BeeBaby
 		/// 
 		void InitTimeline()
 		{
-			new ImageProvider().DeleteTemporaryFiles();
-
 			var baby = CurrentContext.Instance.CurrentBaby;
 			var moments = new MomentService().GetAllMoments(baby);
 
@@ -40,6 +70,7 @@ namespace BeeBaby
 			lblBabyAge.Text = baby.AgeInWords;
 
 			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+			tblView.ReloadData();
 		}
 	}
 }

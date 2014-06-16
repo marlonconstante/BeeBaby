@@ -34,25 +34,29 @@ namespace BeeBaby
 		/// </summary>
 		public void UpdateBabyProfiles()
 		{
-			if (m_viewProfiles != null)
+			var baby = CurrentContext.Instance.CurrentBaby;
+			if (baby != null)
 			{
-				m_viewProfiles.RemoveFromSuperview();
-				Discard.ReleaseSubviews(m_viewProfiles);
-			}
-
-			m_viewProfiles = BuildViewProfiles();
-			AddSubview(m_viewProfiles);
-
-			if (m_menu)
-			{
-				if (m_buttonSelectedBaby != null)
+				if (m_viewProfiles != null)
 				{
-					m_buttonSelectedBaby.RemoveFromSuperview();
-					Discard.ReleaseSubviews(m_buttonSelectedBaby);
+					m_viewProfiles.RemoveFromSuperview();
+					Discard.ReleaseSubviews(m_viewProfiles);
 				}
 
-				m_buttonSelectedBaby = BuildButtonSelectedBaby(CurrentContext.Instance.CurrentBaby);
-				AddSubview(m_buttonSelectedBaby);
+				m_viewProfiles = BuildViewProfiles();
+				AddSubview(m_viewProfiles);
+
+				if (m_menu)
+				{
+					if (m_buttonSelectedBaby != null)
+					{
+						m_buttonSelectedBaby.RemoveFromSuperview();
+						Discard.ReleaseSubviews(m_buttonSelectedBaby);
+					}
+
+					m_buttonSelectedBaby = BuildButtonSelectedBaby(baby);
+					AddSubview(m_buttonSelectedBaby);
+				}
 			}
 		}
 

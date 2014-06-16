@@ -256,12 +256,6 @@ namespace BeeBaby
 		/// </summary>
 		public SlideoutNavigationController (IntPtr handle) : base (handle)
 		{
-			SlideSpeed = 0.2f;
-			SlideWidth = 245f;
-			SlideHeight = 44f + 20f;
-			LayerShadowing = true;
-			ShadowOpacity = 0.5f;
-
 			_internalMenuViewLeft = new ProxyNavigationController {
 				ParentController = this,
 				View = { AutoresizingMask = UIViewAutoresizing.FlexibleHeight }
@@ -288,6 +282,28 @@ namespace BeeBaby
 			};
 			_panGesture.AddTarget(() => Pan(_internalTopView.View));
 			_internalTopView.View.AddGestureRecognizer(_panGesture);
+
+			InitMenu();
+		}
+
+		/// <summary>
+		/// Inits the menu.
+		/// </summary>
+		void InitMenu()
+		{
+			UIStoryboard board = UIStoryboard.FromName("MainStoryboard", null);
+
+			View.MultipleTouchEnabled = true;
+			View.UserInteractionEnabled = true;
+			RightMenuEnabled = false;
+			DisplayNavigationBarOnLeftMenu = false;
+			ShadowOpacity = 0.1f;
+			LayerShadowing = true;
+			SlideWidth = 250f;
+			SlideHeight = 44f + 20f;
+			SlideSpeed = 0.2f;
+			TopView = (UIViewController) board.InstantiateViewController("TimelineViewController");
+			MenuViewLeft = (UIViewController) board.InstantiateViewController("MenuViewController");
 		}
 
 		/// <summary>

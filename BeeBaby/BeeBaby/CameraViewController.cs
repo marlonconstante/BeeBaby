@@ -30,8 +30,6 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			RootViewController = NavigationController;
-
 			base.ViewDidLoad();
 
 			CreateMoment();
@@ -103,7 +101,6 @@ namespace BeeBaby
 			new ImageProvider().DeleteTemporaryFiles();
 
 			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
-			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;
 		}
 
@@ -185,8 +182,7 @@ namespace BeeBaby
 		partial void OpenTimeline(UIButton sender)
 		{
 			NSAction segueTimeline = () => {
-				NavigationController.PerformSegue("segueTimeline", sender);
-				DismissViewController(true, null);
+				PresentingViewController.DismissViewController(true, null);
 			};
 			ShowProgressWhilePerforming(() => {
 				if (m_picker != null)
