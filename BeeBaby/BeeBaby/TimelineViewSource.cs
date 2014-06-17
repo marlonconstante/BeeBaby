@@ -75,22 +75,22 @@ namespace BeeBaby
 		/// <summary>
 		/// Updates the moment cell.
 		/// </summary>
-		/// <param name="momentCell">Moment cell.</param>
+		/// <param name="cell">Cell.</param>
 		/// <param name="indexPath">Index path.</param>
-		void UpdateMomentCell(TimelineMomentCell momentCell, NSIndexPath indexPath)
+		void UpdateMomentCell(TimelineMomentCell cell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
 
-			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
-			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
-			momentCell.LabelEventName = moment.Event.Description;
-			momentCell.LabelWhere = moment.Location.PlaceName;
+			cell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
+			cell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			cell.LabelEventName = moment.Event.Description;
+			cell.LabelWhere = moment.Location.PlaceName;
 
 			var imageProvider = new ImageProvider(moment.Id);
 			IList<ImageModel> images = imageProvider.GetImages(false, true);
 
 			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
 			var imageViews = new List<MomentImageView>();
 
@@ -120,7 +120,7 @@ namespace BeeBaby
 				index++;
 			}
 				
-			momentCell.ViewPhotos.AddSubviews(imageViews.ToArray());
+			cell.ViewPhotos.AddSubviews(imageViews.ToArray());
 		}
 
 		/// <summary>
