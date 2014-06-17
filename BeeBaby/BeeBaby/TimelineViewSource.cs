@@ -91,13 +91,22 @@ namespace BeeBaby
 
 			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+			cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+		}
 
-			var imageViews = new List<MomentImageView>();
+		/// <summary>
+		/// Gets the photos.
+		/// </summary>
+		/// <returns>The photos.</returns>
+		/// <param name="moment">Moment.</param>
+		/// <param name="images">Images.</param>
+		MomentImageView[] GetPhotos(Moment moment, IList<ImageModel> images)
+		{
+			var photos = new List<MomentImageView>();
 
-			var index = 0;
 			foreach (var image in images)
 			{
-				var imageView = new MomentImageView(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
+				var imageView = new MomentImageView(new RectangleF(photos.Count * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
 
 				imageView.Moment = moment;
 				imageView.FileName = image.FileName;
@@ -115,12 +124,10 @@ namespace BeeBaby
 				};
 				imageView.Clicked += proxy.HandleEvent;
 
-				imageViews.Add(imageView);
-				
-				index++;
+				photos.Add(imageView);
 			}
-				
-			cell.ViewPhotos.AddSubviews(imageViews.ToArray());
+
+			return photos.ToArray();
 		}
 
 		/// <summary>
