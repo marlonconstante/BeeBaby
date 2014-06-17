@@ -66,8 +66,8 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			// Request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
-
+			var cell = tableView.DequeueReusableCell(s_cellIdentifier) as TimelineMomentCell;
+			ReleasePhotos(cell);
 			return PopulateMomentCell(cell, indexPath);
 		}
 
@@ -124,6 +124,18 @@ namespace BeeBaby
 			momentCell.ViewPhotos.AddSubviews(imageViews.ToArray());
 
 			return momentCell;
+		}
+
+		/// <summary>
+		/// Releases the photos.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		void ReleasePhotos(TimelineMomentCell cell)
+		{
+			foreach (var view in cell.ViewPhotos.Subviews)
+			{
+				Discard.ReleaseSubviews(view);
+			}
 		}
 	}
 }
