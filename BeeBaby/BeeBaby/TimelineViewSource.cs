@@ -12,6 +12,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
 
 namespace BeeBaby
 {
@@ -86,12 +87,18 @@ namespace BeeBaby
 			cell.LabelEventName = moment.Event.Description;
 			cell.LabelWhere = moment.Location.PlaceName;
 
-			var imageProvider = new ImageProvider(moment.Id);
-			IList<ImageModel> images = imageProvider.GetImages(false, true);
+			InvokeInBackground(() => {
+				Thread.Sleep(300);
 
-			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
-			cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+				var imageProvider = new ImageProvider(moment.Id);
+				IList<ImageModel> images = imageProvider.GetImages(false, true);
+
+				InvokeOnMainThread(() => {
+					var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
+					cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+					cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+				});
+			});
 		}
 
 		/// <summary>
