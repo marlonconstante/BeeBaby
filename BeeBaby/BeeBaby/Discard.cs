@@ -29,6 +29,11 @@ namespace BeeBaby
 				{
 					ReleaseImage((UIImageView) value);
 				}
+				if (value is IDisposable && !"BeeBaby".Equals(value.GetType().Namespace))
+				{
+					var disposable = (IDisposable) value;
+					disposable.Dispose();
+				}
 			}
 		}
 
@@ -50,7 +55,7 @@ namespace BeeBaby
 		/// <param name="imageView">Image view.</param>
 		static void ReleaseImage(UIImageView imageView)
 		{
-			imageView.Image.Dispose();
+			Dispose(imageView.Image);
 			imageView.Image = null;
 		}
 
@@ -92,7 +97,7 @@ namespace BeeBaby
 			var method = type.GetMethod("ReleaseDesignerOutlets", BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
 			if (method != null)
 			{
-				//method.Invoke(instance, null);
+				method.Invoke(instance, null);
 			}
 		}
 
