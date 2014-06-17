@@ -68,19 +68,18 @@ namespace BeeBaby
 			// Request a recycled cell to save memory
 			var cell = tableView.DequeueReusableCell(s_cellIdentifier) as TimelineMomentCell;
 			ReleasePhotos(cell);
-			return PopulateMomentCell(cell, indexPath);
+			UpdateMomentCell(cell, indexPath);
+			return cell;
 		}
 
 		/// <summary>
-		/// Populates the moment cell.
+		/// Updates the moment cell.
 		/// </summary>
-		/// <returns>The moment cell.</returns>
-		/// <param name="cell">Cell.</param>
+		/// <param name="momentCell">Moment cell.</param>
 		/// <param name="indexPath">Index path.</param>
-		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
+		void UpdateMomentCell(TimelineMomentCell momentCell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
-			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
 			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
 			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
@@ -122,8 +121,6 @@ namespace BeeBaby
 			}
 				
 			momentCell.ViewPhotos.AddSubviews(imageViews.ToArray());
-
-			return momentCell;
 		}
 
 		/// <summary>
