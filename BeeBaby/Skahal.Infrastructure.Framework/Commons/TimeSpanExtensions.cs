@@ -75,7 +75,7 @@ namespace Skahal.Infrastructure.Framework.Commons
 		/// <param name="span">Span.</param>
 		private static int GetMonths(this TimeSpan span)
 		{
-			return span.Days / 30;
+			return (span.Days / 30) - (GetYears(span) * 12);
 		}
 	}
 }
