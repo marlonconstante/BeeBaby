@@ -80,7 +80,8 @@ namespace BeeBaby
 		partial void Close(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				DismissViewController(true, null);
+				PresentingViewController.DismissViewController(false, null);
+				Discard.ReleaseFields(this);
 			}, false);
 		}
 

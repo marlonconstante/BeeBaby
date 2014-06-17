@@ -12,6 +12,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
 
 namespace BeeBaby
 {
@@ -66,39 +67,53 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			// Request a recycled cell to save memory
-			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
-
-			return PopulateMomentCell(cell, indexPath);
+			var cell = tableView.DequeueReusableCell(s_cellIdentifier) as TimelineMomentCell;
+			ReleasePhotos(cell);
+			UpdateMomentCell(cell, indexPath);
+			return cell;
 		}
 
 		/// <summary>
-		/// Populates the moment cell.
+		/// Updates the moment cell.
 		/// </summary>
-		/// <returns>The moment cell.</returns>
 		/// <param name="cell">Cell.</param>
 		/// <param name="indexPath">Index path.</param>
-		UITableViewCell PopulateMomentCell(UITableViewCell cell, NSIndexPath indexPath)
+		void UpdateMomentCell(TimelineMomentCell cell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
-			TimelineMomentCell momentCell = cell as TimelineMomentCell;
 
-			momentCell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
-			momentCell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
-			momentCell.LabelEventName = moment.Event.Description;
-			momentCell.LabelWhere = moment.Location.PlaceName;
+			cell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
+			cell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			cell.LabelEventName = moment.Event.Description;
+			cell.LabelWhere = moment.Location.PlaceName;
 
-			var imageProvider = new ImageProvider(moment.Id);
-			IList<ImageModel> images = imageProvider.GetImages(false, true);
+			InvokeInBackground(() => {
+				Thread.Sleep(300);
 
-			var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+				var imageProvider = new ImageProvider(moment.Id);
+				IList<ImageModel> images = imageProvider.GetImages(false, true);
 
-			var imageViews = new List<MomentImageView>();
+				InvokeOnMainThread(() => {
+					var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
+					cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+					cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+				});
+			});
+		}
 
-			var index = 0;
+		/// <summary>
+		/// Gets the photos.
+		/// </summary>
+		/// <returns>The photos.</returns>
+		/// <param name="moment">Moment.</param>
+		/// <param name="images">Images.</param>
+		MomentImageView[] GetPhotos(Moment moment, IList<ImageModel> images)
+		{
+			var photos = new List<MomentImageView>();
+
 			foreach (var image in images)
 			{
-				var imageView = new MomentImageView(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
+				var imageView = new MomentImageView(new RectangleF(photos.Count * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
 
 				imageView.Moment = moment;
 				imageView.FileName = image.FileName;
@@ -116,14 +131,22 @@ namespace BeeBaby
 				};
 				imageView.Clicked += proxy.HandleEvent;
 
-				imageViews.Add(imageView);
-				
-				index++;
+				photos.Add(imageView);
 			}
-				
-			momentCell.ViewPhotos.AddSubviews(imageViews.ToArray());
 
-			return momentCell;
+			return photos.ToArray();
+		}
+
+		/// <summary>
+		/// Releases the photos.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		void ReleasePhotos(TimelineMomentCell cell)
+		{
+			foreach (var view in cell.ViewPhotos.Subviews)
+			{
+				Discard.ReleaseSubviews(view);
+			}
 		}
 	}
 }
