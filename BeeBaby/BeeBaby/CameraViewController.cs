@@ -71,6 +71,17 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			StopSound();
+		}
+
+		/// <summary>
 		/// Gets the supported orientation views.
 		/// </summary>
 		/// <returns>The supported orientation views.</returns>
