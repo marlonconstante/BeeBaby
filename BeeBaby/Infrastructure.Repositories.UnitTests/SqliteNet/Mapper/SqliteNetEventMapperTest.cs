@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 			Assert.AreEqual(domainEntity.StartAge, actual.StartAge);
 			Assert.AreEqual(domainEntity.EndAge, actual.EndAge);
 			Assert.AreEqual(1, actual.Kind);
-			Assert.AreEqual(11, actual.Tag);
+			Assert.AreEqual(10, actual.Tag);
 			Assert.AreEqual(domainEntity.Priority, actual.Priority);
 		}
 	}

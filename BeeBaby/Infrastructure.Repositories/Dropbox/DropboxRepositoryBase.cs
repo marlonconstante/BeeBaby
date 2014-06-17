@@ -113,7 +113,8 @@ namespace Infrastructure.Repositories.Dropbox
 
 		async private void PushToDropbox()
 		{
-			if (!await m_ds.PushAsync())
+			var pushAsyncTask = m_ds.PushAsync();
+			if (!pushAsyncTask.Result)
 			{
 				throw new InvalidOperationException("Error syncing with DropBox.");
 			}
@@ -132,7 +133,9 @@ namespace Infrastructure.Repositories.Dropbox
 			{
 				// https://www.dropbox.com/1/oauth2/authorize?client_id=5wqvkk9wlx8uhz9&response_type=code&redirect_uri=http://localhost
 				var manager = new DatastoreManager("cJBboFs_i-sAAAAAAAACt6z7uYpy-2cOt-NEONBjqQ1spYtW0nCbFn7_X3PQH502");
-				m_ds = await manager.GetOrCreateAsync(m_datastoreId.ToLowerInvariant());
+				var task = manager.GetOrCreateAsync(m_datastoreId.ToLowerInvariant());
+				m_ds = task.Result;
+
 				m_table = m_ds.GetTable<TEntity>(typeof(TEntity).Name);
 				m_ds.PushAsync();
 				m_initialized = true;
