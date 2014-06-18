@@ -21,7 +21,8 @@ navigation-bar,
 segmented-control {
 	background-color: #00aead;
 }
-.table-view-headerfooter-view{
+
+.table-view-headerfooter-view {
 	background-color: #dce5e5;
 	box-shadow: 0 -1 0 0 #c8c7cc;
 }
@@ -48,7 +49,7 @@ search-bar button:selected {
     font-size: 14pt;
 }
 
-.table-view-headerfooter-view label{
+.table-view-headerfooter-view label {
 	color: #4d5f5c;
 	font-size: 10pt;
 	font-weight: normal;
