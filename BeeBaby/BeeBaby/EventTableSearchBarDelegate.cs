@@ -3,6 +3,7 @@ using System.Linq;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -44,6 +45,9 @@ namespace BeeBaby
 		/// <param name="searchBar">Search bar.</param>
 		public override void SearchButtonClicked(UISearchBar searchBar)
 		{
+			var param = new NSDictionary("FiltredText", searchBar.Text);
+			FlurryAnalytics.Flurry.LogEvent("Filtrou pela busca.", param);
+
 			searchBar.ResignFirstResponder();
 		}
 			

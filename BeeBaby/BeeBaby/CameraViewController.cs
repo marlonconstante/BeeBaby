@@ -30,6 +30,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			FlurryAnalytics.Flurry.LogEvent("Abriu a Camera.");
 			base.ViewDidLoad();
 
 			CreateMoment();
@@ -135,6 +136,7 @@ namespace BeeBaby
 		{
 			if (m_systemSound == null)
 			{
+				FlurryAnalytics.Flurry.LogEvent("Tocou som da camera.");
 				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
 				m_systemSound = SystemSound.FromFile(filePath);
 				m_systemSound.PlaySystemSound();
@@ -154,6 +156,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void ChangeFlashMode(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Mudou o modo de Flash.");
 			switch (m_cameraFlashMode)
 			{
 			case UIImagePickerControllerCameraFlashMode.Auto:
@@ -178,6 +181,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SwitchCamera(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Trocou entre as cameras.");
+
 			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
 			View.BackgroundColor = UIColor.Black;
 			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
@@ -192,6 +197,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenTimeline(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Foi direto da camera para timeline.");
+
 			NSAction segueTimeline = () => {
 				PresentingViewController.DismissViewController(false, null);
 				Discard.ReleaseNavigation(NavigationController);
@@ -214,6 +221,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void TakePhoto(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Tirou uma foto.");
 			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
 			UIView.Animate(0.3d, () => {
@@ -227,6 +235,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenMedia(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Abriu o album do iPhone.");
 			ShowProgressWhilePerforming(() => {
 				if (m_mediaPickerProvider != null)
 				{

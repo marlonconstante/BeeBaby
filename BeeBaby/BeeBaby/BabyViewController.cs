@@ -19,6 +19,8 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			FlurryAnalytics.Flurry.LogEvent("Cadastro do Bebe");
+
 			base.ViewDidLoad();
 
 			Load(CurrentContext.Instance.CurrentBaby);

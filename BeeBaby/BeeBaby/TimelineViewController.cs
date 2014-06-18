@@ -25,6 +25,8 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			FlurryAnalytics.Flurry.LogEvent("Momento: Timeline.", true);
+
 			LoadBaby();
 		}
 
@@ -45,6 +47,12 @@ namespace BeeBaby
 			{
 				InitTimeline();
 			}
+		}
+
+		public override void ViewDidDisappear(bool animated)
+		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Timeline.", null);
+			base.ViewDidDisappear(animated);
 		}
 
 		/// <summary>

@@ -28,6 +28,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			FlurryAnalytics.Flurry.LogEvent("Momento: Cadastro.", true);
 			base.ViewDidLoad();
 
 			vwDate.Init(UIDatePickerMode.DateAndTime);
@@ -59,6 +60,7 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Cadastro.", null);
 			base.ViewWillAppear(animated);
 
 			vwDate.UpdateInfo();

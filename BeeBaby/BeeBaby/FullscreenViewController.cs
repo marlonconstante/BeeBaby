@@ -23,6 +23,8 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			FlurryAnalytics.Flurry.LogEvent("Visualizou uma foto em tela cheia");
+
 			base.ViewDidLoad();
 
 			AddSingleTapGestureRecognizer();

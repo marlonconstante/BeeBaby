@@ -7,6 +7,7 @@ using Application;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -37,6 +38,8 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
+			FlurryAnalytics.Flurry.LogEvent("Entrou na tela de eventos.", true);
+
 			base.ViewDidLoad();
 
 			m_eventService = new EventService();
@@ -69,7 +72,12 @@ namespace BeeBaby
 			base.ViewWillAppear(animated);
 			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
 		}
-
+			
+		public override void ViewDidDisappear(bool animated)
+		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Entrou na tela de eventos.", null);
+			base.ViewDidDisappear(animated);
+		}
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
@@ -89,7 +97,6 @@ namespace BeeBaby
 
 			foreach (var item in m_buttonNamesList)
 			{
-				//var tag = (TagType)Enum.Parse(typeof(TagType), item);
 				var button = CreateButton(x, y, item);
 				scrView.AddSubview(button);
 
@@ -143,6 +150,9 @@ namespace BeeBaby
 			sender.Selected = selected;
 			if (selected)
 			{
+				var param = new NSDictionary("Tag", sender.Tag);
+				FlurryAnalytics.Flurry.LogEvent("Filtrou pela Tag.", param);
+
 				var iconImage = UIImage.FromFile("hover.png");
 				const float x = (s_buttonSizeX - s_imageSize) / 2;
 				var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));

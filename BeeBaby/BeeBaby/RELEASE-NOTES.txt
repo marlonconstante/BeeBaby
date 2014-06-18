@@ -1,4 +1,1 @@
-BeeBaby Test 00004
-
-Melhorias de performance
-+ estabilidade
+Nova forma de carregamento da TimeLine
