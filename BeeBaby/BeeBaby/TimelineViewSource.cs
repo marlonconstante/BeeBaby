@@ -69,16 +69,17 @@ namespace BeeBaby
 			// Request a recycled cell to save memory
 			var cell = tableView.DequeueReusableCell(s_cellIdentifier) as TimelineMomentCell;
 			ReleasePhotos(cell);
-			UpdateMomentCell(cell, indexPath);
+			UpdateMomentCell(tableView, cell, indexPath);
 			return cell;
 		}
 
 		/// <summary>
 		/// Updates the moment cell.
 		/// </summary>
+		/// <param name="tableView">Table view.</param>
 		/// <param name="cell">Cell.</param>
 		/// <param name="indexPath">Index path.</param>
-		void UpdateMomentCell(TimelineMomentCell cell, NSIndexPath indexPath)
+		void UpdateMomentCell(UITableView tableView, TimelineMomentCell cell, NSIndexPath indexPath)
 		{
 			Moment moment = m_tableItems[indexPath.Row] as Moment;
 
@@ -88,15 +89,18 @@ namespace BeeBaby
 			cell.LabelWhere = moment.Location.PlaceName;
 
 			InvokeInBackground(() => {
-				Thread.Sleep(300);
+				Thread.Sleep(150);
 
 				var imageProvider = new ImageProvider(moment.Id);
 				IList<ImageModel> images = imageProvider.GetImages(false, true);
 
 				InvokeOnMainThread(() => {
-					var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-					cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
-					cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+					if (IsVisibleRow(tableView, indexPath))
+					{
+						var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
+						cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
+					}
 				});
 			});
 		}

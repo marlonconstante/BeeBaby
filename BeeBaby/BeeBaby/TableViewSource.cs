@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -7,6 +8,24 @@ namespace BeeBaby
 	{
 		public TableViewSource()
 		{
+		}
+
+		/// <summary>
+		/// Determines whether this instance is visible row the specified tableView indexPath.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is visible row the specified tableView indexPath; otherwise, <c>false</c>.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public bool IsVisibleRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			foreach (var visibleIndexPath in tableView.IndexPathsForVisibleRows)
+			{
+				if (visibleIndexPath.Row == indexPath.Row)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/// <summary>

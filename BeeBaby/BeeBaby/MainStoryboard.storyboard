@@ -182,14 +182,14 @@ de lembrar sobre este momento?</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tagBee.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vm7-Ih-NXH">
-                                                    <rect key="frame" x="20" y="6" width="32" height="32"/>
+                                                    <rect key="frame" x="10" y="6" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="bTU-aJ-xhS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUX-Bt-4T6">
-                                                    <rect key="frame" x="60" y="6" width="253" height="32"/>
+                                                    <rect key="frame" x="51" y="6" width="263" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -197,16 +197,16 @@ de lembrar sobre este momento?</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cUX-Bt-4T6" firstAttribute="leading" secondItem="Vm7-Ih-NXH" secondAttribute="trailing" constant="8" symbolic="YES" id="2Jk-Sp-ZSe"/>
+                                                <constraint firstItem="cUX-Bt-4T6" firstAttribute="leading" secondItem="Vm7-Ih-NXH" secondAttribute="trailing" constant="9" id="2Jk-Sp-ZSe"/>
                                                 <constraint firstItem="cUX-Bt-4T6" firstAttribute="bottom" secondItem="Vm7-Ih-NXH" secondAttribute="bottom" id="55e-rN-Qc2"/>
-                                                <constraint firstAttribute="trailing" secondItem="cUX-Bt-4T6" secondAttribute="trailing" constant="7" id="5Ne-9D-rdo"/>
-                                                <constraint firstItem="Vm7-Ih-NXH" firstAttribute="leading" secondItem="BbR-65-cxt" secondAttribute="leading" constant="20" symbolic="YES" id="5ia-jy-tKe"/>
+                                                <constraint firstAttribute="trailing" secondItem="cUX-Bt-4T6" secondAttribute="trailing" constant="6" id="5Ne-9D-rdo"/>
+                                                <constraint firstItem="Vm7-Ih-NXH" firstAttribute="leading" secondItem="BbR-65-cxt" secondAttribute="leading" constant="10" id="5ia-jy-tKe"/>
                                                 <constraint firstItem="Vm7-Ih-NXH" firstAttribute="top" secondItem="BbR-65-cxt" secondAttribute="top" constant="6" id="Lsn-XQ-0ep"/>
                                                 <constraint firstAttribute="bottom" secondItem="Vm7-Ih-NXH" secondAttribute="bottom" constant="5" id="Rzl-q3-Orw"/>
                                                 <constraint firstItem="cUX-Bt-4T6" firstAttribute="top" secondItem="Vm7-Ih-NXH" secondAttribute="top" id="WD9-u1-x7b"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="separatorInset" minX="51" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="imgEventTagIcon" destination="Vm7-Ih-NXH" id="eTQ-of-e98"/>
                                             <outlet property="lblEventDesc" destination="cUX-Bt-4T6" id="LPV-us-IcO"/>
