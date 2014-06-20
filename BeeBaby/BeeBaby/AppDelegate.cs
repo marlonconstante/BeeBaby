@@ -45,6 +45,7 @@ namespace BeeBaby
 		// This method is called when the application is about to terminate. Save data, if needed.
 		public override void WillTerminate(UIApplication application)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Fechou o App.");
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>

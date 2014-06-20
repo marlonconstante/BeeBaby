@@ -30,7 +30,21 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
+			FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Entrou na tela.", true);
+
+
 			UpdateImageCollectionView();
+		}
+
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Escolher Fotos: Entrou na tela.", null);
+
+			base.ViewWillDisappear(animated);
 		}
 
 		/// <summary>
@@ -79,6 +93,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void AddMediaFromLibrary(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu o album do iPhone.");
+
 			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
 			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
 			var picker = mediaPickerProvider.GetUIImagePickerController();
@@ -126,6 +142,9 @@ namespace BeeBaby
 		{
 			if (reset || m_collectionViewSource == null)
 			{
+				if (reset)
+					FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Resetou a seleção.");
+
 				m_collectionViewSource = new ImageCollectionViewSource(this);
 				clnView.Source = m_collectionViewSource;
 			}

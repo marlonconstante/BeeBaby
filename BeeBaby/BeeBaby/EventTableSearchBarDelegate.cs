@@ -45,9 +45,6 @@ namespace BeeBaby
 		/// <param name="searchBar">Search bar.</param>
 		public override void SearchButtonClicked(UISearchBar searchBar)
 		{
-			var param = new NSDictionary("FiltredText", searchBar.Text);
-			FlurryAnalytics.Flurry.LogEvent("Filtrou pela busca.", param);
-
 			searchBar.ResignFirstResponder();
 		}
 			
@@ -70,6 +67,9 @@ namespace BeeBaby
 		/// <param name="searchText">Search text.</param>
 		IList<Event> GetFilteredEvents(String searchText)
 		{
+			var param = new NSDictionary("FiltredText", searchText);
+			FlurryAnalytics.Flurry.LogEvent("Filtrou pela busca.", param);
+
 			return m_events.Where(e => e.Description.ToLower().Contains(searchText.ToLower())).ToList();
 		}
 

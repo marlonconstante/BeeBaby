@@ -3,6 +3,9 @@ using NUnit.Framework;
 using Skahal.Infrastructure.Framework.Repositories;
 using Domain.Moment;
 using Infrastructure.Repositories.Dropbox;
+using Domain.Baby;
+using System;
+using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.FunctionalTest.Repositories
 {
@@ -27,28 +30,64 @@ namespace Infrastructure.Repositories.FunctionalTest.Repositories
             Assert.AreEqual(originalCount + 1, target.CountAll());
         }
 
-//        [Test]
-//        public void CountAll_Filter_FiltedResults()
-//        {
-//            var unitOfWork = new MemoryUnitOfWork();
-//            var target = new DropboxRepositoryBase<ContainsTextRule>("TEST");
-//            target.ClearAll();
-//            target.SetUnitOfWork(unitOfWork);
-//
-//            var rule = new ContainsTextRule("TEST_1");
-//            target.Add(rule);
-//
-//            rule = new ContainsTextRule("TEST_2");
-//            target.Add(rule);
-//
-//            unitOfWork.Commit();
-//
-//            Assert.AreEqual(2, target.CountAll());
-//            Assert.AreEqual(2, target.CountAll(c => c.Text.StartsWith("TEST")));
-//            Assert.AreEqual(2, target.CountAll(c => c.Text.Contains("_")));
-//            Assert.AreEqual(1, target.CountAll(c => c.Text.EndsWith("_1")));
-//            Assert.AreEqual(1, target.CountAll(c => c.Text.EndsWith("_2")));
-//        }
+        [Test]
+        public void CountAll_Filter_FiltedResults()
+        {
+            var unitOfWork = new MemoryUnitOfWork();
+			var target = new DropboxRepositoryBase<Moment>("TEST");
+            target.ClearAll();
+            target.SetUnitOfWork(unitOfWork);
+
+			var eventData = new Event
+			{
+				Id = "1",
+				Description = "Descrição"
+			};
+
+			var local = new Coordinates
+			{
+				Latitude = 12,
+				Longitude = 34
+			};
+
+			var baby = new Baby
+			{
+				Id = "1",
+				Name = "Baby 12"
+			};
+
+			var moment = new Moment
+			{
+				Id = "1",
+				Description = "Descrição",
+				Event = eventData,
+				Position = local,
+				Date = DateTime.Now,
+				Babies = new List<Baby> { baby }
+			};
+
+			target.Add(moment);
+
+			var moment2 = new Moment
+			{
+				Id = "2",
+				Description = "Descrição 2",
+				Event = eventData,
+				Position = local,
+				Date = DateTime.Now,
+				Babies = new List<Baby> { baby }
+			};
+
+			target.Add(moment2);
+
+            unitOfWork.Commit();
+
+            Assert.AreEqual(2, target.CountAll());
+			Assert.AreEqual(2, target.CountAll(c => c.Description.StartsWith("Desc", StringComparison.InvariantCultureIgnoreCase)));
+			Assert.AreEqual(2, target.CountAll(c => c.Description.Contains("scr")));
+			Assert.AreEqual(1, target.CountAll(c => c.Description.EndsWith(" 1", StringComparison.InvariantCultureIgnoreCase)));
+			Assert.AreEqual(1, target.CountAll(c => c.Description.EndsWith(" 2", StringComparison.InvariantCultureIgnoreCase)));
+        }
 //
 //        [Test]
 //        public void FindAll_Filter_FiltedResults()

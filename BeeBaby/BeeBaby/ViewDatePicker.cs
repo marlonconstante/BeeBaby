@@ -94,6 +94,7 @@ namespace BeeBaby
 
 					var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
 					proxy.Action = (target, sender, args) => {
+						FlurryAnalytics.Flurry.LogEvent("Mudou a data.");
 						target.DateTime = ((UIDatePicker) sender).Date;
 						target.UpdateInfo();
 					};

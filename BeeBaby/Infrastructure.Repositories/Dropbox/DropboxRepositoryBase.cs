@@ -113,8 +113,7 @@ namespace Infrastructure.Repositories.Dropbox
 
 		async private void PushToDropbox()
 		{
-			var pushAsyncTask = m_ds.PushAsync();
-			if (!pushAsyncTask.Result)
+			if (await m_ds.PushAsync())
 			{
 				throw new InvalidOperationException("Error syncing with DropBox.");
 			}

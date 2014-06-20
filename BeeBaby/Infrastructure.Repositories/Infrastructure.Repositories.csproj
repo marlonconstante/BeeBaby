@@ -57,6 +57,8 @@
     <Compile Include="Memory\MemoryLocationRepository.cs" />
     <Compile Include="SqliteNet\SqliteNetLocationRepository.cs" />
     <Compile Include="Dropbox\DropboxRepositoryBase.cs" />
+    <Compile Include="Dropbox\Mapper\DropboxMomentMapper.cs" />
+    <Compile Include="Dropbox\Entities\MomentData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -65,6 +67,8 @@
     <Folder Include="Commons\" />
     <Folder Include="SqliteNet\Mapper\" />
     <Folder Include="Dropbox\" />
+    <Folder Include="Dropbox\Mapper\" />
+    <Folder Include="Dropbox\Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HelperSharp">

@@ -53,6 +53,8 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidAppear(bool animated)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Menu: Abriu");
+
 			base.ViewDidAppear(animated);
 
 			if (CurrentStoryboardId == null)
@@ -60,6 +62,16 @@ namespace BeeBaby
 				tblView.SelectRow(NSIndexPath.FromRowSection(0, 0), false, UITableViewScrollPosition.None);
 				CurrentStoryboardId = "TimelineViewController";
 			}
+		}
+
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			FlurryAnalytics.Flurry.LogEvent("Menu: Fechou");
+			base.ViewWillDisappear(animated);
 		}
 
 		/// <summary>

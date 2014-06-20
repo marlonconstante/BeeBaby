@@ -38,7 +38,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Entrou na tela de eventos.", true);
+			FlurryAnalytics.Flurry.LogEvent("Eventos: Entrou na tela.", true);
 
 			base.ViewDidLoad();
 
@@ -51,6 +51,7 @@ namespace BeeBaby
 			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
 
 			tblView.Source = m_eventListViewSource;
+			tblView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			m_selectedTag = string.Empty;
 
@@ -74,7 +75,7 @@ namespace BeeBaby
 			
 		public override void ViewDidDisappear(bool animated)
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Entrou na tela de eventos.", null);
+			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Entrou na tela.", null);
 			base.ViewDidDisappear(animated);
 		}
 		/// <summary>
@@ -82,6 +83,8 @@ namespace BeeBaby
 		/// </summary>
 		void ScrollEvent()
 		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Paginou as Tags.", null);
+
 			pcrPager.CurrentPage = (int) Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
 
@@ -148,8 +151,8 @@ namespace BeeBaby
 			sender.Selected = selected;
 			if (selected)
 			{
-				var param = new NSDictionary("Tag", sender.Tag);
-				FlurryAnalytics.Flurry.LogEvent("Filtrou pela Tag.", param);
+				var param = new NSDictionary("Tag", sender.TagName);
+				FlurryAnalytics.Flurry.LogEvent("Eventos: Filtrou pela Tag.", param);
 
 				var iconImage = UIImage.FromFile("hover.png");
 				const float x = (s_buttonSizeX - s_imageSize) / 2;

@@ -30,7 +30,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Abriu a Camera.");
+			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu a Camera.", true);
 			base.ViewDidLoad();
 
 			CreateMoment();
@@ -77,6 +77,7 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Camera: Abriu a Camera.", null);
 			base.ViewWillDisappear(animated);
 
 			StopSound();
@@ -136,7 +137,7 @@ namespace BeeBaby
 		{
 			if (m_systemSound == null)
 			{
-				FlurryAnalytics.Flurry.LogEvent("Tocou som da camera.");
+				FlurryAnalytics.Flurry.LogEvent("Camera: Tocou som.");
 				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
 				m_systemSound = SystemSound.FromFile(filePath);
 				m_systemSound.PlaySystemSound();
@@ -156,7 +157,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void ChangeFlashMode(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Mudou o modo de Flash.");
+			FlurryAnalytics.Flurry.LogEvent("Camera: Mudou Flash.");
 			switch (m_cameraFlashMode)
 			{
 			case UIImagePickerControllerCameraFlashMode.Auto:
@@ -181,7 +182,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void SwitchCamera(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Trocou entre as cameras.");
+			FlurryAnalytics.Flurry.LogEvent("Camera: Trocou entre as cameras.");
 
 			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
 			View.BackgroundColor = UIColor.Black;
@@ -197,7 +198,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenTimeline(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Foi direto da camera para timeline.");
+			FlurryAnalytics.Flurry.LogEvent("Camera: Botão Timeline.");
 
 			NSAction segueTimeline = () => {
 				PresentingViewController.DismissViewController(false, null);
@@ -221,7 +222,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void TakePhoto(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Tirou uma foto.");
+			FlurryAnalytics.Flurry.LogEvent("Camera: Tirou uma foto.");
 			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
 			UIView.Animate(0.3d, () => {
@@ -235,7 +236,6 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenMedia(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Abriu o album do iPhone.");
 			ShowProgressWhilePerforming(() => {
 				if (m_mediaPickerProvider != null)
 				{

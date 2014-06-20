@@ -72,8 +72,10 @@ namespace BeeBaby
 			cell.UpdateStatus();
 
 			if (cell.IsSelected) {
+				FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Selecionou Foto.");
 				CurrentContext.Instance.Moment.SelectedMediaNames.Add(cell.MediaName);
 			} else {
+				FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Deselecionou Foto.");
 				CurrentContext.Instance.Moment.SelectedMediaNames.Remove(cell.MediaName);
 			}
 		}

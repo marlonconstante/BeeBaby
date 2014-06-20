@@ -23,7 +23,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Visualizou uma foto em tela cheia");
+			FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Abriu.");
 
 			base.ViewDidLoad();
 
@@ -99,6 +99,7 @@ namespace BeeBaby
 
 				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 				{
+					FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
 					FBDialogs.PresentOSIntegratedShareDialogModally(this, null, image, null, (result, error) => {
 						if (error != null)
 						{

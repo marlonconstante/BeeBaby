@@ -40,12 +40,14 @@
     <Compile Include="SqliteNet\Mapper\SqliteNetLocationMapperTest.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetBabyMapperTest.cs" />
     <Compile Include="Dropbox\DropboxRepositoryBaseTest.cs" />
+    <Compile Include="Dropbox\Mapper\DropboxMomentMapperTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="SqliteNet\" />
     <Folder Include="SqliteNet\Mapper\" />
     <Folder Include="Dropbox\" />
+    <Folder Include="Dropbox\Mapper\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">

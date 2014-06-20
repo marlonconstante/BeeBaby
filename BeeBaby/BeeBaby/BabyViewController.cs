@@ -19,8 +19,6 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Cadastro do Bebe");
-
 			base.ViewDidLoad();
 
 			Load(CurrentContext.Instance.CurrentBaby);
@@ -44,6 +42,18 @@ namespace BeeBaby
 
 			vwBirthDay.UpdateInfo();
 			vwBirthTime.UpdateInfo();
+		}
+
+		public override void ViewDidAppear(bool animated)
+		{
+			FlurryAnalytics.Flurry.LogEvent("Baby: Cadastro do Bebe", true);
+			base.ViewDidAppear(animated);
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Baby: Cadastro do Bebe", null);
+			base.ViewWillDisappear(animated);
 		}
 
 		/// <summary>
@@ -112,7 +122,7 @@ namespace BeeBaby
 
 				if (!containsMenu)
 				{
-					PerformSegue("segueMoment", sender);
+					PerformSegue("segueSelectEvent", sender);
 				}
 			}, containsMenu);
 		}

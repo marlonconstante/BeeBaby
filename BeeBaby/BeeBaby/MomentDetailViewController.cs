@@ -28,7 +28,6 @@ namespace BeeBaby
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Momento: Cadastro.", true);
 			base.ViewDidLoad();
 
 			vwDate.Init(UIDatePickerMode.DateAndTime);
@@ -60,7 +59,8 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Cadastro.", null);
+			FlurryAnalytics.Flurry.LogEvent("Momento: Cadastro.", true);
+
 			base.ViewWillAppear(animated);
 
 			vwDate.UpdateInfo();
@@ -82,6 +82,8 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
+			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Cadastro.", null);
+
 			base.ViewWillDisappear(animated);
 
 			txtLocalName.ShouldReturn -= InputLocalShouldReturn;
@@ -98,6 +100,8 @@ namespace BeeBaby
 
 			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 100)
 			{
+				FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
+
 				SetAutoCompleteText(nearest.Name);
 			}
 		}
@@ -197,22 +201,13 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Selects the event.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SelectEvent(UIButton sender)
-		{
-			ShowProgressWhilePerforming(() => {
-				PerformSegue("segueSelectEvent", sender);
-			}, false);
-		}
-
-		/// <summary>
 		/// Save the moment.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
+			FlurryAnalytics.Flurry.LogEvent("Momento: Salvou momento.");
+
 			ShowProgressWhilePerforming(() => {
 				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
