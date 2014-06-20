@@ -267,6 +267,9 @@ de lembrar sobre este momento?</string>
                         <outlet property="pcrPager" destination="vTW-sD-k4E" id="FgB-73-6VO"/>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
                         <outlet property="scrView" destination="wIr-X6-KYK" id="h8E-EQ-nav"/>
+                        <outlet property="tagsAlignBottomConstraint" destination="y7l-wv-fYU" id="NcT-ct-OfD"/>
+                        <outlet property="tagsAlignTopConstraint" destination="heb-JG-leo" id="AZe-zT-ni5"/>
+                        <outlet property="tagsHeightConstraint" destination="WRs-ez-NVV" id="Eb0-bR-qCb"/>
                         <outlet property="tblView" destination="qCH-eT-BbT" id="ays-fV-7Yz"/>
                         <segue destination="UAi-dU-234" kind="push" identifier="segueMoment" id="aR7-vp-laA"/>
                     </connections>
