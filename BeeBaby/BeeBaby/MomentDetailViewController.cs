@@ -197,17 +197,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Selects the event.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SelectEvent(UIButton sender)
-		{
-			ShowProgressWhilePerforming(() => {
-				PerformSegue("segueSelectEvent", sender);
-			}, false);
-		}
-
-		/// <summary>
 		/// Save the moment.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
