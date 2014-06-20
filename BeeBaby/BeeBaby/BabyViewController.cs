@@ -112,7 +112,7 @@ namespace BeeBaby
 
 				if (!containsMenu)
 				{
-					PerformSegue("segueMoment", sender);
+					PerformSegue("segueSelectEvent", sender);
 				}
 			}, containsMenu);
 		}

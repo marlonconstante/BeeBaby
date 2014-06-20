@@ -589,7 +589,7 @@ de lembrar sobre este momento?</string>
                         <outlet property="txtName" destination="Xqq-1w-zmk" id="EtN-kr-meb"/>
                         <outlet property="vwBirthDay" destination="qP1-Xc-ecW" id="rRy-NP-Cq7"/>
                         <outlet property="vwBirthTime" destination="qcZ-yd-0ey" id="Y7B-WN-Qtf"/>
-                        <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueMoment" id="yF0-vb-Xk3"/>
+                        <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueSelectEvent" id="yF0-vb-Xk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLl-GD-09a" userLabel="First Responder" sceneMemberID="firstResponder"/>
