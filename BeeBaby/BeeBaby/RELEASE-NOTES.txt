@@ -1,1 +1,1 @@
-Nova forma de carregamento da TimeLine
+Primeira versão para beta testers.

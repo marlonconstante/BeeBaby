@@ -79,7 +79,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <BuildIpa>true</BuildIpa>
     <CodesignKey>iPhone Developer: Giusepe Casagrande (V9KLBS9GL7)</CodesignKey>
-    <CodesignProvision>84C9DBF3-0DFB-4C41-9736-27AB61A18F8D</CodesignProvision>
+    <CodesignProvision>B0B9F9CA-2FCC-4A69-8E1A-A93990859735</CodesignProvision>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
