@@ -51,6 +51,7 @@ namespace BeeBaby
 			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
 
 			tblView.Source = m_eventListViewSource;
+			tblView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			m_selectedTag = string.Empty;
 
