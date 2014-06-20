@@ -22,6 +22,7 @@ namespace BeeBaby
 		const string s_firstsTagName = "Firsts";
 		const string s_everydayTagName = "Everyday";
 
+		float m_tagsHeight;
 		string m_selectedTag;
 		IList<string> m_buttonNamesList;
 		IList<Event> m_events;
@@ -42,6 +43,8 @@ namespace BeeBaby
 
 			base.ViewDidLoad();
 
+			m_tagsHeight = tagsHeightConstraint.Constant;
+
 			m_eventService = new EventService();
 
 			var allEvents = m_eventService.GetAllEvents();
@@ -51,6 +54,7 @@ namespace BeeBaby
 			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
 
 			tblView.Source = m_eventListViewSource;
+			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
 			tblView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			m_selectedTag = string.Empty;
@@ -63,21 +67,37 @@ namespace BeeBaby
 
 			ConfigureScrollView();
 			AddButtons();
-
-			View.AddSubview(scrView);
 		}
 
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
-		}
-			
+		/// <summary>
+		/// Views the did disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidDisappear(bool animated)
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Entrou na tela de eventos.", null);
 			base.ViewDidDisappear(animated);
 		}
+
+		/// <summary>
+		/// Moves the scroll.
+		/// </summary>
+		/// <param name="scrollVerticalDirection">Scroll vertical direction.</param>
+		public void MoveScroll(UIAccessibilityScrollDirection scrollVerticalDirection)
+		{
+			var height = (UIAccessibilityScrollDirection.Up == scrollVerticalDirection) ? m_tagsHeight : 0f;
+			if (tagsHeightConstraint.Constant != height)
+			{
+				UIView.BeginAnimations(string.Empty, IntPtr.Zero);
+				UIView.SetAnimationDuration(0.3d);
+
+				tagsHeightConstraint.Constant = height;
+				View.LayoutIfNeeded();
+
+				UIView.CommitAnimations();
+			}
+		}
+
 		/// <summary>
 		/// Scrolls the event.
 		/// </summary>
@@ -193,9 +213,6 @@ namespace BeeBaby
 			var scrollWidth = (float) (Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
-			scrView.UserInteractionEnabled = true;
-			scrView.MultipleTouchEnabled = true;
-			scrView.PagingEnabled = true;
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 
 			pcrPager.Pages = (int) Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
