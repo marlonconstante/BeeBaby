@@ -222,7 +222,6 @@
     <BundleResource Include="Resources\sleepy.png" />
     <BundleResource Include="Resources\ride.png" />
     <BundleResource Include="Resources\littlebody.png" />
-    <BundleResource Include="Resources\Pregnancy.png" />
     <BundleResource Include="Resources\smile.png" />
     <BundleResource Include="Resources\lapy.png" />
     <BundleResource Include="Resources\school.png" />
@@ -231,6 +230,7 @@
     <BundleResource Include="Resources\birth.png" />
     <BundleResource Include="Resources\celebrations.png" />
     <BundleResource Include="Resources\hover.png" />
+    <BundleResource Include="Resources\pregnancy.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

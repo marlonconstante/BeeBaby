@@ -22,12 +22,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIScrollView scrView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint tagsAlignBottomConstraint { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint tagsAlignTopConstraint { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint tagsHeightConstraint { get; set; }
 
 		[Outlet]
@@ -58,16 +52,6 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
-			}
-
-			if (tagsAlignTopConstraint != null) {
-				tagsAlignTopConstraint.Dispose ();
-				tagsAlignTopConstraint = null;
-			}
-
-			if (tagsAlignBottomConstraint != null) {
-				tagsAlignBottomConstraint.Dispose ();
-				tagsAlignBottomConstraint = null;
 			}
 		}
 	}

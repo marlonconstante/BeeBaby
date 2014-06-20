@@ -84,6 +84,19 @@ namespace BeeBaby
 			return 1;
 		}
 
+		/// <Docs>Scroll view where the content finished scrolling.</Docs>
+		/// <see langword="true"></see>
+		/// <see langword="false"></see>
+		/// <summary>
+		/// Called when dragging has ended.
+		/// </summary>
+		/// <param name="scrollView">Scroll view.</param>
+		/// <param name="willDecelerate">If set to <c>true</c> will decelerate.</param>
+		public override void DraggingEnded(UIScrollView scrollView, bool willDecelerate)
+		{
+			m_viewController.MoveScroll(ScrollVerticalDirection);
+		}
+
 		/// <summary>
 		/// Reloads the data.
 		/// </summary>
