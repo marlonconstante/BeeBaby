@@ -35,9 +35,6 @@ namespace BeeBaby
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SelectEvent:")]
-		partial void SelectEvent (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
