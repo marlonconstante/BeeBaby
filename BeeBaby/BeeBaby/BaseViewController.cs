@@ -11,6 +11,7 @@ namespace BeeBaby
 	{
 		public BaseViewController(IntPtr handle) : base(handle)
 		{
+			ViewAppeared = false;
 		}
 
 		/// <summary>
@@ -57,6 +58,8 @@ namespace BeeBaby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+
+			ViewAppeared = true;
 
 			// Dismiss the spinner
 			BTProgressHUD.Dismiss();
@@ -150,6 +153,15 @@ namespace BeeBaby
 		void UpdateStatusBar()
 		{
 			UIApplication.SharedApplication.SetStatusBarHidden(!IsShowStatusBar(), UIStatusBarAnimation.None);
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.BaseViewController"/> view appeared.
+		/// </summary>
+		/// <value><c>true</c> if view appeared; otherwise, <c>false</c>.</value>
+		public bool ViewAppeared {
+			get;
+			set;
 		}
 
 		/// <summary>
