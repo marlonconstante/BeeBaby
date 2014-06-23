@@ -1,5 +1,6 @@
 ﻿using MonoTouch.UIKit;
 using System;
+using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using BeeBaby.ResourcesProviders;
@@ -112,8 +113,13 @@ namespace BeeBaby
 		void CreateMoment()
 		{
 			new ImageProvider().DeleteTemporaryFiles();
-
 			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
+
+			InvokeInBackground(() =>
+			{
+				CurrentContext.Instance.AllEvents = new EventService().GetAllEvents().ToList();
+			});
+
 			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;
 		}
 

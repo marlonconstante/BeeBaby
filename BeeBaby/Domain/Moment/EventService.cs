@@ -44,10 +44,10 @@ namespace Domain.Moment
 
 			var events = MainRepository.FindAllAscending(
 				             (e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0,
-				             (o) => o.Priority //((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000)
+				             (o) => o.Priority
 			             );
 
-			return events.ToList();
+			return events;
 		}
 	}
 }

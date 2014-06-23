@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Moment;
 using Domain.Baby;
+using System.Collections.Generic;
 
 namespace Application
 {
@@ -10,6 +11,7 @@ namespace Application
 
 		private CurrentContext()
 		{
+			AllEvents = new List<Event>();
 		}
 
 		public static CurrentContext Instance
@@ -47,6 +49,16 @@ namespace Application
 		/// </summary>
 		/// <value>The selected event.</value>
 		public Event SelectedEvent
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets all events.
+		/// </summary>
+		/// <value>All events.</value>
+		public IList<Event> AllEvents
 		{
 			get;
 			set;

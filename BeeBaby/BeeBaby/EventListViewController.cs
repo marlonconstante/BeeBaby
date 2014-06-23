@@ -65,13 +65,16 @@ namespace BeeBaby
 
 			InvokeInBackground(() =>
 			{
-				var allEvents = m_eventService.GetAllEvents();
-				m_events = LoadEvents();
+				var momentService = new MomentService();
+				var moments = momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
+
+				m_events = CurrentContext.Instance.AllEvents.Where((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0)
+					.OrderBy((o) => o.Priority).ToList();
 
 				InvokeOnMainThread(() =>
 				{
 					m_eventListViewSource = new EventListViewSource(this, m_events);
-					schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
+					schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, CurrentContext.Instance.AllEvents);
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
 
