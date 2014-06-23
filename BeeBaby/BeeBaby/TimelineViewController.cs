@@ -49,6 +49,10 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Views the did disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidDisappear(bool animated)
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Timeline.", null);
