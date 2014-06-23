@@ -48,7 +48,7 @@ namespace BeeBaby
 			m_eventService = new EventService();
 
 			var allEvents = m_eventService.GetAllEvents();
-			m_events = LoadEvents(allEvents);
+			m_events = LoadEvents();
 			m_eventListViewSource = new EventListViewSource(this, m_events);
 
 			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
@@ -67,6 +67,10 @@ namespace BeeBaby
 
 			ConfigureScrollView();
 			AddButtons();
+
+			var recomendedButton = scrView.Subviews[1] as UITagButton;
+
+			SelectTag(recomendedButton);
 		}
 
 		/// <summary>
@@ -224,8 +228,7 @@ namespace BeeBaby
 		/// Loads the events.
 		/// </summary>
 		/// <returns>The events.</returns>
-		/// <param name="events">Events.</param>
-		public IList<Event> LoadEvents(IEnumerable<Event> events)
+		public IList<Event> LoadEvents()
 		{
 			var eventType = ShowFirstsEvents ? EventType.Achivment : EventType.Everyday;
 			return m_eventService.GetEventsOrdered(CurrentContext.Instance.CurrentBaby, eventType).ToList();
@@ -250,7 +253,7 @@ namespace BeeBaby
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{
 				DeselectAllTags();
-				FilterTableByTag((UITagButton) sender);
+				FilterTableByTag(button.TagName);
 				sender.Selected = true;
 				SelectButton(button, true);
 
@@ -265,7 +268,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				FilterTableByTag((UITagButton) sender);
+				FilterTableByTag(button.TagName);
 				sender.Selected = true;
 				SelectButton(button, true);
 			}
@@ -290,10 +293,10 @@ namespace BeeBaby
 		/// <summary>
 		/// Filters the table by tag.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		void FilterTableByTag(UITagButton sender)
+		/// <param name="tagName">Tag name.</param>
+		void FilterTableByTag(string tagName)
 		{
-			m_selectedTag = sender.TagName;
+			m_selectedTag = tagName;
 
 			List<Event> filtredEvents = new List<Event>();
 
@@ -304,7 +307,7 @@ namespace BeeBaby
 			else if (m_selectedTag == s_recomendationTagName)
 			{
 				var babyAge = CurrentContext.Instance.CurrentBaby.AgeInDays;
-				filtredEvents = m_events.Where(e => e.StartAge >= babyAge && e.EndAge <= babyAge).ToList();
+				filtredEvents = m_events.Where(e => e.StartAge <= babyAge && e.EndAge >= babyAge).ToList();
 			}
 			else if (m_selectedTag == s_everydayTagName)
 			{
