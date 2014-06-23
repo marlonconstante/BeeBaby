@@ -31,7 +31,6 @@ namespace BeeBaby
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
-			CreateButtonsList();
 		}
 
 		/// <summary>
@@ -43,17 +42,10 @@ namespace BeeBaby
 
 			base.ViewDidLoad();
 
+			CreateButtonsList();
+
 			m_tagsHeight = tagsHeightConstraint.Constant;
 
-			m_eventService = new EventService();
-
-			var allEvents = m_eventService.GetAllEvents();
-			m_events = LoadEvents();
-			m_eventListViewSource = new EventListViewSource(this, m_events);
-
-			schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
-
-			tblView.Source = m_eventListViewSource;
 			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
 			tblView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
@@ -68,9 +60,22 @@ namespace BeeBaby
 			ConfigureScrollView();
 			AddButtons();
 
-			var recomendedButton = scrView.Subviews[1] as UITagButton;
+			m_eventService = new EventService();
 
-			SelectTag(recomendedButton);
+			InvokeInBackground(() => {
+				var allEvents = m_eventService.GetAllEvents();
+				m_events = LoadEvents();
+
+				InvokeOnMainThread(() => {
+					m_eventListViewSource = new EventListViewSource(this, m_events);
+					schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, allEvents);
+					tblView.Source = m_eventListViewSource;
+					tblView.ReloadData();
+
+					var recomendedButton = scrView.Subviews[1] as UITagButton;
+					SelectTag(recomendedButton);
+				});
+			});
 		}
 
 		/// <summary>
