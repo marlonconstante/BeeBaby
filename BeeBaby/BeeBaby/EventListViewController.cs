@@ -60,17 +60,14 @@ namespace BeeBaby
 			m_selectedTag = string.Empty;
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) => {
+			proxy.Action = (target, sender, args) =>
+			{
 				target.ScrollEvent();
 			};
 			scrView.Scrolled += proxy.HandleEvent;
 
 			ConfigureScrollView();
 			AddButtons();
-
-			var recomendedButton = scrView.Subviews[1] as UITagButton;
-
-			SelectTag(recomendedButton);
 		}
 
 		/// <summary>
@@ -109,7 +106,7 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Paginou as Tags.", null);
 
-			pcrPager.CurrentPage = (int) Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
+			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -154,8 +151,9 @@ namespace BeeBaby
 			button.MultipleTouchEnabled = true;
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) => {
-				target.SelectTag((UIButton) sender);
+			proxy.Action = (target, sender, args) =>
+			{
+				target.SelectTag((UIButton)sender);
 			};
 			button.TouchUpInside += proxy.HandleEvent;
 
@@ -216,12 +214,12 @@ namespace BeeBaby
 		void ConfigureScrollView()
 		{
 			var numberOfTags = m_buttonNamesList.Count;
-			var scrollWidth = (float) (Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
+			var scrollWidth = (float)(Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
 			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 
-			pcrPager.Pages = (int) Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
+			pcrPager.Pages = (int)Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
 		}
 
 		/// <summary>
@@ -230,8 +228,7 @@ namespace BeeBaby
 		/// <returns>The events.</returns>
 		public IList<Event> LoadEvents()
 		{
-			var eventType = ShowFirstsEvents ? EventType.Achivment : EventType.Everyday;
-			return m_eventService.GetEventsOrdered(CurrentContext.Instance.CurrentBaby, eventType).ToList();
+			return m_eventService.GetEventsOrdered(CurrentContext.Instance.CurrentBaby).ToList();
 		}
 
 		/// <summary>
@@ -248,7 +245,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void SelectTag(UIButton sender)
 		{
-			var button = (UITagButton) sender;
+			var button = (UITagButton)sender;
 
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{
@@ -317,7 +314,13 @@ namespace BeeBaby
 			{
 				filtredEvents = m_events.Where(e => e.Tag.ToString() == m_selectedTag).ToList();
 			}
-				
+
+			if (m_selectedTag != s_recomendationTagName)
+			{
+				var baby = CurrentContext.Instance.CurrentBaby;
+				filtredEvents = filtredEvents.OrderBy(o => (o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000).ToList();
+			}
+
 			SetViewSource(filtredEvents);
 			tblView.ReloadData();
 		}

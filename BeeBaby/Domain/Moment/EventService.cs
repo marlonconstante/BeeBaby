@@ -37,18 +37,17 @@ namespace Domain.Moment
 			return MainRepository.FindAllAscending((o) => o.Id);
 		}
 
-		public IEnumerable<Event> GetEventsOrdered(Baby.Baby baby, EventType eventType)
+		public IEnumerable<Event> GetEventsOrdered(Baby.Baby baby)
 		{
 			var momentService = new MomentService();
-			var moments = momentService.GetAllMoments(baby).ToList();
+			var moments = momentService.GetAllMoments(baby);
 
 			var events = MainRepository.FindAllAscending(
+				             (e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0,
 				             (o) => o.Priority //((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000)
 			             );
 
-			var result = events.Where(e => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0);
-
-			return result;
+			return events.ToList();
 		}
 	}
 }
