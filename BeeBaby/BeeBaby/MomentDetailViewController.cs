@@ -16,7 +16,7 @@ namespace BeeBaby
 	{
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		UITableView m_autoCompleteTable;
-		string[] wordCollection;
+		string[] m_wordCollection;
 		IEnumerable<Location> m_locations;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
@@ -45,7 +45,7 @@ namespace BeeBaby
 			this.View.AddSubview(m_autoCompleteTable);
 
 			m_locations = new LocationService().GetAllLocations();
-			wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
+			m_wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
 
 			if (mapView.UserLocation.Location != null)
 			{
@@ -132,7 +132,7 @@ namespace BeeBaby
 			var source = replacementString != string.Empty ? string.Concat(textField.Text, replacementString).ToLowerInvariant() : textField.Text.Substring(0, textField.Text.Length - 1).ToLowerInvariant();
 			try
 			{
-				suggestions = wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
+				suggestions = m_wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
 					.OrderByDescending(x => x.StartsWith(source, StringComparison.InvariantCultureIgnoreCase))
 					.Select(x => x).ToArray();
 
