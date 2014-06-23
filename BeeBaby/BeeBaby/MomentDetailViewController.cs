@@ -98,7 +98,7 @@ namespace BeeBaby
 			var currentPlace = new Coordinates(mapView.UserLocation.Location.Coordinate.Latitude, mapView.UserLocation.Location.Coordinate.Longitude);
 			var nearest = m_locations.OrderBy(l => l.Position.DistanceFrom(currentPlace)).FirstOrDefault();
 
-			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 100)
+			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 200)
 			{
 				FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
 
@@ -232,7 +232,6 @@ namespace BeeBaby
 				};
 
 				location = new LocationService().SaveLocation(location);
-
 				moment.Location = location;
 
 				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
