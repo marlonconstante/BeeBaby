@@ -23,7 +23,6 @@ namespace BeeBaby
 		public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
 		{
 			changeZoomMap(mapView);
-			m_controller.LoadNearLocation();
 		}
 
 		/// <summary>
@@ -43,13 +42,15 @@ namespace BeeBaby
 		{
 			if (mapView.UserLocation != null)
 			{
-				CLLocationCoordinate2D coordinate = mapView.UserLocation.Coordinate;
+				var coordinate = mapView.UserLocation.Coordinate;
 				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f)
 				{
-					MKCoordinateSpan span = new MKCoordinateSpan(m_zoom, m_zoom);
-					MKCoordinateRegion region = new MKCoordinateRegion(coordinate, span);
+					var span = new MKCoordinateSpan(m_zoom, m_zoom);
+					var region = new MKCoordinateRegion(coordinate, span);
 					mapView.Region = region;
 					mapView.ClipsToBounds = true;
+
+					m_controller.LoadNearLocation(coordinate);
 				}
 			}
 		}

@@ -9,6 +9,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using System.Threading;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
+using MonoTouch.CoreLocation;
 
 namespace BeeBaby
 {
@@ -42,15 +43,10 @@ namespace BeeBaby
 			m_autoCompleteTable.ScrollEnabled = true;
 			m_autoCompleteTable.Hidden = true;
 
-			this.View.AddSubview(m_autoCompleteTable);
+			View.AddSubview(m_autoCompleteTable);
 
 			m_locations = new LocationService().GetAllLocations();
 			m_wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
-
-			if (mapView.UserLocation.Location != null)
-			{
-				LoadNearLocation();
-			}
 		}
 
 		/// <summary>
@@ -93,12 +89,13 @@ namespace BeeBaby
 		/// <summary>
 		/// Loads the near location.
 		/// </summary>
-		public void LoadNearLocation()
+		/// <param name="coordinate">Coordinate.</param>
+		public void LoadNearLocation(CLLocationCoordinate2D coordinate)
 		{
-			var currentPlace = new Coordinates(mapView.UserLocation.Location.Coordinate.Latitude, mapView.UserLocation.Location.Coordinate.Longitude);
+			var currentPlace = new Coordinates(coordinate.Latitude, coordinate.Longitude);
 			var nearest = m_locations.OrderBy(l => l.Position.DistanceFrom(currentPlace)).FirstOrDefault();
 
-			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 200)
+			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 230d)
 			{
 				FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
 

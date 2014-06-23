@@ -257,7 +257,8 @@ namespace BeeBaby
 					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
 					var picker = mediaPickerProvider.GetUIImagePickerController();
 
-					Window.RootViewController.PresentViewController(picker, false, null);
+					var rootViewController = Windows.GetTopViewController(Window);
+					rootViewController.PresentViewController(picker, false, null);
 				}
 			};
 			imageView.Clicked += proxy.HandleEvent;
