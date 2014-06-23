@@ -35,8 +35,6 @@
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
-	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
 	<key>UIAppFonts</key>
@@ -61,5 +59,7 @@
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
+	<key>CFBundleShortVersionString</key>
+	<string>0.5</string>
 </dict>
 </plist>

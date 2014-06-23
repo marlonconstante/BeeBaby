@@ -32,7 +32,7 @@ namespace BeeBaby
 
 			var events = (searchText != string.Empty) ? 
 				GetFilteredEvents(searchText) :
-				m_eventViewController.LoadEvents(m_events);
+				m_eventViewController.LoadEvents();
 
 			m_eventViewController.ClearSelectedTag();
 
