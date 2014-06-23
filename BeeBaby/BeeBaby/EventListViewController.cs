@@ -89,7 +89,7 @@ namespace BeeBaby
 			if (tagsHeightConstraint.Constant != height)
 			{
 				UIView.BeginAnimations(string.Empty, IntPtr.Zero);
-				UIView.SetAnimationDuration(0.3d);
+				UIView.SetAnimationDuration(1d);
 
 				tagsHeightConstraint.Constant = height;
 				View.LayoutIfNeeded();
