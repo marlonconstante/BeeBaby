@@ -34,7 +34,9 @@ namespace Domain.Moment
 		/// <returns>The all locations.</returns>
 		public IEnumerable<Location> GetAllLocations()
 		{
-			return MainRepository.FindAllAscending(o => o.Name);
+			return MainRepository.FindAllAscending(
+				(l) => !string.IsNullOrEmpty(l.Name),
+				(o) => o.Name);
 		}
 
 		/// <summary>
