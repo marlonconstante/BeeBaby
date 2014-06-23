@@ -28,6 +28,7 @@ namespace BeeBaby
 		IList<Event> m_events;
 		EventService m_eventService;
 		EventListViewSource m_eventListViewSource;
+		MomentService m_momentService;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -43,6 +44,8 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			CreateButtonsList();
+
+			m_momentService = new MomentService();
 
 			m_tagsHeight = tagsHeightConstraint.Constant;
 
@@ -65,11 +68,7 @@ namespace BeeBaby
 
 			InvokeInBackground(() =>
 			{
-				var momentService = new MomentService();
-				var moments = momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
-
-				m_events = CurrentContext.Instance.AllEvents.Where((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0)
-					.OrderBy((o) => o.Priority).ToList();
+				m_events = LoadEvents();
 
 				InvokeOnMainThread(() =>
 				{
@@ -242,7 +241,11 @@ namespace BeeBaby
 		/// <returns>The events.</returns>
 		public IList<Event> LoadEvents()
 		{
-			return m_eventService.GetEventsOrdered(CurrentContext.Instance.CurrentBaby).ToList();
+			var moments = m_momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
+
+			return CurrentContext.Instance.AllEvents.Where((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0)
+				.OrderBy((o) => o.Priority).ToList();
+
 		}
 
 		/// <summary>
