@@ -163,7 +163,7 @@ de lembrar sobre este momento?</string>
                                     <constraint firstAttribute="width" constant="320" id="VyY-Mc-DwU"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="OQy-eW-gLs">
+                                <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="OQy-eW-gLs" customClass="SearchBar">
                                     <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
