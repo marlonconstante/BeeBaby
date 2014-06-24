@@ -38,12 +38,15 @@ namespace BeeBaby
 			txtDescription.Delegate = m_txtDescriptionDelegate;
 			txtDescription.IsKeyboardAnimation = true;
 
+			txtLocalName.IsKeyboardAnimation = true;
+			txtLocalName.OffsetHeight = 131f;
+
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d, this);
 
-			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 87f));
+			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 131f));
 			m_autoCompleteTable.ScrollEnabled = true;
 
-			var autoCompleteView = new UIView(new RectangleF(0f, (txtLocalName.Frame.Y + txtLocalName.Frame.Height) - 10f, 320f, 87f));
+			var autoCompleteView = new UIView(new RectangleF(0f, (txtLocalName.Frame.Y + txtLocalName.Frame.Height) - 10, 320f, 131f));
 			autoCompleteView.SetStyleClass("row");
 			autoCompleteView.Hidden = true;
 			autoCompleteView.AddSubview(m_autoCompleteTable);
@@ -96,14 +99,17 @@ namespace BeeBaby
 		/// <param name="coordinate">Coordinate.</param>
 		public void LoadNearLocation(CLLocationCoordinate2D coordinate)
 		{
-			var currentPlace = new Coordinates(coordinate.Latitude, coordinate.Longitude);
-			var nearest = m_locations.OrderBy(l => l.Position.DistanceFrom(currentPlace)).FirstOrDefault();
-
-			if (nearest != null && currentPlace.DistanceFrom(nearest.Position) <= 230d)
+			var currentPlace = new CLLocation(coordinate.Latitude, coordinate.Longitude);
+			foreach (var location in m_locations)
 			{
-				FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
+				var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
+				if (place.DistanceFrom(currentPlace) <= 200d)
+				{
+					FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
 
-				SetAutoCompleteText(nearest.Name);
+					SetAutoCompleteText(location.Name);
+					break;
+				}
 			}
 		}
 
@@ -197,12 +203,7 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 			vwDate.Hide();
-
-			InvokeInBackground(() => {
-				InvokeOnMainThread(() => {
-					m_autoCompleteTable.Superview.Hidden = true;
-				});
-			});
+			m_autoCompleteTable.Superview.Hidden = true;
 		}
 
 		/// <summary>
