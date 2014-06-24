@@ -52,10 +52,9 @@ namespace BeeBaby
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
 
-			var cellStyle = UITableViewCellStyle.Default;
 			if (cell == null)
 			{
-				cell = new UITableViewCell(cellStyle, s_cellIdentifier);
+				cell = new UITableViewCell(UITableViewCellStyle.Default, s_cellIdentifier);
 			}
 			cell.TextLabel.Text = m_suggestions[indexPath.Row];
 			return cell;
