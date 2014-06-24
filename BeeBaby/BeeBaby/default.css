@@ -47,6 +47,7 @@ search-bar button,
 search-bar button:highlighted,
 search-bar button:selected {
     font-size: 14pt;
+    size: 68 32;
 }
 
 .table-view-headerfooter-view label {
