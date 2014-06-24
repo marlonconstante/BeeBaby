@@ -8,7 +8,7 @@ namespace Domain.Moment
 	/// </summary>
 	public enum EventType
 	{
-		Achivment = 0,
+		Achievement = 0,
 		Everyday = 1
 	}
 

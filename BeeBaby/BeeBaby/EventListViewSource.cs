@@ -64,7 +64,7 @@ namespace BeeBaby
 
 
 			var tagName = Enum.GetName(typeof(TagType), m_otherEventsTableItems[indexPath.Row].Tag).ToLower();
-			var imageName = (moment.Kind == EventType.Achivment) ? "firsts_sm.png" : string.Format("{0}_sm.png", tagName);
+			var imageName = (moment.Kind == EventType.Achievement) ? "firsts_sm.png" : string.Format("{0}_sm.png", tagName);
 			cell.TagIcon = UIImage.FromFile(imageName);
 
 			return cell;

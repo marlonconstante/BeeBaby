@@ -216,7 +216,7 @@ namespace Infrastructure.Repositories.SqliteNet
 		/// Finds the events with non used achivments.
 		/// </summary>
 		/// <returns>The events with non used achivments.</returns>
-		public IEnumerable<Event> FindEventsWithNonUsedAchivments()
+		public IEnumerable<Event> FindEventsWithNonUsedAchievements()
 		{
 			var events = m_connection.Query<EventData>("select * from EventData E " +
 			             "where (Kind = 0 and not exists (select 1 from MomentData where E.Id = EventId)) " +

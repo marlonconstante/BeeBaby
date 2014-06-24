@@ -23,7 +23,7 @@ namespace Infrastructure.Repositories.Memory
 			s_lastKey = 0;
 		}
 
-		public IEnumerable<Event> FindEventsWithNonUsedAchivments()
+		public IEnumerable<Event> FindEventsWithNonUsedAchievements()
 		{
 			return null;
 		}

@@ -39,7 +39,7 @@ namespace Domain.Moment
 
 		public IEnumerable<Event> GetAllEvents(IEnumerable<Moment> moments)
 		{
-			return MainRepository.FindAll((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0);
+			return MainRepository.FindAll((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achievement) <= 0);
 		}
 
 		public IEnumerable<Event> GetEventsOrdered(Baby.Baby baby)
@@ -48,7 +48,7 @@ namespace Domain.Moment
 			var moments = momentService.GetAllMoments(baby);
 
 			var events = MainRepository.FindAllAscending(
-				             (e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0,
+				             (e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achievement) <= 0,
 				             (o) => o.Priority
 			             );
 
@@ -61,7 +61,7 @@ namespace Domain.Moment
 		/// <returns>The all events with non used achivments.</returns>
 		public IEnumerable<Event> GetAllEventsWithNonUsedAchivments()
 		{
-			return MainRepository.FindEventsWithNonUsedAchivments();
+			return MainRepository.FindEventsWithNonUsedAchievements();
 		}
 	}
 }

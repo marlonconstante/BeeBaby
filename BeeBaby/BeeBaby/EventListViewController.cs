@@ -325,7 +325,7 @@ namespace BeeBaby
 
 			if (m_selectedTag == s_firstsTagName)
 			{
-				filtredEvents = m_events.Where(e => e.Kind == EventType.Achivment).ToList();
+				filtredEvents = m_events.Where(e => e.Kind == EventType.Achievement).ToList();
 			}
 			else if (m_selectedTag == s_recomendationTagName)
 			{
