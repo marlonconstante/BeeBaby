@@ -10,6 +10,7 @@ using System.Threading;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.CoreLocation;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -39,11 +40,14 @@ namespace BeeBaby
 
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d, this);
 
-			m_autoCompleteTable = new UITableView(new RectangleF(0, 64, 320, 120));
+			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 87f));
 			m_autoCompleteTable.ScrollEnabled = true;
-			m_autoCompleteTable.Hidden = true;
 
-			View.AddSubview(m_autoCompleteTable);
+			var autoCompleteView = new UIView(new RectangleF(0f, (txtLocalName.Frame.Y + txtLocalName.Frame.Height) - 10f, 320f, 87f));
+			autoCompleteView.SetStyleClass("row");
+			autoCompleteView.Hidden = true;
+			autoCompleteView.AddSubview(m_autoCompleteTable);
+			View.AddSubview(autoCompleteView);
 
 			m_locations = new LocationService().GetAllLocations();
 			m_wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
@@ -110,7 +114,7 @@ namespace BeeBaby
 		/// <param name="textField">Text field.</param>
 		public bool InputLocalShouldReturn(UITextField textField)
 		{
-			m_autoCompleteTable.Hidden = true;
+			m_autoCompleteTable.Superview.Hidden = true;
 
 			return true;
 		}
@@ -135,13 +139,13 @@ namespace BeeBaby
 
 				if (suggestions.Length != 0)
 				{
-					m_autoCompleteTable.Hidden = false;
+					m_autoCompleteTable.Superview.Hidden = false;
 					m_autoCompleteTable.Source = new AutoCompleteTableSource(suggestions, this);
 					m_autoCompleteTable.ReloadData();
 				}
 				else
 				{
-					m_autoCompleteTable.Hidden = true;
+					m_autoCompleteTable.Superview.Hidden = true;
 				}
 			}
 			catch (Exception)
@@ -161,8 +165,7 @@ namespace BeeBaby
 			txtLocalName.Text = finalString;
 			var location = new LocationService().GetLocationByName(finalString);
 			mapView.SetCenterCoordinate(new MonoTouch.CoreLocation.CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude), true);
-			txtLocalName.ResignFirstResponder();
-			m_autoCompleteTable.Hidden = true;
+			m_autoCompleteTable.Superview.Hidden = true;
 		}
 
 		/// <summary>
@@ -193,8 +196,13 @@ namespace BeeBaby
 		public override void EndEditing()
 		{
 			base.EndEditing();
-			m_autoCompleteTable.Hidden = true;
 			vwDate.Hide();
+
+			InvokeInBackground(() => {
+				InvokeOnMainThread(() => {
+					m_autoCompleteTable.Superview.Hidden = true;
+				});
+			});
 		}
 
 		/// <summary>
