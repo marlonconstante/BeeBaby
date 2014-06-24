@@ -145,6 +145,18 @@ namespace Infrastructure.Repositories.UnitTests.Dropbox.Mapper
 				Name = "Baby 12"
 			};
 
+			var location = new Location
+			{
+				Id = "1",
+				Name = "Local",
+				Position = new Coordinates
+				{
+					Longitude = 1,
+					Latitude = 2
+				}
+			};
+
+
 			var domainEntity = new Moment
 			{
 				Id = "1",
@@ -152,8 +164,10 @@ namespace Infrastructure.Repositories.UnitTests.Dropbox.Mapper
 				Event = eventData,
 				Position = local,
 				Date = DateTime.Now,
+				Location = location,
 				Babies = new List<Baby> { baby }
 			};
+
 
 			var actual = new DropboxMomentMapper().ToRepositoryEntity(domainEntity);
 			Assert.AreEqual(domainEntity.Id, actual.Id);
@@ -206,8 +220,8 @@ namespace Infrastructure.Repositories.UnitTests.Dropbox.Mapper
 			Assert.AreEqual(domainEntity.Date, actual.Date);
 			Assert.AreEqual(domainEntity.Event.Id, actual.EventId);
 			Assert.AreEqual(domainEntity.Event.Description, actual.EventDescription);
-			Assert.AreEqual(domainEntity.Location.Id, actual.LocationId);
-			Assert.AreEqual(domainEntity.Location.Name, actual.LocationDescription);
+			Assert.IsNull(actual.LocationId);
+			Assert.IsNull(actual.LocationDescription);
 		}
 	}
 }

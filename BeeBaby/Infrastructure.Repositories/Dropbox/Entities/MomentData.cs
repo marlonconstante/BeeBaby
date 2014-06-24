@@ -1,8 +1,9 @@
 ﻿using System;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Infrastructure.Repositories.Dropbox.Entities
 {
-	public class MomentData
+	public class MomentData : EntityWithIdBase<string>
 	{
 		public MomentData()
 		{

@@ -6,30 +6,39 @@ using BobbyTables;
 using HelperSharp;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
+using Infrastructure.Repositories.Commons;
+using System.Collections;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Dropbox
 {
 	/// <summary>
 	/// Repository using Dropbox.
 	/// </summary>
-	public class DropboxRepositoryBase<TEntity> : RepositoryBase<TEntity> where TEntity : EntityWithIdBase<string>, IAggregateRoot, new()
+	public class DropboxRepositoryBase<TEntity, TRepositoryEntity>: RepositoryBase<TEntity> 
+		where TEntity : IAggregateRoot, new()
+		where TRepositoryEntity : class, IEntity, new()
 	{
+		protected IMapper<TEntity, TRepositoryEntity> Mapper { get; private set; }
+
+
 		#region Fields
 
 		private string m_datastoreId;
 		private Datastore m_ds;
-		private Table<TEntity> m_table;
+		private Table<TRepositoryEntity> m_table;
 		private bool m_initialized;
 
 		#endregion
 
 		#region Constructors
 
-		public DropboxRepositoryBase(string datastoreId)
+		public DropboxRepositoryBase(string datastoreId, IMapper<TEntity, TRepositoryEntity> mapper)
 		{
 			ExceptionHelper.ThrowIfNull("datastoreId", datastoreId);
 
 			m_datastoreId = datastoreId;
+			Mapper = mapper;
 		}
 
 		#endregion
@@ -44,7 +53,7 @@ namespace Infrastructure.Repositories.Dropbox
 			}
 			else
 			{
-				return m_table.Count(filter.Compile());
+				return MapperHelper.ToDomainEntities(m_table, Mapper).Count(filter.Compile());
 			}
 		}
 
@@ -54,13 +63,13 @@ namespace Infrastructure.Repositories.Dropbox
 
 			if (filter == null)
 			{
-				return m_table
+				return MapperHelper.ToDomainEntities(m_table, Mapper)
                     .Skip(offset)
                     .Take(limit);
 			}
 			else
 			{
-				return m_table
+				return MapperHelper.ToDomainEntities(m_table, Mapper)
                     .Where(filter.Compile())
                     .Skip(offset)
                     .Take(limit);
@@ -82,16 +91,18 @@ namespace Infrastructure.Repositories.Dropbox
 		public override TEntity FindBy(object key)
 		{
 			Initialize();
-			return m_table.Get(key as string);
+			return Mapper.ToDomainEntity(m_table.Get(key as string));
 		}
 
 		public void ClearAll()
 		{
 			Initialize();
 
-			foreach (var r in m_table)
+			var all = MapperHelper.ToDomainEntities(m_table, Mapper);
+
+			foreach (var r in all)
 			{
-				m_table.Delete(r.Id);
+				m_table.Delete(r.Key.ToString());
 			}
 
 			PushToDropbox();
@@ -100,20 +111,23 @@ namespace Infrastructure.Repositories.Dropbox
 		protected override void PersistDeletedItem(TEntity item)
 		{
 			Initialize();
-			m_table.Delete(item.Id);
+			m_table.Delete(item.Key.ToString());
 			PushToDropbox();
 		}
 
 		protected override void PersistNewItem(TEntity item)
 		{
 			Initialize();
-			m_table.Insert(item);
+			m_table.Insert(Mapper.ToRepositoryEntity(item));
 			PushToDropbox();
 		}
 
 		async private void PushToDropbox()
 		{
-			if (await m_ds.PushAsync())
+			Task<bool> task = m_ds.PushAsync();
+			task.Wait();
+
+			if (!task.Result)
 			{
 				throw new InvalidOperationException("Error syncing with DropBox.");
 			}
@@ -122,7 +136,7 @@ namespace Infrastructure.Repositories.Dropbox
 		protected override void PersistUpdatedItem(TEntity item)
 		{
 			Initialize();
-			m_table.Update(item);
+			m_table.Update(Mapper.ToRepositoryEntity(item));
 			PushToDropbox();
 		}
 
@@ -130,15 +144,19 @@ namespace Infrastructure.Repositories.Dropbox
 		{
 			if (!m_initialized)
 			{
-				// https://www.dropbox.com/1/oauth2/authorize?client_id=5wqvkk9wlx8uhz9&response_type=code&redirect_uri=http://localhost
-				var manager = new DatastoreManager("cJBboFs_i-sAAAAAAAACt6z7uYpy-2cOt-NEONBjqQ1spYtW0nCbFn7_X3PQH502");
+				// https://www.dropbox.com/1/oauth2/authorize?client_id=wzlvug44evwu7lg&response_type=code
+				var manager = new DatastoreManager("cJBboFs_i-sAAAAAAAACwIWnTF0EM1eQAIK4blvvFYiEN6ZRvdcgWM00m1BJyvug");
+
 				var task = manager.GetOrCreateAsync(m_datastoreId.ToLowerInvariant());
+				task.Wait();
 				m_ds = task.Result;
 
-				m_table = m_ds.GetTable<TEntity>(typeof(TEntity).Name);
-				m_ds.PushAsync();
 				m_initialized = true;
 			}
+
+			m_table = m_ds.GetTable<TRepositoryEntity>(typeof(TRepositoryEntity).Name);
+			var task2 = m_ds.PullAsync();
+			task2.Wait();
 		}
 	}
 }

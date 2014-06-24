@@ -56,10 +56,11 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
 		{
-			return MainRepository.FindAll(
+			return MainRepository.FindAllDescending(
 				(m) => m.Event != null
 				&& m.Location != null
-				&& m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0);
+				&& m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0,
+				(o) => o.Date);
 		}
 
 		/// <summary>
