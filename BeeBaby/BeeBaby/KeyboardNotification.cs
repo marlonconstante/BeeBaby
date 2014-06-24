@@ -56,7 +56,7 @@ namespace BeeBaby
 				{
 					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
-					var bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height);
+					var bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + keyboardSupport.OffsetHeight);
 					var height = (rectangle.Height - (viewController.View.Frame.Height - bottom));
 
 					Scroller.Move(viewController.View, 0f, up ? -height : height);

@@ -12,5 +12,14 @@ namespace BeeBaby
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Gets or sets the height of the offset.
+		/// </summary>
+		/// <value>The height of the offset.</value>
+		float OffsetHeight {
+			get;
+			set;
+		}
 	}
 }
