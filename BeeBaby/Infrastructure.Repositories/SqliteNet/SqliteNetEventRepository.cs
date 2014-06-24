@@ -5,6 +5,8 @@ using Infrastructure.Repositories.SqliteNet.Entities;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Text;
+using System.Collections.Generic;
+using Infrastructure.Repositories.Commons;
 
 namespace Infrastructure.Repositories.SqliteNet
 {
@@ -12,6 +14,7 @@ namespace Infrastructure.Repositories.SqliteNet
 	{
 		public SqliteNetEventRepository(SQLiteConnection connection, IUnitOfWork unitOfWork) : base(connection, new SqliteNetEventMapper(), unitOfWork)
 		{
+			#region CreateData
 			connection.CreateTable<EventData>();
 
 			if (CountAll(null) <= 0)
@@ -206,7 +209,22 @@ namespace Infrastructure.Repositories.SqliteNet
 				connection.ExecuteScalar<EventData>("Insert Into EventData (Id, Description, StartAge, EndAge, Kind, Tag, Priority) values ('188', ?, ?, ?, ?, ?, ?)", "Meu 1o dia das mães", 999, 999, 0, 7, 186);
 				connection.ExecuteScalar<EventData>("Insert Into EventData (Id, Description, StartAge, EndAge, Kind, Tag, Priority) values ('189', ?, ?, ?, ?, ?, ?)", "Andei de avião", 999, 999, 0, 2, 187);
 			}
+			#endregion
 		}
+
+		/// <summary>
+		/// Finds the events with non used achivments.
+		/// </summary>
+		/// <returns>The events with non used achivments.</returns>
+		public IEnumerable<Event> FindEventsWithNonUsedAchivments()
+		{
+			var events = m_connection.Query<EventData>("select * from EventData E " +
+			             "where (Kind = 0 and not exists (select 1 from MomentData where E.Id = EventId)) " +
+			             "or (Kind = 1) Order by Priority");
+
+			return MapperHelper.ToDomainEntities<Event, EventData>(events, Mapper);
+		}
+
 	}
 }
 

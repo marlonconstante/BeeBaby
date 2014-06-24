@@ -67,8 +67,6 @@ namespace BeeBaby
 			var imageName = (moment.Kind == EventType.Achivment) ? "firsts_sm.png" : string.Format("{0}_sm.png", tagName);
 			cell.TagIcon = UIImage.FromFile(imageName);
 
-			Console.WriteLine("{0} - {1}", m_otherEventsTableItems[indexPath.Row].Description, m_otherEventsTableItems[indexPath.Row].Kind);
-
 			return cell;
 		}
 

@@ -1,5 +1,6 @@
 ﻿using Domain.Moment;
 using Skahal.Infrastructure.Framework.Repositories;
+using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.Memory
 {
@@ -20,6 +21,11 @@ namespace Infrastructure.Repositories.Memory
 			})
 		{
 			s_lastKey = 0;
+		}
+
+		public IEnumerable<Event> FindEventsWithNonUsedAchivments()
+		{
+			return null;
 		}
 	}
 }

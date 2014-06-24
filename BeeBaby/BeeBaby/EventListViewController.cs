@@ -8,6 +8,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
 using MonoTouch.Foundation;
+using System.Diagnostics;
 
 namespace BeeBaby
 {
@@ -241,10 +242,18 @@ namespace BeeBaby
 		/// <returns>The events.</returns>
 		public IList<Event> LoadEvents()
 		{
-			var moments = m_momentService.GetAllMoments(CurrentContext.Instance.CurrentBaby);
+			var stw = new Stopwatch();
+			stw.Start();
 
-			return CurrentContext.Instance.AllEvents.Where((e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achivment) <= 0)
-				.OrderBy((o) => o.Priority).ToList();
+			var result = m_eventService.GetAllEventsWithNonUsedAchivments().ToList();
+
+
+			stw.Stop();
+
+
+			Console.WriteLine(stw.ElapsedMilliseconds);
+
+			return result;
 
 		}
 
