@@ -58,6 +58,7 @@ namespace BeeBaby
 		public override void CancelButtonClicked(UISearchBar searchBar)
 		{
 			searchBar.Text = string.Empty;
+			TextChanged(searchBar, searchBar.Text);
 		}
 			
 		/// <summary>
