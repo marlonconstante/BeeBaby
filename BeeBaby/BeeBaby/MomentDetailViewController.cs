@@ -44,6 +44,7 @@ namespace BeeBaby
 			mapView.Delegate = new ZoomMapViewDelegate(0.001d, this);
 
 			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 131f));
+			m_autoCompleteTable.ExclusiveTouch = true;
 			m_autoCompleteTable.ScrollEnabled = true;
 
 			var autoCompleteView = new UIView(new RectangleF(0f, (txtLocalName.Frame.Y + txtLocalName.Frame.Height) - 10, 320f, 131f));
@@ -99,6 +100,7 @@ namespace BeeBaby
 		/// <param name="coordinate">Coordinate.</param>
 		public void LoadNearLocation(CLLocationCoordinate2D coordinate)
 		{
+			//Atualizar uma vez...
 			var currentPlace = new CLLocation(coordinate.Latitude, coordinate.Longitude);
 			foreach (var location in m_locations)
 			{
@@ -172,6 +174,7 @@ namespace BeeBaby
 			var location = new LocationService().GetLocationByName(finalString);
 			mapView.SetCenterCoordinate(new MonoTouch.CoreLocation.CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude), true);
 			m_autoCompleteTable.Superview.Hidden = true;
+			txtLocalName.ResignFirstResponder();
 		}
 
 		/// <summary>

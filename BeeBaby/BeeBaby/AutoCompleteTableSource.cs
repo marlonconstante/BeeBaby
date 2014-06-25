@@ -51,7 +51,6 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
-
 			if (cell == null)
 			{
 				cell = new UITableViewCell(UITableViewCellStyle.Default, s_cellIdentifier);
