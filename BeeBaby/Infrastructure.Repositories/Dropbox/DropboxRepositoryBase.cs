@@ -28,6 +28,7 @@ namespace Infrastructure.Repositories.Dropbox
 		private Datastore m_ds;
 		private Table<TRepositoryEntity> m_table;
 		private bool m_initialized;
+		const int s_timeout = -1;
 
 		#endregion
 
@@ -125,7 +126,7 @@ namespace Infrastructure.Repositories.Dropbox
 		async private void PushToDropbox()
 		{
 			Task<bool> task = m_ds.PushAsync();
-			task.Wait();
+			task.Wait(s_timeout);
 
 			if (!task.Result)
 			{
@@ -148,7 +149,7 @@ namespace Infrastructure.Repositories.Dropbox
 				var manager = new DatastoreManager("cJBboFs_i-sAAAAAAAACwIWnTF0EM1eQAIK4blvvFYiEN6ZRvdcgWM00m1BJyvug");
 
 				var task = manager.GetOrCreateAsync(m_datastoreId.ToLowerInvariant());
-				task.Wait();
+				task.Wait(s_timeout);
 				m_ds = task.Result;
 
 				m_initialized = true;
@@ -156,7 +157,7 @@ namespace Infrastructure.Repositories.Dropbox
 
 			m_table = m_ds.GetTable<TRepositoryEntity>(typeof(TRepositoryEntity).Name);
 			var task2 = m_ds.PullAsync();
-			task2.Wait();
+			task2.Wait(s_timeout);
 		}
 	}
 }

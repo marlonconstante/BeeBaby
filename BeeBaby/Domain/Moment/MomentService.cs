@@ -3,6 +3,8 @@ using System.Linq;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Skahal.Infrastructure.Framework.Commons;
 
 namespace Domain.Moment
 {
@@ -11,6 +13,8 @@ namespace Domain.Moment
 	/// </summary>
 	public class MomentService : ServiceBase<Moment, IMomentRepository, IUnitOfWork>
 	{
+		IMomentRepository m_remoteRepository;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Domain.Moment.MomentService"/> class.
 		/// </summary>
@@ -36,6 +40,22 @@ namespace Domain.Moment
 		{
 			MainRepository[moment.Id] = moment;
 			UnitOfWork.Commit();
+
+			// Só salva o momento depois de ter um evento atrelado, assim evita lixo na base remota
+			if (moment.Event != null)
+			{
+				try
+				{
+					m_remoteRepository = DependencyService.Create<IMomentRepository>("REMOTE");
+					m_remoteRepository.SetUnitOfWork(UnitOfWork);
+					m_remoteRepository.Add(moment);
+					UnitOfWork.Commit();
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex.StackTrace);
+				}
+			}
 		}
 
 		/// <summary>
