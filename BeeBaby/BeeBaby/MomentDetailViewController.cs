@@ -179,19 +179,21 @@ namespace BeeBaby
 		public bool SelectLocation(Location location, bool updateOnlyCoordinates = false)
 		{
 			bool selected = location != null && !location.Equals(m_location);
+
+			m_mapViewDelegate.UpdateUserLocation = !selected;
+
 			if (selected)
 			{
 				mapView.CenterCoordinate = new CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude);
-
-				if (!updateOnlyCoordinates)
-				{
-					txtLocalName.Text = location.Name;
-					txtLocalName.ResignFirstResponder();
-					m_autoCompleteTable.Superview.Hidden = true;
-				}
 			}
 
-			m_mapViewDelegate.UpdateUserLocation = !selected;
+			if (location != null && !updateOnlyCoordinates)
+			{
+				txtLocalName.Text = location.Name;
+				txtLocalName.ResignFirstResponder();
+				m_autoCompleteTable.Superview.Hidden = true;
+			}
+
 			m_location = location;
 
 			return selected;
