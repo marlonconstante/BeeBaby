@@ -17,12 +17,15 @@ namespace BeeBaby
 	public partial class MomentDetailViewController : NavigationViewController
 	{
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
+		ZoomMapViewDelegate m_mapViewDelegate;
 		UITableView m_autoCompleteTable;
-		string[] m_wordCollection;
+		Location m_location;
 		IEnumerable<Location> m_locations;
+		bool m_loadNearLocation;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
+			m_loadNearLocation = true;
 		}
 
 		/// <summary>
@@ -41,7 +44,8 @@ namespace BeeBaby
 			txtLocalName.IsKeyboardAnimation = true;
 			txtLocalName.OffsetHeight = 131f;
 
-			mapView.Delegate = new ZoomMapViewDelegate(0.001d, this);
+			m_mapViewDelegate = new ZoomMapViewDelegate(0.001d, this);
+			mapView.Delegate = m_mapViewDelegate;
 
 			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 131f));
 			m_autoCompleteTable.ExclusiveTouch = true;
@@ -54,7 +58,6 @@ namespace BeeBaby
 			View.AddSubview(autoCompleteView);
 
 			m_locations = new LocationService().GetAllLocations();
-			m_wordCollection = m_locations.Select(l => l.Name).ToArray<string>();
 		}
 
 		/// <summary>
@@ -97,20 +100,23 @@ namespace BeeBaby
 		/// <summary>
 		/// Loads the near location.
 		/// </summary>
-		/// <param name="coordinate">Coordinate.</param>
-		public void LoadNearLocation(CLLocationCoordinate2D coordinate)
+		public void LoadNearLocation()
 		{
-			//Atualizar uma vez...
-			var currentPlace = new CLLocation(coordinate.Latitude, coordinate.Longitude);
-			foreach (var location in m_locations)
+			if (m_loadNearLocation)
 			{
-				var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
-				if (place.DistanceFrom(currentPlace) <= 200d)
+				var currentPlace = new CLLocation(mapView.CenterCoordinate.Latitude, mapView.CenterCoordinate.Longitude);
+				foreach (var location in m_locations)
 				{
-					FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
-
-					SetAutoCompleteText(location.Name);
-					break;
+					var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
+					if (place.DistanceFrom(currentPlace) <= 200d)
+					{
+						if (SelectLocation(location))
+						{
+							FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
+							m_loadNearLocation = false;
+						}
+						break;
+					}
 				}
 			}
 		}
@@ -136,19 +142,19 @@ namespace BeeBaby
 		/// <param name="replacementString">Replacement string.</param>
 		public bool InputLocalShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
 		{
-			string[] suggestions = null;
-
 			var source = replacementString != string.Empty ? string.Concat(textField.Text, replacementString).ToLowerInvariant() : textField.Text.Substring(0, textField.Text.Length - 1).ToLowerInvariant();
 			try
 			{
-				suggestions = m_wordCollection.Where(x => x.ToLowerInvariant().Contains(source))
-					.OrderByDescending(x => x.StartsWith(source, StringComparison.InvariantCultureIgnoreCase))
-					.Select(x => x).ToArray();
+				var locations = m_locations.Where(l => l.Name.ToLowerInvariant().Contains(source))
+					.OrderByDescending(l => l.Name.StartsWith(source, StringComparison.InvariantCultureIgnoreCase))
+					.ToArray();
 
-				if (suggestions.Length != 0)
+				SelectLocation(locations.Where(l => l.Name.ToLowerInvariant().Equals(source)).FirstOrDefault(), true);
+
+				if (locations.Length > 0)
 				{
 					m_autoCompleteTable.Superview.Hidden = false;
-					m_autoCompleteTable.Source = new AutoCompleteTableSource(suggestions, this);
+					m_autoCompleteTable.Source = new AutoCompleteTableSource(locations, this);
 					m_autoCompleteTable.ReloadData();
 				}
 				else
@@ -165,16 +171,30 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Sets the auto complete text.
+		/// Selects the location.
 		/// </summary>
-		/// <param name="finalString">Final string.</param>
-		public void SetAutoCompleteText(string finalString)
+		/// <returns><c>true</c>, if location was selected, <c>false</c> otherwise.</returns>
+		/// <param name="location">Location.</param>
+		/// <param name="updateOnlyCoordinates">If set to <c>true</c> update only coordinates.</param>
+		public bool SelectLocation(Location location, bool updateOnlyCoordinates = false)
 		{
-			txtLocalName.Text = finalString;
-			var location = new LocationService().GetLocationByName(finalString);
-			mapView.SetCenterCoordinate(new MonoTouch.CoreLocation.CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude), true);
-			m_autoCompleteTable.Superview.Hidden = true;
-			txtLocalName.ResignFirstResponder();
+			bool selected = location != null && !location.Equals(m_location);
+			if (selected)
+			{
+				mapView.CenterCoordinate = new CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude);
+
+				if (!updateOnlyCoordinates)
+				{
+					txtLocalName.Text = location.Name;
+					txtLocalName.ResignFirstResponder();
+					m_autoCompleteTable.Superview.Hidden = true;
+				}
+			}
+
+			m_mapViewDelegate.UpdateUserLocation = !selected;
+			m_location = location;
+
+			return selected;
 		}
 
 		/// <summary>
@@ -229,8 +249,8 @@ namespace BeeBaby
 				moment.Date = vwDate.DateTime;
 
 				moment.Position = new Coordinates();
-				moment.Position.Latitude = mapView.UserLocation.Coordinate.Latitude;
-				moment.Position.Longitude = mapView.UserLocation.Coordinate.Longitude;
+				moment.Position.Latitude = mapView.CenterCoordinate.Latitude;
+				moment.Position.Longitude = mapView.CenterCoordinate.Longitude;
 
 				var location = new Location() {
 					Name = txtLocalName.Text,

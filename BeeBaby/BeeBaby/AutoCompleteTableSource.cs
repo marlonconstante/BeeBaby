@@ -1,18 +1,19 @@
 ﻿using System;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using Domain.Moment;
 
 namespace BeeBaby
 {
 	public class AutoCompleteTableSource : TableViewSource
 	{
 		const string s_cellIdentifier = "suggestionCell";
-		string[] m_suggestions;
+		Location[] m_locations;
 		MomentDetailViewController m_viewController;
 
-		public AutoCompleteTableSource(string[] suggestions, MomentDetailViewController controllerContext)
+		public AutoCompleteTableSource(Location[] locations, MomentDetailViewController controllerContext)
 		{
-			this.m_suggestions = suggestions;
+			this.m_locations = locations;
 			this.m_viewController = controllerContext;
 		}
 
@@ -25,7 +26,7 @@ namespace BeeBaby
 		/// <param name="section">Section.</param>
 		public override int RowsInSection(UITableView tableview, int section)
 		{
-			return m_suggestions.Length;
+			return m_locations.Length;
 		}
 
 		/// <Docs>Table view containing the row.</Docs>
@@ -37,7 +38,7 @@ namespace BeeBaby
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			FlurryAnalytics.Flurry.LogEvent("Momento: GPS Selecionou da lista.");
-			m_viewController.SetAutoCompleteText(m_suggestions[indexPath.Row]);
+			m_viewController.SelectLocation(m_locations[indexPath.Row]);
 			tableView.DeselectRow(indexPath, true);
 		}
 
@@ -55,7 +56,10 @@ namespace BeeBaby
 			{
 				cell = new UITableViewCell(UITableViewCellStyle.Default, s_cellIdentifier);
 			}
-			cell.TextLabel.Text = m_suggestions[indexPath.Row];
+
+			var location = m_locations[indexPath.Row];
+			cell.TextLabel.Text = location.Name;
+
 			return cell;
 		}
 	}
