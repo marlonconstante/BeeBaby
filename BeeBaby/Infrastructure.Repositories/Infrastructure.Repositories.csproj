@@ -56,10 +56,6 @@
     <Compile Include="SqliteNet\Entities\MomentsBabies.cs" />
     <Compile Include="Memory\MemoryLocationRepository.cs" />
     <Compile Include="SqliteNet\SqliteNetLocationRepository.cs" />
-    <Compile Include="Dropbox\DropboxRepositoryBase.cs" />
-    <Compile Include="Dropbox\Entities\MomentData.cs" />
-    <Compile Include="Dropbox\Mapper\DropboxMomentMapper.cs" />
-    <Compile Include="Dropbox\DropboxMomentRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -67,7 +63,6 @@
     <Folder Include="SqliteNet\" />
     <Folder Include="Commons\" />
     <Folder Include="SqliteNet\Mapper\" />
-    <Folder Include="Dropbox\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HelperSharp">
@@ -84,9 +79,6 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="BobbyTables">
-      <HintPath>..\packages\BobbyTables.1.3.2\lib\portable-net40+sl50+wp80+win\BobbyTables.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>

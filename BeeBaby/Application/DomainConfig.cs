@@ -8,7 +8,6 @@ using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Globalization;
 using Infrastructure.Globalization;
 using Domain.Baby;
-using Infrastructure.Repositories.Dropbox;
 
 namespace Application
 {
@@ -25,19 +24,7 @@ namespace Application
 			var unitOfWork = new MemoryUnitOfWork();
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork));
-			DependencyService.Register<IMomentRepository>((arg) =>
-			{
-				var kind = arg as string;
-
-				switch (kind)
-				{
-					case "REMOTE":
-						return new DropboxMomentRepository(s_datastoreId);
-
-					default:
-						return new SqliteNetMomentRepository(connection, unitOfWork);
-				}
-			});
+			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
 			DependencyService.Register<ILocationRepository>(new SqliteNetLocationRepository(connection, unitOfWork));
 		}
