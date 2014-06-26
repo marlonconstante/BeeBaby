@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain.Moment;
+using Domain.User;
 using Infrastructure.Repositories.Memory;
 using SQLite.Net;
 using Infrastructure.Repositories.SqliteNet;
@@ -23,6 +24,7 @@ namespace Application
 		{
 			var unitOfWork = new MemoryUnitOfWork();
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
+			DependencyService.Register<IUserRepository>(new SqliteNetUserRepository(connection, unitOfWork));
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork));
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
