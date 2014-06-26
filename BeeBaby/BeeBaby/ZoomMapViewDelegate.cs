@@ -16,19 +16,15 @@ namespace BeeBaby
 			UpdateUserLocation = true;
 		}
 
+		/// <Docs>To be added.</Docs>
 		/// <summary>
-		/// Event called when the user location is updated.
+		/// To be added.
 		/// </summary>
 		/// <param name="mapView">Map view.</param>
 		/// <param name="userLocation">User location.</param>
 		public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
 		{
-			if (UpdateUserLocation)
-			{
-				mapView.CenterCoordinate = userLocation.Coordinate;
-				m_controller.LoadNearLocation();
-				changeZoomMap(mapView);
-			}
+			WillStartRenderingMap(mapView);
 		}
 
 		/// <summary>
@@ -37,23 +33,51 @@ namespace BeeBaby
 		/// <param name="mapView">Map view.</param>
 		public override void WillStartRenderingMap(MKMapView mapView)
 		{
+			if (UpdateUserLocation)
+			{
+				LoadUserLocation(mapView);
+				m_controller.LoadNearLocation();
+			}
 			changeZoomMap(mapView);
+		}
+
+		/// <summary>
+		/// Loads the user location.
+		/// </summary>
+		/// <param name="mapView">Map view.</param>
+		public void LoadUserLocation(MKMapView mapView)
+		{
+			var coordinate = mapView.UserLocation.Coordinate;
+			if (IsValidCoordinate(coordinate))
+			{
+				mapView.CenterCoordinate = coordinate;
+			}
 		}
 
 		/// <summary>
 		/// Adjusts the zoom of the map.
 		/// </summary>
 		/// <param name="mapView">MapView.</param>
-		private void changeZoomMap(MKMapView mapView)
+		void changeZoomMap(MKMapView mapView)
 		{
 			var coordinate = mapView.CenterCoordinate;
-			if (coordinate.Latitude != 0f || coordinate.Longitude != 0f)
+			if (IsValidCoordinate(coordinate))
 			{
 				var span = new MKCoordinateSpan(m_zoom, m_zoom);
 				var region = new MKCoordinateRegion(coordinate, span);
 				mapView.Region = region;
 				mapView.ClipsToBounds = true;
 			}
+		}
+
+		/// <summary>
+		/// Determines whether this instance is valid coordinate the specified coordinate.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is valid coordinate the specified coordinate; otherwise, <c>false</c>.</returns>
+		/// <param name="coordinate">Coordinate.</param>
+		bool IsValidCoordinate(CLLocationCoordinate2D coordinate)
+		{
+			return coordinate.Latitude != 0f && coordinate.Longitude != 0f;
 		}
 
 		/// <summary>

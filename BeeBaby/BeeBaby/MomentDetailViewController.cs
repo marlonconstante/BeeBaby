@@ -19,13 +19,10 @@ namespace BeeBaby
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		ZoomMapViewDelegate m_mapViewDelegate;
 		UITableView m_autoCompleteTable;
-		Location m_location;
 		IEnumerable<Location> m_locations;
-		bool m_loadNearLocation;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
-			m_loadNearLocation = true;
 		}
 
 		/// <summary>
@@ -102,21 +99,15 @@ namespace BeeBaby
 		/// </summary>
 		public void LoadNearLocation()
 		{
-			if (m_loadNearLocation)
+			var currentPlace = new CLLocation(mapView.CenterCoordinate.Latitude, mapView.CenterCoordinate.Longitude);
+			foreach (var location in m_locations)
 			{
-				var currentPlace = new CLLocation(mapView.CenterCoordinate.Latitude, mapView.CenterCoordinate.Longitude);
-				foreach (var location in m_locations)
+				var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
+				if (place.DistanceFrom(currentPlace) <= 200d)
 				{
-					var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
-					if (place.DistanceFrom(currentPlace) <= 200d)
-					{
-						if (SelectLocation(location))
-						{
-							FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
-							m_loadNearLocation = false;
-						}
-						break;
-					}
+					FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
+					SelectLocation(location);
+					break;
 				}
 			}
 		}
@@ -173,30 +164,27 @@ namespace BeeBaby
 		/// <summary>
 		/// Selects the location.
 		/// </summary>
-		/// <returns><c>true</c>, if location was selected, <c>false</c> otherwise.</returns>
 		/// <param name="location">Location.</param>
 		/// <param name="updateOnlyCoordinates">If set to <c>true</c> update only coordinates.</param>
-		public bool SelectLocation(Location location, bool updateOnlyCoordinates = false)
+		public void SelectLocation(Location location, bool updateOnlyCoordinates = false)
 		{
-			bool selected = location != null && !location.Equals(m_location);
+			m_mapViewDelegate.UpdateUserLocation = false;
 
-			m_mapViewDelegate.UpdateUserLocation = !selected;
-
-			if (selected)
+			if (location == null)
+			{
+				m_mapViewDelegate.LoadUserLocation(mapView);
+			}
+			else
 			{
 				mapView.CenterCoordinate = new CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude);
+
+				if (!updateOnlyCoordinates)
+				{
+					txtLocalName.Text = location.Name;
+					txtLocalName.ResignFirstResponder();
+					m_autoCompleteTable.Superview.Hidden = true;
+				}
 			}
-
-			if (location != null && !updateOnlyCoordinates)
-			{
-				txtLocalName.Text = location.Name;
-				txtLocalName.ResignFirstResponder();
-				m_autoCompleteTable.Superview.Hidden = true;
-			}
-
-			m_location = location;
-
-			return selected;
 		}
 
 		/// <summary>
