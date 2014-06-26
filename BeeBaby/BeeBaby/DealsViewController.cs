@@ -2,6 +2,8 @@ using System;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Application;
+using System.Text;
 
 namespace BeeBaby
 {
@@ -18,7 +20,15 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl("http://grouplighthouse.com")));
+			var baby = CurrentContext.Instance.CurrentBaby;
+			var queryBuilder = new StringBuilder();
+			queryBuilder.Append(string.Concat("Age=", baby.AgeInDays));
+			queryBuilder.Append(string.Concat("&Gender=", baby.Gender));
+
+			var builder = new UriBuilder("http://grouplighthouse.com");
+			builder.Query = queryBuilder.ToString();
+
+			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl(builder.ToString())));
 		}
 	}
 }
