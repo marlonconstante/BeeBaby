@@ -13,6 +13,7 @@ namespace BeeBaby
 		{
 			m_zoom = zoom;
 			m_controller = controller;
+			UpdateUserLocation = true;
 		}
 
 		/// <summary>
@@ -22,7 +23,12 @@ namespace BeeBaby
 		/// <param name="userLocation">User location.</param>
 		public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
 		{
-			changeZoomMap(mapView);
+			if (UpdateUserLocation)
+			{
+				mapView.CenterCoordinate = userLocation.Coordinate;
+				m_controller.LoadNearLocation();
+				changeZoomMap(mapView);
+			}
 		}
 
 		/// <summary>
@@ -40,19 +46,23 @@ namespace BeeBaby
 		/// <param name="mapView">MapView.</param>
 		private void changeZoomMap(MKMapView mapView)
 		{
-			if (mapView.UserLocation != null)
+			var coordinate = mapView.CenterCoordinate;
+			if (coordinate.Latitude != 0f || coordinate.Longitude != 0f)
 			{
-				var coordinate = mapView.UserLocation.Coordinate;
-				if (coordinate.Latitude != 0f || coordinate.Longitude != 0f)
-				{
-					var span = new MKCoordinateSpan(m_zoom, m_zoom);
-					var region = new MKCoordinateRegion(coordinate, span);
-					mapView.Region = region;
-					mapView.ClipsToBounds = true;
-
-					m_controller.LoadNearLocation(coordinate);
-				}
+				var span = new MKCoordinateSpan(m_zoom, m_zoom);
+				var region = new MKCoordinateRegion(coordinate, span);
+				mapView.Region = region;
+				mapView.ClipsToBounds = true;
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ZoomMapViewDelegate"/> update user location.
+		/// </summary>
+		/// <value><c>true</c> if update user location; otherwise, <c>false</c>.</value>
+		public bool UpdateUserLocation {
+			get;
+			set;
 		}
 
 		/// <summary>
