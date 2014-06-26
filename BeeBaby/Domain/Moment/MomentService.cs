@@ -42,7 +42,9 @@ namespace Domain.Moment
 			UnitOfWork.Commit();
 		}
 
-
+		/// <summary>
+		/// Syncs the moments.
+		/// </summary>
 		public void SyncMoments()
 		{
 			var moment = this.MainRepository.FindAllDescending((o) => o.Id).First();

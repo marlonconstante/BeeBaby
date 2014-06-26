@@ -9,7 +9,7 @@ namespace Domain.Moment
 	/// <summary>
 	/// Location service.
 	/// </summary>
-	public class LocationService: ServiceBase<Location, ILocationRepository, IUnitOfWork>
+	public class LocationService : ServiceBase<Location, ILocationRepository, IUnitOfWork>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Domain.Moment.LocationService"/> class.
