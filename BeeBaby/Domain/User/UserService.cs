@@ -37,10 +37,10 @@ namespace Domain.User
 		}
 
 		/// <summary>
-		/// Gets the user.
+		/// Loads the user.
 		/// </summary>
 		/// <returns>The user.</returns>
-		public User GetUser()
+		public User LoadUser()
 		{
 			return MainRepository.FindFirst();
 		}
