@@ -60,7 +60,6 @@
     <Compile Include="Dropbox\Entities\MomentData.cs" />
     <Compile Include="Dropbox\Mapper\DropboxMomentMapper.cs" />
     <Compile Include="Dropbox\DropboxMomentRepository.cs" />
-    <Compile Include="GoogleDocs\GoogleDocsRepositoryBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -69,7 +68,6 @@
     <Folder Include="Commons\" />
     <Folder Include="SqliteNet\Mapper\" />
     <Folder Include="Dropbox\" />
-    <Folder Include="GoogleDocs\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HelperSharp">
@@ -92,24 +90,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Client">
-      <HintPath>..\packages\Google.GData.Client.2.2.0.0\lib\Google.GData.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Extensions">
-      <HintPath>..\packages\Google.GData.Extensions.2.2.0.0\lib\Google.GData.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.AccessControl">
-      <HintPath>..\packages\Google.GData.AccessControl.2.2.0.0\lib\Google.GData.AccessControl.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Documents">
-      <HintPath>..\packages\Google.GData.Documents.2.2.0.0\lib\Google.GData.Documents.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Spreadsheets">
-      <HintPath>..\packages\Google.GData.Spreadsheets.2.2.0.0\lib\Google.GData.Spreadsheets.dll</HintPath>
-    </Reference>
-    <Reference Include="GDataDB">
-      <HintPath>..\packages\GDataDB.0.5.0.0\lib\GDataDB.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

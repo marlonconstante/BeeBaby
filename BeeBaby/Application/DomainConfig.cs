@@ -15,7 +15,7 @@ namespace Application
 	public static class DomainConfig
 	{
 
-		const string s_datastoreId = "test";
+		const string s_datastoreId = "betaTest";
 
 		/// <summary>
 		/// Registers the dependencies.

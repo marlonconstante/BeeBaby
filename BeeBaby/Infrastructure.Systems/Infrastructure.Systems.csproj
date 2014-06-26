@@ -33,9 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dropbox\DropboxSystem.cs" />
-    <Compile Include="Dropbox\Entities\MomentData.cs" />
-    <Compile Include="Dropbox\Mapper\DropboxMomentMapper.cs" />
+    <Compile Include="RemoteDataSystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -47,9 +45,6 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="BobbyTables">
-      <HintPath>..\packages\BobbyTables.1.3.2\lib\portable-net40+sl50+wp80+win\BobbyTables.dll</HintPath>
     </Reference>
     <Reference Include="HelperSharp">
       <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
@@ -75,8 +70,5 @@
       <Project>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</Project>
       <Name>Infrastructure.Repositories</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dropbox\" />
   </ItemGroup>
 </Project>

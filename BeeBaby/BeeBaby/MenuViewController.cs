@@ -8,6 +8,8 @@ using BeeBaby.Util;
 using System.Drawing;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
+using Domain.Moment;
+using Infrastructure.Systems;
 
 namespace BeeBaby
 {
@@ -131,6 +133,11 @@ namespace BeeBaby
 				}, false);
 				actionProgress.Execute();
 			}
+		}
+
+		public void SyncMoment()
+		{
+			RemoteDataSystem.SendMomentData();
 		}
 
 		/// <summary>

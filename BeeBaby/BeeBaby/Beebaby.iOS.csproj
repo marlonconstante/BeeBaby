@@ -427,6 +427,10 @@
       <Project>{88AA3A37-97FF-4D48-8054-EE19ABBED0C8}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Systems\Infrastructure.Systems.csproj">
+      <Project>{940DBD83-CDFA-40BD-8139-5FB32851D1DB}</Project>
+      <Name>Infrastructure.Systems</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.css" />

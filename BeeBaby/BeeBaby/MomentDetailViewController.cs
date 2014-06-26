@@ -252,6 +252,14 @@ namespace BeeBaby
 				PresentingViewController.DismissViewController(false, null);
 				Discard.ReleaseNavigation(NavigationController);
 			}, false);
+				
+			if (RootViewController.GetType() == typeof(SlideoutNavigationController))
+			{
+				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
+				var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
+				menu.SyncMoment();
+			}
+
 		}
 	}
 }

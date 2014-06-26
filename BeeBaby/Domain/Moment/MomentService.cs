@@ -40,6 +40,12 @@ namespace Domain.Moment
 		{
 			MainRepository[moment.Id] = moment;
 			UnitOfWork.Commit();
+		}
+
+
+		public void SyncMoments()
+		{
+			var moment = this.MainRepository.FindAllDescending((o) => o.Id).First();
 
 			// Só salva o momento depois de ter um evento atrelado, assim evita lixo na base remota
 			if (moment.Event != null)

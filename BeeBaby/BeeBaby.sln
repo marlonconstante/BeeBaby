@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.FunctionalTests", "Infrastructure.FunctionalTests\Infrastructure.FunctionalTests.csproj", "{3B275240-52FD-4ABC-AE05-63B345657478}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Systems", "Infrastructure.Systems\Infrastructure.Systems.csproj", "{940DBD83-CDFA-40BD-8139-5FB32851D1DB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{CC957DCA-EC1E-43E2-A016-2711F2581197}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeBaby.iOS", "BeeBaby\BeeBaby.iOS.csproj", "{56FFB355-3E7A-4740-BA9F-FE5B43FCADE4}"
@@ -147,6 +149,22 @@ Global
 		{88AA3A37-97FF-4D48-8054-EE19ABBED0C8}.Release|iPhone.Build.0 = Release|Any CPU
 		{88AA3A37-97FF-4D48-8054-EE19ABBED0C8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{88AA3A37-97FF-4D48-8054-EE19ABBED0C8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.iOS|Any CPU.ActiveCfg = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.iOS|Any CPU.Build.0 = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.OSX|Any CPU.ActiveCfg = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.OSX|Any CPU.Build.0 = Debug|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Release|iPhone.Build.0 = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
 		{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
 		{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}.AppStore|iPhone.ActiveCfg = Release|Any CPU
@@ -188,6 +206,7 @@ Global
 		{404971D6-D685-40C7-80C6-F412697EEF75} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 		{88AA3A37-97FF-4D48-8054-EE19ABBED0C8} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 		{3B275240-52FD-4ABC-AE05-63B345657478} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
+		{940DBD83-CDFA-40BD-8139-5FB32851D1DB} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = BeeBaby\BeeBaby.iOS.csproj
