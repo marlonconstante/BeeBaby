@@ -135,9 +135,9 @@ namespace BeeBaby
 			}
 		}
 
-		public void SyncMoment()
+		public void SyncMoment(Moment moment)
 		{
-			RemoteDataSystem.SendMomentData();
+			RemoteDataSystem.SendMomentData(moment);
 		}
 
 		/// <summary>

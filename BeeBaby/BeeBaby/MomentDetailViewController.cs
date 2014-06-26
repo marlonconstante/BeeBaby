@@ -217,10 +217,12 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Momento: Salvou momento.");
 
+			Moment moment= new Moment();
+
 			ShowProgressWhilePerforming(() => {
 				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
-				var moment = CurrentContext.Instance.Moment;
+				moment = CurrentContext.Instance.Moment;
 
 				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
 				moment.Event = CurrentContext.Instance.SelectedEvent;
@@ -246,6 +248,12 @@ namespace BeeBaby
 				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
 				momentService.SaveMoment(moment);
 
+				if (RootViewController.GetType() == typeof(SlideoutNavigationController))
+				{
+					var slideoutNavigation = (SlideoutNavigationController) RootViewController;
+					var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
+					menu.SyncMoment(CurrentContext.Instance.Moment);
+				}
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;
 
@@ -253,12 +261,6 @@ namespace BeeBaby
 				Discard.ReleaseNavigation(NavigationController);
 			}, false);
 				
-			if (RootViewController.GetType() == typeof(SlideoutNavigationController))
-			{
-				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
-				var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
-				menu.SyncMoment();
-			}
 
 		}
 	}
