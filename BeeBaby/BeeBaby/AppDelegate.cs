@@ -9,6 +9,7 @@ using BeeBaby;
 using MonoTouch.FacebookConnect;
 using BigTed;
 using PixateFreestyleLib;
+using Parse;
 
 namespace BeeBaby
 {
@@ -19,7 +20,8 @@ namespace BeeBaby
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		public override UIWindow Window {
+		public override UIWindow Window
+		{
 			get;
 			set;
 		}
@@ -76,6 +78,11 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
 
+			// Initialize the Parse client with your Application ID and .NET Key found on
+			// your Parse dashboard
+			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm",
+				"eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+
 			FBSettings.DefaultAppID = FacebookAppId;
 			FBSettings.DefaultDisplayName = DisplayName;
 
@@ -114,7 +121,7 @@ namespace BeeBaby
 			hud.SetStyleClass("progress");
 
 			var frame = hud.Frame;
-			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (float)Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
 		}
 	}

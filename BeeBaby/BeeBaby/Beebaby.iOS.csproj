@@ -126,6 +126,12 @@
     <Reference Include="PixateFreestyle">
       <HintPath>..\references\PixateFreestyle.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\references\Parse.iOS\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.iOS">
+      <HintPath>..\references\Parse.iOS\Parse.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
