@@ -30,7 +30,7 @@ namespace Skahal.Infrastructure.Framework.Commons
 		{
 			yield return GetReadableString(span.GetYears(), "Year");
 			yield return GetReadableString(span.GetMonths(), "Month");
-			yield return GetReadableString(span.Days, "Day");
+			yield return GetReadableString(span.Days % 30, "Day");
 			yield return GetReadableString(span.Hours, "Hour");
 			yield return GetReadableString(span.Minutes, "Minute");
 			yield return GetReadableString(span.Seconds, "Second");
