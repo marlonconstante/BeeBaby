@@ -20,6 +20,15 @@ namespace Domain.Baby
 		}
 
 		/// <summary>
+		/// Gets or sets the email.
+		/// </summary>
+		/// <value>The email.</value>
+		public string Email {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the gender.
 		/// </summary>
 		/// <value>The gender.</value>

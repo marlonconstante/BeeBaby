@@ -17,6 +17,15 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		}
 
 		/// <summary>
+		/// Gets or sets the email.
+		/// </summary>
+		/// <value>The email.</value>
+		public string Email {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the birth date time.
 		/// </summary>
 		/// <value>The birth date time.</value>
