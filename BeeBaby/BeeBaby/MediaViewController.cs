@@ -32,7 +32,6 @@ namespace BeeBaby
 
 			FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Entrou na tela.", true);
 
-
 			UpdateImageCollectionView();
 		}
 

@@ -6,6 +6,7 @@ using Domain.Baby;
 using Application;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace BeeBaby
 {
@@ -75,7 +76,10 @@ namespace BeeBaby
 		public override void TranslateLabels()
 		{
 			lblName.Text = "WhatsBabyName".Translate();
+			lblUser.Text = "WhatsUserName".Translate();
 			lblBirthDate.Text = "WhenWasHeBorn".Translate();
+			txtName.Placeholder = "EnterBabyName".Translate();
+			txtUser.Placeholder = "EnterUserName".Translate();
 			segGender.SetTitle("Male".Translate(), 0);
 			segGender.SetTitle("Female".Translate(), 1);
 			segGender.SetTitle("Unknown".Translate(), 2);
@@ -110,9 +114,20 @@ namespace BeeBaby
 		void Load(Baby baby)
 		{
 			txtName.Text = baby.Name;
+			txtUser.Text = baby.Email;
 			segGender.SelectedSegment = (int) baby.Gender;
 			vwBirthDay.DateTime = baby.BirthDateTime;
 			vwBirthTime.DateTime = baby.BirthDateTime;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is valid email the specified email.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is valid email the specified email; otherwise, <c>false</c>.</returns>
+		/// <param name="email">Email.</param>
+		bool IsValidEmail(string email)
+		{
+			return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
 		}
 
 		/// <summary>
@@ -121,24 +136,32 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			var containsMenu = IsContainsMenu();
-			ShowProgressWhilePerforming(() => {
-				var babyService = new BabyService();
-				var baby = CurrentContext.Instance.CurrentBaby;
-				var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
+			var email = txtUser.Text;
+			if (IsValidEmail(email))
+			{
+				var containsMenu = IsContainsMenu();
+				ShowProgressWhilePerforming(() => {
+					var babyService = new BabyService();
+					var baby = CurrentContext.Instance.CurrentBaby;
+					var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
 
-				baby.Name = txtName.Text;
-				baby.Email = txtUser.Text;
-				baby.Gender = (Gender) segGender.SelectedSegment;
-				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
+					baby.Name = txtName.Text;
+					baby.Email = email;
+					baby.Gender = (Gender) segGender.SelectedSegment;
+					baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
 
-				babyService.SaveBaby(baby);
+					babyService.SaveBaby(baby);
 
-				if (!containsMenu)
-				{
-					PerformSegue("segueSelectEvent", sender);
-				}
-			}, containsMenu);
+					if (!containsMenu)
+					{
+						PerformSegue("segueSelectEvent", sender);
+					}
+				}, containsMenu);
+			}
+			else
+			{
+				new UIAlertView("Ops".Translate(), "WeNeedValidEmail".Translate(), null, "GotIt".Translate(), null).Show();
+			}
 		}
 	}
 }
