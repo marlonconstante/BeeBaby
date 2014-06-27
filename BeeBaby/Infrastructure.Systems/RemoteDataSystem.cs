@@ -27,7 +27,7 @@ namespace Infrastructure.Systems
 			momentData["BabyId"] = baby.Id;
 			momentData["BabyName"] = baby.Name;
 			momentData["BabyBirthDate"] = baby.BirthDateTime.ToString(dateFormat);
-			momentData["User"] = "teste@grouplighthouse.com";
+			momentData["User"] = baby.Email;
 
 			await momentData.SaveAsync();
 		}
