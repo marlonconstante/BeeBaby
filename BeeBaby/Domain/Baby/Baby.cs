@@ -39,6 +39,10 @@ namespace Domain.Baby
 			set;
 		}
 
+		/// <summary>
+		/// Gets the age in days.
+		/// </summary>
+		/// <value>The age in days.</value>
 		public int AgeInDays
 		{
 			get
@@ -47,6 +51,10 @@ namespace Domain.Baby
 			}
 		}
 
+		/// <summary>
+		/// Gets the age in words.
+		/// </summary>
+		/// <value>The age in words.</value>
 		public string AgeInWords
 		{
 			get

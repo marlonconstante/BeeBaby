@@ -51,12 +51,16 @@
     <Compile Include="Moment\LocationService.cs" />
     <Compile Include="Moment\ILocationRepository.cs" />
     <Compile Include="Moment\Coordinates.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserService.cs" />
+    <Compile Include="User\IUserRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Moment\" />
     <Folder Include="Media\" />
     <Folder Include="Baby\" />
+    <Folder Include="User\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core" />

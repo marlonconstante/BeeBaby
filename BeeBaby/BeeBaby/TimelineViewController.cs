@@ -7,6 +7,7 @@ using Domain.Baby;
 using Application;
 using BeeBaby.ResourcesProviders;
 using BeeBaby.Util;
+using Domain.User;
 
 namespace BeeBaby
 {
@@ -27,6 +28,7 @@ namespace BeeBaby
 
 			FlurryAnalytics.Flurry.LogEvent("Momento: Timeline.", true);
 
+			LoadUser();
 			LoadBaby();
 		}
 
@@ -57,6 +59,14 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Timeline.", null);
 			base.ViewDidDisappear(animated);
+		}
+
+		/// <summary>
+		/// Loads the user.
+		/// </summary>
+		void LoadUser()
+		{
+			CurrentContext.Instance.User = new UserService().LoadUser();
 		}
 
 		/// <summary>

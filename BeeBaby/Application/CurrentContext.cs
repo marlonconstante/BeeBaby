@@ -2,6 +2,7 @@
 using Domain.Moment;
 using Domain.Baby;
 using System.Collections.Generic;
+using Domain.User;
 
 namespace Application
 {
@@ -14,6 +15,10 @@ namespace Application
 			AllEvents = new List<Event>();
 		}
 
+		/// <summary>
+		/// Gets the instance.
+		/// </summary>
+		/// <value>The instance.</value>
 		public static CurrentContext Instance
 		{
 			get
@@ -23,6 +28,15 @@ namespace Application
 
 				return s_instance; 
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets the user.
+		/// </summary>
+		/// <value>The user.</value>
+		public User User {
+			get;
+			set;
 		}
 
 		/// <summary>

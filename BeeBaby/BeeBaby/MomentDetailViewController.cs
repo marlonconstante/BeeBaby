@@ -227,13 +227,11 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Momento: Salvou momento.");
 
-			Moment moment= new Moment();
-
 			ShowProgressWhilePerforming(() => {
 				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 				var momentService = new MomentService();
-				moment = CurrentContext.Instance.Moment;
 
+				var moment = CurrentContext.Instance.Moment;
 				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
 				moment.Event = CurrentContext.Instance.SelectedEvent;
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
@@ -264,14 +262,13 @@ namespace BeeBaby
 					var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
 					menu.SyncMoment(CurrentContext.Instance.Moment);
 				}
+
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;
 
 				PresentingViewController.DismissViewController(false, null);
 				Discard.ReleaseNavigation(NavigationController);
 			}, false);
-				
-
 		}
 	}
 }
