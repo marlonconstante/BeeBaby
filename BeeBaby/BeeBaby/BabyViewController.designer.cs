@@ -19,10 +19,19 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblName { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UILabel lblUser { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
 
 		[Outlet]
 		BeeBaby.TextField txtName { get; set; }
+
+		[Outlet]
+		BeeBaby.TextField txtUser { get; set; }
 
 		[Outlet]
 		BeeBaby.ViewDatePicker vwBirthDay { get; set; }
@@ -45,6 +54,11 @@ namespace BeeBaby
 				lblName = null;
 			}
 
+			if (lblUser != null) {
+				lblUser.Dispose ();
+				lblUser = null;
+			}
+
 			if (segGender != null) {
 				segGender.Dispose ();
 				segGender = null;
@@ -60,9 +74,19 @@ namespace BeeBaby
 				vwBirthDay = null;
 			}
 
+			if (txtUser != null) {
+				txtUser.Dispose ();
+				txtUser = null;
+			}
+
 			if (vwBirthTime != null) {
 				vwBirthTime.Dispose ();
 				vwBirthTime = null;
+			}
+
+			if (scrView != null) {
+				scrView.Dispose ();
+				scrView = null;
 			}
 		}
 	}

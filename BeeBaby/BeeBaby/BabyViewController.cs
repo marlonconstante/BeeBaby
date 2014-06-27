@@ -5,6 +5,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using Application;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -22,6 +23,8 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			Load(CurrentContext.Instance.CurrentBaby);
+
+			txtUser.IsKeyboardAnimation = true;
 
 			vwBirthDay.MoveScroll = true;
 			vwBirthTime.MoveScroll = true;
@@ -44,12 +47,22 @@ namespace BeeBaby
 			vwBirthTime.UpdateInfo();
 		}
 
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidAppear(bool animated)
 		{
 			FlurryAnalytics.Flurry.LogEvent("Baby: Cadastro do Bebe", true);
 			base.ViewDidAppear(animated);
+
+			scrView.ContentSize = new SizeF(320f, 504f);
 		}
 
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Baby: Cadastro do Bebe", null);
@@ -115,6 +128,7 @@ namespace BeeBaby
 				var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
 
 				baby.Name = txtName.Text;
+				baby.Email = txtUser.Text;
 				baby.Gender = (Gender) segGender.SelectedSegment;
 				baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
 
