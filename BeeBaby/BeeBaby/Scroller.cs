@@ -22,6 +22,11 @@ namespace BeeBaby
 			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
 			UIView.SetAnimationDuration(animated ? 0.3d : 0d);
 
+			if (view is ViewScrollable)
+			{
+				((ViewScrollable) view).ScrollToTop();
+			}
+
 			RectangleF frame = view.Frame;
 			frame.X += x; 
 			frame.Y += y; 

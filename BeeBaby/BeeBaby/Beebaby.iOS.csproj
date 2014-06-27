@@ -48,7 +48,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (V9KLBS9GL7)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -397,6 +397,11 @@
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewScrollable.cs" />
+    <Compile Include="ViewScrollable.designer.cs">
+      <DependentUpon>ViewScrollable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScrollViewDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

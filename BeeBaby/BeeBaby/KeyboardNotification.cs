@@ -7,6 +7,8 @@ namespace BeeBaby
 {
 	public class KeyboardNotification : Notification
 	{
+		WeakReference m_weakResponder;
+
 		protected KeyboardNotification()
 		{
 			// Keyboard Up
@@ -27,6 +29,7 @@ namespace BeeBaby
 			{
 				((BaseViewController) viewController).StartEditing();
 			}
+			m_weakResponder = new WeakReference(GetFirstResponder(viewController.View));
 
 			MoveScroll(true, notification);
 		}
@@ -47,19 +50,22 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void MoveScroll(bool up, NSNotification notification)
 		{
-			var viewController = CurrentViewController;
-			UIView firstResponder = GetFirstResponder(viewController.View);
+			var view = CurrentViewController.View;
+			var firstResponder = m_weakResponder.Target as UIView;
 			if (firstResponder != null && firstResponder is IKeyboardSupport)
 			{
 				var keyboardSupport = (IKeyboardSupport) firstResponder;
 				if (keyboardSupport.IsKeyboardAnimation)
 				{
 					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
-
 					var bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + keyboardSupport.OffsetHeight);
-					var height = (rectangle.Height - (viewController.View.Frame.Height - bottom));
+					if (view is ViewScrollable)
+					{
+						bottom += 64f;
+					}
+					var height = (rectangle.Height - (view.Frame.Height - bottom));
 
-					Scroller.Move(viewController.View, 0f, up ? -height : height);
+					Scroller.Move(view, 0f, up ? -height : height);
 				}
 			}
 		}
@@ -70,9 +76,11 @@ namespace BeeBaby
 		/// <param name="view">View.</param>
 		UIView GetFirstResponder(UIView view)
 		{
-			foreach (UIView element in view.Subviews)
+			var elements = Views.GetSubviews(view);
+			elements.Reverse();
+			foreach (UIView element in elements)
 			{
-				if (element.IsFirstResponder || (element.GetType() == typeof(UIView) && GetFirstResponder(element) != null))
+				if (element.IsFirstResponder)
 				{
 					return element;
 				}
