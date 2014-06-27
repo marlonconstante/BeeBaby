@@ -17,8 +17,6 @@
 	<string>1445498505688180</string>
 	<key>CFBundleDisplayName</key>
 	<string>BeeBaby</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.lighthouse.BeeBaby</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -60,6 +58,8 @@
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6</string>
+	<string>1.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.grouplighthouse.beebaby</string>
 </dict>
 </plist>
