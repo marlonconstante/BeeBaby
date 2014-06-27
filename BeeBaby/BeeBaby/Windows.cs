@@ -16,7 +16,7 @@ namespace BeeBaby
 		/// <param name="window">Window.</param>
 		public static UIViewController GetTopViewController(UIWindow window)
 		{
-			UIViewController topViewController = (window != null) ? window.RootViewController : null;
+			var topViewController = (window != null) ? window.RootViewController : null;
 
 			if (topViewController != null)
 			{

@@ -59,7 +59,7 @@ namespace BeeBaby
 		/// <param name="window">Window.</param>
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow window)
 		{
-			UIViewController topViewController = Windows.GetTopViewController(window);
+			var topViewController = Windows.GetTopViewController(window);
 			if (topViewController != null)
 			{
 				return topViewController.GetSupportedInterfaceOrientations();
