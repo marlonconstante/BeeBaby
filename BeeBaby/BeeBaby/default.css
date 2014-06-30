@@ -586,19 +586,13 @@ text-view {
 	background-image: url(switch.svg);
 }
 
-.bubble {
-    animation: bubble;
- 	animation-duration: 3s;
-}
 .tag-button-text {
-	font-family: "Quicksand";
 	font-weight: bold;
-	color: #4D5F5C;
-	font-size: 14pt;
+	color: #4d5f5c;
+	font-size: 12pt;
 }
 
 .tag-scroll-title {
-	font-family: "Quicksand";
 	font-weight: light;
 	color: #034e59;
 	font-size: 17pt;
@@ -608,7 +602,10 @@ text-view {
 	box-shadow: 0 -1 0 0 #c8c7cc;
 }
 
-
+.bubble {
+    animation: bubble;
+ 	animation-duration: 3s;
+}
 
 @keyframes bubble {
     from {

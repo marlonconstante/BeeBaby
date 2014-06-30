@@ -14,9 +14,9 @@ namespace BeeBaby
 {
 	public partial class EventListViewController : NavigationViewController
 	{
-		const float s_buttonSizeX = 106f;
+		const float s_buttonSizeX = 106.66f;
 		const float s_buttonSizeY = 100f;
-		const float s_imageSize = 70f;
+		const float s_imageSize = 77f;
 		const float s_buttonTitleHeight = 20f;
 
 		const string s_recomendationTagName = "Recomendations";
@@ -29,7 +29,6 @@ namespace BeeBaby
 		IList<Event> m_events;
 		EventService m_eventService;
 		EventListViewSource m_eventListViewSource;
-		MomentService m_momentService;
 
 		public EventListViewController(IntPtr handle) : base(handle)
 		{
@@ -45,8 +44,6 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			CreateButtonsList();
-
-			m_momentService = new MomentService();
 
 			m_tagsHeight = tagsHeightConstraint.Constant;
 
