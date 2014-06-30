@@ -112,6 +112,7 @@ ManageFamily = Gerenciar família
 Configurations = Configurações
 About = Sobre
 Exit = Sair
+Search = Buscar
 LittleBody = Corpinho
 Family = Família
 Ride = Passeio

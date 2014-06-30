@@ -2,6 +2,7 @@ using System;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -13,6 +14,7 @@ namespace BeeBaby
 		public SearchBar(IntPtr handle) : base(handle)
 		{
 			BarTintColor = m_backgroundColor;
+			Placeholder = "Search".Translate();
 		}
 
 		/// <Docs>Lays out subviews.</Docs>
