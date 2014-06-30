@@ -97,6 +97,7 @@ MomentAbout = Este momento é sobre:
 SelectEvent = Escolha um acontecimento
 WhichWas = Onde foi?
 MomentRemember = O que você gostaria de lembrar sobre este momento?
+WhatsPlaceName = Qual o nome deste local?
 WhatsBabyName = Qual é o nome do bebê?
 WhatsUserName = Qual é o usuário do bebê?
 EnterBabyName = Digite um nome

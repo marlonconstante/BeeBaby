@@ -196,6 +196,7 @@ namespace BeeBaby
 			lblMomentAbout.Text = "MomentAbout".Translate();
 			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
+			txtLocalName.Placeholder = "WhatsPlaceName".Translate();
 			txtDescription.Text = "MomentRemember".Translate();
 		}
 
