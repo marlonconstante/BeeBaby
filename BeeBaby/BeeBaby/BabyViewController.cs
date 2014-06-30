@@ -56,8 +56,6 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Baby: Cadastro do Bebe", true);
 			base.ViewDidAppear(animated);
-
-			scrView.ContentSize = new SizeF(320f, 504f);
 		}
 
 		/// <summary>
@@ -68,6 +66,15 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Baby: Cadastro do Bebe", null);
 			base.ViewWillDisappear(animated);
+		}
+
+		/// <summary>
+		/// Views the did layout subviews.
+		/// </summary>
+		public override void ViewDidLayoutSubviews()
+		{
+			base.ViewDidLayoutSubviews();
+			scrView.ContentSize = new SizeF(320f, 504f);
 		}
 
 		/// <summary>
