@@ -82,6 +82,7 @@ Baby = Bebê
 Photo = Foto
 First = Primeiro
 Save = Salvar
+ImportPhotos = Importar fotos
 Albums = Álbuns
 WantThese = Quero essas >
 FlashAuto = Auto

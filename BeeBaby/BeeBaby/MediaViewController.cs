@@ -52,7 +52,7 @@ namespace BeeBaby
 		public override void TranslateLabels()
 		{
 			TitleScreen = "ChoosePhotos".Translate();
-			btnAddMediaFromLibrary.SetTitle("Albums".Translate(), UIControlState.Normal);
+			btnAddMediaFromLibrary.SetTitle("ImportPhotos".Translate(), UIControlState.Normal);
 			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
 		}
 
