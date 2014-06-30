@@ -25,7 +25,7 @@ namespace BeeBaby
 			queryBuilder.Append(string.Concat("Age=", baby.AgeInDays));
 			queryBuilder.Append(string.Concat("&Gender=", baby.Gender));
 
-			var builder = new UriBuilder("http://grouplighthouse.com");
+			var builder = new UriBuilder("http://appserver.beebabyapp.com/busca.php");
 			builder.Query = queryBuilder.ToString();
 
 			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl(builder.ToString())));
