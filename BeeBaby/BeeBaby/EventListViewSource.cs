@@ -14,11 +14,13 @@ namespace BeeBaby
 		const string s_cellIdentifier = "EventCell";
 		EventListViewController m_viewController;
 		IList<Event> m_otherEventsTableItems;
+		float m_scrollY;
 
 		public EventListViewSource(EventListViewController viewController, IList<Event> otherItems)
 		{
 			m_viewController = viewController;
 			m_otherEventsTableItems = otherItems;
+			m_scrollY = 0f;
 		}
 
 		/// <Docs>Table view displaying the rows.</Docs>
@@ -42,8 +44,7 @@ namespace BeeBaby
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
-			ActionProgress actionProgress = new ActionProgress(() =>
-			{
+			ActionProgress actionProgress = new ActionProgress(() => {
 				m_viewController.PerformSegue("segueMoment", this);
 			}, false);
 			actionProgress.Execute();
@@ -59,7 +60,7 @@ namespace BeeBaby
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			var moment = m_otherEventsTableItems[indexPath.Row];
-			EventViewCell cell = (EventViewCell)tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
+			EventViewCell cell = (EventViewCell) tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
 			cell.EventDescription = moment.Description;
 
 
@@ -82,17 +83,25 @@ namespace BeeBaby
 			return 1;
 		}
 
-		/// <Docs>Scroll view where the content finished scrolling.</Docs>
-		/// <see langword="true"></see>
-		/// <see langword="false"></see>
+		/// <Docs>Scroll view where the scrolling occurred.</Docs>
 		/// <summary>
-		/// Called when dragging has ended.
+		/// Scrolled the specified scrollView.
 		/// </summary>
 		/// <param name="scrollView">Scroll view.</param>
-		/// <param name="willDecelerate">If set to <c>true</c> will decelerate.</param>
-		public override void DraggingEnded(UIScrollView scrollView, bool willDecelerate)
+		public override void Scrolled(UIScrollView scrollView)
 		{
-			m_viewController.MoveScroll(ScrollVerticalDirection);
+			var scrollHeight = scrollView.ContentSize.Height - scrollView.Bounds.Height;
+			var scrollY = scrollView.ContentOffset.Y;
+
+			var y = m_scrollY - scrollY;
+			var up = y > 0f;
+
+			if ((up && scrollHeight > scrollY) || (!up && scrollY > 0f))
+			{
+				m_viewController.MoveScroll(y);
+			}
+
+			m_scrollY = scrollY;
 		}
 
 		/// <summary>

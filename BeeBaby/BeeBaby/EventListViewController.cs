@@ -92,22 +92,37 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Shows the view tags.
+		/// </summary>
+		public void ShowViewTags()
+		{
+			scrView.Superview.Hidden = false;
+		}
+
+		/// <summary>
+		/// Hides the view tags.
+		/// </summary>
+		public void HideViewTags()
+		{
+			scrView.Superview.Hidden = true;
+		}
+
+		/// <summary>
 		/// Moves the scroll.
 		/// </summary>
-		/// <param name="scrollVerticalDirection">Scroll vertical direction.</param>
-		public void MoveScroll(UIAccessibilityScrollDirection scrollVerticalDirection)
+		/// <param name="y">The y coordinate.</param>
+		public void MoveScroll(float y)
 		{
-			var height = (UIAccessibilityScrollDirection.Up == scrollVerticalDirection) ? m_tagsHeight : 0f;
-			if (tagsHeightConstraint.Constant != height)
+			var height = tagsHeightConstraint.Constant + y;
+			if (height > m_tagsHeight)
 			{
-				UIView.BeginAnimations(string.Empty, IntPtr.Zero);
-				UIView.SetAnimationDuration(1d);
-
-				tagsHeightConstraint.Constant = height;
-				View.LayoutIfNeeded();
-
-				UIView.CommitAnimations();
+				height = m_tagsHeight;
 			}
+			else if (height < 0f)
+			{
+				height = 0f;
+			}
+			tagsHeightConstraint.Constant = height;
 		}
 
 		/// <summary>
@@ -239,19 +254,8 @@ namespace BeeBaby
 		/// <returns>The events.</returns>
 		public IList<Event> LoadEvents()
 		{
-			var stw = new Stopwatch();
-			stw.Start();
-
 			var result = m_eventService.GetAllEventsWithNonUsedAchivments().ToList();
-
-
-			stw.Stop();
-
-
-			Console.WriteLine(stw.ElapsedMilliseconds);
-
 			return result;
-
 		}
 
 		/// <summary>
@@ -268,7 +272,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void SelectTag(UIButton sender)
 		{
-			var button = (UITagButton)sender;
+			var button = (UITagButton) sender;
+			schBar.Text = string.Empty;
 
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
 			{

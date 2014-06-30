@@ -60,6 +60,28 @@ namespace BeeBaby
 			searchBar.Text = string.Empty;
 			TextChanged(searchBar, searchBar.Text);
 		}
+
+		/// <Docs>To be added.</Docs>
+		/// <remarks>To be added.</remarks>
+		/// <summary>
+		/// Raises the editing started event.
+		/// </summary>
+		/// <param name="searchBar">Search bar.</param>
+		public override void OnEditingStarted(UISearchBar searchBar)
+		{
+			m_eventViewController.HideViewTags();
+		}
+
+		/// <Docs>To be added.</Docs>
+		/// <remarks>To be added.</remarks>
+		/// <summary>
+		/// Raises the editing stopped event.
+		/// </summary>
+		/// <param name="searchBar">Search bar.</param>
+		public override void OnEditingStopped(UISearchBar searchBar)
+		{
+			m_eventViewController.ShowViewTags();
+		}
 			
 		/// <summary>
 		/// Gets the filtered events.
