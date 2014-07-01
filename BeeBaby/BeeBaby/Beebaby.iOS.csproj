@@ -371,10 +371,6 @@
     <Compile Include="View.designer.cs">
       <DependentUpon>View.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIButtonScrollView.cs" />
-    <Compile Include="UIButtonScrollView.designer.cs">
-      <DependentUpon>UIButtonScrollView.cs</DependentUpon>
-    </Compile>
     <Compile Include="EventViewCell.cs" />
     <Compile Include="EventViewCell.designer.cs">
       <DependentUpon>EventViewCell.cs</DependentUpon>
