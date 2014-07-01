@@ -84,7 +84,7 @@ namespace BeeBaby
 		{
 			IList<MenuItem> menuItems = new List<MenuItem>();
 
-			menuItems.Add(new MenuItem("Timeline".Translate(), "timeline", () => {
+			menuItems.Add(new MenuItem("Timeline".Translate(), "tree", () => {
 				PushViewController("TimelineViewController");
 			}));
 			menuItems.Add(new MenuItem("ProductsForYourChild".Translate(), "market", () => {

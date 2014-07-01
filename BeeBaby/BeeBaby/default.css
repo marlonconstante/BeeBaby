@@ -29,6 +29,7 @@ segmented-control {
 
 .title-label,
 .flash-label,
+.ready-label,
 .fullscreen label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
@@ -103,6 +104,11 @@ navigation-bar button:selected {
 .subtitle,
 .moment-label {
 	font-size: 13pt;
+}
+
+.ready-label {
+	font-weight: bold;
+	font-size: 10pt;
 }
 
 .time-box {
@@ -411,6 +417,10 @@ text-view {
 	background-image: url(bee-baby.svg);
 }
 
+.flying-bee {
+	background-image: url(flying-bee.svg);
+}
+
 .logoff {
 	background-image: url(logoff.svg);
 }
@@ -502,6 +512,16 @@ text-view {
 
 .pictures {
 	background-image: url(pictures.svg);
+}
+
+.tree {
+	background-image: url(tree.svg);
+}
+
+.tree-clear,
+.table-menu table-view-cell .tree:highlighted,
+.table-menu table-view-cell .tree:selected {
+	background-image: url(tree-clear.svg);
 }
 
 .timeline {

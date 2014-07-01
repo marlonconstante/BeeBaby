@@ -34,7 +34,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoCondensed-BoldItalic.otf</string>

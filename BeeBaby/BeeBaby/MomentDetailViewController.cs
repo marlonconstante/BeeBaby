@@ -90,6 +90,7 @@ namespace BeeBaby
 
 			base.ViewWillDisappear(animated);
 
+			m_mapViewDelegate.UpdateUserLocation = false;
 			txtLocalName.ShouldReturn -= InputLocalShouldReturn;
 			txtLocalName.ShouldChangeCharacters -= InputLocalShouldChangeCharacters;
 		}
