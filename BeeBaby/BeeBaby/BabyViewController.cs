@@ -30,7 +30,8 @@ namespace BeeBaby
 			vwBirthDay.MoveScroll = true;
 			vwBirthTime.MoveScroll = true;
 
-			vwBirthDay.NextViews = new List<UIView> { vwBirthTime };
+			vwBirthDay.NextViews = new List<UIView> { vwBirthTime, btnSave };
+			vwBirthTime.NextViews = new List<UIView> { btnSave };
 
 			vwBirthDay.Init(UIDatePickerMode.Date);
 			vwBirthTime.Init(UIDatePickerMode.Time);

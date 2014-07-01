@@ -27,6 +27,14 @@ namespace BeeBaby
 				((ViewScrollable) view).ScrollToTop();
 			}
 
+			var superview = view.Superview;
+			if (superview is UIScrollView)
+			{
+				var scrollView = (UIScrollView) superview;
+				var contentSize = scrollView.ContentSize;
+				scrollView.ContentSize = new SizeF(contentSize.Width, contentSize.Height - y);
+			}
+
 			RectangleF frame = view.Frame;
 			frame.X += x; 
 			frame.Y += y; 

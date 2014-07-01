@@ -474,7 +474,7 @@ de lembrar sobre este momento?</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDB-0b-O9k">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJI-bt-ce0" customClass="ProfileView">
@@ -555,30 +555,30 @@ de lembrar sobre este momento?</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzD-b8-8xL">
+                                                <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Salvar">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-button default-button"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="Save:" destination="blw-p8-7ZO" eventType="touchUpInside" id="M7k-kp-1WB"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzD-b8-8xL">
-                                        <rect key="frame" x="0.0" y="455" width="320" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Salvar">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-button default-button"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="Save:" destination="blw-p8-7ZO" eventType="touchUpInside" id="M7k-kp-1WB"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="m5b-wM-Wed" firstAttribute="top" secondItem="lWb-dp-OQB" secondAttribute="bottom" id="3Qk-yJ-anN"/>
-                            <constraint firstItem="lWb-dp-OQB" firstAttribute="top" secondItem="tQ3-G9-Eau" secondAttribute="top" id="nNT-sz-FH6"/>
-                            <constraint firstAttribute="trailing" secondItem="lWb-dp-OQB" secondAttribute="trailing" id="ol3-IE-1ve"/>
-                            <constraint firstItem="lWb-dp-OQB" firstAttribute="leading" secondItem="tQ3-G9-Eau" secondAttribute="leading" id="zFB-dz-Stj"/>
+                            <constraint firstItem="m5b-wM-Wed" firstAttribute="top" secondItem="lWb-dp-OQB" secondAttribute="bottom" id="16e-Gs-kCj"/>
+                            <constraint firstItem="lWb-dp-OQB" firstAttribute="top" secondItem="tQ3-G9-Eau" secondAttribute="top" id="CFd-L2-iBf"/>
+                            <constraint firstAttribute="trailing" secondItem="lWb-dp-OQB" secondAttribute="trailing" id="EXo-nL-Wfa"/>
+                            <constraint firstItem="lWb-dp-OQB" firstAttribute="leading" secondItem="tQ3-G9-Eau" secondAttribute="leading" id="TXw-kS-WXv"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-screen-background"/>
@@ -586,6 +586,7 @@ de lembrar sobre este momento?</string>
                     </view>
                     <navigationItem key="navigationItem" id="U1O-oW-Inl"/>
                     <connections>
+                        <outlet property="btnSave" destination="FzD-b8-8xL" id="Ugy-S0-RK0"/>
                         <outlet property="lblBirthDate" destination="5R4-a9-DOe" id="TtP-83-SlL"/>
                         <outlet property="lblName" destination="fbx-cY-0AL" id="Cs4-e2-IUi"/>
                         <outlet property="lblUser" destination="7kx-aM-nfm" id="BI0-qP-hbs"/>
