@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class BabyViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnSave { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel lblBirthDate { get; set; }
 
 		[Outlet]
@@ -59,6 +62,16 @@ namespace BeeBaby
 				lblUser = null;
 			}
 
+			if (scrView != null) {
+				scrView.Dispose ();
+				scrView = null;
+			}
+
+			if (btnSave != null) {
+				btnSave.Dispose ();
+				btnSave = null;
+			}
+
 			if (segGender != null) {
 				segGender.Dispose ();
 				segGender = null;
@@ -69,24 +82,19 @@ namespace BeeBaby
 				txtName = null;
 			}
 
-			if (vwBirthDay != null) {
-				vwBirthDay.Dispose ();
-				vwBirthDay = null;
-			}
-
 			if (txtUser != null) {
 				txtUser.Dispose ();
 				txtUser = null;
 			}
 
+			if (vwBirthDay != null) {
+				vwBirthDay.Dispose ();
+				vwBirthDay = null;
+			}
+
 			if (vwBirthTime != null) {
 				vwBirthTime.Dispose ();
 				vwBirthTime = null;
-			}
-
-			if (scrView != null) {
-				scrView.Dispose ();
-				scrView = null;
 			}
 		}
 	}
