@@ -242,6 +242,9 @@
     <BundleResource Include="Resources\celebrations.png" />
     <BundleResource Include="Resources\hover.png" />
     <BundleResource Include="Resources\pregnancy.png" />
+    <BundleResource Include="Resources\tree.svg" />
+    <BundleResource Include="Resources\tree-clear.svg" />
+    <BundleResource Include="Resources\flying-bee.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

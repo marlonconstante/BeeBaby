@@ -853,13 +853,13 @@ de lembrar sobre este momento?</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX6-ac-dkX" customClass="Button">
-                                        <rect key="frame" x="15" y="51" width="28" height="28"/>
+                                        <rect key="frame" x="14" y="49" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="timeline-clear"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tree-clear"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="OpenTimeline:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tF9-tO-9rF"/>
@@ -879,18 +879,28 @@ de lembrar sobre este momento?</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbt-Za-ve4" customClass="Button">
-                                        <rect key="frame" x="270" y="45" width="35" height="35"/>
+                                        <rect key="frame" x="220" y="26" width="83" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="pictures"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flying-bee"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="OpenMedia:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tP3-BD-YKL"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pronto!" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAT-al-0YN">
+                                        <rect key="frame" x="247" y="64" width="56" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="ready-label"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="arz-ZL-12f"/>
@@ -924,12 +934,12 @@ de lembrar sobre este momento?</string>
                     <navigationItem key="navigationItem" id="1Gz-EA-XTQ"/>
                     <connections>
                         <outlet property="btnFlash" destination="BPG-NX-zxb" id="kfJ-Qj-Bkt"/>
-                        <outlet property="btnOpenMedia" destination="Fbt-Za-ve4" id="1Xz-js-YuP"/>
                         <outlet property="btnOpenTimeline" destination="gX6-ac-dkX" id="Pkb-Er-eng"/>
                         <outlet property="btnSound" destination="eh5-hI-R5l" id="4EC-WN-PBt"/>
                         <outlet property="btnSwitchCamera" destination="Z7i-gU-gTy" id="5Pk-Ai-SkY"/>
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
                         <outlet property="lblFlash" destination="lsM-AA-iTR" id="LjC-Sf-zux"/>
+                        <outlet property="lblReady" destination="XAT-al-0YN" id="ze7-tw-rgv"/>
                         <segue destination="4UP-at-KPN" kind="push" identifier="segueMedia" id="2yy-uq-YpW"/>
                     </connections>
                 </viewController>

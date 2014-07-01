@@ -16,9 +16,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIButton btnFlash { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnOpenMedia { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIButton btnOpenTimeline { get; set; }
 
 		[Outlet]
@@ -32,6 +29,9 @@ namespace BeeBaby
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblFlash { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblReady { get; set; }
 
 		[Action ("ChangeFlashMode:")]
 		partial void ChangeFlashMode (MonoTouch.UIKit.UIButton sender);
@@ -58,11 +58,6 @@ namespace BeeBaby
 				btnFlash = null;
 			}
 
-			if (btnOpenMedia != null) {
-				btnOpenMedia.Dispose ();
-				btnOpenMedia = null;
-			}
-
 			if (btnOpenTimeline != null) {
 				btnOpenTimeline.Dispose ();
 				btnOpenTimeline = null;
@@ -86,6 +81,11 @@ namespace BeeBaby
 			if (lblFlash != null) {
 				lblFlash.Dispose ();
 				lblFlash = null;
+			}
+
+			if (lblReady != null) {
+				lblReady.Dispose ();
+				lblReady = null;
 			}
 		}
 	}

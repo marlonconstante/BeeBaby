@@ -75,6 +75,7 @@ SharedMomentFacebook = Momento compartilhado com sucesso no Facebook.
 IllustrateMoment = Ilustre esse momento do seu filho com belas imagens.
 TakePictureOrImportAlbum = Faça uma foto dele ou importe do seu álbum.
 GotIt = Entendi
+Ready = Pronto!
 Ops = Ops...
 WeNeedValidEmail = Precisamos de um e-mail válido.
 Name = Nome

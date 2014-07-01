@@ -85,6 +85,14 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Translates the labels.
+		/// </summary>
+		public override void TranslateLabels()
+		{
+			lblReady.Text = "Ready".Translate();
+		}
+
+		/// <summary>
 		/// Gets the supported orientation views.
 		/// </summary>
 		/// <returns>The supported orientation views.</returns>
@@ -92,7 +100,7 @@ namespace BeeBaby
 		{
 			if (IsViewLoaded)
 			{
-				return new UIView[] { btnFlash.Superview, btnSound, btnSwitchCamera, btnOpenTimeline, btnTakePhoto, btnOpenMedia };
+				return new UIView[] { btnFlash.Superview, btnSound, btnSwitchCamera, btnTakePhoto };
 			}
 			return base.GetSupportedOrientationViews();
 		}
