@@ -1,6 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Commons;
+using Itenso.TimePeriod;
 
 namespace Domain.Baby
 {
@@ -23,7 +24,8 @@ namespace Domain.Baby
 		/// Gets or sets the email.
 		/// </summary>
 		/// <value>The email.</value>
-		public string Email {
+		public string Email
+		{
 			get;
 			set;
 		}
@@ -79,7 +81,8 @@ namespace Domain.Baby
 		/// <param name="birthDateTime">Birth date time.</param>
 		public static string FormatAge(DateTime birthDateTime, DateTime baseDate)
 		{
-			return (baseDate - birthDateTime).ToReadableString();
+			var diff = new DateDiff(birthDateTime, baseDate);
+			return  diff.ToReadableString();
 		}
 	}
 }

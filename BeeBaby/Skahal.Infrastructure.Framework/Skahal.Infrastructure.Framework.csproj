@@ -83,6 +83,9 @@
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.3.0\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Itenso.TimePeriod">
+      <HintPath>..\packages\TimePeriodLibrary.NET.2.0.0\lib\portable-net4+sl4+wp7+win8\Pcl.Release\Itenso.TimePeriod.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

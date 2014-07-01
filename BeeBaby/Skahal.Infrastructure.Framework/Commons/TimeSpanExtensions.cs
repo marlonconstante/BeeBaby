@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Skahal.Infrastructure.Framework.Globalization;
+using Itenso.TimePeriod;
 
 namespace Skahal.Infrastructure.Framework.Commons
 {
@@ -11,12 +12,13 @@ namespace Skahal.Infrastructure.Framework.Commons
 		/// Tos the readable string.
 		/// </summary>
 		/// <returns>The readable string.</returns>
-		/// <param name="span">Span.</param>
-		public static string ToReadableString(this TimeSpan span)
+		/// <param name="dateDiff">Date diff.</param>
+		public static string ToReadableString(this DateDiff dateDiff)
 		{
 			var separator = string.Format(" {0} ", "And".Translate());
+			var values = dateDiff.GetReadableStringElements();
 			return string.Join(separator,
-				span.GetReadableStringElements()
+				values
 				.Where(txt => !string.IsNullOrWhiteSpace(txt))
 				.Take(2));
 		}
@@ -25,15 +27,18 @@ namespace Skahal.Infrastructure.Framework.Commons
 		/// Gets the readable string elements.
 		/// </summary>
 		/// <returns>The readable string elements.</returns>
-		/// <param name="span">Span.</param>
-		private static IEnumerable<string> GetReadableStringElements(this TimeSpan span)
+		/// <param name="dateDiff">Date diff.</param>
+		private static IEnumerable<string> GetReadableStringElements(this DateDiff dateDiff)
 		{
-			yield return GetReadableString(span.GetYears(), "Year");
-			yield return GetReadableString(span.GetMonths(), "Month");
-			yield return GetReadableString(span.Days % 30, "Day");
-			yield return GetReadableString(span.Hours, "Hour");
-			yield return GetReadableString(span.Minutes, "Minute");
-			yield return GetReadableString(span.Seconds, "Second");
+			IList<string> results = new List<string>();
+			results.Add(GetReadableString(dateDiff.Years, "Year"));
+			results.Add(GetReadableString(dateDiff.Months % 12, "Month"));
+			results.Add(GetReadableString(dateDiff.Days % 30, "Day"));
+			results.Add(GetReadableString(dateDiff.Hours % 24, "Hour"));
+			results.Add(GetReadableString(dateDiff.Minutes % 60, "Minute"));
+			results.Add(GetReadableString(dateDiff.Seconds % 60, "Second"));
+
+			return results;
 		}
 
 		/// <summary>
