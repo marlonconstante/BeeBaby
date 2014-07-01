@@ -136,17 +136,17 @@ namespace BeeBaby
 			{
 				Scroller.Move(this.Superview, 0f, -y);
 
-				if (NextViews != null)
-				{
-					InvokeInBackground(() => {
-						InvokeOnMainThread(() => {
+				InvokeInBackground(() => {
+					InvokeOnMainThread(() => {
+						if (NextViews != null)
+						{
 							foreach (var view in NextViews)
 							{
 								Scroller.Move(view, 0f, y, false);
 							}
-						});
+						}
 					});
-				}
+				});
 			}
 		}
 
