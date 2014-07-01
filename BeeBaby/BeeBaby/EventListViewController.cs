@@ -75,7 +75,7 @@ namespace BeeBaby
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
 
-					var recomendedButton = scrView.Subviews[0] as UITagButton;
+					var recomendedButton = scrView.Subviews.FirstOrDefault( s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
 					SelectTag(recomendedButton);
 				});
 			});
@@ -175,6 +175,7 @@ namespace BeeBaby
 			button.BackgroundColor = UIColor.Clear;
 			button.TagName = tagName;
 			button.MultipleTouchEnabled = true;
+			button.Tag = tagName.GetHashCode();
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
 			proxy.Action = (target, sender, args) =>

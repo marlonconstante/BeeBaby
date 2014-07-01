@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using BeeBaby;
 using Application;
+using MonoTouch.CoreGraphics;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -38,6 +39,14 @@ namespace BeeBaby.ResourcesProviders
 				picker.PrefersStatusBarHidden();
 				picker.ShowsCameraControls = false;
 				picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
+
+				// se for tela de 4 polegadas
+				if (UIScreen.MainScreen.Bounds.Height >= 568)
+				{
+					CGAffineTransform tr = picker.CameraViewTransform;
+					tr.y0 = 47;
+					picker.CameraViewTransform = tr;
+				}
 			}
 			else
 			{
@@ -45,6 +54,7 @@ namespace BeeBaby.ResourcesProviders
 			}
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 			picker.Delegate = Delegate;
+
 
 			return picker;
 		}
