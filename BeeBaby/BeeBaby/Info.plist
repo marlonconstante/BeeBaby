@@ -61,5 +61,10 @@
 	<string>com.grouplighthouse.beebaby</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.9</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon-60@2x</string>
+		<string>Icon-Small-40@2x</string>
+	</array>
 </dict>
 </plist>

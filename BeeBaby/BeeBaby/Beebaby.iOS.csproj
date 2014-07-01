@@ -245,6 +245,8 @@
     <BundleResource Include="Resources\tree.svg" />
     <BundleResource Include="Resources\tree-clear.svg" />
     <BundleResource Include="Resources\flying-bee.svg" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -454,5 +456,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="RELEASE-NOTES.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
