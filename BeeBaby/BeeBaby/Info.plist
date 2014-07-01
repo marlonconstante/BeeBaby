@@ -57,9 +57,9 @@
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.grouplighthouse.beebaby</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.9</string>
 </dict>
 </plist>

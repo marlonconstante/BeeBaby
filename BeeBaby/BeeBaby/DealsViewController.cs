@@ -9,26 +9,27 @@ namespace BeeBaby
 {
 	public partial class DealsViewController : NavigationViewController
 	{
-		public DealsViewController (IntPtr handle) : base (handle)
+		public DealsViewController(IntPtr handle) : base(handle)
 		{
 		}
-
+			
 		/// <summary>
-		/// Views the did load.
+		/// Views the did appear.
 		/// </summary>
-		public override void ViewDidLoad()
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
 		{
-			base.ViewDidLoad();
-
+			base.ViewDidAppear(animated);
 			var baby = CurrentContext.Instance.CurrentBaby;
 			var queryBuilder = new StringBuilder();
 			queryBuilder.Append(string.Concat("Age=", baby.AgeInDays));
 			queryBuilder.Append(string.Concat("&Gender=", baby.Gender));
-
+			
 			var builder = new UriBuilder("http://appserver.beebabyapp.com/busca.php");
 			builder.Query = queryBuilder.ToString();
+			
+			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl(builder.ToString()), NSUrlRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData, 30));
 
-			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl(builder.ToString())));
 		}
 	}
 }
