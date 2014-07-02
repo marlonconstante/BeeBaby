@@ -75,7 +75,7 @@ namespace BeeBaby
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			scrView.ContentSize = new SizeF(320f, 504f);
+			scrView.ContentSize = new SizeF(320f, 524f);
 		}
 
 		/// <summary>
