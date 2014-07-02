@@ -33,11 +33,10 @@ namespace Skahal.Infrastructure.Framework.Commons
 			IList<string> results = new List<string>();
 			results.Add(GetReadableString(dateDiff.Years, "Year"));
 			results.Add(GetReadableString(dateDiff.Months % 12, "Month"));
-			results.Add(GetReadableString(dateDiff.Days % 30, "Day"));
+			results.Add(GetReadableString(dateDiff.ElapsedDays, "Day"));
 			results.Add(GetReadableString(dateDiff.Hours % 24, "Hour"));
 			results.Add(GetReadableString(dateDiff.Minutes % 60, "Minute"));
 			results.Add(GetReadableString(dateDiff.Seconds % 60, "Second"));
-
 			return results;
 		}
 
@@ -61,26 +60,6 @@ namespace Skahal.Infrastructure.Framework.Commons
 				}
 				return string.Format("{0} {1}", value, labelKey.Translate());
 			}
-		}
-
-		/// <summary>
-		/// Gets the years.
-		/// </summary>
-		/// <returns>The years.</returns>
-		/// <param name="span">Span.</param>
-		private static int GetYears(this TimeSpan span)
-		{
-			return span.Days / 365;
-		}
-
-		/// <summary>
-		/// Gets the months.
-		/// </summary>
-		/// <returns>The months.</returns>
-		/// <param name="span">Span.</param>
-		private static int GetMonths(this TimeSpan span)
-		{
-			return (span.Days / 30) - (GetYears(span) * 12);
 		}
 	}
 }
