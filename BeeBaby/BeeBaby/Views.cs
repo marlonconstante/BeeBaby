@@ -25,5 +25,28 @@ namespace BeeBaby
 			}
 			return subviews;
 		}
+
+		/// <summary>
+		/// Gets the next views.
+		/// </summary>
+		/// <returns>The next views.</returns>
+		/// <param name="view">View.</param>
+		public static List<UIView> GetNextViews(UIView view)
+		{
+			var nextViews = new List<UIView>();
+			bool addSubview = false;
+			foreach (var subview in view.Superview.Subviews)
+			{
+				if (addSubview)
+				{
+					nextViews.Add(subview);
+				}
+				else
+				{
+					addSubview = subview == view;
+				}
+			}
+			return nextViews;
+		}
 	}
 }

@@ -17,6 +17,7 @@ namespace BeeBaby
 		UIDatePickerMode m_mode;
 		DateTime m_dateTime = DateTime.Now;
 		string m_longDateMask;
+		IList<UIView> m_nextViews;
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
@@ -37,6 +38,8 @@ namespace BeeBaby
 			AddImage();
 			AddButton();
 			AddDatePicker();
+
+			m_nextViews = Views.GetNextViews(this);
 		}
 
 		/// <summary>
@@ -115,38 +118,56 @@ namespace BeeBaby
 				m_datePicker.Hidden = !m_datePicker.Hidden;
 
 				float height = (m_datePicker.Frame.Height - 35f) * (m_datePicker.Hidden ? -1f : 1f);
-
-				UpdateScroll(height);
-
-				RectangleF frame = Frame;
-				frame.Height += height;
-				Frame = frame;
+				AdjustConstraints(height);
 
 				IgnoreHide = false;
 			}
 		}
 
 		/// <summary>
-		/// Updates the scroll.
+		/// Adjusts the constraints.
 		/// </summary>
-		/// <param name="y">The y coordinate.</param>
-		void UpdateScroll(float y)
+		/// <param name="constant">Constant.</param>
+		void AdjustConstraints(float constant)
 		{
+			foreach (var constraint in Superview.Constraints)
+			{
+				var value = constraint.FirstItem;
+				if (value is UIView)
+				{
+					if (value == this)
+					{
+						if (NSLayoutAttribute.Height == constraint.FirstAttribute)
+						{
+							constraint.Constant += constant;
+						}
+					}
+					else if (MoveScroll && m_nextViews.Contains((UIView) value))
+					{
+						if (NSLayoutAttribute.Top == constraint.FirstAttribute)
+						{
+							constraint.Constant += constant;
+						}
+					}
+				}
+			}
+
 			if (MoveScroll)
 			{
-				Scroller.Move(this.Superview, 0f, -y);
+				if (Superview is UIScrollView)
+				{
+					var scrollView = (UIScrollView) Superview;
 
-				InvokeInBackground(() => {
-					InvokeOnMainThread(() => {
-						if (NextViews != null)
-						{
-							foreach (var view in NextViews)
-							{
-								Scroller.Move(view, 0f, y, false);
-							}
-						}
-					});
-				});
+					var contentSize = scrollView.ContentSize;
+					contentSize.Height += constant;
+					scrollView.ContentSize = contentSize;
+
+					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Frame.Y + constant), true);
+				}
+				else
+				{
+					Scroller.Move(Superview, 0f, -constant);
+				}
 			}
 		}
 
@@ -207,15 +228,6 @@ namespace BeeBaby
 			set {
 				m_dateTime = value.ToUniversalTime();
 			}
-		}
-
-		/// <summary>
-		/// Gets or sets the next views.
-		/// </summary>
-		/// <value>The next views.</value>
-		public IList<UIView> NextViews {
-			get;
-			set;
 		}
 
 		/// <summary>

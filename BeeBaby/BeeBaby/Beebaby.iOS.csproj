@@ -402,7 +402,6 @@
     <Compile Include="ViewScrollable.designer.cs">
       <DependentUpon>ViewScrollable.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScrollViewDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
