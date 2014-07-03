@@ -113,14 +113,15 @@ namespace BeeBaby
 		/// <param name="y">The y coordinate.</param>
 		public void MoveScroll(float y)
 		{
+			var minHeight = GetMinHeightViewTags();
 			var height = tagsHeightConstraint.Constant + y;
 			if (height > m_tagsHeight)
 			{
 				height = m_tagsHeight;
 			}
-			else if (height < 0f)
+			else if (height < minHeight)
 			{
-				height = 0f;
+				height = minHeight;
 			}
 			tagsHeightConstraint.Constant = height;
 		}
@@ -133,6 +134,17 @@ namespace BeeBaby
 			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Paginou as Tags.", null);
 
 			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
+		}
+
+		/// <summary>
+		/// Gets the minimum height view tags.
+		/// </summary>
+		/// <returns>The minimum height view tags.</returns>
+		float GetMinHeightViewTags()
+		{
+			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
+			var minHeight = tblView.Bounds.Height - (height + 64f);
+			return (minHeight > 0f) ? minHeight : 0f;
 		}
 
 		/// <summary>
