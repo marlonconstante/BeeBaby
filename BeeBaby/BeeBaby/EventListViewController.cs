@@ -76,10 +76,21 @@ namespace BeeBaby
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
 
-					var recomendedButton = scrView.Subviews.FirstOrDefault( s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
+					var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
 					SelectTag(recomendedButton);
 				});
 			});
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			MoveScrollToTop(false);
 		}
 
 		/// <summary>
@@ -97,7 +108,7 @@ namespace BeeBaby
 		/// </summary>
 		public void ShowViewTags()
 		{
-			scrView.Superview.Hidden = false;
+			MoveScroll(1f, true);
 		}
 
 		/// <summary>
@@ -105,7 +116,21 @@ namespace BeeBaby
 		/// </summary>
 		public void HideViewTags()
 		{
-			scrView.Superview.Hidden = true;
+			MoveScroll(-1f, true);
+		}
+
+		/// <summary>
+		/// Moves the scroll to top.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public void MoveScrollToTop(bool animated = true)
+		{
+			if (tblView.NumberOfRowsInSection(0) > 0)
+			{
+				tblView.DeselectRow(tblView.IndexPathForSelectedRow, animated);
+				tblView.ScrollToRow(NSIndexPath.FromRowSection(0, 0), UITableViewScrollPosition.Top, animated);
+				ResizeViewTags(m_tagsHeight, animated);
+			}
 		}
 
 		/// <summary>
@@ -124,8 +149,17 @@ namespace BeeBaby
 			{
 				height = m_minTagsHeight;
 			}
+			ResizeViewTags(height, adjustLimit);
+		}
 
-			var time = adjustLimit ? Math.Abs(tagsHeightConstraint.Constant - height) / 200d : 0d;
+		/// <summary>
+		/// Resizes the view tags.
+		/// </summary>
+		/// <param name="height">Height.</param>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		void ResizeViewTags(float height, bool animated)
+		{
+			var time = animated ? Math.Abs(tagsHeightConstraint.Constant - height) / 200d : 0d;
 			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
 			UIView.SetAnimationDuration(time);
 
@@ -311,7 +345,6 @@ namespace BeeBaby
 				FilterTableByTag(button.TagName);
 				sender.Selected = true;
 				SelectButton(button, true);
-
 			}
 			else if (m_selectedTag != string.Empty)
 			{
@@ -392,6 +425,8 @@ namespace BeeBaby
 			m_eventListViewSource.ReloadData(tblView, events);
 			m_minTagsHeight = GetMinHeightViewTags();
 			tblHeightConstraint.Constant = UIScreen.MainScreen.Bounds.Height - m_minTagsHeight;
+
+			MoveScrollToTop();
 		}
 
 		/// <summary>
