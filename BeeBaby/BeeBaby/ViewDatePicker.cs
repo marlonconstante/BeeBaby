@@ -5,6 +5,7 @@ using System.Drawing;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Collections.Generic;
 using PixateFreestyleLib;
+using MonoTouch.CoreAnimation;
 
 namespace BeeBaby
 {
@@ -90,10 +91,22 @@ namespace BeeBaby
 		{
 			InvokeInBackground(() => {
 				InvokeOnMainThread(() => {
-					m_datePicker = new UIDatePicker(new RectangleF(0f, 25f, Frame.Width, 162f));
+					m_datePicker = new UIDatePicker(new RectangleF(0f, 44f, Frame.Width, 216f));
 					m_datePicker.Mode = m_mode;
 					m_datePicker.Date = DateTime;
 					m_datePicker.Hidden = true;
+
+					var layer = CALayer.Create();
+					layer.Opacity = 0.3f;
+					layer.Frame = new RectangleF(0f, 0f, Frame.Width, 1f);
+					layer.BackgroundColor = UIColor.FromRGB(185, 201, 197).CGColor;
+					m_datePicker.Layer.AddSublayer(layer);
+
+					m_datePicker.Layer.ShadowPath = UIBezierPath.FromRect(m_datePicker.Bounds).CGPath;
+					m_datePicker.Layer.ShadowColor = UIColor.LightGray.CGColor;
+					m_datePicker.Layer.ShadowOffset = new SizeF(0f, 0f);
+					m_datePicker.Layer.ShadowOpacity = 0.05f;
+					m_datePicker.Layer.ShadowRadius = 1f;
 
 					var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
 					proxy.Action = (target, sender, args) => {
@@ -117,7 +130,7 @@ namespace BeeBaby
 			{
 				m_datePicker.Hidden = !m_datePicker.Hidden;
 
-				float height = (m_datePicker.Frame.Height - 35f) * (m_datePicker.Hidden ? -1f : 1f);
+				float height = m_datePicker.Frame.Height * (m_datePicker.Hidden ? -1f : 1f);
 				AdjustConstraints(height);
 
 				IgnoreHide = false;
