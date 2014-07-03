@@ -159,6 +159,10 @@ de lembrar sobre este momento?</string>
                             <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="Vlt-Am-YjC"/>
+                                    <constraint firstAttribute="width" constant="320" id="nGz-AR-DHG"/>
+                                </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="OQy-eW-gLs" customClass="SearchBar">
                                     <rect key="frame" x="0.0" y="64" width="320" height="44"/>
@@ -233,8 +237,8 @@ de lembrar sobre este momento?</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.94509803920000002" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="VVV-t6-gO6"/>
-                                    <constraint firstAttribute="height" constant="261" id="ZSl-w8-HRX"/>
+                                    <constraint firstAttribute="height" constant="261" id="0Ue-SX-Gs2"/>
+                                    <constraint firstAttribute="width" constant="320" id="zMw-UN-zbC"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tag-view-box"/>
@@ -242,12 +246,10 @@ de lembrar sobre este momento?</string>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="6bh-Nn-1gT"/>
-                            <constraint firstAttribute="bottom" secondItem="3kY-EJ-uPQ" secondAttribute="bottom" id="Jhd-iV-6Db"/>
-                            <constraint firstAttribute="bottom" secondItem="qCH-eT-BbT" secondAttribute="bottom" id="Mnj-Vo-UhQ"/>
-                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="dOh-Gr-qsZ"/>
-                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="fbj-mj-4SD"/>
-                            <constraint firstAttribute="trailing" secondItem="qCH-eT-BbT" secondAttribute="trailing" id="zdF-BY-6b6"/>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="A4T-rj-lK2"/>
+                            <constraint firstItem="qCH-eT-BbT" firstAttribute="top" secondItem="yIf-i5-BUP" secondAttribute="top" id="B1p-2D-UrX"/>
+                            <constraint firstAttribute="bottom" secondItem="3kY-EJ-uPQ" secondAttribute="bottom" id="LsQ-VK-Y0r"/>
+                            <constraint firstItem="3kY-EJ-uPQ" firstAttribute="leading" secondItem="yIf-i5-BUP" secondAttribute="leading" id="XFj-fn-QCX"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-screen-background"/>
@@ -258,7 +260,8 @@ de lembrar sobre este momento?</string>
                         <outlet property="pcrPager" destination="vTW-sD-k4E" id="FgB-73-6VO"/>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
                         <outlet property="scrView" destination="wIr-X6-KYK" id="h8E-EQ-nav"/>
-                        <outlet property="tagsHeightConstraint" destination="ZSl-w8-HRX" id="gTv-NF-wct"/>
+                        <outlet property="tagsHeightConstraint" destination="0Ue-SX-Gs2" id="Gb7-8b-rwB"/>
+                        <outlet property="tblHeightConstraint" destination="Vlt-Am-YjC" id="IEO-ut-4N2"/>
                         <outlet property="tblView" destination="qCH-eT-BbT" id="ays-fV-7Yz"/>
                         <segue destination="UAi-dU-234" kind="push" identifier="segueMoment" id="aR7-vp-laA"/>
                     </connections>

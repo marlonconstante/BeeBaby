@@ -25,6 +25,9 @@ namespace BeeBaby
 		MonoTouch.UIKit.NSLayoutConstraint tagsHeightConstraint { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint tblHeightConstraint { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -42,6 +45,11 @@ namespace BeeBaby
 			if (scrView != null) {
 				scrView.Dispose ();
 				scrView = null;
+			}
+
+			if (tblHeightConstraint != null) {
+				tblHeightConstraint.Dispose ();
+				tblHeightConstraint = null;
 			}
 
 			if (tagsHeightConstraint != null) {

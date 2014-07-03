@@ -24,6 +24,7 @@ namespace BeeBaby
 		const string s_everydayTagName = "Everyday";
 
 		float m_tagsHeight;
+		float m_minTagsHeight;
 		string m_selectedTag;
 		IList<string> m_buttonNamesList;
 		IList<Event> m_events;
@@ -111,19 +112,27 @@ namespace BeeBaby
 		/// Moves the scroll.
 		/// </summary>
 		/// <param name="y">The y coordinate.</param>
-		public void MoveScroll(float y)
+		/// <param name="adjustLimit">If set to <c>true</c> adjust limit.</param>
+		public void MoveScroll(float y, bool adjustLimit)
 		{
-			var minHeight = GetMinHeightViewTags();
 			var height = tagsHeightConstraint.Constant + y;
-			if (height > m_tagsHeight)
+			if ((height > m_tagsHeight) || (adjustLimit && y > 0f))
 			{
 				height = m_tagsHeight;
 			}
-			else if (height < minHeight)
+			else if ((height < m_minTagsHeight) || (adjustLimit && y < 0f))
 			{
-				height = minHeight;
+				height = m_minTagsHeight;
 			}
+
+			var time = adjustLimit ? Math.Abs(tagsHeightConstraint.Constant - height) / 200d : 0d;
+			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
+			UIView.SetAnimationDuration(time);
+
 			tagsHeightConstraint.Constant = height;
+
+			View.LayoutIfNeeded();
+			UIView.CommitAnimations();
 		}
 
 		/// <summary>
@@ -143,8 +152,16 @@ namespace BeeBaby
 		float GetMinHeightViewTags()
 		{
 			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
-			var minHeight = tblView.Bounds.Height - (height + 64f);
-			return (minHeight > 0f) ? minHeight : 0f;
+			var minHeight = UIScreen.MainScreen.Bounds.Height - (height + 64f);
+			if (minHeight > m_tagsHeight)
+			{
+				minHeight = m_tagsHeight;
+			}
+			else if (minHeight < 0f)
+			{
+				minHeight = 0f;
+			}
+			return minHeight;
 		}
 
 		/// <summary>
@@ -373,6 +390,8 @@ namespace BeeBaby
 		void SetViewSource(IList<Event> events)
 		{
 			m_eventListViewSource.ReloadData(tblView, events);
+			m_minTagsHeight = GetMinHeightViewTags();
+			tblHeightConstraint.Constant = UIScreen.MainScreen.Bounds.Height - m_minTagsHeight;
 		}
 
 		/// <summary>
