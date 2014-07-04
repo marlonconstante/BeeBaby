@@ -33,6 +33,9 @@ namespace BeeBaby
 		[Outlet]
 		BeeBaby.ViewDatePicker vwDate { get; set; }
 
+		[Action ("GoBackToEvents:")]
+		partial void GoBackToEvents (MonoTouch.UIKit.UIButton sender);
+
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);
 		

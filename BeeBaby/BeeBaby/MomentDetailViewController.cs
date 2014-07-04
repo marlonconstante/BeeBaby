@@ -221,6 +221,11 @@ namespace BeeBaby
 			m_autoCompleteTable.Superview.Hidden = true;
 		}
 
+		partial void GoBackToEvents(MonoTouch.UIKit.UIButton sender)
+		{
+			this.NavigationController.PopViewControllerAnimated(true);
+		}
+
 		/// <summary>
 		/// Save the moment.
 		/// </summary>
