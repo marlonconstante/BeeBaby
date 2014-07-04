@@ -7,6 +7,7 @@ using SQLite.Net;
 using Infrastructure.Repositories.Commons;
 using Skahal.Infrastructure.Framework.Repositories;
 using SQLiteNetExtensions.Extensions;
+using Infrastructure.Repositories.SqliteNet.Entities;
 
 namespace Infrastructure.Repositories.SqliteNet
 {
@@ -17,6 +18,8 @@ namespace Infrastructure.Repositories.SqliteNet
 		protected SQLiteConnection m_connection;
 
 		protected IMapper<TEntity, TRepositoryEntity> Mapper { get; private set; }
+
+		protected int DataVersion = 0;
 
 		public SqliteNetRepositoryBase(SQLiteConnection connection, IMapper<TEntity, TRepositoryEntity> mapper, IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
@@ -58,6 +61,15 @@ namespace Infrastructure.Repositories.SqliteNet
 		public override long CountAll(Expression<Func<TEntity, bool>> filter)
 		{
 			return m_connection.Table<TRepositoryEntity>().LongCount();
+		}
+
+		public bool IsDataStructureUpdate(string entityName)
+		{
+			return m_connection.Table<VersionControlData>().LongCount(v => v.Entity.Equals(entityName) && v.Version >= DataVersion) > 0;
+//			var entityName = entityType.GetType().Name;
+//			var vs = m_connection.Table<VersionControlData>().Where(v => v.Entity.Equals(entityName) && v.Version >= DataVersion).ToList();
+//
+//			return vs.Count() > 0;
 		}
 
 		protected override void PersistNewItem(TEntity item)
