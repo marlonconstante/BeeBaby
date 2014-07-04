@@ -40,11 +40,11 @@ namespace BeeBaby.ResourcesProviders
 				picker.ShowsCameraControls = false;
 				picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
 
-				// se for tela de 4 polegadas
-				if (UIScreen.MainScreen.Bounds.Height >= 568)
+				// Se for tela de 4 polegadas
+				if (UIScreen.MainScreen.Bounds.Height >= 568f)
 				{
 					CGAffineTransform tr = picker.CameraViewTransform;
-					tr.y0 = 47;
+					tr.y0 = 47f;
 					picker.CameraViewTransform = tr;
 				}
 			}

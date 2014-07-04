@@ -24,6 +24,7 @@ namespace BeeBaby
 		const string s_everydayTagName = "Everyday";
 
 		float m_tagsHeight;
+		float m_minTagsHeight;
 		string m_selectedTag;
 		IList<string> m_buttonNamesList;
 		IList<Event> m_events;
@@ -75,10 +76,21 @@ namespace BeeBaby
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
 
-					var recomendedButton = scrView.Subviews.FirstOrDefault( s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
+					var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
 					SelectTag(recomendedButton);
 				});
 			});
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			MoveScrollToTop(false);
 		}
 
 		/// <summary>
@@ -96,7 +108,7 @@ namespace BeeBaby
 		/// </summary>
 		public void ShowViewTags()
 		{
-			scrView.Superview.Hidden = false;
+			MoveScroll(1f, true);
 		}
 
 		/// <summary>
@@ -104,26 +116,57 @@ namespace BeeBaby
 		/// </summary>
 		public void HideViewTags()
 		{
-			scrView.Superview.Hidden = true;
+			MoveScroll(-1f, true);
+		}
+
+		/// <summary>
+		/// Moves the scroll to top.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public void MoveScrollToTop(bool animated = true)
+		{
+			if (tblView.NumberOfRowsInSection(0) > 0)
+			{
+				tblView.DeselectRow(tblView.IndexPathForSelectedRow, animated);
+				tblView.ScrollToRow(NSIndexPath.FromRowSection(0, 0), UITableViewScrollPosition.Top, animated);
+				ResizeViewTags(m_tagsHeight, animated);
+			}
 		}
 
 		/// <summary>
 		/// Moves the scroll.
 		/// </summary>
 		/// <param name="y">The y coordinate.</param>
-		public void MoveScroll(float y)
+		/// <param name="adjustLimit">If set to <c>true</c> adjust limit.</param>
+		public void MoveScroll(float y, bool adjustLimit)
 		{
-			var minHeight = GetMinHeightViewTags();
 			var height = tagsHeightConstraint.Constant + y;
-			if (height > m_tagsHeight)
+			if ((height > m_tagsHeight) || (adjustLimit && y > 0f))
 			{
 				height = m_tagsHeight;
 			}
-			else if (height < minHeight)
+			else if ((height < m_minTagsHeight) || (adjustLimit && y < 0f))
 			{
-				height = minHeight;
+				height = m_minTagsHeight;
 			}
+			ResizeViewTags(height, adjustLimit);
+		}
+
+		/// <summary>
+		/// Resizes the view tags.
+		/// </summary>
+		/// <param name="height">Height.</param>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		void ResizeViewTags(float height, bool animated)
+		{
+			var time = animated ? Math.Abs(tagsHeightConstraint.Constant - height) / 200d : 0d;
+			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
+			UIView.SetAnimationDuration(time);
+
 			tagsHeightConstraint.Constant = height;
+
+			View.LayoutIfNeeded();
+			UIView.CommitAnimations();
 		}
 
 		/// <summary>
@@ -143,8 +186,16 @@ namespace BeeBaby
 		float GetMinHeightViewTags()
 		{
 			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
-			var minHeight = tblView.Bounds.Height - (height + 64f);
-			return (minHeight > 0f) ? minHeight : 0f;
+			var minHeight = UIScreen.MainScreen.Bounds.Height - (height + 64f);
+			if (minHeight > m_tagsHeight)
+			{
+				minHeight = m_tagsHeight;
+			}
+			else if (minHeight < 0f)
+			{
+				minHeight = 0f;
+			}
+			return minHeight;
 		}
 
 		/// <summary>
@@ -294,7 +345,6 @@ namespace BeeBaby
 				FilterTableByTag(button.TagName);
 				sender.Selected = true;
 				SelectButton(button, true);
-
 			}
 			else if (m_selectedTag != string.Empty)
 			{
@@ -373,6 +423,10 @@ namespace BeeBaby
 		void SetViewSource(IList<Event> events)
 		{
 			m_eventListViewSource.ReloadData(tblView, events);
+			m_minTagsHeight = GetMinHeightViewTags();
+			tblHeightConstraint.Constant = UIScreen.MainScreen.Bounds.Height - m_minTagsHeight;
+
+			MoveScrollToTop();
 		}
 
 		/// <summary>

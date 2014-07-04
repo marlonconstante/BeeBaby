@@ -96,9 +96,10 @@ namespace BeeBaby
 			var y = m_scrollY - scrollY;
 			var up = y > 0f;
 
-			if ((up && scrollHeight > scrollY) || (!up && scrollY > 0f))
+			bool adjustLimit = scrollHeight < 261f && (scrollY < -64f || scrollY > scrollHeight - 64f);
+			if ((up && scrollHeight > scrollY) || (!up && scrollY >= (adjustLimit ? -20f : 0f)))
 			{
-				m_viewController.MoveScroll(y);
+				m_viewController.MoveScroll(y, adjustLimit);
 			}
 
 			m_scrollY = scrollY;
