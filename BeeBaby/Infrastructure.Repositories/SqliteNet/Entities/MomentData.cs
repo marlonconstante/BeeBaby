@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
-	public class MomentData: DataBase
+	public class MomentData : DataBase
 	{
 		/// <summary>
 		/// Gets or sets the event identifier.

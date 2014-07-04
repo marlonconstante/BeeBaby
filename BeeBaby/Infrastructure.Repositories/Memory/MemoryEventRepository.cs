@@ -23,10 +23,13 @@ namespace Infrastructure.Repositories.Memory
 			s_lastKey = 0;
 		}
 
+		/// <summary>
+		/// Finds the events with non used achievements.
+		/// </summary>
+		/// <returns>The events with non used achievements.</returns>
 		public IEnumerable<Event> FindEventsWithNonUsedAchievements()
 		{
-			return null;
+			throw new System.NotImplementedException();
 		}
 	}
 }
-

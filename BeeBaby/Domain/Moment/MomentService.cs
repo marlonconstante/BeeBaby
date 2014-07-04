@@ -84,10 +84,10 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
 		{
+			MainRepository.RemoveInvalidMoments();
+
 			return MainRepository.FindAllDescending(
-				(m) => m.Event != null
-				&& m.Location != null
-				&& m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0,
+				(m) => m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0,
 				(o) => o.Date);
 		}
 
@@ -98,6 +98,25 @@ namespace Domain.Moment
 		public Moment GetFirstMoment()
 		{
 			return MainRepository.FindFirst();
+		}
+
+		/// <summary>
+		/// Determines whether this instance has valid moments.
+		/// </summary>
+		/// <returns><c>true</c> if this instance has valid moments; otherwise, <c>false</c>.</returns>
+		public bool HasValidMoments()
+		{
+			return MainRepository.CountValidMoments() > 0;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is changed moments the specified size.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is changed moments the specified size; otherwise, <c>false</c>.</returns>
+		/// <param name="size">Size.</param>
+		public bool IsChangedMoments(int size)
+		{
+			return MainRepository.CountValidMoments() != size;
 		}
 	}
 }

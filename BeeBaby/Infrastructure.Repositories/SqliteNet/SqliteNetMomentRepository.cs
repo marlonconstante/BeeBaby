@@ -28,7 +28,24 @@ namespace Infrastructure.Repositories.SqliteNet
 					MomentId = item.Id
 				});
 			}
+		}
 
+		/// <summary>
+		/// Removes the invalid moments.
+		/// </summary>
+		/// <returns>The invalid moments.</returns>
+		public int RemoveInvalidMoments()
+		{
+			return m_connection.Execute("DELETE FROM MomentData WHERE EventId IS NULL");
+		}
+
+		/// <summary>
+		/// Counts the valid moments.
+		/// </summary>
+		/// <returns>The valid moments.</returns>
+		public int CountValidMoments()
+		{
+			return m_connection.ExecuteScalar<int>("SELECT COUNT(*) FROM MomentData WHERE EventId IS NOT NULL");
 		}
 	}
 }

@@ -12,4 +12,3 @@ namespace Domain.Moment
 		IEnumerable<Event> FindEventsWithNonUsedAchievements();
 	}
 }
-

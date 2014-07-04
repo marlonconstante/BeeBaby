@@ -248,7 +248,5 @@ namespace Infrastructure.Repositories.SqliteNet
 
 			return MapperHelper.ToDomainEntities<Event, EventData>(events, Mapper);
 		}
-
 	}
 }
-

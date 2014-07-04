@@ -120,15 +120,16 @@ namespace BeeBaby
 		/// </summary>
 		void CreateMoment()
 		{
+			var momentService = new MomentService();
 			new ImageProvider().DeleteTemporaryFiles();
-			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
+			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
 			InvokeInBackground(() =>
 			{
 				CurrentContext.Instance.AllEvents = new EventService().GetAllEvents().ToList();
 			});
 
-			btnOpenTimeline.Hidden = CurrentContext.Instance.CurrentBaby == null;
+			btnOpenTimeline.Hidden = !momentService.HasValidMoments();
 		}
 
 		/// <summary>
