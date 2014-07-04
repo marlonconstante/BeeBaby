@@ -2,7 +2,6 @@
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
 
-
 namespace Domain.Moment
 {
 	/// <summary>
@@ -10,7 +9,8 @@ namespace Domain.Moment
 	/// </summary>
 	public interface IMomentRepository : IRepository<Moment>
 	{
+		int RemoveInvalidMoments();
 
+		int CountValidMoments();
 	}
-
 }

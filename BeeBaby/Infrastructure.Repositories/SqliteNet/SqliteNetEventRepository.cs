@@ -260,4 +260,3 @@ namespace Infrastructure.Repositories.SqliteNet
 		}
 	}
 }
-

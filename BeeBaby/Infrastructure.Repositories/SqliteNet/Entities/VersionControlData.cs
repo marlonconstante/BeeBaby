@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
-	public class VersionControlData: DataBase
+	public class VersionControlData : DataBase
 	{
 		/// <summary>
 		/// Gets or sets the entity.

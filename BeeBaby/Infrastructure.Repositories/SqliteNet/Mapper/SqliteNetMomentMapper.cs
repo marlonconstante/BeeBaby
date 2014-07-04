@@ -9,11 +9,8 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 {
 	internal class SqliteNetMomentMapper : IMapper<Moment, MomentData>
 	{
-		private IEventRepository m_eventRepository;
-
 		internal SqliteNetMomentMapper() : base()
 		{
-			m_eventRepository = DependencyService.Create<IEventRepository>();
 		}
 
 		#region IMapper implementation
@@ -27,8 +24,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 				result = new Moment();
 				result.Id = source.Id;
 				result.Description = source.Description;
-//				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
-				result.Event = m_eventRepository.FindBy(source.EventId);
+				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
 				result.Position = new Coordinates()
 				{
 					Latitude = source.Latitude,
