@@ -28,6 +28,8 @@ namespace BeeBaby
 
 			FlurryAnalytics.Flurry.LogEvent("Momento: Timeline.", true);
 
+			CurrentContext.Instance.ReloadMoments = true;
+
 			LoadUser();
 			LoadBaby();
 		}
@@ -39,6 +41,8 @@ namespace BeeBaby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+
+			LoadEvents();
 
 			if (m_openCamera)
 			{
@@ -80,19 +84,34 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Loads the events.
+		/// </summary>
+		void LoadEvents()
+		{
+			if (CurrentContext.Instance.AllEvents.Count == 0)
+			{
+				CurrentContext.Instance.AllEvents = new EventService().GetAllEvents().ToList();
+			}
+		}
+
+		/// <summary>
 		/// Inits the timeline.
 		/// </summary>
-		/// 
 		void InitTimeline()
 		{
-			var baby = CurrentContext.Instance.CurrentBaby;
-			var moments = new MomentService().GetAllMoments(baby);
+			if (CurrentContext.Instance.ReloadMoments)
+			{
+				var baby = CurrentContext.Instance.CurrentBaby;
+				var moments = new MomentService().GetAllMoments(baby);
 
-			lblBabyName.Text = baby.Name;
-			lblBabyAge.Text = baby.AgeInWords;
+				lblBabyName.Text = baby.Name;
+				lblBabyAge.Text = baby.AgeInWords;
 
-			tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
-			tblView.ReloadData();
+				tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+				tblView.ReloadData();
+
+				CurrentContext.Instance.ReloadMoments = false;
+			}
 		}
 	}
 }

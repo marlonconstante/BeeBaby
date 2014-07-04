@@ -83,7 +83,14 @@ namespace BeeBaby
 		{
 			ShowProgressWhilePerforming(() => {
 				PresentingViewController.DismissViewController(false, null);
-				Discard.ReleaseFields(this);
+				var image = imgPhoto.Image;
+				InvokeInBackground(() => {
+					m_photo.Dispose();
+					if (image != m_photo)
+					{
+						image.Dispose();
+					}
+				});
 			}, false);
 		}
 

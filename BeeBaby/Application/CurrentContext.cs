@@ -13,6 +13,7 @@ namespace Application
 		private CurrentContext()
 		{
 			AllEvents = new List<Event>();
+			ReloadMoments = true;
 		}
 
 		/// <summary>
@@ -28,6 +29,15 @@ namespace Application
 
 				return s_instance; 
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="Application.CurrentContext"/> reload moments.
+		/// </summary>
+		/// <value><c>true</c> if reload moments; otherwise, <c>false</c>.</value>
+		public bool ReloadMoments {
+			get;
+			set;
 		}
 
 		/// <summary>

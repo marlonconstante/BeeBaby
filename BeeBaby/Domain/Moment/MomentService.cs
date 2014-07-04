@@ -47,7 +47,7 @@ namespace Domain.Moment
 		/// </summary>
 		public void SyncMoments()
 		{
-			var moment = this.MainRepository.FindAllDescending((o) => o.Id).First();
+			var moment = MainRepository.FindAllDescending((o) => o.Id).First();
 
 			// Só salva o momento depois de ter um evento atrelado, assim evita lixo na base remota
 			if (moment.Event != null)

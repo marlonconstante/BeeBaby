@@ -221,9 +221,13 @@ namespace BeeBaby
 			m_autoCompleteTable.Superview.Hidden = true;
 		}
 
-		partial void GoBackToEvents(MonoTouch.UIKit.UIButton sender)
+		/// <summary>
+		/// Gos the back to events.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void GoBackToEvents(UIButton sender)
 		{
-			this.NavigationController.PopViewControllerAnimated(true);
+			LeftBarButtonAction();
 		}
 
 		/// <summary>
@@ -272,6 +276,7 @@ namespace BeeBaby
 
 				CurrentContext.Instance.Moment = null;
 				CurrentContext.Instance.SelectedEvent = null;
+				CurrentContext.Instance.ReloadMoments = true;
 
 				PresentingViewController.DismissViewController(false, null);
 				Discard.ReleaseNavigation(NavigationController);
