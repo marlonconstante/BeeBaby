@@ -39,6 +39,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="navigation-button"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="mnJ-tT-oAJ" kind="push" id="Vt7-rn-z0P"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
                                 <rect key="frame" x="9" y="106" width="16" height="16"/>
@@ -165,13 +168,13 @@ de lembrar sobre este momento?</string>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="OQy-eW-gLs" customClass="SearchBar">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="EventCell" id="gxC-T5-zWJ" customClass="EventViewCell">
-                                        <rect key="frame" x="0.0" y="134" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="70" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="gxC-T5-zWJ" id="BbR-65-cxt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1346,6 +1349,6 @@ de lembrar sobre este momento?</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yF0-vb-Xk3"/>
+        <segue reference="Vt7-rn-z0P"/>
     </inferredMetricsTieBreakers>
 </document>
