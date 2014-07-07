@@ -83,13 +83,10 @@ namespace BeeBaby
 		{
 			ShowProgressWhilePerforming(() => {
 				PresentingViewController.DismissViewController(false, null);
-				var image = imgPhoto.Image;
+				var photo = imgPhoto.Image;
 				InvokeInBackground(() => {
+					photo.Dispose();
 					m_photo.Dispose();
-					if (image != m_photo)
-					{
-						image.Dispose();
-					}
 				});
 			}, false);
 		}
@@ -101,13 +98,15 @@ namespace BeeBaby
 		partial void Share(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				var image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
-				imgPhoto.Image = image;
+				if (imgPhoto.Image == m_photo)
+				{
+					imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
+				}
 
 				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 				{
 					FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
-					FBDialogs.PresentOSIntegratedShareDialogModally(this, null, image, null, (result, error) => {
+					FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto.Image, null, (result, error) => {
 						if (error != null)
 						{
 							InvokeOnMainThread(() => {
