@@ -1,12 +1,8 @@
 using System;
-using System.Linq;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
-using System.Collections.Generic;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
-using BeeBaby.ViewModels;
 using Domain.Moment;
 using System.Drawing;
 using BeeBaby.Util;
@@ -57,33 +53,21 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Lefts the bar button frame.
+		/// Rights the bar button action.
 		/// </summary>
-		/// <returns>The bar button frame.</returns>
-		public override RectangleF LeftBarButtonFrame()
+		public override void RightBarButtonAction()
 		{
-			return new RectangleF(0f, 0f, 22f, 22f);
+			PresentingViewController.DismissViewController(false, null);
+			Discard.ReleaseNavigation(NavigationController);
 		}
 
 		/// <summary>
-		/// Lefts the bar button action.
-		/// </summary>
-		public override void LeftBarButtonAction()
-		{
-			ShowProgressWhilePerforming(() => {
-				CurrentContext.Instance.Moment = new MomentService().CreateMoment();
-
-				UpdateImageCollectionView(true);
-			});
-		}
-
-		/// <summary>
-		/// Lefts the bar button style class.
+		/// Rights the bar button style class.
 		/// </summary>
 		/// <returns>The bar button style class.</returns>
-		public override string LeftBarButtonStyleClass()
+		public override string RightBarButtonStyleClass()
 		{
-			return "cancel";
+			return "tree-clear";
 		}
 
 		/// <summary>

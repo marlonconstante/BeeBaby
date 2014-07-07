@@ -6,7 +6,6 @@ using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
-using System.Threading;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.CoreLocation;
@@ -221,7 +220,11 @@ namespace BeeBaby
 			m_autoCompleteTable.Superview.Hidden = true;
 		}
 
-		partial void GoBackToEvents(MonoTouch.UIKit.UIButton sender)
+		/// <summary>
+		/// Gos the back to events.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void GoBackToEvents(UIButton sender)
 		{
 			this.NavigationController.PopViewControllerAnimated(true);
 		}
