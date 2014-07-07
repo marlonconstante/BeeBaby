@@ -101,6 +101,8 @@ namespace BeeBaby
 				if (imgPhoto.Image == m_photo)
 				{
 					imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
+					imgPhoto.Image.SaveToPhotosAlbum(null);
+
 				}
 
 				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
