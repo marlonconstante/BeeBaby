@@ -124,11 +124,6 @@ namespace BeeBaby
 			new ImageProvider().DeleteTemporaryFiles();
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
-			InvokeInBackground(() =>
-			{
-				CurrentContext.Instance.AllEvents = new EventService().GetAllEvents().ToList();
-			});
-
 			btnOpenTimeline.Hidden = !momentService.HasValidMoments();
 		}
 
