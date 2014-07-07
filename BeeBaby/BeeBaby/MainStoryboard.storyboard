@@ -12,121 +12,106 @@
                         <viewControllerLayoutGuide type="top" id="EUe-ij-ab7"/>
                         <viewControllerLayoutGuide type="bottom" id="Hid-rg-Azm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP">
+                    <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP" customClass="ViewScrollable">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Este momento é sobre:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTc-JH-Pq5">
-                                <rect key="frame" x="10" y="68" width="300" height="21"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-MY-n35">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="subtitle"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
-                                </accessibility>
-                                <inset key="contentEdgeInsets" minX="33" minY="1" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Escolha um acontecimento">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="navigation-button"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="GoBackToEvents:" destination="UAi-dU-234" eventType="touchUpInside" id="MQt-wo-bxZ"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
-                                <rect key="frame" x="9" y="106" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="checklist"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3B0-QV-ba0" customClass="TextField">
-                                <rect key="frame" x="0.0" y="182" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="ObJ-43-CFo"/>
-                                    <constraint firstAttribute="height" constant="44" id="ia7-UM-1dL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="input-text location-name"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8f5-la-Nvx">
-                                <rect key="frame" x="9" y="196" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="location"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
-                                <rect key="frame" x="0.0" y="227" width="320" height="210"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="ir9-rc-cGp"/>
-                                </constraints>
-                            </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-7K-8Yo" customClass="TextView">
-                                <rect key="frame" x="0.0" y="456" width="320" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="TLC-C8-thc"/>
-                                    <constraint firstAttribute="width" constant="320" id="xVD-rP-XJF"/>
-                                </constraints>
-                                <string key="text">O que você gostaria
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Este momento é sobre:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTc-JH-Pq5">
+                                        <rect key="frame" x="10" y="4" width="300" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="subtitle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-Ig-353">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                        <inset key="contentEdgeInsets" minX="33" minY="1" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Escolha um acontecimento">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="navigation-button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="GoBackToEvents:" destination="UAi-dU-234" eventType="touchUpInside" id="MQt-wo-bxZ"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-32-0Kn">
+                                        <rect key="frame" x="9" y="42" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="checklist"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUV-1f-YlT" customClass="ViewDatePicker">
+                                        <rect key="frame" x="0.0" y="73" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3B0-QV-ba0" customClass="TextField">
+                                        <rect key="frame" x="0.0" y="118" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="input-text location-name"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8f5-la-Nvx">
+                                        <rect key="frame" x="9" y="132" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="location"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-qc-4it">
+                                        <rect key="frame" x="0.0" y="163" width="320" height="210"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </mapView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-7K-8Yo" customClass="TextView">
+                                        <rect key="frame" x="0.0" y="392" width="320" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">O que você gostaria
 de lembrar sobre este momento?</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-we-1LJ">
-                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="6Ku-CQ-mi9"/>
-                                    <constraint firstAttribute="width" constant="320" id="MWD-tc-raK"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Salvar">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-button"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="Save:" destination="UAi-dU-234" eventType="touchUpInside" id="lsd-Wy-tLV"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUV-1f-YlT" customClass="ViewDatePicker">
-                                <rect key="frame" x="0.0" y="137" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-we-1LJ">
+                                        <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Salvar">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="default-button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Save:" destination="UAi-dU-234" eventType="touchUpInside" id="lsd-Wy-tLV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="3B0-QV-ba0" secondAttribute="bottom" constant="1" id="3mQ-Zf-QwV"/>
-                            <constraint firstItem="5cT-qc-4it" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="227" id="FvF-Je-sqR"/>
-                            <constraint firstItem="b1H-we-1LJ" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="G6a-TH-OE4"/>
-                            <constraint firstItem="3B0-QV-ba0" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="bKP-9b-lOB"/>
-                            <constraint firstAttribute="bottom" secondItem="RSR-7K-8Yo" secondAttribute="bottom" constant="48" id="htG-Di-TXH"/>
-                            <constraint firstItem="3B0-QV-ba0" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" constant="182" id="k3v-ai-HRm"/>
-                            <constraint firstItem="RSR-7K-8Yo" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="oCt-RT-Gpu"/>
-                            <constraint firstAttribute="bottom" secondItem="b1H-we-1LJ" secondAttribute="bottom" id="vYo-eF-XFX"/>
-                            <constraint firstItem="5cT-qc-4it" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="yfH-ai-GPQ"/>
-                            <constraint firstItem="RSR-7K-8Yo" firstAttribute="top" secondItem="5cT-qc-4it" secondAttribute="bottom" constant="19" id="zP1-XO-fpq"/>
+                            <constraint firstItem="Hid-rg-Azm" firstAttribute="top" secondItem="TiS-MY-n35" secondAttribute="bottom" id="0TR-O3-wO8"/>
+                            <constraint firstItem="TiS-MY-n35" firstAttribute="leading" secondItem="aNZ-HK-0fP" secondAttribute="leading" id="SaX-pR-rRP"/>
+                            <constraint firstAttribute="trailing" secondItem="TiS-MY-n35" secondAttribute="trailing" id="Tyj-Gv-gKd"/>
+                            <constraint firstItem="TiS-MY-n35" firstAttribute="top" secondItem="aNZ-HK-0fP" secondAttribute="top" id="r6M-y1-L3c"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="screen-background"/>
@@ -138,6 +123,7 @@ de lembrar sobre este momento?</string>
                         <outlet property="btnSelectEvent" destination="vGp-Ig-353" id="aeq-gL-p9H"/>
                         <outlet property="lblMomentAbout" destination="RTc-JH-Pq5" id="ghZ-La-mAC"/>
                         <outlet property="mapView" destination="5cT-qc-4it" id="Kyl-UM-70Q"/>
+                        <outlet property="scrView" destination="TiS-MY-n35" id="qpc-Pe-We6"/>
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>

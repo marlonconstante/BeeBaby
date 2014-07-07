@@ -31,6 +31,7 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
+			vwDate.MoveScroll = true;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
@@ -92,6 +93,15 @@ namespace BeeBaby
 			m_mapViewDelegate.UpdateUserLocation = false;
 			txtLocalName.ShouldReturn -= InputLocalShouldReturn;
 			txtLocalName.ShouldChangeCharacters -= InputLocalShouldChangeCharacters;
+		}
+
+		/// <summary>
+		/// Views the did layout subviews.
+		/// </summary>
+		public override void ViewDidLayoutSubviews()
+		{
+			base.ViewDidLayoutSubviews();
+			scrView.ContentSize = new SizeF(320f, 504f);
 		}
 
 		/// <summary>

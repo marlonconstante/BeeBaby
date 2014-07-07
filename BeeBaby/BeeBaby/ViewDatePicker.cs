@@ -91,7 +91,7 @@ namespace BeeBaby
 		{
 			InvokeInBackground(() => {
 				InvokeOnMainThread(() => {
-					m_datePicker = new UIDatePicker(new RectangleF(0f, 44f, Frame.Width, 216f));
+					m_datePicker = new UIDatePicker(new RectangleF(0f, Frame.Height, Frame.Width, 216f));
 					m_datePicker.Mode = m_mode;
 					m_datePicker.Date = DateTime;
 					m_datePicker.Hidden = true;
@@ -175,7 +175,7 @@ namespace BeeBaby
 					contentSize.Height += constant;
 					scrollView.ContentSize = contentSize;
 
-					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Frame.Y + constant), true);
+					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Math.Max(1f, Frame.Y + constant)), true);
 				}
 				else
 				{
