@@ -142,46 +142,46 @@ namespace BeeBaby
 		void AdjustConstraints(float constant)
 		{
 			UIView.Animate(0.3d, () => {
-			foreach (var constraint in Superview.Constraints)
-			{
-				var value = constraint.FirstItem;
-				if (value is UIView)
+				foreach (var constraint in Superview.Constraints)
 				{
-					if (value == this)
+					var value = constraint.FirstItem;
+					if (value is UIView)
 					{
-						if (NSLayoutAttribute.Height == constraint.FirstAttribute)
+						if (value == this)
 						{
-							constraint.Constant += constant;
+							if (NSLayoutAttribute.Height == constraint.FirstAttribute)
+							{
+								constraint.Constant += constant;
+							}
+						}
+						else if (MoveScroll && m_nextViews.Contains((UIView) value))
+						{
+							if (NSLayoutAttribute.Top == constraint.FirstAttribute)
+							{
+								constraint.Constant += constant;
+							}
 						}
 					}
-					else if (MoveScroll && m_nextViews.Contains((UIView) value))
+				}
+				Superview.LayoutSubviews();
+			}, () => {
+				if (MoveScroll)
+				{
+					if (Superview is UIScrollView)
 					{
-						if (NSLayoutAttribute.Top == constraint.FirstAttribute)
-						{
-							constraint.Constant += constant;
-						}
+						var scrollView = (UIScrollView) Superview;
+
+						var contentSize = scrollView.ContentSize;
+						contentSize.Height += constant;
+						scrollView.ContentSize = contentSize;
+
+						scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Math.Max(1f, Frame.Y + constant)), true);
+					}
+					else
+					{
+						Scroller.Move(Superview, 0f, -constant);
 					}
 				}
-			}
-			Superview.LayoutSubviews();
-			},  () => {
-			if (MoveScroll)
-			{
-				if (Superview is UIScrollView)
-				{
-					var scrollView = (UIScrollView) Superview;
-
-					var contentSize = scrollView.ContentSize;
-					contentSize.Height += constant;
-					scrollView.ContentSize = contentSize;
-
-					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Math.Max(1f, Frame.Y + constant)), true);
-				}
-				else
-				{
-					Scroller.Move(Superview, 0f, -constant);
-				}
-			}
 			});
 		}
 
