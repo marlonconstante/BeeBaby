@@ -22,8 +22,8 @@ namespace BeeBaby
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
-			IgnoreHide = false;
 			MoveScroll = false;
+			ExclusiveTouch = true;
 			m_longDateMask = "LongDateMask".Translate();
 		}
 
@@ -132,8 +132,6 @@ namespace BeeBaby
 
 				float height = m_datePicker.Frame.Height * (m_datePicker.Hidden ? -1f : 1f);
 				AdjustConstraints(height);
-
-				IgnoreHide = false;
 			}
 		}
 
@@ -143,6 +141,7 @@ namespace BeeBaby
 		/// <param name="constant">Constant.</param>
 		void AdjustConstraints(float constant)
 		{
+			UIView.Animate(0.3d, () => {
 			foreach (var constraint in Superview.Constraints)
 			{
 				var value = constraint.FirstItem;
@@ -164,7 +163,8 @@ namespace BeeBaby
 					}
 				}
 			}
-
+			Superview.LayoutSubviews();
+			},  () => {
 			if (MoveScroll)
 			{
 				if (Superview is UIScrollView)
@@ -182,6 +182,7 @@ namespace BeeBaby
 					Scroller.Move(Superview, 0f, -constant);
 				}
 			}
+			});
 		}
 
 		/// <summary>
@@ -214,7 +215,7 @@ namespace BeeBaby
 		/// </summary>
 		public void Hide()
 		{
-			if (m_datePicker != null && !m_datePicker.Hidden && !IgnoreHide)
+			if (m_datePicker != null && !m_datePicker.Hidden)
 			{
 				UpdateFrame();
 			}
@@ -248,15 +249,6 @@ namespace BeeBaby
 		/// </summary>
 		/// <value><c>true</c> if move scroll; otherwise, <c>false</c>.</value>
 		public bool MoveScroll {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewDatePicker"/> ignore hide.
-		/// </summary>
-		/// <value><c>true</c> if ignore hide; otherwise, <c>false</c>.</value>
-		public bool IgnoreHide {
 			get;
 			set;
 		}
