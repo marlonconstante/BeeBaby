@@ -12,7 +12,7 @@ namespace BeeBaby
 			OffsetHeight = 0f;
 			ShouldReturn += (textField) => { 
 				textField.ResignFirstResponder();
-				return true; 
+				return true;
 			};
 		}
 

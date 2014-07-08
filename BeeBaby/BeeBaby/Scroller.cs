@@ -28,8 +28,8 @@ namespace BeeBaby
 			}
 
 			RectangleF frame = view.Frame;
-			frame.X += x; 
-			frame.Y += y; 
+			frame.X += x;
+			frame.Y += y;
 			view.Frame = frame;
 
 			UIView.CommitAnimations();
