@@ -64,7 +64,7 @@ namespace BeeBaby
 
 				if (saveToAlbum)
 				{
-					InvokeOnMainThread(() => photo.SaveToPhotosAlbum(null));
+//					InvokeOnMainThread(() => photo.SaveToPhotosAlbum(null));
 				}
 
 				if (selected)
