@@ -17,22 +17,7 @@ namespace BeeBaby
 		/// <param name="touch">Touch.</param>
 		public override bool ShouldReceiveTouch(UIGestureRecognizer recognizer, UITouch touch)
 		{
-			var view = touch.View;
-			IgnoreHide(view.Superview);
-			return !IsExclusiveTouch(view);
-		}
-
-		/// <summary>
-		/// Ignores the hide.
-		/// </summary>
-		/// <param name="view">View.</param>
-		void IgnoreHide(UIView view)
-		{
-			if (view is ViewDatePicker)
-			{
-				var viewDate = (ViewDatePicker) view;
-				viewDate.IgnoreHide = true;
-			}
+			return !IsExclusiveTouch(touch.View);
 		}
 
 		/// <summary>
