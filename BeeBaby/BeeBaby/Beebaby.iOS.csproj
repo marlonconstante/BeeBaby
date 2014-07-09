@@ -48,7 +48,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (V9KLBS9GL7)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -358,7 +358,6 @@
     <Compile Include="ViewModels\BabyProfile.cs" />
     <Compile Include="ViewModels\ImageModel.cs" />
     <Compile Include="AutoCompleteTableSource.cs" />
-    <Compile Include="Scroller.cs" />
     <Compile Include="IKeyboardSupport.cs" />
     <Compile Include="TextView.cs" />
     <Compile Include="TextView.designer.cs">
@@ -402,10 +401,6 @@
     <Compile Include="SearchBar.cs" />
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewScrollable.cs" />
-    <Compile Include="ViewScrollable.designer.cs">
-      <DependentUpon>ViewScrollable.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

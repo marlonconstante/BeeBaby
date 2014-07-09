@@ -22,7 +22,6 @@ namespace BeeBaby
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
-			MoveScroll = false;
 			ExclusiveTouch = true;
 			m_longDateMask = "LongDateMask".Translate();
 		}
@@ -128,6 +127,11 @@ namespace BeeBaby
 		{
 			if (m_datePicker != null)
 			{
+				if (m_datePicker.Hidden)
+				{
+					Superview.EndEditing(true);
+				}
+
 				m_datePicker.Hidden = !m_datePicker.Hidden;
 
 				float height = m_datePicker.Frame.Height * (m_datePicker.Hidden ? -1f : 1f);
@@ -154,7 +158,7 @@ namespace BeeBaby
 								constraint.Constant += constant;
 							}
 						}
-						else if (MoveScroll && m_nextViews.Contains((UIView) value))
+						else if (m_nextViews.Contains((UIView) value))
 						{
 							if (NSLayoutAttribute.Top == constraint.FirstAttribute)
 							{
@@ -165,21 +169,17 @@ namespace BeeBaby
 				}
 				Superview.LayoutSubviews();
 			}, () => {
-				if (MoveScroll)
+				if (Superview is UIScrollView)
 				{
-					if (Superview is UIScrollView)
+					var scrollView = (UIScrollView) Superview;
+
+					var contentSize = scrollView.ContentSize;
+					contentSize.Height += constant;
+					scrollView.ContentSize = contentSize;
+
+					if (!KeyboardNotification.KeyboardVisible)
 					{
-						var scrollView = (UIScrollView) Superview;
-
-						var contentSize = scrollView.ContentSize;
-						contentSize.Height += constant;
-						scrollView.ContentSize = contentSize;
-
 						scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Math.Max(1f, Frame.Y + constant)), true);
-					}
-					else
-					{
-						Scroller.Move(Superview, 0f, -constant);
 					}
 				}
 			});
@@ -242,15 +242,6 @@ namespace BeeBaby
 			set {
 				m_dateTime = value.ToUniversalTime();
 			}
-		}
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewDatePicker"/> move scroll.
-		/// </summary>
-		/// <value><c>true</c> if move scroll; otherwise, <c>false</c>.</value>
-		public bool MoveScroll {
-			get;
-			set;
 		}
 	}
 }

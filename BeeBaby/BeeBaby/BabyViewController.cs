@@ -25,11 +25,6 @@ namespace BeeBaby
 
 			Load(CurrentContext.Instance.CurrentBaby);
 
-			txtUser.IsKeyboardAnimation = true;
-
-			vwBirthDay.MoveScroll = true;
-			vwBirthTime.MoveScroll = true;
-
 			vwBirthDay.Init(UIDatePickerMode.Date);
 			vwBirthTime.Init(UIDatePickerMode.Time);
 		}
