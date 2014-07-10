@@ -5,11 +5,11 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class KeyboardNotification : Notification
+	public sealed class KeyboardNotification : Notification
 	{
 		WeakReference m_weakResponder;
 
-		protected KeyboardNotification()
+		private KeyboardNotification()
 		{
 			// Keyboard Up
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyboardUpNotification);

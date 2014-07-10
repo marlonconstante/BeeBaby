@@ -97,6 +97,7 @@ namespace BeeBaby
 
 			KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
+			MediaLibrary.Instance.Initialize();
 
 			InitProgressHUD();
 		}
@@ -121,7 +122,7 @@ namespace BeeBaby
 			hud.SetStyleClass("progress");
 
 			var frame = hud.Frame;
-			frame.Y = (float)Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
 		}
 	}

@@ -402,6 +402,7 @@
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="MediaLibrary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
