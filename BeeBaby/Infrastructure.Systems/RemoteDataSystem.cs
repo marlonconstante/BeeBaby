@@ -8,6 +8,10 @@ namespace Infrastructure.Systems
 {
 	public static class RemoteDataSystem
 	{
+		/// <summary>
+		/// Sends the moment data.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
 		static async public void SendMomentData(Moment moment)
 		{
 			var dateFormat = "yyyyMMddhhmmssff";
@@ -29,8 +33,11 @@ namespace Infrastructure.Systems
 			momentData["BabyBirthDate"] = baby.BirthDateTime.ToString(dateFormat);
 			momentData["User"] = baby.Email;
 
-			await momentData.SaveAsync();
+			try {
+				await momentData.SaveAsync();
+			} catch (Exception ex) {
+				// Ignora..
+			}
 		}
 	}
 }
-
