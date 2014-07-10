@@ -215,6 +215,11 @@ namespace BeeBaby
 				Discard.ReleaseNavigation(NavigationController);
 			};
 			ShowProgressWhilePerforming(() => {
+				if (m_mediaPickerProvider != null)
+				{
+					var imagePickerDelegate = (MomentImagePickerDelegate) m_mediaPickerProvider.Delegate;
+					imagePickerDelegate.WaitForPendingTasks();
+				}
 				if (m_picker != null)
 				{
 					m_picker.DismissViewController(false, segueTimeline);
