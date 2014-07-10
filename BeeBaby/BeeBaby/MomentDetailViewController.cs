@@ -30,7 +30,12 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			vwDate.ExclusiveTouch = false;
+			var proxy = new EventProxy<MomentDetailViewController, EventArgs>(this);
+			proxy.Action = (target, sender, args) =>
+			{
+				target.InputLocalReturn(target.txtLocalName);
+			};
+			vwDate.Clicked += proxy.HandleEvent;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();

@@ -19,6 +19,7 @@ namespace BeeBaby
 		DateTime m_dateTime = DateTime.Now;
 		string m_longDateMask;
 		IList<UIView> m_nextViews;
+		EventHandler m_clicked;
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
 		{
@@ -77,6 +78,10 @@ namespace BeeBaby
 			var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
 			proxy.Action = (target, sender, args) => {
 				target.UpdateFrame();
+				if (m_clicked != null)
+				{
+					m_clicked.Invoke(sender, args);
+				}
 			};
 			m_button.TouchUpInside += proxy.HandleEvent;
 
@@ -241,6 +246,18 @@ namespace BeeBaby
 			}
 			set {
 				m_dateTime = value.ToUniversalTime();
+			}
+		}
+
+		/// <summary>
+		/// Occurs when clicked.
+		/// </summary>
+		public event EventHandler Clicked {
+			add {
+				m_clicked += value;
+			}
+			remove {
+				m_clicked -= value;
 			}
 		}
 	}
