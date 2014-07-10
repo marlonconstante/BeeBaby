@@ -78,9 +78,9 @@ namespace BeeBaby
 			var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
 			proxy.Action = (target, sender, args) => {
 				target.UpdateFrame();
-				if (m_clicked != null)
+				if (target.m_clicked != null)
 				{
-					m_clicked.Invoke(sender, args);
+					target.m_clicked.Invoke(sender, args);
 				}
 			};
 			m_button.TouchUpInside += proxy.HandleEvent;
