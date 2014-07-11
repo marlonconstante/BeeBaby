@@ -407,6 +407,9 @@
     <Compile Include="ViewScrollable.designer.cs">
       <DependentUpon>ViewScrollable.cs</DependentUpon>
     </Compile>
+    <Compile Include="InstagramControllerDelegate.cs" />
+    <Compile Include="Activity\FacebookActivity.cs" />
+    <Compile Include="Activity\InstagramActivity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -427,6 +430,7 @@
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Util\" />
+    <Folder Include="Activity\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

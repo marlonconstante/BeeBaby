@@ -6,6 +6,11 @@ using BeeBaby.ResourcesProviders;
 using MonoTouch.FacebookConnect;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
+using Domain.Media;
+using System.IO;
+using System.Drawing;
+using System.Linq;
+using BeeBaby.Activity;
 
 namespace BeeBaby
 {
@@ -13,6 +18,7 @@ namespace BeeBaby
 	{
 		UIImage m_photo;
 		Moment m_moment;
+		UIActivityViewController m_activityViewController;
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -35,7 +41,8 @@ namespace BeeBaby
 		/// </summary>
 		void AddSingleTapGestureRecognizer()
 		{
-			var singleTap = new UITapGestureRecognizer(() => {
+			var singleTap = new UITapGestureRecognizer(() =>
+			{
 				ShowOrHideSubviews();
 			});
 			singleTap.NumberOfTapsRequired = 1;
@@ -81,10 +88,12 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				PresentingViewController.DismissViewController(false, null);
 				var photo = imgPhoto.Image;
-				InvokeInBackground(() => {
+				InvokeInBackground(() =>
+				{
 					photo.Dispose();
 					m_photo.Dispose();
 				});
@@ -97,35 +106,21 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Share(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				if (imgPhoto.Image == m_photo)
-				{
-					imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
-					imgPhoto.Image.SaveToPhotosAlbum(null);
-				}
+			ShowProgressWhilePerforming(() =>
+			{
+				var path = GetImagePath();
+				CreateActivityViewController(path);
 
-				if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
+				m_activityViewController.CompletionHandler += (activityTitle, close) =>
 				{
-					FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
-					FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto.Image, null, (result, error) => {
-						if (error != null)
-						{
-							InvokeOnMainThread(() => {
-								new UIAlertView("Warning".Translate(), error.Description, null, "OK", null).Show();
-							});
-						}
-						else if (result == FBOSIntegratedShareDialogResult.Succeeded)
-						{
-							InvokeOnMainThread(() => {
-								new UIAlertView("Information".Translate(), "SharedMomentFacebook".Translate(), null, "OK", null).Show();
-							});
-						}
-					});
-				}
-				else
-				{
-					Console.WriteLine("Não foi possível compartilhar o momento no Facebook.");
-				}
+					if (activityTitle.ToString().Equals("com.beebaby.facebook"))
+					{
+						PublishOnFacebook(imgPhoto.Image);
+					}
+				};
+
+				PresentViewController(m_activityViewController, true, null);
+
 			});
 		}
 
@@ -144,6 +139,81 @@ namespace BeeBaby
 
 			m_photo = photo;
 			m_moment = moment;
+		}
+
+		/// <summary>
+		/// Saves image to photo album.
+		/// </summary>
+		void SaveToPhotoAlbum()
+		{
+			if (imgPhoto.Image == m_photo)
+			{
+				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
+				imgPhoto.Image.SaveToPhotosAlbum(null);
+			}
+		}
+
+		/// <summary>
+		/// Publishs the on facebook.
+		/// </summary>
+		/// <param name="imgPhoto">Image photo.</param>
+		public void PublishOnFacebook(UIImage imgPhoto)
+		{
+			if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
+			{
+				FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
+				FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto, null, (result, error) =>
+				{
+					if (error != null)
+					{
+						InvokeOnMainThread(() => new UIAlertView("Warning".Translate(), error.Description, null, "OK", null).Show());
+					}
+					else if (result == FBOSIntegratedShareDialogResult.Succeeded)
+					{
+						InvokeOnMainThread(() => new UIAlertView("Information".Translate(), "SharedMomentFacebook".Translate(), null, "OK", null).Show());
+					}
+				});
+			}
+			else
+			{
+				Console.WriteLine("Não foi possível compartilhar o momento no Facebook.");
+			}
+		}
+
+
+
+
+		void CreateActivityViewController(string path)
+		{
+			m_activityViewController = new UIActivityViewController(
+				new NSObject[]
+				{
+					new NSUrl(path)
+				}, new UIActivity[]
+				{
+					new FacebookActivity(imgPhoto.Image)
+				}
+			)
+			{
+				ExcludedActivityTypes = new[]
+				{
+					UIActivityType.AssignToContact
+				}
+			};
+		}
+
+		string GetImagePath()
+		{
+			var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Guid.NewGuid() + ".jpg");
+			using (NSData imageData = imgPhoto.Image.AsJPEG(MediaBase.ImageCompressionQuality))
+			{
+				NSError err;
+				if (!imageData.Save(path, false, out err))
+				{
+					Console.WriteLine("Saving of file failed: " + err.Description);
+				}
+			}
+			return path;
 		}
 	}
 }
