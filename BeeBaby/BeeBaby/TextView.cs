@@ -7,16 +7,20 @@ namespace BeeBaby
 {
 	public partial class TextView : UITextView, IKeyboardSupport
 	{
+		bool m_updateKeyboardPosition = true;
+
 		public TextView (IntPtr handle) : base (handle)
 		{
 			OffsetHeight = 0f;
 			ShouldBeginEditing += (textView) => {
-				if (KeyboardNotification.KeyboardVisible)
+				if (m_updateKeyboardPosition && KeyboardNotification.KeyboardVisible)
 				{
 					InvokeInBackground(() => {
 						InvokeOnMainThread(() => {
+							m_updateKeyboardPosition = false;
 							textView.ResignFirstResponder();
 							textView.BecomeFirstResponder();
+							m_updateKeyboardPosition = true;
 						});
 					});
 				}

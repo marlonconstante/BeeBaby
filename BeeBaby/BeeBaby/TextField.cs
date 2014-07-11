@@ -6,6 +6,8 @@ namespace BeeBaby
 {
 	public partial class TextField : UITextField, IKeyboardSupport
 	{
+		bool m_updateKeyboardPosition = true;
+
 		public TextField(IntPtr handle) : base(handle)
 		{
 			OffsetHeight = 0f;
@@ -14,12 +16,14 @@ namespace BeeBaby
 				return true;
 			};
 			ShouldBeginEditing += (textField) => {
-				if (KeyboardNotification.KeyboardVisible)
+				if (m_updateKeyboardPosition && KeyboardNotification.KeyboardVisible)
 				{
 					InvokeInBackground(() => {
 						InvokeOnMainThread(() => {
+							m_updateKeyboardPosition = false;
 							textField.ResignFirstResponder();
 							textField.BecomeFirstResponder();
+							m_updateKeyboardPosition = true;
 						});
 					});
 				}
