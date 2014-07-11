@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="EUe-ij-ab7"/>
                         <viewControllerLayoutGuide type="bottom" id="Hid-rg-Azm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP" customClass="ViewScrollable">
+                    <view key="view" contentMode="scaleToFill" id="aNZ-HK-0fP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -104,6 +104,21 @@ de lembrar sobre este momento?</string>
                                             <action selector="Save:" destination="UAi-dU-234" eventType="touchUpInside" id="lsd-Wy-tLV"/>
                                         </connections>
                                     </button>
+                                    <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Q3-PY-Ewy">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="131"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tH2-oK-aYl">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="row"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -124,6 +139,7 @@ de lembrar sobre este momento?</string>
                         <outlet property="lblMomentAbout" destination="RTc-JH-Pq5" id="ghZ-La-mAC"/>
                         <outlet property="mapView" destination="5cT-qc-4it" id="Kyl-UM-70Q"/>
                         <outlet property="scrView" destination="TiS-MY-n35" id="qpc-Pe-We6"/>
+                        <outlet property="tblView" destination="tH2-oK-aYl" id="EzB-u0-3LK"/>
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
@@ -145,7 +161,7 @@ de lembrar sobre este momento?</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
+                            <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-eT-BbT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
@@ -457,7 +473,7 @@ de lembrar sobre este momento?</string>
                         <viewControllerLayoutGuide type="top" id="dfl-R4-Adr"/>
                         <viewControllerLayoutGuide type="bottom" id="m5b-wM-Wed"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tQ3-G9-Eau" customClass="ViewScrollable">
+                    <view key="view" contentMode="scaleToFill" id="tQ3-G9-Eau">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>

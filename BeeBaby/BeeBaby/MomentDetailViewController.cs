@@ -17,7 +17,6 @@ namespace BeeBaby
 	{
 		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		ZoomMapViewDelegate m_mapViewDelegate;
-		UITableView m_autoCompleteTable;
 		IEnumerable<Location> m_locations;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
@@ -31,28 +30,21 @@ namespace BeeBaby
 		{
 			base.ViewDidLoad();
 
-			vwDate.MoveScroll = true;
+			var proxy = new EventProxy<MomentDetailViewController, EventArgs>(this);
+			proxy.Action = (target, sender, args) =>
+			{
+				target.InputLocalReturn(target.txtLocalName);
+			};
+			vwDate.Clicked += proxy.HandleEvent;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
 			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
 			txtDescription.Delegate = m_txtDescriptionDelegate;
-			txtDescription.IsKeyboardAnimation = true;
 
-			txtLocalName.IsKeyboardAnimation = true;
-			txtLocalName.OffsetHeight = 131f;
+			txtLocalName.OffsetHeight = tblView.Frame.Height;
 
 			m_mapViewDelegate = new ZoomMapViewDelegate(0.001d, this);
 			mapView.Delegate = m_mapViewDelegate;
-
-			m_autoCompleteTable = new UITableView(new RectangleF(0f, 0f, 320f, 131f));
-			m_autoCompleteTable.ExclusiveTouch = true;
-			m_autoCompleteTable.ScrollEnabled = true;
-
-			var autoCompleteView = new UIView(new RectangleF(0f, (txtLocalName.Frame.Y + txtLocalName.Frame.Height) - 10, 320f, 131f));
-			autoCompleteView.SetStyleClass("row");
-			autoCompleteView.Hidden = true;
-			autoCompleteView.AddSubview(m_autoCompleteTable);
-			View.AddSubview(autoCompleteView);
 
 			m_locations = new LocationService().GetAllLocations();
 		}
@@ -69,8 +61,9 @@ namespace BeeBaby
 
 			vwDate.UpdateInfo();
 
-			txtLocalName.ShouldReturn += InputLocalShouldReturn;
-			txtLocalName.ShouldChangeCharacters += InputLocalShouldChangeCharacters;
+			txtLocalName.ShouldBeginEditing += InputLocalBeginEditing;
+			txtLocalName.ShouldReturn += InputLocalReturn;
+			txtLocalName.ShouldChangeCharacters += InputLocalChangeCharacters;
 
 			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
 			if (selectedEvent != null)
@@ -91,8 +84,10 @@ namespace BeeBaby
 			base.ViewWillDisappear(animated);
 
 			m_mapViewDelegate.UpdateUserLocation = false;
-			txtLocalName.ShouldReturn -= InputLocalShouldReturn;
-			txtLocalName.ShouldChangeCharacters -= InputLocalShouldChangeCharacters;
+
+			txtLocalName.ShouldBeginEditing -= InputLocalBeginEditing;
+			txtLocalName.ShouldReturn -= InputLocalReturn;
+			txtLocalName.ShouldChangeCharacters -= InputLocalChangeCharacters;
 		}
 
 		/// <summary>
@@ -123,27 +118,49 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Inputs the local should return.
+		/// Inputs the local begin editing.
 		/// </summary>
-		/// <returns><c>true</c>, if local should return was input, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if local begin editing was input, <c>false</c> otherwise.</returns>
 		/// <param name="textField">Text field.</param>
-		public bool InputLocalShouldReturn(UITextField textField)
+		public bool InputLocalBeginEditing(UITextField textField)
 		{
-			m_autoCompleteTable.Superview.Hidden = true;
+			UIView.Animate(0.5d, () => {
+				tblView.Superview.Alpha = 1f;
+				InputLocalChangeCharacters(textField, new NSRange(0, 0), string.Empty);
+			});
 
 			return true;
 		}
 
 		/// <summary>
-		/// Inputs the local should change characters.
+		/// Inputs the local return.
 		/// </summary>
-		/// <returns><c>true</c>, if local should change characters was input, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if local return was input, <c>false</c> otherwise.</returns>
+		/// <param name="textField">Text field.</param>
+		public bool InputLocalReturn(UITextField textField)
+		{
+			if (!textField.IsEditing)
+			{
+				UIView.Animate(0.5d, () => {
+					tblView.Superview.Alpha = 0f;
+				});
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Inputs the local change characters.
+		/// </summary>
+		/// <returns><c>true</c>, if local change characters was input, <c>false</c> otherwise.</returns>
 		/// <param name="textField">Text field.</param>
 		/// <param name="range">Range.</param>
 		/// <param name="replacementString">Replacement string.</param>
-		public bool InputLocalShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+		public bool InputLocalChangeCharacters(UITextField textField, NSRange range, string replacementString)
 		{
-			var source = replacementString != string.Empty ? string.Concat(textField.Text, replacementString).ToLowerInvariant() : textField.Text.Substring(0, textField.Text.Length - 1).ToLowerInvariant();
+			var source = ((range.Location == 0 && range.Length == 0) || replacementString != string.Empty)
+				? string.Concat(textField.Text, replacementString).ToLowerInvariant()
+				: textField.Text.Substring(0, textField.Text.Length - 1).ToLowerInvariant();
 			try
 			{
 				var locations = m_locations.Where(l => l.Name.ToLowerInvariant().Contains(source))
@@ -152,16 +169,8 @@ namespace BeeBaby
 
 				SelectLocation(locations.Where(l => l.Name.ToLowerInvariant().Equals(source)).FirstOrDefault(), true);
 
-				if (locations.Length > 0)
-				{
-					m_autoCompleteTable.Superview.Hidden = false;
-					m_autoCompleteTable.Source = new AutoCompleteTableSource(locations, this);
-					m_autoCompleteTable.ReloadData();
-				}
-				else
-				{
-					m_autoCompleteTable.Superview.Hidden = true;
-				}
+				tblView.Source = new AutoCompleteTableSource(locations, this);
+				tblView.ReloadData();
 			}
 			catch (Exception)
 			{
@@ -192,7 +201,7 @@ namespace BeeBaby
 				{
 					txtLocalName.Text = location.Name;
 					txtLocalName.ResignFirstResponder();
-					m_autoCompleteTable.Superview.Hidden = true;
+					InputLocalReturn(txtLocalName);
 				}
 			}
 		}
@@ -218,6 +227,7 @@ namespace BeeBaby
 			base.StartEditing();
 
 			vwDate.Hide();
+			InputLocalReturn(txtLocalName);
 		}
 
 		/// <summary>
@@ -226,8 +236,9 @@ namespace BeeBaby
 		public override void EndEditing()
 		{
 			base.EndEditing();
+
 			vwDate.Hide();
-			m_autoCompleteTable.Superview.Hidden = true;
+			InputLocalReturn(txtLocalName);
 		}
 
 		/// <summary>

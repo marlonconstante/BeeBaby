@@ -5,17 +5,19 @@ using System.Drawing;
 
 namespace BeeBaby
 {
-	public class KeyboardNotification : Notification
+	public sealed class KeyboardNotification : Notification
 	{
 		WeakReference m_weakResponder;
 
-		protected KeyboardNotification()
+		private KeyboardNotification()
 		{
 			// Keyboard Up
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyboardUpNotification);
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyboardUpNotification);
 
 			// Keyboard Down
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardDownNotification);
+
+			KeyboardVisible = false;
 		}
 
 		/// <summary>
@@ -50,24 +52,32 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void MoveScroll(bool up, NSNotification notification)
 		{
-			var view = CurrentViewController.View;
 			var firstResponder = m_weakResponder.Target as UIView;
 			if (firstResponder != null && firstResponder is IKeyboardSupport)
 			{
 				var keyboardSupport = (IKeyboardSupport) firstResponder;
-				if (keyboardSupport.IsKeyboardAnimation)
+				var view = firstResponder.Superview;
+				if (view is UIScrollView)
 				{
-					RectangleF rectangle = UIKeyboard.FrameBeginFromNotification(notification);
-					var bottom = (firstResponder.Frame.Y + firstResponder.Frame.Height + keyboardSupport.OffsetHeight);
-					if (view is ViewScrollable)
-					{
-						bottom += 64f;
-					}
-					var height = (rectangle.Height - (view.Frame.Height - bottom));
+					var scrollView = (UIScrollView) view;
+					var rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
-					Scroller.Move(view, 0f, up ? -height : height);
+					UIView.Animate(0.3d, () => {
+						var contentSize = scrollView.ContentSize;
+						contentSize.Height += up ? rectangle.Height : -rectangle.Height;
+						scrollView.ContentSize = contentSize;
+
+						if (up)
+						{
+							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + keyboardSupport.OffsetHeight;
+							var spare = UIScreen.MainScreen.Bounds.Height - rectangle.Height;
+
+							scrollView.ContentOffset = new PointF(0f, Math.Max(-64f, bottom - spare));
+						}
+					});
 				}
 			}
+			KeyboardVisible = up;
 		}
 
 		/// <summary>
@@ -86,6 +96,15 @@ namespace BeeBaby
 				}
 			}
 			return null;
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.KeyboardNotification"/> keyboard visible.
+		/// </summary>
+		/// <value><c>true</c> if keyboard visible; otherwise, <c>false</c>.</value>
+		public static bool KeyboardVisible {
+			get;
+			set;
 		}
 
 		/// <summary>

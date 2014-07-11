@@ -58,13 +58,13 @@ namespace BeeBaby
 		/// <param name="selected">If set to <c>true</c> selected.</param>
 		void SaveTemporaryImage(NSDictionary info, bool saveToAlbum = false, bool selected = true)
 		{
-			using (var photo = (UIImage)info.ObjectForKey(UIImagePickerController.OriginalImage))
+			using (var photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
 				var fileName = ImageProvider.SaveTemporaryImageOnApp(photo);
 
 				if (saveToAlbum)
 				{
-//					InvokeOnMainThread(() => photo.SaveToPhotosAlbum(null));
+					MediaLibrary.Instance.Save(photo);
 				}
 
 				if (selected)

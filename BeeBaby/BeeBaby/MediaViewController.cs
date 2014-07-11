@@ -5,8 +5,6 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using Domain.Moment;
 using System.Drawing;
-using BeeBaby.Util;
-using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -50,6 +48,16 @@ namespace BeeBaby
 			TitleScreen = "ChoosePhotos".Translate();
 			btnAddMediaFromLibrary.SetTitle("ImportPhotos".Translate(), UIControlState.Normal);
 			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
+		}
+
+		/// <summary>
+		/// Determines whether this instance is add right bar button item.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsAddRightBarButtonItem()
+		{
+			return new MomentService().HasValidMoments();
 		}
 
 		/// <summary>
@@ -98,20 +106,14 @@ namespace BeeBaby
 			else
 			{
 				ShowProgressWhilePerforming(() => {
-					if (CurrentContext.Instance.CurrentBaby == null)
+					if (CurrentContext.Instance.CurrentBaby.IsValid())
 					{
-						var baby = new BabyService().CreateBaby();
-
-						CurrentContext.Instance.CurrentBaby = baby;
-						PreferencesEditor.SaveLastUsedBaby(baby.Id);
-
-						PerformSegue("segueBaby", sender);
+						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+						PerformSegue("segueSelectEvent", sender);
 					}
 					else
 					{
-						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
-						new MomentService().SaveMoment(CurrentContext.Instance.Moment);
-						PerformSegue("segueSelectEvent", sender);
+						PerformSegue("segueBaby", sender);
 					}
 				}, false);
 			}

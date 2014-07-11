@@ -359,7 +359,6 @@
     <Compile Include="ViewModels\BabyProfile.cs" />
     <Compile Include="ViewModels\ImageModel.cs" />
     <Compile Include="AutoCompleteTableSource.cs" />
-    <Compile Include="Scroller.cs" />
     <Compile Include="IKeyboardSupport.cs" />
     <Compile Include="TextView.cs" />
     <Compile Include="TextView.designer.cs">
@@ -404,14 +403,11 @@
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewScrollable.cs" />
-    <Compile Include="ViewScrollable.designer.cs">
-      <DependentUpon>ViewScrollable.cs</DependentUpon>
-    </Compile>
     <Compile Include="InstagramControllerDelegate.cs" />
     <Compile Include="Activity\InstagramActivity.cs" />
     <Compile Include="UIPopoverControllerDelegateClass.cs" />
     <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
+    <Compile Include="MediaLibrary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

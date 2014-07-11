@@ -8,7 +8,7 @@ namespace Application
 {
 	public sealed class CurrentContext
 	{
-		private static CurrentContext s_instance;
+		static CurrentContext s_instance;
 
 		private CurrentContext()
 		{
@@ -20,13 +20,12 @@ namespace Application
 		/// Gets the instance.
 		/// </summary>
 		/// <value>The instance.</value>
-		public static CurrentContext Instance
-		{
-			get
-			{
+		public static CurrentContext Instance {
+			get {
 				if (s_instance == null)
+				{
 					s_instance = new CurrentContext();
-
+				}
 				return s_instance; 
 			}
 		}
@@ -53,8 +52,7 @@ namespace Application
 		/// Gets or sets the moment.
 		/// </summary>
 		/// <value>The moment.</value>
-		public Moment Moment
-		{
+		public Moment Moment {
 			get;
 			set;
 		}
@@ -72,8 +70,7 @@ namespace Application
 		/// Gets or sets the selected event.
 		/// </summary>
 		/// <value>The selected event.</value>
-		public Event SelectedEvent
-		{
+		public Event SelectedEvent {
 			get;
 			set;
 		}
@@ -82,8 +79,7 @@ namespace Application
 		/// Gets or sets all events.
 		/// </summary>
 		/// <value>All events.</value>
-		public IList<Event> AllEvents
-		{
+		public IList<Event> AllEvents {
 			get;
 			set;
 		}

@@ -58,6 +58,8 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 
+			EndEditing();
+
 			// Dismiss the spinner
 			BTProgressHUD.Dismiss();
 		}

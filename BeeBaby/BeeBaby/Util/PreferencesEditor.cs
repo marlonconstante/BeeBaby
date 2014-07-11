@@ -9,15 +9,7 @@ namespace BeeBaby.Util
 	/// </summary>
 	static public class PreferencesEditor
 	{
-		/// <summary>
-		/// Saves the last used baby.
-		/// </summary>
-		/// <param name="babyId">Baby identifier.</param>
-		public static void SaveLastUsedBaby(string babyId)
-		{
-			var user = NSUserDefaults.StandardUserDefaults;
-			user.SetString(babyId, "LastUsedBaby");
-		}
+		const string s_lastUsedBaby = "LastUsedBaby";
 
 		/// <summary>
 		/// Loads the last used baby.
@@ -25,10 +17,19 @@ namespace BeeBaby.Util
 		/// <returns>The last used baby.</returns>
 		public static Baby LoadLastUsedBaby()
 		{
-			var user = NSUserDefaults.StandardUserDefaults;
-			var babyId = user.StringForKey("LastUsedBaby");
-
-			return new BabyService().GetBaby(babyId);
+			var babyService = new BabyService();
+			var userDefaults = NSUserDefaults.StandardUserDefaults;
+			var babyId = userDefaults.StringForKey(s_lastUsedBaby);
+			if (string.IsNullOrEmpty(babyId))
+			{
+				var baby = babyService.CreateBaby();
+				userDefaults.SetString(baby.Id, s_lastUsedBaby);
+				return baby;
+			}
+			else
+			{
+				return babyService.GetBaby(babyId);
+			}
 		}
 	}
 }

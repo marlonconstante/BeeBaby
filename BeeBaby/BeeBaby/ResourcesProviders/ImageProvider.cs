@@ -193,19 +193,19 @@ namespace BeeBaby.ResourcesProviders
 
 			using (NSData imageData = image.AsJPEG(MediaBase.ImageCompressionQuality))
 			{
-				NSError err;
-				if (!imageData.Save(fullImagePath, false, out err))
+				NSError error;
+				if (!imageData.Save(fullImagePath, false, out error))
 				{
-					Console.WriteLine("Saving of file failed: " + err.Description);
+					Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
 				}
 			}
 
 			using (NSData imageData = GenerateThumbnail(image).AsJPEG(MediaBase.ImageCompressionQuality))
 			{
-				NSError err;
-				if (!imageData.Save(thumbnailImagePath, false, out err))
+				NSError error;
+				if (!imageData.Save(thumbnailImagePath, false, out error))
 				{
-					Console.WriteLine("Saving of file failed: " + err.Description);
+					Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
 				}
 			}
 

@@ -6,9 +6,9 @@ using MonoTouch.CoreGraphics;
 
 namespace BeeBaby
 {
-	public class OrientationNotification : Notification
+	public sealed class OrientationNotification : Notification
 	{
-		protected OrientationNotification()
+		private OrientationNotification()
 		{
 			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 
