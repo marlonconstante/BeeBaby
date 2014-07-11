@@ -109,7 +109,6 @@ namespace BeeBaby
 					if (CurrentContext.Instance.CurrentBaby.IsValid())
 					{
 						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
-						new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 						PerformSegue("segueSelectEvent", sender);
 					}
 					else

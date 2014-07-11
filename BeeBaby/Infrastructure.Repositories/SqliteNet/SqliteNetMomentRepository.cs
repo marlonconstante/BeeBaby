@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories.SqliteNet
 		/// <returns>The invalid moments.</returns>
 		public int RemoveInvalidMoments()
 		{
-			return m_connection.Execute("DELETE FROM MomentData WHERE EventId IS NULL");
+			return m_connection.Execute("DELETE FROM MomentData WHERE EventId IS NULL OR LocationId IS NULL");
 		}
 
 		/// <summary>
