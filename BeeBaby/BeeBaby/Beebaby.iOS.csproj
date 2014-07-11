@@ -252,6 +252,7 @@
     <BundleResource Include="Resources\Icon.png" />
     <BundleResource Include="Resources\Icon-Small.png" />
     <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\instagram%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -410,6 +411,8 @@
     <Compile Include="InstagramControllerDelegate.cs" />
     <Compile Include="Activity\FacebookActivity.cs" />
     <Compile Include="Activity\InstagramActivity.cs" />
+    <Compile Include="UIPopoverControllerDelegateClass.cs" />
+    <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

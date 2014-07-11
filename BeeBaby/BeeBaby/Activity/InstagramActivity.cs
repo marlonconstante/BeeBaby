@@ -1,101 +1,161 @@
 ﻿using System;
 using MonoTouch.UIKit;
+using System.Collections.Generic;
 using MonoTouch.Foundation;
+using System.Drawing;
+using MonoTouch.CoreGraphics;
+using System.IO;
 
 namespace BeeBaby.Activity
 {
-	public class InstagramActivity : UIActivity
+	public class InstagramActivity : UIActivity 
 	{
-		public InstagramActivity()
+		private readonly string InstagramUrl = "instagram://app";
+
+		public InstagramActivity ()
 		{
+
 		}
 
-		public UIImage ShareImage
-		{
-			get;
-			set;
+		public override string Title {
+			get {return "Instagram";}
 		}
 
-		public string ShareString
-		{
-			get;
-			set;
+		public override NSString Type {
+			get {return (NSString) "UIActivityTypePostToInstagram";}
 		}
 
-		public override string Title
+		public override UIImage Image {
+			get {return new UIImage ("instagram.png");}
+		}
+
+		public UIImage ShareImage {get; set;}
+		public string ShareString {get; set;}
+		public string BackgroundColors {get; set;}
+		public bool IncludeURL {get; set;}
+
+		public UIDocumentInteractionController DocumentController {get; set;}
+
+
+		public UIView PresentFromView {get; set;}
+
+
+		public override bool CanPerform(NSObject[] activyItems)
 		{
-			get
+			base.CanPerform (activyItems);
+
+			var instagramUrl = new NSUrl (InstagramUrl);
+
+			if (!UIApplication.SharedApplication.CanOpenUrl (instagramUrl)) 
+				return false;
+
+			foreach (var item in activyItems) 
 			{
-				return "Instagram";
-			}
-		}
-
-		public override NSString Type
-		{
-			get
-			{
-				return (NSString)"UIActivityTypePostToInstagram";
-			}
-		}
-
-		public override UIImage Image
-		{
-			get
-			{
-				return UIImage.FromBundle("instagram.png");
-			}
-		}
-
-		public override bool CanPerform(NSObject[] activityItems)
-		{
-			var instagramURL = NSUrl.FromString("instagram://app");
-			return UIApplication.SharedApplication.CanOpenUrl(instagramURL); // no instagram.
-		}
-
-		public override void Prepare(NSObject[] activityItems)
-		{
-			foreach (var item in activityItems)
-			{
-
-
-				if (item is UIImage)
-					ShareImage = item as UIImage;
-				else if (item is NSString)
-				{
-					ShareString = String.Concat((ShareImage != null ? String.Concat(ShareString, " ") : ""), item); // concat, with space if already exists.
+				var image = item as UIImage; 
+				if (image != null && IsImageLargeEnough (image)) {
+					return true;
+				} else {
+					//TODO: Log message
 				}
+			}
+
+			return false;
+		}
+
+		public override void Prepare(NSObject[] activyItems)
+		{
+			base.Prepare (activyItems);
+
+			foreach (var item in activyItems) 
+			{
+				if (item.GetType () == typeof(UIImage)) 
+				{
+					this.ShareImage = (UIImage)item;
+				} else if (item.GetType () == typeof(NSString)) 
+				{
+					this.ShareString = 
+						!string.IsNullOrEmpty (this.ShareString) 
+						? string.Format ("{0} {1}", this.ShareString, item.ToString ()) 
+						: item.ToString ();
+				} 
+				else if (item.GetType () == typeof(NSUrl)) 
+				{
+					if (IncludeURL)
+						this.ShareString += !string.IsNullOrEmpty (this.ShareString) ? " " + ((NSUrl)item).AbsoluteString : ((NSUrl)item).AbsoluteString;
+				} else {
+					//TODO: Log message: "Unknown item type %@", item"
+				}
+
 			}
 		}
 
 		public override void Perform()
 		{
-			var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Guid.NewGuid() + ".igo");
-			using (NSData imageData = imgPhoto.Image.AsJPEG(MediaBase.ImageCompressionQuality))
+			base.Perform ();
+
+			var cropVal = this.ShareImage.Size.Height > this.ShareImage.Size.Width ? this.ShareImage.Size.Width : this.ShareImage.Size.Height;
+
+			cropVal *= this.ShareImage.CurrentScale;
+
+			var cropRect = new RectangleF {
+				Height = cropVal,
+				Width = cropVal
+			};
+
+			var imageRef = this.ShareImage.CGImage.WithImageInRect (cropRect);
+
+			var image =  UIImage.FromImage (imageRef);
+
+			var imageData = image.AsJPEG (1.0f);
+
+			//TODO: Find way to release image
+			imageRef.Dispose ();
+			//CGImageRelease (imageRef);
+
+			var path =  Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+
+			var fullUrl = Path.Combine (path, "instagram.igo"); 
+
+			Console.WriteLine ("Full Url: " + fullUrl);
+
+			NSError error;
+
+			if (!imageData.Save(fullUrl, NSDataWritingOptions.Atomic, out error)) 
 			{
-				NSError err;
-				if (!imageData.Save(path, false, out err))
-				{
-					Console.WriteLine("Saving of file failed: " + err.Description);
-				}
+				Console.WriteLine ("Error saving the image: " + fullUrl);
+				return;
 			}
 
+			NSUrl fileUrl = NSUrl.FromFilename (fullUrl);
 
-			// send it to instagram.
-			var fileURL = NSUrl.FromString(path);
-			var documentController = new UIDocumentInteractionController();
-			documentController.Url = fileURL;
+			this.DocumentController = UIDocumentInteractionController.FromUrl (fileUrl);
 
-			documentController.Delegate = self;
-			documentController.Uti = "com.instagram.exclusivegram";
-//			if (self.shareString) [self.documentController setAnnotation:@{@"InstagramCaption" : self.shareString}];
+			this.DocumentController.Delegate = new UIDocumentInteractionControllerDelegateClass(this);
 
-			documentController.PresentOpenInMenu(
+			DocumentController.Uti = "com.instagram.exclusivegram";
 
-			if (![self.documentController presentOpenInMenuFromBarButtonItem:self.presentFromButton animated:YES]) NSLog(@"couldn't present document interaction controller");
-
-
-			this.Finished(true);
+			if (!string.IsNullOrEmpty (this.ShareString)) 
+			{
+				var dict = new NSMutableDictionary ();
+				dict.Add ((NSString)"InstagramCaption", (NSString)this.ShareString);
+				this.DocumentController.Annotation = dict;
+			}
 		}
+
+		private bool IsImageLargeEnough(UIImage image)
+		{
+			var imageSize = image.Size;
+			return ((imageSize.Height * image.CurrentScale) >= 612 && (imageSize.Width * image.CurrentScale) >= 612);
+		}
+
+		private bool IsImageSquare(UIImage image)
+		{
+			var imageSize = image.Size;
+			return (imageSize.Height == imageSize.Width);
+		}
+
+
+
 	}
 }
 

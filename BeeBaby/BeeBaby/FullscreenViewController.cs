@@ -19,6 +19,8 @@ namespace BeeBaby
 		UIImage m_photo;
 		Moment m_moment;
 		UIActivityViewController m_activityViewController;
+		private UIPopoverController _popOver;
+
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -106,21 +108,32 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Share(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() =>
+			var instagramActivity = new InstagramActivity();
+			instagramActivity.IncludeURL = false;
+			instagramActivity.PresentFromView = View;
+
+			var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
+
+			NSUrl shareUrl = new NSUrl(@"http://beebabyapp.com");
+
+			var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
+
+			var applicationActivities = new UIActivity[]{ instagramActivity };
+
+			var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
+
+			activityViewController.CompletionHandler += (activityTitle, close) =>
 			{
-				var path = GetImagePath();
-				CreateActivityViewController(path);
-
-				m_activityViewController.CompletionHandler += (activityTitle, close) =>
+				if (activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
 				{
-					if (activityTitle.ToString().Equals("com.beebaby.facebook"))
-					{
-						PublishOnFacebook(imgPhoto.Image);
-					}
-				};
+					instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
+				}
 
-				PresentViewController(m_activityViewController, true, null);
-
+			};
+				
+			this.PresentViewController(activityViewController, true, () =>
+			{
+				Console.WriteLine("Action Completed");
 			});
 		}
 
@@ -190,9 +203,9 @@ namespace BeeBaby
 				{
 					new NSUrl(path)
 				}, new UIActivity[]
-				{
-					new FacebookActivity(imgPhoto.Image)
-				}
+			{
+				new FacebookActivity(imgPhoto.Image)
+			}
 			)
 			{
 				ExcludedActivityTypes = new[]

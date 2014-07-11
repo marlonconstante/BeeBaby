@@ -1209,7 +1209,7 @@ de lembrar sobre este momento?</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="share"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="Share:" destination="7Po-98-263" eventType="touchUpInside" id="OiV-7f-77w"/>
+                                    <action selector="Share:" destination="7Po-98-263" eventType="touchUpInside" id="4Qy-ym-Yxs"/>
                                 </connections>
                             </button>
                         </subviews>
