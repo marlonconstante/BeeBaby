@@ -108,32 +108,37 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Share(UIButton sender)
 		{
-			var instagramActivity = new InstagramActivity();
-			instagramActivity.IncludeURL = false;
-			instagramActivity.PresentFromView = View;
-
-			var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
-
-			NSUrl shareUrl = new NSUrl(@"http://beebabyapp.com");
-
-			var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
-
-			var applicationActivities = new UIActivity[]{ instagramActivity };
-
-			var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
-
-			activityViewController.CompletionHandler += (activityTitle, close) =>
+			ShowProgressWhilePerforming(() =>
 			{
-				if (activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
+				var instagramActivity = new InstagramActivity();
+				instagramActivity.IncludeURL = false;
+				instagramActivity.PresentFromView = View;
+
+				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
+
+				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
+
+				NSUrl shareUrl = new NSUrl(@"http://beebabyapp.com");
+
+				var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
+
+				var applicationActivities = new UIActivity[]{ instagramActivity };
+
+				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
+
+				activityViewController.CompletionHandler += (activityTitle, close) =>
 				{
-					instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
-				}
+					if (activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
+					{
+						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
+					}
 
-			};
+				};
 				
-			this.PresentViewController(activityViewController, true, () =>
-			{
-				Console.WriteLine("Action Completed");
+				this.PresentViewController(activityViewController, true, () =>
+				{
+					Console.WriteLine("Action Completed");
+				});
 			});
 		}
 
@@ -191,42 +196,6 @@ namespace BeeBaby
 			{
 				Console.WriteLine("Não foi possível compartilhar o momento no Facebook.");
 			}
-		}
-
-
-
-
-		void CreateActivityViewController(string path)
-		{
-			m_activityViewController = new UIActivityViewController(
-				new NSObject[]
-				{
-					new NSUrl(path)
-				}, new UIActivity[]
-			{
-				new FacebookActivity(imgPhoto.Image)
-			}
-			)
-			{
-				ExcludedActivityTypes = new[]
-				{
-					UIActivityType.AssignToContact
-				}
-			};
-		}
-
-		string GetImagePath()
-		{
-			var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Guid.NewGuid() + ".jpg");
-			using (NSData imageData = imgPhoto.Image.AsJPEG(MediaBase.ImageCompressionQuality))
-			{
-				NSError err;
-				if (!imageData.Save(path, false, out err))
-				{
-					Console.WriteLine("Saving of file failed: " + err.Description);
-				}
-			}
-			return path;
 		}
 	}
 }

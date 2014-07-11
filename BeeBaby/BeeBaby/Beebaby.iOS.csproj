@@ -409,7 +409,6 @@
       <DependentUpon>ViewScrollable.cs</DependentUpon>
     </Compile>
     <Compile Include="InstagramControllerDelegate.cs" />
-    <Compile Include="Activity\FacebookActivity.cs" />
     <Compile Include="Activity\InstagramActivity.cs" />
     <Compile Include="UIPopoverControllerDelegateClass.cs" />
     <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
