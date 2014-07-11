@@ -53,6 +53,16 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Determines whether this instance is add right bar button item.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsAddRightBarButtonItem()
+		{
+			return new MomentService().HasValidMoments();
+		}
+
+		/// <summary>
 		/// Rights the bar button action.
 		/// </summary>
 		public override void RightBarButtonAction()
