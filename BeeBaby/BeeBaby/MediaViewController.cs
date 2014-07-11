@@ -5,8 +5,6 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using Domain.Moment;
 using System.Drawing;
-using BeeBaby.Util;
-using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -108,20 +106,15 @@ namespace BeeBaby
 			else
 			{
 				ShowProgressWhilePerforming(() => {
-					if (CurrentContext.Instance.CurrentBaby == null)
-					{
-						var baby = new BabyService().CreateBaby();
-
-						CurrentContext.Instance.CurrentBaby = baby;
-						PreferencesEditor.SaveLastUsedBaby(baby.Id);
-
-						PerformSegue("segueBaby", sender);
-					}
-					else
+					if (CurrentContext.Instance.CurrentBaby.IsValid())
 					{
 						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 						new MomentService().SaveMoment(CurrentContext.Instance.Moment);
 						PerformSegue("segueSelectEvent", sender);
+					}
+					else
+					{
+						PerformSegue("segueBaby", sender);
 					}
 				}, false);
 			}
