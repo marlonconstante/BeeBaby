@@ -49,7 +49,6 @@ namespace BeeBaby
 			m_tagsHeight = tagsHeightConstraint.Constant;
 
 			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
-			tblView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			m_selectedTag = string.Empty;
 
