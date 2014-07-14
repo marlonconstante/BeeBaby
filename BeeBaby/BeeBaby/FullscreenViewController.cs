@@ -43,8 +43,7 @@ namespace BeeBaby
 		/// </summary>
 		void AddSingleTapGestureRecognizer()
 		{
-			var singleTap = new UITapGestureRecognizer(() =>
-			{
+			var singleTap = new UITapGestureRecognizer(() => {
 				ShowOrHideSubviews();
 			});
 			singleTap.NumberOfTapsRequired = 1;
@@ -90,12 +89,10 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() =>
-			{
+			ShowProgressWhilePerforming(() => {
 				PresentingViewController.DismissViewController(false, null);
 				var photo = imgPhoto.Image;
-				InvokeInBackground(() =>
-				{
+				InvokeInBackground(() => {
 					photo.Dispose();
 					m_photo.Dispose();
 				});
@@ -108,8 +105,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Share(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() =>
-			{
+			ShowProgressWhilePerforming(() => {
 				var instagramActivity = new InstagramActivity();
 				instagramActivity.IncludeURL = false;
 				instagramActivity.PresentFromView = View;
@@ -117,26 +113,19 @@ namespace BeeBaby
 				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
 
 				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
-
-				NSUrl shareUrl = new NSUrl(@"http://beebabyapp.com");
-
-				var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
-
+				var shareUrl = new NSUrl(@"http://beebabyapp.com");
+				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imgPhoto.Image };
 				var applicationActivities = new UIActivity[]{ instagramActivity };
-
 				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
 
-				activityViewController.CompletionHandler += (activityTitle, close) =>
-				{
+				activityViewController.CompletionHandler += (activityTitle, close) => {
 					if (activityTitle != null && activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
 
 				};
-				
-				this.PresentViewController(activityViewController, true, () =>
-				{
+				PresentViewController(activityViewController, true, () => {
 					Console.WriteLine("Action Completed");
 				});
 			});
@@ -180,8 +169,7 @@ namespace BeeBaby
 			if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 			{
 				FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
-				FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto, null, (result, error) =>
-				{
+				FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto, null, (result, error) => {
 					if (error != null)
 					{
 						InvokeOnMainThread(() => new UIAlertView("Warning".Translate(), error.Description, null, "OK", null).Show());
