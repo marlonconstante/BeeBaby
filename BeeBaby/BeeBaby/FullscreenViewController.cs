@@ -128,7 +128,7 @@ namespace BeeBaby
 
 				activityViewController.CompletionHandler += (activityTitle, close) =>
 				{
-					if (activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
+					if (activityTitle != null && activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
