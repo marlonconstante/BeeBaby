@@ -23,6 +23,7 @@ namespace BeeBaby
 		public void Initialize()
 		{
 			AddAssetsGroupAlbum(s_albumName, (group) => {
+				Console.WriteLine("Álbum \"" + s_albumName + "\" criado com sucesso.");
 				if (group == null)
 				{
 					FindAlbum();
@@ -31,7 +32,6 @@ namespace BeeBaby
 				{
 					m_album = group;
 				}
-				Console.WriteLine("Álbum \"" + s_albumName + "\" criado com sucesso.");
 			}, (error) => {
 				Console.WriteLine("Ocorreu um erro na criação do álbum \"" + s_albumName + "\":\n" + error.LocalizedDescription);
 			});
