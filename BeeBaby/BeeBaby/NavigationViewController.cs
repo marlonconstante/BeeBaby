@@ -27,6 +27,8 @@ namespace BeeBaby
 			AddTitleView();
 			AddLeftBarButtonItem();
 			AddRightBarButtonItem();
+
+			NavigationController.View.AddStyleClass("navigation");
 		}
 
 		/// <summary>

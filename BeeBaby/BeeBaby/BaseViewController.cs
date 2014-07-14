@@ -4,6 +4,7 @@ using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
 using System.Collections.Generic;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -23,6 +24,8 @@ namespace BeeBaby
 			AddEditingTapGestureRecognizer();
 
 			TranslateLabels();
+
+			View.AddStyleClass("view");
 		}
 
 		/// <summary>
