@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using MonoTouch.Foundation;
 using Domain.Moment;
 using Infrastructure.Systems;
-using MonoTouch.FacebookConnect;
 
 namespace BeeBaby
 {

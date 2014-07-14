@@ -25,6 +25,11 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchExtraArgs>-time -time</MtouchExtraArgs>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
+    <OptimizePNGs>false</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -55,6 +60,9 @@
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
     <BuildIpa>true</BuildIpa>
+    <MtouchExtraArgs>-time -time --dsym=false</MtouchExtraArgs>
+    <MtouchLink>Full</MtouchLink>
+    <OptimizePNGs>false</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -66,6 +74,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -100,6 +113,8 @@
     <IpaPackageName>
     </IpaPackageName>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -113,9 +128,6 @@
       <HintPath>..\Components\btprogresshud-1.9\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="MonoTouch.FacebookConnect">
-      <HintPath>..\Components\facebookios-3.13.1\lib\ios\MonoTouch.FacebookConnect.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite.Net.Platform.XamarinIOS">
       <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.3.0\lib\monotouch\SQLite.Net.Platform.XamarinIOS.dll</HintPath>
     </Reference>
@@ -403,7 +415,6 @@
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstagramControllerDelegate.cs" />
     <Compile Include="Activity\InstagramActivity.cs" />
     <Compile Include="UIPopoverControllerDelegateClass.cs" />
     <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
@@ -413,10 +424,6 @@
   <ItemGroup>
     <XamarinComponentReference Include="btprogresshud">
       <Version>1.9</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="facebookios">
-      <Version>3.13.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

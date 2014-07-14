@@ -6,7 +6,6 @@ using System;
 using System.IO;
 using MonoTouch.Dialog;
 using BeeBaby;
-using MonoTouch.FacebookConnect;
 using BigTed;
 using PixateFreestyleLib;
 using Parse;
@@ -83,8 +82,6 @@ namespace BeeBaby
 			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm",
 				"eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
 
-			FBSettings.DefaultAppID = FacebookAppId;
-			FBSettings.DefaultDisplayName = DisplayName;
 
 			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
 		
@@ -102,17 +99,6 @@ namespace BeeBaby
 			InitProgressHUD();
 		}
 
-		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
-		/// Raises the activated event.
-		/// </summary>
-		/// <param name="application">Application.</param>
-		public override void OnActivated(UIApplication application)
-		{
-			// We need to properly handle activation of the application with regards to SSO
-			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
-			FBSession.ActiveSession.HandleDidBecomeActive();
-		}
-
 		/// <summary>
 		/// Inits the ProgressHUD.
 		/// </summary>
@@ -122,7 +108,7 @@ namespace BeeBaby
 			hud.SetStyleClass("progress");
 
 			var frame = hud.Frame;
-			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (float)Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
 		}
 	}
