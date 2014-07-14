@@ -3,13 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Domain.Moment;
 using BeeBaby.ResourcesProviders;
-using MonoTouch.FacebookConnect;
-using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
-using Domain.Media;
-using System.IO;
-using System.Drawing;
-using System.Linq;
 using BeeBaby.Activity;
 
 namespace BeeBaby
@@ -19,8 +13,6 @@ namespace BeeBaby
 		UIImage m_photo;
 		Moment m_moment;
 		UIActivityViewController m_activityViewController;
-		private UIPopoverController _popOver;
-
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -146,44 +138,6 @@ namespace BeeBaby
 
 			m_photo = photo;
 			m_moment = moment;
-		}
-
-		/// <summary>
-		/// Saves image to photo album.
-		/// </summary>
-		void SaveToPhotoAlbum()
-		{
-			if (imgPhoto.Image == m_photo)
-			{
-				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
-				imgPhoto.Image.SaveToPhotosAlbum(null);
-			}
-		}
-
-		/// <summary>
-		/// Publishs the on facebook.
-		/// </summary>
-		/// <param name="imgPhoto">Image photo.</param>
-		public void PublishOnFacebook(UIImage imgPhoto)
-		{
-			if (FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
-			{
-				FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Compartilhou foto no Facebook.");
-				FBDialogs.PresentOSIntegratedShareDialogModally(this, null, imgPhoto, null, (result, error) => {
-					if (error != null)
-					{
-						InvokeOnMainThread(() => new UIAlertView("Warning".Translate(), error.Description, null, "OK", null).Show());
-					}
-					else if (result == FBOSIntegratedShareDialogResult.Succeeded)
-					{
-						InvokeOnMainThread(() => new UIAlertView("Information".Translate(), "SharedMomentFacebook".Translate(), null, "OK", null).Show());
-					}
-				});
-			}
-			else
-			{
-				Console.WriteLine("Não foi possível compartilhar o momento no Facebook.");
-			}
 		}
 	}
 }
