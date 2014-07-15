@@ -3,6 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Domain.Moment;
 using BeeBaby.ResourcesProviders;
+using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using BeeBaby.Activity;
 
@@ -35,7 +36,8 @@ namespace BeeBaby
 		/// </summary>
 		void AddSingleTapGestureRecognizer()
 		{
-			var singleTap = new UITapGestureRecognizer(() => {
+			var singleTap = new UITapGestureRecognizer(() =>
+			{
 				ShowOrHideSubviews();
 			});
 			singleTap.NumberOfTapsRequired = 1;
@@ -81,10 +83,12 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				PresentingViewController.DismissViewController(false, null);
 				var photo = imgPhoto.Image;
-				InvokeInBackground(() => {
+				InvokeInBackground(() =>
+				{
 					photo.Dispose();
 					m_photo.Dispose();
 				});
@@ -97,7 +101,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Share(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				var instagramActivity = new InstagramActivity();
 				instagramActivity.IncludeURL = false;
 				instagramActivity.PresentFromView = View;
@@ -105,19 +110,21 @@ namespace BeeBaby
 				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
 
 				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
-				var shareUrl = new NSUrl(@"http://beebabyapp.com");
-				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imgPhoto.Image };
+				var shareUrl = new NSUrl(string.Empty);
+				var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
 				var applicationActivities = new UIActivity[]{ instagramActivity };
 				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
 
-				activityViewController.CompletionHandler += (activityTitle, close) => {
+				activityViewController.CompletionHandler += (activityTitle, close) =>
+				{
 					if (activityTitle != null && activityTitle.ToString().Equals("UIActivityTypePostToInstagram"))
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
 
 				};
-				PresentViewController(activityViewController, true, () => {
+				PresentViewController(activityViewController, true, () =>
+				{
 					Console.WriteLine("Action Completed");
 				});
 			});
