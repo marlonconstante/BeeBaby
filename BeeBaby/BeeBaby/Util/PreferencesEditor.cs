@@ -7,7 +7,7 @@ namespace BeeBaby.Util
 	/// <summary>
 	/// Preferences editor.
 	/// </summary>
-	static public class PreferencesEditor
+	public static class PreferencesEditor
 	{
 		const string s_lastUsedBaby = "LastUsedBaby";
 
