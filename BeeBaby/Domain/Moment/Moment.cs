@@ -53,6 +53,15 @@ namespace Domain.Moment
 		public DateTime Date { set; get; }
 
 		/// <summary>
+		/// Gets or sets the media count.
+		/// </summary>
+		/// <value>The media count.</value>
+		public int MediaCount {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the selected media names.
 		/// </summary>
 		/// <value>The selected media names.</value>

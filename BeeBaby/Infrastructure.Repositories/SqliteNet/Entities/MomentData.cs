@@ -60,6 +60,15 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		public DateTime Date { set; get; }
 
 		/// <summary>
+		/// Gets or sets the media count.
+		/// </summary>
+		/// <value>The media count.</value>
+		public int MediaCount {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the babies.
 		/// </summary>
 		/// <value>The babies.</value>
