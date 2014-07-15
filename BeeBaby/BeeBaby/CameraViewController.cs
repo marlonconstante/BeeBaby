@@ -70,6 +70,23 @@ namespace BeeBaby
 
 				View.BackgroundColor = UIColor.Clear;
 			}
+
+			ShowNewVersionAlert();
+		}
+
+		/// <summary>
+		/// Shows the new version alert.
+		/// </summary>
+		static void ShowNewVersionAlert()
+		{
+			var currentVersion = 1.1f;
+			var lastVersionShowed = NSUserDefaults.StandardUserDefaults.FloatForKey("LastVersionLogShowed");
+
+			if (lastVersionShowed < currentVersion)
+			{
+				new UIAlertView("WhatsNew".Translate(), "Version-1.1-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
+				NSUserDefaults.StandardUserDefaults.SetFloat(currentVersion, "LastVersionLogShowed");
+			}
 		}
 
 		/// <summary>
@@ -151,7 +168,8 @@ namespace BeeBaby
 				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
 				m_systemSound = SystemSound.FromFile(filePath);
 				m_systemSound.PlaySystemSound();
-				m_systemSound.AddSystemSoundCompletion(() => {
+				m_systemSound.AddSystemSoundCompletion(() =>
+				{
 					m_systemSound.PlaySystemSound();
 				});
 			}
@@ -170,18 +188,18 @@ namespace BeeBaby
 			FlurryAnalytics.Flurry.LogEvent("Camera: Mudou Flash.");
 			switch (m_cameraFlashMode)
 			{
-			case UIImagePickerControllerCameraFlashMode.Auto:
-				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
-				lblFlash.Text = "FlashOn".Translate();
-				break;
-			case UIImagePickerControllerCameraFlashMode.On:
-				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
-				lblFlash.Text = "FlashOff".Translate();
-				break;
-			default:
-				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
-				lblFlash.Text = "FlashAuto".Translate();
-				break;
+				case UIImagePickerControllerCameraFlashMode.Auto:
+					m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.On;
+					lblFlash.Text = "FlashOn".Translate();
+					break;
+				case UIImagePickerControllerCameraFlashMode.On:
+					m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
+					lblFlash.Text = "FlashOff".Translate();
+					break;
+				default:
+					m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
+					lblFlash.Text = "FlashAuto".Translate();
+					break;
 			}
 			m_picker.CameraFlashMode = m_cameraFlashMode;
 		}
@@ -196,7 +214,8 @@ namespace BeeBaby
 
 			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
 			View.BackgroundColor = UIColor.Black;
-			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
+			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () =>
+			{
 				m_picker.CameraDevice = front ? UIImagePickerControllerCameraDevice.Rear : UIImagePickerControllerCameraDevice.Front;
 				View.BackgroundColor = UIColor.Clear;
 			}, null);
@@ -210,14 +229,16 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Botão Timeline.");
 
-			NSAction segueTimeline = () => {
+			NSAction segueTimeline = () =>
+			{
 				PresentingViewController.DismissViewController(false, null);
 				Discard.ReleaseNavigation(NavigationController);
 			};
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				if (m_mediaPickerProvider != null)
 				{
-					var imagePickerDelegate = (MomentImagePickerDelegate) m_mediaPickerProvider.Delegate;
+					var imagePickerDelegate = (MomentImagePickerDelegate)m_mediaPickerProvider.Delegate;
 					imagePickerDelegate.WaitForPendingTasks();
 				}
 				if (m_picker != null)
@@ -240,7 +261,8 @@ namespace BeeBaby
 			FlurryAnalytics.Flurry.LogEvent("Camera: Tirou uma foto.");
 			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
-			UIView.Animate(0.3d, () => {
+			UIView.Animate(0.3d, () =>
+			{
 				View.BackgroundColor = UIColor.Clear;
 			});
 		}
@@ -251,10 +273,11 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenMedia(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
+			ShowProgressWhilePerforming(() =>
+			{
 				if (m_mediaPickerProvider != null)
 				{
-					var imagePickerDelegate = (MomentImagePickerDelegate) m_mediaPickerProvider.Delegate;
+					var imagePickerDelegate = (MomentImagePickerDelegate)m_mediaPickerProvider.Delegate;
 					imagePickerDelegate.WaitForPendingTasks();
 				}
 				StopSound();

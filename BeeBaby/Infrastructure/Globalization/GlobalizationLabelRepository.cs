@@ -128,6 +128,8 @@ School = Escolinha
 Recomendations = Recomendações
 Everyday = Cotidiano
 Firsts = Primeiros
+WhatsNew = O que há de novo:
+Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n
 ";
 		}
 	}
