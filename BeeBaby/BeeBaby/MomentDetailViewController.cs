@@ -268,6 +268,7 @@ namespace BeeBaby
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
 				moment.Date = vwDate.DateTime;
+				moment.MediaCount = moment.SelectedMediaNames.Count;
 
 				moment.Position = new Coordinates();
 				moment.Position.Latitude = mapView.CenterCoordinate.Latitude;

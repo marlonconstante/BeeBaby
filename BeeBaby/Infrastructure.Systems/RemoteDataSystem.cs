@@ -28,6 +28,7 @@ namespace Infrastructure.Systems
 			momentData["LocationId"] = moment.Location != null ? moment.Location.Id : string.Empty;
 			momentData["LocationDescription"] = moment.Location != null ? moment.Location.Name : string.Empty;
 			momentData["Date"] = moment.Date.ToString(dateFormat);
+			momentData["MediaCount"] = moment.MediaCount;
 			momentData["BabyId"] = baby.Id;
 			momentData["BabyName"] = baby.Name;
 			momentData["BabyBirthDate"] = baby.BirthDateTime.ToString(dateFormat);
