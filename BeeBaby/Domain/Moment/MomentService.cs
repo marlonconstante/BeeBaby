@@ -92,6 +92,15 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
+		/// Finds all moments.
+		/// </summary>
+		/// <returns>The all moments.</returns>
+		public IEnumerable<Moment> FindAllMoments()
+		{
+			return MainRepository.FindAll();
+		}
+
+		/// <summary>
 		/// Gets the first moment.
 		/// </summary>
 		/// <returns>The first moment.</returns>
