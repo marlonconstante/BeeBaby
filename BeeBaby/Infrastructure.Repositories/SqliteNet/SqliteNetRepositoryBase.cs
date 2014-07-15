@@ -66,10 +66,6 @@ namespace Infrastructure.Repositories.SqliteNet
 		public bool IsDataStructureUpdate(string entityName)
 		{
 			return m_connection.Table<VersionControlData>().LongCount(v => v.Entity.Equals(entityName) && v.Version >= DataVersion) > 0;
-//			var entityName = entityType.GetType().Name;
-//			var vs = m_connection.Table<VersionControlData>().Where(v => v.Entity.Equals(entityName) && v.Version >= DataVersion).ToList();
-//
-//			return vs.Count() > 0;
 		}
 
 		protected override void PersistNewItem(TEntity item)
