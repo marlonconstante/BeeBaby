@@ -1,14 +1,15 @@
-﻿navigation-bar,
-navigation-bar button-appearance,
-button,
-button:highlighted,
-button:selected,
+﻿.navigation navigation-bar,
+.navigation navigation-bar button-appearance,
+.navigation navigation-bar label,
+.view button,
+.view button:highlighted,
+.view button:selected,
 table-view-cell label,
 table-view-headerfooter-view label,
 segmented-control,
 text-field,
 text-view,
-label {
+.view label {
 	font-family: "Quicksand";
 }
 
@@ -17,7 +18,7 @@ label {
 }
 
 .table-menu table-view-cell:selected,
-navigation-bar,
+.navigation navigation-bar,
 segmented-control {
 	background-color: #00aead;
 }
@@ -33,20 +34,20 @@ segmented-control {
 .fullscreen label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
-.baby-button,
-.baby-button:highlighted,
-.baby-button:selected,
-navigation-bar,
-navigation-bar title,
-navigation-bar button,
-navigation-bar button:highlighted,
-navigation-bar button:selected {
+.view .baby-button,
+.view .baby-button:highlighted,
+.view .baby-button:selected,
+.navigation navigation-bar,
+.navigation navigation-bar title,
+.navigation navigation-bar button,
+.navigation navigation-bar button:highlighted,
+.navigation navigation-bar button:selected {
 	color: #fff;
 }
 
-search-bar button,
-search-bar button:highlighted,
-search-bar button:selected {
+.view search-bar button,
+.view search-bar button:highlighted,
+.view search-bar button:selected {
     font-size: 14pt;
     size: 68 32;
 }
@@ -58,46 +59,36 @@ search-bar button:selected {
 	text-align: left;
 }
 
-navigation-bar button,
-navigation-bar button:highlighted,
-navigation-bar button:selected {
+.navigation navigation-bar button,
+.navigation navigation-bar button:highlighted,
+.navigation navigation-bar button:selected {
+	font-family: "Quicksand";
 	font-size: 16pt;
 	font-weight: normal;
 }
 
-.navigation-button,
-.navigation-button:highlighted,
-.navigation-button:selected,
-.large-button,
-.large-button:highlighted,
-.large-button:selected {
+.view .navigation-button,
+.view .navigation-button:highlighted,
+.view .navigation-button:selected,
+.view .large-button,
+.view .large-button:highlighted,
+.view .large-button:selected {
     font-size: 16pt;
 	font-weight: normal;
 }
 
-.navigation-button,
-.navigation-button:highlighted,
-.navigation-button:selected {
+.view .navigation-button,
+.view .navigation-button:highlighted,
+.view .navigation-button:selected {
 	background-color: #f2f5f5;
 	box-shadow: 0 1 1 0 #b9c9c5;
 }
 
-.large-button,
-.large-button:highlighted,
-.large-button:selected {
+.view .large-button,
+.view .large-button:highlighted,
+.view .large-button:selected {
 	background-color: #eef1f1;
 	box-shadow: 0 1 0 0 #bacbc8;
-}
-
-.share-button,
-.share-button:highlighted,
-.share-button:selected {
-	color: #fff;
-	background-color: rgba(0, 0, 0, 0);
-	border: 1 solid #fff;
-	border-radius: 5;
-	font-size: 12pt;
-	font-weight: normal;
 }
 
 .flash-label,
@@ -142,16 +133,16 @@ navigation-bar button:selected {
 }
 
 segmented-control label,
-.small-button,
-.small-button:highlighted,
-.small-button:selected {
+.view .small-button,
+.view .small-button:highlighted,
+.view .small-button:selected {
 	font-size: 13pt;
 	font-weight: bold;
 }
 
-.small-button,
-.small-button:highlighted,
-.small-button:selected {
+.view .small-button,
+.view .small-button:highlighted,
+.view .small-button:selected {
 	background-color: #dadacb;
 	border-radius: 5;
 }
@@ -230,9 +221,9 @@ segmented-control label,
 .table-menu,
 .table-menu table-view-cell,
 .screen-background,
-.default-button,
-.default-button:highlighted,
-.default-button:selected {
+.view .default-button,
+.view .default-button:highlighted,
+.view .default-button:selected {
 	background-color: #dce6e6;
 }
 
@@ -252,37 +243,37 @@ segmented-control label,
 text-field,
 text-view,
 table-view-cell label,
-.small-button,
-.small-button:highlighted,
-.small-button:selected,
-.navigation-button,
-.navigation-button:highlighted,
-.navigation-button:selected,
-.large-button,
-.large-button:highlighted,
-.large-button:selected {
+.view .small-button,
+.view .small-button:highlighted,
+.view .small-button:selected,
+.view .navigation-button,
+.view .navigation-button:highlighted,
+.view .navigation-button:selected,
+.view .large-button,
+.view .large-button:highlighted,
+.view .large-button:selected {
 	color: #4d5f5c;
 }
 
 switch,
-button,
-button:highlighted,
-button:selected {
+.view button,
+.view button:highlighted,
+.view button:selected {
 	color: #00aead;
 }
 
 .follow,
-button,
-button:highlighted,
-button:selected {
+.view button,
+.view button:highlighted,
+.view button:selected {
 	font-size: 17pt;
 	font-weight: bold;
 }
 
 .row label,
-button.highlighted,
-button.highlighted:highlighted,
-button.highlighted:selected {
+.view button.highlighted,
+.view button.highlighted:highlighted,
+.view button.highlighted:selected {
 	font-size: 16pt;
 }
 
@@ -296,9 +287,9 @@ button.highlighted:selected {
 	box-shadow: 0 1 0 0 #b6bcba;
 }
 
-.form-button,
-.form-button:highlighted,
-.form-button:selected {
+.view .form-button,
+.view .form-button:highlighted,
+.view .form-button:selected {
 	box-shadow: 0 -1 0 0 #b6bcba;
 }
 
@@ -607,6 +598,7 @@ text-view {
 }
 
 .tag-button-text {
+	font-family: "Quicksand";
 	font-weight: bold;
 	color: #4d5f5c;
 	font-size: 12pt;

@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 using BigTed;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -18,6 +19,7 @@ namespace BeeBaby
 		/// <param name="viewController">View controller.</param>
 		public override void WillShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
 		{
+			navigationController.View.AddStyleClass("navigation");
 			UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
 
 			// Dismiss the spinner

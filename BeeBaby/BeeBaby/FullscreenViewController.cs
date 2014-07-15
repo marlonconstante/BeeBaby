@@ -5,10 +5,6 @@ using Domain.Moment;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
-using Domain.Media;
-using System.IO;
-using System.Drawing;
-using System.Linq;
 using BeeBaby.Activity;
 
 namespace BeeBaby
@@ -18,8 +14,6 @@ namespace BeeBaby
 		UIImage m_photo;
 		Moment m_moment;
 		UIActivityViewController m_activityViewController;
-		private UIPopoverController _popOver;
-
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -116,7 +110,7 @@ namespace BeeBaby
 				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
 
 				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
-				var shareUrl = new NSUrl(@"http://beebabyapp.com");
+				var shareUrl = new NSUrl(string.Empty);
 				var activityItems = new NSObject[]{ (NSString)shareText, shareUrl, imgPhoto.Image };
 				var applicationActivities = new UIActivity[]{ instagramActivity };
 				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
