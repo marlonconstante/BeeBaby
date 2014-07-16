@@ -129,9 +129,12 @@ namespace BeeBaby
 
 				var proxy = new EventProxy<TimelineViewSource, EventArgs>(this);
 				proxy.Action = (target, sender, args) => {
+					ActionProgress actionProgress = new ActionProgress(() => {
 					var momentImageView = (MomentImageView) sender;
 					target.m_viewController.PresentViewController(target.m_fullscreenController, false, null);
 					target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
+					}, false);
+					actionProgress.Execute();
 				};
 				imageView.Clicked += proxy.HandleEvent;
 
