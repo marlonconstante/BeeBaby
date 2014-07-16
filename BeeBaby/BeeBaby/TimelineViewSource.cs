@@ -88,6 +88,9 @@ namespace BeeBaby
 			cell.LabelEventName = moment.Event.Description;
 			cell.LabelWhere = moment.Location.PlaceName;
 
+			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
+			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+
 			InvokeInBackground(() => {
 				Thread.Sleep(150);
 
@@ -97,8 +100,6 @@ namespace BeeBaby
 				InvokeOnMainThread(() => {
 					if (IsVisibleRow(tableView, indexPath))
 					{
-						var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-						cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
 					}
 				});
