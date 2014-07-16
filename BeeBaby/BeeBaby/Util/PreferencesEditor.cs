@@ -23,6 +23,7 @@ namespace BeeBaby.Util
 			{
 				var baby = babyService.CreateBaby();
 				UserDefaults.SetString(baby.Id, s_lastUsedBaby);
+				UserDefaults.Synchronize();
 				return baby;
 			}
 			else

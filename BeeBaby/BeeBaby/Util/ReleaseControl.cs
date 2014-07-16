@@ -39,6 +39,7 @@ namespace BeeBaby.Util
 					action();
 				}
 				UserDefaults.SetFloat(version, key);
+				UserDefaults.Synchronize();
 			}
 		}
 
