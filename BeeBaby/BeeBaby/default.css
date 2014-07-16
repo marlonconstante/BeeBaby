@@ -488,6 +488,10 @@ text-view {
 	background-image: url(menu.svg);
 }
 
+.down-arrow {
+	background-image: url(down-arrow.svg);
+}
+
 .camera,
 .button-camera icon {
 	background-image: url(camera.svg);

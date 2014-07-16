@@ -74,5 +74,14 @@ namespace BeeBaby
 				vwPhotos = value;
 			}
 		}
+
+		/// <summary>
+		/// Opens the options.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void OpenOptions(UIButton sender)
+		{
+
+		}
 	}
 }

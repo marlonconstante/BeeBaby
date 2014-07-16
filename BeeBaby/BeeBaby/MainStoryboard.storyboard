@@ -334,8 +334,8 @@ de lembrar sobre este momento?</string>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="badge"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="241" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-tS-3EW" customClass="Label">
-                                                            <rect key="frame" x="42" y="2" width="241" height="39"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-tS-3EW" customClass="Label">
+                                                            <rect key="frame" x="42" y="2" width="225" height="39"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -387,6 +387,19 @@ de lembrar sobre este momento?</string>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="thumbnails-box"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </scrollView>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJa-Z5-UnG" customClass="Button">
+                                                            <rect key="frame" x="268" y="7" width="14" height="8"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="down-arrow"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="OpenOptions:" destination="FVc-uZ-2lW" eventType="touchUpInside" id="Tne-SG-nYb"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="time-box"/>
