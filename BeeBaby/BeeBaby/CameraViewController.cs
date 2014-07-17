@@ -9,9 +9,8 @@ using Application;
 using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
-using System.Threading;
-using BeeBaby.Util;
 using System.Collections.Generic;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -71,22 +70,7 @@ namespace BeeBaby
 				View.BackgroundColor = UIColor.Clear;
 			}
 
-			ShowNewVersionAlert();
-		}
-
-		/// <summary>
-		/// Shows the new version alert.
-		/// </summary>
-		static void ShowNewVersionAlert()
-		{
-			var currentVersion = 1.1f;
-			var lastVersionShowed = NSUserDefaults.StandardUserDefaults.FloatForKey("LastVersionLogShowed");
-
-			if (lastVersionShowed < currentVersion)
-			{
-				new UIAlertView("WhatsNew".Translate(), "Version-1.1-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
-				NSUserDefaults.StandardUserDefaults.SetFloat(currentVersion, "LastVersionLogShowed");
-			}
+			ReleaseControl.CheckForUpdates();
 		}
 
 		/// <summary>
@@ -138,7 +122,7 @@ namespace BeeBaby
 		void CreateMoment()
 		{
 			var momentService = new MomentService();
-			new ImageProvider().DeleteTemporaryFiles();
+			new ImageProvider().DeleteFiles(true);
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
 			btnOpenTimeline.Hidden = !momentService.HasValidMoments();

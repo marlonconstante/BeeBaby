@@ -45,6 +45,22 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Removes the row.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public void RemoveRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			Moment moment = m_tableItems[indexPath.Row] as Moment;
+
+			new MomentService().RemoveMoment(moment);
+			new ImageProvider(moment.Id).DeleteFiles(false);
+
+			m_tableItems.RemoveAt(indexPath.Row);
+			tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+		}
+
 		/// <Docs>Table view displaying the rows.</Docs>
 		/// <summary>
 		/// Rowses the in section.
@@ -88,6 +104,9 @@ namespace BeeBaby
 			cell.LabelEventName = moment.Event.Description;
 			cell.LabelWhere = moment.Location.PlaceName;
 
+			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
+			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+
 			InvokeInBackground(() => {
 				Thread.Sleep(150);
 
@@ -97,8 +116,6 @@ namespace BeeBaby
 				InvokeOnMainThread(() => {
 					if (IsVisibleRow(tableView, indexPath))
 					{
-						var scrollWidth = images.Count * MediaBase.ImageThumbnailSize;
-						cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
 					}
 				});
@@ -129,9 +146,12 @@ namespace BeeBaby
 
 				var proxy = new EventProxy<TimelineViewSource, EventArgs>(this);
 				proxy.Action = (target, sender, args) => {
-					var momentImageView = (MomentImageView) sender;
-					target.m_viewController.PresentViewController(target.m_fullscreenController, false, null);
-					target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
+					ActionProgress actionProgress = new ActionProgress(() => {
+						var momentImageView = (MomentImageView) sender;
+						target.m_viewController.PresentViewController(target.m_fullscreenController, false, null);
+						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
+					}, false);
+					actionProgress.Execute();
 				};
 				imageView.Clicked += proxy.HandleEvent;
 

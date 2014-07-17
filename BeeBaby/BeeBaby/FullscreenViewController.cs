@@ -13,7 +13,6 @@ namespace BeeBaby
 	{
 		UIImage m_photo;
 		Moment m_moment;
-		UIActivityViewController m_activityViewController;
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{

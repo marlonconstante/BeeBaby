@@ -43,6 +43,16 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
+		/// Removes the moment.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		public void RemoveMoment(Moment moment)
+		{
+			MainRepository.Remove(moment);
+			UnitOfWork.Commit();
+		}
+
+		/// <summary>
 		/// Syncs the moments.
 		/// </summary>
 		public void SyncMoments()
@@ -89,6 +99,15 @@ namespace Domain.Moment
 			return MainRepository.FindAllDescending(
 				(m) => m.Babies.Count(b => b.Id.Equals(baby.Id)) > 0,
 				(o) => o.Date);
+		}
+
+		/// <summary>
+		/// Finds all moments.
+		/// </summary>
+		/// <returns>The all moments.</returns>
+		public IEnumerable<Moment> FindAllMoments()
+		{
+			return MainRepository.FindAll();
 		}
 
 		/// <summary>

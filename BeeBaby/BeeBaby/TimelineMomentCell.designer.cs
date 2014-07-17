@@ -26,6 +26,9 @@ namespace BeeBaby
 
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView vwPhotos { get; set; }
+
+		[Action ("OpenOptions:")]
+		partial void OpenOptions (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

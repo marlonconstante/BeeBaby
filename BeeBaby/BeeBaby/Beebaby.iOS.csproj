@@ -53,7 +53,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giusepe Casagrande (V9KLBS9GL7)</CodesignKey>
+    <CodesignKey>iPhone Developer: Marlon Constante (Z8W6V8WDDF)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -267,7 +267,7 @@
     <BundleResource Include="Resources\Icon-Small.png" />
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\instagram%402x.png" />
-    <BundleResource Include="Settings.bundle\Root.plist" />
+    <BundleResource Include="Resources\down-arrow.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -422,7 +422,7 @@
     <Compile Include="UIPopoverControllerDelegateClass.cs" />
     <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
     <Compile Include="MediaLibrary.cs" />
-    <Compile Include="Globalization\SHCultureInfo.cs" />
+    <Compile Include="Util\ReleaseControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -440,7 +440,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Util\" />
     <Folder Include="Activity\" />
-    <Folder Include="Globalization\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
