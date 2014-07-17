@@ -17,14 +17,14 @@ namespace Infrastructure.Repositories.SqliteNet
 			DataVersion = 1;
 
 			#region CreateData
-			connection.CreateTable<VersionControlData>();
+			connection.CreateTable<SystemParameterData>();
 			connection.CreateTable<EventData>();
 
-			if (CountAll(null) <= 0 || !IsDataStructureUpdate(typeof(EventData).Name))
+			if (CountAll(null) <= 0 || !IsDataStructureUpdate(typeof(EventData).Name) || HasCurrentCultureBeenChanged())
 			{
 				connection.DeleteAll<EventData>();
 				PopulateData(connection);
-				connection.ExecuteScalar<VersionControlData>("Insert Into VersionControlData (Id, Entity, Version) values (?, ?, ?)", Guid.NewGuid().ToString(), typeof(EventData).Name, DataVersion);
+				connection.ExecuteScalar<SystemParameterData>("Insert Into VersionControlData (Id, Entity, Version) values (?, ?, ?)", Guid.NewGuid().ToString(), typeof(EventData).Name, DataVersion);
 			}
 			#endregion
 		}
@@ -40,6 +40,11 @@ namespace Infrastructure.Repositories.SqliteNet
 			             "or (Kind = 1) Order by Priority");
 
 			return MapperHelper.ToDomainEntities<Event, EventData>(events, Mapper);
+		}
+
+		bool HasCurrentCultureBeenChanged()
+		{
+			throw new NotImplementedException();
 		}
 
 		static void PopulateData(SQLiteConnection connection)
