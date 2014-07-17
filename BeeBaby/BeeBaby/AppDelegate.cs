@@ -4,7 +4,6 @@ using Application;
 using SQLite.Net;
 using System;
 using System.IO;
-using MonoTouch.Dialog;
 using BeeBaby;
 using BigTed;
 using PixateFreestyleLib;
