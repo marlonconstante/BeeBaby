@@ -79,15 +79,8 @@ namespace Skahal.Infrastructure.Framework.Globalization
 
 		private static string SelectedCultureName
 		{
-			get
-			{
-				return "en-US";
-			}
-			
-			set
-			{ 
-				ChangeCulture(value);
-			}
+			get;
+			set;
 		}
 
 		#endregion
@@ -95,12 +88,14 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		#region Public methods
 
 		/// <summary>
-		/// Initialize the service.
+		/// Initialize the specified labelRepository and currentCultureInfo.
 		/// </summary>
 		/// <param name="labelRepository">Label repository.</param>
-		public static void Initialize(IGlobalizationLabelRepository labelRepository)
+		/// <param name="currentCultureInfo">Current culture info.</param>
+		public static void Initialize(IGlobalizationLabelRepository labelRepository, CultureInfo currentCultureInfo)
 		{
 			s_labelRepository = labelRepository;
+			SelectedCultureName = CultureInfo.CurrentCulture.Name;
 			s_labelRepository.LoadCultureLabels(SelectedCultureName);
 		}
 
@@ -123,7 +118,8 @@ namespace Skahal.Infrastructure.Framework.Globalization
 					break;
 					
 				default:
-					toCulture = new CultureInfo(cultureName);
+					toCulture = EnUsCultureInfo;
+//					toCulture = new CultureInfo(cultureName);
 					break;
 			}
 			
@@ -150,7 +146,11 @@ namespace Skahal.Infrastructure.Framework.Globalization
 				throw new ArgumentNullException("englishText"); 
 			}
 
-			var translatedLabel = s_labelRepository.FindFirst(englishText);
+			var translatedLabel = s_labelRepository
+				.FindAll (
+					f =>   f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase)
+					&& f.CultureName == s_currentCulture.Name)
+				.FirstOrDefault ();
 				
 
 			if (translatedLabel == null)

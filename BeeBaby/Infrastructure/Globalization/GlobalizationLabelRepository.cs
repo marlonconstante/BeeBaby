@@ -9,45 +9,40 @@ namespace Infrastructure.Globalization
 	/// <summary>
 	/// Globalization label repository.
 	/// </summary>
-	public class GlobalizationLabelRepository : IGlobalizationLabelRepository
+	public class GlobalizationLabelRepository : MemoryGlobalizationLabelRepository
 	{
-		List<GlobalizationLabel> m_entities;
-
-		public bool LoadCultureLabels(string cultureName)
+		/// <summary>
+		/// Loads the culture labels.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		/// <param name="cultureName">Culture name.</param>
+		public override bool LoadCultureLabels(string cultureName)
 		{
-			m_entities = new List<GlobalizationLabel>();
+			var abc = this.CountAll(cw => true);
 
-			//TODO: Quando for corrigido o Bug na Xamarin, podemos remover esse override.
-			if (m_entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
+			if (CountAll(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
 			{
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
 
-				var lines = GetCultureText(cultureName).Split(new string[] { System.Environment.NewLine }, System.StringSplitOptions.RemoveEmptyEntries);
+				var lines = GetCultureText(cultureName).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
 
 				foreach (var line in lines)
 				{
 					var lineParts = line.Split('=');
-					m_entities.Add(new GlobalizationLabel()
+					Entities.Add(new GlobalizationLabel()
 					{
 						EnglishText = lineParts[0].Trim(),
-						CultureText = lineParts[1].Trim().Replace(@"\n", System.Environment.NewLine),
+						CultureText = lineParts[1].Trim().Replace(@"\n", Environment.NewLine),
 						CultureName = cultureName
 					});
 				}
-
 				return true;
 			}
 
 			return false;
-		}
-
-		public GlobalizationLabel FindFirst(string englishText)
-		{
-			return m_entities.FindAll(
-				f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
-				.FirstOrDefault();
 		}
 
 		protected string GetCultureText(string cultureName)

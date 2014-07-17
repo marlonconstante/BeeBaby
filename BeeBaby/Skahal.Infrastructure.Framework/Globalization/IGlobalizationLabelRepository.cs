@@ -6,7 +6,7 @@ namespace Skahal.Infrastructure.Framework.Globalization
 	/// <summary>
 	/// Defines a interface for globalization label repository.
 	/// </summary>
-	public interface IGlobalizationLabelRepository
+	public interface IGlobalizationLabelRepository : IRepository<GlobalizationLabel>
 	{
 		/// <summary>
 		/// Loads the culture labels.
@@ -14,7 +14,5 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		/// <returns><c>true</c>, if culture labels was loaded, <c>false</c> otherwise, already loaded.</returns>
 		/// <param name="cultureName">Culture name.</param>
 		bool LoadCultureLabels(string cultureName);
-
-		GlobalizationLabel FindFirst(string englishText);
 	}
 }

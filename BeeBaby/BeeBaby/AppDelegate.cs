@@ -9,6 +9,7 @@ using BeeBaby;
 using BigTed;
 using PixateFreestyleLib;
 using Parse;
+using BeeBaby.Globalization;
 
 namespace BeeBaby
 {
@@ -90,7 +91,7 @@ namespace BeeBaby
 
 			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
 			DomainConfig.RegisterDependencies(connection);
-			DomainConfig.InitializeGlobalization();
+			DomainConfig.InitializeGlobalization(SHCultureInfo.From(NSLocale.CurrentLocale));
 
 			KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
