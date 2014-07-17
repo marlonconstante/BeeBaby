@@ -125,16 +125,21 @@ namespace BeeBaby
 		{
 			//TODO: Internacionalizar mensagens
 			var alertView = new UIAlertView("Confirmação de exclusão".Translate(), "Tem certeza que quer remover este momento?".Translate(), null, null, "Sim".Translate(), "Não".Translate());
-			alertView.Clicked += (object sender, UIButtonEventArgs e) => {
-				if (e.ButtonIndex == 0)
-				{
-			m_tableSource.RemoveRow(tblView, tblView.IndexPathForCell(cell));
-			if (tblView.NumberOfRowsInSection(0) == 0)
+
+			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
+			proxy.Action = (target, sender, args) =>
 			{
-				OpenCamera();
-			}
+				if (args.ButtonIndex == 0)
+				{
+					target.m_tableSource.RemoveRow(target.tblView, target.tblView.IndexPathForCell(cell));
+					if (target.tblView.NumberOfRowsInSection(0) == 0)
+					{
+						target.OpenCamera();
+					}
 				}
 			};
+			alertView.Clicked += proxy.HandleEvent;
+
 			alertView.Show();
 		}
 	}
