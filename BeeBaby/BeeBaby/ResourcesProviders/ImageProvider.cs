@@ -65,16 +65,20 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
-		/// Deletes the temporary files.
+		/// Deletes the files.
 		/// </summary>
-		public void DeleteTemporaryFiles()
+		/// <param name="temporary">If set to <c>true</c> temporary.</param>
+		public void DeleteFiles(bool temporary)
 		{
-			var temporaryDirectory = Path.Combine(m_appDocumentsDirectory, m_temporaryDirectoryName);
-			Directory.CreateDirectory(temporaryDirectory);
+			var path = Path.Combine(m_appDocumentsDirectory, temporary ? m_temporaryDirectoryName : "");
+			Directory.CreateDirectory(path);
 
-			Directory.EnumerateDirectories(temporaryDirectory)
+			Directory.EnumerateDirectories(path)
 				.ToList().ForEach(directoryName => {
-				if (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name))
+				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
+				var validPermanentDirectory = !temporary && !string.IsNullOrEmpty(m_name) && directoryName.EndsWith(m_name);
+
+				if (validTemporaryDirectory || validPermanentDirectory)
 				{
 					Directory.EnumerateFiles(directoryName)
 							.ToList().ForEach(fileName => File.Delete(fileName));

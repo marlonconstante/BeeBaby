@@ -122,7 +122,7 @@ namespace BeeBaby
 		void CreateMoment()
 		{
 			var momentService = new MomentService();
-			new ImageProvider().DeleteTemporaryFiles();
+			new ImageProvider().DeleteFiles(true);
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
 
 			btnOpenTimeline.Hidden = !momentService.HasValidMoments();

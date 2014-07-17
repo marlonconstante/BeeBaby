@@ -13,7 +13,8 @@ namespace BeeBaby
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
-		static bool m_openCamera = true;
+		static bool s_openCamera = true;
+		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
@@ -44,10 +45,10 @@ namespace BeeBaby
 
 			LoadEvents();
 
-			if (m_openCamera)
+			if (s_openCamera)
 			{
 				OpenCamera();
-				m_openCamera = false;
+				s_openCamera = false;
 			}
 			else
 			{
@@ -78,7 +79,7 @@ namespace BeeBaby
 		/// </summary>
 		void LoadBaby()
 		{
-			new ImageProvider().DeleteTemporaryFiles();
+			new ImageProvider().DeleteFiles(true);
 
 			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 		}
@@ -107,10 +108,24 @@ namespace BeeBaby
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = baby.AgeInWords;
 
-				tblView.Source = new TimelineViewSource(this, moments.ToList(), baby);
+				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
+				tblView.Source = m_tableSource;
 				tblView.ReloadData();
 
 				CurrentContext.Instance.ReloadMoments = false;
+			}
+		}
+
+		/// <summary>
+		/// Removes the row.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		public void RemoveRow(TimelineMomentCell cell)
+		{
+			m_tableSource.RemoveRow(tblView, tblView.IndexPathForCell(cell));
+			if (tblView.NumberOfRowsInSection(0) == 0)
+			{
+				OpenCamera();
 			}
 		}
 	}

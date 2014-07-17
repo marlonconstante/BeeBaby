@@ -81,7 +81,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void OpenOptions(UIButton sender)
 		{
-
+			var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
+			viewController.RemoveRow(this);
 		}
 	}
 }

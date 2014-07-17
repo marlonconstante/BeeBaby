@@ -45,6 +45,22 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Removes the row.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public void RemoveRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			Moment moment = m_tableItems[indexPath.Row] as Moment;
+
+			new MomentService().RemoveMoment(moment);
+			new ImageProvider(moment.Id).DeleteFiles(false);
+
+			m_tableItems.RemoveAt(indexPath.Row);
+			tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+		}
+
 		/// <Docs>Table view displaying the rows.</Docs>
 		/// <summary>
 		/// Rowses the in section.

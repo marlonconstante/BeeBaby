@@ -43,6 +43,16 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
+		/// Removes the moment.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		public void RemoveMoment(Moment moment)
+		{
+			MainRepository.Remove(moment);
+			UnitOfWork.Commit();
+		}
+
+		/// <summary>
 		/// Syncs the moments.
 		/// </summary>
 		public void SyncMoments()
