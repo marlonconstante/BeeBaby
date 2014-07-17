@@ -8,6 +8,7 @@ using Application;
 using BeeBaby.ResourcesProviders;
 using BeeBaby.Util;
 using Domain.User;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby
 {
@@ -122,11 +123,19 @@ namespace BeeBaby
 		/// <param name="cell">Cell.</param>
 		public void RemoveRow(TimelineMomentCell cell)
 		{
+			//TODO: Internacionalizar mensagens
+			var alertView = new UIAlertView("Confirmação de exclusão".Translate(), "Tem certeza que quer remover este momento?".Translate(), null, null, "Sim".Translate(), "Não".Translate());
+			alertView.Clicked += (object sender, UIButtonEventArgs e) => {
+				if (e.ButtonIndex == 0)
+				{
 			m_tableSource.RemoveRow(tblView, tblView.IndexPathForCell(cell));
 			if (tblView.NumberOfRowsInSection(0) == 0)
 			{
 				OpenCamera();
 			}
+				}
+			};
+			alertView.Show();
 		}
 	}
 }
