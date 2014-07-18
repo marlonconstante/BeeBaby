@@ -35,13 +35,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Globalization\GlobalizationLabelRepository.cs" />
+    <Compile Include="Configuration\ISystemParameterRepository.cs" />
+    <Compile Include="Configuration\SystemParameter.cs" />
+    <Compile Include="Configuration\SystemParameterService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
-      <Project>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</Project>
-      <Name>Infrastructure.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Skahal.Infrastructure.Framework\Skahal.Infrastructure.Framework.csproj">
       <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
       <Name>Skahal.Infrastructure.Framework</Name>
@@ -49,5 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Globalization\" />
+    <Folder Include="Configuration\" />
   </ItemGroup>
 </Project>

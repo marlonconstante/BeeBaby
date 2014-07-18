@@ -1,7 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Domain;
 
-namespace Domain.System
+namespace Infrastructure.Configuration
 {
 	public class SystemParameter: EntityWithIdBase<string>, IAggregateRoot
 	{

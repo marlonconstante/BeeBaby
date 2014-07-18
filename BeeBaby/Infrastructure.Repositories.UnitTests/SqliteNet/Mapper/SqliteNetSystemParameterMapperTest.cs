@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Infrastructure.Repositories.SqliteNet.Entities;
-using Domain.System;
+using Infrastructure.Configuration;
 
 namespace Infrastructure.Repositories.UnitTests.SqliteNet.Mapper
 {

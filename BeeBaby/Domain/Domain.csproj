@@ -54,9 +54,6 @@
     <Compile Include="User\User.cs" />
     <Compile Include="User\UserService.cs" />
     <Compile Include="User\IUserRepository.cs" />
-    <Compile Include="System\SystemParameter.cs" />
-    <Compile Include="System\ISystemParameterRepository.cs" />
-    <Compile Include="System\SystemParameterService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -64,7 +61,6 @@
     <Folder Include="Media\" />
     <Folder Include="Baby\" />
     <Folder Include="User\" />
-    <Folder Include="System\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core" />

@@ -1,7 +1,5 @@
 ﻿using Domain.Moment;
 using Skahal.Infrastructure.Framework.Repositories;
-using System.Collections.Generic;
-using Domain.Baby;
 
 namespace Infrastructure.Repositories.Memory
 {

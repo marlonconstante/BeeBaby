@@ -10,6 +10,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Infrastructure.Globalization;
 using Domain.Baby;
 using System.Globalization;
+using Infrastructure.Configuration;
 
 namespace Application
 {
@@ -18,11 +19,14 @@ namespace Application
 		/// <summary>
 		/// Registers the dependencies.
 		/// </summary>
-		public static void RegisterDependencies(SQLiteConnection connection)
+		public static void RegisterDependencies(SQLiteConnection connection, CultureInfo currentCultureInfo)
 		{
 			var unitOfWork = new MemoryUnitOfWork();
+
+			SystemParameterService.Initialize(new SqliteNetSystemParameterRepository(connection, unitOfWork), unitOfWork);
+
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
-			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork));
+			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork, currentCultureInfo.Name));
 			DependencyService.Register<IUserRepository>(new SqliteNetUserRepository(connection, unitOfWork));
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));

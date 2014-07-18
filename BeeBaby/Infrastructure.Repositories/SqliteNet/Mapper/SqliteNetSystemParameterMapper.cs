@@ -1,7 +1,7 @@
 ﻿using System;
 using Infrastructure.Repositories.Commons;
-using Domain.System;
 using Infrastructure.Repositories.SqliteNet.Entities;
+using Infrastructure.Configuration;
 
 namespace Infrastructure.Repositories.SqliteNet.Mapper
 {

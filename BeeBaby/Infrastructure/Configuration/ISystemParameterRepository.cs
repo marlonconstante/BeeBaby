@@ -1,7 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Repositories;
 
-namespace Domain.System
+namespace Infrastructure.Configuration
 {
 	public interface ISystemParameterRepository : IRepository<SystemParameter>
 	{

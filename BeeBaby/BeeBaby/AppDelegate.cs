@@ -9,6 +9,7 @@ using BigTed;
 using PixateFreestyleLib;
 using Parse;
 using BeeBaby.Globalization;
+using Infrastructure.Configuration;
 
 namespace BeeBaby
 {
@@ -72,27 +73,36 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void FinishedLaunching(UIApplication application)
 		{
-			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
+			ThirdPartyIntegrationsRegister();
 
-			// Initialize the Parse client with your Application ID and .NET Key found on
-			// your Parse dashboard
-			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm",
-				"eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
-			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
-		
-			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			var dbPath = Path.Combine(home, "BeeBaby.sql");
-
-			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
-			DomainConfig.RegisterDependencies(connection);
-			DomainConfig.InitializeGlobalization(SHCultureInfo.From(NSLocale.CurrentLocale));
+			var connection = SetupConnection();
+			DomainConfig.InitializeGlobalization(currentCulture);
+			DomainConfig.RegisterDependencies(connection, currentCulture);
 
 			KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
 			MediaLibrary.Instance.Initialize();
 
 			InitProgressHUD();
+		}
+
+		static void ThirdPartyIntegrationsRegister()
+		{
+			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
+			// Initialize the Parse client with your Application ID and .NET Key found on
+			// your Parse dashboard
+			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm", "eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+		}
+
+		static SQLiteConnection SetupConnection()
+		{
+			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			var dbPath = Path.Combine(home, "BeeBaby.sql");
+			SQLiteConnection connection = new SQLiteConnection(platform, dbPath);
+			return connection;
 		}
 
 		// class-level declarations

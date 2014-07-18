@@ -20,8 +20,10 @@ namespace Application
 		/// Gets the instance.
 		/// </summary>
 		/// <value>The instance.</value>
-		public static CurrentContext Instance {
-			get {
+		public static CurrentContext Instance
+		{
+			get
+			{
 				if (s_instance == null)
 				{
 					s_instance = new CurrentContext();
@@ -34,7 +36,8 @@ namespace Application
 		/// Gets or sets a value indicating whether this <see cref="Application.CurrentContext"/> reload moments.
 		/// </summary>
 		/// <value><c>true</c> if reload moments; otherwise, <c>false</c>.</value>
-		public bool ReloadMoments {
+		public bool ReloadMoments
+		{
 			get;
 			set;
 		}
@@ -43,7 +46,8 @@ namespace Application
 		/// Gets or sets the user.
 		/// </summary>
 		/// <value>The user.</value>
-		public User User {
+		public User User
+		{
 			get;
 			set;
 		}
@@ -52,7 +56,8 @@ namespace Application
 		/// Gets or sets the moment.
 		/// </summary>
 		/// <value>The moment.</value>
-		public Moment Moment {
+		public Moment Moment
+		{
 			get;
 			set;
 		}
@@ -61,7 +66,8 @@ namespace Application
 		/// Gets or sets the current baby.
 		/// </summary>
 		/// <value>The current baby.</value>
-		public Baby CurrentBaby {
+		public Baby CurrentBaby
+		{
 			get;
 			set;
 		}
@@ -70,7 +76,8 @@ namespace Application
 		/// Gets or sets the selected event.
 		/// </summary>
 		/// <value>The selected event.</value>
-		public Event SelectedEvent {
+		public Event SelectedEvent
+		{
 			get;
 			set;
 		}
@@ -79,7 +86,8 @@ namespace Application
 		/// Gets or sets all events.
 		/// </summary>
 		/// <value>All events.</value>
-		public IList<Event> AllEvents {
+		public IList<Event> AllEvents
+		{
 			get;
 			set;
 		}
