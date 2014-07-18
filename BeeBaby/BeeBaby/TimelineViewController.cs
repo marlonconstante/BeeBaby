@@ -130,8 +130,8 @@ namespace BeeBaby
 		{
 			if (m_popover == null)
 			{
-				var button = new Button(new RectangleF(0f, 0f, 200f, 34f));
-				button.TitleEdgeInsets = new UIEdgeInsets(2f, 17f, 0f, 0f);
+				var button = new Button(new RectangleF(0f, 0f, 220f, 34f));
+				button.TitleEdgeInsets = new UIEdgeInsets(1f, 17f, 0f, 0f);
 				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
 				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 				button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
@@ -155,7 +155,7 @@ namespace BeeBaby
 		/// </summary>
 		void RemoveCurrentRow()
 		{
-			var alertView = new UIAlertView("ConfirmDeletion".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
+			var alertView = new UIAlertView("Delete".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
 
 			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
 			proxy.Action = (target, sender, args) =>
@@ -184,7 +184,7 @@ namespace BeeBaby
 
 			var rectangle = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 			rectangle.Height = 0f;
-			rectangle.X = 44f;
+			rectangle.X = 34f;
 
 			m_popover.Show(rectangle, tblView);
 		}

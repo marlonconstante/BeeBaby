@@ -1,6 +1,9 @@
 ﻿.navigation navigation-bar,
 .navigation navigation-bar button-appearance,
 .navigation navigation-bar label,
+.button-trash,
+.button-trash:highlighted,
+.button-trash:selected,
 .view button,
 .view button:highlighted,
 .view button:selected,
@@ -121,6 +124,9 @@ segmented-control {
 	font-weight: normal;
 }
 
+.button-trash,
+.button-trash:highlighted,
+.button-trash:selected,
 .table-view table-view-cell label,
 .special-event-label,
 .time-box-label {
@@ -189,7 +195,6 @@ segmented-control label,
 	background-color: #000;
 }
 
-.button-trash,
 .fullscreen label {
 	font-size: 14pt;
 }
@@ -242,6 +247,8 @@ segmented-control label,
 .special-event-label,
 .special-message-label,
 .button-trash,
+.button-trash:highlighted,
+.button-trash:selected,
 text-field,
 text-view,
 .view table-view-cell label,
