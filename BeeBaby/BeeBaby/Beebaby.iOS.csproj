@@ -148,6 +148,9 @@
     <Reference Include="Parse.iOS">
       <HintPath>..\references\Parse.iOS\Parse.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="WEPopover">
+      <HintPath>..\references\WEPopover.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
@@ -268,6 +271,7 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\instagram%402x.png" />
     <BundleResource Include="Resources\down-arrow.svg" />
+    <BundleResource Include="Resources\trash.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -419,10 +423,10 @@
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Activity\InstagramActivity.cs" />
-    <Compile Include="UIPopoverControllerDelegateClass.cs" />
     <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
     <Compile Include="MediaLibrary.cs" />
     <Compile Include="Util\ReleaseControl.cs" />
+    <Compile Include="Popover.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

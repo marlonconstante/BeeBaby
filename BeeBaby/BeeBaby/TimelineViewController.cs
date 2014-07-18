@@ -9,12 +9,16 @@ using BeeBaby.ResourcesProviders;
 using BeeBaby.Util;
 using Domain.User;
 using Skahal.Infrastructure.Framework.Globalization;
+using System.Drawing;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
 		static bool s_openCamera = true;
+		NSIndexPath m_currentIndexPath;
+		Popover m_popover;
 		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
@@ -109,6 +113,8 @@ namespace BeeBaby
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = baby.AgeInWords;
 
+				InitPopover();
+
 				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
 				tblView.Source = m_tableSource;
 				tblView.ReloadData();
@@ -118,10 +124,36 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Removes the row.
+		/// Inits the popover.
 		/// </summary>
-		/// <param name="cell">Cell.</param>
-		public void RemoveRow(TimelineMomentCell cell)
+		void InitPopover()
+		{
+			if (m_popover == null)
+			{
+				var button = new Button(new RectangleF(0f, 0f, 200f, 32f));
+				button.TitleEdgeInsets = new UIEdgeInsets(1f, 16f, 0f, 0f);
+				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
+				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+				button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
+				button.SetTitle("Remover este momento", UIControlState.Normal);
+				button.SetStyleClass("button-trash");
+
+				m_popover = new Popover(button);
+
+				var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
+				proxy.Action = (target, sender, args) =>
+				{
+					target.RemoveCurrentRow();
+					target.m_popover.DismissAnimated(true);
+				};
+				button.TouchUpInside += proxy.HandleEvent;
+			}
+		}
+
+		/// <summary>
+		/// Removes the current row.
+		/// </summary>
+		void RemoveCurrentRow()
 		{
 			//TODO: Internacionalizar mensagens
 			var alertView = new UIAlertView("Confirmação de exclusão".Translate(), "Tem certeza que quer remover este momento?".Translate(), null, null, "Sim".Translate(), "Não".Translate());
@@ -131,7 +163,7 @@ namespace BeeBaby
 			{
 				if (args.ButtonIndex == 0)
 				{
-					target.m_tableSource.RemoveRow(target.tblView, target.tblView.IndexPathForCell(cell));
+					target.m_tableSource.RemoveRow(target.tblView, target.m_currentIndexPath);
 					if (target.tblView.NumberOfRowsInSection(0) == 0)
 					{
 						target.OpenCamera();
@@ -141,6 +173,21 @@ namespace BeeBaby
 			alertView.Clicked += proxy.HandleEvent;
 
 			alertView.Show();
+		}
+
+		/// <summary>
+		/// Opens the options.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		public void OpenOptions(TimelineMomentCell cell)
+		{
+			m_currentIndexPath = tblView.IndexPathForCell(cell);
+
+			var rectangle = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+			rectangle.Height = 0f;
+			rectangle.X = 44f;
+
+			m_popover.Show(rectangle, tblView);
 		}
 	}
 }

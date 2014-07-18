@@ -91,6 +91,7 @@ segmented-control {
 	box-shadow: 0 1 0 0 #bacbc8;
 }
 
+.button-trash,
 .flash-label,
 .subtitle,
 .moment-label {
@@ -173,7 +174,7 @@ segmented-control label,
 	font-size: 18pt;
 }
 
-.event-label {
+.view .event-label {
 	color: #109bcb;
 	font-size: 15pt;
 	font-weight: bold;
@@ -240,6 +241,7 @@ segmented-control label,
 .moment-label,
 .special-event-label,
 .special-message-label,
+.button-trash,
 text-field,
 text-view,
 .view table-view-cell label,
@@ -279,6 +281,21 @@ switch,
 
 .progress {
 	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
+}
+
+.button-trash,
+.button-trash:highlighted,
+.button-trash:selected {
+	border: 1 solid #e3e3db;
+}
+
+.button-trash {
+	background-color: #fff;
+}
+
+.button-trash:highlighted,
+.button-trash:selected {
+	background-color: #f6f6f6;
 }
 
 .input-text,
@@ -490,6 +507,11 @@ text-view {
 
 .down-arrow {
 	background-image: url(down-arrow.svg);
+}
+
+.button-trash icon {
+	background-image: url(trash.svg);
+	background-size: 12;
 }
 
 .camera,
