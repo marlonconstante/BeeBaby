@@ -25,7 +25,6 @@ namespace Infrastructure.Repositories.SqliteNet
 			{
 				connection.DeleteAll<EventData>();
 				PopulateData(connection, currentCulture);
-//				connection.ExecuteScalar<SystemParameterData>("Insert Into VersionControlData (Id, Entity, Version) values (?, ?, ?)", Guid.NewGuid().ToString(), typeof(EventData).Name, DataVersion);
 				SystemParameterService.SaveEntityVersion(typeof(EventData).Name, DataVersion.ToString());
 			}
 			#endregion
@@ -44,11 +43,20 @@ namespace Infrastructure.Repositories.SqliteNet
 			return MapperHelper.ToDomainEntities<Event, EventData>(events, Mapper);
 		}
 
+		/// <summary>
+		/// Determines whether this instance has current culture been changed.
+		/// </summary>
+		/// <returns><c>true</c> if this instance has current culture been changed; otherwise, <c>false</c>.</returns>
 		bool HasCurrentCultureBeenChanged()
 		{
 			throw new NotImplementedException();
 		}
 
+		/// <summary>
+		/// Populates the data.
+		/// </summary>
+		/// <param name="connection">Connection.</param>
+		/// <param name="currentCultureName">Current culture name.</param>
 		static void PopulateData(SQLiteConnection connection, string currentCultureName)
 		{
 			if (currentCultureName.Equals("pt-BR"))
