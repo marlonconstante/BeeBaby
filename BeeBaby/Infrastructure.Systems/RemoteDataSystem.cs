@@ -31,6 +31,7 @@ namespace Infrastructure.Systems
 			momentData["MediaCount"] = moment.MediaCount;
 			momentData["BabyId"] = baby.Id;
 			momentData["BabyName"] = baby.Name;
+			momentData["BabyGender"] = baby.Gender.ToString();
 			momentData["BabyBirthDate"] = baby.BirthDateTime.ToString(dateFormat);
 			momentData["User"] = baby.Email;
 
