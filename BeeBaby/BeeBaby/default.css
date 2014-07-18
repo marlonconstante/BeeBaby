@@ -91,7 +91,6 @@ segmented-control {
 	box-shadow: 0 1 0 0 #bacbc8;
 }
 
-.button-trash,
 .flash-label,
 .subtitle,
 .moment-label {
@@ -190,6 +189,7 @@ segmented-control label,
 	background-color: #000;
 }
 
+.button-trash,
 .fullscreen label {
 	font-size: 14pt;
 }
@@ -511,7 +511,7 @@ text-view {
 
 .button-trash icon {
 	background-image: url(trash.svg);
-	background-size: 12;
+	background-size: 15;
 }
 
 .camera,

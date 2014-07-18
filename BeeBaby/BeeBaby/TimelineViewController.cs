@@ -130,8 +130,8 @@ namespace BeeBaby
 		{
 			if (m_popover == null)
 			{
-				var button = new Button(new RectangleF(0f, 0f, 200f, 32f));
-				button.TitleEdgeInsets = new UIEdgeInsets(1f, 16f, 0f, 0f);
+				var button = new Button(new RectangleF(0f, 0f, 200f, 34f));
+				button.TitleEdgeInsets = new UIEdgeInsets(2f, 17f, 0f, 0f);
 				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
 				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 				button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
