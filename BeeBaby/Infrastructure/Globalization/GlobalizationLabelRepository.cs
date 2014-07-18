@@ -23,7 +23,6 @@ namespace Infrastructure.Globalization
 		public bool LoadCultureLabels(string cultureName)
 		{
 			if (m_entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
-//			if ( CountAll(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
 			{
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
 
@@ -47,6 +46,12 @@ namespace Infrastructure.Globalization
 			return false;
 		}
 
+		/// <summary>
+		/// Finds the first.
+		/// </summary>
+		/// <returns>The first.</returns>
+		/// <param name="englishText">English text.</param>
+		/// <param name="currentCulture">Current culture.</param>
 		public GlobalizationLabel FindFirst(string englishText, string currentCulture)
 		{
 			return m_entities.FindAll(
@@ -56,7 +61,11 @@ namespace Infrastructure.Globalization
 
 		}
 
-
+		/// <summary>
+		/// Gets the culture text.
+		/// </summary>
+		/// <returns>The culture text.</returns>
+		/// <param name="cultureName">Culture name.</param>
 		protected string GetCultureText(string cultureName)
 		{
 			if (cultureName == "pt-BR")
@@ -88,6 +97,11 @@ GotIt = Entendi
 Ready = Pronto!
 Ops = Ops...
 WeNeedValidEmail = Precisamos de um e-mail válido.
+Yes = Sim
+No = Não
+ConfirmDeletion = Confirmação de exclusão
+RemoveMoment = Remover este momento
+QuestionRemoveMoment = Tem certeza que quer remover este momento?
 Name = Nome
 Baby = Bebê
 Photo = Foto
@@ -172,6 +186,11 @@ GotIt = Gotcha
 Ready = Ready!
 Ops = Ops...
 WeNeedValidEmail = We need a valid e-mail.
+Yes = Yes
+No = No
+ConfirmDeletion = Confirm deletion
+RemoveMoment = Delete this moment
+QuestionRemoveMoment = Are you sure you want to delete this moment?
 Name = Name
 Baby = Baby
 Photo = Photo

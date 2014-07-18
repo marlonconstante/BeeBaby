@@ -135,7 +135,7 @@ namespace BeeBaby
 				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
 				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 				button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
-				button.SetTitle("Remover este momento", UIControlState.Normal);
+				button.SetTitle("RemoveMoment".Translate(), UIControlState.Normal);
 				button.SetStyleClass("button-trash");
 
 				m_popover = new Popover(button);
@@ -155,8 +155,7 @@ namespace BeeBaby
 		/// </summary>
 		void RemoveCurrentRow()
 		{
-			//TODO: Internacionalizar mensagens
-			var alertView = new UIAlertView("Confirmação de exclusão".Translate(), "Tem certeza que quer remover este momento?".Translate(), null, null, "Sim".Translate(), "Não".Translate());
+			var alertView = new UIAlertView("ConfirmDeletion".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
 
 			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
 			proxy.Action = (target, sender, args) =>
