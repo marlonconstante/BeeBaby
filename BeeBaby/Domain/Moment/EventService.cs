@@ -12,7 +12,7 @@ namespace Domain.Moment
 	public class EventService : ServiceBase<Event, IEventRepository, IUnitOfWork>
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Domain.Moment.MomentKindService"/> class.
+		/// Initializes a new instance of the <see cref="Domain.Moment.EventService"/> class.
 		/// </summary>
 		/// <param name="mainRepository">Main repository.</param>
 		/// <param name="unitOfWork">Unit of work.</param>
@@ -22,7 +22,7 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Domain.Moment.MomentKindService"/> class.
+		/// Initializes a new instance of the <see cref="Domain.Moment.EventService"/> class.
 		/// </summary>
 		public EventService()
 		{

@@ -427,6 +427,7 @@
     <Compile Include="MediaLibrary.cs" />
     <Compile Include="Util\ReleaseControl.cs" />
     <Compile Include="Popover.cs" />
+    <Compile Include="Globalization\SHCultureInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -444,6 +445,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Util\" />
     <Folder Include="Activity\" />
+    <Folder Include="Globalization\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

@@ -15,6 +15,12 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		/// <param name="cultureName">Culture name.</param>
 		bool LoadCultureLabels(string cultureName);
 
-		GlobalizationLabel FindFirst(string englishText);
+		/// <summary>
+		/// Finds the first.
+		/// </summary>
+		/// <returns>The first.</returns>
+		/// <param name="englishText">English text.</param>
+		/// <param name="currentCulture">Current culture.</param>
+		GlobalizationLabel FindFirst(string englishText, string currentCulture);
 	}
 }

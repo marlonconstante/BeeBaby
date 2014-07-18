@@ -2,13 +2,13 @@
 
 namespace Infrastructure.Repositories.SqliteNet.Entities
 {
-	public class VersionControlData : DataBase
+	public class SystemParameterData : DataBase
 	{
 		/// <summary>
 		/// Gets or sets the entity.
 		/// </summary>
 		/// <value>The entity.</value>
-		public string Entity
+		public string Name
 		{
 			get;
 			set;
@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 		/// Gets or sets the version.
 		/// </summary>
 		/// <value>The version.</value>
-		public int Version
+		public string Value
 		{
 			get;
 			set;

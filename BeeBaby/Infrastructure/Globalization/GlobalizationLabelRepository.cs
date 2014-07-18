@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Skahal.Infrastructure.Framework.Globalization;
 using Skahal.Infrastructure.Framework.Logging;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure.Globalization
 {
@@ -11,18 +11,23 @@ namespace Infrastructure.Globalization
 	/// </summary>
 	public class GlobalizationLabelRepository : IGlobalizationLabelRepository
 	{
-		List<GlobalizationLabel> m_entities;
 
+		List<GlobalizationLabel> m_entities = new List<GlobalizationLabel>();
+
+		/// <summary>
+		/// Loads the culture labels.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		/// <param name="cultureName">Culture name.</param>
 		public bool LoadCultureLabels(string cultureName)
 		{
-			m_entities = new List<GlobalizationLabel>();
-
-			//TODO: Quando for corrigido o Bug na Xamarin, podemos remover esse override.
 			if (m_entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
+//			if ( CountAll(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
 			{
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
 
-				var lines = GetCultureText(cultureName).Split(new string[] { System.Environment.NewLine }, System.StringSplitOptions.RemoveEmptyEntries);
+				var lines = GetCultureText(cultureName).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
 				LogService.Debug("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
 
@@ -32,27 +37,32 @@ namespace Infrastructure.Globalization
 					m_entities.Add(new GlobalizationLabel()
 					{
 						EnglishText = lineParts[0].Trim(),
-						CultureText = lineParts[1].Trim().Replace(@"\n", System.Environment.NewLine),
+						CultureText = lineParts[1].Trim().Replace(@"\n", Environment.NewLine),
 						CultureName = cultureName
 					});
 				}
-
 				return true;
 			}
 
 			return false;
 		}
 
-		public GlobalizationLabel FindFirst(string englishText)
+		public GlobalizationLabel FindFirst(string englishText, string currentCulture)
 		{
 			return m_entities.FindAll(
-				f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
-				.FirstOrDefault();
+				f =>   f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase)
+				&& f.CultureName == currentCulture)
+					.FirstOrDefault ();
+
 		}
+
 
 		protected string GetCultureText(string cultureName)
 		{
-			return @"
+			if (cultureName == "pt-BR")
+			{
+				#region pt-BR
+				return @"
 LongDateMask = d 'de' MMMMM 'de' yyyy
 Year = ano
 Years = anos
@@ -131,6 +141,92 @@ Firsts = Primeiros
 WhatsNew = O que há de novo:
 Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n
 ";
+				#endregion
+			}
+			else
+			{
+				#region En
+				return @"
+LongDateMask = MMMMM d, yyyy
+Year = year
+Years = years
+Month = month
+Months = months
+Day = day
+Days = days
+Hour = hour
+Hours = hours
+Minute = minute
+Minutes = minutes
+Second = second
+Seconds = seconds
+And = and
+AnyPlace = somewhere
+Share = share
+Warning = Warning
+Information = Information
+SharedMomentFacebook = Moment shared successfully on Facebook.
+IllustrateMoment = Illustrate this moment of your child with beautiful pictures.
+TakePictureOrImportAlbum = Take a picture or import it from your album.
+GotIt = Gotcha
+Ready = Ready!
+Ops = Ops...
+WeNeedValidEmail = We need a valid e-mail.
+Name = Name
+Baby = Baby
+Photo = Photo
+First = First
+Save = Save
+ImportPhotos = Import photos
+Albums = Albums
+WantThese = I want these >
+FlashAuto = Auto
+FlashOn = On
+FlashOff = Off
+Male = Male
+Female = Female
+Unknown = Unknown
+ChoosePhotos = Choose Photos
+Event = Event
+Moment = Moment
+MomentAbout = This moment is about:
+SelectEvent = Choose an event
+WhichWas = Where was it?
+MomentRemember = What would you like to remember about this moment?
+WhatsPlaceName = What is the name of this place?
+WhatsBabyName = What is the baby name?
+WhatsUserName = What is the username of the baby?
+EnterBabyName = Type a name
+EnterUserName = Type an e-mail
+WhenWasHeBorn = When was he born?
+Timeline = Timeline
+ProductsForYourChild = Products for your child
+MyProfile = My Profile
+InviteFriends = Invite Friends
+ManageFamily = Manage Family
+Configurations = Configurations
+About = About
+Exit = Exit
+Search = Search
+LittleBody = Little Body
+Family = Family
+Ride = Ride
+Sleepy = Sleepy
+Bath = Bath
+Smile = Smile
+Lapy = Lapy
+Celebrations = Celebrations
+Birth = Birth
+Pregnancy = Pregnancy
+School = School
+Recomendations = Recomendations
+Everyday = Everyday
+Firsts = Firsts
+WhatsNew = What's New:
+Version-1.1-ChangeLog = - Translated to english - Photos now saved on the iOS Album \n - Uploading photos to Facebook, Instagram, email and other \n
+";
+				#endregion
+			}
 		}
 	}
 }

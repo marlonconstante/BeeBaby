@@ -9,6 +9,7 @@ using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Globalization;
 using Infrastructure.Globalization;
 using Domain.Baby;
+using System.Globalization;
 
 namespace Application
 {
@@ -31,9 +32,9 @@ namespace Application
 		/// <summary>
 		/// Initializes the globalization.
 		/// </summary>
-		public static void InitializeGlobalization()
+		public static void InitializeGlobalization(CultureInfo currentCultureInfo)
 		{
-			GlobalizationService.Initialize(new GlobalizationLabelRepository());
+			GlobalizationService.Initialize(new GlobalizationLabelRepository(), currentCultureInfo);
 		}
 	}
 }

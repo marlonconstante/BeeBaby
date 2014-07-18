@@ -59,7 +59,8 @@
     <Compile Include="SqliteNet\Entities\UserData.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetUserMapper.cs" />
     <Compile Include="SqliteNet\SqliteNetUserRepository.cs" />
-    <Compile Include="SqliteNet\Entities\VersionControlData.cs" />
+    <Compile Include="SqliteNet\Entities\SystemParameterData.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetSystemParameterMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
