@@ -10,6 +10,7 @@ using PixateFreestyleLib;
 using Parse;
 using BeeBaby.Globalization;
 using Infrastructure.Configuration;
+using MonoTouch.FacebookConnect;
 
 namespace BeeBaby
 {
@@ -19,52 +20,26 @@ namespace BeeBaby
 	[Register("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		// Get your own App ID at developers.facebook.com/apps
-		const string FacebookAppId = "1445498505688180";
-		const string DisplayName = "BeeBaby";
-
-		// This method is invoked when the application is about to move from active to inactive state.
-		// OpenGL applications should use this method to pause.
-		public override void OnResignActivation(UIApplication application)
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <remarks>To be added.</remarks>
+		/// <summary>
+		/// Raises the activated event.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		public override void OnActivated(UIApplication application)
 		{
-		}
-
-		// This method should be used to release shared resources and it should store the application state.
-		// If your application supports background exection this method is called instead of WillTerminate
-		// when the user quits.
-		public override void DidEnterBackground(UIApplication application)
-		{
-		}
-
-		// This method is called as part of the transiton from background to active state.
-		public override void WillEnterForeground(UIApplication application)
-		{
-		}
-
-		// This method is called when the application is about to terminate. Save data, if needed.
-		public override void WillTerminate(UIApplication application)
-		{
-			FlurryAnalytics.Flurry.LogEvent("Fechou o App.");
+			FBAppEvents.ActivateApp();
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <remarks>To be added.</remarks>
 		/// <summary>
-		/// Gets the supported interface orientations.
+		/// Wills the terminate.
 		/// </summary>
-		/// <returns>The supported interface orientations.</returns>
 		/// <param name="application">Application.</param>
-		/// <param name="window">Window.</param>
-		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow window)
+		public override void WillTerminate(UIApplication application)
 		{
-			var topViewController = Windows.GetTopViewController(window);
-			if (topViewController != null)
-			{
-				return topViewController.GetSupportedInterfaceOrientations();
-			}
-			else
-			{
-				return UIInterfaceOrientationMask.Portrait;
-			}
+			FlurryAnalytics.Flurry.LogEvent("Fechou o App.");
 		}
 
 		/// <summary>
@@ -88,15 +63,31 @@ namespace BeeBaby
 			InitProgressHUD();
 		}
 
-		static void ThirdPartyIntegrationsRegister()
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <summary>
+		/// Gets the supported interface orientations.
+		/// </summary>
+		/// <returns>The supported interface orientations.</returns>
+		/// <param name="application">Application.</param>
+		/// <param name="window">Window.</param>
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow window)
 		{
-			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
-			// Initialize the Parse client with your Application ID and .NET Key found on
-			// your Parse dashboard
-			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm", "eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+			var topViewController = Windows.GetTopViewController(window);
+			if (topViewController != null)
+			{
+				return topViewController.GetSupportedInterfaceOrientations();
+			}
+			else
+			{
+				return UIInterfaceOrientationMask.Portrait;
+			}
 		}
 
-		static SQLiteConnection SetupConnection()
+		/// <summary>
+		/// Setups the connection.
+		/// </summary>
+		/// <returns>The connection.</returns>
+		SQLiteConnection SetupConnection()
 		{
 			var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
 			var home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -105,10 +96,39 @@ namespace BeeBaby
 			return connection;
 		}
 
-		// class-level declarations
-		public override UIWindow Window {
-			get;
-			set;
+		/// <summary>
+		/// Thirds the party integrations register.
+		/// </summary>
+		void ThirdPartyIntegrationsRegister()
+		{
+			InitFacebook();
+			InitParse();
+			InitFlurry();
+		}
+
+		/// <summary>
+		/// Inits the facebook.
+		/// </summary>
+		void InitFacebook()
+		{
+			FBSettings.DefaultAppID = "689915811057213";
+			FBSettings.DefaultDisplayName = "BeeBaby";
+		}
+
+		/// <summary>
+		/// Inits the parse.
+		/// </summary>
+		void InitParse()
+		{
+			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm", "eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+		}
+
+		/// <summary>
+		/// Inits the flurry.
+		/// </summary>
+		void InitFlurry()
+		{
+			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
 		}
 
 		/// <summary>
@@ -122,6 +142,15 @@ namespace BeeBaby
 			var frame = hud.Frame;
 			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
+		}
+
+		/// <summary>
+		/// Gets or sets the window.
+		/// </summary>
+		/// <value>The window.</value>
+		public override UIWindow Window {
+			get;
+			set;
 		}
 	}
 }
