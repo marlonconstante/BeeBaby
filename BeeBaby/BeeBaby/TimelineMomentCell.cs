@@ -82,7 +82,7 @@ namespace BeeBaby
 		partial void OpenOptions(UIButton sender)
 		{
 			var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
-			viewController.RemoveRow(this);
+			viewController.OpenOptions(this);
 		}
 	}
 }
