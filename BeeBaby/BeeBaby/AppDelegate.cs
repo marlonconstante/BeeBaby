@@ -11,6 +11,8 @@ using Parse;
 using BeeBaby.Globalization;
 using Infrastructure.Configuration;
 using MonoTouch.FacebookConnect;
+using RestSharp;
+using System.Net;
 
 namespace BeeBaby
 {
@@ -20,6 +22,49 @@ namespace BeeBaby
 	[Register("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		const string ParseApplicationId = "YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm";
+		const string ParseRestApiKey = "fN0UAe2LfUygCeKSUbDqDUD7fVtlOv0oyIBBYAsz";
+		const string ParseMasterKey = "pTgx6IPaCTicPzecba03g2rcDeZwknSgukMxUBFX";
+		const string ParseDotNetKey = "eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI";
+		const string FlurryApiKey = "FJBPW26D4GK7PZ568RBF";
+		const string FacebookApplicationId = "689915811057213";
+		const string FacebookDisplayName = "BeeBaby";
+
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <summary>
+		/// Registereds for remote notifications.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		/// <param name="deviceToken">Device token.</param>
+		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+		{
+			try
+			{
+				var client = new RestClient("https://api.parse.com");
+				var request = new RestRequest("1/installations/", Method.POST);
+
+				var token = deviceToken.Description.Replace(" ", string.Empty).Replace("<", string.Empty).Replace(">", string.Empty);
+				var json = "{ \"deviceType\": \"ios\", \"deviceToken\": \"" + token + "\", \"channels\": [\"\"] }";
+
+				request.Credentials = new NetworkCredential(ParseApplicationId, ParseMasterKey);
+
+				request.AddHeader("Content-Type", "application/json");
+				request.AddHeader("X-Parse-Application-Id", ParseApplicationId);
+				request.AddHeader("X-Parse-REST-API-Key", ParseRestApiKey);
+
+				request.Parameters.Clear();
+				request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+				client.ExecuteAsync(request, response => {
+					Console.WriteLine("Dispositivo registrado com sucesso:\n" + response.Content);
+				});
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Ocorreu um erro no registro das notificações remotas para o dispositivo:\n" + ex.Message);
+			}
+		}
+
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
 		/// <remarks>To be added.</remarks>
 		/// <summary>
@@ -49,6 +94,9 @@ namespace BeeBaby
 		public override void FinishedLaunching(UIApplication application)
 		{
 			ThirdPartyIntegrationsRegister();
+
+			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
+			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 
 			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
@@ -111,8 +159,8 @@ namespace BeeBaby
 		/// </summary>
 		void InitFacebook()
 		{
-			FBSettings.DefaultAppID = "689915811057213";
-			FBSettings.DefaultDisplayName = "BeeBaby";
+			FBSettings.DefaultAppID = FacebookApplicationId;
+			FBSettings.DefaultDisplayName = FacebookDisplayName;
 		}
 
 		/// <summary>
@@ -120,7 +168,7 @@ namespace BeeBaby
 		/// </summary>
 		void InitParse()
 		{
-			ParseClient.Initialize("YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm", "eLsMXi61ILhUyOAIlmjxGE8L74GmoIGsWvqUwTYI");
+			ParseClient.Initialize(ParseApplicationId, ParseDotNetKey);
 		}
 
 		/// <summary>
@@ -128,7 +176,7 @@ namespace BeeBaby
 		/// </summary>
 		void InitFlurry()
 		{
-			FlurryAnalytics.Flurry.StartSession("FJBPW26D4GK7PZ568RBF");
+			FlurryAnalytics.Flurry.StartSession(FlurryApiKey);
 		}
 
 		/// <summary>
