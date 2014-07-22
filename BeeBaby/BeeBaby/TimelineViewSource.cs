@@ -19,12 +19,12 @@ namespace BeeBaby
 	public class TimelineViewSource : TableViewSource
 	{
 		const string s_cellIdentifier = "MomentCell";
-		UIViewController m_viewController;
+		TimelineViewController m_viewController;
 		IList<Moment> m_tableItems;
 		Baby m_baby;
 		FullscreenViewController m_fullscreenController;
 
-		public TimelineViewSource(UIViewController viewController, IList<Moment> moments, Baby baby)
+		public TimelineViewSource(TimelineViewController viewController, IList<Moment> moments, Baby baby)
 		{
 			m_viewController = viewController;
 			m_tableItems = moments;
@@ -71,6 +71,16 @@ namespace BeeBaby
 		public override int RowsInSection(UITableView tableView, int section)
 		{
 			return m_tableItems.Count;
+		}
+
+		/// <Docs>Scroll view where the scrolling occurred.</Docs>
+		/// <summary>
+		/// Scrolled the specified scrollView.
+		/// </summary>
+		/// <param name="scrollView">Scroll view.</param>
+		public override void Scrolled(UIScrollView scrollView)
+		{
+			m_viewController.HidePopover();
 		}
 
 		/// <Docs>Table view requesting the cell.</Docs>

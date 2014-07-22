@@ -18,6 +18,5 @@ namespace BeeBaby
 				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
 		}
-
 	}
 }

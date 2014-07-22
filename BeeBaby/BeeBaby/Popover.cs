@@ -1,52 +1,71 @@
 ﻿using System;
-using WEPopover;
 using MonoTouch.UIKit;
 using System.Drawing;
 
 namespace BeeBaby
 {
-	public class Popover : WEPopoverController
+	public class Popover : View
 	{
-		public Popover(UIView view)
+		public Popover(RectangleF frame) : base(frame)
 		{
-			ContentViewController = new UIViewController() {
-				View = view
-			};
-			ContentSize = view.Frame.Size;
-			Properties = DefaultProperties();
+			Alpha = 0f;
+			CurrentViewController.View.AddSubview(this);
 		}
 
 		/// <summary>
-		/// Show the specified rectangle and view.
+		/// Show the specified point and animated.
 		/// </summary>
-		/// <param name="rectangle">Rectangle.</param>
-		/// <param name="view">View.</param>
-		public void Show(RectangleF rectangle, UIView view)
+		/// <param name="point">Point.</param>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public void Show(PointF point, bool animated = true)
 		{
-			base.PresentFromRect(rectangle, view, UIPopoverArrowDirection.Up, true);
-			if (ContentSize.Height != ContentViewController.View.Frame.Height)
-			{
-				base.PresentFromRect(rectangle, view, UIPopoverArrowDirection.Down, true);
+			Hide(() => {
+				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
+				{
+					point.X -= Frame.Width;
+				}
+
+				if (point.Y > UIScreen.MainScreen.Bounds.Height - Frame.Height)
+				{
+					point.Y -= Frame.Height;
+				}
+
+				var frame = Frame;
+				frame.X = point.X;
+				frame.Y = point.Y;
+				Frame = frame;
+
+				UIView.Animate(animated ? 0.15d : 0d, () => {
+					Alpha = 1f;
+				});
+			}, animated);
+		}
+
+		/// <summary>
+		/// Hide the specified completion and animated.
+		/// </summary>
+		/// <param name="completion">Completion.</param>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public void Hide(Action completion = null, bool animated = true)
+		{
+			UIView.Animate(animated ? 0.15d : 0d, () => {
+				Alpha = 0f;
+			}, () => {
+				if (completion != null)
+				{
+					completion();
+				}
+			});
+		}
+
+		/// <summary>
+		/// Gets the current view controller.
+		/// </summary>
+		/// <value>The current view controller.</value>
+		UIViewController CurrentViewController {
+			get {
+				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
-		}
-
-		/// <summary>
-		/// Defaults the properties.
-		/// </summary>
-		/// <returns>The properties.</returns>
-		WEPopoverContainerViewProperties DefaultProperties()
-		{
-			return new WEPopoverContainerViewProperties {
-				LeftBackgroundMargin = 1f,
-				RightBackgroundMargin = 1f,
-				TopBackgroundMargin = 1f,
-				BottomBackgroundMargin = 1f,
-				LeftContentMargin = 0f,
-				RightContentMargin = 0f,
-				TopContentMargin = 0f,
-				BottomContentMargin = 0f,
-				ArrowMargin = 0f
-			};	
 		}
 	}
 }

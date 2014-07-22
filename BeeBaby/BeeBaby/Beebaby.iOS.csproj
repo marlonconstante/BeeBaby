@@ -148,9 +148,6 @@
     <Reference Include="Parse.iOS">
       <HintPath>..\references\Parse.iOS\Parse.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="WEPopover">
-      <HintPath>..\references\WEPopover.dll</HintPath>
-    </Reference>
     <Reference Include="MonoTouch.FacebookConnect">
       <HintPath>..\Components\facebookios-3.13.1\lib\ios\MonoTouch.FacebookConnect.dll</HintPath>
     </Reference>

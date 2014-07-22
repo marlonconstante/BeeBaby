@@ -1,9 +1,6 @@
 ﻿.navigation navigation-bar,
 .navigation navigation-bar button-appearance,
 .navigation navigation-bar label,
-.button-trash,
-.button-trash:highlighted,
-.button-trash:selected,
 .view button,
 .view button:highlighted,
 .view button:selected,
@@ -124,9 +121,9 @@ segmented-control {
 	font-weight: normal;
 }
 
-.button-trash,
-.button-trash:highlighted,
-.button-trash:selected,
+.view .button-trash,
+.view .button-trash:highlighted,
+.view .button-trash:selected,
 .table-view table-view-cell label,
 .special-event-label,
 .time-box-label {
@@ -246,9 +243,9 @@ segmented-control label,
 .moment-label,
 .special-event-label,
 .special-message-label,
-.button-trash,
-.button-trash:highlighted,
-.button-trash:selected,
+.view .button-trash,
+.view .button-trash:highlighted,
+.view .button-trash:selected,
 text-field,
 text-view,
 .view table-view-cell label,
@@ -290,18 +287,18 @@ switch,
 	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
 }
 
-.button-trash,
-.button-trash:highlighted,
-.button-trash:selected {
+.view .button-trash,
+.view .button-trash:highlighted,
+.view .button-trash:selected {
 	border: 1 solid #e3e3db;
 }
 
-.button-trash {
+.view .button-trash {
 	background-color: #fff;
 }
 
-.button-trash:highlighted,
-.button-trash:selected {
+.view .button-trash:highlighted,
+.view .button-trash:selected {
 	background-color: #f6f6f6;
 }
 
@@ -516,7 +513,7 @@ text-view {
 	background-image: url(down-arrow.svg);
 }
 
-.button-trash icon {
+.view .button-trash icon {
 	background-image: url(trash.svg);
 	background-size: 15;
 }

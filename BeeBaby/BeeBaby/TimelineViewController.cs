@@ -72,6 +72,27 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Ends the editing.
+		/// </summary>
+		public override void EndEditing()
+		{
+			base.EndEditing();
+
+			HidePopover();
+		}
+
+		/// <summary>
+		/// Hides the popover.
+		/// </summary>
+		public void HidePopover()
+		{
+			if (m_popover != null)
+			{
+				m_popover.Hide();
+			}
+		}
+
+		/// <summary>
 		/// Loads the user.
 		/// </summary>
 		void LoadUser()
@@ -130,7 +151,9 @@ namespace BeeBaby
 		{
 			if (m_popover == null)
 			{
-				var button = new Button(new RectangleF(0f, 0f, 220f, 34f));
+				m_popover = new Popover(new RectangleF(0f, 0f, 220f, 36f));
+
+				var button = new Button(m_popover.Frame);
 				button.TitleEdgeInsets = new UIEdgeInsets(1f, 17f, 0f, 0f);
 				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
 				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
@@ -138,15 +161,14 @@ namespace BeeBaby
 				button.SetTitle("RemoveMoment".Translate(), UIControlState.Normal);
 				button.SetStyleClass("button-trash");
 
-				m_popover = new Popover(button);
-
 				var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
-				proxy.Action = (target, sender, args) =>
-				{
+				proxy.Action = (target, sender, args) => {
 					target.RemoveCurrentRow();
-					target.m_popover.DismissAnimated(true);
+					target.HidePopover();
 				};
 				button.TouchUpInside += proxy.HandleEvent;
+
+				m_popover.AddSubview(button);
 			}
 		}
 
@@ -158,8 +180,7 @@ namespace BeeBaby
 			var alertView = new UIAlertView("Delete".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
 
 			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
-			proxy.Action = (target, sender, args) =>
-			{
+			proxy.Action = (target, sender, args) => {
 				if (args.ButtonIndex == 0)
 				{
 					target.m_tableSource.RemoveRow(target.tblView, target.m_currentIndexPath);
@@ -182,11 +203,10 @@ namespace BeeBaby
 		{
 			m_currentIndexPath = tblView.IndexPathForCell(cell);
 
-			var rectangle = tblView.RectForRowAtIndexPath(m_currentIndexPath);
-			rectangle.Height = 0f;
-			rectangle.X = 34f;
+			var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+			var viewRect = tblView.ConvertRectToView(tableRect, View);
 
-			m_popover.Show(rectangle, tblView);
+			m_popover.Show(new PointF(86f, viewRect.Y));
 		}
 	}
 }
