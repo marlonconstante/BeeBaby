@@ -26,9 +26,9 @@ namespace Application
 			SystemParameterService.Initialize(new SqliteNetSystemParameterRepository(connection, unitOfWork), unitOfWork);
 
 			DependencyService.Register<IUnitOfWork>(unitOfWork);
+			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork, currentCultureInfo.Name));
 			DependencyService.Register<IUserRepository>(new SqliteNetUserRepository(connection, unitOfWork));
-			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
 			DependencyService.Register<ILocationRepository>(new SqliteNetLocationRepository(connection, unitOfWork));
 		}
