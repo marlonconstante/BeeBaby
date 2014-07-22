@@ -90,7 +90,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Finisheds the launching.
 		/// </summary>
-		/// <param name="application">Application.</param>
+		/// <param name="application">Application.</param>https://twitter.com/pedrovanzella/status/491622713510068224
 		public override void FinishedLaunching(UIApplication application)
 		{
 			ThirdPartyIntegrationsRegister();
@@ -98,7 +98,9 @@ namespace BeeBaby
 			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
 			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 
-			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
+			//TODO: usar a linguagem do device
+			//SHCultureInfo.From(NSLocale.CurrentLocale);
+			var currentCulture = SHCultureInfo.PtBR;
 
 			var connection = SetupConnection();
 			DomainConfig.InitializeGlobalization(currentCulture);

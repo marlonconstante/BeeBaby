@@ -156,6 +156,10 @@ namespace BeeBaby
 					{
 						PerformSegue("segueSelectEvent", sender);
 					}
+					else
+					{
+						new UIAlertView("BabyData".Translate(), "YourBabyDataWereSaved".Translate(), null, "GotIt".Translate(), null).Show();
+					}
 				}, containsMenu);
 			}
 			else

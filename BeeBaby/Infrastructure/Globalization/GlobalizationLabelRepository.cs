@@ -55,8 +55,7 @@ namespace Infrastructure.Globalization
 		public GlobalizationLabel FindFirst(string englishText, string currentCulture)
 		{
 			return m_entities.FindAll(
-				f =>   f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase)
-				&& f.CultureName == currentCulture)
+				f =>   f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
 					.FirstOrDefault ();
 
 		}
@@ -154,6 +153,8 @@ Everyday = Cotidiano
 Firsts = Primeiros
 WhatsNew = O que há de novo:
 Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n
+BabyData = Dados do Bebê
+YourBabyDataWereSaved = Os dados do seu bebê foram salvos.
 ";
 				#endregion
 			}
@@ -243,6 +244,8 @@ Everyday = Everyday
 Firsts = Firsts
 WhatsNew = What's New:
 Version-1.1-ChangeLog = - Translated to english - Photos now saved on the iOS Album \n - Uploading photos to Facebook, Instagram, email and other \n
+BabyData = Baby Information
+YourBabyDataWereSaved = Your baby's information were successfully saved.
 ";
 				#endregion
 			}

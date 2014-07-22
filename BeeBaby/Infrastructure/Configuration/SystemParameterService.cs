@@ -35,7 +35,7 @@ namespace Infrastructure.Configuration
 				return true;
 			}
 
-			return !savedCultureName.Equals(cultureName);
+			return !savedCultureName.Value.Equals(cultureName);
 		}
 
 		public static void SaveEntityVersion(string entityName, string version)

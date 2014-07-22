@@ -95,8 +95,8 @@ namespace Skahal.Infrastructure.Framework.Globalization
 		public static void Initialize(IGlobalizationLabelRepository labelRepository, CultureInfo currentCultureInfo)
 		{
 			s_labelRepository = labelRepository;
-			SelectedCultureName = CultureInfo.CurrentCulture.Name;
-			CurrentCulture = CultureInfo.CurrentCulture;
+			SelectedCultureName = currentCultureInfo.Name;
+			CurrentCulture = currentCultureInfo;
 			s_labelRepository.LoadCultureLabels(SelectedCultureName);
 		}
 
