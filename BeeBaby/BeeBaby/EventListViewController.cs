@@ -326,7 +326,8 @@ namespace BeeBaby
 		/// </summary>
 		public override void TranslateLabels()
 		{
-			TitleScreen = "Event".Translate();
+			TitleScreen = "WhatEventIsThis".Translate();
+			lblBrowseCategory.Text = "BrowseCategory".Translate();
 		}
 
 		/// <summary>

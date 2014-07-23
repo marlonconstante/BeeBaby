@@ -155,6 +155,8 @@ WhatsNew = O que há de novo:
 Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n - Agora é possível deletar o momento na Linha do Tempo \n
 BabyData = Dados do Bebê
 YourBabyDataWereSaved = Os dados do seu bebê foram salvos.
+WhatEventIsThis = Qual é este evento?
+BrowseCategory = Procure em outras categorias:
 ";
 				#endregion
 			}
@@ -246,6 +248,8 @@ WhatsNew = What's New:
 Version-1.1-ChangeLog = - Translated to english - Photos now saved on the iOS Album \n - Uploading photos to Facebook, Instagram, email and other \n
 BabyData = Baby Information
 YourBabyDataWereSaved = Your baby's information were successfully saved.
+WhatEventIsThis = What event is this?
+BrowseCategory = Browse other categories:
 ";
 				#endregion
 			}

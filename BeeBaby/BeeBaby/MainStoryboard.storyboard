@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -262,6 +262,7 @@ de lembrar sobre este momento?</string>
                     </view>
                     <navigationItem key="navigationItem" id="Szy-Yb-HR1"/>
                     <connections>
+                        <outlet property="lblBrowseCategory" destination="F4U-am-eMk" id="BIL-0K-Sb6"/>
                         <outlet property="pcrPager" destination="vTW-sD-k4E" id="FgB-73-6VO"/>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
                         <outlet property="scrView" destination="wIr-X6-KYK" id="h8E-EQ-nav"/>

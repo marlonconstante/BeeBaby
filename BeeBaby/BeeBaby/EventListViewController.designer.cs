@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class EventListViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel lblBrowseCategory { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIPageControl pcrPager { get; set; }
 
 		[Outlet]
@@ -47,19 +50,24 @@ namespace BeeBaby
 				scrView = null;
 			}
 
-			if (tblHeightConstraint != null) {
-				tblHeightConstraint.Dispose ();
-				tblHeightConstraint = null;
-			}
-
 			if (tagsHeightConstraint != null) {
 				tagsHeightConstraint.Dispose ();
 				tagsHeightConstraint = null;
 			}
 
+			if (tblHeightConstraint != null) {
+				tblHeightConstraint.Dispose ();
+				tblHeightConstraint = null;
+			}
+
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
+			}
+
+			if (lblBrowseCategory != null) {
+				lblBrowseCategory.Dispose ();
+				lblBrowseCategory = null;
 			}
 		}
 	}
