@@ -152,7 +152,7 @@ Recomendations = Recomendações
 Everyday = Cotidiano
 Firsts = Primeiros
 WhatsNew = O que há de novo:
-Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n
+Version-1.1-ChangeLog = - Fotos salvas no álbum do iOS \n - Envio de fotos para o Facebook, Instagram, e-mail e outros \n - Agora é possível deletar o momento na Linha do Tempo \n
 BabyData = Dados do Bebê
 YourBabyDataWereSaved = Os dados do seu bebê foram salvos.
 ";

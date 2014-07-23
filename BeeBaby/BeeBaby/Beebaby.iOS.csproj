@@ -114,9 +114,9 @@
     <MtouchArch>ARMv7</MtouchArch>
     <IpaPackageName>
     </IpaPackageName>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignProvision>81A738E6-881B-46C0-9488-1BE875BB7051</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
