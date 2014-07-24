@@ -11,6 +11,7 @@ using Domain.User;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -19,6 +20,7 @@ namespace BeeBaby
 		static bool s_openCamera = true;
 		NSIndexPath m_currentIndexPath;
 		Popover m_popover;
+		IList<Button> m_popoverItems;
 		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
@@ -151,25 +153,44 @@ namespace BeeBaby
 		{
 			if (m_popover == null)
 			{
-				m_popover = new Popover(new RectangleF(0f, 0f, 220f, 36f));
+				m_popoverItems = new List<Button>();
+				AddPopoverItem("AddPhotos".Translate(), "photo");
+				AddPopoverItem("ChangeEvent".Translate(), "pencil");
+				AddPopoverItem("RemoveMoment".Translate(), "trash");
 
-				var button = new Button(m_popover.Frame);
-				button.TitleEdgeInsets = new UIEdgeInsets(1f, 17f, 0f, 0f);
-				button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
-				button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
-				button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
-				button.SetTitle("RemoveMoment".Translate(), UIControlState.Normal);
-				button.SetStyleClass("button-trash");
-
-				var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
-				proxy.Action = (target, sender, args) => {
-					target.RemoveCurrentRow();
-					target.HidePopover();
-				};
-				button.TouchUpInside += proxy.HandleEvent;
-
-				m_popover.AddSubview(button);
+				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));
+				m_popover.AddSubviews(m_popoverItems.ToArray());
 			}
+		}
+
+		/// <summary>
+		/// Adds the popover item.
+		/// </summary>
+		/// <param name="title">Title.</param>
+		/// <param name="iconClass">Icon class.</param>
+		void AddPopoverItem(string title, string iconClass)
+		{
+			var button = new Button(new RectangleF(0f, m_popoverItems.Count * 36f, 220f, 36f));
+			button.TitleEdgeInsets = new UIEdgeInsets(1f, 17f, 0f, 0f);
+			button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
+			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+			button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
+			button.SetTitle(title, UIControlState.Normal);
+			button.SetStyleClass("button-popover " + iconClass);
+
+			var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
+			proxy.Action = (target, sender, args) => {
+				var indexOf = target.m_popoverItems.IndexOf((Button) sender);
+				if (indexOf == 2)
+				{
+					target.RemoveCurrentRow();
+				}
+
+				target.HidePopover();
+			};
+			button.TouchUpInside += proxy.HandleEvent;
+
+			m_popoverItems.Add(button);
 		}
 
 		/// <summary>

@@ -121,9 +121,9 @@ segmented-control {
 	font-weight: normal;
 }
 
-.view .button-trash,
-.view .button-trash:highlighted,
-.view .button-trash:selected,
+.view .button-popover,
+.view .button-popover:highlighted,
+.view .button-popover:selected,
 .table-view table-view-cell label,
 .special-event-label,
 .time-box-label {
@@ -243,9 +243,9 @@ segmented-control label,
 .moment-label,
 .special-event-label,
 .special-message-label,
-.view .button-trash,
-.view .button-trash:highlighted,
-.view .button-trash:selected,
+.view .button-popover,
+.view .button-popover:highlighted,
+.view .button-popover:selected,
 text-field,
 text-view,
 .view table-view-cell label,
@@ -287,19 +287,17 @@ switch,
 	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
 }
 
-.view .button-trash,
-.view .button-trash:highlighted,
-.view .button-trash:selected {
-	border: 1 solid #e3e3db;
-}
-
-.view .button-trash {
+.view .button-popover {
 	background-color: #fff;
 }
 
-.view .button-trash:highlighted,
-.view .button-trash:selected {
+.view .button-popover:highlighted,
+.view .button-popover:selected {
 	background-color: #f6f6f6;
+}
+
+.view .button-popover icon {
+	background-size: 15;
 }
 
 .input-text,
@@ -513,9 +511,16 @@ text-view {
 	background-image: url(down-arrow.svg);
 }
 
-.view .button-trash icon {
+.view .button-popover.photo icon {
+	background-image: url(photo.svg);
+}
+
+.view .button-popover.pencil icon {
+	background-image: url(pencil.svg);
+}
+
+.view .button-popover.trash icon {
 	background-image: url(trash.svg);
-	background-size: 15;
 }
 
 .camera,

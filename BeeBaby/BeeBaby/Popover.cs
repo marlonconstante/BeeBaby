@@ -9,6 +9,8 @@ namespace BeeBaby
 		public Popover(RectangleF frame) : base(frame)
 		{
 			Alpha = 0f;
+			Layer.BorderWidth = 1f;
+			Layer.BorderColor = UIColor.FromRGB(227, 227, 219).CGColor;
 			CurrentViewController.View.AddSubview(this);
 		}
 
