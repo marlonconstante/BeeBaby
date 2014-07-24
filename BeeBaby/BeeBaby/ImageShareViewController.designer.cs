@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class ImageShareViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView ivwBackgroundImage { get; set; }
 
 		[Outlet]
@@ -43,21 +46,6 @@ namespace BeeBaby
 				ivwBackgroundImage = null;
 			}
 
-			if (lblEvent != null) {
-				lblEvent.Dispose ();
-				lblEvent = null;
-			}
-
-			if (vwMainView != null) {
-				vwMainView.Dispose ();
-				vwMainView = null;
-			}
-
-			if (lblWhere != null) {
-				lblWhere.Dispose ();
-				lblWhere = null;
-			}
-
 			if (lblAge != null) {
 				lblAge.Dispose ();
 				lblAge = null;
@@ -68,14 +56,34 @@ namespace BeeBaby
 				lblDay = null;
 			}
 
+			if (lblEvent != null) {
+				lblEvent.Dispose ();
+				lblEvent = null;
+			}
+
 			if (lblMonth != null) {
 				lblMonth.Dispose ();
 				lblMonth = null;
 			}
 
+			if (lblWhere != null) {
+				lblWhere.Dispose ();
+				lblWhere = null;
+			}
+
 			if (lblYear != null) {
 				lblYear.Dispose ();
 				lblYear = null;
+			}
+
+			if (vwMainView != null) {
+				vwMainView.Dispose ();
+				vwMainView = null;
+			}
+
+			if (imgEventBadge != null) {
+				imgEventBadge.Dispose ();
+				imgEventBadge = null;
 			}
 		}
 	}

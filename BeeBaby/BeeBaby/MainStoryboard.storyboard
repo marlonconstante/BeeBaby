@@ -329,14 +329,11 @@ de lembrar sobre este momento?</string>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-pa-fpI">
-                                                            <rect key="frame" x="5" y="5" width="33" height="33"/>
+                                                            <rect key="frame" x="5" y="6" width="32" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="badge"/>
-                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-tS-3EW" customClass="Label">
-                                                            <rect key="frame" x="42" y="2" width="225" height="39"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-tS-3EW" customClass="Label">
+                                                            <rect key="frame" x="46" y="2" width="222" height="39"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -419,6 +416,7 @@ de lembrar sobre este momento?</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="imgEventBadge" destination="tHa-pa-fpI" id="pU4-Rb-Vwu"/>
                                             <outlet property="lblAge" destination="z1D-ls-552" id="m3W-17-fNg"/>
                                             <outlet property="lblDate" destination="avP-uf-XxZ" id="vBc-47-Ivn"/>
                                             <outlet property="lblEventName" destination="tAx-tS-3EW" id="b1d-mv-Jz3"/>
@@ -997,9 +995,6 @@ de lembrar sobre este momento?</string>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwg-SJ-RYM">
                                         <rect key="frame" x="5" y="5" width="31" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="badge"/>
-                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-kN-Zsy">
                                         <rect key="frame" x="266" y="4" width="36" height="36"/>
@@ -1097,6 +1092,7 @@ de lembrar sobre este momento?</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
+                        <outlet property="imgEventBadge" destination="qwg-SJ-RYM" id="PxA-xs-17F"/>
                         <outlet property="ivwBackgroundImage" destination="91H-IH-MaQ" id="R2e-6M-9bD"/>
                         <outlet property="lblAge" destination="Air-G0-jMM" id="gUe-0U-DtO"/>
                         <outlet property="lblDay" destination="hkA-Vp-Ljz" id="a98-bs-QR4"/>

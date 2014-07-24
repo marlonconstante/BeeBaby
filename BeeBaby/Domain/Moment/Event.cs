@@ -70,5 +70,17 @@ namespace Domain.Moment
 		/// </summary>
 		/// <value>The Order.</value>
 		public int Priority { get; set; }
+
+		/// <summary>
+		/// Gets the name of the badge file.
+		/// </summary>
+		/// <value>The name of the badge file.</value>
+		public string BadgeFileName
+		{
+			get
+			{
+				return Kind == EventType.Achievement ? "firsts.png" : string.Format("{0}.png", Tag).ToLower();
+			}
+		}
 	}
 }

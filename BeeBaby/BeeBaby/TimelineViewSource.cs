@@ -114,6 +114,9 @@ namespace BeeBaby
 			cell.LabelEventName = moment.Event.Description;
 			cell.LabelWhere = moment.Location.PlaceName;
 
+			var iconImage = UIImage.FromFile(moment.Event.BadgeFileName);
+			cell.EventBadge = iconImage;
+
 			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
