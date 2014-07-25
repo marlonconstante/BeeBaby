@@ -9,6 +9,19 @@ namespace BeeBaby
 	{
 		public Label(IntPtr handle) : base(handle)
 		{
+			InitDefaultValues();
+		}
+
+		public Label(RectangleF frame) : base(frame)
+		{
+			InitDefaultValues();
+		}
+
+		/// <summary>
+		/// Inits the default values.
+		/// </summary>
+		void InitDefaultValues()
+		{
 			MaxHeight = 300f;
 		}
 
