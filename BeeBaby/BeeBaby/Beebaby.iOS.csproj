@@ -297,9 +297,6 @@
     <Compile Include="TimelineViewSource.cs" />
     <Compile Include="TimelineViewController.cs" />
     <Compile Include="TimelineViewController.designer.cs" />
-    <Compile Include="PlaceholderTextViewDelegate.cs" />
-    <Compile Include="PlaceholderTextFieldDelegate.cs" />
-    <Compile Include="Placeholder.cs" />
     <Compile Include="ZoomMapViewDelegate.cs" />
     <Compile Include="ImageCollectionViewSource.cs" />
     <Compile Include="MediaViewController.cs" />
