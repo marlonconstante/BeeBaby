@@ -392,10 +392,6 @@
     <Compile Include="FullscreenViewController.designer.cs">
       <DependentUpon>FullscreenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="MomentNavigationController.cs" />
-    <Compile Include="MomentNavigationController.designer.cs">
-      <DependentUpon>MomentNavigationController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Button.cs" />
     <Compile Include="Button.designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
@@ -433,6 +429,19 @@
     <Compile Include="Util\ReleaseControl.cs" />
     <Compile Include="Popover.cs" />
     <Compile Include="Globalization\SHCultureInfo.cs" />
+    <Compile Include="MediaNavigationController.cs" />
+    <Compile Include="MediaNavigationController.designer.cs">
+      <DependentUpon>MediaNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventNavigationController.cs" />
+    <Compile Include="EventNavigationController.designer.cs">
+      <DependentUpon>EventNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraNavigationController.cs" />
+    <Compile Include="CameraNavigationController.designer.cs">
+      <DependentUpon>CameraNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MomentNavigationController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

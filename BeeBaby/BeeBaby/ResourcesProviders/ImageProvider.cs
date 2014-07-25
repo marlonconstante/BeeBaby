@@ -353,6 +353,12 @@ namespace BeeBaby.ResourcesProviders
 			return resultImage;
 		}
 
+		/// <summary>
+		/// Generates the event badge.
+		/// </summary>
+		/// <returns>The event badge.</returns>
+		/// <param name="value">Value.</param>
+		/// <param name="imageView">Image view.</param>
 		public static UIImageView GenerateEventBadge(UIImage value, UIImageView imageView)
 		{
 			var iconImage = UIImage.FromFile("hover.png");

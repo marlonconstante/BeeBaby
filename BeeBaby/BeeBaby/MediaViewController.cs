@@ -65,8 +65,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void RightBarButtonAction()
 		{
-			PresentingViewController.DismissViewController(false, null);
-			Discard.ReleaseNavigation(NavigationController);
+			((MomentNavigationController) NavigationController).Close();
 		}
 
 		/// <summary>

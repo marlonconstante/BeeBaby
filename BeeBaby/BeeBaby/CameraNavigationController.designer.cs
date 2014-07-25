@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby
 {
-	[Register ("MomentNavigationController")]
-	partial class MomentNavigationController
+	[Register ("CameraNavigationController")]
+	partial class CameraNavigationController
 	{
 		
 		void ReleaseDesignerOutlets ()

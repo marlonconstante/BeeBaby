@@ -215,8 +215,7 @@ namespace BeeBaby
 
 			NSAction segueTimeline = () =>
 			{
-				PresentingViewController.DismissViewController(false, null);
-				Discard.ReleaseNavigation(NavigationController);
+				((MomentNavigationController) NavigationController).Close();
 			};
 			ShowProgressWhilePerforming(() =>
 			{

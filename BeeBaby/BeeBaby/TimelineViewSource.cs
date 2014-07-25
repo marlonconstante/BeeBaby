@@ -46,13 +46,23 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Moments at indexPath.
+		/// </summary>
+		/// <returns>The <see cref="Domain.Moment.Moment"/>.</returns>
+		/// <param name="indexPath">Index path.</param>
+		public Moment MomentAt(NSIndexPath indexPath)
+		{
+			return m_tableItems[indexPath.Row] as Moment;
+		}
+
+		/// <summary>
 		/// Removes the row.
 		/// </summary>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
 		public void RemoveRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			Moment moment = m_tableItems[indexPath.Row] as Moment;
+			Moment moment = MomentAt(indexPath);
 
 			new MomentService().RemoveMoment(moment);
 			new ImageProvider(moment.Id).DeleteFiles(false);
@@ -107,7 +117,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		void UpdateMomentCell(UITableView tableView, TimelineMomentCell cell, NSIndexPath indexPath)
 		{
-			Moment moment = m_tableItems[indexPath.Row] as Moment;
+			Moment moment = MomentAt(indexPath);
 
 			cell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
 			cell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);

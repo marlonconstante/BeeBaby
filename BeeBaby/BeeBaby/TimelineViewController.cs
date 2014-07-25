@@ -180,8 +180,18 @@ namespace BeeBaby
 
 			var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
 			proxy.Action = (target, sender, args) => {
-				var indexOf = target.m_popoverItems.IndexOf((Button) sender);
-				if (indexOf == 2)
+				CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
+				var buttonSender = (Button) sender;
+				var indexOf = target.m_popoverItems.IndexOf(buttonSender);
+				if (indexOf == 0)
+				{
+					target.AddPhotos(buttonSender);
+				}
+				else if (indexOf == 1)
+				{
+					target.ChangeEvent(buttonSender);
+				}
+				else if (indexOf == 2)
 				{
 					target.RemoveCurrentRow();
 				}
@@ -191,6 +201,28 @@ namespace BeeBaby
 			button.TouchUpInside += proxy.HandleEvent;
 
 			m_popoverItems.Add(button);
+		}
+
+		/// <summary>
+		/// Adds the photos.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		void AddPhotos(Button sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				RootViewController.PerformSegue("segueMedia", sender);
+			}, false);
+		}
+
+		/// <summary>
+		/// Changes the event.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		void ChangeEvent(Button sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				RootViewController.PerformSegue("segueEvent", sender);
+			}, false);
 		}
 
 		/// <summary>
