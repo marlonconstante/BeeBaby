@@ -4,6 +4,7 @@ using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
 using PixateFreestyleLib;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -107,7 +108,7 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is add right bar button item; otherwise, <c>false</c>.</returns>
 		public virtual bool IsAddRightBarButtonItem()
 		{
-			return true;
+			return IsCameraFlow() || new MomentService().HasValidMoments();
 		}
 
 		/// <summary>
@@ -124,7 +125,14 @@ namespace BeeBaby
 		/// </summary>
 		public virtual void RightBarButtonAction()
 		{
-			OpenCamera();
+			if (IsCameraFlow())
+			{
+				OpenCamera();
+			}
+			else
+			{
+				((MomentNavigationController) NavigationController).Close();
+			}
 		}
 
 		/// <summary>
@@ -133,7 +141,7 @@ namespace BeeBaby
 		/// <returns>The bar button style class.</returns>
 		public virtual string RightBarButtonStyleClass()
 		{
-			return "camera";
+			return IsCameraFlow() ? "camera" : "tree-clear";
 		}
 
 		/// <summary>
@@ -143,6 +151,33 @@ namespace BeeBaby
 		public virtual bool IsTranslucentNavigationBar()
 		{
 			return true;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is camera flow.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is camera flow; otherwise, <c>false</c>.</returns>
+		public bool IsCameraFlow()
+		{
+			return !IsMediaFlow() && !IsEventFlow();
+		}
+
+		/// <summary>
+		/// Determines whether this instance is media flow.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is media flow; otherwise, <c>false</c>.</returns>
+		public bool IsMediaFlow()
+		{
+			return this is MediaViewController || NavigationController is MediaNavigationController;
+		}
+
+		/// <summary>
+		/// Determines whether this instance is event flow.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is event flow; otherwise, <c>false</c>.</returns>
+		public bool IsEventFlow()
+		{
+			return NavigationController is EventNavigationController;
 		}
 
 		/// <summary>

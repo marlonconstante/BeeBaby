@@ -3,7 +3,6 @@ using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
-using Domain.Moment;
 using System.Drawing;
 
 namespace BeeBaby
@@ -48,33 +47,6 @@ namespace BeeBaby
 			TitleScreen = "ChoosePhotos".Translate();
 			btnAddMediaFromLibrary.SetTitle("ImportPhotos".Translate(), UIControlState.Normal);
 			btnNextStep.SetTitle("WantThese".Translate(), UIControlState.Normal);
-		}
-
-		/// <summary>
-		/// Determines whether this instance is add right bar button item.
-		/// </summary>
-		/// <returns>true</returns>
-		/// <c>false</c>
-		public override bool IsAddRightBarButtonItem()
-		{
-			return new MomentService().HasValidMoments();
-		}
-
-		/// <summary>
-		/// Rights the bar button action.
-		/// </summary>
-		public override void RightBarButtonAction()
-		{
-			((MomentNavigationController) NavigationController).Close();
-		}
-
-		/// <summary>
-		/// Rights the bar button style class.
-		/// </summary>
-		/// <returns>The bar button style class.</returns>
-		public override string RightBarButtonStyleClass()
-		{
-			return "tree-clear";
 		}
 
 		/// <summary>
