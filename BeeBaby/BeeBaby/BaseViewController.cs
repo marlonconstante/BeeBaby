@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using System.Drawing;
 using System.Collections.Generic;
 using PixateFreestyleLib;
+using System.Linq;
 
 namespace BeeBaby
 {
@@ -121,8 +122,10 @@ namespace BeeBaby
 		/// Gets or sets the root view controller.
 		/// </summary>
 		/// <value>The root view controller.</value>
-		public UIViewController RootViewController {
-			get {
+		public UIViewController RootViewController
+		{
+			get
+			{
 				return UIApplication.SharedApplication.Windows[0].RootViewController;
 			}
 		}
@@ -173,5 +176,6 @@ namespace BeeBaby
 
 			base.Dispose(disposing);
 		}
+
 	}
 }
