@@ -6,14 +6,14 @@ namespace BeeBaby
 {
 	public class ZoomMapViewDelegate : MKMapViewDelegate
 	{
-		double m_zoom;
 		MomentDetailViewController m_controller;
+		double m_zoom;
 
-		public ZoomMapViewDelegate(double zoom, MomentDetailViewController controller)
+		public ZoomMapViewDelegate(MomentDetailViewController controller, double zoom, bool updateUserLocation)
 		{
-			m_zoom = zoom;
 			m_controller = controller;
-			UpdateUserLocation = true;
+			m_zoom = zoom;
+			UpdateUserLocation = updateUserLocation;
 		}
 
 		/// <Docs>To be added.</Docs>
