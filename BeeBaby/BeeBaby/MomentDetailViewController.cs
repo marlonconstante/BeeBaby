@@ -15,7 +15,6 @@ namespace BeeBaby
 {
 	public partial class MomentDetailViewController : NavigationViewController
 	{
-		PlaceholderTextViewDelegate m_txtDescriptionDelegate;
 		ZoomMapViewDelegate m_mapViewDelegate;
 		IEnumerable<Location> m_locations;
 
@@ -38,12 +37,9 @@ namespace BeeBaby
 			vwDate.Clicked += proxy.HandleEvent;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
-			m_txtDescriptionDelegate = new PlaceholderTextViewDelegate();
-			txtDescription.Delegate = m_txtDescriptionDelegate;
-
 			txtLocalName.OffsetHeight = tblView.Frame.Height;
 
-			m_mapViewDelegate = new ZoomMapViewDelegate(0.001d, this);
+			m_mapViewDelegate = new ZoomMapViewDelegate(this, 0.001d, IsCameraFlow());
 			mapView.Delegate = m_mapViewDelegate;
 
 			m_locations = new LocationService().GetAllLocations();
@@ -59,8 +55,6 @@ namespace BeeBaby
 
 			base.ViewWillAppear(animated);
 
-			vwDate.UpdateInfo();
-
 			txtLocalName.ShouldBeginEditing += InputLocalBeginEditing;
 			txtLocalName.ShouldReturn += InputLocalReturn;
 			txtLocalName.ShouldChangeCharacters += InputLocalChangeCharacters;
@@ -71,6 +65,16 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment.Event = selectedEvent;
 				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
+
+			if (IsEventFlow())
+			{
+				var moment = CurrentContext.Instance.Moment;
+				vwDate.DateTime = moment.Date;
+				txtDescription.Text = moment.Description;
+				SelectLocation(moment.Location);
+			}
+
+			vwDate.UpdateInfo();
 		}
 
 		/// <summary>
@@ -216,7 +220,7 @@ namespace BeeBaby
 			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
 			txtLocalName.Placeholder = "WhatsPlaceName".Translate();
-			txtDescription.Text = "MomentRemember".Translate();
+			txtDescription.Placeholder = "MomentRemember".Translate();
 		}
 
 		/// <summary>
@@ -263,7 +267,7 @@ namespace BeeBaby
 				var momentService = new MomentService();
 
 				var moment = CurrentContext.Instance.Moment;
-				moment.Description = m_txtDescriptionDelegate.Placeholder.GetInitialText(txtDescription.Text);
+				moment.Description = txtDescription.Text;
 				moment.Event = CurrentContext.Instance.SelectedEvent;
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
