@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoTouch.UIKit;
+using Application;
 
 namespace BeeBaby
 {
@@ -25,6 +26,18 @@ namespace BeeBaby
 		public UIViewController GetCurrentViewController()
 		{
 			return TopViewController;
+		}
+
+		/// <summary>
+		/// Close navigation.
+		/// </summary>
+		public void Close()
+		{
+			CurrentContext.Instance.Moment = null;
+			CurrentContext.Instance.SelectedEvent = null;
+
+			PresentingViewController.DismissViewController(false, null);
+			Discard.ReleaseNavigation(this);
 		}
 	}
 }

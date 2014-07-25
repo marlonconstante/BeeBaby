@@ -295,12 +295,8 @@ namespace BeeBaby
 					menu.SyncMoment(CurrentContext.Instance.Moment);
 				}
 
-				CurrentContext.Instance.Moment = null;
-				CurrentContext.Instance.SelectedEvent = null;
 				CurrentContext.Instance.ReloadMoments = true;
-
-				PresentingViewController.DismissViewController(false, null);
-				Discard.ReleaseNavigation(NavigationController);
+				((MomentNavigationController) NavigationController).Close();
 			}, false);
 		}
 	}
