@@ -1,10 +1,9 @@
-using System;
-using MonoTouch.Foundation;
+﻿using System;
 using MonoTouch.UIKit;
 
 namespace BeeBaby
 {
-	public partial class MomentNavigationController : UINavigationController, INavigationController
+	public class MomentNavigationController : UINavigationController, INavigationController
 	{
 		public MomentNavigationController(IntPtr handle) : base(handle)
 		{
@@ -23,7 +22,8 @@ namespace BeeBaby
 		/// Gets the current view controller.
 		/// </summary>
 		/// <returns>The current view controller.</returns>
-		public UIViewController GetCurrentViewController() {
+		public UIViewController GetCurrentViewController()
+		{
 			return TopViewController;
 		}
 	}
