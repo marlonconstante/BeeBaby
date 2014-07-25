@@ -68,7 +68,7 @@ namespace BeeBaby
 			navigationController.PopToRootViewController(false);
 			navigationController.RemoveFromParentViewController();
 			navigationController.View.RemoveFromSuperview();
-			navigationController.TopViewController.Dispose();
+			//navigationController.TopViewController.Dispose();
 			navigationController.Dispose();
 		}
 
