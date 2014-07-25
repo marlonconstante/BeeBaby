@@ -1,6 +1,7 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Drawing;
 
 namespace BeeBaby
 {
@@ -29,6 +30,26 @@ namespace BeeBaby
 				}
 				return true;
 			};
+			SetKeyboardAcessory();
+		}
+
+		/// <summary>
+		/// Sets the keyboard acessory.
+		/// </summary>
+		void SetKeyboardAcessory()
+		{
+			var toolbar = new UIToolbar(new RectangleF(0f, 0f, 240f, 44f));
+			toolbar.TintColor = UIColor.FromRGB(0, 174, 173);
+			toolbar.BarStyle = UIBarStyle.Default;
+			toolbar.Translucent = true;
+			toolbar.Items = new[] {
+				new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+				new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate {
+					ResignFirstResponder();
+				})
+			};
+			KeyboardAppearance = UIKeyboardAppearance.Light;
+			InputAccessoryView = toolbar;
 		}
 
 		/// <summary>

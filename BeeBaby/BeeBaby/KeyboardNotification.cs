@@ -53,18 +53,22 @@ namespace BeeBaby
 		void MoveScroll(bool up, NSNotification notification)
 		{
 			var firstResponder = m_weakResponder.Target as UIView;
-			if (firstResponder != null && firstResponder is IKeyboardSupport)
+			var iKeyboardSupport = firstResponder as IKeyboardSupport;
+			if (iKeyboardSupport != null)
 			{
-				var keyboardSupport = (IKeyboardSupport) firstResponder;
+				var keyboardSupport = iKeyboardSupport;
 				var view = firstResponder.Superview;
-				if (view is UIScrollView)
+
+				var scrollView = view as UIScrollView;
+				if (scrollView != null)
 				{
-					var scrollView = (UIScrollView) view;
+					var contentSize = scrollView.ContentSize;
 					var rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
-					UIView.Animate(0.3d, () => {
-						var contentSize = scrollView.ContentSize;
-						contentSize.Height += up ? rectangle.Height : -rectangle.Height;
+					contentSize.Height += up ? rectangle.Height : -rectangle.Height;
+
+					UIView.Animate(0.3d, () =>
+					{
 						scrollView.ContentSize = contentSize;
 
 						if (up)
@@ -114,5 +118,6 @@ namespace BeeBaby
 		{
 			return new KeyboardNotification();
 		}
+
 	}
 }
