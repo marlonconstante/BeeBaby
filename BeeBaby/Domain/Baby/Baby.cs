@@ -58,7 +58,7 @@ namespace Domain.Baby
 		{
 			get
 			{
-				return Convert.ToInt32((DateTime.Now - BirthDateTime).TotalDays);
+				return CalculateAgeInDay(DateTime.Now);
 			}
 		}
 
@@ -92,6 +92,16 @@ namespace Domain.Baby
 		{
 			var diff = new DateDiff(birthDateTime, baseDate);
 			return  diff.ToReadableString();
+		}
+
+		/// <summary>
+		/// Calculates the age in day.
+		/// </summary>
+		/// <returns>The age in day.</returns>
+		/// <param name="date">Date.</param>
+		public int CalculateAgeInDay(DateTime date)
+		{
+			return Convert.ToInt32((date - BirthDateTime).TotalDays);
 		}
 	}
 }

@@ -9,6 +9,7 @@ using System.Drawing;
 using PixateFreestyleLib;
 using MonoTouch.Foundation;
 using System.Diagnostics;
+using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -336,7 +337,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void SelectTag(UIButton sender)
 		{
-			var button = (UITagButton) sender;
+			var button = (UITagButton)sender;
 			schBar.Text = string.Empty;
 
 			if (m_selectedTag != string.Empty && m_selectedTag != button.TagName)
@@ -394,7 +395,10 @@ namespace BeeBaby
 			}
 			else if (m_selectedTag == s_recomendationTagName)
 			{
-				var babyAge = CurrentContext.Instance.CurrentBaby.AgeInDays;
+				var babyAge = IsCameraFlow() 
+					? CurrentContext.Instance.CurrentBaby.AgeInDays 
+					: CurrentContext.Instance.CurrentBaby.CalculateAgeInDay(CurrentContext.Instance.Moment.Date);
+
 				filtredEvents = m_events.Where(e => e.StartAge <= babyAge && e.EndAge >= babyAge).ToList();
 			}
 			else if (m_selectedTag == s_everydayTagName)
