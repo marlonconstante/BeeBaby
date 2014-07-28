@@ -33,7 +33,7 @@ namespace BeeBaby
 			}
 			m_weakResponder = new WeakReference(GetFirstResponder(viewController.View));
 
-			MoveScroll(true, notification);
+			MoveScroll(!KeyboardVisible, notification);
 		}
 
 		/// <summary>
@@ -42,7 +42,10 @@ namespace BeeBaby
 		/// <param name="notification">Notification.</param>
 		void KeyboardDownNotification(NSNotification notification)
 		{
-			MoveScroll(false, notification);
+			if (KeyboardVisible)
+			{
+				MoveScroll(false, notification);
+			}
 		}
 
 		/// <summary>
@@ -56,24 +59,21 @@ namespace BeeBaby
 			var iKeyboardSupport = firstResponder as IKeyboardSupport;
 			if (iKeyboardSupport != null)
 			{
-				var keyboardSupport = iKeyboardSupport;
 				var view = firstResponder.Superview;
-
 				var scrollView = view as UIScrollView;
 				if (scrollView != null)
 				{
 					var contentSize = scrollView.ContentSize;
 					var rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
-					contentSize.Height += up ? rectangle.Height : -rectangle.Height;
-
 					UIView.Animate(0.3d, () =>
 					{
+						contentSize.Height += up ? rectangle.Height : -rectangle.Height;
 						scrollView.ContentSize = contentSize;
 
 						if (up)
 						{
-							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + keyboardSupport.OffsetHeight;
+							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
 							var spare = UIScreen.MainScreen.Bounds.Height - rectangle.Height;
 
 							scrollView.ContentOffset = new PointF(0f, Math.Max(-64f, bottom - spare));
