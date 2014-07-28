@@ -81,13 +81,22 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Reloads the data collection view.
+		/// Reloads the data.
 		/// </summary>
 		/// <param name="collectionView">Collection view.</param>
-		public void ReloadData(UICollectionView collectionView)
+		/// <param name="selectAll">If set to <c>true</c> select all.</param>
+		public void ReloadData(UICollectionView collectionView, bool selectAll = false)
 		{
-			m_images = m_imageProvider.GetImages(true, true);
+			m_images = m_imageProvider.GetImages(true);
 			collectionView.ReloadData();
+
+			if (selectAll)
+			{
+				foreach (var image in m_images)
+				{
+					CurrentContext.Instance.Moment.SelectedMediaNames.Add(image.FileName);
+				}
+			}
 		}
 	}
 }

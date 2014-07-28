@@ -45,7 +45,7 @@ namespace BeeBaby
 			toolbar.Items = new[] {
 				new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
 				new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate {
-					ResignFirstResponder();
+					ShouldReturn(this);
 				})
 			};
 			KeyboardAppearance = UIKeyboardAppearance.Light;

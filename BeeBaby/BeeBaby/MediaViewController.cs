@@ -93,18 +93,15 @@ namespace BeeBaby
 		/// <summary>
 		/// Updates the image collection view.
 		/// </summary>
-		/// <param name="reset">If set to <c>true</c> reset.</param>
-		void UpdateImageCollectionView(bool reset = false)
+		void UpdateImageCollectionView()
 		{
-			if (reset || m_collectionViewSource == null)
+			bool initialize = m_collectionViewSource == null;
+			if (initialize)
 			{
-				if (reset)
-					FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Resetou a seleção.");
-
 				m_collectionViewSource = new ImageCollectionViewSource(this);
 				clnView.Source = m_collectionViewSource;
 			}
-			m_collectionViewSource.ReloadData(clnView);
+			m_collectionViewSource.ReloadData(clnView, initialize);
 		}
 	}
 }

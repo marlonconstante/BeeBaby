@@ -92,22 +92,12 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets the file names.
 		/// </summary>
 		/// <returns>The file names.</returns>
-		/// <param name="temporary">If set to <c>true</c> temporary.</param>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<string> GetFileNames(bool temporary, bool thumbnails = false)
+		public IList<string> GetFileNames(bool thumbnails = false)
 		{
 			var fileNames = new List<string>();
-
-			if (temporary)
-			{
-				var temporaryDirectory = GetTemporaryDirectory();
-				fileNames.AddRange(Directory.GetFiles(temporaryDirectory, string.Concat("*", m_fileExtension)));
-			}
-			else
-			{
-				var permanentDirectory = GetPermanentDirectory();
-				fileNames.AddRange(Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension)));
-			}
+			fileNames.AddRange(Directory.GetFiles(GetPermanentDirectory(), string.Concat("*", m_fileExtension)));
+			fileNames.AddRange(Directory.GetFiles(GetTemporaryDirectory(), string.Concat("*", m_fileExtension)));
 
 			fileNames = fileNames.Where(f => 
 				thumbnails 
@@ -122,13 +112,12 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets the images.
 		/// </summary>
 		/// <returns>The images.</returns>
-		/// <param name="temporary">If set to <c>true</c> temporary.</param>
 		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
-		public IList<ImageModel> GetImages(bool temporary, bool thumbnails = false)
+		public IList<ImageModel> GetImages(bool thumbnails = false)
 		{
 			var images = new List<ImageModel>();
 
-			foreach (var fileName in GetFileNames(temporary, thumbnails))
+			foreach (var fileName in GetFileNames(thumbnails))
 			{
 				var data = NSData.FromFile(fileName);
 				var image = new ImageModel {
