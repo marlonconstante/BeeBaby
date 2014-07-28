@@ -395,7 +395,7 @@ namespace BeeBaby
 			}
 			else if (m_selectedTag == s_recomendationTagName)
 			{
-				var babyAge = IsCameraFlow() 
+				var babyAge = IsCameraFlow()
 					? CurrentContext.Instance.CurrentBaby.AgeInDays 
 					: CurrentContext.Instance.CurrentBaby.CalculateAgeInDay(CurrentContext.Instance.Moment.Date);
 

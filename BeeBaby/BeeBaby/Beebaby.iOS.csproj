@@ -126,9 +126,6 @@
     <Reference Include="HelperSharp">
       <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
-    <Reference Include="BTProgressHUD">
-      <HintPath>..\Components\btprogresshud-1.9\lib\ios\BTProgressHUD.dll</HintPath>
-    </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="SQLite.Net.Platform.XamarinIOS">
       <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.3.0\lib\monotouch\SQLite.Net.Platform.XamarinIOS.dll</HintPath>
@@ -153,6 +150,9 @@
     </Reference>
     <Reference Include="RestSharp.MonoTouch">
       <HintPath>..\references\RestSharp.MonoTouch.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\Components\btprogresshud-1.10\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -442,12 +442,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <XamarinComponentReference Include="btprogresshud">
-      <Version>1.9</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="facebookios">
       <Version>3.13.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="btprogresshud">
+      <Version>1.10</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
