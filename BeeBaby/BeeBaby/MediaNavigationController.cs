@@ -1,6 +1,7 @@
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
@@ -8,6 +9,16 @@ namespace BeeBaby
 	{
 		public MediaNavigationController(IntPtr handle) : base(handle)
 		{
+		}
+
+		/// <summary>
+		/// Close navigation.
+		/// </summary>
+		public override void Close()
+		{
+			base.Close();
+
+			new ImageProvider().DeleteFiles(true);
 		}
 	}
 }

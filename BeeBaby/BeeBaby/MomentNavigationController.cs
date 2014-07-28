@@ -31,8 +31,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Close navigation.
 		/// </summary>
-		public void Close()
+		public virtual void Close()
 		{
+			CurrentContext.Instance.Moment.SelectedMediaNames.Clear();
 			CurrentContext.Instance.Moment = null;
 			CurrentContext.Instance.SelectedEvent = null;
 
