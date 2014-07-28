@@ -134,7 +134,7 @@ namespace BeeBaby
 				Thread.Sleep(150);
 
 				var imageProvider = new ImageProvider(moment.Id);
-				IList<ImageModel> images = imageProvider.GetImages(false, true);
+				IList<ImageModel> images = imageProvider.GetImages(true);
 
 				InvokeOnMainThread(() => {
 					if (IsVisibleRow(tableView, indexPath))
