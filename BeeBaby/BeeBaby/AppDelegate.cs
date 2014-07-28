@@ -99,8 +99,7 @@ namespace BeeBaby
 			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 
 			//TODO: usar a linguagem do device
-			//SHCultureInfo.From(NSLocale.CurrentLocale);
-			var currentCulture = SHCultureInfo.PtBR;
+			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
 			var connection = SetupConnection();
 			DomainConfig.InitializeGlobalization(currentCulture);
