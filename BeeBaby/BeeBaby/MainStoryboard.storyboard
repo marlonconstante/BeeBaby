@@ -287,11 +287,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-iP-Uy7">
-                                <rect key="frame" x="0.0" y="62" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i59-ne-fd6">
-                                        <rect key="frame" x="20" y="0.0" width="132" height="20"/>
+                                        <rect key="frame" x="9" y="1" width="132" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -304,7 +304,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-FL-7pL">
-                                        <rect key="frame" x="161" y="0.0" width="159" height="20"/>
+                                        <rect key="frame" x="149" y="1" width="171" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1222,7 +1222,7 @@
         <!--Fullscreen View Controller-->
         <scene sceneID="72K-aW-CtN">
             <objects>
-                <viewController storyboardIdentifier="FullscreenViewController" modalTransitionStyle="crossDissolve" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullscreenViewController" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gdd-rz-Mzh"/>
                         <viewControllerLayoutGuide type="bottom" id="T5G-EM-69S"/>
