@@ -95,6 +95,16 @@ segmented-control {
 .subtitle,
 .moment-label {
 	font-size: 13pt;
+	background-color: #e7ebe7;
+}
+
+.babyname-container
+{
+	background-color: #01cecd;
+}
+
+.babyname-subtitle {
+	color: #ffffff;
 }
 
 .ready-label {
