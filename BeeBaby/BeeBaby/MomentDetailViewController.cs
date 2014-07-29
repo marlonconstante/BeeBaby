@@ -43,6 +43,7 @@ namespace BeeBaby
 			m_mapViewDelegate = new ZoomMapViewDelegate(this, 0.001d, IsCameraFlow());
 			mapView.Delegate = m_mapViewDelegate;
 
+			tblView.ExclusiveTouch = true;
 			m_locations = new LocationService().GetAllLocations();
 		}
 
