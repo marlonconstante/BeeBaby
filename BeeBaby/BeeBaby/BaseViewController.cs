@@ -157,7 +157,7 @@ namespace BeeBaby
 		/// </summary>
 		void UpdateStatusBar()
 		{
-			UIApplication.SharedApplication.SetStatusBarHidden(!IsShowStatusBar(), UIStatusBarAnimation.None);
+			UIApplication.SharedApplication.SetStatusBarHidden(!IsShowStatusBar(), UIStatusBarAnimation.Slide);
 		}
 
 		/// <summary>
