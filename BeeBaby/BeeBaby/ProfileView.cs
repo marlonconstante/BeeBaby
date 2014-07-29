@@ -238,7 +238,7 @@ namespace BeeBaby
 
 			BabyImageView imageView = BuildImageView(frame, babyProfile.Image);
 			imageView.BabyProfile = babyProfile;
-			imageView.Layer.CornerRadius = 45f;
+			imageView.Layer.CornerRadius = MediaBase.PhotoProfileInnerSize / 2;
 
 			var proxy = new EventProxy<ProfileView, EventArgs>(this);
 			proxy.Action = (target, sender, args) => {
