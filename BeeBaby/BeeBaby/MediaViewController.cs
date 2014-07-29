@@ -91,15 +91,15 @@ namespace BeeBaby
 					}
 					else
 					{
-					if (CurrentContext.Instance.CurrentBaby.IsValid())
-					{
-						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
-						PerformSegue("segueSelectEvent", sender);
-					}
-					else
-					{
-						PerformSegue("segueBaby", sender);
-					}
+						if (CurrentContext.Instance.CurrentBaby.IsValid())
+						{
+							CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+							PerformSegue("segueSelectEvent", sender);
+						}
+						else
+						{
+							PerformSegue("segueBaby", sender);
+						}
 					}
 				}, false);
 			}
