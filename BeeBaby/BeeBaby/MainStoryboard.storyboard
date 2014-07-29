@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1222,7 +1222,7 @@
         <!--Fullscreen View Controller-->
         <scene sceneID="72K-aW-CtN">
             <objects>
-                <viewController storyboardIdentifier="FullscreenViewController" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullscreenViewController" modalTransitionStyle="crossDissolve" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gdd-rz-Mzh"/>
                         <viewControllerLayoutGuide type="bottom" id="T5G-EM-69S"/>
