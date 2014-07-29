@@ -159,7 +159,7 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is camera flow; otherwise, <c>false</c>.</returns>
 		public bool IsCameraFlow()
 		{
-			return !IsMediaFlow() && !IsEventFlow();
+			return !IsMediaController() && !IsMediaFlow() && !IsEventFlow();
 		}
 
 		/// <summary>
@@ -168,7 +168,7 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is media flow; otherwise, <c>false</c>.</returns>
 		public bool IsMediaFlow()
 		{
-			return this is MediaViewController || NavigationController is MediaNavigationController;
+			return NavigationController is MediaNavigationController;
 		}
 
 		/// <summary>
@@ -195,6 +195,15 @@ namespace BeeBaby
 					NavigationController.PopToRootViewController(true);
 				}
 			}, false);
+		}
+
+		/// <summary>
+		/// Determines whether this instance is media controller.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is media controller; otherwise, <c>false</c>.</returns>
+		bool IsMediaController()
+		{
+			return this is MediaViewController;
 		}
 
 		/// <summary>

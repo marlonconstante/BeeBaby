@@ -138,6 +138,14 @@ namespace BeeBaby.ResourcesProviders
 		{
 			var temporaryDirectory = GetTemporaryDirectory();
 			var permanentDirectory = GetPermanentDirectory();
+
+			Directory.EnumerateFiles(permanentDirectory)
+				.ToList().ForEach(source => {
+				var destiny = Path.Combine(temporaryDirectory, Path.GetFileName(source));
+
+				File.Move(source, destiny);
+			});
+
 			foreach (var imageName in imagesNames)
 			{
 				// Thumbnails

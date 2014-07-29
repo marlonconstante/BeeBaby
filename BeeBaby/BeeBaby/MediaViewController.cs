@@ -4,6 +4,7 @@ using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Drawing;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -72,11 +73,24 @@ namespace BeeBaby
 		{
 			if (CurrentContext.Instance.Moment.SelectedMediaNames.Count == 0)
 			{
-				new UIAlertView("IllustrateMoment".Translate(), "TakePictureOrImportAlbum".Translate(), null, "GotIt".Translate(), null).Show();
+				new UIAlertView("IllustrateMoment".Translate(), (IsMediaFlow() ? "ImportAlbum" : "TakePictureOrImportAlbum").Translate(), null, "GotIt".Translate(), null).Show();
 			}
 			else
 			{
 				ShowProgressWhilePerforming(() => {
+					if (IsMediaFlow())
+					{
+						var moment = CurrentContext.Instance.Moment;
+						moment.MediaCount = moment.SelectedMediaNames.Count;
+
+						new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
+						new MomentService().SaveMoment(moment);
+
+						CurrentContext.Instance.ReloadMoments = true;
+						((MomentNavigationController) NavigationController).Close();
+					}
+					else
+					{
 					if (CurrentContext.Instance.CurrentBaby.IsValid())
 					{
 						CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
@@ -85,6 +99,7 @@ namespace BeeBaby
 					else
 					{
 						PerformSegue("segueBaby", sender);
+					}
 					}
 				}, false);
 			}

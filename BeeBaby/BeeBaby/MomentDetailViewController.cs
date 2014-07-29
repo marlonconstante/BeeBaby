@@ -263,9 +263,6 @@ namespace BeeBaby
 			FlurryAnalytics.Flurry.LogEvent("Momento: Salvou momento.");
 
 			ShowProgressWhilePerforming(() => {
-				var imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
-				var momentService = new MomentService();
-
 				var moment = CurrentContext.Instance.Moment;
 				moment.Description = txtDescription.Text;
 				moment.Event = CurrentContext.Instance.SelectedEvent;
@@ -289,8 +286,8 @@ namespace BeeBaby
 				location = new LocationService().SaveLocation(location);
 				moment.Location = location;
 
-				imageProvider.SavePermanentImages(moment.SelectedMediaNames);
-				momentService.SaveMoment(moment);
+				new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
+				new MomentService().SaveMoment(moment);
 
 				if (RootViewController.GetType() == typeof(SlideoutNavigationController))
 				{
