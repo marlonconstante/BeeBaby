@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.CoreLocation;
 using PixateFreestyleLib;
+using System.IO;
 
 namespace BeeBaby
 {
@@ -69,6 +70,14 @@ namespace BeeBaby
 			if (IsEventFlow())
 			{
 				var moment = CurrentContext.Instance.Moment;
+
+				moment.SelectedMediaNames.Clear();
+				IList<string> fileNames = new ImageProvider(moment.Id).GetFileNames(true);
+				foreach (var fileName in fileNames)
+				{
+					moment.SelectedMediaNames.Add(Path.GetFileName(fileName));
+				}
+
 				vwDate.DateTime = moment.Date;
 				txtDescription.Text = moment.Description;
 				SelectLocation(moment.Location);

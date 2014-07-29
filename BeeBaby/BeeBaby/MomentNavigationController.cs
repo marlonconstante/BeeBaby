@@ -37,8 +37,14 @@ namespace BeeBaby
 			CurrentContext.Instance.Moment = null;
 			CurrentContext.Instance.SelectedEvent = null;
 
-			PresentingViewController.DismissViewController(false, null);
-			Discard.ReleaseNavigation(this);
+			PresentingViewController.DismissViewController(true, () => {
+				var viewController = GetCurrentViewController();
+				if (viewController is CameraViewController)
+				{
+					((CameraViewController) viewController).ClosePicker();
+				}
+				Discard.ReleaseNavigation(this);
+			});
 		}
 	}
 }

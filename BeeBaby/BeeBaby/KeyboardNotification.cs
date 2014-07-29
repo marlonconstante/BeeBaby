@@ -15,7 +15,7 @@ namespace BeeBaby
 			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyboardUpNotification);
 
 			// Keyboard Down
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardDownNotification);
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidHideNotification, KeyboardDownNotification);
 
 			KeyboardVisible = false;
 		}

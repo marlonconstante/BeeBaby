@@ -1222,7 +1222,7 @@
         <!--Fullscreen View Controller-->
         <scene sceneID="72K-aW-CtN">
             <objects>
-                <viewController storyboardIdentifier="FullscreenViewController" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullscreenViewController" modalTransitionStyle="crossDissolve" id="7Po-98-263" customClass="FullscreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gdd-rz-Mzh"/>
                         <viewControllerLayoutGuide type="bottom" id="T5G-EM-69S"/>

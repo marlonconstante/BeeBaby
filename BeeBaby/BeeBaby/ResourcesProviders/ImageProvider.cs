@@ -122,7 +122,7 @@ namespace BeeBaby.ResourcesProviders
 				var data = NSData.FromFile(fileName);
 				var image = new ImageModel {
 					Image = UIImage.LoadFromData(data),
-					FileName = fileName.Split('/').Last()
+					FileName = Path.GetFileName(fileName)
 				};
 				images.Add(image);
 			}
