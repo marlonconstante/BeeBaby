@@ -71,6 +71,7 @@ namespace BeeBaby
 			{
 				var moment = CurrentContext.Instance.Moment;
 
+				moment.SelectedMediaNames.Clear();
 				IList<string> fileNames = new ImageProvider(moment.Id).GetFileNames(true);
 				foreach (var fileName in fileNames)
 				{
