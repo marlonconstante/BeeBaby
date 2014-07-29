@@ -36,9 +36,10 @@ namespace BeeBaby.ResourcesProviders
 			if (IsCameraAvailable() && m_sourceType == UIImagePickerControllerSourceType.Camera)
 			{
 				picker.SourceType = UIImagePickerControllerSourceType.Camera;
+				picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
+				picker.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 				picker.PrefersStatusBarHidden();
 				picker.ShowsCameraControls = false;
-				picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
 
 				// Se for tela de 4 polegadas
 				if (UIScreen.MainScreen.Bounds.Height >= 568f)
