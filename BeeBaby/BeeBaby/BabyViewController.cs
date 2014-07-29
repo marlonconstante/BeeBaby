@@ -7,6 +7,7 @@ using Application;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using BigTed;
 
 namespace BeeBaby
 {
@@ -158,9 +159,9 @@ namespace BeeBaby
 					}
 					else
 					{
-						new UIAlertView("BabyData".Translate(), "YourBabyDataWereSaved".Translate(), null, "GotIt".Translate(), null).Show();
+						BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
 					}
-				}, containsMenu);
+				}, false);
 			}
 			else
 			{
