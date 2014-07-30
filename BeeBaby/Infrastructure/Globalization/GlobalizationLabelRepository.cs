@@ -161,8 +161,9 @@ YourBabyDataWereSaved = Os dados do seu bebê foram salvos.
 WhatEventIsThis = Qual é este evento?
 BrowseCategory = Procure em outras categorias:
 At = Em
-InDate = No Dia
+InDate = No dia
 AtAge = Com
+Have = Tem
 ";
 				#endregion
 			}
@@ -262,6 +263,7 @@ BrowseCategory = Browse other categories:
 At = At
 InDate = In
 AtAge = At
+Have = Have
 ";
 				#endregion
 			}
