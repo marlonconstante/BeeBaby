@@ -41,7 +41,7 @@ namespace BeeBaby
 			if (m_fullscreenController == null)
 			{
 				var board = UIStoryboard.FromName("MainStoryboard", null);
-				m_fullscreenController = (FullscreenViewController) board.InstantiateViewController("FullscreenViewController");
+				m_fullscreenController = (FullscreenViewController)board.InstantiateViewController("FullscreenViewController");
 			}
 		}
 
@@ -119,10 +119,10 @@ namespace BeeBaby
 		{
 			Moment moment = MomentAt(indexPath);
 
-			cell.LabelAge = Baby.FormatAge(m_baby.BirthDateTime, moment.Date);
-			cell.LabelDate = moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo);
+			cell.LabelAge = string.Concat("AtAge".Translate(), " ", Baby.FormatAge(m_baby.BirthDateTime, moment.Date));
+			cell.LabelDate = string.Concat("InDate".Translate(), " ", moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo));
 			cell.LabelEventName = moment.Event.Description;
-			cell.LabelWhere = moment.Location.PlaceName;
+			cell.LabelWhere = string.Concat("At".Translate(), " ", moment.Location.PlaceName);
 
 			var iconImage = UIImage.FromFile(moment.Event.BadgeFileName);
 			cell.EventBadge = iconImage;
@@ -130,13 +130,15 @@ namespace BeeBaby
 			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
-			InvokeInBackground(() => {
+			InvokeInBackground(() =>
+			{
 				Thread.Sleep(150);
 
 				var imageProvider = new ImageProvider(moment.Id);
 				IList<ImageModel> images = imageProvider.GetImages(true);
 
-				InvokeOnMainThread(() => {
+				InvokeOnMainThread(() =>
+				{
 					if (IsVisibleRow(tableView, indexPath))
 					{
 						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
@@ -168,9 +170,11 @@ namespace BeeBaby
 				imageView.Opaque = true;
 
 				var proxy = new EventProxy<TimelineViewSource, EventArgs>(this);
-				proxy.Action = (target, sender, args) => {
-					ActionProgress actionProgress = new ActionProgress(() => {
-						var momentImageView = (MomentImageView) sender;
+				proxy.Action = (target, sender, args) =>
+				{
+					ActionProgress actionProgress = new ActionProgress(() =>
+					{
+						var momentImageView = (MomentImageView)sender;
 						target.m_viewController.PresentViewController(target.m_fullscreenController, true, null);
 						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
 					}, false);

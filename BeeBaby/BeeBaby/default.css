@@ -139,6 +139,11 @@ segmented-control {
 	background-size: 20;
 }
 
+.time-table, 
+.time-table table-view-cell	{
+	background-color: #dce5e5;
+}
+
 
 .table-menu table-view-cell {
 	background-image: url(menu-item-background.png);
@@ -247,7 +252,7 @@ segmented-control label,
 
 .card-separator,
 .default-screen-background {
-	background-color: #dce5e5;
+	background-color: #fff;
 }
 
 .form-screen-background {

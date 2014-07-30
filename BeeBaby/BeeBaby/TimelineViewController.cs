@@ -134,7 +134,7 @@ namespace BeeBaby
 				var moments = new MomentService().GetAllMoments(baby);
 
 				lblBabyName.Text = baby.Name;
-				lblBabyAge.Text = baby.AgeInWords;
+				lblBabyAge.Text = string.Concat("Have".Translate(), " ",baby.AgeInWords);
 
 				InitPopover();
 
@@ -259,7 +259,7 @@ namespace BeeBaby
 			var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 			var viewRect = tblView.ConvertRectToView(tableRect, View);
 
-			m_popover.Show(new PointF(86f, viewRect.Y));
+			m_popover.Show(new PointF(96f, viewRect.Y));
 		}
 	}
 }
