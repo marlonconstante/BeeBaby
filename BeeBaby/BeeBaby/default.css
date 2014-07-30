@@ -95,6 +95,9 @@ segmented-control {
 .subtitle,
 .moment-label {
 	font-size: 13pt;
+}
+
+.moment-label {
 	background-color: #e7ebe7;
 }
 
@@ -105,6 +108,7 @@ segmented-control {
 
 .babyname-subtitle {
 	color: #ffffff;
+	font-size: 13pt;
 }
 
 .ready-label {
@@ -116,6 +120,25 @@ segmented-control {
 	background-color: #f1f1e9;
 	box-shadow: 0 1 0 0 #b1bdbb;
 }
+
+.time-button,
+.time-button:highlighted,
+.time-button:selected {
+	background-color: #dfdfd1;
+	border-radius: 5;
+	font-size: 13pt;
+	font-weight: bold;
+	color: #595954;
+	-ios-tint-color: #595954;
+}
+
+.time-button icon {
+	color: #595954;
+	-ios-tint-color: #595954;
+	background-image: url(comments.svg);
+	background-size: 20;
+}
+
 
 .table-menu table-view-cell {
 	background-image: url(menu-item-background.png);
@@ -224,7 +247,7 @@ segmented-control label,
 
 .card-separator,
 .default-screen-background {
-	background-color: #fff;
+	background-color: #dce5e5;
 }
 
 .form-screen-background {
