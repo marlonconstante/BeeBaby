@@ -14,7 +14,7 @@ namespace Domain.Media
 		public const float ImageCompressionQuality = 0.7f;
 		public const string PhotoProfileName = "profile-photo";
 		public const float PhotoProfileSize = 98f;
-		public const float PhotoProfileInnerSize = 90f;
+		public const float PhotoProfileInnerSize = 88f;
 		#endregion
 
 		/// <summary>
