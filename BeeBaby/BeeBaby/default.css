@@ -67,9 +67,9 @@ segmented-control {
 	font-weight: normal;
 }
 
-.view .navigation-button,
-.view .navigation-button:highlighted,
-.view .navigation-button:selected,
+.view .clear-button,
+.view .clear-button:highlighted,
+.view .clear-button:selected,
 .view .large-button,
 .view .large-button:highlighted,
 .view .large-button:selected {
@@ -77,9 +77,9 @@ segmented-control {
 	font-weight: normal;
 }
 
-.view .navigation-button,
-.view .navigation-button:highlighted,
-.view .navigation-button:selected {
+.view .clear-button,
+.view .clear-button:highlighted,
+.view .clear-button:selected {
 	background-color: #f2f5f5;
 	box-shadow: 0 1 1 0 #b9c9c5;
 }
@@ -268,6 +268,13 @@ segmented-control label,
 	background-color: #dce6e6;
 }
 
+.view .row.highlighted,
+.view .highlighted-button,
+.view .highlighted-button:highlighted,
+.view .highlighted-button:selected {
+	background-color: #e5f2f2;
+}
+
 .selected-cell {
 	background-color: #58c5cd;
 	opacity: 0.5;
@@ -290,9 +297,9 @@ text-view,
 .view .small-button,
 .view .small-button:highlighted,
 .view .small-button:selected,
-.view .navigation-button,
-.view .navigation-button:highlighted,
-.view .navigation-button:selected,
+.view .clear-button,
+.view .clear-button:highlighted,
+.view .clear-button:selected,
 .view .large-button,
 .view .large-button:highlighted,
 .view .large-button:selected {
@@ -379,6 +386,7 @@ map-view label {
 .input-text.location-name {
 	padding-top: 0;
 	padding-left: 32;
+	background-color: #d9e9e9;
 }
 
 text-field,
@@ -515,6 +523,10 @@ text-view {
 
 .comeback {
 	background-image: url(comeback.svg);
+}
+
+.comment {
+	background-image: url(comment.svg);
 }
 
 .comments {

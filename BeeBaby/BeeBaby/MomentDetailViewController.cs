@@ -38,12 +38,16 @@ namespace BeeBaby
 			vwDate.Clicked += proxy.HandleEvent;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
+			tblView.ExclusiveTouch = true;
+			tblView.BackgroundColor = txtLocalName.BackgroundColor;
 			txtLocalName.OffsetHeight = tblView.Frame.Height;
+
+			txtDescription.TextContainerInset = new UIEdgeInsets(13f, 27f, 0f, 0f);
+			txtDescription.PlaceholderFrame = new RectangleF(32f, 14f, 275f, 34f);
 
 			m_mapViewDelegate = new ZoomMapViewDelegate(this, 0.001d, IsCameraFlow());
 			mapView.Delegate = m_mapViewDelegate;
 
-			tblView.ExclusiveTouch = true;
 			m_locations = new LocationService().GetAllLocations();
 		}
 
@@ -65,7 +69,6 @@ namespace BeeBaby
 			if (selectedEvent != null)
 			{
 				CurrentContext.Instance.Moment.Event = selectedEvent;
-				btnSelectEvent.SetTitle(selectedEvent.Description, UIControlState.Normal);
 			}
 
 			if (IsEventFlow())
@@ -226,8 +229,6 @@ namespace BeeBaby
 		public override void TranslateLabels()
 		{
 			TitleScreen = "Moment".Translate();
-			lblMomentAbout.Text = "MomentAbout".Translate();
-			btnSelectEvent.SetTitle("SelectEvent".Translate(), UIControlState.Normal);
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
 			txtLocalName.Placeholder = "WhatsPlaceName".Translate();
 			txtDescription.Placeholder = "MomentRemember".Translate();
