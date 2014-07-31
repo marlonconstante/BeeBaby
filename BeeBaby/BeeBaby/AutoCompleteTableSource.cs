@@ -55,6 +55,7 @@ namespace BeeBaby
 			if (cell == null)
 			{
 				cell = new UITableViewCell(UITableViewCellStyle.Default, s_cellIdentifier);
+				cell.BackgroundColor = UIColor.Clear;
 			}
 
 			var location = m_locations[indexPath.Row];

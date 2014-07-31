@@ -134,7 +134,7 @@ namespace BeeBaby
 				var moments = new MomentService().GetAllMoments(baby);
 
 				lblBabyName.Text = baby.Name;
-				lblBabyAge.Text = string.Concat("Have".Translate(), " ",baby.AgeInWords);
+				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords);
 
 				InitPopover();
 

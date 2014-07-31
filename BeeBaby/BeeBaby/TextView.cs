@@ -42,9 +42,9 @@ namespace BeeBaby
 		/// </summary>
 		void AddPlaceholder()
 		{
-			m_placeholder = new Label(new RectangleF(10f, 10f, Frame.Width - 20f, 0f));
+			m_placeholder = new Label(new RectangleF(10f, 10f, 300f, 34f));
 			m_placeholder.TextColor = UIColor.LightGray;
-			m_placeholder.Lines = 3;
+			m_placeholder.Lines = 2;
 
 			AddSubview(m_placeholder);
 		}
@@ -111,6 +111,19 @@ namespace BeeBaby
 			}
 			set {
 				m_placeholder.Text = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the placeholder frame.
+		/// </summary>
+		/// <value>The placeholder frame.</value>
+		public RectangleF PlaceholderFrame {
+			get {
+				return m_placeholder.Frame;
+			}
+			set {
+				m_placeholder.Frame = value;
 			}
 		}
 

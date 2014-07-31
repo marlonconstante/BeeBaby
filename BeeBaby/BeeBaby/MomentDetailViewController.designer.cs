@@ -16,12 +16,6 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIButton btnSave { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSelectEvent { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel lblMomentAbout { get; set; }
-
-		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
@@ -52,16 +46,6 @@ namespace BeeBaby
 				btnSave = null;
 			}
 
-			if (btnSelectEvent != null) {
-				btnSelectEvent.Dispose ();
-				btnSelectEvent = null;
-			}
-
-			if (lblMomentAbout != null) {
-				lblMomentAbout.Dispose ();
-				lblMomentAbout = null;
-			}
-
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;
@@ -70,6 +54,11 @@ namespace BeeBaby
 			if (scrView != null) {
 				scrView.Dispose ();
 				scrView = null;
+			}
+
+			if (tblView != null) {
+				tblView.Dispose ();
+				tblView = null;
 			}
 
 			if (txtDescription != null) {
@@ -85,11 +74,6 @@ namespace BeeBaby
 			if (vwDate != null) {
 				vwDate.Dispose ();
 				vwDate = null;
-			}
-
-			if (tblView != null) {
-				tblView.Dispose ();
-				tblView = null;
 			}
 		}
 	}

@@ -124,8 +124,8 @@ Moment = Momento
 MomentAbout = Este momento é sobre:
 SelectEvent = Escolha um acontecimento
 WhichWas = Onde foi?
-MomentRemember = O que você gostaria de lembrar sobre este momento?
-WhatsPlaceName = Qual o nome deste local?
+MomentRemember = Você quer adicionar uma descrição sobre este momento?
+WhatsPlaceName = Onde vocês estão?
 WhatsBabyName = Qual é o nome do bebê?
 WhatsUserName = Qual é o usuário do bebê?
 EnterBabyName = Digite um nome
@@ -161,8 +161,9 @@ YourBabyDataWereSaved = Os dados do seu bebê foram salvos.
 WhatEventIsThis = Qual é este evento?
 BrowseCategory = Procure em outras categorias:
 At = Em
-InDate = No Dia
+InDate = No dia
 AtAge = Com
+Have = Tem
 ";
 				#endregion
 			}
@@ -223,8 +224,8 @@ Moment = Moment
 MomentAbout = This moment is about:
 SelectEvent = Choose an event
 WhichWas = Where was it?
-MomentRemember = What would you like to remember about this moment?
-WhatsPlaceName = What is the name of this place?
+MomentRemember = Would you like to add a description to this moment?
+WhatsPlaceName = Where are you?
 WhatsBabyName = What is the baby name?
 WhatsUserName = What is the username of the baby?
 EnterBabyName = Type a name
@@ -262,6 +263,7 @@ BrowseCategory = Browse other categories:
 At = At
 InDate = In
 AtAge = At
+Have = Have
 ";
 				#endregion
 			}

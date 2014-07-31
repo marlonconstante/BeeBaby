@@ -278,6 +278,7 @@
     <BundleResource Include="Resources\trash.svg" />
     <BundleResource Include="Resources\photo.svg" />
     <BundleResource Include="Resources\pencil.svg" />
+    <BundleResource Include="Resources\comment.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
