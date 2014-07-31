@@ -44,7 +44,8 @@ namespace BeeBaby
 				var request = new RestRequest("1/installations/", Method.POST);
 
 				var token = deviceToken.Description.Replace(" ", string.Empty).Replace("<", string.Empty).Replace(">", string.Empty);
-				var json = "{ \"deviceType\": \"ios\", \"deviceToken\": \"" + token + "\", \"channels\": [\"\"] }";
+				var languageChannel = SHCultureInfo.From(NSLocale.CurrentLocale).Name;
+				var json = "{ \"deviceType\": \"ios\", \"deviceToken\": \"" + token + "\", \"channels\": [\"" + languageChannel + "\"] }";
 
 				request.Credentials = new NetworkCredential(ParseApplicationId, ParseMasterKey);
 
@@ -55,7 +56,8 @@ namespace BeeBaby
 				request.Parameters.Clear();
 				request.AddParameter("application/json", json, ParameterType.RequestBody);
 
-				client.ExecuteAsync(request, response => {
+				client.ExecuteAsync(request, response =>
+				{
 					Console.WriteLine("Dispositivo registrado com sucesso:\n" + response.Content);
 				});
 			}
@@ -189,7 +191,7 @@ namespace BeeBaby
 			hud.SetStyleClass("progress");
 
 			var frame = hud.Frame;
-			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (float)Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
 		}
 
@@ -197,7 +199,8 @@ namespace BeeBaby
 		/// Gets or sets the window.
 		/// </summary>
 		/// <value>The window.</value>
-		public override UIWindow Window {
+		public override UIWindow Window
+		{
 			get;
 			set;
 		}

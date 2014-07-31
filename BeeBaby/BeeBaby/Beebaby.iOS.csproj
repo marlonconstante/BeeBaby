@@ -62,6 +62,7 @@
     <BuildIpa>true</BuildIpa>
     <MtouchExtraArgs>-time -time --dsym=false</MtouchExtraArgs>
     <OptimizePNGs>false</OptimizePNGs>
+    <CodesignProvision>D14C94B8-86B1-42EF-BEF6-83415A09C274</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
