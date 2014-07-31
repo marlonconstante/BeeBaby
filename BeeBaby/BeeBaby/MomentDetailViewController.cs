@@ -259,8 +259,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Gos the back to events.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void GoBackToEvents(UIButton sender)
+		public void GoBackToEvents()
 		{
 			LeftBarButtonAction();
 		}

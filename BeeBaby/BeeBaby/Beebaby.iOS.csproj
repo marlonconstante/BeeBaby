@@ -279,6 +279,7 @@
     <BundleResource Include="Resources\photo.svg" />
     <BundleResource Include="Resources\pencil.svg" />
     <BundleResource Include="Resources\comment.svg" />
+    <BundleResource Include="Resources\background-event.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -441,6 +442,11 @@
       <DependentUpon>CameraNavigationController.cs</DependentUpon>
     </Compile>
     <Compile Include="MomentNavigationController.cs" />
+    <Compile Include="EventView.cs" />
+    <Compile Include="EventView.designer.cs">
+      <DependentUpon>EventView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvatarView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

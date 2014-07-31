@@ -24,7 +24,23 @@ namespace BeeBaby
 		/// <param name="ev">Event.</param>
 		public override bool PointInside(PointF point, UIEvent ev)
 		{
-			return TouchArea.IsPointInside(point, Bounds);
+			if (IsIncreaseTouchArea())
+			{
+				return TouchArea.IsPointInside(point, Bounds);
+			}
+			else
+			{
+				return base.PointInside(point, ev);
+			}
+		}
+
+		/// <summary>
+		/// Determines whether this instance is increase touch area.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is increase touch area; otherwise, <c>false</c>.</returns>
+		public virtual bool IsIncreaseTouchArea()
+		{
+			return true;
 		}
 
 		/// <summary>

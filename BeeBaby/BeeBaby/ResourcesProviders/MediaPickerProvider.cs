@@ -37,7 +37,6 @@ namespace BeeBaby.ResourcesProviders
 			{
 				picker.SourceType = UIImagePickerControllerSourceType.Camera;
 				picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
-				picker.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 				picker.PrefersStatusBarHidden();
 				picker.ShowsCameraControls = false;
 
@@ -53,6 +52,7 @@ namespace BeeBaby.ResourcesProviders
 			{
 				picker.SourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
 			}
+			picker.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 			picker.ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 			picker.Delegate = Delegate;
 

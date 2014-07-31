@@ -46,7 +46,7 @@ namespace BeeBaby
 		{
 			base.ViewWillAppear(animated);
 
-			m_profileView.UpdateBabyProfiles();
+			m_profileView.Redraw();
 		}
 
 		/// <summary>

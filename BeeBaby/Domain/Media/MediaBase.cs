@@ -15,6 +15,8 @@ namespace Domain.Media
 		public const string PhotoProfileName = "profile-photo";
 		public const float PhotoProfileSize = 98f;
 		public const float PhotoProfileInnerSize = 88f;
+		public const float BadgeEventSize = 108f;
+		public const float BadgeEventInnerSize = 90f;
 		#endregion
 
 		/// <summary>

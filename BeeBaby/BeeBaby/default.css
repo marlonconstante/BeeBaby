@@ -34,9 +34,6 @@ segmented-control {
 .fullscreen label,
 .table-menu table-view-cell label:highlighted,
 .table-menu table-view-cell label:selected,
-.view .baby-button,
-.view .baby-button:highlighted,
-.view .baby-button:selected,
 .navigation navigation-bar,
 .navigation navigation-bar title,
 .navigation navigation-bar button,
@@ -188,10 +185,18 @@ segmented-control label,
 	border-radius: 5;
 }
 
-.photo-profile {
-	border:	1 solid #fff;
+.photo-profile,
+.badge-event {
 	shape: ellipse;
 	-ios-tint-color: #fff;
+}
+
+.photo-profile {
+	border:	1 solid #fff;
+}
+
+.badge-event {
+	border:	1.6 solid #fff;
 }
 
 .button-camera,
@@ -426,9 +431,23 @@ text-view {
 	font-family: "Roboto Condensed";
 }
 
+.avatar-label,
+.change-event-label,
 .image-share-where-label,
 .image-share-age-label {
 	font-family: "Quicksand";
+}
+
+.change-event-label {
+	color: #cdd5ec;
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+.avatar-label {
+	color: #fff;
+	font-size: 18pt;
+	font-weight: bold;
 }
 
 .image-share-title {

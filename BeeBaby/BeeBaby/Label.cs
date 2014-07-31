@@ -34,6 +34,7 @@ namespace BeeBaby
 			NSMutableParagraphStyle style = new NSMutableParagraphStyle();
 			style.MinimumLineHeight = lineHeight;
 			style.MaximumLineHeight = lineHeight;
+			style.Alignment = TextAlignment;
 
 			NSMutableAttributedString attributedString = new NSMutableAttributedString(AttributedText);
 			attributedString.AddAttribute(new NSString("NSParagraphStyle"), style, new NSRange(0, attributedString.Length));
