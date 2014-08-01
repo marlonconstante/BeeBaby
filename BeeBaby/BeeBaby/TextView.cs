@@ -115,6 +115,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets or sets the color of the placeholder.
+		/// </summary>
+		/// <value>The color of the placeholder.</value>
+		public UIColor PlaceholderColor {
+			get {
+				return m_placeholder.TextColor;
+			}
+			set {
+				m_placeholder.TextColor = value;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the placeholder frame.
 		/// </summary>
 		/// <value>The placeholder frame.</value>

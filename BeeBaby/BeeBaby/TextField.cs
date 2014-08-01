@@ -7,6 +7,7 @@ namespace BeeBaby
 {
 	public partial class TextField : UITextField, IKeyboardSupport
 	{
+		const string s_placeholderColorKey = "_placeholderLabel.textColor";
 		bool m_updateKeyboardPosition = true;
 
 		public TextField(IntPtr handle) : base(handle)
@@ -59,6 +60,19 @@ namespace BeeBaby
 		public float OffsetHeight {
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the color of the placeholder.
+		/// </summary>
+		/// <value>The color of the placeholder.</value>
+		public UIColor PlaceholderColor {
+			get {
+				return (UIColor) ValueForKeyPath(new NSString(s_placeholderColorKey));
+			}
+			set {
+				SetValueForKeyPath(value, new NSString(s_placeholderColorKey));
+			}
 		}
 	}
 }

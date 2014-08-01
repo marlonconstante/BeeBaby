@@ -39,8 +39,8 @@ namespace BeeBaby
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
 			tblView.ExclusiveTouch = true;
-			tblView.BackgroundColor = txtLocalName.BackgroundColor;
 			txtLocalName.OffsetHeight = tblView.Frame.Height;
+			txtLocalName.PlaceholderColor = UIColor.FromRGB(77, 95, 92);
 
 			txtDescription.TextContainerInset = new UIEdgeInsets(13f, 27f, 0f, 0f);
 			txtDescription.PlaceholderFrame = new RectangleF(32f, 14f, 275f, 34f);

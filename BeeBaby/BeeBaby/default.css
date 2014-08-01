@@ -17,6 +17,10 @@ text-view,
 	background-color: #cedbdb;
 }
 
+.table-location table-view-cell:selected {
+	background-color: #d9e9e9;
+}
+
 .table-menu table-view-cell:selected,
 .navigation navigation-bar,
 segmented-control {
@@ -273,6 +277,9 @@ segmented-control label,
 	background-color: #dce6e6;
 }
 
+.table-location,
+.table-location table-view-cell,
+.input-text.location-name,
 .view .row.highlighted,
 .view .highlighted-button,
 .view .highlighted-button:highlighted,
@@ -391,7 +398,6 @@ map-view label {
 .input-text.location-name {
 	padding-top: 0;
 	padding-left: 32;
-	background-color: #d9e9e9;
 }
 
 text-field,
