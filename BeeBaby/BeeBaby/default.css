@@ -13,11 +13,11 @@ text-view,
 	font-family: "Quicksand";
 }
 
-.table-view table-view-cell:selected {
+.view .table-view table-view-cell:selected {
 	background-color: #cedbdb;
 }
 
-.table-location table-view-cell:selected {
+.view .table-location table-view-cell:selected {
 	background-color: #d9e9e9;
 }
 
@@ -163,7 +163,7 @@ segmented-control {
 .view .button-popover,
 .view .button-popover:highlighted,
 .view .button-popover:selected,
-.table-view table-view-cell label,
+.view .table-view table-view-cell label,
 .special-event-label,
 .time-box-label {
 	font-size: 14pt;
@@ -277,14 +277,37 @@ segmented-control label,
 	background-color: #dce6e6;
 }
 
-.table-location,
-.table-location table-view-cell,
 .input-text.location-name,
 .view .row.highlighted,
 .view .highlighted-button,
 .view .highlighted-button:highlighted,
 .view .highlighted-button:selected {
 	background-color: #e5f2f2;
+}
+
+.input-text.location-name,
+.view .row.highlighted {
+	box-shadow: 0 1 0 0 #bad0cd;
+}
+
+.view .highlighted-button,
+.view .highlighted-button:highlighted,
+.view .highlighted-button:selected {
+	box-shadow: 0 -0.5 0 0 #889696;
+}
+
+.view .table-location,
+.view .table-location table-view-cell {
+	background-color: #eefafa;
+}
+
+.view .table-location table-view-cell:first-child,
+.view .table-location table-view-cell:first-child:selected {
+	box-shadow: inset 0 1.5 0 0 #e1eded, inset 0 1 0 0 #d7e1e2, inset 0 0.5 0 0 #bad0cd;
+}
+
+.view .table-location table-view-cell label {
+	color: #889696;
 }
 
 .selected-cell {
@@ -369,11 +392,11 @@ switch,
 	box-shadow: 0 -1 0 0 #b6bcba;
 }
 
-.table-view table-view-cell {
+.view .table-view table-view-cell {
   background-color: #fff;
 }
 
-.table-view table-view-cell:nth-child(odd) {
+.view .table-view table-view-cell:nth-child(odd) {
   background-color: #f2f5f5;
 }
 

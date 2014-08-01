@@ -49,13 +49,12 @@ namespace BeeBaby
 		/// <returns>The cell.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(s_cellIdentifier);
 			if (cell == null)
 			{
 				cell = new UITableViewCell(UITableViewCellStyle.Default, s_cellIdentifier);
-				cell.BackgroundColor = UIColor.Clear;
 			}
 
 			var location = m_locations[indexPath.Row];

@@ -35,6 +35,8 @@ namespace BeeBaby
 			{
 				target.InputLocalReturn(target.txtLocalName);
 			};
+			scrView.Scrolled += proxy.HandleEvent;
+
 			vwDate.Clicked += proxy.HandleEvent;
 			vwDate.Init(UIDatePickerMode.DateAndTime);
 
