@@ -16,6 +16,9 @@ namespace BeeBaby
 		MonoTouch.UIKit.UIButton btnSave { get; set; }
 
 		[Outlet]
+		BeeBaby.EventView evtView { get; set; }
+
+		[Outlet]
 		MonoTouch.MapKit.MKMapView mapView { get; set; }
 
 		[Outlet]
@@ -56,6 +59,11 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
+			}
+
+			if (evtView != null) {
+				evtView.Dispose ();
+				evtView = null;
 			}
 
 			if (txtDescription != null) {

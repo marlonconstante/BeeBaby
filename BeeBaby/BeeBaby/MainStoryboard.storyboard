@@ -113,6 +113,7 @@
                     <navigationItem key="navigationItem" id="LSR-dg-obf"/>
                     <connections>
                         <outlet property="btnSave" destination="b1H-we-1LJ" id="ddE-G1-hwv"/>
+                        <outlet property="evtView" destination="n25-zG-hv5" id="yWN-kd-Uyd"/>
                         <outlet property="mapView" destination="5cT-qc-4it" id="Kyl-UM-70Q"/>
                         <outlet property="scrView" destination="TiS-MY-n35" id="qpc-Pe-We6"/>
                         <outlet property="tblView" destination="tH2-oK-aYl" id="EzB-u0-3LK"/>

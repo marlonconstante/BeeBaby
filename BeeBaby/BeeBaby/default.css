@@ -462,6 +462,7 @@ text-view {
 }
 
 .avatar-label,
+.baby-label,
 .change-event-label,
 .image-share-where-label,
 .image-share-age-label {
@@ -474,10 +475,18 @@ text-view {
 	font-weight: bold;
 }
 
-.avatar-label {
+.avatar-label,
+.baby-label {
 	color: #fff;
-	font-size: 18pt;
 	font-weight: bold;
+}
+
+.avatar-label {
+	font-size: 18pt;
+}
+
+.baby-label {
+	font-size: 17pt;
 }
 
 .image-share-title {

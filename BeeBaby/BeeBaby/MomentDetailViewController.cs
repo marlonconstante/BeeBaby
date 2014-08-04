@@ -18,6 +18,7 @@ namespace BeeBaby
 	{
 		ZoomMapViewDelegate m_mapViewDelegate;
 		IEnumerable<Location> m_locations;
+		bool m_updateConstraints = true;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -31,8 +32,7 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			var proxy = new EventProxy<MomentDetailViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) =>
-			{
+			proxy.Action = (target, sender, args) => {
 				target.InputLocalReturn(target.txtLocalName);
 			};
 			scrView.Scrolled += proxy.HandleEvent;
@@ -115,7 +115,25 @@ namespace BeeBaby
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			scrView.ContentSize = new SizeF(320f, 504f);
+			scrView.ContentSize = new SizeF(320f, UIScreen.MainScreen.Bounds.Height - 64f);
+			AdjustConstraints();
+		}
+
+		/// <summary>
+		/// Adjusts the constraints.
+		/// </summary>
+		void AdjustConstraints()
+		{
+			if (m_updateConstraints)
+			{
+				var constant = UIScreen.MainScreen.Bounds.Height - 568f;
+				if (constant < 0)
+				{
+					Views.ChangeHeightAndDragNextViews(evtView, constant);
+					evtView.Redraw(true);
+				}
+				m_updateConstraints = false;
+			}
 		}
 
 		/// <summary>

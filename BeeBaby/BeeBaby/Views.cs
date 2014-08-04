@@ -11,6 +11,39 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Changes the height and drag next views.
+		/// </summary>
+		/// <param name="view">View.</param>
+		/// <param name="constant">Constant.</param>
+		public static void ChangeHeightAndDragNextViews(UIView view, float constant)
+		{
+			var superview = view.Superview;
+			var nextViews = Views.GetNextViews(view);
+			foreach (var constraint in superview.Constraints)
+			{
+				var value = constraint.FirstItem;
+				if (value is UIView)
+				{
+					if (value == view)
+					{
+						if (NSLayoutAttribute.Height == constraint.FirstAttribute)
+						{
+							constraint.Constant += constant;
+						}
+					}
+					else if (nextViews.Contains((UIView) value))
+					{
+						if (NSLayoutAttribute.Top == constraint.FirstAttribute)
+						{
+							constraint.Constant += constant;
+						}
+					}
+				}
+			}
+			superview.LayoutSubviews();
+		}
+
+		/// <summary>
 		/// Gets the subviews.
 		/// </summary>
 		/// <returns>The subviews.</returns>

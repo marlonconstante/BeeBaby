@@ -40,6 +40,15 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets the description style class.
+		/// </summary>
+		/// <returns>The description style class.</returns>
+		protected override string GetDescriptionStyleClass()
+		{
+			return "baby-label";
+		}
+
+		/// <summary>
 		/// Action the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -166,7 +175,11 @@ namespace BeeBaby
 		UIView BuildViewProfile(BabyProfile babyProfile, int index = -1)
 		{
 			var x = (InitialFrame.Width / 2f) - (MediaBase.PhotoProfileSize / 2f);
-			var y = (InitialFrame.Height / 2f) - (MediaBase.PhotoProfileSize / 2f);
+			var y = 0f;
+			if (Template == AvatarTemplate.Photo)
+			{
+				y = (InitialFrame.Height / 2f) - (MediaBase.PhotoProfileSize / 2f);
+			}
 
 			if (index >= 0)
 			{
@@ -194,7 +207,7 @@ namespace BeeBaby
 			imageView.BabyProfile = babyProfile;
 			imageView.Layer.CornerRadius = MediaBase.PhotoProfileInnerSize / 2;
 
-			UpdateImageView(imageView, babyProfile.Image);
+			UpdateImageView(imageView, babyProfile.Image, Template == AvatarTemplate.Photo);
 
 			return imageView;
 		}

@@ -57,10 +57,9 @@ namespace BeeBaby
 		/// <returns>The photo.</returns>
 		protected override UIView BuildPhoto()
 		{
-			var x = (InitialFrame.Width / 2f) - (MediaBase.BadgeEventSize / 2f);
-			var y = 35f;
+			var x = (InitialFrame.Width / 2f) - (BadgeEventSize / 2f);
 
-			var view = new UIView(new RectangleF(x, y, MediaBase.BadgeEventSize, MediaBase.BadgeEventSize));
+			var view = new UIView(new RectangleF(x, 0f, BadgeEventSize, BadgeEventSize));
 			view.SetStyleClass("badge-event");
 			view.AddSubview(BuildImageViewEvent());
 
@@ -70,9 +69,10 @@ namespace BeeBaby
 		/// <summary>
 		/// Redraw this instance.
 		/// </summary>
-		public override void Redraw()
+		/// <param name="updateFrame">If set to <c>true</c> update frame.</param>
+		public override void Redraw(bool updateFrame = false)
 		{
-			base.Redraw();
+			base.Redraw(updateFrame);
 
 			var label = new Label(new RectangleF(115f, 0f, 200f, 22f));
 			label.Text = "SwapEvent".Translate();
@@ -87,16 +87,60 @@ namespace BeeBaby
 		/// <returns>The image view event.</returns>
 		UIImageViewClickable BuildImageViewEvent()
 		{
-			var position = (MediaBase.BadgeEventSize - MediaBase.BadgeEventInnerSize) / 2;
-			var frame = new RectangleF(position, position, MediaBase.BadgeEventInnerSize, MediaBase.BadgeEventInnerSize);
+			var position = (BadgeEventSize - BadgeEventInnerSize) / 2;
+			var frame = new RectangleF(position, position, BadgeEventInnerSize, BadgeEventInnerSize);
 
 			var image = UIImage.FromFile(CurrentContext.Instance.SelectedEvent.BadgeFileName);
 			var imageView = new UIImageViewClickable(frame);
-			imageView.Layer.CornerRadius = MediaBase.BadgeEventInnerSize / 2;
+			imageView.Layer.CornerRadius = BadgeEventInnerSize / 2;
 
-			UpdateImageView(imageView, image);
+			UpdateImageView(imageView, image, Template == AvatarTemplate.Photo);
 
 			return imageView;
+		}
+
+		/// <summary>
+		/// Gets the padding.
+		/// </summary>
+		/// <value>The padding.</value>
+		protected override float Padding {
+			get {
+				return base.Padding * Multiplier;
+			}
+		}
+
+		/// <summary>
+		/// Gets the size of the badge event.
+		/// </summary>
+		/// <value>The size of the badge event.</value>
+		float BadgeEventSize {
+			get {
+				return MediaBase.BadgeEventSize * Multiplier;
+			}
+		}
+
+		/// <summary>
+		/// Gets the size of the badge event inner.
+		/// </summary>
+		/// <value>The size of the badge event inner.</value>
+		float BadgeEventInnerSize {
+			get {
+				return MediaBase.BadgeEventInnerSize * Multiplier;
+			}
+		}
+
+		/// <summary>
+		/// Gets the multiplier.
+		/// </summary>
+		/// <value>The multiplier.</value>
+		float Multiplier {
+			get {
+				if (UIScreen.MainScreen.Bounds.Height <= 480f)
+				{
+					return 0.85f;
+				}
+				return 1f;
+			}
 		}
 	}
 }

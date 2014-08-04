@@ -47,10 +47,20 @@ namespace BeeBaby
 		/// </summary>
 		public override void SizeToFit()
 		{
-			var size = StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
-			if (size.Height > Frame.Height)
+			if (TextSize.Height > Frame.Height)
 			{
 				base.SizeToFit();
+			}
+		}
+
+		/// <summary>
+		/// Gets the size of the text.
+		/// </summary>
+		/// <value>The size of the text.</value>
+		public SizeF TextSize
+		{
+			get {
+				return StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
 			}
 		}
 

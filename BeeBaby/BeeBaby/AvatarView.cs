@@ -20,8 +20,6 @@ namespace BeeBaby
 	/// </summary>
 	public abstract class AvatarView : View
 	{
-		protected const float Padding = 10f;
-
 		Dictionary<string, UIView> m_viewMap = new Dictionary<string, UIView>();
 
 		public AvatarView(IntPtr handle, AvatarTemplate template) : base(handle)
@@ -95,13 +93,34 @@ namespace BeeBaby
 		/// <summary>
 		/// Redraw this instance.
 		/// </summary>
-		public virtual void Redraw()
+		/// <param name="updateFrame">If set to <c>true</c> update frame.</param>
+		public virtual void Redraw(bool updateFrame = false)
 		{
-			AddSubview("photo", BuildPhoto());
+			if (updateFrame)
+			{
+				InitialFrame = Frame;
+			}
+
+			var view = new UIView();
+			var photo = BuildPhoto();
+			view.AddSubview(photo);
+
+			var height = photo.Frame.Height;
 			if (Template == AvatarTemplate.PhotoAndDescription)
 			{
-				AddSubview("description", BuildDescription());
+				height += Padding;
+
+				var description = BuildDescription(height);
+				view.AddSubview(description);
+				view.UserInteractionEnabled = false;
+
+				height += description.Frame.Height;
 			}
+
+			var y = (InitialFrame.Height / 2f) - (height / 2f);
+			view.Frame = new RectangleF(0f, y, InitialFrame.Width, height);
+
+			AddSubview("avatar-view", view);
 		}
 
 		/// <summary>
@@ -127,6 +146,15 @@ namespace BeeBaby
 		protected abstract string GetDescription();
 
 		/// <summary>
+		/// Gets the description style class.
+		/// </summary>
+		/// <returns>The description style class.</returns>
+		protected virtual string GetDescriptionStyleClass()
+		{
+			return "avatar-label";
+		}
+
+		/// <summary>
 		/// Action the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -142,17 +170,19 @@ namespace BeeBaby
 		/// Builds the description.
 		/// </summary>
 		/// <returns>The description.</returns>
-		protected virtual Label BuildDescription()
+		/// <param name="y">The y coordinate.</param>
+		Label BuildDescription(float y)
 		{
-			var width = InitialFrame.Width - (Padding * 2f);
-			var height = 64f;
-			var y = InitialFrame.Height - height;
-
-			var label = new Label(new RectangleF(Padding, y, width, height));
-			label.SetStyleClass("avatar-label");
-			label.TextAlignment = UITextAlignment.Center;
+			var maxWidth = InitialFrame.Width - (Padding * 2f);
+			var label = new Label(new RectangleF(0f, y, maxWidth, 0f));
 			label.Lines = 2;
+			label.SetStyleClass(GetDescriptionStyleClass());
+			label.TextAlignment = UITextAlignment.Center;
 			label.Text = GetDescription();
+
+			var frame = label.Frame;
+			frame.X = (InitialFrame.Width / 2f) - (frame.Width / 2f);
+			label.Frame = frame;
 
 			return label;
 		}
@@ -162,14 +192,25 @@ namespace BeeBaby
 		/// </summary>
 		/// <param name="imageView">Image view.</param>
 		/// <param name="image">Image.</param>
-		/// <param name="addClickedEvent">If set to <c>true</c> add clicked event.</param>
-		protected void UpdateImageView(UIImageViewClickable imageView, UIImage image, bool addClickedEvent = true) {
+		/// <param name="addEvent">If set to <c>true</c> add event.</param>
+		protected void UpdateImageView(UIImageViewClickable imageView, UIImage image, bool addEvent)
+		{
 			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 			imageView.ClipsToBounds = true;
 			imageView.Image = image;
-			if (addClickedEvent)
+			if (addEvent)
 			{
 				imageView.Clicked += ProxyAction.HandleEvent;
+			}
+		}
+
+		/// <summary>
+		/// Gets the padding.
+		/// </summary>
+		/// <value>The padding.</value>
+		protected virtual float Padding {
+			get {
+				return 10f;
 			}
 		}
 

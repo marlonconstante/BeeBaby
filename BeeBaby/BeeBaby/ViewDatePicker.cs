@@ -18,7 +18,6 @@ namespace BeeBaby
 		UIDatePickerMode m_mode;
 		DateTime m_dateTime = DateTime.Now;
 		string m_longDateMask;
-		IList<UIView> m_nextViews;
 		EventHandler m_clicked;
 
 		public ViewDatePicker(IntPtr handle) : base(handle)
@@ -39,8 +38,16 @@ namespace BeeBaby
 			AddImage();
 			AddButton();
 			AddDatePicker();
+		}
 
-			m_nextViews = Views.GetNextViews(this);
+		/// <summary>
+		/// Determines whether this instance is increase touch area.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsIncreaseTouchArea()
+		{
+			return false;
 		}
 
 		/// <summary>
@@ -151,28 +158,7 @@ namespace BeeBaby
 		void AdjustConstraints(float constant)
 		{
 			UIView.Animate(0.3d, () => {
-				foreach (var constraint in Superview.Constraints)
-				{
-					var value = constraint.FirstItem;
-					if (value is UIView)
-					{
-						if (value == this)
-						{
-							if (NSLayoutAttribute.Height == constraint.FirstAttribute)
-							{
-								constraint.Constant += constant;
-							}
-						}
-						else if (m_nextViews.Contains((UIView) value))
-						{
-							if (NSLayoutAttribute.Top == constraint.FirstAttribute)
-							{
-								constraint.Constant += constant;
-							}
-						}
-					}
-				}
-				Superview.LayoutSubviews();
+				Views.ChangeHeightAndDragNextViews(this, constant);
 			}, () => {
 				if (Superview is UIScrollView)
 				{
@@ -184,7 +170,7 @@ namespace BeeBaby
 
 					if (!KeyboardNotification.KeyboardVisible)
 					{
-						scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, Math.Max(1f, Frame.Y + constant)), true);
+						scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, UIScreen.MainScreen.Bounds.Height - 64f), true);
 					}
 				}
 			});
