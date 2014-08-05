@@ -77,6 +77,16 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Determines whether this instance is log flow.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsLogFlow()
+		{
+			return false;
+		}
+
+		/// <summary>
 		/// Gets the menu items.
 		/// </summary>
 		/// <returns>The menu items.</returns>
@@ -135,12 +145,14 @@ namespace BeeBaby
 			}
 		}
 
+		/// <summary>
+		/// Syncs the moment.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
 		public void SyncMoment(Moment moment)
 		{
 			RemoteDataSystem.SendMomentData(moment);
 		}
-
-
 
 		/// <summary>
 		/// Gets or sets the current storyboard identifier.

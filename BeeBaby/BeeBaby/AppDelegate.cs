@@ -13,6 +13,7 @@ using Infrastructure.Configuration;
 using MonoTouch.FacebookConnect;
 using RestSharp;
 using System.Net;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
@@ -110,6 +111,8 @@ namespace BeeBaby
 			KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
 			MediaLibrary.Instance.Initialize();
+
+			PreferencesEditor.CreateSession();
 
 			InitProgressHUD();
 		}

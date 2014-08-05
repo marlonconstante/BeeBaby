@@ -6,7 +6,7 @@ using BeeBaby.ResourcesProviders;
 
 namespace BeeBaby
 {
-	public partial class ImageShareViewController : BaseViewController
+	public partial class ImageShareViewController : UIViewController
 	{
 		public ImageShareViewController(IntPtr handle) : base(handle)
 		{

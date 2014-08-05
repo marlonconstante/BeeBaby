@@ -27,11 +27,13 @@ namespace Domain.Log
 		}
 
 		/// <summary>
-		/// Log the specified flow.
+		/// Saves the flow.
 		/// </summary>
 		/// <param name="flow">Flow.</param>
-		public void Log(Flow flow)
+		public void SaveFlow(Flow flow)
 		{
+			MainRepository[flow.Id] = flow;
+			UnitOfWork.Commit();
 		}
 	}
 }
