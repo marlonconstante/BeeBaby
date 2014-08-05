@@ -92,9 +92,12 @@ namespace BeeBaby
 
 			if (selectAll)
 			{
+				var moment = CurrentContext.Instance.Moment;
+				moment.SelectedMediaNames.Clear();
+
 				foreach (var image in m_images)
 				{
-					CurrentContext.Instance.Moment.SelectedMediaNames.Add(image.FileName);
+					moment.SelectedMediaNames.Add(image.FileName);
 				}
 			}
 		}
