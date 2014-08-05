@@ -107,8 +107,6 @@ namespace BeeBaby
 		/// </summary>
 		void LoadBaby()
 		{
-			new ImageProvider().DeleteFiles(true);
-
 			CurrentContext.Instance.CurrentBaby = PreferencesEditor.LoadLastUsedBaby();
 		}
 
@@ -130,6 +128,8 @@ namespace BeeBaby
 		{
 			if (CurrentContext.Instance.ReloadMoments)
 			{
+				new ImageProvider().DeleteFiles(true);
+
 				var baby = CurrentContext.Instance.CurrentBaby;
 				var moments = new MomentService().GetAllMoments(baby);
 
