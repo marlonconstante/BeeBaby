@@ -116,7 +116,7 @@ namespace BeeBaby
 				m_collectionViewSource = new ImageCollectionViewSource(this);
 				clnView.Source = m_collectionViewSource;
 			}
-			m_collectionViewSource.ReloadData(clnView, initialize);
+			m_collectionViewSource.ReloadData(clnView, initialize && IsMediaFlow());
 		}
 	}
 }
