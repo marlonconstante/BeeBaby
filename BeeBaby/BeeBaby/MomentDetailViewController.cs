@@ -16,7 +16,7 @@ namespace BeeBaby
 {
 	public partial class MomentDetailViewController : NavigationViewController
 	{
-		ZoomMapViewDelegate m_mapViewDelegate;
+		UserLocation m_userLocation;
 		IEnumerable<Location> m_locations;
 		bool m_updateConstraints = true;
 
@@ -47,8 +47,11 @@ namespace BeeBaby
 			txtDescription.TextContainerInset = new UIEdgeInsets(13f, 27f, 0f, 0f);
 			txtDescription.PlaceholderFrame = new RectangleF(32f, 14f, 275f, 34f);
 
-			m_mapViewDelegate = new ZoomMapViewDelegate(this, 0.001d, IsCameraFlow());
-			mapView.Delegate = m_mapViewDelegate;
+			m_userLocation = new UserLocation();
+			if (IsCameraFlow())
+			{
+				m_userLocation.UpdatedPosition = LoadNearLocation;
+			}
 
 			m_locations = new LocationService().GetAllLocations();
 		}
@@ -71,6 +74,11 @@ namespace BeeBaby
 			if (selectedEvent != null)
 			{
 				CurrentContext.Instance.Moment.Event = selectedEvent;
+			}
+
+			if (IsCameraFlow())
+			{
+				m_userLocation.StartUpdatingLocation();
 			}
 
 			if (IsEventFlow())
@@ -102,7 +110,7 @@ namespace BeeBaby
 
 			base.ViewWillDisappear(animated);
 
-			m_mapViewDelegate.UpdateUserLocation = false;
+			m_userLocation.StopUpdatingLocation();
 
 			txtLocalName.ShouldBeginEditing -= InputLocalBeginEditing;
 			txtLocalName.ShouldReturn -= InputLocalReturn;
@@ -141,10 +149,10 @@ namespace BeeBaby
 		/// </summary>
 		public void LoadNearLocation()
 		{
-			var currentPlace = new CLLocation(mapView.CenterCoordinate.Latitude, mapView.CenterCoordinate.Longitude);
+			var currentPlace = GetLocation(m_userLocation.Position);
 			foreach (var location in m_locations)
 			{
-				var place = new CLLocation(location.Position.Latitude, location.Position.Longitude);
+				var place = GetLocation(location.Position);
 				if (place.DistanceFrom(currentPlace) <= 200d)
 				{
 					FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
@@ -152,6 +160,16 @@ namespace BeeBaby
 					break;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Gets the location.
+		/// </summary>
+		/// <returns>The location.</returns>
+		/// <param name="position">Position.</param>
+		CLLocation GetLocation(Coordinates position)
+		{
+			return new CLLocation(position.Latitude, position.Longitude);
 		}
 
 		/// <summary>
@@ -224,15 +242,15 @@ namespace BeeBaby
 		/// <param name="updateOnlyCoordinates">If set to <c>true</c> update only coordinates.</param>
 		public void SelectLocation(Location location, bool updateOnlyCoordinates = false)
 		{
-			m_mapViewDelegate.UpdateUserLocation = false;
+			m_userLocation.StopUpdatingLocation();
 
 			if (location == null)
 			{
-				m_mapViewDelegate.LoadUserLocation(mapView);
+				m_userLocation.StartUpdatingLocation();
 			}
 			else
 			{
-				mapView.CenterCoordinate = new CLLocationCoordinate2D(location.Position.Latitude, location.Position.Longitude);
+				m_userLocation.Position = location.Position;
 
 				if (!updateOnlyCoordinates)
 				{
@@ -301,16 +319,11 @@ namespace BeeBaby
 				moment.Date = vwDate.DateTime;
 				moment.MediaCount = moment.SelectedMediaNames.Count;
 
-				moment.Position = new Coordinates();
-				moment.Position.Latitude = mapView.CenterCoordinate.Latitude;
-				moment.Position.Longitude = mapView.CenterCoordinate.Longitude;
+				moment.Position = m_userLocation.Position;
 
 				var location = new Location() {
 					Name = txtLocalName.Text,
-					Position = new Coordinates() {
-						Latitude = moment.Position.Latitude,
-						Longitude = moment.Position.Longitude
-					}
+					Position = moment.Position
 				};
 
 				location = new LocationService().SaveLocation(location);

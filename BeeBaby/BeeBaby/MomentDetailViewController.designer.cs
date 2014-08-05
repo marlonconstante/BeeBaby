@@ -19,9 +19,6 @@ namespace BeeBaby
 		BeeBaby.EventView evtView { get; set; }
 
 		[Outlet]
-		MonoTouch.MapKit.MKMapView mapView { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIScrollView scrView { get; set; }
 
 		[Outlet]
@@ -46,9 +43,9 @@ namespace BeeBaby
 				btnSave = null;
 			}
 
-			if (mapView != null) {
-				mapView.Dispose ();
-				mapView = null;
+			if (evtView != null) {
+				evtView.Dispose ();
+				evtView = null;
 			}
 
 			if (scrView != null) {
@@ -59,11 +56,6 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
-			}
-
-			if (evtView != null) {
-				evtView.Dispose ();
-				evtView = null;
 			}
 
 			if (txtDescription != null) {
