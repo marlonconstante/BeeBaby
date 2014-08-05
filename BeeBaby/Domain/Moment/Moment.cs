@@ -53,6 +53,15 @@ namespace Domain.Moment
 		public DateTime Date { set; get; }
 
 		/// <summary>
+		/// Gets or sets the language.
+		/// </summary>
+		/// <value>The language.</value>
+		public string Language {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the media count.
 		/// </summary>
 		/// <value>The media count.</value>

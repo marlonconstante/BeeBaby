@@ -11,6 +11,7 @@ using MonoTouch.Foundation;
 using MonoTouch.CoreLocation;
 using PixateFreestyleLib;
 using System.IO;
+using BeeBaby.Globalization;
 
 namespace BeeBaby
 {
@@ -317,6 +318,7 @@ namespace BeeBaby
 				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
 				moment.Date = vwDate.DateTime;
+				moment.Language = SHCultureInfo.From(NSLocale.CurrentLocale).Name;
 				moment.MediaCount = moment.SelectedMediaNames.Count;
 
 				moment.Position = m_userLocation.Position;
