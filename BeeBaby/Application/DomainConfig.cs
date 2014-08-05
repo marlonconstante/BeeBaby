@@ -11,6 +11,7 @@ using Infrastructure.Globalization;
 using Domain.Baby;
 using System.Globalization;
 using Infrastructure.Configuration;
+using Domain.Log;
 
 namespace Application
 {
@@ -29,6 +30,7 @@ namespace Application
 			DependencyService.Register<IMomentRepository>(new SqliteNetMomentRepository(connection, unitOfWork));
 			DependencyService.Register<IEventRepository>(new SqliteNetEventRepository(connection, unitOfWork, currentCultureInfo.Name));
 			DependencyService.Register<IUserRepository>(new SqliteNetUserRepository(connection, unitOfWork));
+			DependencyService.Register<IFlowRepository>(new SqliteNetFlowRepository(connection, unitOfWork));
 			DependencyService.Register<IBabyRepository>(new SqliteNetBabyRepository(connection, unitOfWork));
 			DependencyService.Register<ILocationRepository>(new SqliteNetLocationRepository(connection, unitOfWork));
 		}

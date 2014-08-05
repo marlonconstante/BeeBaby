@@ -54,6 +54,9 @@
     <Compile Include="User\User.cs" />
     <Compile Include="User\UserService.cs" />
     <Compile Include="User\IUserRepository.cs" />
+    <Compile Include="Log\Flow.cs" />
+    <Compile Include="Log\IFlowRepository.cs" />
+    <Compile Include="Log\FlowService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -61,6 +64,7 @@
     <Folder Include="Media\" />
     <Folder Include="Baby\" />
     <Folder Include="User\" />
+    <Folder Include="Log\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core" />
