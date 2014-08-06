@@ -1,6 +1,9 @@
 ﻿using System;
 using MonoTouch.UIKit;
 using Application;
+using BeeBaby.ResourcesProviders;
+using Domain.Moment;
+using Infrastructure.Systems;
 
 namespace BeeBaby
 {
@@ -26,6 +29,23 @@ namespace BeeBaby
 		public UIViewController GetCurrentViewController()
 		{
 			return TopViewController;
+		}
+
+		/// <summary>
+		/// Saves the current moment.
+		/// </summary>
+		public void SaveCurrentMoment()
+		{
+			var moment = CurrentContext.Instance.Moment;
+			moment.Location = new LocationService().SaveLocation(moment.Location);
+
+			new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
+			new MomentService().SaveMoment(moment);
+
+			RemoteDataSystem.SendMomentData(moment);
+
+			CurrentContext.Instance.ReloadMoments = true;
+			Close();
 		}
 
 		/// <summary>

@@ -146,15 +146,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Syncs the moment.
-		/// </summary>
-		/// <param name="moment">Moment.</param>
-		public void SyncMoment(Moment moment)
-		{
-			RemoteDataSystem.SendMomentData(moment);
-		}
-
-		/// <summary>
 		/// Gets or sets the current storyboard identifier.
 		/// </summary>
 		/// <value>The current storyboard identifier.</value>
