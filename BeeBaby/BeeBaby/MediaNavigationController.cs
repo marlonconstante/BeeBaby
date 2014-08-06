@@ -10,5 +10,15 @@ namespace BeeBaby
 		public MediaNavigationController(IntPtr handle) : base(handle)
 		{
 		}
+
+		/// <summary>
+		/// Close navigation.
+		/// </summary>
+		public override void Close()
+		{
+			base.Close();
+
+			new ImageProvider().DeleteFiles(true);
+		}
 	}
 }
