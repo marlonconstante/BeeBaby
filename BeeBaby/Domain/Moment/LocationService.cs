@@ -47,7 +47,6 @@ namespace Domain.Moment
 		public Location SaveLocation(Location location)
 		{
 			var oldLocation = GetLocationByName(location.Name);
-
 			if (oldLocation != null)
 			{
 				return oldLocation;
