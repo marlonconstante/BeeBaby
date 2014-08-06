@@ -12,6 +12,7 @@ using MonoTouch.CoreLocation;
 using PixateFreestyleLib;
 using System.IO;
 using BeeBaby.Globalization;
+using Domain.Baby;
 
 namespace BeeBaby
 {
@@ -315,7 +316,8 @@ namespace BeeBaby
 				var moment = CurrentContext.Instance.Moment;
 				moment.Description = txtDescription.Text;
 				moment.Event = CurrentContext.Instance.SelectedEvent;
-				moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
+
+				moment.Babies = new List<Baby> { CurrentContext.Instance.CurrentBaby };
 
 				moment.Date = vwDate.DateTime;
 				moment.Language = SHCultureInfo.From(NSLocale.CurrentLocale).Name;
@@ -323,26 +325,20 @@ namespace BeeBaby
 
 				moment.Position = m_userLocation.Position;
 
-				var location = new Location() {
+				moment.Location = new Location() {
 					Name = txtLocalName.Text,
 					Position = moment.Position
 				};
 
-				location = new LocationService().SaveLocation(location);
-				moment.Location = location;
-
-				new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
-				new MomentService().SaveMoment(moment);
-
-				if (RootViewController.GetType() == typeof(SlideoutNavigationController))
+				if (CurrentContext.Instance.CurrentBaby.IsValid())
 				{
-					var slideoutNavigation = (SlideoutNavigationController) RootViewController;
-					var menu = (MenuViewController) slideoutNavigation.MenuViewLeft;
-					menu.SyncMoment(CurrentContext.Instance.Moment);
+					((MomentNavigationController) NavigationController).SaveCurrentMoment();
 				}
-
-				CurrentContext.Instance.ReloadMoments = true;
-				((MomentNavigationController) NavigationController).Close();
+				else
+				{
+					PerformSegue("segueBaby", sender);
+				}
+			
 			}, false);
 		}
 	}

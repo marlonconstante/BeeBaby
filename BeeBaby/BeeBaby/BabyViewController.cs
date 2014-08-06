@@ -153,13 +153,13 @@ namespace BeeBaby
 
 					babyService.SaveBaby(baby);
 
-					if (!containsMenu)
+					if (containsMenu)
 					{
-						PerformSegue("segueSelectEvent", sender);
+						BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
 					}
 					else
 					{
-						BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
+						((MomentNavigationController) NavigationController).SaveCurrentMoment();
 					}
 				}, false);
 			}

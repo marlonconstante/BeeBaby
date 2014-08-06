@@ -83,23 +83,11 @@ namespace BeeBaby
 						var moment = CurrentContext.Instance.Moment;
 						moment.MediaCount = moment.SelectedMediaNames.Count;
 
-						new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
-						new MomentService().SaveMoment(moment);
-
-						CurrentContext.Instance.ReloadMoments = true;
-						((MomentNavigationController) NavigationController).Close();
+						((MomentNavigationController) NavigationController).SaveCurrentMoment();
 					}
 					else
 					{
-						if (CurrentContext.Instance.CurrentBaby.IsValid())
-						{
-							CurrentContext.Instance.Moment.Babies.Add(CurrentContext.Instance.CurrentBaby);
-							PerformSegue("segueSelectEvent", sender);
-						}
-						else
-						{
-							PerformSegue("segueBaby", sender);
-						}
+						PerformSegue("segueSelectEvent", sender);
 					}
 				}, false);
 			}
