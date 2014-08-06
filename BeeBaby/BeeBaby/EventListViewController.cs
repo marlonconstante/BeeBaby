@@ -49,8 +49,6 @@ namespace BeeBaby
 
 			m_tagsHeight = tagsHeightConstraint.Constant;
 
-			tblView.ContentOffset = new PointF(0, schBar.Frame.Height);
-
 			m_selectedTag = string.Empty;
 
 			var proxy = new EventProxy<EventListViewController, EventArgs>(this);
@@ -128,7 +126,7 @@ namespace BeeBaby
 			if (tblView.NumberOfRowsInSection(0) > 0)
 			{
 				tblView.DeselectRow(tblView.IndexPathForSelectedRow, animated);
-				tblView.ScrollToRow(NSIndexPath.FromRowSection(0, 0), UITableViewScrollPosition.Top, animated);
+				tblView.ScrollRectToVisible(new RectangleF(0f, 0f, 1f, schBar.Frame.Height), animated);
 				ResizeViewTags(m_tagsHeight, animated);
 			}
 		}
