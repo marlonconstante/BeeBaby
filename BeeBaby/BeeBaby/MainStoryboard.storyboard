@@ -115,11 +115,12 @@
                         <outlet property="txtDescription" destination="RSR-7K-8Yo" id="Kee-0T-d1O"/>
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
+                        <segue destination="blw-p8-7ZO" kind="push" identifier="segueBaby" id="wob-QH-ubI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1669" y="-251"/>
+            <point key="canvasLocation" x="1701" y="-251"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="2Un-uh-d7S">
@@ -604,12 +605,11 @@
                         <outlet property="txtUser" destination="ndE-KA-iu7" id="x1T-Eo-GTK"/>
                         <outlet property="vwBirthDay" destination="qP1-Xc-ecW" id="rRy-NP-Cq7"/>
                         <outlet property="vwBirthTime" destination="qcZ-yd-0ey" id="Y7B-WN-Qtf"/>
-                        <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueSelectEvent" id="yF0-vb-Xk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLl-GD-09a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="-1155"/>
+            <point key="canvasLocation" x="2208" y="-251"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">
@@ -753,7 +753,6 @@
                         <outlet property="btnAddMediaFromLibrary" destination="HTC-QG-Bjq" id="hcf-3T-mhE"/>
                         <outlet property="btnNextStep" destination="RG4-eh-7pr" id="h8l-Jx-bbw"/>
                         <outlet property="clnView" destination="870-n5-F8r" id="Gjt-4r-KQ9"/>
-                        <segue destination="blw-p8-7ZO" kind="push" identifier="segueBaby" id="c8K-Cg-AN5"/>
                         <segue destination="mnJ-tT-oAJ" kind="push" identifier="segueSelectEvent" id="96T-Ym-H7P"/>
                     </connections>
                 </viewController>
@@ -1391,7 +1390,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2yy-uq-YpW"/>
         <segue reference="96T-Ym-H7P"/>
+        <segue reference="2yy-uq-YpW"/>
     </inferredMetricsTieBreakers>
 </document>
