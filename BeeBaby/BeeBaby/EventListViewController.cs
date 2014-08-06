@@ -73,9 +73,12 @@ namespace BeeBaby
 					schBar.Delegate = new EventTableSearchBarDelegate(this, m_eventListViewSource, CurrentContext.Instance.AllEvents);
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
-
-					var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
-					SelectTag(recomendedButton);
+					
+					if (CurrentContext.Instance.CurrentBaby.IsValid())
+					{
+						var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
+						SelectTag(recomendedButton);
+					}
 				});
 			});
 		}
