@@ -280,6 +280,7 @@
     <BundleResource Include="Resources\pencil.svg" />
     <BundleResource Include="Resources\comment.svg" />
     <BundleResource Include="Resources\background-event.png" />
+    <BundleResource Include="Resources\flying-bee-bg.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
