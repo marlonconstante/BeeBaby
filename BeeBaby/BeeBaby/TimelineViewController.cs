@@ -259,7 +259,7 @@ namespace BeeBaby
 			var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 			var viewRect = tblView.ConvertRectToView(tableRect, View);
 
-			m_popover.Show(new PointF(96f, viewRect.Y));
+			m_popover.Show(new PointF(100f, viewRect.Y));
 		}
 	}
 }

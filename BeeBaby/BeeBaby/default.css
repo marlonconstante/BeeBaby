@@ -119,7 +119,7 @@ segmented-control {
 
 .time-box {
 	background-color: #f1f1e9;
-	box-shadow: 0 1 0 0 #b1bdbb;
+	box-shadow: 0 0.5 0 0 #b1bdbb;
 }
 
 .time-button,
@@ -129,15 +129,12 @@ segmented-control {
 	border-radius: 5;
 	font-size: 13pt;
 	font-weight: bold;
-	color: #595954;
-	-ios-tint-color: #595954;
+	-ios-tint-color: #000;
 }
 
 .time-button icon {
-	color: #595954;
-	-ios-tint-color: #595954;
 	background-image: url(comments.svg);
-	background-size: 20;
+	background-size: 21;
 }
 
 .time-table, 
@@ -171,7 +168,7 @@ segmented-control {
 }
 
 .thumbnails-box {
-	box-shadow: 0 2 1 0 #b1bdbb;
+	box-shadow: 0 1 0 0 #d2d2cb;
 }
 
 segmented-control label,
