@@ -290,7 +290,7 @@ namespace BeeBaby
 				var label = new Label(new RectangleF(margin, 0, m_descriptionPopover.Frame.Width - 2 * margin, m_descriptionPopover.Frame.Height));
 				label.BackgroundColor = UIColor.Green;
 				label.Lines = 20;
-				label.Text = "Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer123";
+				label.Text = m_tableSource.MomentAt(m_currentIndexPath).Description;
 
 				m_descriptionPopover.AddSubview(label);
 
