@@ -174,7 +174,7 @@ namespace BeeBaby
 				{
 					ActionProgress actionProgress = new ActionProgress(() =>
 					{
-						var momentImageView = (MomentImageView)sender;
+						var momentImageView = (MomentImageView) sender;
 						target.m_viewController.PresentViewController(target.m_fullscreenController, true, null);
 						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
 					}, false);

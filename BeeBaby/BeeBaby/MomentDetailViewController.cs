@@ -72,12 +72,6 @@ namespace BeeBaby
 			txtLocalName.ShouldReturn += InputLocalReturn;
 			txtLocalName.ShouldChangeCharacters += InputLocalChangeCharacters;
 
-			Event selectedEvent = CurrentContext.Instance.SelectedEvent;
-			if (selectedEvent != null)
-			{
-				CurrentContext.Instance.Moment.Event = selectedEvent;
-			}
-
 			if (IsCameraFlow())
 			{
 				m_userLocation.StartUpdatingLocation();
