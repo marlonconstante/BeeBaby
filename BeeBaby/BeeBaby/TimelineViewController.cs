@@ -97,7 +97,7 @@ namespace BeeBaby
 
 			if (m_desciptionPopover != null)
 			{
-				m_popover.Hide();
+				m_desciptionPopover.Hide();
 			}
 		}
 
