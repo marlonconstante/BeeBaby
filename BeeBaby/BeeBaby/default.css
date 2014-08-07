@@ -520,6 +520,12 @@ text-view {
 	transform: rotate(90);
 }
 
+.description-popover {
+	background-color: #f2f5f5;
+	border-radius:    8px;
+}
+
+
 .bee {
 	background-image: url(bee.svg);
 }

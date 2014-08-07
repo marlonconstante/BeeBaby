@@ -287,12 +287,17 @@ namespace BeeBaby
 				m_currentIndexPath = tblView.IndexPathForCell(cell);
 
 				const int margin = 10;
+
 				var label = new Label(new RectangleF(margin, 0, m_descriptionPopover.Frame.Width - 2 * margin, m_descriptionPopover.Frame.Height));
-				label.BackgroundColor = UIColor.Green;
 				label.Lines = 20;
 				label.Text = m_tableSource.MomentAt(m_currentIndexPath).Description;
 
-				m_descriptionPopover.AddSubview(label);
+				var view = new UIView(new RectangleF(0, 0, m_descriptionPopover.Frame.Width, label.Frame.Height));
+				view.SetStyleClass("description-popover");
+				label.SetStyleClass("description-popover");
+
+				view.Add(label);
+				m_descriptionPopover.AddSubview(view);
 
 
 				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);

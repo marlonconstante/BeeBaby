@@ -116,7 +116,7 @@ namespace BeeBaby
 			viewController.OpenOptions(this);
 		}
 
-		partial void ShowDescription(MonoTouch.UIKit.UIButton sender)
+		partial void ShowDescription(UIButton sender)
 		{
 			var viewController = (TimelineViewController)Windows.GetTopViewController(Window);
 			viewController.ShowDescription(this);
