@@ -120,6 +120,15 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
+		/// Gets the last moment.
+		/// </summary>
+		/// <returns>The last moment.</returns>
+		public Moment GetLastMoment()
+		{
+			return MainRepository.FindLast();
+		}
+
+		/// <summary>
 		/// Determines whether this instance has valid moments.
 		/// </summary>
 		/// <returns><c>true</c> if this instance has valid moments; otherwise, <c>false</c>.</returns>

@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Application;
 using System.Text;
+using Domain.Moment;
 
 namespace BeeBaby
 {
@@ -21,9 +22,17 @@ namespace BeeBaby
 		{
 			base.ViewDidAppear(animated);
 			var baby = CurrentContext.Instance.CurrentBaby;
+
+			var moment = new MomentService().GetFirstMoment();
+
 			var queryBuilder = new StringBuilder();
 			queryBuilder.Append(string.Concat("Age=", baby.AgeInDays));
 			queryBuilder.Append(string.Concat("&Gender=", baby.Gender));
+
+			if (moment != null)
+			{
+				queryBuilder.Append(string.Concat("&latlng=", string.Concat(moment.Position.Latitude, ",", moment.Position.Longitude)));
+			}
 			
 			var builder = new UriBuilder("http://appserver.beebabyapp.com/busca.php");
 			builder.Query = queryBuilder.ToString();
