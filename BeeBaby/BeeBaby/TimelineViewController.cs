@@ -20,7 +20,7 @@ namespace BeeBaby
 		static bool s_openCamera = true;
 		NSIndexPath m_currentIndexPath;
 		Popover m_popover;
-		Popover m_desciptionPopover;
+		Popover m_descriptionPopover;
 
 		IList<Button> m_popoverItems;
 		TimelineViewSource m_tableSource;
@@ -95,9 +95,9 @@ namespace BeeBaby
 				m_popover.Hide();
 			}
 
-			if (m_desciptionPopover != null)
+			if (m_descriptionPopover != null)
 			{
-				m_desciptionPopover.Hide();
+				m_descriptionPopover.Hide();
 			}
 		}
 
@@ -169,9 +169,9 @@ namespace BeeBaby
 				m_popover.AddSubviews(m_popoverItems.ToArray());
 			}
 
-			if (m_desciptionPopover == null)
+			if (m_descriptionPopover == null)
 			{
-				m_desciptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 200f));
+				m_descriptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 200f));
 			}
 		}
 
@@ -282,23 +282,23 @@ namespace BeeBaby
 		/// <param name="cell">Cell.</param>
 		public void ShowDescription(TimelineMomentCell cell)
 		{
-			if (!m_desciptionPopover.IsVisible)
+			if (!m_descriptionPopover.IsVisible)
 			{
 				m_currentIndexPath = tblView.IndexPathForCell(cell);
 
 				const int margin = 10;
-				var label = new Label(new RectangleF(margin, 0, m_desciptionPopover.Frame.Width - 2 * margin, m_desciptionPopover.Frame.Height));
+				var label = new Label(new RectangleF(margin, 0, m_descriptionPopover.Frame.Width - 2 * margin, m_descriptionPopover.Frame.Height));
 				label.BackgroundColor = UIColor.Green;
 				label.Lines = 20;
 				label.Text = "Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer123";
 
-				m_desciptionPopover.AddSubview(label);
+				m_descriptionPopover.AddSubview(label);
 
 
 				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 				var viewRect = tblView.ConvertRectToView(tableRect, View);
 
-				m_desciptionPopover.Show(new PointF((UIScreen.MainScreen.Bounds.Width - m_desciptionPopover.Frame.Width) / 2, viewRect.Y), true);
+				m_descriptionPopover.Show(new PointF((UIScreen.MainScreen.Bounds.Width - m_descriptionPopover.Frame.Width) / 2, viewRect.Y), true);
 			}
 			else
 			{
