@@ -32,6 +32,9 @@ namespace BeeBaby
 
 		[Action ("OpenOptions:")]
 		partial void OpenOptions (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("ShowDescription:")]
+		partial void ShowDescription (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

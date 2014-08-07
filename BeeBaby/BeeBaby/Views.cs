@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
+using System.Drawing;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -31,7 +33,7 @@ namespace BeeBaby
 							constraint.Constant += constant;
 						}
 					}
-					else if (nextViews.Contains((UIView) value))
+					else if (nextViews.Contains((UIView)value))
 					{
 						if (NSLayoutAttribute.Top == constraint.FirstAttribute)
 						{

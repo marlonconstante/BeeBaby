@@ -20,6 +20,8 @@ namespace BeeBaby
 		static bool s_openCamera = true;
 		NSIndexPath m_currentIndexPath;
 		Popover m_popover;
+		Popover m_descriptionPopover;
+
 		IList<Button> m_popoverItems;
 		TimelineViewSource m_tableSource;
 
@@ -80,17 +82,22 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 
-			HidePopover();
+			HidePopovers();
 		}
 
 		/// <summary>
 		/// Hides the popover.
 		/// </summary>
-		public void HidePopover()
+		public void HidePopovers()
 		{
 			if (m_popover != null)
 			{
 				m_popover.Hide();
+			}
+
+			if (m_descriptionPopover != null)
+			{
+				m_descriptionPopover.Hide();
 			}
 		}
 
@@ -136,7 +143,7 @@ namespace BeeBaby
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords);
 
-				InitPopover();
+				InitPopovers();
 
 				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
 				tblView.Source = m_tableSource;
@@ -149,7 +156,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Inits the popover.
 		/// </summary>
-		void InitPopover()
+		void InitPopovers()
 		{
 			if (m_popover == null)
 			{
@@ -160,6 +167,11 @@ namespace BeeBaby
 
 				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));
 				m_popover.AddSubviews(m_popoverItems.ToArray());
+			}
+
+			if (m_descriptionPopover == null)
+			{
+				m_descriptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 200f));
 			}
 		}
 
@@ -196,7 +208,7 @@ namespace BeeBaby
 					target.RemoveCurrentRow();
 				}
 
-				target.HidePopover();
+				target.HidePopovers();
 			};
 			button.TouchUpInside += proxy.HandleEvent;
 
@@ -248,6 +260,8 @@ namespace BeeBaby
 			alertView.Show();
 		}
 
+
+
 		/// <summary>
 		/// Opens the options.
 		/// </summary>
@@ -260,6 +274,41 @@ namespace BeeBaby
 			var viewRect = tblView.ConvertRectToView(tableRect, View);
 
 			m_popover.Show(new PointF(100f, viewRect.Y));
+		}
+
+		/// <summary>
+		/// Shows the description.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		public void ShowDescription(TimelineMomentCell cell)
+		{
+			if (!m_descriptionPopover.IsVisible)
+			{
+				m_currentIndexPath = tblView.IndexPathForCell(cell);
+
+				const int margin = 10;
+
+				var label = new Label(new RectangleF(margin, 0, m_descriptionPopover.Frame.Width - 2 * margin, m_descriptionPopover.Frame.Height));
+				label.Lines = 20;
+				label.Text = m_tableSource.MomentAt(m_currentIndexPath).Description;
+
+				var view = new UIView(new RectangleF(0, 0, m_descriptionPopover.Frame.Width, label.Frame.Height));
+				view.SetStyleClass("description-popover");
+				label.SetStyleClass("description-popover");
+
+				view.Add(label);
+				m_descriptionPopover.AddSubview(view);
+
+
+				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+				var viewRect = tblView.ConvertRectToView(tableRect, View);
+
+				m_descriptionPopover.Show(new PointF((UIScreen.MainScreen.Bounds.Width - m_descriptionPopover.Frame.Width) / 2, viewRect.Y), true);
+			}
+			else
+			{
+				HidePopovers();
+			}
 		}
 	}
 }

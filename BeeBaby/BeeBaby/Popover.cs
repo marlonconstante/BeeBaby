@@ -14,14 +14,24 @@ namespace BeeBaby
 			CurrentViewController.View.AddSubview(this);
 		}
 
+		public bool IsVisible { get; set; }
+
 		/// <summary>
 		/// Show the specified point and animated.
 		/// </summary>
 		/// <param name="point">Point.</param>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public void Show(PointF point, bool animated = true)
+		public void Show(PointF point, bool resize = false, bool animated = true)
 		{
-			Hide(() => {
+			Hide(() =>
+			{
+				var frame = Frame;
+
+				if (resize)
+				{
+					frame.Height = Subviews[0].Frame.Height;
+				}
+
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -32,14 +42,21 @@ namespace BeeBaby
 					point.Y -= Frame.Height;
 				}
 
-				var frame = Frame;
+				if (resize)
+				{
+
+				}
+
 				frame.X = point.X;
 				frame.Y = point.Y;
 				Frame = frame;
 
-				UIView.Animate(animated ? 0.15d : 0d, () => {
+				UIView.Animate(animated ? 0.15d : 0d, () =>
+				{
 					Alpha = 1f;
 				});
+
+				IsVisible = true;
 			}, animated);
 		}
 
@@ -50,12 +67,18 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public void Hide(Action completion = null, bool animated = true)
 		{
-			UIView.Animate(animated ? 0.15d : 0d, () => {
+			UIView.Animate(animated ? 0.15d : 0d, () =>
+			{
 				Alpha = 0f;
-			}, () => {
+			}, () =>
+			{
 				if (completion != null)
 				{
 					completion();
+				}
+				else
+				{
+					IsVisible = false;
 				}
 			});
 		}
@@ -64,8 +87,10 @@ namespace BeeBaby
 		/// Gets the current view controller.
 		/// </summary>
 		/// <value>The current view controller.</value>
-		UIViewController CurrentViewController {
-			get {
+		UIViewController CurrentViewController
+		{
+			get
+			{
 				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
 		}
