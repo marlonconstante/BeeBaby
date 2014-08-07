@@ -421,7 +421,7 @@
                                             <outlet property="imgEventBadge" destination="tHa-pa-fpI" id="pU4-Rb-Vwu"/>
                                             <outlet property="lblAge" destination="z1D-ls-552" id="m3W-17-fNg"/>
                                             <outlet property="lblDate" destination="avP-uf-XxZ" id="vBc-47-Ivn"/>
-                                            <outlet property="lblEventName" destination="tAx-tS-3EW" id="b1d-mv-Jz3"/>
+                                            <outlet property="lblEventName" destination="tAx-tS-3EW" id="UD6-za-a8W"/>
                                             <outlet property="lblWhere" destination="F6T-uc-FwH" id="QDg-Dl-kHy"/>
                                             <outlet property="vwPhotos" destination="GPy-zW-74R" id="O2U-Tt-gcK"/>
                                         </connections>

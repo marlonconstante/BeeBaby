@@ -22,7 +22,7 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblDate { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblEventName { get; set; }
+		BeeBaby.Label lblEventName { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblWhere { get; set; }
@@ -35,6 +35,11 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgEventBadge != null) {
+				imgEventBadge.Dispose ();
+				imgEventBadge = null;
+			}
+
 			if (lblAge != null) {
 				lblAge.Dispose ();
 				lblAge = null;
@@ -58,11 +63,6 @@ namespace BeeBaby
 			if (vwPhotos != null) {
 				vwPhotos.Dispose ();
 				vwPhotos = null;
-			}
-
-			if (imgEventBadge != null) {
-				imgEventBadge.Dispose ();
-				imgEventBadge = null;
 			}
 		}
 	}

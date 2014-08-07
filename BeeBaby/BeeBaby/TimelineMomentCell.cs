@@ -56,6 +56,7 @@ namespace BeeBaby
 			}
 			set
 			{
+				lblEventName.LineHeight = 15f;
 				lblEventName.Text = value;
 			}
 		}

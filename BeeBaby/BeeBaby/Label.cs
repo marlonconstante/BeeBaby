@@ -22,18 +22,18 @@ namespace BeeBaby
 		/// </summary>
 		void InitDefaultValues()
 		{
+			LineHeight = Font.PointSize;
 			MaxHeight = 300f;
 		}
 
 		/// <summary>
 		/// Updates the height of the line.
 		/// </summary>
-		/// <param name="lineHeight">Line height.</param>
-		void UpdateLineHeight(float lineHeight)
+		void UpdateLineHeight()
 		{
 			NSMutableParagraphStyle style = new NSMutableParagraphStyle();
-			style.MinimumLineHeight = lineHeight;
-			style.MaximumLineHeight = lineHeight;
+			style.MinimumLineHeight = LineHeight;
+			style.MaximumLineHeight = LineHeight;
 			style.Alignment = TextAlignment;
 
 			NSMutableAttributedString attributedString = new NSMutableAttributedString(AttributedText);
@@ -74,9 +74,18 @@ namespace BeeBaby
 			}
 			set {
 				base.Text = value;
-				UpdateLineHeight(Font.PointSize);
+				UpdateLineHeight();
 				SizeToFit();
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets the height of the line.
+		/// </summary>
+		/// <value>The height of the line.</value>
+		public float LineHeight {
+			get;
+			set;
 		}
 
 		/// <summary>
