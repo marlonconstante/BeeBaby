@@ -32,9 +32,17 @@ namespace BeeBaby
 
 		[Action ("OpenOptions:")]
 		partial void OpenOptions (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("ShowDescription:")]
+		partial void ShowDescription (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgEventBadge != null) {
+				imgEventBadge.Dispose ();
+				imgEventBadge = null;
+			}
+
 			if (lblAge != null) {
 				lblAge.Dispose ();
 				lblAge = null;
@@ -58,11 +66,6 @@ namespace BeeBaby
 			if (vwPhotos != null) {
 				vwPhotos.Dispose ();
 				vwPhotos = null;
-			}
-
-			if (imgEventBadge != null) {
-				imgEventBadge.Dispose ();
-				imgEventBadge = null;
 			}
 		}
 	}

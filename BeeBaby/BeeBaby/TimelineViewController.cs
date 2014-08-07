@@ -20,6 +20,8 @@ namespace BeeBaby
 		static bool s_openCamera = true;
 		NSIndexPath m_currentIndexPath;
 		Popover m_popover;
+		Popover m_desciptionPopover;
+
 		IList<Button> m_popoverItems;
 		TimelineViewSource m_tableSource;
 
@@ -80,15 +82,20 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 
-			HidePopover();
+			HidePopovers();
 		}
 
 		/// <summary>
 		/// Hides the popover.
 		/// </summary>
-		public void HidePopover()
+		public void HidePopovers()
 		{
 			if (m_popover != null)
+			{
+				m_popover.Hide();
+			}
+
+			if (m_desciptionPopover != null)
 			{
 				m_popover.Hide();
 			}
@@ -136,7 +143,7 @@ namespace BeeBaby
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords);
 
-				InitPopover();
+				InitPopovers();
 
 				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
 				tblView.Source = m_tableSource;
@@ -149,7 +156,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Inits the popover.
 		/// </summary>
-		void InitPopover()
+		void InitPopovers()
 		{
 			if (m_popover == null)
 			{
@@ -160,6 +167,11 @@ namespace BeeBaby
 
 				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));
 				m_popover.AddSubviews(m_popoverItems.ToArray());
+			}
+
+			if (m_desciptionPopover == null)
+			{
+				m_desciptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 300f));
 			}
 		}
 
@@ -196,7 +208,7 @@ namespace BeeBaby
 					target.RemoveCurrentRow();
 				}
 
-				target.HidePopover();
+				target.HidePopovers();
 			};
 			button.TouchUpInside += proxy.HandleEvent;
 
@@ -248,6 +260,8 @@ namespace BeeBaby
 			alertView.Show();
 		}
 
+
+
 		/// <summary>
 		/// Opens the options.
 		/// </summary>
@@ -260,6 +274,36 @@ namespace BeeBaby
 			var viewRect = tblView.ConvertRectToView(tableRect, View);
 
 			m_popover.Show(new PointF(100f, viewRect.Y));
+		}
+
+		/// <summary>
+		/// Shows the description.
+		/// </summary>
+		/// <param name="cell">Cell.</param>
+		public void ShowDescription(TimelineMomentCell cell)
+		{
+			if (!m_desciptionPopover.IsVisible)
+			{
+				m_currentIndexPath = tblView.IndexPathForCell(cell);
+
+				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+				var viewRect = tblView.ConvertRectToView(tableRect, View);
+
+				var label = new Label(viewRect);
+				label.BackgroundColor = UIColor.Green;
+				label.Lines = 20;
+				label.Text = "Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer";
+
+				Views.ResizeHeigthWithText(label);
+
+				m_desciptionPopover.AddSubview(label);
+
+				m_desciptionPopover.Show(new PointF(0f, viewRect.Y));
+			}
+			else
+			{
+				HidePopovers();
+			}
 		}
 	}
 }

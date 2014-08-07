@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
+using System.Drawing;
+using MonoTouch.Foundation;
 
 namespace BeeBaby
 {
@@ -31,7 +33,7 @@ namespace BeeBaby
 							constraint.Constant += constant;
 						}
 					}
-					else if (nextViews.Contains((UIView) value))
+					else if (nextViews.Contains((UIView)value))
 					{
 						if (NSLayoutAttribute.Top == constraint.FirstAttribute)
 						{
@@ -80,6 +82,21 @@ namespace BeeBaby
 				}
 			}
 			return nextViews;
+		}
+
+		/// <summary>
+		/// Resizes the heigth with text.
+		/// </summary>
+		/// <param name="label">Label.</param>
+		/// <param name="maxHeight">Max height.</param>
+		public static void ResizeHeigthWithText(UILabel label, float maxHeight = 960f)
+		{
+			float width = label.Frame.Width; 
+			SizeF size = ((NSString)label.Text).StringSize(label.Font, new SizeF(width, maxHeight), UILineBreakMode.WordWrap);
+			var labelFrame = label.Frame;
+			labelFrame.Size = new SizeF(width, size.Height);
+			label.Frame = labelFrame;
+			label.LineBreakMode = UILineBreakMode.WordWrap;
 		}
 	}
 }
