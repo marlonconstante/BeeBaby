@@ -171,7 +171,7 @@ namespace BeeBaby
 
 			if (m_desciptionPopover == null)
 			{
-				m_desciptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 300f));
+				m_desciptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 200f));
 			}
 		}
 
@@ -286,19 +286,19 @@ namespace BeeBaby
 			{
 				m_currentIndexPath = tblView.IndexPathForCell(cell);
 
-				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
-				var viewRect = tblView.ConvertRectToView(tableRect, View);
-
-				var label = new Label(viewRect);
+				const int margin = 10;
+				var label = new Label(new RectangleF(margin, 0, m_desciptionPopover.Frame.Width - 2 * margin, m_desciptionPopover.Frame.Height));
 				label.BackgroundColor = UIColor.Green;
 				label.Lines = 20;
-				label.Text = "Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer";
-
-				Views.ResizeHeigthWithText(label);
+				label.Text = "Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer Algum texto qualquer123";
 
 				m_desciptionPopover.AddSubview(label);
 
-				m_desciptionPopover.Show(new PointF(0f, viewRect.Y));
+
+				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+				var viewRect = tblView.ConvertRectToView(tableRect, View);
+
+				m_desciptionPopover.Show(new PointF((UIScreen.MainScreen.Bounds.Width - m_desciptionPopover.Frame.Width) / 2, viewRect.Y), true);
 			}
 			else
 			{

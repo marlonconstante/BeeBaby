@@ -25,6 +25,13 @@ namespace BeeBaby
 		{
 			Hide(() =>
 			{
+				var frame = Frame;
+
+				if (resize)
+				{
+					frame.Height = Subviews[0].Frame.Height;
+				}
+
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -35,7 +42,11 @@ namespace BeeBaby
 					point.Y -= Frame.Height;
 				}
 
-				var frame = Frame;
+				if (resize)
+				{
+
+				}
+
 				frame.X = point.X;
 				frame.Y = point.Y;
 				Frame = frame;
