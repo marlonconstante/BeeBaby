@@ -33,8 +33,6 @@
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
-	<key>CFBundleVersion</key>
-	<string>0.2</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoCondensed-BoldItalic.otf</string>
@@ -67,10 +65,12 @@
 		<string>Icon-Small@2x</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
 </dict>
 </plist>
