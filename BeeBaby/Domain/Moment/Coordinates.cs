@@ -28,6 +28,15 @@ namespace Domain.Moment
 		public double Longitude { get; set; }
 
 		/// <summary>
+		/// Gets the parameters.
+		/// </summary>
+		/// <returns>The parameters.</returns>
+		public string GetParameters()
+		{
+			return string.Concat(Latitude.ToString().Replace(",", "."), ",", Longitude.ToString().Replace(",", "."));
+		}
+
+		/// <summary>
 		/// Returns a string that represents the current object.
 		/// </summary>
 		/// <returns>
