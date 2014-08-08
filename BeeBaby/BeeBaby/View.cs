@@ -10,10 +10,20 @@ namespace BeeBaby
 	{
 		public View(IntPtr handle) : base(handle)
 		{
+			InitDefaultValues();
 		}
 
 		public View(RectangleF frame) : base(frame)
 		{
+			InitDefaultValues();
+		}
+
+		/// <summary>
+		/// Inits the default values.
+		/// </summary>
+		void InitDefaultValues()
+		{
+			TouchInset = 10;
 		}
 
 		/// <summary>
@@ -26,7 +36,7 @@ namespace BeeBaby
 		{
 			if (IsIncreaseTouchArea())
 			{
-				return TouchArea.IsPointInside(point, Bounds);
+				return TouchArea.IsPointInside(point, Bounds, TouchInset);
 			}
 			else
 			{
@@ -41,6 +51,15 @@ namespace BeeBaby
 		public virtual bool IsIncreaseTouchArea()
 		{
 			return true;
+		}
+
+		/// <summary>
+		/// Gets or sets the touch inset.
+		/// </summary>
+		/// <value>The touch inset.</value>
+		public int TouchInset {
+			get;
+			set;
 		}
 
 		/// <summary>
