@@ -451,10 +451,6 @@
     </Compile>
     <Compile Include="AvatarView.cs" />
     <Compile Include="UserLocation.cs" />
-    <Compile Include="TestViewController.cs" />
-    <Compile Include="TestViewController.designer.cs">
-      <DependentUpon>TestViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditMomentNavigationController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
