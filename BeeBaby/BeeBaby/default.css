@@ -158,14 +158,14 @@ segmented-control {
 }
 
 .description-popover {
-	background-color: #f2f5f5;
-	border-radius: 8px;
+	background-color: #fff;
 }
 
 .view .button-popover,
 .view .button-popover:highlighted,
 .view .button-popover:selected,
 .view .table-view table-view-cell label,
+.description-popover label,
 .special-event-label,
 .time-box-label {
 	font-size: 14pt;
@@ -329,6 +329,7 @@ segmented-control label,
 .view .button-popover,
 .view .button-popover:highlighted,
 .view .button-popover:selected,
+.description-popover label,
 text-field,
 text-view,
 .view table-view-cell label,
@@ -466,6 +467,7 @@ text-view {
 .avatar-label,
 .baby-label,
 .change-event-label,
+.description-popover label,
 .image-share-where-label,
 .image-share-age-label {
 	font-family: "Quicksand";
