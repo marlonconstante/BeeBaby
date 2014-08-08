@@ -44,10 +44,17 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		protected override void Action(UIView sender)
 		{
-			var viewController = Windows.GetTopViewController(Window);
-			if (viewController is MomentDetailViewController)
+			var viewController = Windows.GetTopViewController(Window) as MomentDetailViewController;
+			if (viewController != null)
 			{
-				((MomentDetailViewController) viewController).GoBackToEvents();
+				if (viewController.IsEditFlow())
+				{
+					viewController.PerformSegue("eventSegue", this);
+				}
+				else
+				{
+					viewController.GoBackToEvents();
+				}
 			}
 		}
 
@@ -103,8 +110,10 @@ namespace BeeBaby
 		/// Gets the padding.
 		/// </summary>
 		/// <value>The padding.</value>
-		protected override float Padding {
-			get {
+		protected override float Padding
+		{
+			get
+			{
 				return base.Padding * Multiplier;
 			}
 		}
@@ -113,8 +122,10 @@ namespace BeeBaby
 		/// Gets the size of the badge event.
 		/// </summary>
 		/// <value>The size of the badge event.</value>
-		float BadgeEventSize {
-			get {
+		float BadgeEventSize
+		{
+			get
+			{
 				return MediaBase.BadgeEventSize * Multiplier;
 			}
 		}
@@ -123,8 +134,10 @@ namespace BeeBaby
 		/// Gets the size of the badge event inner.
 		/// </summary>
 		/// <value>The size of the badge event inner.</value>
-		float BadgeEventInnerSize {
-			get {
+		float BadgeEventInnerSize
+		{
+			get
+			{
 				return MediaBase.BadgeEventInnerSize * Multiplier;
 			}
 		}
@@ -133,8 +146,10 @@ namespace BeeBaby
 		/// Gets the multiplier.
 		/// </summary>
 		/// <value>The multiplier.</value>
-		float Multiplier {
-			get {
+		float Multiplier
+		{
+			get
+			{
 				if (UIScreen.MainScreen.Bounds.Height <= 480f)
 				{
 					return 0.85f;

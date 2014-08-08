@@ -77,7 +77,7 @@ namespace BeeBaby
 				m_userLocation.StartUpdatingLocation();
 			}
 
-			if (IsEventFlow())
+			if (IsEditFlow())
 			{
 				var moment = CurrentContext.Instance.Moment;
 				moment.SelectedMediaNames.Clear();
@@ -94,6 +94,7 @@ namespace BeeBaby
 			}
 
 			vwDate.UpdateInfo();
+			evtView.Redraw(true);
 		}
 
 		/// <summary>

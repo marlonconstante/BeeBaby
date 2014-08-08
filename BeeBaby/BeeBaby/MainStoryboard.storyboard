@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-MY-n35">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-MY-n35">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -116,6 +116,7 @@
                         <outlet property="txtLocalName" destination="3B0-QV-ba0" id="Nwn-w3-OlF"/>
                         <outlet property="vwDate" destination="VUV-1f-YlT" id="cyq-HQ-XS9"/>
                         <segue destination="blw-p8-7ZO" kind="push" identifier="segueBaby" id="wob-QH-ubI"/>
+                        <segue destination="mnJ-tT-oAJ" kind="push" identifier="eventSegue" id="j2f-ev-klq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-Ve-kS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="-251"/>
+            <point key="canvasLocation" x="1166" y="-657"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="6UT-XL-r0v">
@@ -320,7 +321,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="tAx-tS-3EW" customClass="Label">
-                                                            <rect key="frame" x="41" y="0.5" width="228" height="41"/>
+                                                            <rect key="frame" x="41" y="1" width="228" height="41"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -411,7 +412,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHF-fG-e5a">
-                                                    <rect key="frame" x="12" y="269.5" width="308" height="23"/>
+                                                    <rect key="frame" x="12" y="270" width="308" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Com 30 dias" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1D-ls-552">
@@ -506,7 +507,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lWb-dp-OQB">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lWb-dp-OQB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1386,15 +1387,15 @@
             </objects>
             <point key="canvasLocation" x="-219" y="-503"/>
         </scene>
-        <!--Event Navigation Controller-->
+        <!--Edit Moment Navigation Controller-->
         <scene sceneID="FMs-Xe-iGR">
             <objects>
-                <navigationController definesPresentationContext="YES" id="VPg-2i-iaj" customClass="EventNavigationController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="VPg-2i-iaj" customClass="EditMomentNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c16-xS-7ZV">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="mnJ-tT-oAJ" kind="relationship" relationship="rootViewController" id="SD7-IZ-ZPt"/>
+                        <segue destination="UAi-dU-234" kind="relationship" relationship="rootViewController" id="NxF-Hd-fPk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KlC-rT-E6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1411,7 +1412,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="96T-Ym-H7P"/>
+        <segue reference="NxF-Hd-fPk"/>
         <segue reference="2yy-uq-YpW"/>
+        <segue reference="j2f-ev-klq"/>
     </inferredMetricsTieBreakers>
 </document>

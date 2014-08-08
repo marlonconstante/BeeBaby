@@ -478,6 +478,14 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gos the back to moment.
+		/// </summary>
+		public void GoBackToMoment()
+		{
+			LeftBarButtonAction();
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="BeeBaby.EventListViewController"/> show everyday events.
 		/// </summary>
 		/// <value><c>true</c> if show everyday events; otherwise, <c>false</c>.</value>

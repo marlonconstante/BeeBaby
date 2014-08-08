@@ -159,7 +159,7 @@ namespace BeeBaby
 		/// <returns><c>true</c> if this instance is camera flow; otherwise, <c>false</c>.</returns>
 		public bool IsCameraFlow()
 		{
-			return !IsMediaController() && !IsMediaFlow() && !IsEventFlow();
+			return !IsMediaController() && !IsMediaFlow() && !IsEditFlow();
 		}
 
 		/// <summary>
@@ -175,9 +175,9 @@ namespace BeeBaby
 		/// Determines whether this instance is event flow.
 		/// </summary>
 		/// <returns><c>true</c> if this instance is event flow; otherwise, <c>false</c>.</returns>
-		public bool IsEventFlow()
+		public bool IsEditFlow()
 		{
-			return NavigationController is EventNavigationController;
+			return NavigationController is EditMomentNavigationController;
 		}
 
 		/// <summary>

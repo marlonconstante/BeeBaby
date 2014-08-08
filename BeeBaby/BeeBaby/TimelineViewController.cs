@@ -206,12 +206,14 @@ namespace BeeBaby
 				CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 				var buttonSender = (Button) sender;
 				var indexOf = target.m_popoverItems.IndexOf(buttonSender);
+
 				if (indexOf == 0)
 				{
 					target.AddPhotos(buttonSender);
 				}
 				else if (indexOf == 1)
 				{
+					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
 					target.ChangeEvent(buttonSender);
 				}
 				else if (indexOf == 2)

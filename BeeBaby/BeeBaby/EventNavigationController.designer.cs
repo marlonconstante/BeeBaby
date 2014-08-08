@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby
 {
-	[Register ("EventNavigationController")]
-	partial class EventNavigationController
+	[Register ("EditMomentNavigationController")]
+	partial class EditMomentNavigationController
 	{
 		
 		void ReleaseDesignerOutlets ()
