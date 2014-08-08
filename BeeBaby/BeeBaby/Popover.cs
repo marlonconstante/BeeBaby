@@ -19,17 +19,10 @@ namespace BeeBaby
 		/// </summary>
 		/// <param name="point">Point.</param>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public void Show(PointF point, bool resize = false, bool animated = true)
+		public void Show(PointF point, bool animated = true)
 		{
 			Hide(() =>
 			{
-				var frame = Frame;
-
-				if (resize)
-				{
-					frame.Height = Subviews[0].Frame.Height;
-				}
-
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -40,6 +33,7 @@ namespace BeeBaby
 					point.Y -= Frame.Height;
 				}
 
+				var frame = Frame;
 				frame.X = point.X;
 				frame.Y = point.Y;
 				Frame = frame;
