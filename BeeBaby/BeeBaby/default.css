@@ -536,6 +536,10 @@ text-view {
 	background-image: url(flying-bee-bg.svg);
 }
 
+.recomendations {
+	background-image: url(recomendations.svg);
+}
+
 .logoff {
 	background-image: url(logoff.svg);
 }

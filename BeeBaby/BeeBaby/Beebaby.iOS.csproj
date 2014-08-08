@@ -234,7 +234,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <BundleResource Include="Resources\Familia.png" />
-    <BundleResource Include="Resources\tagBee.png" />
     <BundleResource Include="Resources\school_sm.png" />
     <BundleResource Include="Resources\lapy_sm.png" />
     <BundleResource Include="Resources\smile_sm.png" />
@@ -281,6 +280,7 @@
     <BundleResource Include="Resources\comment.svg" />
     <BundleResource Include="Resources\background-event.png" />
     <BundleResource Include="Resources\flying-bee-bg.svg" />
+    <BundleResource Include="Resources\recomendations.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
