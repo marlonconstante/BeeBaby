@@ -166,6 +166,7 @@ namespace BeeBaby
 				AddPopoverItem("RemoveMoment".Translate(), "trash");
 
 				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));
+				m_popover.MinY = tblView.Frame.Y;
 				m_popover.AddSubviews(m_popoverItems.ToArray());
 			}
 
@@ -173,6 +174,7 @@ namespace BeeBaby
 			{
 				m_descriptionPopover = new Popover(RectangleF.Empty);
 				m_descriptionPopover.SetStyleClass("description-popover");
+				m_descriptionPopover.MinY = tblView.Frame.Y;
 
 				var label = new Label(new RectangleF(33f, 8f, 220f, 0f));
 				label.IsAutoAdjustSize = true;
