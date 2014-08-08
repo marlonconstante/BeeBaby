@@ -23,7 +23,7 @@ namespace BeeBaby
 			base.ViewDidAppear(animated);
 			var baby = CurrentContext.Instance.CurrentBaby;
 
-			var moment = new MomentService().GetFirstMoment();
+			var moment = new MomentService().GetLastMoment();
 
 			var queryBuilder = new StringBuilder();
 			queryBuilder.Append(string.Concat("Age=", baby.AgeInDays));

@@ -116,5 +116,16 @@ namespace BeeBaby
 			var viewController = (TimelineViewController)Windows.GetTopViewController(Window);
 			viewController.OpenOptions(this);
 		}
+
+		/// <summary>
+		/// Shows the description.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void ShowDescription(UIButton sender)
+		{
+			var viewController = (TimelineViewController)Windows.GetTopViewController(Window);
+			viewController.ShowDescription(this);
+		}
+			
 	}
 }
