@@ -171,7 +171,16 @@ namespace BeeBaby
 
 			if (m_descriptionPopover == null)
 			{
-				m_descriptionPopover = new Popover(new RectangleF(0f, 0f, 260f, 200f));
+				m_descriptionPopover = new Popover(RectangleF.Empty);
+				m_descriptionPopover.SetStyleClass("description-popover");
+
+				var label = new Label(new RectangleF(33f, 8f, 220f, 0f));
+				label.IsAutoAdjustSize = true;
+				m_descriptionPopover.AddSubview(label);
+
+				var icon = new UIView(new RectangleF(8f, 8f, 19f, 19f));
+				icon.SetStyleClass("comments");
+				m_descriptionPopover.AddSubview(icon);
 			}
 		}
 
@@ -260,8 +269,6 @@ namespace BeeBaby
 			alertView.Show();
 		}
 
-
-
 		/// <summary>
 		/// Opens the options.
 		/// </summary>
@@ -270,10 +277,7 @@ namespace BeeBaby
 		{
 			m_currentIndexPath = tblView.IndexPathForCell(cell);
 
-			var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
-			var viewRect = tblView.ConvertRectToView(tableRect, View);
-
-			m_popover.Show(new PointF(100f, viewRect.Y));
+			m_popover.Show(new PointF(UIScreen.MainScreen.Bounds.Width - m_popover.Frame.Width, CurrentCellRect.Y));
 		}
 
 		/// <summary>
@@ -286,28 +290,34 @@ namespace BeeBaby
 			{
 				m_currentIndexPath = tblView.IndexPathForCell(cell);
 
-				const int margin = 10;
+				var description = m_tableSource.MomentAt(m_currentIndexPath).Description;
+				if (!string.IsNullOrEmpty(description))
+				{
+					var label = m_descriptionPopover.Subviews[0] as Label;
+					label.Text = description;
 
-				var label = new Label(new RectangleF(margin, 0, m_descriptionPopover.Frame.Width - 2 * margin, m_descriptionPopover.Frame.Height));
-				label.Lines = 20;
-				label.Text = m_tableSource.MomentAt(m_currentIndexPath).Description;
+					var width = label.Frame.Width + label.Frame.X + label.Frame.Y;
+					var height = label.Frame.Height + (label.Frame.Y * 2f);
+					m_descriptionPopover.Frame = new RectangleF(0f, 0f, width, height);
 
-				var view = new UIView(new RectangleF(0, 0, m_descriptionPopover.Frame.Width, label.Frame.Height));
-				view.SetStyleClass("description-popover");
-				label.SetStyleClass("description-popover");
-
-				view.Add(label);
-				m_descriptionPopover.AddSubview(view);
-
-
-				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
-				var viewRect = tblView.ConvertRectToView(tableRect, View);
-
-				m_descriptionPopover.Show(new PointF((UIScreen.MainScreen.Bounds.Width - m_descriptionPopover.Frame.Width) / 2, viewRect.Y), true);
+					m_descriptionPopover.Show(new PointF(UIScreen.MainScreen.Bounds.Width - width, CurrentCellRect.Y));
+				}
 			}
 			else
 			{
 				HidePopovers();
+			}
+		}
+
+		/// <summary>
+		/// Gets the current cell rect.
+		/// </summary>
+		/// <value>The current cell rect.</value>
+		RectangleF CurrentCellRect
+		{
+			get {
+				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
+				return tblView.ConvertRectToView(tableRect, View);
 			}
 		}
 	}

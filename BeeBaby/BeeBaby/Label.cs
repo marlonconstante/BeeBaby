@@ -22,6 +22,8 @@ namespace BeeBaby
 		/// </summary>
 		void InitDefaultValues()
 		{
+			IsAutoAdjustSize = false;
+			Lines = 0;
 			LineHeight = Font.PointSize;
 			MaxHeight = 300f;
 		}
@@ -47,10 +49,13 @@ namespace BeeBaby
 		/// </summary>
 		public override void SizeToFit()
 		{
-			if (TextSize.Height > Frame.Height)
+			var frame = Frame;
+			var height = TextSize.Height;
+			if (IsAutoAdjustSize || height > frame.Height)
 			{
-				base.SizeToFit();
+				frame.Height = height;
 			}
+			Frame = frame;
 		}
 
 		/// <summary>
@@ -60,7 +65,7 @@ namespace BeeBaby
 		public SizeF TextSize
 		{
 			get {
-				return StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
+				return StringSize(Text, Font.WithSize(Font.PointSize + 1f), new SizeF(Frame.Width, MaxHeight));
 			}
 		}
 
@@ -77,6 +82,15 @@ namespace BeeBaby
 				UpdateLineHeight();
 				SizeToFit();
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is auto adjust size.
+		/// </summary>
+		/// <value><c>true</c> if this instance is auto adjust size; otherwise, <c>false</c>.</value>
+		public bool IsAutoAdjustSize {
+			get;
+			set;
 		}
 
 		/// <summary>

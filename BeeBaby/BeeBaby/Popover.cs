@@ -14,24 +14,15 @@ namespace BeeBaby
 			CurrentViewController.View.AddSubview(this);
 		}
 
-		public bool IsVisible { get; set; }
-
 		/// <summary>
 		/// Show the specified point and animated.
 		/// </summary>
 		/// <param name="point">Point.</param>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public void Show(PointF point, bool resize = false, bool animated = true)
+		public void Show(PointF point, bool animated = true)
 		{
 			Hide(() =>
 			{
-				var frame = Frame;
-
-				if (resize)
-				{
-					frame.Height = Subviews[0].Frame.Height;
-				}
-
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -42,11 +33,7 @@ namespace BeeBaby
 					point.Y -= Frame.Height;
 				}
 
-				if (resize)
-				{
-
-				}
-
+				var frame = Frame;
 				frame.X = point.X;
 				frame.Y = point.Y;
 				Frame = frame;
@@ -82,6 +69,12 @@ namespace BeeBaby
 				}
 			});
 		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is visible.
+		/// </summary>
+		/// <value><c>true</c> if this instance is visible; otherwise, <c>false</c>.</value>
+		public bool IsVisible { get; set; }
 
 		/// <summary>
 		/// Gets the current view controller.

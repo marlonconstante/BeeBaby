@@ -294,7 +294,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="babyname-container"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="303" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qro-Dy-vJe">
+                            <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="301" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qro-Dy-vJe">
                                 <rect key="frame" x="0.0" y="86" width="320" height="482"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -304,15 +304,15 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell multipleTouchEnabled="YES" contentMode="center" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentCell" rowHeight="303" id="FVc-uZ-2lW" customClass="TimelineMomentCell">
-                                        <rect key="frame" x="0.0" y="30" width="320" height="303"/>
+                                    <tableViewCell multipleTouchEnabled="YES" contentMode="center" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentCell" rowHeight="301" id="FVc-uZ-2lW" customClass="TimelineMomentCell">
+                                        <rect key="frame" x="0.0" y="30" width="320" height="301"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FVc-uZ-2lW" id="coH-4J-Mcz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="303"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="301"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z99-sh-Sua">
-                                                    <rect key="frame" x="12" y="2" width="308" height="269"/>
+                                                    <rect key="frame" x="12" y="0.0" width="308" height="269"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-pa-fpI">
@@ -366,7 +366,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1R-uy-998">
-                                                            <rect key="frame" x="165" y="68" width="130" height="100"/>
+                                                            <rect key="frame" x="162" y="68" width="130" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flying-bee-bg"/>
@@ -401,6 +401,9 @@
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="time-button"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="ShowDescription:" destination="FVc-uZ-2lW" eventType="touchUpInside" id="eQi-Xz-uAi"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <userDefinedRuntimeAttributes>
@@ -408,7 +411,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHF-fG-e5a">
-                                                    <rect key="frame" x="12" y="271.5" width="308" height="23"/>
+                                                    <rect key="frame" x="12" y="269.5" width="308" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Com 30 dias" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1D-ls-552">
