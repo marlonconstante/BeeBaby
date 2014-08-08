@@ -401,6 +401,9 @@
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="time-button"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="ShowDescription:" destination="FVc-uZ-2lW" eventType="touchUpInside" id="eQi-Xz-uAi"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <userDefinedRuntimeAttributes>
