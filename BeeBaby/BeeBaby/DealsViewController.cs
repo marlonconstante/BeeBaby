@@ -21,8 +21,8 @@ namespace BeeBaby
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			var baby = CurrentContext.Instance.CurrentBaby;
 
+			var baby = CurrentContext.Instance.CurrentBaby;
 			var moment = new MomentService().GetLastMoment();
 
 			var queryBuilder = new StringBuilder();
@@ -31,7 +31,7 @@ namespace BeeBaby
 
 			if (moment != null)
 			{
-				queryBuilder.Append(string.Concat("&latlng=", string.Concat(moment.Position.Latitude, ",", moment.Position.Longitude)));
+				queryBuilder.Append(string.Concat("&latlng=", moment.Position.GetParameters()));
 			}
 			
 			var builder = new UriBuilder("http://appserver.beebabyapp.com/busca.php");
