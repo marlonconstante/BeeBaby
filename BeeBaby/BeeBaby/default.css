@@ -157,6 +157,11 @@ segmented-control {
 	font-weight: normal;
 }
 
+.description-popover {
+	background-color: #f2f5f5;
+	border-radius: 8px;
+}
+
 .view .button-popover,
 .view .button-popover:highlighted,
 .view .button-popover:selected,
@@ -518,11 +523,6 @@ text-view {
 
 .ninety-degrees {
 	transform: rotate(90);
-}
-
-.description-popover {
-	background-color: #f2f5f5;
-	border-radius: 8px;
 }
 
 .bee {
