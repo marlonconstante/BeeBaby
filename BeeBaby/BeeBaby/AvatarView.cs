@@ -173,15 +173,11 @@ namespace BeeBaby
 		/// <param name="y">The y coordinate.</param>
 		Label BuildDescription(float y)
 		{
-			var maxWidth = InitialFrame.Width - (Padding * 2f);
-			var label = new Label(new RectangleF(0f, y, maxWidth, 0f));
+			var width = InitialFrame.Width - (Padding * 2f);
+			var label = new Label(new RectangleF(Padding, y, width, 0f));
 			label.SetStyleClass(GetDescriptionStyleClass());
 			label.TextAlignment = UITextAlignment.Center;
 			label.Text = GetDescription();
-
-			var frame = label.Frame;
-			frame.X = (InitialFrame.Width / 2f) - (frame.Width / 2f);
-			label.Frame = frame;
 
 			return label;
 		}
