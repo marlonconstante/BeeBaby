@@ -175,7 +175,6 @@ namespace BeeBaby
 		{
 			var maxWidth = InitialFrame.Width - (Padding * 2f);
 			var label = new Label(new RectangleF(0f, y, maxWidth, 0f));
-			label.Lines = 2;
 			label.SetStyleClass(GetDescriptionStyleClass());
 			label.TextAlignment = UITextAlignment.Center;
 			label.Text = GetDescription();

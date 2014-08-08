@@ -44,7 +44,6 @@ namespace BeeBaby
 		{
 			m_placeholder = new Label(new RectangleF(10f, 10f, 300f, 34f));
 			m_placeholder.TextColor = UIColor.LightGray;
-			m_placeholder.Lines = 2;
 
 			AddSubview(m_placeholder);
 		}

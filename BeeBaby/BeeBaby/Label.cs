@@ -22,6 +22,7 @@ namespace BeeBaby
 		/// </summary>
 		void InitDefaultValues()
 		{
+			Lines = 0;
 			LineHeight = Font.PointSize;
 			MaxHeight = 300f;
 		}
@@ -47,10 +48,9 @@ namespace BeeBaby
 		/// </summary>
 		public override void SizeToFit()
 		{
-			if (TextSize.Height > Frame.Height)
-			{
-				base.SizeToFit();
-			}
+			var frame = Frame;
+			frame.Height = TextSize.Height;
+			Frame = frame;
 		}
 
 		/// <summary>
