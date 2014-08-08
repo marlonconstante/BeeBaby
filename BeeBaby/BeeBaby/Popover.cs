@@ -14,8 +14,6 @@ namespace BeeBaby
 			CurrentViewController.View.AddSubview(this);
 		}
 
-		public bool IsVisible { get; set; }
-
 		/// <summary>
 		/// Show the specified point and animated.
 		/// </summary>
@@ -40,11 +38,6 @@ namespace BeeBaby
 				if (point.Y > UIScreen.MainScreen.Bounds.Height - Frame.Height)
 				{
 					point.Y -= Frame.Height;
-				}
-
-				if (resize)
-				{
-
 				}
 
 				frame.X = point.X;
@@ -82,6 +75,12 @@ namespace BeeBaby
 				}
 			});
 		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is visible.
+		/// </summary>
+		/// <value><c>true</c> if this instance is visible; otherwise, <c>false</c>.</value>
+		public bool IsVisible { get; set; }
 
 		/// <summary>
 		/// Gets the current view controller.
