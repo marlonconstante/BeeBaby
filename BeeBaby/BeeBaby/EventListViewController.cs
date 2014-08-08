@@ -414,7 +414,9 @@ namespace BeeBaby
 			if (m_selectedTag != s_recomendationTagName)
 			{
 				var baby = CurrentContext.Instance.CurrentBaby;
-				filtredEvents = filtredEvents.OrderBy(o => (o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge) + 1000).ToList();
+				var tempEvents = filtredEvents.Where(o => ((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge)) >= 0).OrderBy(o => (o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge)).ToList();
+				tempEvents.AddRange(filtredEvents.Where(o => ((o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge)) < 0).OrderByDescending(o => (o.StartAge - baby.AgeInDays) + (o.EndAge - baby.AgeInDays) + (o.EndAge - o.StartAge)));
+				filtredEvents = tempEvents;
 			}
 
 			SetViewSource(filtredEvents);
