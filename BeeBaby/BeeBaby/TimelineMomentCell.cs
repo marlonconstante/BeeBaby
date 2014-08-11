@@ -26,10 +26,10 @@ namespace BeeBaby
 		/// <value><c>true</c> if this instance has description; otherwise, <c>false</c>.</value>
 		public bool HasDescription {
 			get {
-				return btnDescription.Alpha == 1f;
+				return btnDescription.Enabled;
 			}
 			set {
-				btnDescription.Alpha = value ? 1f : 0.5f;
+				btnDescription.Enabled = value;
 			}
 		}
 
