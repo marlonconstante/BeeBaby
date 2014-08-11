@@ -129,11 +129,8 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void ShowDescription(UIButton sender)
 		{
-			if (HasDescription)
-			{
-				var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
-				viewController.ShowDescription(this);
-			}
+			var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
+			viewController.ShowDescription(this);
 		}
 	}
 }
