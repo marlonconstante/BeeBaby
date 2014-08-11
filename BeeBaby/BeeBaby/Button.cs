@@ -23,7 +23,7 @@ namespace BeeBaby
 		/// </summary>
 		void InitDefaultValues()
 		{
-			TouchInset = 10;
+			ExtraTouchArea = 10;
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace BeeBaby
 		{
 			if (IsIncreaseTouchArea())
 			{
-				return TouchArea.IsPointInside(point, Bounds, TouchInset);
+				return TouchArea.IsPointInside(point, Bounds, ExtraTouchArea);
 			}
 			else
 			{
@@ -54,10 +54,10 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets or sets the touch inset.
+		/// Gets or sets the extra touch area.
 		/// </summary>
-		/// <value>The touch inset.</value>
-		public int TouchInset {
+		/// <value>The extra touch area.</value>
+		public int ExtraTouchArea {
 			get;
 			set;
 		}
