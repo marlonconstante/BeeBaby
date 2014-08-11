@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class TimelineMomentCell
 	{
 		[Outlet]
+		BeeBaby.Button btnDescription { get; set; }
+
+		[Outlet]
 		BeeBaby.Button btnOptions { get; set; }
 
 		[Outlet]
@@ -41,6 +44,11 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnOptions != null) {
+				btnOptions.Dispose ();
+				btnOptions = null;
+			}
+
 			if (imgEventBadge != null) {
 				imgEventBadge.Dispose ();
 				imgEventBadge = null;
@@ -71,9 +79,9 @@ namespace BeeBaby
 				vwPhotos = null;
 			}
 
-			if (btnOptions != null) {
-				btnOptions.Dispose ();
-				btnOptions = null;
+			if (btnDescription != null) {
+				btnDescription.Dispose ();
+				btnDescription = null;
 			}
 		}
 	}

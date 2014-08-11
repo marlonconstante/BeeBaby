@@ -21,6 +21,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating whether this instance has description.
+		/// </summary>
+		/// <value><c>true</c> if this instance has description; otherwise, <c>false</c>.</value>
+		public bool HasDescription {
+			get {
+				return btnDescription.Alpha == 1f;
+			}
+			set {
+				btnDescription.Alpha = value ? 1f : 0.5f;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the label age.
 		/// </summary>
 		/// <value>The label age.</value>
@@ -116,9 +129,11 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void ShowDescription(UIButton sender)
 		{
-			var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
-			viewController.ShowDescription(this);
+			if (HasDescription)
+			{
+				var viewController = (TimelineViewController) Windows.GetTopViewController(Window);
+				viewController.ShowDescription(this);
+			}
 		}
-			
 	}
 }
