@@ -214,8 +214,6 @@
     <BundleResource Include="Resources\about.svg" />
     <BundleResource Include="Resources\invite-clear.svg" />
     <BundleResource Include="Resources\invite.svg" />
-    <BundleResource Include="Resources\family-clear.svg" />
-    <BundleResource Include="Resources\family.svg" />
     <BundleResource Include="Resources\logoff.svg" />
     <BundleResource Include="Resources\share.svg" />
     <BundleResource Include="Resources\RobotoCondensed-Bold.otf">
@@ -236,7 +234,6 @@
     <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\Familia.png" />
     <BundleResource Include="Resources\school_sm.png" />
     <BundleResource Include="Resources\lapy_sm.png" />
     <BundleResource Include="Resources\smile_sm.png" />
@@ -284,6 +281,21 @@
     <BundleResource Include="Resources\background-event.png" />
     <BundleResource Include="Resources\flying-bee-bg.svg" />
     <BundleResource Include="Resources\recomendations.svg" />
+    <BundleResource Include="Resources\everyday.svg" />
+    <BundleResource Include="Resources\firsts.svg" />
+    <BundleResource Include="Resources\sleepy.svg" />
+    <BundleResource Include="Resources\ride.svg" />
+    <BundleResource Include="Resources\littlebody.svg" />
+    <BundleResource Include="Resources\users.svg" />
+    <BundleResource Include="Resources\users-clear.svg" />
+    <BundleResource Include="Resources\family.svg" />
+    <BundleResource Include="Resources\bath.svg" />
+    <BundleResource Include="Resources\birth.svg" />
+    <BundleResource Include="Resources\celebrations.svg" />
+    <BundleResource Include="Resources\pregnancy.svg" />
+    <BundleResource Include="Resources\smile.svg" />
+    <BundleResource Include="Resources\lapy.svg" />
+    <BundleResource Include="Resources\school.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
