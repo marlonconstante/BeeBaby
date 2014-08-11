@@ -543,6 +543,19 @@ text-view {
 	background-image: url(flying-bee-bg.svg);
 }
 
+.event-tag-overlay {
+	shape: ellipse;
+}
+
+.border .event-tag-overlay {
+	border:	5 solid #f9fbfb;
+	-ios-tint-color: #f9fbfb;
+}
+
+.selected .event-tag-overlay {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
 .recomendations {
 	background-image: url(recomendations.svg);
 }
