@@ -13,6 +13,9 @@ namespace BeeBaby
 	partial class TimelineMomentCell
 	{
 		[Outlet]
+		BeeBaby.Button btnOptions { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
 
 		[Outlet]
@@ -66,6 +69,11 @@ namespace BeeBaby
 			if (vwPhotos != null) {
 				vwPhotos.Dispose ();
 				vwPhotos = null;
+			}
+
+			if (btnOptions != null) {
+				btnOptions.Dispose ();
+				btnOptions = null;
 			}
 		}
 	}

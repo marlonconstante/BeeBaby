@@ -130,6 +130,8 @@ namespace BeeBaby
 			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
+			cell.IncreaseOptionsTouchArea();
+
 			InvokeInBackground(() =>
 			{
 				Thread.Sleep(150);
