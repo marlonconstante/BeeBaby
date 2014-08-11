@@ -165,7 +165,7 @@ At = Em
 InDate = No dia
 AtAge = Com
 Have = Tem
-AboutThisMoment = Sobre Esse Momento
+AboutThisMoment = Sobre esse momento
 ";
 				#endregion
 			}
@@ -203,7 +203,7 @@ Yes = Yes
 No = No
 Delete = Delete
 AddPhotos = Add photos
-ChangeEvent = Change this moment
+ChangeMoment = Change this moment
 RemoveMoment = Delete this moment
 QuestionRemoveMoment = Are you sure you want to delete this moment?
 Name = Name
