@@ -101,7 +101,7 @@ Yes = Sim
 No = Não
 Delete = Remover
 AddPhotos = Adicionar fotos
-ChangeEvent = Alterar este evento
+ChangeMoment = Alterar este momento
 RemoveMoment = Remover este momento
 QuestionRemoveMoment = Tem certeza que quer remover este momento?
 Name = Nome
@@ -165,6 +165,7 @@ At = Em
 InDate = No dia
 AtAge = Com
 Have = Tem
+AboutThisMoment = Sobre Esse Momento
 ";
 				#endregion
 			}
@@ -202,7 +203,7 @@ Yes = Yes
 No = No
 Delete = Delete
 AddPhotos = Add photos
-ChangeEvent = Change this event
+ChangeEvent = Change this moment
 RemoveMoment = Delete this moment
 QuestionRemoveMoment = Are you sure you want to delete this moment?
 Name = Name
@@ -266,6 +267,7 @@ At = At
 InDate = In
 AtAge = At
 Have = Have
+AboutThisMoment = About this moment
 ";
 				#endregion
 			}

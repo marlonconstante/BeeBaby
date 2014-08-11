@@ -162,7 +162,7 @@ namespace BeeBaby
 			{
 				m_popoverItems = new List<Button>();
 				AddPopoverItem("AddPhotos".Translate(), "photo");
-				AddPopoverItem("ChangeEvent".Translate(), "pencil");
+				AddPopoverItem("ChangeMoment".Translate(), "pencil");
 				AddPopoverItem("RemoveMoment".Translate(), "trash");
 
 				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));

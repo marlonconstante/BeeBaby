@@ -263,7 +263,7 @@ namespace BeeBaby
 		/// </summary>
 		public override void TranslateLabels()
 		{
-			TitleScreen = "Moment".Translate();
+			TitleScreen = "AboutThisMoment".Translate();
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
 			txtLocalName.Placeholder = "WhatsPlaceName".Translate();
 			txtDescription.Placeholder = "MomentRemember".Translate();
