@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using Domain.Moment;
 using Domain.Baby;
 using BeeBaby.ResourcesProviders;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -27,7 +28,7 @@ namespace BeeBaby
 			lblMonth.Text = moment.Date.ToString("MMM");
 			lblWhere.Text = moment.Location.PlaceName;
 			lblYear.Text = moment.Date.ToString("yyyy");
-			imgEventBadge.Add(ImageProvider.GenerateEventBadge(UIImage.FromFile(moment.Event.BadgeFileName), imgEventBadge));
+			imgEventBadge.SetStyleClass(moment.Event.TagName);
 		}
 	}
 }

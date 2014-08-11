@@ -349,27 +349,5 @@ namespace BeeBaby.ResourcesProviders
 
 			return resultImage;
 		}
-
-		/// <summary>
-		/// Generates the event badge.
-		/// </summary>
-		/// <returns>The event badge.</returns>
-		/// <param name="value">Value.</param>
-		/// <param name="imageView">Image view.</param>
-		public static UIImageView GenerateEventBadge(UIImage value, UIImageView imageView)
-		{
-			var iconImage = UIImage.FromFile("hover.png");
-			imageView.Image = iconImage;
-			imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-			var offset = 6f;
-			var width = imageView.Frame.Size.Width - offset;
-			var height = imageView.Frame.Size.Height - offset;
-			var badge = new UIImageView(new RectangleF(offset / 2, offset / 2, width, height));
-			badge.Image = value;
-			badge.ContentMode = UIViewContentMode.ScaleAspectFit;
-
-			return badge;
-		}
-
 	}
 }

@@ -543,8 +543,14 @@ text-view {
 	background-image: url(flying-bee-bg.svg);
 }
 
+.event-tag-border,
 .event-tag-overlay {
 	shape: ellipse;
+}
+
+.event-tag-border {
+	border:	2 solid #fff;
+	-ios-tint-color: #fff;
 }
 
 .border .event-tag-overlay {

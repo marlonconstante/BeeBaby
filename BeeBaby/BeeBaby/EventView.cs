@@ -68,7 +68,7 @@ namespace BeeBaby
 
 			var view = new UIView(new RectangleF(x, 0f, BadgeEventSize, BadgeEventSize));
 			view.SetStyleClass("badge-event");
-			view.AddSubview(BuildImageViewEvent());
+			view.AddSubview(BuildViewTagEvent());
 
 			return view;
 		}
@@ -89,21 +89,18 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Builds the image view event.
+		/// Builds the view tag event.
 		/// </summary>
-		/// <returns>The image view event.</returns>
-		UIImageViewClickable BuildImageViewEvent()
+		/// <returns>The view tag event.</returns>
+		UIView BuildViewTagEvent()
 		{
 			var position = (BadgeEventSize - BadgeEventInnerSize) / 2;
 			var frame = new RectangleF(position, position, BadgeEventInnerSize, BadgeEventInnerSize);
 
-			var image = UIImage.FromFile(CurrentContext.Instance.SelectedEvent.BadgeFileName);
-			var imageView = new UIImageViewClickable(frame);
-			imageView.Layer.CornerRadius = BadgeEventInnerSize / 2;
+			var view = new UIView(frame);
+			view.SetStyleClass(CurrentContext.Instance.SelectedEvent.TagName);
 
-			UpdateImageView(imageView, image, Template == AvatarTemplate.Photo);
-
-			return imageView;
+			return view;
 		}
 
 		/// <summary>
