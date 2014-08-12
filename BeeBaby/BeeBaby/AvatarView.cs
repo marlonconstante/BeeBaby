@@ -117,7 +117,7 @@ namespace BeeBaby
 				height += description.Frame.Height;
 			}
 
-			var y = (InitialFrame.Height / 2f) - (height / 2f);
+			var y = (InitialFrame.Height / 2f) - (height / 2f) + 3f;
 			view.Frame = new RectangleF(0f, y, InitialFrame.Width, height);
 
 			AddSubview("avatar-view", view);
@@ -205,7 +205,7 @@ namespace BeeBaby
 		/// <value>The padding.</value>
 		protected virtual float Padding {
 			get {
-				return 10f;
+				return 7f;
 			}
 		}
 
