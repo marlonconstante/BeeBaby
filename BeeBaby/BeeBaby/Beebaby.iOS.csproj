@@ -434,9 +434,6 @@
     <Compile Include="MediaNavigationController.designer.cs">
       <DependentUpon>MediaNavigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventNavigationController.designer.cs">
-      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CameraNavigationController.cs" />
     <Compile Include="CameraNavigationController.designer.cs">
       <DependentUpon>CameraNavigationController.cs</DependentUpon>
@@ -449,6 +446,9 @@
     <Compile Include="AvatarView.cs" />
     <Compile Include="UserLocation.cs" />
     <Compile Include="EditMomentNavigationController.cs" />
+    <Compile Include="EditMomentNavigationController.designer.cs">
+      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
