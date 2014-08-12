@@ -164,36 +164,33 @@ namespace BeeBaby
 			if (m_popover == null)
 			{
 				var proxyAddPhotos = new EventProxy<TimelineViewController, EventArgs>(this);
-				var proxyChangeEvents = new EventProxy<TimelineViewController, EventArgs>(this);
+				var proxyChangeMoments = new EventProxy<TimelineViewController, EventArgs>(this);
 				var proxyRemoveRow = new EventProxy<TimelineViewController, EventArgs>(this);
 
-				proxyAddPhotos.Action = (target, sender, args) =>
-				{
+				proxyAddPhotos.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
-					target.AddPhotos((Button)sender);							
+					target.AddPhotos((Button) sender);							
 					target.HidePopovers();
 				};
 
-				proxyChangeEvents.Action = (target, sender, args) =>
-				{
+				proxyChangeMoments.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
-					target.ChangeEvent((Button)sender);							
+					target.ChangeMoment((Button) sender);							
 					target.HidePopovers();
 				};
 
-				proxyRemoveRow.Action = (target, sender, args) =>
-				{
+				proxyRemoveRow.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					target.RemoveCurrentRow();
 					target.HidePopovers();
 				};
 					
-				//TODO: Mudar a forma de calculo do height
 				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
 
+
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
-				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeEvents);
+				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoments);
 				m_popover.AddPopoverItem("RemoveMoment".Translate(), "trash", false, c_buttonHeight, proxyRemoveRow);
 
 				m_popover.MinY = tblView.Frame.Y;
@@ -216,7 +213,6 @@ namespace BeeBaby
 			}
 		}
 
-
 		/// <summary>
 		/// Adds the photos.
 		/// </summary>
@@ -227,12 +223,12 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Changes the event.
+		/// Changes the moment.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		void ChangeEvent(Button sender)
+		void ChangeMoment(Button sender)
 		{
-			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueEvent", sender), false);
+			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueMoment", sender), false);
 		}
 
 		/// <summary>
@@ -243,8 +239,7 @@ namespace BeeBaby
 			var alertView = new UIAlertView("Delete".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
 
 			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
-			proxy.Action = (target, sender, args) =>
-			{
+			proxy.Action = (target, sender, args) => {
 				if (args.ButtonIndex == 0)
 				{
 					target.m_tableSource.RemoveRow(target.tblView, target.m_currentIndexPath);
@@ -295,10 +290,8 @@ namespace BeeBaby
 		/// Gets the current cell rect.
 		/// </summary>
 		/// <value>The current cell rect.</value>
-		RectangleF CurrentCellRect
-		{
-			get
-			{
+		RectangleF CurrentCellRect {
+			get {
 				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 				return tblView.ConvertRectToView(tableRect, View);
 			}
