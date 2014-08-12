@@ -281,6 +281,7 @@
     <BundleResource Include="Resources\smile.svg" />
     <BundleResource Include="Resources\lapy.svg" />
     <BundleResource Include="Resources\school.svg" />
+    <BundleResource Include="Resources\cancel-gray.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

@@ -117,6 +117,39 @@ segmented-control {
 	font-size: 10pt;
 }
 
+.event-tag-border,
+.event-tag-overlay {
+	shape: ellipse;
+}
+
+.event-tag-border {
+	border:	2.5 solid #fff;
+	-ios-tint-color: #fff;
+}
+
+.event-tag-border image-view {
+	background-padding: 2;
+}
+
+.border .event-tag-overlay {
+	border:	5 solid #f9fbfb;
+	-ios-tint-color: #f9fbfb;
+}
+
+.selected .event-tag-overlay {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-box,
+.event-tag-border {
+	box-shadow: 0 1.5 0 0 rgba(0, 0, 0, 0.15);
+}
+
+.modal-box {
+	background-color: #f0f8f8;
+	border-radius: 8;
+}
+
 .time-box {
 	background-color: #f1f1e9;
 	box-shadow: 0 0.5 0 0 #b1bdbb;
@@ -141,7 +174,6 @@ segmented-control {
 .time-table table-view-cell	{
 	background-color: #dce5e5;
 }
-
 
 .table-menu table-view-cell {
 	background-image: url(menu-item-background.png);
@@ -170,6 +202,10 @@ segmented-control {
 .time-box-label {
 	font-size: 14pt;
 	font-weight: normal;
+}
+
+.button-cancel {
+	-ios-tint-color: rgba(0, 0, 0, 0.5);
 }
 
 .thumbnails-box {
@@ -543,25 +579,6 @@ text-view {
 	background-image: url(flying-bee-bg.svg);
 }
 
-.event-tag-border,
-.event-tag-overlay {
-	shape: ellipse;
-}
-
-.event-tag-border {
-	border:	2 solid #fff;
-	-ios-tint-color: #fff;
-}
-
-.border .event-tag-overlay {
-	border:	5 solid #f9fbfb;
-	-ios-tint-color: #f9fbfb;
-}
-
-.selected .event-tag-overlay {
-	background-color: rgba(255, 255, 255, 0.5);
-}
-
 .recomendations {
 	background-image: url(recomendations.svg);
 }
@@ -660,6 +677,11 @@ text-view {
 
 .cancel {
 	background-image: url(cancel.svg);
+}
+
+.cancel-gray,
+.button-cancel icon {
+	background-image: url(cancel-gray.svg);
 }
 
 .comeback {

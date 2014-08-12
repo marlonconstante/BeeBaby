@@ -41,7 +41,7 @@ namespace BeeBaby
 			if (m_fullscreenController == null)
 			{
 				var board = UIStoryboard.FromName("MainStoryboard", null);
-				m_fullscreenController = (FullscreenViewController)board.InstantiateViewController("FullscreenViewController");
+				m_fullscreenController = (FullscreenViewController) board.InstantiateViewController("FullscreenViewController");
 			}
 		}
 
