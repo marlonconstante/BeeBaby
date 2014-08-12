@@ -258,51 +258,51 @@ segmented-control label,
 }
 
 .card-overlay-littlebody {
-	background-color: rgba(251, 188, 8, 0.5);
+	background-color: linear-gradient(to right, rgba(251, 188, 8, 0.5), rgba(251, 188, 8, 0.5), rgba(251, 188, 8, 0));
 }
 
 .card-overlay-family {
-	background-color: rgba(123, 112, 157, 0.5);
+	background-color: linear-gradient(to right, rgba(123, 112, 157, 0.5), rgba(123, 112, 157, 0.5), rgba(123, 112, 157, 0));
 }
 
 .card-overlay-ride {
-	background-color: rgba(34, 231, 132, 0.5);
+	background-color: linear-gradient(to right, rgba(34, 231, 132, 0.5), rgba(34, 231, 132, 0.5), rgba(34, 231, 132, 0));
 }
 
 .card-overlay-sleepy {
-	background-color: rgba(196, 195, 0, 0.5);
+	background-color: linear-gradient(to right, rgba(196, 195, 0, 0.5), rgba(196, 195, 0, 0.5), rgba(196, 195, 0, 0));
 }		
 
 .card-overlay-bath {
-	background-color: rgba(93, 190, 214, 0.5);
+	background-color: linear-gradient(to right, rgba(93, 190, 214, 0.5), rgba(93, 190, 214, 0.5), rgba(93, 190, 214, 0));
 }		
 		
 .card-overlay-smile {
-	background-color: rgba(217, 136, 192, 0.5);
+	background-color: linear-gradient(to right, rgba(217, 136, 192, 0.5), rgba(217, 136, 192, 0.5), rgba(217, 136, 192, 0));
 }		
 		
 .card-overlay-lapy {
-	background-color: rgba(175, 59, 109, 0.5);
+	background-color: linear-gradient(to right, rgba(175, 59, 109, 0.5), rgba(175, 59, 109, 0.5), rgba(175, 59, 109, 0));
 }		
 
 .card-overlay-celebrations {
-	background-color: rgba(100, 218, 194, 0.5);
+	background-color: linear-gradient(to right, rgba(100, 218, 194, 0.5), rgba(100, 218, 194, 0.5), rgba(100, 218, 194, 0));
 }		
 		
 .card-overlay-birth {
-	background-color: rgba(255, 165, 164, 0.5);
+	background-color: linear-gradient(to right, rgba(255, 165, 164, 0.5), rgba(255, 165, 164, 0.5), rgba(255, 165, 164, 0));
 }		
 
 .card-overlay-pregnancy {
-	background-color: rgba(101, 115, 135, 0.5);
+	background-color: linear-gradient(to right, rgba(101, 115, 135, 0.5), rgba(101, 115, 135, 0.5), rgba(101, 115, 135, 0));
 }		
 		
 .card-overlay-school {
-	background-color: rgba(0, 114, 188, 0.5);
+	background-color: linear-gradient(to right, rgba(0, 114, 188, 0.5), rgba(0, 114, 188, 0.5), rgba(0, 114, 188, 0));
 }		
 
 .card-overlay-firsts {
-	background-color: rgba(0, 174, 239, 0.5);
+	background-color: linear-gradient(to right, rgba(0, 174, 239, 0.5), rgba(0, 174, 239, 0.5), rgba(0, 174, 239, 0));
 }		
 
 .card-separator,
@@ -489,16 +489,11 @@ text-view {
 }
 
 .image-share-title,
-.image-share-logo {
-	box-shadow: 0 0 1 0 #000;
-}
-
-.image-share-where-label,
-.image-share-age-label,
+.image-share-logo,
 .image-share-day,
 .image-share-month,
 .image-share-year {
-	box-shadow: 1 1 0 0 #000;
+	box-shadow: 1 2 0 0 rgba(0, 0, 0, 0.4);
 }
 
 .image-share-title,
