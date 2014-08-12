@@ -15,6 +15,7 @@ namespace BeeBaby
 		EventListViewController m_viewController;
 		IList<Event> m_otherEventsTableItems;
 		float m_scrollY;
+		float m_nextViewHeight;
 
 		public EventListViewSource(EventListViewController viewController, IList<Event> otherItems)
 		{
@@ -45,21 +46,17 @@ namespace BeeBaby
 		{
 			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
 
-
-			if (m_viewController.IsEditFlow())
-			{
-				m_viewController.GoBackToMoment();
-			}
-			else
-			{
-				ActionProgress actionProgress = new ActionProgress(() =>
+			ActionProgress actionProgress = new ActionProgress(() => {
+				if (m_viewController.IsEditFlow())
+				{
+					m_viewController.GoBackToMoment();
+				}
+				else
 				{
 					m_viewController.PerformSegue("segueMoment", this);
-				}, false);
-				actionProgress.Execute();
-			}
-
-
+				}
+			}, false);
+			actionProgress.Execute();
 		}
 
 		/// <Docs>Table view requesting the cell.</Docs>
@@ -108,7 +105,7 @@ namespace BeeBaby
 			var y = m_scrollY - scrollY;
 			var up = y > 0f;
 
-			bool adjustLimit = scrollHeight < 261f && (scrollY < -64f || scrollY > scrollHeight - 64f);
+			bool adjustLimit = scrollHeight < m_nextViewHeight && (scrollY < -64f || scrollY > scrollHeight - 64f);
 			if ((up && scrollHeight > scrollY) || (!up && scrollY >= (adjustLimit ? -20f : 0f)))
 			{
 				m_viewController.MoveScroll(y, adjustLimit);
@@ -124,6 +121,7 @@ namespace BeeBaby
 		/// <param name="items">Items.</param>
 		public void ReloadData(UITableView tableView, IList<Event> items)
 		{
+			m_nextViewHeight = Views.GetNextViews(tableView).First().Frame.Height;
 			m_otherEventsTableItems = items;
 			tableView.ReloadData();
 		}
