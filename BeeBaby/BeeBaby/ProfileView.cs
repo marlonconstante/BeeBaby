@@ -60,6 +60,7 @@ namespace BeeBaby
 			}
 			else
 			{
+				ActionProgress actionProgress = new ActionProgress(() => {
 				var babyImageView = (BabyImageView) sender;
 				var imagePickerDelegate = babyImageView.BabyProfile.Delegate;
 				imagePickerDelegate.CompletionHandler = () => {
@@ -71,6 +72,8 @@ namespace BeeBaby
 
 				var viewController = Windows.GetTopViewController(Window);
 				viewController.PresentViewController(picker, false, null);
+				}, false);
+				actionProgress.Execute();
 			}
 		}
 

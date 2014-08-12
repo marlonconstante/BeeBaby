@@ -44,6 +44,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		protected override void Action(UIView sender)
 		{
+			ActionProgress actionProgress = new ActionProgress(() => {
 			var viewController = Windows.GetTopViewController(Window) as MomentDetailViewController;
 			if (viewController != null)
 			{
@@ -56,6 +57,8 @@ namespace BeeBaby
 					viewController.GoBackToEvents();
 				}
 			}
+			}, false);
+			actionProgress.Execute();
 		}
 
 		/// <summary>
