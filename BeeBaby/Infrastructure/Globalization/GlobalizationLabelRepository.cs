@@ -166,6 +166,7 @@ InDate = No dia
 AtAge = Com
 Have = Tem
 AboutThisMoment = Sobre Esse Momento
+old = 
 ";
 				#endregion
 			}
@@ -266,8 +267,9 @@ BrowseCategory = Browse other categories:
 At = At
 InDate = In
 AtAge = At
-Have = Have
+Have = Is
 AboutThisMoment = About this moment
+old = old
 ";
 				#endregion
 			}

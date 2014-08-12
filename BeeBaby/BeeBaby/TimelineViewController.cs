@@ -19,11 +19,14 @@ namespace BeeBaby
 	{
 		static bool s_openCamera = true;
 		NSIndexPath m_currentIndexPath;
-		Popover m_popover;
-		Popover m_descriptionPopover;
+		Popover<TimelineViewController, EventArgs> m_popover;
+		Popover<TimelineViewController, EventArgs> m_descriptionPopover;
 
-		IList<Button> m_popoverItems;
 		TimelineViewSource m_tableSource;
+
+
+		const float c_buttonHeight = 44f;
+
 
 		public TimelineViewController(IntPtr handle) : base(handle)
 		{
@@ -141,7 +144,7 @@ namespace BeeBaby
 				var moments = new MomentService().GetAllMoments(baby);
 
 				lblBabyName.Text = baby.Name;
-				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords);
+				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords, " ", "old".Translate());
 
 				InitPopovers();
 
@@ -160,19 +163,46 @@ namespace BeeBaby
 		{
 			if (m_popover == null)
 			{
-				m_popoverItems = new List<Button>();
-				AddPopoverItem("AddPhotos".Translate(), "photo");
-				AddPopoverItem("ChangeMoment".Translate(), "pencil");
-				AddPopoverItem("RemoveMoment".Translate(), "trash");
+				var proxyAddPhotos = new EventProxy<TimelineViewController, EventArgs>(this);
+				var proxyChangeEvents = new EventProxy<TimelineViewController, EventArgs>(this);
+				var proxyRemoveRow = new EventProxy<TimelineViewController, EventArgs>(this);
 
-				m_popover = new Popover(new RectangleF(0f, 0f, 220f, m_popoverItems.Count * 36f));
+				proxyAddPhotos.Action = (target, sender, args) =>
+				{
+					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
+					target.AddPhotos((Button)sender);							
+					target.HidePopovers();
+				};
+
+				proxyChangeEvents.Action = (target, sender, args) =>
+				{
+					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
+					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
+					target.ChangeEvent((Button)sender);							
+					target.HidePopovers();
+				};
+
+				proxyRemoveRow.Action = (target, sender, args) =>
+				{
+					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
+					target.RemoveCurrentRow();
+					target.HidePopovers();
+				};
+					
+				//TODO: Mudar a forma de calculo do height
+				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 220f, 0));
+
+				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
+				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeEvents);
+				m_popover.AddPopoverItem("RemoveMoment".Translate(), "trash", false, c_buttonHeight, proxyRemoveRow);
+
 				m_popover.MinY = tblView.Frame.Y;
-				m_popover.AddSubviews(m_popoverItems.ToArray());
+				m_popover.AddSubviews(m_popover.MenuItems.ToArray());
 			}
 
 			if (m_descriptionPopover == null)
 			{
-				m_descriptionPopover = new Popover(RectangleF.Empty);
+				m_descriptionPopover = new Popover<TimelineViewController, EventArgs>(RectangleF.Empty);
 				m_descriptionPopover.SetStyleClass("description-popover");
 				m_descriptionPopover.MinY = tblView.Frame.Y;
 
@@ -186,47 +216,6 @@ namespace BeeBaby
 			}
 		}
 
-		/// <summary>
-		/// Adds the popover item.
-		/// </summary>
-		/// <param name="title">Title.</param>
-		/// <param name="iconClass">Icon class.</param>
-		void AddPopoverItem(string title, string iconClass)
-		{
-			var button = new Button(new RectangleF(0f, m_popoverItems.Count * 36f, 220f, 36f));
-			button.TitleEdgeInsets = new UIEdgeInsets(1f, 17f, 0f, 0f);
-			button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
-			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
-			button.VerticalAlignment = UIControlContentVerticalAlignment.Center;
-			button.SetTitle(title, UIControlState.Normal);
-			button.SetStyleClass("button-popover " + iconClass);
-
-			var proxy = new EventProxy<TimelineViewController, EventArgs>(this);
-			proxy.Action = (target, sender, args) => {
-				CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
-				var buttonSender = (Button) sender;
-				var indexOf = target.m_popoverItems.IndexOf(buttonSender);
-
-				if (indexOf == 0)
-				{
-					target.AddPhotos(buttonSender);
-				}
-				else if (indexOf == 1)
-				{
-					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
-					target.ChangeEvent(buttonSender);
-				}
-				else if (indexOf == 2)
-				{
-					target.RemoveCurrentRow();
-				}
-
-				target.HidePopovers();
-			};
-			button.TouchUpInside += proxy.HandleEvent;
-
-			m_popoverItems.Add(button);
-		}
 
 		/// <summary>
 		/// Adds the photos.
@@ -234,9 +223,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void AddPhotos(Button sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				RootViewController.PerformSegue("segueMedia", sender);
-			}, false);
+			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueMedia", sender), false);
 		}
 
 		/// <summary>
@@ -245,9 +232,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void ChangeEvent(Button sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				RootViewController.PerformSegue("segueEvent", sender);
-			}, false);
+			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueEvent", sender), false);
 		}
 
 		/// <summary>
@@ -258,7 +243,8 @@ namespace BeeBaby
 			var alertView = new UIAlertView("Delete".Translate(), "QuestionRemoveMoment".Translate(), null, null, "Yes".Translate(), "No".Translate());
 
 			var proxy = new EventProxy<TimelineViewController, UIButtonEventArgs>(this);
-			proxy.Action = (target, sender, args) => {
+			proxy.Action = (target, sender, args) =>
+			{
 				if (args.ButtonIndex == 0)
 				{
 					target.m_tableSource.RemoveRow(target.tblView, target.m_currentIndexPath);
@@ -308,7 +294,8 @@ namespace BeeBaby
 		/// <value>The current cell rect.</value>
 		RectangleF CurrentCellRect
 		{
-			get {
+			get
+			{
 				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 				return tblView.ConvertRectToView(tableRect, View);
 			}
