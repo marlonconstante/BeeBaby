@@ -196,7 +196,8 @@ namespace BeeBaby
 					target.HidePopovers();
 				};
 					
-				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 220f, 0f));
+				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
+
 
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
 				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoments);

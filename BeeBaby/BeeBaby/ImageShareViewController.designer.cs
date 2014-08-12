@@ -37,10 +37,26 @@ namespace BeeBaby
 		MonoTouch.UIKit.UILabel lblYear { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIView vwLowerBackground { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView vwLowerBAckground { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIView vwMainView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (vwLowerBackground != null) {
+				vwLowerBackground.Dispose ();
+				vwLowerBackground = null;
+			}
+
+			if (imgEventBadge != null) {
+				imgEventBadge.Dispose ();
+				imgEventBadge = null;
+			}
+
 			if (ivwBackgroundImage != null) {
 				ivwBackgroundImage.Dispose ();
 				ivwBackgroundImage = null;
@@ -76,14 +92,14 @@ namespace BeeBaby
 				lblYear = null;
 			}
 
+			if (vwLowerBAckground != null) {
+				vwLowerBAckground.Dispose ();
+				vwLowerBAckground = null;
+			}
+
 			if (vwMainView != null) {
 				vwMainView.Dispose ();
 				vwMainView = null;
-			}
-
-			if (imgEventBadge != null) {
-				imgEventBadge.Dispose ();
-				imgEventBadge = null;
 			}
 		}
 	}

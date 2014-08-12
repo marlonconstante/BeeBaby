@@ -307,6 +307,7 @@
                                                     <subviews>
                                                         <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVT-7Y-oLL">
                                                             <rect key="frame" x="6" y="6.5" width="30" height="30"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-pa-fpI">
@@ -1008,6 +1009,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="image-share-title"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NnN-yG-RJq">
                                         <rect key="frame" x="6" y="6" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1108,9 +1110,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="card-overlay"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                     </view>
@@ -1125,6 +1124,7 @@
                         <outlet property="lblMonth" destination="gzr-uO-Jdk" id="wUv-YH-T5S"/>
                         <outlet property="lblWhere" destination="38s-va-25r" id="8NR-hD-jIq"/>
                         <outlet property="lblYear" destination="zxq-LK-jHg" id="tma-q9-khi"/>
+                        <outlet property="vwLowerBackground" destination="gQl-yN-cIu" id="wlw-ml-B4p"/>
                         <outlet property="vwMainView" destination="EYB-Ks-NGA" id="UqG-0J-bjl"/>
                     </connections>
                 </viewController>
@@ -1347,7 +1347,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3D-9k-Hee">
-                                        <rect key="frame" x="12" y="41.5" width="246" height="1"/>
+                                        <rect key="frame" x="12" y="41" width="246" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-hp-g2g">

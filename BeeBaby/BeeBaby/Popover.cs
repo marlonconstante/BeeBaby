@@ -31,7 +31,8 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public void Show(PointF point, bool animated = true)
 		{
-			Hide(() => {
+			Hide(() =>
+			{
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -47,12 +48,17 @@ namespace BeeBaby
 				}
 
 				var frame = Frame;
-				frame.X = point.X;
+				frame.X = point.X + 20;
 				frame.Y = point.Y;
 				frame.Height = m_viewHeight;
 				Frame = frame;
 
-				UIView.Animate(animated ? 0.15d : 0d, () => {
+				Layer.CornerRadius = 8;
+				ClipsToBounds = true;
+
+				UIView.Animate(animated ? 0.15d : 0d, () =>
+				{
+
 					Alpha = 1f;
 				});
 
@@ -67,9 +73,11 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public void Hide(Action completion = null, bool animated = true)
 		{
-			UIView.Animate(animated ? 0.15d : 0d, () => {
+			UIView.Animate(animated ? 0.15d : 0d, () =>
+			{
 				Alpha = 0f;
-			}, () => {
+			}, () =>
+			{
 				if (completion != null)
 				{
 					completion();
@@ -104,7 +112,7 @@ namespace BeeBaby
 			if (bottonLine)
 			{
 				line = new UIImageView(new RectangleF(0f, m_viewHeight + buttonHeight, 220f, lineHeight));
-				line.Image = new UIImage("separator.png");
+				line.Image = new UIImage("menuLine.png");
 			}
 
 			button.TouchUpInside += proxy.HandleEvent;
@@ -144,7 +152,8 @@ namespace BeeBaby
 		/// Gets or sets the minimum y.
 		/// </summary>
 		/// <value>The minimum y.</value>
-		public float MinY {
+		public float MinY
+		{
 			get;
 			set;
 		}
@@ -159,8 +168,10 @@ namespace BeeBaby
 		/// Gets the current view controller.
 		/// </summary>
 		/// <value>The current view controller.</value>
-		UIViewController CurrentViewController {
-			get {
+		UIViewController CurrentViewController
+		{
+			get
+			{
 				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
 		}
