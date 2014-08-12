@@ -61,17 +61,17 @@ namespace BeeBaby
 			else
 			{
 				ActionProgress actionProgress = new ActionProgress(() => {
-				var babyImageView = (BabyImageView) sender;
-				var imagePickerDelegate = babyImageView.BabyProfile.Delegate;
-				imagePickerDelegate.CompletionHandler = () => {
-					babyImageView.Image = GetPhotoProfile(imagePickerDelegate.ImageProvider);
-				};
+					var babyImageView = (BabyImageView) sender;
+					var imagePickerDelegate = babyImageView.BabyProfile.Delegate;
+					imagePickerDelegate.CompletionHandler = () => {
+						babyImageView.Image = GetPhotoProfile(imagePickerDelegate.ImageProvider);
+					};
 
-				var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
-				var picker = mediaPickerProvider.GetUIImagePickerController();
+					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
+					var picker = mediaPickerProvider.GetUIImagePickerController();
 
-				var viewController = Windows.GetTopViewController(Window);
-				viewController.PresentViewController(picker, false, null);
+					var viewController = Windows.GetTopViewController(Window);
+					viewController.PresentViewController(picker, false, null);
 				}, false);
 				actionProgress.Execute();
 			}
