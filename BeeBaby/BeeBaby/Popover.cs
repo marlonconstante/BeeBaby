@@ -70,10 +70,13 @@ namespace BeeBaby
 				}
 
 				var frame = Frame;
-				frame.X = point.X;
+				frame.X = point.X + 20;
 				frame.Y = point.Y;
 				frame.Height = m_viewHeight;
 				Frame = frame;
+
+				Layer.CornerRadius = 8;
+				this.ClipsToBounds = true;
 
 				UIView.Animate(animated ? 0.15d : 0d, () =>
 				{
@@ -150,7 +153,7 @@ namespace BeeBaby
 			if (bottonLine)
 			{
 				line = new UIImageView(new RectangleF(0f, m_viewHeight + buttonHeight, 220f, lineHeight));
-				line.Image = new UIImage("separator.png");
+				line.Image = new UIImage("menuLine.png");
 			}
 
 			button.TouchUpInside += proxy.HandleEvent;
