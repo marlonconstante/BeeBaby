@@ -106,7 +106,7 @@ namespace BeeBaby
 			}));
 			menuItems.Add(new MenuItem("InviteFriends".Translate(), "invite", () => {
 			}));
-			menuItems.Add(new MenuItem("ManageFamily".Translate(), "family", () => {
+			menuItems.Add(new MenuItem("ManageFamily".Translate(), "users", () => {
 			}));
 			menuItems.Add(new MenuItem("Configurations".Translate(), "gear", () => {
 			}));

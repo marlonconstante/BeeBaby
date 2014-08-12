@@ -543,8 +543,79 @@ text-view {
 	background-image: url(flying-bee-bg.svg);
 }
 
+.event-tag-border,
+.event-tag-overlay {
+	shape: ellipse;
+}
+
+.event-tag-border {
+	border:	2 solid #fff;
+	-ios-tint-color: #fff;
+}
+
+.border .event-tag-overlay {
+	border:	5 solid #f9fbfb;
+	-ios-tint-color: #f9fbfb;
+}
+
+.selected .event-tag-overlay {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
 .recomendations {
 	background-image: url(recomendations.svg);
+}
+
+.everyday {
+	background-image: url(everyday.svg);
+}
+
+.firsts {
+	background-image: url(firsts.svg);
+}
+
+.sleepy {
+	background-image: url(sleepy.svg);
+}
+
+.ride {
+	background-image: url(ride.svg);
+}
+
+.littlebody {
+	background-image: url(littlebody.svg);
+}
+
+.family {
+	background-image: url(family.svg);
+}
+
+.bath {
+	background-image: url(bath.svg);
+}
+
+.birth {
+	background-image: url(birth.svg);
+}
+
+.celebrations {
+	background-image: url(celebrations.svg);
+}
+
+.pregnancy {
+	background-image: url(pregnancy.svg);
+}
+
+.smile {
+	background-image: url(smile.svg);
+}
+
+.lapy {
+	background-image: url(lapy.svg);
+}
+
+.school {
+	background-image: url(school.svg);
 }
 
 .logoff {
@@ -730,14 +801,14 @@ text-view {
 	background-image: url(invite-clear.svg);
 }
 
-.family {
-	background-image: url(family.svg);
+.users {
+	background-image: url(users.svg);
 }
 
-.family-clear,
-.table-menu table-view-cell .family:highlighted,
-.table-menu table-view-cell .family:selected {
-	background-image: url(family-clear.svg);
+.users-clear,
+.table-menu table-view-cell .users:highlighted,
+.table-menu table-view-cell .users:selected {
+	background-image: url(users-clear.svg);
 }
 
 .music {

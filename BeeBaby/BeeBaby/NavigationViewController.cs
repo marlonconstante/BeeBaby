@@ -172,9 +172,9 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Determines whether this instance is event flow.
+		/// Determines whether this instance is edit flow.
 		/// </summary>
-		/// <returns><c>true</c> if this instance is event flow; otherwise, <c>false</c>.</returns>
+		/// <returns><c>true</c> if this instance is edit flow; otherwise, <c>false</c>.</returns>
 		public bool IsEditFlow()
 		{
 			return NavigationController is EditMomentNavigationController;

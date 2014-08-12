@@ -267,18 +267,13 @@ namespace BeeBaby
 				var param = new NSDictionary("Tag", sender.TagName);
 				FlurryAnalytics.Flurry.LogEvent("Eventos: Filtrou pela Tag.", param);
 
-				var iconImage = UIImage.FromFile("hover.png");
-				const float x = (s_buttonSizeX - s_imageSize) / 2;
-				var imageView = new UIImageView(new RectangleF(x, 0, s_imageSize, s_imageSize));
-
-				imageView.ContentMode = UIViewContentMode.ScaleToFill;
-				imageView.Image = iconImage;
-				sender.AddSubview(imageView);
+				sender.AddStyleClass("border");
+				sender.AddStyleClass("selected");
 			}
 			else
 			{
-				if (sender.Subviews.Length > 2)
-					sender.Subviews[3].RemoveFromSuperview();
+				sender.RemoveStyleClass("border");
+				sender.RemoveStyleClass("selected");
 			}
 		}
 
@@ -289,14 +284,18 @@ namespace BeeBaby
 		/// <param name="tagName">Tag name.</param>
 		void SetImage(UITagButton button, string tagName)
 		{
-			var imageName = string.Format("{0}.png", tagName.ToLower());
-			var iconImage = UIImage.FromFile(imageName);
-			const float x = ((s_buttonSizeX - s_imageSize) / 2) + 1f;
-			var imageView = new UIImageView(new RectangleF(x, 1f, s_imageSize - 2f, s_imageSize - 2f));
+			const float x = ((s_buttonSizeX - s_imageSize) / 2);
 
-			imageView.ContentMode = UIViewContentMode.ScaleToFill;
-			imageView.Image = iconImage;
-			button.AddSubview(imageView);
+			var view = new UIView(new RectangleF(x, 0f, s_imageSize, s_imageSize));
+			view.UserInteractionEnabled = false;
+			view.ContentMode = UIViewContentMode.ScaleToFill;
+			view.SetStyleClass(tagName.ToLower());
+
+			var overlay = new UIView(new RectangleF(0f, 0f, s_imageSize, s_imageSize));
+			overlay.SetStyleClass("event-tag-overlay");
+			view.AddSubview(overlay);
+
+			button.AddSubview(view);
 		}
 
 		/// <summary>
@@ -329,7 +328,6 @@ namespace BeeBaby
 		public override void TranslateLabels()
 		{
 			TitleScreen = "WhatEventIsThis".Translate();
-			lblBrowseCategory.Text = "BrowseCategory".Translate();
 		}
 
 		/// <summary>

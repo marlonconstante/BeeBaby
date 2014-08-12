@@ -214,8 +214,6 @@
     <BundleResource Include="Resources\about.svg" />
     <BundleResource Include="Resources\invite-clear.svg" />
     <BundleResource Include="Resources\invite.svg" />
-    <BundleResource Include="Resources\family-clear.svg" />
-    <BundleResource Include="Resources\family.svg" />
     <BundleResource Include="Resources\logoff.svg" />
     <BundleResource Include="Resources\share.svg" />
     <BundleResource Include="Resources\RobotoCondensed-Bold.otf">
@@ -236,7 +234,6 @@
     <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\Familia.png" />
     <BundleResource Include="Resources\school_sm.png" />
     <BundleResource Include="Resources\lapy_sm.png" />
     <BundleResource Include="Resources\smile_sm.png" />
@@ -252,21 +249,6 @@
     <BundleResource Include="Resources\recomendations_sm.png" />
     <BundleResource Include="Resources\icon_sm.psd" />
     <BundleResource Include="Resources\littlebody_sm.png" />
-    <BundleResource Include="Resources\recomendations.png" />
-    <BundleResource Include="Resources\everyday.png" />
-    <BundleResource Include="Resources\firsts.png" />
-    <BundleResource Include="Resources\sleepy.png" />
-    <BundleResource Include="Resources\ride.png" />
-    <BundleResource Include="Resources\littlebody.png" />
-    <BundleResource Include="Resources\smile.png" />
-    <BundleResource Include="Resources\lapy.png" />
-    <BundleResource Include="Resources\school.png" />
-    <BundleResource Include="Resources\family.png" />
-    <BundleResource Include="Resources\bath.png" />
-    <BundleResource Include="Resources\birth.png" />
-    <BundleResource Include="Resources\celebrations.png" />
-    <BundleResource Include="Resources\hover.png" />
-    <BundleResource Include="Resources\pregnancy.png" />
     <BundleResource Include="Resources\tree.svg" />
     <BundleResource Include="Resources\tree-clear.svg" />
     <BundleResource Include="Resources\flying-bee.svg" />
@@ -284,6 +266,21 @@
     <BundleResource Include="Resources\background-event.png" />
     <BundleResource Include="Resources\flying-bee-bg.svg" />
     <BundleResource Include="Resources\recomendations.svg" />
+    <BundleResource Include="Resources\everyday.svg" />
+    <BundleResource Include="Resources\firsts.svg" />
+    <BundleResource Include="Resources\sleepy.svg" />
+    <BundleResource Include="Resources\ride.svg" />
+    <BundleResource Include="Resources\littlebody.svg" />
+    <BundleResource Include="Resources\users.svg" />
+    <BundleResource Include="Resources\users-clear.svg" />
+    <BundleResource Include="Resources\family.svg" />
+    <BundleResource Include="Resources\bath.svg" />
+    <BundleResource Include="Resources\birth.svg" />
+    <BundleResource Include="Resources\celebrations.svg" />
+    <BundleResource Include="Resources\pregnancy.svg" />
+    <BundleResource Include="Resources\smile.svg" />
+    <BundleResource Include="Resources\lapy.svg" />
+    <BundleResource Include="Resources\school.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -437,9 +434,6 @@
     <Compile Include="MediaNavigationController.designer.cs">
       <DependentUpon>MediaNavigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventNavigationController.designer.cs">
-      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CameraNavigationController.cs" />
     <Compile Include="CameraNavigationController.designer.cs">
       <DependentUpon>CameraNavigationController.cs</DependentUpon>
@@ -452,6 +446,13 @@
     <Compile Include="AvatarView.cs" />
     <Compile Include="UserLocation.cs" />
     <Compile Include="EditMomentNavigationController.cs" />
+    <Compile Include="EditMomentNavigationController.designer.cs">
+      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModalViewController.cs" />
+    <Compile Include="ModalViewController.designer.cs">
+      <DependentUpon>ModalViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

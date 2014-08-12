@@ -13,9 +13,6 @@ namespace BeeBaby
 	partial class EventListViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBrowseCategory { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIPageControl pcrPager { get; set; }
 
 		[Outlet]
@@ -63,11 +60,6 @@ namespace BeeBaby
 			if (tblView != null) {
 				tblView.Dispose ();
 				tblView = null;
-			}
-
-			if (lblBrowseCategory != null) {
-				lblBrowseCategory.Dispose ();
-				lblBrowseCategory = null;
 			}
 		}
 	}

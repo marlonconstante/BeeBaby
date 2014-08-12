@@ -283,7 +283,10 @@ namespace BeeBaby
 
 			var width = label.Frame.Width + label.Frame.X + label.Frame.Y;
 			var height = label.Frame.Height + (label.Frame.Y * 2f);
-			m_descriptionPopover.Frame = new RectangleF(0f, 0f, width, height);
+
+			m_descriptionPopover.Hide(() => {
+				m_descriptionPopover.Frame = new RectangleF(0f, 0f, width, height);
+			});
 
 			m_descriptionPopover.Show(new PointF(UIScreen.MainScreen.Bounds.Width - width, CurrentCellRect.Y));
 		}

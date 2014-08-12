@@ -3,6 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
+using PixateFreestyleLib;
 
 namespace BeeBaby
 {
@@ -87,16 +88,15 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets or sets the event badge.
+		/// Gets or sets the event badge class.
 		/// </summary>
-		/// <value>The event badge.</value>
-		public UIImage EventBadge {
+		/// <value>The event badge class.</value>
+		public string EventBadgeClass {
 			get {
-				return imgEventBadge.Image;
+				return imgEventBadge.GetStyleClass();
 			}
 			set {
-				var badge = ImageProvider.GenerateEventBadge(value, imgEventBadge);
-				imgEventBadge.AddSubview(badge);
+				imgEventBadge.SetStyleClass(value);
 			}
 		}
 

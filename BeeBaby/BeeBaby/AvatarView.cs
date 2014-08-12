@@ -108,9 +108,7 @@ namespace BeeBaby
 			var height = photo.Frame.Height;
 			if (Template == AvatarTemplate.PhotoAndDescription)
 			{
-				height += Padding;
-
-				var description = BuildDescription(height);
+				var description = BuildDescription(height + Padding);
 				view.AddSubview(description);
 				view.UserInteractionEnabled = false;
 
@@ -205,7 +203,7 @@ namespace BeeBaby
 		/// <value>The padding.</value>
 		protected virtual float Padding {
 			get {
-				return 10f;
+				return 7f;
 			}
 		}
 
