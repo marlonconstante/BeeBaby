@@ -101,7 +101,6 @@ namespace BeeBaby
 			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
 			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 
-			//TODO: usar a linguagem do device
 			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
 			var connection = SetupConnection();
