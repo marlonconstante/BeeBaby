@@ -11,39 +11,17 @@ namespace BeeBaby
 		where TDelegateController : class
 		where TEventArgs : EventArgs
 	{
-		/// <summary>
-		/// The height of the line.
-		/// </summary>
-		const float lineHeight = 3f;
-
-
-		/// <summary>
-		/// Gets the menu itens.
-		/// </summary>
-		/// <value>The menu itens.</value>
-		public IList<UIView> MenuItems { get { return m_menuItems; } }
-
-
-		/// <summary>
-		/// The m menu items.
-		/// </summary>
-		IList<UIView> m_menuItems;
-
-		/// <summary>
-		/// The height of the m view.
-		/// </summary>
-		float m_viewHeight;
-
 		public Popover(RectangleF frame) : base(frame)
 		{
+			m_viewHeight = 0f;
+			m_menuItems = new List<UIView>();
 			MinY = 0f;
 			Alpha = 0f;
+
 			Layer.BorderWidth = 1f;
 			Layer.BorderColor = UIColor.FromRGB(227, 227, 219).CGColor;
-			CurrentViewController.View.AddSubview(this);
-			m_viewHeight = 0;
 
-			m_menuItems = new List<UIView>();
+			CurrentViewController.View.AddSubview(this);
 		}
 
 		/// <summary>
@@ -53,8 +31,7 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public void Show(PointF point, bool animated = true)
 		{
-			Hide(() =>
-			{
+			Hide(() => {
 				if (point.X > UIScreen.MainScreen.Bounds.Width - Frame.Width)
 				{
 					point.X -= Frame.Width;
@@ -75,8 +52,7 @@ namespace BeeBaby
 				frame.Height = m_viewHeight;
 				Frame = frame;
 
-				UIView.Animate(animated ? 0.15d : 0d, () =>
-				{
+				UIView.Animate(animated ? 0.15d : 0d, () => {
 					Alpha = 1f;
 				});
 
@@ -91,11 +67,9 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public void Hide(Action completion = null, bool animated = true)
 		{
-			UIView.Animate(animated ? 0.15d : 0d, () =>
-			{
+			UIView.Animate(animated ? 0.15d : 0d, () => {
 				Alpha = 0f;
-			}, () =>
-			{
+			}, () => {
 				if (completion != null)
 				{
 					completion();
@@ -108,33 +82,13 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets or sets the minimum y.
+		/// Adds the popover item.
 		/// </summary>
-		/// <value>The minimum y.</value>
-		public float MinY
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this instance is visible.
-		/// </summary>
-		/// <value><c>true</c> if this instance is visible; otherwise, <c>false</c>.</value>
-		public bool IsVisible { get; set; }
-
-		/// <summary>
-		/// Gets the current view controller.
-		/// </summary>
-		/// <value>The current view controller.</value>
-		UIViewController CurrentViewController
-		{
-			get
-			{
-				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
-			}
-		}
-
+		/// <param name="title">Title.</param>
+		/// <param name="iconClass">Icon class.</param>
+		/// <param name="bottonLine">If set to <c>true</c> botton line.</param>
+		/// <param name="buttonHeight">Button height.</param>
+		/// <param name="proxy">Proxy.</param>
 		public void AddPopoverItem(string title, string iconClass, bool bottonLine, float buttonHeight, EventProxy<TDelegateController, EventArgs> proxy)
 		{
 			var button = new Button(new RectangleF(0f, m_viewHeight, 220f, buttonHeight));
@@ -162,6 +116,52 @@ namespace BeeBaby
 			{
 				m_menuItems.Add(line);
 				m_viewHeight += line.Frame.Height;
+			}
+		}
+
+		/// <summary>
+		/// The height of the line.
+		/// </summary>
+		const float lineHeight = 3f;
+
+		/// <summary>
+		/// The height of the m view.
+		/// </summary>
+		float m_viewHeight;
+
+		/// <summary>
+		/// The menu items.
+		/// </summary>
+		IList<UIView> m_menuItems;
+
+		/// <summary>
+		/// Gets the menu itens.
+		/// </summary>
+		/// <value>The menu itens.</value>
+		public IList<UIView> MenuItems { get { return m_menuItems; } }
+
+		/// <summary>
+		/// Gets or sets the minimum y.
+		/// </summary>
+		/// <value>The minimum y.</value>
+		public float MinY {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is visible.
+		/// </summary>
+		/// <value><c>true</c> if this instance is visible; otherwise, <c>false</c>.</value>
+		public bool IsVisible { get; set; }
+
+		/// <summary>
+		/// Gets the current view controller.
+		/// </summary>
+		/// <value>The current view controller.</value>
+		UIViewController CurrentViewController {
+			get {
+				return Windows.GetTopViewController(UIApplication.SharedApplication.Windows[0]);
 			}
 		}
 	}
