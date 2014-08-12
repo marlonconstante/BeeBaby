@@ -29,6 +29,8 @@ namespace BeeBaby
 			lblWhere.Text = moment.Location.PlaceName;
 			lblYear.Text = moment.Date.ToString("yyyy");
 			imgEventBadge.SetStyleClass(moment.Event.TagName);
+
+			vwLowerBackground.SetStyleClass(string.Concat("card-overlay-", moment.Event.TagName));
 		}
 	}
 }

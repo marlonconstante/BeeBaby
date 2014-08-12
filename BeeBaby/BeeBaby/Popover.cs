@@ -54,7 +54,7 @@ namespace BeeBaby
 				Frame = frame;
 
 				Layer.CornerRadius = 8;
-				this.ClipsToBounds = true;
+				ClipsToBounds = true;
 
 				UIView.Animate(animated ? 0.15d : 0d, () =>
 				{

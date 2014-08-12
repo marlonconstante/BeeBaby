@@ -306,11 +306,11 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-pa-fpI">
-                                                            <rect key="frame" x="7" y="7.5" width="28" height="28"/>
+                                                            <rect key="frame" x="7" y="7" width="28" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVT-7Y-oLL">
-                                                            <rect key="frame" x="6" y="6.5" width="30" height="30"/>
+                                                            <rect key="frame" x="6" y="6" width="30" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="event-tag-border"/>
@@ -1008,7 +1008,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwg-SJ-RYM">
-                                        <rect key="frame" x="7" y="7.5" width="28" height="28"/>
+                                        <rect key="frame" x="7" y="7" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NnN-yG-RJq">
@@ -1105,9 +1105,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="card-overlay"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                     </view>
@@ -1122,6 +1119,7 @@
                         <outlet property="lblMonth" destination="gzr-uO-Jdk" id="wUv-YH-T5S"/>
                         <outlet property="lblWhere" destination="38s-va-25r" id="8NR-hD-jIq"/>
                         <outlet property="lblYear" destination="zxq-LK-jHg" id="tma-q9-khi"/>
+                        <outlet property="vwLowerBackground" destination="gQl-yN-cIu" id="wlw-ml-B4p"/>
                         <outlet property="vwMainView" destination="EYB-Ks-NGA" id="UqG-0J-bjl"/>
                     </connections>
                 </viewController>
@@ -1338,7 +1336,7 @@
                                         </state>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3D-9k-Hee">
-                                        <rect key="frame" x="12" y="41.5" width="246" height="1"/>
+                                        <rect key="frame" x="12" y="41" width="246" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iUh-4d-Yiy">
