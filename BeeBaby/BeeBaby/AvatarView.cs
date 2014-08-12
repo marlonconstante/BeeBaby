@@ -108,16 +108,14 @@ namespace BeeBaby
 			var height = photo.Frame.Height;
 			if (Template == AvatarTemplate.PhotoAndDescription)
 			{
-				height += Padding;
-
-				var description = BuildDescription(height);
+				var description = BuildDescription(height + Padding);
 				view.AddSubview(description);
 				view.UserInteractionEnabled = false;
 
 				height += description.Frame.Height;
 			}
 
-			var y = (InitialFrame.Height / 2f) - (height / 2f) + 3f;
+			var y = (InitialFrame.Height / 2f) - (height / 2f);
 			view.Frame = new RectangleF(0f, y, InitialFrame.Width, height);
 
 			AddSubview("avatar-view", view);
