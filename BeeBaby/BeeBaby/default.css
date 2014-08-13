@@ -141,7 +141,7 @@ segmented-control {
 }
 
 .modal-box,
-.event-tag-border {
+.modal-box + .event-tag-border {
 	box-shadow: 0 1.5 0 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -205,7 +205,7 @@ segmented-control {
 }
 
 .button-cancel {
-	-ios-tint-color: rgba(0, 0, 0, 0.5);
+	-ios-tint-color: rgba(0, 0, 0, 0.2);
 }
 
 .thumbnails-box {
@@ -266,6 +266,19 @@ segmented-control label,
 	font-size: 15pt;
 	font-weight: bold;
 }
+
+.view .modal-box .event-label {
+	font-size: 17pt;
+}
+
+.view .modal-box label:not(.event-label) {
+	font-size: 15pt;
+	color: #000;
+}
+
+.view .modal-box .separator {
+	background-color: #a9afaf;
+}	
 
 .form-label,
 .special-message-label {

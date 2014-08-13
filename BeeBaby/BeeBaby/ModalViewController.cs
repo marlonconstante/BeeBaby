@@ -24,15 +24,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Ends the editing.
-		/// </summary>
-		public override void EndEditing()
-		{
-			base.EndEditing();
-			Close(null);
-		}
-
-		/// <summary>
 		/// Close the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
