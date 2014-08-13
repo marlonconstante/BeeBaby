@@ -90,7 +90,7 @@ namespace BeeBaby
 		/// <param name="scrollView">Scroll view.</param>
 		public override void Scrolled(UIScrollView scrollView)
 		{
-			m_viewController.HidePopovers();
+			m_viewController.HidePopover();
 		}
 
 		/// <Docs>Table view requesting the cell.</Docs>

@@ -21,7 +21,6 @@ namespace BeeBaby
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
-		Popover<TimelineViewController, EventArgs> m_descriptionPopover;
 		ModalViewController m_modalViewController;
 		TimelineViewSource m_tableSource;
 
@@ -82,22 +81,17 @@ namespace BeeBaby
 		{
 			base.EndEditing();
 
-			HidePopovers();
+			HidePopover();
 		}
 
 		/// <summary>
 		/// Hides the popover.
 		/// </summary>
-		public void HidePopovers()
+		public void HidePopover()
 		{
 			if (m_popover != null)
 			{
 				m_popover.Hide();
-			}
-
-			if (m_descriptionPopover != null)
-			{
-				m_descriptionPopover.Hide();
 			}
 		}
 
@@ -156,7 +150,7 @@ namespace BeeBaby
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords, " ", "old".Translate());
 
-				InitPopovers();
+				InitPopover();
 
 				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
 				tblView.Source = m_tableSource;
@@ -169,7 +163,7 @@ namespace BeeBaby
 		/// <summary>
 		/// Inits the popover.
 		/// </summary>
-		void InitPopovers()
+		void InitPopover()
 		{
 			if (m_popover == null)
 			{
@@ -180,20 +174,20 @@ namespace BeeBaby
 				proxyAddPhotos.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					target.AddPhotos((Button) sender);							
-					target.HidePopovers();
+					target.HidePopover();
 				};
 
 				proxyChangeMoments.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
 					target.ChangeMoment((Button) sender);							
-					target.HidePopovers();
+					target.HidePopover();
 				};
 
 				proxyRemoveRow.Action = (target, sender, args) => {
 					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					target.RemoveCurrentRow();
-					target.HidePopovers();
+					target.HidePopover();
 				};
 					
 				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
@@ -205,21 +199,6 @@ namespace BeeBaby
 
 				m_popover.MinY = tblView.Frame.Y;
 				m_popover.AddSubviews(m_popover.MenuItems.ToArray());
-			}
-
-			if (m_descriptionPopover == null)
-			{
-				m_descriptionPopover = new Popover<TimelineViewController, EventArgs>(RectangleF.Empty);
-				m_descriptionPopover.SetStyleClass("description-popover");
-				m_descriptionPopover.MinY = tblView.Frame.Y;
-
-				var label = new Label(new RectangleF(33f, 8f, 220f, 0f));
-				label.IsAutoAdjustSize = true;
-				m_descriptionPopover.AddSubview(label);
-
-				var icon = new UIView(new RectangleF(8f, 8f, 19f, 19f));
-				icon.SetStyleClass("comments");
-				m_descriptionPopover.AddSubview(icon);
 			}
 		}
 
