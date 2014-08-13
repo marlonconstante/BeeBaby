@@ -550,6 +550,7 @@ text-view {
 {
 	font-family: "Roboto Slab";
 	font-weight: bold;
+	font-size: 24pt;
 }
 
 .image-share-day,
@@ -591,11 +592,6 @@ text-view {
 
 .baby-label {
 	font-size: 17pt;
-}
-
-.image-share-title {
-	font-size: 25pt;
-	font-weight: bold;
 }
 
 .image-share-where-label {

@@ -24,11 +24,17 @@ namespace BeeBaby
 			ivwBackgroundImage.Image = backgroundImage;
 			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
 			lblDay.Text = moment.Date.ToString("dd");
+			lblEvent.LineHeight = lblEvent.Font.PointSize + 1;
 			lblEvent.Text = moment.Event.Description;
 			lblMonth.Text = moment.Date.ToString("MMM");
 			lblWhere.Text = moment.Location.PlaceName;
 			lblYear.Text = moment.Date.ToString("yyyy");
 			imgEventBadge.SetStyleClass(moment.Event.TagName);
+
+			var frame = vwImageBadge.Frame;
+			frame.Y = (lblEvent.Frame.Height / 2) - (frame.Height / 2);
+
+			vwImageBadge.Frame = frame;
 
 			vwLowerBackground.SetStyleClass(string.Concat("card-overlay-", moment.Event.TagName));
 		}
