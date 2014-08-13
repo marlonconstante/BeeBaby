@@ -165,7 +165,7 @@ At = Em
 InDate = No dia
 AtAge = Com
 Have = Tem
-AboutThisMoment = Sobre Esse Momento
+AboutThisMoment = Sobre esse momento
 old = 
 ";
 				#endregion
