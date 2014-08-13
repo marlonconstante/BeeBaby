@@ -363,6 +363,10 @@ segmented-control label,
 	background-color: #e6e6e5;
 }
 
+.modal-background {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
 .table-menu,
 .table-menu table-view-cell,
 .screen-background,
