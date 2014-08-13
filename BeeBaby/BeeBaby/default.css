@@ -532,19 +532,31 @@ text-view {
 	box-shadow: 1 2 0 0 rgba(0, 0, 0, 0.4);
 }
 
-.image-share-title,
+
+.image-share-title
+{
+	font-family: "Roboto Slab";
+	font-weight: bold;
+}
+
 .image-share-day,
 .image-share-month,
 .image-share-year {
 	font-family: "Roboto Condensed";
 }
 
+
+.image-share-where-label,
+.image-share-age-label {
+	font-family: "Quicksand";
+	font-weight: bold;
+}
+
+
 .avatar-label,
 .baby-label,
 .change-event-label,
-.description-popover label,
-.image-share-where-label,
-.image-share-age-label {
+.description-popover label {
 	font-family: "Quicksand";
 }
 
