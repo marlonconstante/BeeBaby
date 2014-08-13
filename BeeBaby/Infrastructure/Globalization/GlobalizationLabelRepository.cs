@@ -270,6 +270,7 @@ AtAge = At
 Have = Is
 AboutThisMoment = About this moment
 old = old
+ChangeMoment = Change this moment
 ";
 				#endregion
 			}
