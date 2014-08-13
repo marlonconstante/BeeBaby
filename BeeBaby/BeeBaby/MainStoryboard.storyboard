@@ -1320,22 +1320,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBN-DQ-FTK">
-                                <rect key="frame" x="25" y="221" width="271" height="126"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBN-DQ-FTK">
+                                <rect key="frame" x="25" y="218" width="271" height="121"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Primeiro banho na casa da vó" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-8L-au3" customClass="Label">
-                                        <rect key="frame" x="24" y="10" width="223" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="event-label"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfl-9y-hdu" customClass="Button">
-                                        <rect key="frame" x="254" y="6.5" width="11" height="11"/>
+                                        <rect key="frame" x="254" y="7.5" width="11" height="11"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1347,32 +1337,71 @@
                                             <action selector="Close:" destination="GWk-0X-xuc" eventType="touchUpInside" id="kgN-Jp-ABV"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hU3-Rh-6Je">
-                                        <rect key="frame" x="12" y="44" width="246" height="0.5"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primeiro banho" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-8L-au3" customClass="Label">
+                                        <rect key="frame" x="24" y="10" width="223" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="223" id="N5Y-7N-OZc"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="XWO-54-C0Y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="event-label"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hU3-Rh-6Je">
+                                        <rect key="frame" x="12" y="39" width="246" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="ZjB-OK-FR9"/>
+                                            <constraint firstAttribute="width" constant="246" id="aYN-CB-s7B"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="separator"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-hp-g2g">
-                                        <rect key="frame" x="118" y="51" width="34" height="34"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-hp-g2g">
+                                        <rect key="frame" x="118" y="46" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="390-WX-waO"/>
+                                            <constraint firstAttribute="width" constant="34" id="XcO-bl-xRh"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="comments"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Um observação qualquer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="237" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-Vg-CZX" customClass="Label">
-                                        <rect key="frame" x="17" y="94" width="237" height="22"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Um observação qualquer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="237" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-Vg-CZX" customClass="Label">
+                                        <rect key="frame" x="17" y="89" width="237" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Uws-Ph-zGu"/>
+                                            <constraint firstAttribute="width" constant="237" id="cDL-Vf-ioB"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="hU3-Rh-6Je" firstAttribute="top" secondItem="vKb-hp-g2g" secondAttribute="top" constant="-6.5" id="7A2-r2-VtI"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="121" id="DCW-V1-C0d"/>
+                                    <constraint firstAttribute="width" constant="271" id="KXa-E1-zbm"/>
+                                    <constraint firstItem="v3r-8L-au3" firstAttribute="leading" secondItem="VBN-DQ-FTK" secondAttribute="leading" constant="24" id="Pao-ry-e3U"/>
+                                    <constraint firstItem="v3r-8L-au3" firstAttribute="bottom" secondItem="hU3-Rh-6Je" secondAttribute="bottom" constant="-8" id="aWO-rE-daD"/>
+                                    <constraint firstItem="fRu-Vg-CZX" firstAttribute="leading" secondItem="vKb-hp-g2g" secondAttribute="leading" constant="-101" id="apS-R6-LpY"/>
+                                    <constraint firstItem="v3r-8L-au3" firstAttribute="top" secondItem="VBN-DQ-FTK" secondAttribute="top" constant="10" id="d0z-lj-ll5"/>
+                                    <constraint firstItem="hU3-Rh-6Je" firstAttribute="leading" secondItem="vKb-hp-g2g" secondAttribute="leading" constant="-106" id="efV-bT-JHI"/>
+                                    <constraint firstAttribute="bottom" secondItem="fRu-Vg-CZX" secondAttribute="bottom" constant="10" id="fNR-yI-OJC"/>
+                                    <constraint firstItem="v3r-8L-au3" firstAttribute="leading" secondItem="hU3-Rh-6Je" secondAttribute="leading" constant="12" id="fS5-zS-ChL"/>
+                                    <constraint firstItem="fRu-Vg-CZX" firstAttribute="top" secondItem="vKb-hp-g2g" secondAttribute="top" constant="43" id="ob6-ML-mwW"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="modal-box"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6f-CM-Mhl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6f-CM-Mhl">
                                 <rect key="frame" x="13" y="208" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1381,12 +1410,22 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="7iJ-63-r14"/>
+                                    <constraint firstAttribute="width" constant="33" id="mHo-38-zeg"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="event-tag-border"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="VBN-DQ-FTK" secondAttribute="centerY" constant="5.5" id="NLa-ZX-98z"/>
+                            <constraint firstAttribute="centerX" secondItem="VBN-DQ-FTK" secondAttribute="centerX" constant="-0.5" id="ijZ-ND-JJH"/>
+                            <constraint firstItem="V6f-CM-Mhl" firstAttribute="top" secondItem="VBN-DQ-FTK" secondAttribute="top" constant="-10" id="wcE-WX-8F1"/>
+                            <constraint firstItem="V6f-CM-Mhl" firstAttribute="leading" secondItem="VBN-DQ-FTK" secondAttribute="leading" constant="-12" id="wwy-h0-2zY"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="btnCancel" destination="Xfl-9y-hdu" id="A54-pm-Ke0"/>
