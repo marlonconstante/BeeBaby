@@ -1420,7 +1420,6 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="VBN-DQ-FTK" secondAttribute="centerY" constant="5.5" id="NLa-ZX-98z"/>
                             <constraint firstAttribute="centerX" secondItem="VBN-DQ-FTK" secondAttribute="centerX" constant="-0.5" id="ijZ-ND-JJH"/>
