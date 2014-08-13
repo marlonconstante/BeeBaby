@@ -9,18 +9,57 @@ namespace BeeBaby
 {
 	public partial class ModalViewController : BaseViewController
 	{
-		public ModalViewController (IntPtr handle) : base (handle)
+		UIView m_modalView;
+
+		public ModalViewController(IntPtr handle) : base(handle)
 		{
+			View.Alpha = 0f;
+
+			m_modalView = new UIView(UIScreen.MainScreen.Bounds);
+			m_modalView.SetStyleClass("view modal-background");
+			m_modalView.AddGestureRecognizer(EditingTapGestureRecognizer);
+			m_modalView.Alpha = 0f;
+
+			RootViewController.View.AddSubview(m_modalView);
 		}
 
 		/// <summary>
-		/// Views the did load.
+		/// Touchs the action.
 		/// </summary>
-		public override void ViewDidLoad()
+		public override void TouchAction()
 		{
-			base.ViewDidLoad();
+			Close(btnCancel);
+		}
 
+		/// <summary>
+		/// Determines whether this instance is show progress.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsShowProgress()
+		{
+			return false;
+		}
+
+		/// <summary>
+		/// Show this instance.
+		/// </summary>
+		public void Show()
+		{
 			btnCancel.ExtraTouchArea = 20;
+			foreach (var subview in View.Subviews)
+			{
+				subview.ExclusiveTouch = true;
+			}
+
+			UIView.Animate(0.3d, () => {
+				m_modalView.AddSubview(View);
+				m_modalView.Alpha = 1f;
+			}, () => {
+				UIView.Animate(0.3d, () => {
+					View.Alpha = 1f;
+				});
+			});
 		}
 
 		/// <summary>
@@ -29,9 +68,14 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				PresentingViewController.DismissViewController(true, null);
-			}, false);
+			UIView.Animate(0.3d, () => {
+				View.Alpha = 0f;
+			}, () => {
+				UIView.Animate(0.3d, () => {
+					m_modalView.Alpha = 0f;
+					View.RemoveFromSuperview();
+				});
+			});
 		}
 
 		/// <summary>

@@ -53,7 +53,6 @@ namespace BeeBaby
 			base.ViewDidAppear(animated);
 
 			LoadEvents();
-			LoadModalViewController();
 
 			if (s_openCamera)
 			{
@@ -138,6 +137,7 @@ namespace BeeBaby
 			{
 				var board = UIStoryboard.FromName("MainStoryboard", null);
 				m_modalViewController = (ModalViewController) board.InstantiateViewController("ModalViewController");
+				m_modalViewController.LoadView();
 			}
 		}
 
@@ -285,20 +285,10 @@ namespace BeeBaby
 
 			var moment = m_tableSource.MomentAt(m_currentIndexPath);
 
-//			var label = m_descriptionPopover.Subviews[0] as Label;
-//			label.Text = m_tableSource.MomentAt(m_currentIndexPath).Description;
-//
-//			var width = label.Frame.Width + label.Frame.X + label.Frame.Y;
-//			var height = label.Frame.Height + (label.Frame.Y * 2f);
-//
-//			m_descriptionPopover.Hide(() => {
-//				m_descriptionPopover.Frame = new RectangleF(0f, 0f, width, height);
-//			});
-//
-//			m_descriptionPopover.Show(new PointF(UIScreen.MainScreen.Bounds.Width - width, CurrentCellRect.Y));
-
-			PresentViewController(m_modalViewController, true, null);
+			LoadModalViewController();
 			m_modalViewController.SetInformation(moment);
+
+			m_modalViewController.Show();
 		}
 
 		/// <summary>

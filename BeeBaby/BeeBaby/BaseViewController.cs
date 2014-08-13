@@ -55,8 +55,10 @@ namespace BeeBaby
 
 			EndEditing();
 
-			// Shows the spinner
-			BTProgressHUD.Show();
+			if (IsShowProgress())
+			{
+				BTProgressHUD.Show();
+			}
 		}
 
 		/// <summary>
@@ -69,8 +71,10 @@ namespace BeeBaby
 
 			EndEditing();
 
-			// Dismiss the spinner
-			BTProgressHUD.Dismiss();
+			if (IsShowProgress())
+			{
+				BTProgressHUD.Dismiss();
+			}
 
 			LogFlow();
 		}
@@ -107,6 +111,14 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Touchs the action.
+		/// </summary>
+		public virtual void TouchAction()
+		{
+			EndEditing();
+		}
+
+		/// <summary>
 		/// Gets the name flow.
 		/// </summary>
 		/// <returns>The name flow.</returns>
@@ -122,6 +134,15 @@ namespace BeeBaby
 		public virtual bool IsLogFlow()
 		{
 			return !s_lastNameFlow.Equals(GetNameFlow());
+		}
+
+		/// <summary>
+		/// Determines whether this instance is show progress.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is show progress; otherwise, <c>false</c>.</returns>
+		public virtual bool IsShowProgress()
+		{
+			return true;
 		}
 
 		/// <summary>
@@ -156,6 +177,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets the editing tap gesture recognizer.
+		/// </summary>
+		/// <value>The editing tap gesture recognizer.</value>
+		public UITapGestureRecognizer EditingTapGestureRecognizer {
+			get {
+				var gestureRecognizer = new UITapGestureRecognizer(() => TouchAction());
+				gestureRecognizer.Delegate = new GestureRecognizerDelegate();
+				gestureRecognizer.CancelsTouchesInView = false;
+				return gestureRecognizer;
+			}
+		}
+
+		/// <summary>
 		/// Shows the progress while performing.
 		/// </summary>
 		/// <param name="action">Action.</param>
@@ -171,10 +205,7 @@ namespace BeeBaby
 		/// </summary>
 		void AddEditingTapGestureRecognizer()
 		{
-			var gestureRecognizer = new UITapGestureRecognizer(() => EndEditing());
-			gestureRecognizer.Delegate = new GestureRecognizerDelegate();
-			gestureRecognizer.CancelsTouchesInView = false;
-			View.AddGestureRecognizer(gestureRecognizer);
+			View.AddGestureRecognizer(EditingTapGestureRecognizer);
 		}
 
 		/// <summary>
