@@ -24,7 +24,7 @@ namespace BeeBaby
 			ivwBackgroundImage.Image = backgroundImage;
 			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
 			lblDay.Text = moment.Date.ToString("dd");
-			lblEvent.LineHeight = lblEvent.Font.PointSize + 1;
+			lblEvent.LineHeight = lblEvent.Font.PointSize + 0.6f;
 			lblEvent.Text = moment.Event.Description;
 			lblMonth.Text = moment.Date.ToString("MMM");
 			lblWhere.Text = moment.Location.PlaceName;

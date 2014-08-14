@@ -542,13 +542,19 @@ text-view {
 }
 
 .image-share-title,
-.image-share-logo,
 .image-share-day,
 .image-share-month,
-.image-share-year {
+.image-share-year,
+.image-share-where-label
+ {
 	box-shadow: 1 2 0 0 rgba(0, 0, 0, 0.4);
 }
 
+.image-share-logo,
+.image-share-age-label
+{
+	box-shadow: 1 1 0 0 rgba(0, 0, 0, 0.4);
+}
 
 .image-share-title
 {
