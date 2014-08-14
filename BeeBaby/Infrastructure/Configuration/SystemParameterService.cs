@@ -2,12 +2,13 @@
 using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Domain;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure.Configuration
 {
 	public static class SystemParameterService
 	{
-//		static IEnumerable<SystemParameter> s_parameters = new List<SystemParameter>();
+		//		static IEnumerable<SystemParameter> s_parameters = new List<SystemParameter>();
 		static ISystemParameterRepository s_repository;
 		static IUnitOfWork s_unityOfWork;
 
@@ -27,15 +28,15 @@ namespace Infrastructure.Configuration
 		/// <param name="cultureName">Culture name.</param>
 		public static bool HasCurrentCultureChanged(string cultureName)
 		{
-			var savedCultureName  = s_repository.FindFirst(p => p.Name.Equals(KeyCurrentCultureName));
+			var savedCultureName = s_repository.FindAllDescending(p => p.Name.Equals(KeyCurrentCultureName), o => o.Id).FirstOrDefault();
 
-			if (savedCultureName == null)
+			if (savedCultureName == null || savedCultureName.Value != cultureName)
 			{
 				SaveParameter(KeyCurrentCultureName, cultureName);
 				return true;
 			}
 
-			return !savedCultureName.Value.Equals(cultureName);
+			return false;
 		}
 
 		public static void SaveEntityVersion(string entityName, string version)
@@ -50,10 +51,28 @@ namespace Infrastructure.Configuration
 
 		static void SaveParameter(string entityName, string version)
 		{
-			var item = new SystemParameter {
-				Name = entityName,
-				Value = version
-			};
+			SystemParameter item = null;
+
+			var items = s_repository.FindAll(r => r.Name.Equals(entityName));
+
+			if (items.Count() > 1)
+			{
+				foreach (var i in items) {
+					s_repository.Remove(i);
+					s_unityOfWork.Commit();
+				}
+			}
+
+
+			if (item == null)
+			{
+				item = new SystemParameter
+				{
+					Name = entityName,
+					Value = version
+				};
+			}
+
 			s_repository[item.Id] = item;
 
 			s_unityOfWork.Commit();
