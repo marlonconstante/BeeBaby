@@ -19,7 +19,13 @@ namespace BeeBaby
 		BeeBaby.Button btnOptions { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIImageView imgCalendar { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView imgLocation { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblAge { get; set; }
@@ -44,6 +50,11 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnDescription != null) {
+				btnDescription.Dispose ();
+				btnDescription = null;
+			}
+
 			if (btnOptions != null) {
 				btnOptions.Dispose ();
 				btnOptions = null;
@@ -52,6 +63,16 @@ namespace BeeBaby
 			if (imgEventBadge != null) {
 				imgEventBadge.Dispose ();
 				imgEventBadge = null;
+			}
+
+			if (imgLocation != null) {
+				imgLocation.Dispose ();
+				imgLocation = null;
+			}
+
+			if (imgCalendar != null) {
+				imgCalendar.Dispose ();
+				imgCalendar = null;
 			}
 
 			if (lblAge != null) {
@@ -77,11 +98,6 @@ namespace BeeBaby
 			if (vwPhotos != null) {
 				vwPhotos.Dispose ();
 				vwPhotos = null;
-			}
-
-			if (btnDescription != null) {
-				btnDescription.Dispose ();
-				btnDescription = null;
 			}
 		}
 	}

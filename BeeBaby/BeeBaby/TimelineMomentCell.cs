@@ -22,6 +22,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Loads the styles.
+		/// </summary>
+		/// <param name="eventBadgeClass">Event badge class.</param>
+		public void LoadStyles(string eventBadgeClass)
+		{
+			imgEventBadge.SetStyleClass(eventBadgeClass);
+			imgLocation.SetStyleClass("location");
+			imgCalendar.SetStyleClass("calendar");
+			btnOptions.SetStyleClass("down-arrow");
+			btnDescription.SetStyleClass("time-button");
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether this instance has description.
 		/// </summary>
 		/// <value><c>true</c> if this instance has description; otherwise, <c>false</c>.</value>
@@ -84,19 +97,6 @@ namespace BeeBaby
 			}
 			set {
 				lblWhere.Text = value;
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the event badge class.
-		/// </summary>
-		/// <value>The event badge class.</value>
-		public string EventBadgeClass {
-			get {
-				return imgEventBadge.GetStyleClass();
-			}
-			set {
-				imgEventBadge.SetStyleClass(value);
 			}
 		}
 

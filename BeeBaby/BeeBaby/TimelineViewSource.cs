@@ -124,8 +124,6 @@ namespace BeeBaby
 			cell.LabelEventName = moment.Event.Description;
 			cell.LabelWhere = string.Concat("At".Translate(), " ", moment.Location.PlaceName);
 
-			cell.EventBadgeClass = moment.Event.TagName;
-
 			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
@@ -143,6 +141,7 @@ namespace BeeBaby
 				{
 					if (IsVisibleRow(tableView, indexPath))
 					{
+						cell.LoadStyles(moment.Event.TagName);
 						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
 					}
 				});
