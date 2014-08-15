@@ -167,6 +167,7 @@ AtAge = Com
 Have = Tem
 AboutThisMoment = Sobre esse momento
 old = 
+Version-1.2-ChangeLog = - Altere os momentos \n - Aproveite a facilidade da nova tela de momento \n - Novas cores, detalhes e lindezas no layout da linha do tempo \n - Veja os comentários do momento na linha do tempo \n - Compartilhe o novo card nas redes sociais
 ";
 				#endregion
 			}
@@ -265,12 +266,13 @@ YourBabyDataWereSaved = Your baby's information were successfully saved.
 WhatEventIsThis = What event is this?
 BrowseCategory = Browse other categories:
 At = At
-InDate = In
+InDate = On
 AtAge = At
 Have = Is
 AboutThisMoment = About this moment
 old = old
 ChangeMoment = Change this moment
+Version-1.2-ChangeLog = Say hi to the new version of BeeBaby. \n After being featured in Best New Apps in Brazil, BeeBaby App goes worldwide in english version. 
 ";
 				#endregion
 			}

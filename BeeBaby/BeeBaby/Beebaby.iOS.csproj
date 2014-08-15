@@ -53,7 +53,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (DMDW9DQEA6)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -62,7 +62,7 @@
     <BuildIpa>true</BuildIpa>
     <MtouchExtraArgs>-time -time --dsym=false</MtouchExtraArgs>
     <OptimizePNGs>false</OptimizePNGs>
-    <CodesignProvision>60CB4B8F-D698-41D8-9D21-24E911B06FD8</CodesignProvision>
+    <CodesignProvision>D14C94B8-86B1-42EF-BEF6-83415A09C274</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -120,7 +120,7 @@
     </IpaPackageName>
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <CodesignProvision>81A738E6-881B-46C0-9488-1BE875BB7051</CodesignProvision>
+    <CodesignProvision>B782DE01-2218-49A7-9400-95F9593EA40D</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

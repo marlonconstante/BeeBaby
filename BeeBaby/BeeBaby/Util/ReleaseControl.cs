@@ -20,7 +20,7 @@ namespace BeeBaby.Util
 		public static void CheckForUpdates()
 		{
 			RunActions(1.1f, "MediaCount", UpdateMediaCount);
-			RunActions(1.1f, "VersionAlert", ShowNewVersionAlert);
+			RunActions(1.2f, "VersionAlert", ShowNewVersionAlert);
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace BeeBaby.Util
 		/// </summary>
 		static void ShowNewVersionAlert()
 		{
-			new UIAlertView("WhatsNew".Translate(), "Version-1.1-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
+			new UIAlertView("WhatsNew".Translate(), "Version-1.2-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
 		}
 
 		/// <summary>
