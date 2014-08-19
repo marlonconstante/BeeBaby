@@ -163,7 +163,7 @@ namespace BeeBaby
 				var imageView = new MomentImageView(new RectangleF(photos.Count * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
 
 				imageView.Moment = moment;
-				imageView.FileName = image.FileName;
+				imageView.ItemIndex = photos.Count;
 				imageView.Image = image.Image;
 				imageView.UserInteractionEnabled = true;
 				imageView.MultipleTouchEnabled = true;
@@ -177,7 +177,7 @@ namespace BeeBaby
 					{
 						var momentImageView = (MomentImageView) sender;
 						target.m_viewController.PresentViewController(target.m_fullscreenController, true, null);
-						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.Photo);
+						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.ItemIndex);
 					}, false);
 					actionProgress.Execute();
 				};
