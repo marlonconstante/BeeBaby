@@ -158,6 +158,9 @@
     <Reference Include="BTProgressHUD">
       <HintPath>..\Components\btprogresshud-1.10\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
+    <Reference Include="SwipeViewer">
+      <HintPath>..\references\SwipeViewer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
