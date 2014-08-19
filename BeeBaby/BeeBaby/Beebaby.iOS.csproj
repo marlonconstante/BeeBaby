@@ -284,6 +284,7 @@
     <BundleResource Include="Resources\cancel-gray.svg" />
     <BundleResource Include="Resources\menuLine.png" />
     <BundleResource Include="Resources\RobotoSlab-Bold.otf" />
+    <BundleResource Include="Resources\Overlay%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -456,6 +457,7 @@
     <Compile Include="ModalViewController.designer.cs">
       <DependentUpon>ModalViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ELCImagePickerViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
