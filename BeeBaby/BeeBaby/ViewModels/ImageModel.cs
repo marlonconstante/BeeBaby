@@ -5,6 +5,8 @@ namespace BeeBaby.ViewModels
 {
 	public class ImageModel : IDisposable
 	{
+		UIImage m_image;
+
 		public ImageModel()
 		{
 		}
@@ -13,13 +15,31 @@ namespace BeeBaby.ViewModels
 		/// Gets or sets the image.
 		/// </summary>
 		/// <value>The image.</value>
-		public UIImage Image { get; set; }
+		public UIImage Image {
+			get {
+				return m_image;
+			}
+			set {
+				Changed = m_image != null;
+				if (Changed)
+				{
+					m_image.Dispose();
+				}
+				m_image = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the name of the file.
 		/// </summary>
 		/// <value>The name of the file.</value>
-		public string FileName { set; get; }
+		public string FileName { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="BeeBaby.ViewModels.ImageModel"/> is changed.
+		/// </summary>
+		/// <value><c>true</c> if changed; otherwise, <c>false</c>.</value>
+		public bool Changed { get; protected set; }
 
 		/// <summary>
 		/// Releases all resource used by the <see cref="BeeBaby.ViewModels.ImageModel"/> object.
