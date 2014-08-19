@@ -13,13 +13,13 @@ namespace BeeBaby
 	partial class FullscreenViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgPhoto { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UILabel lblAge { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblEvent { get; set; }
+
+		[Outlet]
+		SwipeViewer.SwipeView vwSwipe { get; set; }
 
 		[Action ("Close:")]
 		partial void Close (MonoTouch.UIKit.UIButton sender);
@@ -29,11 +29,6 @@ namespace BeeBaby
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (imgPhoto != null) {
-				imgPhoto.Dispose ();
-				imgPhoto = null;
-			}
-
 			if (lblAge != null) {
 				lblAge.Dispose ();
 				lblAge = null;
@@ -42,6 +37,11 @@ namespace BeeBaby
 			if (lblEvent != null) {
 				lblEvent.Dispose ();
 				lblEvent = null;
+			}
+
+			if (vwSwipe != null) {
+				vwSwipe.Dispose ();
+				vwSwipe = null;
 			}
 		}
 	}

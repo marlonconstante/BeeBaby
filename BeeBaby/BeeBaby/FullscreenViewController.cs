@@ -6,12 +6,14 @@ using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Baby;
 using BeeBaby.Activity;
+using SwipeViewer;
+using System.Collections.Generic;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby
 {
 	public partial class FullscreenViewController : BaseViewController
 	{
-		UIImage m_photo;
 		Moment m_moment;
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
@@ -28,6 +30,7 @@ namespace BeeBaby
 			base.ViewDidLoad();
 
 			AddSingleTapGestureRecognizer();
+			InitSwipeView();
 		}
 
 		/// <summary>
@@ -43,17 +46,47 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Inits the swipe view.
+		/// </summary>
+		void InitSwipeView()
+		{
+			vwSwipe.DataSource = new SwipeViewDataSource();
+			vwSwipe.Delegate = new SwipeViewDelegate();
+		}
+
+		/// <summary>
 		/// Show or hide subviews.
 		/// </summary>
-		void ShowOrHideSubviews()
+		public void ShowOrHideSubviews()
 		{
 			foreach (var view in View.Subviews)
 			{
-				if (view.GetType() != typeof(UIScrollView))
+				if (view.GetType() != typeof(SwipeView))
 				{
 					view.Hidden = !view.Hidden;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Wills the rotate.
+		/// </summary>
+		/// <param name="toInterfaceOrientation">To interface orientation.</param>
+		/// <param name="duration">Duration.</param>
+		public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
+		{
+			base.WillRotate(toInterfaceOrientation, duration);
+			vwSwipe.ChangeScrollOffset = false;
+		}
+
+		/// <summary>
+		/// Dids the rotate.
+		/// </summary>
+		/// <param name="fromInterfaceOrientation">From interface orientation.</param>
+		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
+		{
+			base.DidRotate(fromInterfaceOrientation);
+			vwSwipe.ChangeScrollOffset = true;
 		}
 
 		/// <summary>
@@ -83,10 +116,8 @@ namespace BeeBaby
 		{
 			ShowProgressWhilePerforming(() => {
 				PresentingViewController.DismissViewController(true, () => {
-					var photo = imgPhoto.Image;
 					InvokeInBackground(() => {
-						photo.Dispose();
-						m_photo.Dispose();
+						ReleaseImages();
 					});
 				});
 			}, false);
@@ -99,15 +130,20 @@ namespace BeeBaby
 		partial void Share(UIButton sender)
 		{
 			ShowProgressWhilePerforming(() => {
+				var imageModel = Images[vwSwipe.CurrentItemIndex] as ImageModel;
+				if (!imageModel.Changed)
+				{
+					imageModel.Image = new ImageProvider().CreateImageForShare(imageModel.Image, m_moment);
+					vwSwipe.ReloadItemAtIndex(vwSwipe.CurrentItemIndex);
+				}
+
 				var instagramActivity = new InstagramActivity();
 				instagramActivity.IncludeURL = false;
 				instagramActivity.PresentFromView = View;
 
-				imgPhoto.Image = new ImageProvider().CreateImageForShare(m_photo, m_moment);
-
 				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
 				var shareUrl = new NSUrl(string.Empty);
-				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imgPhoto.Image };
+				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imageModel.Image };
 				var applicationActivities = new UIActivity[]{ instagramActivity };
 				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
 
@@ -116,7 +152,6 @@ namespace BeeBaby
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
-
 				};
 				PresentViewController(activityViewController, true, () => {
 					Console.WriteLine("Action Completed");
@@ -125,19 +160,43 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Releases the images.
+		/// </summary>
+		void ReleaseImages()
+		{
+			foreach (var image in Images)
+			{
+				image.Dispose();
+			}
+			Images.Clear();
+		}
+
+		/// <summary>
+		/// Gets the images.
+		/// </summary>
+		/// <value>The images.</value>
+		public List<ImageModel> Images {
+			get {
+				return ((SwipeViewDataSource) vwSwipe.DataSource).Images;
+			}
+		}
+
+		/// <summary>
 		/// Sets the information.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
 		/// <param name="baby">Baby.</param>
 		/// <param name="photo">Photo.</param>
-		public void SetInformation(Moment moment, Baby baby, UIImage photo)
+		public void SetInformation(Moment moment, Baby baby, int itemIndex)
 		{
-			imgPhoto.Image = photo;
+			Images.AddRange(new ImageProvider(moment.Id).GetImages());
+			vwSwipe.CurrentItemIndex = itemIndex;
+			vwSwipe.ReloadData();
+
 			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
 
 			lblEvent.Text = moment.Event.Description;
 
-			m_photo = photo;
 			m_moment = moment;
 		}
 	}

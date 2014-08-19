@@ -1168,24 +1168,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYS-tB-W9P">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fo6-Vm-Dfa" customClass="SwipeView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zNC-Al-MRF">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="zNC-Al-MRF" secondAttribute="bottom" id="Dp6-AA-FLr"/>
-                                    <constraint firstItem="zNC-Al-MRF" firstAttribute="centerX" secondItem="SYS-tB-W9P" secondAttribute="centerX" id="UmO-Rh-SRQ"/>
-                                    <constraint firstItem="zNC-Al-MRF" firstAttribute="leading" secondItem="SYS-tB-W9P" secondAttribute="leading" id="WCR-pg-Bu6"/>
-                                    <constraint firstAttribute="trailing" secondItem="zNC-Al-MRF" secondAttribute="trailing" id="cqo-WM-AZz"/>
-                                    <constraint firstItem="zNC-Al-MRF" firstAttribute="top" secondItem="SYS-tB-W9P" secondAttribute="top" id="tMq-bR-DfZ"/>
-                                    <constraint firstItem="zNC-Al-MRF" firstAttribute="centerY" secondItem="SYS-tB-W9P" secondAttribute="centerY" id="tmC-OJ-K6h"/>
-                                </constraints>
-                            </scrollView>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-eN-AOb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1261,14 +1247,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="bottom" secondItem="0eM-is-2nn" secondAttribute="bottom" constant="-43" id="3KW-L3-YMh"/>
-                            <constraint firstAttribute="trailing" secondItem="SYS-tB-W9P" secondAttribute="trailing" id="BB2-wB-gmu"/>
+                            <constraint firstItem="fo6-Vm-Dfa" firstAttribute="top" secondItem="93x-gf-PMs" secondAttribute="top" id="BkC-5G-vRM"/>
+                            <constraint firstAttribute="trailing" secondItem="fo6-Vm-Dfa" secondAttribute="trailing" id="E72-Lj-odx"/>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="trailing" secondItem="l7R-V2-RPn" secondAttribute="trailing" id="EQ5-21-NVS"/>
                             <constraint firstItem="T5G-EM-69S" firstAttribute="top" secondItem="YGL-kh-4T5" secondAttribute="bottom" constant="10" id="FCP-7O-1ZS"/>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="leading" secondItem="l7R-V2-RPn" secondAttribute="leading" id="HGS-c9-EA6"/>
                             <constraint firstItem="ZKD-93-BzT" firstAttribute="top" secondItem="Na2-Ud-wFe" secondAttribute="top" id="Hke-IM-3g6"/>
-                            <constraint firstAttribute="bottom" secondItem="SYS-tB-W9P" secondAttribute="bottom" id="NgS-yf-rwi"/>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="top" secondItem="0eM-is-2nn" secondAttribute="top" constant="10" id="QyT-TC-Ghx"/>
-                            <constraint firstItem="SYS-tB-W9P" firstAttribute="top" secondItem="93x-gf-PMs" secondAttribute="top" id="RIR-pc-oMG"/>
                             <constraint firstAttribute="trailing" secondItem="0eM-is-2nn" secondAttribute="trailing" id="Ssk-np-yhF"/>
                             <constraint firstAttribute="trailing" secondItem="Taf-eN-AOb" secondAttribute="trailing" id="bOk-LY-DEm"/>
                             <constraint firstItem="YGL-kh-4T5" firstAttribute="top" secondItem="l7R-V2-RPn" secondAttribute="bottom" constant="4" id="blP-5B-YuI"/>
@@ -1276,12 +1261,13 @@
                             <constraint firstItem="l7R-V2-RPn" firstAttribute="top" secondItem="ShB-kI-3RO" secondAttribute="bottom" constant="4" id="eIU-kZ-AR1"/>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="trailing" secondItem="Na2-Ud-wFe" secondAttribute="trailing" id="ebU-aJ-dui"/>
                             <constraint firstItem="Na2-Ud-wFe" firstAttribute="top" secondItem="93x-gf-PMs" secondAttribute="top" constant="10" id="ia5-Kh-IbQ"/>
-                            <constraint firstItem="SYS-tB-W9P" firstAttribute="leading" secondItem="93x-gf-PMs" secondAttribute="leading" id="iz3-X6-AD8"/>
                             <constraint firstItem="ZKD-93-BzT" firstAttribute="top" secondItem="Taf-eN-AOb" secondAttribute="top" constant="10" id="kr5-Z3-Orb"/>
-                            <constraint firstItem="ShB-kI-3RO" firstAttribute="centerX" secondItem="SYS-tB-W9P" secondAttribute="centerX" id="lXh-RV-72d"/>
                             <constraint firstItem="l7R-V2-RPn" firstAttribute="trailing" secondItem="YGL-kh-4T5" secondAttribute="trailing" id="lls-A4-R9W"/>
                             <constraint firstAttribute="trailing" secondItem="Na2-Ud-wFe" secondAttribute="trailing" constant="10" id="ndI-If-q8o"/>
+                            <constraint firstItem="fo6-Vm-Dfa" firstAttribute="centerX" secondItem="ShB-kI-3RO" secondAttribute="centerX" id="q5Y-yB-iOM"/>
+                            <constraint firstItem="fo6-Vm-Dfa" firstAttribute="leading" secondItem="93x-gf-PMs" secondAttribute="leading" id="sn9-MP-euK"/>
                             <constraint firstItem="ShB-kI-3RO" firstAttribute="centerX" secondItem="ZKD-93-BzT" secondAttribute="centerX" id="tDt-bv-FEA"/>
+                            <constraint firstItem="T5G-EM-69S" firstAttribute="top" secondItem="fo6-Vm-Dfa" secondAttribute="bottom" id="vQb-mR-5Cq"/>
                             <constraint firstItem="Taf-eN-AOb" firstAttribute="leading" secondItem="93x-gf-PMs" secondAttribute="leading" id="wR8-to-h4q"/>
                             <constraint firstItem="ZKD-93-BzT" firstAttribute="bottom" secondItem="Taf-eN-AOb" secondAttribute="bottom" constant="-10" id="zIZ-2z-ems"/>
                         </constraints>
@@ -1290,9 +1276,9 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="imgPhoto" destination="zNC-Al-MRF" id="jz1-d0-pt2"/>
                         <outlet property="lblAge" destination="ZKD-93-BzT" id="l3p-j5-Pbi"/>
                         <outlet property="lblEvent" destination="ShB-kI-3RO" id="Rvk-ZG-E1D"/>
+                        <outlet property="vwSwipe" destination="fo6-Vm-Dfa" id="wrg-do-Du1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hza-by-KEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
