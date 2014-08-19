@@ -74,7 +74,8 @@ namespace BeeBaby.ResourcesProviders
 			Directory.CreateDirectory(path);
 
 			Directory.EnumerateDirectories(path)
-				.ToList().ForEach(directoryName => {
+				.ToList().ForEach(directoryName =>
+			{
 				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
 				var validPermanentDirectory = !temporary && !string.IsNullOrEmpty(m_name) && directoryName.EndsWith(m_name);
 
@@ -120,7 +121,8 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var fileName in GetFileNames(thumbnails))
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageModel {
+				var image = new ImageModel
+				{
 					Image = UIImage.LoadFromData(data),
 					FileName = Path.GetFileName(fileName)
 				};
@@ -140,7 +142,8 @@ namespace BeeBaby.ResourcesProviders
 			var permanentDirectory = GetPermanentDirectory();
 
 			Directory.EnumerateFiles(permanentDirectory)
-				.ToList().ForEach(source => {
+				.ToList().ForEach(source =>
+			{
 				var destiny = Path.Combine(temporaryDirectory, Path.GetFileName(source));
 
 				File.Move(source, destiny);
@@ -325,7 +328,7 @@ namespace BeeBaby.ResourcesProviders
 			UIImage resultImage;
 
 			var board = UIStoryboard.FromName("MainStoryboard", null);
-			var controller = (ImageShareViewController) board.InstantiateViewController("ImageShareViewController");
+			var controller = (ImageShareViewController)board.InstantiateViewController("ImageShareViewController");
 			controller.LoadView();
 
 			using (var image = CroppedImageResize(sourceImage, MediaBase.ImageShareSize))
@@ -350,6 +353,40 @@ namespace BeeBaby.ResourcesProviders
 			}
 
 			return resultImage;
+		}
+
+		/// <summary>
+		/// Saves the temporary image.
+		/// </summary>
+		/// <param name="info">Info.</param>
+		/// <param name="saveToAlbum">If set to <c>true</c> save to album.</param>
+		/// <param name="selected">If set to <c>true</c> selected.</param>
+		public void SaveTemporaryImage(NSDictionary info, bool saveToAlbum = false, bool selected = true)
+		{
+			using (var photo = (UIImage)info.ObjectForKey(UIImagePickerController.OriginalImage))
+			{
+				SaveTemporaryImage(photo, saveToAlbum, selected);
+			}
+		}
+
+		/// <summary>
+		/// Saves the temporary image.
+		/// </summary>
+		/// <param name="photo">Photo.</param>
+		/// <param name="saveToAlbum">If set to <c>true</c> save to album.</param>
+		/// <param name="selected">If set to <c>true</c> selected.</param>
+		public void SaveTemporaryImage(UIImage photo, bool saveToAlbum = false, bool selected = true)
+		{
+			var fileName = SaveTemporaryImageOnApp(photo);
+			if (saveToAlbum)
+			{
+				MediaLibrary.Instance.Save(photo);
+			}
+			if (selected)
+			{
+				var thumbnailImageName = GetThumbnailImageName(fileName);
+				CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+			}
 		}
 	}
 }

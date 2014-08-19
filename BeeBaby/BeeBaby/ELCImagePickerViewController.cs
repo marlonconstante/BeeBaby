@@ -60,7 +60,7 @@ namespace ELCPicker
 
 		public void Dismiss()
 		{
-			PopToRootViewController(false);
+//			PopToRootViewController(false);
 			DismissViewController(true, null);
 		}
 
@@ -173,6 +173,7 @@ namespace ELCPicker
 				{
 					parent.CancelledPicker();
 				}
+				DismissViewController(true, null);
 			}
 
 			void GroupsEnumeratorFailed(MonoTouch.Foundation.NSError error)
@@ -396,6 +397,7 @@ namespace ELCPicker
 				{
 					parent.SelectedAssets(selected);
 				}
+				DismissViewController(true, null);
 			}
 
 			bool ShouldSelectAsset(ELCAsset asset)

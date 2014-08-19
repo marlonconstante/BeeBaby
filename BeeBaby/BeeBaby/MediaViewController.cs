@@ -7,6 +7,7 @@ using System.Drawing;
 using Domain.Moment;
 using ELCPicker;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -78,10 +79,18 @@ namespace BeeBaby
 				}
 				else
 				{
-					Debug.WriteLine("OK");
-					picker.Dismiss();
-
-					// t.Result is a List<AssetResult>
+					var m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
+					ActionProgress actionProgress = new ActionProgress(() =>
+					{
+						var results = t.Result as List<AssetResult>;
+						foreach (var item in results) 
+						{
+							m_imageProvider.SaveTemporaryImage(item.Image);
+						} 
+						picker.DismissViewController(true, null);
+						UpdateImageCollectionView();
+					}, false);
+					actionProgress.Execute();
 				}
 			});
 			 
