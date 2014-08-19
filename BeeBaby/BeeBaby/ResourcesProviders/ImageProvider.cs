@@ -333,8 +333,6 @@ namespace BeeBaby.ResourcesProviders
 				controller.SetInformation(moment, CurrentContext.Instance.CurrentBaby, image);
 			}
 
-
-
 			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
 			try
 			{
