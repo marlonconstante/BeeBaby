@@ -5,6 +5,9 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Application;
 using System.Drawing;
 using Domain.Moment;
+using ELCPicker;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BeeBaby
 {
@@ -58,11 +61,40 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu o album do iPhone.");
 
-			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
-			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
-			var picker = mediaPickerProvider.GetUIImagePickerController();
+//			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
+//			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
+//			var picker = mediaPickerProvider.GetUIImagePickerController();
+//
 
-			PresentViewController(picker, false, null);
+			var picker = ELCImagePickerViewController.Instance;
+			picker.MaximumImagesCount = 15;
+			picker.Completion.ContinueWith(t =>
+			{
+				if (t.IsCanceled || t.Exception != null)
+				{
+					picker.Dismiss();
+					//picker.DismissViewController(true, null);
+					// no pictures for you!
+					Debug.WriteLine("IsCanceled");
+				}
+				else
+				{
+					var m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
+					ActionProgress actionProgress = new ActionProgress(() =>
+					{
+						var results = t.Result as List<AssetResult>;
+						foreach (var item in results) 
+						{
+							m_imageProvider.SaveTemporaryImage(item.Image);
+						} 
+						picker.DismissViewController(true, null);
+						UpdateImageCollectionView();
+					}, false);
+					actionProgress.Execute();
+				}
+			});
+			 
+			PresentViewController(picker, true, null);
 		}
 
 		/// <summary>
@@ -77,13 +109,14 @@ namespace BeeBaby
 			}
 			else
 			{
-				ShowProgressWhilePerforming(() => {
+				ShowProgressWhilePerforming(() =>
+				{
 					if (IsMediaFlow())
 					{
 						var moment = CurrentContext.Instance.Moment;
 						moment.MediaCount = moment.SelectedMediaNames.Count;
 
-						((MomentNavigationController) NavigationController).SaveCurrentMoment();
+						((MomentNavigationController)NavigationController).SaveCurrentMoment();
 					}
 					else
 					{
