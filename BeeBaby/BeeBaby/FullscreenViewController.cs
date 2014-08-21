@@ -34,6 +34,17 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			vwSwipe.ChangeScrollOffset = true;
+		}
+
+		/// <summary>
 		/// Adds the single tap gesture recognizer.
 		/// </summary>
 		void AddSingleTapGestureRecognizer()
@@ -76,7 +87,9 @@ namespace BeeBaby
 		public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
 			base.WillRotate(toInterfaceOrientation, duration);
+
 			vwSwipe.ChangeScrollOffset = false;
+			vwSwipe.ScrollToItemAtIndex(vwSwipe.CurrentItemIndex, 0d);
 		}
 
 		/// <summary>
@@ -86,7 +99,9 @@ namespace BeeBaby
 		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
 		{
 			base.DidRotate(fromInterfaceOrientation);
+
 			vwSwipe.ChangeScrollOffset = true;
+			vwSwipe.LayoutSubviews();
 		}
 
 		/// <summary>
@@ -114,6 +129,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
+			vwSwipe.ChangeScrollOffset = false;
 			ShowProgressWhilePerforming(() => {
 				PresentingViewController.DismissViewController(true, () => {
 					InvokeInBackground(() => {
@@ -190,8 +206,8 @@ namespace BeeBaby
 		public void SetInformation(Moment moment, Baby baby, int itemIndex)
 		{
 			Images.AddRange(new ImageProvider(moment.Id).GetImages());
-			vwSwipe.CurrentItemIndex = itemIndex;
 			vwSwipe.ReloadData();
+			vwSwipe.CurrentItemIndex = itemIndex;
 
 			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
 
