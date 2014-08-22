@@ -304,6 +304,7 @@ namespace BeeBaby
 			SlideSpeed = 0.2f;
 			TopView = (UIViewController) board.InstantiateViewController("TimelineViewController");
 			MenuViewLeft = (UIViewController) board.InstantiateViewController("MenuViewController");
+			_internalMenuViewLeft.View.Frame = new RectangleF(0, 0, SlideWidth, View.Bounds.Height);
 		}
 
 		/// <summary>
