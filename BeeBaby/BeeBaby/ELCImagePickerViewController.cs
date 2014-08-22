@@ -15,7 +15,6 @@ namespace ELCPicker
 		public UIImage Image { get; set; }
 	}
 
-
 	/** 
      * Presents a photo picker dialog capable of selecting multiple images at once.
      * Usage:
@@ -56,7 +55,6 @@ namespace ELCPicker
 
 		public void Dismiss()
 		{
-//			PopToRootViewController(false);
 			DismissViewController(true, null);
 		}
 
@@ -253,7 +251,6 @@ namespace ELCPicker
 			}
 		}
 
-
 		class ELCAssetTablePicker : UITableViewController
 		{
 			static readonly NSObject _Dispatcher = new NSObject();
@@ -354,11 +351,6 @@ namespace ELCPicker
 				ELCAsset elcAsset = new ELCAsset(this, result);
 
 				bool isAssetFiltered = false;
-				/*if (self.assetPickerFilterDelegate &&
-                    [self.assetPickerFilterDelegate respondsToSelector:@selector(assetTablePicker:isAssetFilteredOut:)])
-                {
-                    isAssetFiltered = [self.assetPickerFilterDelegate assetTablePicker:self isAssetFilteredOut:(ELCAsset*)elcAsset];
-                }*/
 
 				if (result.DefaultRepresentation == null)
 					isAssetFiltered = true;
@@ -517,7 +509,6 @@ namespace ELCPicker
 				{
 					UITapGestureRecognizer tapRecognizer = new UITapGestureRecognizer(CellTapped);
 					AddGestureRecognizer(tapRecognizer);
-
 				}
 
 				public void SetAssets(List<ELCAsset> assets, int columns)
