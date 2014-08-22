@@ -38,18 +38,14 @@ namespace ELCPicker
 
 		readonly TaskCompletionSource<List<AssetResult>> _TaskCompletionSource = new TaskCompletionSource<List<AssetResult>>();
 
-		public Task<List<AssetResult>> Completion
-		{
-			get
-			{
+		public Task<List<AssetResult>> Completion {
+			get {
 				return _TaskCompletionSource.Task;
 			}
 		}
 
-		public static ELCImagePickerViewController Instance
-		{
-			get
-			{
+		public static ELCImagePickerViewController Instance {
+			get {
 				var albumPicker = new ELCAlbumPickerController();
 				var picker = new ELCImagePickerViewController(albumPicker);
 				albumPicker.Parent = picker;
@@ -119,14 +115,11 @@ namespace ELCPicker
 
 			WeakReference _Parent;
 
-			public ELCImagePickerViewController Parent
-			{
-				get
-				{
+			public ELCImagePickerViewController Parent {
+				get {
 					return _Parent == null ? null : _Parent.Target as ELCImagePickerViewController;
 				}
-				set
-				{
+				set {
 					_Parent = new WeakReference(value);
 				}
 			}
@@ -277,14 +270,11 @@ namespace ELCPicker
 
 			WeakReference _Parent;
 
-			public ELCImagePickerViewController Parent
-			{
-				get
-				{
+			public ELCImagePickerViewController Parent {
+				get {
 					return _Parent == null ? null : _Parent.Target as ELCImagePickerViewController;
 				}
-				set
-				{
+				set {
 					_Parent = new WeakReference(value);
 				}
 			}
@@ -311,13 +301,13 @@ namespace ELCPicker
 					NavigationItem.Title = "Loading...".Translate();
 				}
 
-				Task.Run((Action)PreparePhotos);
+				Task.Run((Action) PreparePhotos);
 			}
 
 			public override void ViewWillAppear(bool animated)
 			{
 				base.ViewWillAppear(animated);
-				Columns = (int)(View.Bounds.Size.Width / 80f);
+				Columns = (int) (View.Bounds.Size.Width / 80f);
 			}
 
 			public override void ViewDidDisappear(bool animated)
@@ -332,7 +322,7 @@ namespace ELCPicker
 			public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
 			{
 				base.DidRotate(fromInterfaceOrientation);
-				Columns = (int)(View.Bounds.Size.Width / 80f);
+				Columns = (int) (View.Bounds.Size.Width / 80f);
 				TableView.ReloadData();
 			}
 
@@ -340,8 +330,7 @@ namespace ELCPicker
 			{
 				AssetGroup.Enumerate(PhotoEnumerator);
 
-				_Dispatcher.BeginInvokeOnMainThread(() =>
-				{
+				_Dispatcher.BeginInvokeOnMainThread(() => {
 					TableView.ReloadData();
 					// scroll to bottom
 					int section = NumberOfSections(TableView) - 1;
@@ -446,7 +435,7 @@ namespace ELCPicker
 			{
 				if (Columns <= 0)
 					return 4;
-				int numRows = (int)Math.Ceiling((float)ElcAssets.Count / Columns);
+				int numRows = (int) Math.Ceiling((float) ElcAssets.Count / Columns);
 				return numRows;
 			}
 
@@ -495,15 +484,12 @@ namespace ELCPicker
 					Selected = !Selected;
 				}
 
-				public bool Selected
-				{ 
-					get
-					{ 
+				public bool Selected { 
+					get { 
 						return _Selected;
 					}
 
-					set
-					{
+					set {
 						var parent = _Parent.Target as ELCAssetTablePicker;
 						if (value && parent != null && !parent.ShouldSelectAsset(this))
 						{
