@@ -7,6 +7,7 @@ using MonoTouch.Foundation;
 using System.Threading.Tasks;
 using Skahal.Infrastructure.Framework.Globalization;
 using BigTed;
+using PixateFreestyleLib;
 
 namespace ELCPicker
 {
@@ -15,22 +16,6 @@ namespace ELCPicker
 		public UIImage Image { get; set; }
 	}
 
-	/** 
-     * Presents a photo picker dialog capable of selecting multiple images at once.
-     * Usage:
-     * 
-     * var picker = ELCImagePickerViewController.Instance;
-     * picker.MaximumImagesCount = 15;
-     * picker.Completion.ContinueWith (t => {
-     *   if (t.IsCancelled || t.Exception != null) {
-     *     // no pictures for you!
-     *   } else {
-     *      // t.Result is a List<AssetResult>
-     *    }
-     * });
-     * 
-     * PresentViewController (picker, true, null);
-     */
 	public class ELCImagePickerViewController : UINavigationController
 	{
 		public int MaximumImagesCount { get; set; }
@@ -60,7 +45,7 @@ namespace ELCPicker
 
 		ELCImagePickerViewController(UIViewController rootController) : base(rootController)
 		{
-
+			ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 		}
 
 		void SelectedAssets(List<ALAsset> assets)
@@ -96,9 +81,8 @@ namespace ELCPicker
 			var shouldSelect = MaximumImagesCount <= 0 || previousCount < MaximumImagesCount;
 			if (!shouldSelect)
 			{
-				string title = string.Format("Only {0} photos please!".Translate(), MaximumImagesCount);
-				string message = string.Format("You can only send {0} photos at a time.".Translate(), MaximumImagesCount);
-				var alert = new UIAlertView(title, message, null, null, "Okay".Translate());
+				string message = string.Format("CannotImportPhotos".Translate(), MaximumImagesCount);
+				var alert = new UIAlertView("Ops".Translate(), message, null, null, "GotIt".Translate());
 				alert.Show();
 			}
 			return shouldSelect;
@@ -130,10 +114,14 @@ namespace ELCPicker
 			{
 				base.ViewDidLoad();
 
-				NavigationItem.Title = "Loading...".Translate();
-				var cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel/*, cancelImagePicker*/);
+				NavigationController.View.AddStyleClass("navigation");
+				NavigationItem.Title = "Albums".Translate();
+
+				var cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
 				cancelButton.Clicked += CancelClicked;
 				NavigationItem.RightBarButtonItem = cancelButton;
+
+				TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
 				AssetGroups.Clear();
 
@@ -195,7 +183,6 @@ namespace ELCPicker
 			void ReloadTableView()
 			{
 				TableView.ReloadData();
-				NavigationItem.Title = "Select an Album".Translate();
 			}
 
 			public override int NumberOfSections(UITableView tableView)
@@ -215,14 +202,15 @@ namespace ELCPicker
 				var cell = tableView.DequeueReusableCell(cellIdentifier);
 				if (cell == null)
 				{
-					cell = new UITableViewCell(UITableViewCellStyle.Default, cellIdentifier);
+					cell = new UITableViewCell(UITableViewCellStyle.Subtitle, cellIdentifier);
 				}
 
 				// Get count
 				var g = AssetGroups[indexPath.Row];
 				g.SetAssetsFilter(ALAssetsFilter.AllPhotos);
-				var gCount = g.Count;
-				cell.TextLabel.Text = string.Format("{0} ({1})", g.Name, gCount);
+				var gCount = g.Count.ToString();
+				cell.TextLabel.Text = g.Name;
+				cell.DetailTextLabel.Text = gCount;
 				try
 				{
 					cell.ImageView.Image = new UIImage(g.PosterImage);
@@ -247,7 +235,7 @@ namespace ELCPicker
 
 			public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 			{
-				return 57;
+				return 57f;
 			}
 		}
 
@@ -286,16 +274,13 @@ namespace ELCPicker
 				TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 				TableView.AllowsSelection = false;
 
-				if (ImmediateReturn)
-				{
+				NavigationItem.Title = AssetGroup.Name;
 
-				}
-				else
+				if (!ImmediateReturn)
 				{
 					var doneButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Done);
 					doneButtonItem.Clicked += DoneClicked;
 					NavigationItem.RightBarButtonItem = doneButtonItem;
-					NavigationItem.Title = "Loading...".Translate();
 				}
 
 				Task.Run((Action) PreparePhotos);
@@ -337,7 +322,6 @@ namespace ELCPicker
 						var ip = NSIndexPath.FromRowSection(row, section);
 						TableView.ScrollToRow(ip, UITableViewScrollPosition.Bottom, false);
 					}
-					NavigationItem.Title = SingleSelection ? "Pick Photo".Translate() : "Pick Photos".Translate();
 				});
 			}
 
@@ -453,7 +437,7 @@ namespace ELCPicker
 
 			public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 			{
-				return 79;
+				return 79f;
 			}
 
 			public int TotalSelectedAssets;
@@ -586,7 +570,7 @@ namespace ELCPicker
 					var totalWidth = Columns * 75 + (Columns - 1) * 4;
 					var startX = (Bounds.Size.Width - totalWidth) / 2;
 
-					var frame = new RectangleF(startX, 2, 75, 75);
+					var frame = new RectangleF(startX, 4, 75, 75);
 
 					int i = 0;
 					foreach (var imageView in ImageViewArray)

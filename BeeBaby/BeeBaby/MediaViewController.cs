@@ -61,11 +61,6 @@ namespace BeeBaby
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu o album do iPhone.");
 
-//			var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
-//			var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
-//			var picker = mediaPickerProvider.GetUIImagePickerController();
-//
-
 			var picker = ELCImagePickerViewController.Instance;
 			picker.MaximumImagesCount = 15;
 			picker.Completion.ContinueWith(t =>
@@ -73,9 +68,6 @@ namespace BeeBaby
 				if (t.IsCanceled || t.Exception != null)
 				{
 					picker.Dismiss();
-					//picker.DismissViewController(true, null);
-					// no pictures for you!
-					Debug.WriteLine("IsCanceled");
 				}
 				else
 				{

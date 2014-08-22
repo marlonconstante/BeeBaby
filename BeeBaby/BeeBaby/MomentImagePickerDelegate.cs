@@ -41,8 +41,6 @@ namespace BeeBaby
 			}
 		}
 
-
-
 		/// <summary>
 		/// Performs the tasks.
 		/// </summary>
