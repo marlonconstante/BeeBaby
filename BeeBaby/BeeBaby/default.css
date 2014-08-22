@@ -411,8 +411,7 @@ segmented-control label,
 }
 
 .selected-cell {
-	background-color: #58c5cd;
-	opacity: 0.5;
+	background-color: rgba(88, 197, 205, 0.5);
 }
 
 .subtitle,

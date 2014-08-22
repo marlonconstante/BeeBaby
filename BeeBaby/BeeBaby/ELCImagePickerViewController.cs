@@ -121,6 +121,7 @@ namespace ELCPicker
 				cancelButton.Clicked += CancelClicked;
 				NavigationItem.RightBarButtonItem = cancelButton;
 
+				TableView.Subviews[0].Alpha = 0f;
 				TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
 				AssetGroups.Clear();
@@ -183,6 +184,10 @@ namespace ELCPicker
 			void ReloadTableView()
 			{
 				TableView.ReloadData();
+
+				UIView.Animate(0.3d, () => {
+					TableView.Subviews[0].Alpha = 1f;
+				});
 			}
 
 			public override int NumberOfSections(UITableView tableView)
@@ -202,7 +207,7 @@ namespace ELCPicker
 				var cell = tableView.DequeueReusableCell(cellIdentifier);
 				if (cell == null)
 				{
-					cell = new UITableViewCell(UITableViewCellStyle.Subtitle, cellIdentifier);
+					cell = new ELCAlbumCell(cellIdentifier);
 				}
 
 				// Get count
@@ -235,7 +240,37 @@ namespace ELCPicker
 
 			public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 			{
-				return 57f;
+				return 88f;
+			}
+
+			class ELCAlbumCell : UITableViewCell
+			{
+				public ELCAlbumCell(string reuseIdentifier) : base(UITableViewCellStyle.Subtitle, reuseIdentifier)
+				{
+				}
+
+				public override void LayoutSubviews()
+				{
+					base.LayoutSubviews();
+
+					ImageView.Frame = new RectangleF(5f, 5f, 78f, 78f);
+
+					var textFrame = TextLabel.Frame;
+					textFrame.X = 93f;
+					textFrame.Width = Superview.Frame.Width - 123f;
+					TextLabel.Frame = textFrame;
+
+					var detailFrame = DetailTextLabel.Frame;
+					detailFrame.X = 93f;
+					detailFrame.Width = Superview.Frame.Width - 123f;
+					DetailTextLabel.Frame = detailFrame;
+
+					var subviews = Subviews[0].Subviews;
+					var indicator = subviews[subviews.Length - 1];
+					var indicatorFrame = indicator.Frame;
+					indicatorFrame.X = Superview.Frame.Width - 18f;
+					indicator.Frame = indicatorFrame;
+				}
 			}
 		}
 
@@ -271,6 +306,7 @@ namespace ELCPicker
 
 			public override void ViewDidLoad()
 			{
+				TableView.Subviews[0].Alpha = 0f;
 				TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 				TableView.AllowsSelection = false;
 
@@ -314,13 +350,16 @@ namespace ELCPicker
 
 				_Dispatcher.BeginInvokeOnMainThread(() => {
 					TableView.ReloadData();
-					// scroll to bottom
 					int section = NumberOfSections(TableView) - 1;
 					int row = TableView.NumberOfRowsInSection(section) - 1;
 					if (section >= 0 && row >= 0)
 					{
 						var ip = NSIndexPath.FromRowSection(row, section);
 						TableView.ScrollToRow(ip, UITableViewScrollPosition.Bottom, false);
+
+						UIView.Animate(0.3d, () => {
+							TableView.Subviews[0].Alpha = 1f;
+						});
 					}
 				});
 			}
@@ -487,7 +526,7 @@ namespace ELCPicker
 				List<ELCAsset> RowAssets;
 				int Columns;
 				readonly List<UIImageView> ImageViewArray = new List<UIImageView>();
-				readonly List<UIImageView> OverlayViewArray = new List<UIImageView>();
+				readonly List<UIView> OverlayViewArray = new List<UIView>();
 
 				public ELCAssetCell(UITableViewCellStyle style, string reuseIdentifier) : base(style, reuseIdentifier)
 				{
@@ -509,7 +548,6 @@ namespace ELCPicker
 						view.RemoveFromSuperview();
 					}
 
-					UIImage overlayImage = null;
 					for (int i = 0; i < RowAssets.Count; i++)
 					{
 						var asset = RowAssets[i];
@@ -532,11 +570,14 @@ namespace ELCPicker
 						}
 						else
 						{
-							if (overlayImage == null)
-							{
-								overlayImage = new UIImage("Overlay.png");
-							}
-							var overlayView = new UIImageView(overlayImage);
+							var overlayView = new UIView(new RectangleF(0f, 0f, 75f, 75f));
+							overlayView.SetStyleClass("selected-cell");
+
+							var checkmarkView = new UIView(new RectangleF(50f, 50f, 20f, 20f));
+							checkmarkView.SetStyleClass("checkmark");
+
+							overlayView.AddSubview(checkmarkView);
+
 							OverlayViewArray.Add(overlayView);
 							overlayView.Hidden = !asset.Selected;
 						}

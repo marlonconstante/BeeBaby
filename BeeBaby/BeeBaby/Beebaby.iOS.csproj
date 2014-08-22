@@ -286,7 +286,6 @@
     <BundleResource Include="Resources\school.svg" />
     <BundleResource Include="Resources\cancel-gray.svg" />
     <BundleResource Include="Resources\RobotoSlab-Bold.otf" />
-    <BundleResource Include="Resources\Overlay%402x.png" />
     <BundleResource Include="Resources\sync.svg" />
   </ItemGroup>
   <ItemGroup>
