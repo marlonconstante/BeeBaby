@@ -102,6 +102,7 @@ No = Não
 Delete = Remover
 AddPhotos = Adicionar fotos
 ChangeMoment = Alterar este momento
+SyncMoment = Sincronizar este momento
 RemoveMoment = Remover este momento
 QuestionRemoveMoment = Tem certeza que quer remover este momento?
 Name = Nome
@@ -205,7 +206,8 @@ Yes = Yes
 No = No
 Delete = Delete
 AddPhotos = Add photos
-ChangeEvent = Change this moment
+ChangeMoment = Change this moment
+SyncMoment = Synchronize this moment
 RemoveMoment = Delete this moment
 QuestionRemoveMoment = Are you sure you want to delete this moment?
 Name = Name
@@ -271,7 +273,6 @@ AtAge = At
 Have = Is
 AboutThisMoment = About this moment
 old = old
-ChangeMoment = Change this moment
 Version-1.2-ChangeLog = Say hi to the new version of BeeBaby. \n After being featured in Best New Apps in Brazil, BeeBaby App goes worldwide in english version. 
 ";
 				#endregion

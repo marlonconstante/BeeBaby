@@ -168,36 +168,37 @@ namespace BeeBaby
 			if (m_popover == null)
 			{
 				var proxyAddPhotos = new EventProxy<TimelineViewController, EventArgs>(this);
-				var proxyChangeMoments = new EventProxy<TimelineViewController, EventArgs>(this);
-				var proxyRemoveRow = new EventProxy<TimelineViewController, EventArgs>(this);
-
 				proxyAddPhotos.Action = (target, sender, args) => {
-					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					target.AddPhotos((Button) sender);							
 					target.HidePopover();
 				};
 
-				proxyChangeMoments.Action = (target, sender, args) => {
-					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
-					CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
+				var proxyChangeMoment = new EventProxy<TimelineViewController, EventArgs>(this);
+				proxyChangeMoment.Action = (target, sender, args) => {
 					target.ChangeMoment((Button) sender);							
 					target.HidePopover();
 				};
 
+				var proxySyncMoment = new EventProxy<TimelineViewController, EventArgs>(this);
+				proxySyncMoment.Action = (target, sender, args) => {
+					target.SyncMoment((Button) sender);							
+					target.HidePopover();
+				};
+
+				var proxyRemoveRow = new EventProxy<TimelineViewController, EventArgs>(this);
 				proxyRemoveRow.Action = (target, sender, args) => {
-					CurrentContext.Instance.Moment = target.m_tableSource.MomentAt(target.m_currentIndexPath);
 					target.RemoveCurrentRow();
 					target.HidePopover();
 				};
-					
-				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
 
+				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
+				m_popover.MinY = tblView.Frame.Y;
 
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
-				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoments);
+				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoment);
+				m_popover.AddPopoverItem("SyncMoment".Translate(), "sync", true, c_buttonHeight, proxySyncMoment);
 				m_popover.AddPopoverItem("RemoveMoment".Translate(), "trash", false, c_buttonHeight, proxyRemoveRow);
 
-				m_popover.MinY = tblView.Frame.Y;
 				m_popover.AddSubviews(m_popover.MenuItems.ToArray());
 			}
 		}
@@ -208,7 +209,10 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void AddPhotos(Button sender)
 		{
-			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueMedia", sender), false);
+			ShowProgressWhilePerforming(() => {
+				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath);
+				RootViewController.PerformSegue("segueMedia", sender);
+			}, false);
 		}
 
 		/// <summary>
@@ -217,7 +221,22 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		void ChangeMoment(Button sender)
 		{
-			ShowProgressWhilePerforming(() => RootViewController.PerformSegue("segueMoment", sender), false);
+			ShowProgressWhilePerforming(() => {
+				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath);
+				CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
+				RootViewController.PerformSegue("segueMoment", sender);
+			}, false);
+		}
+
+		/// <summary>
+		/// Synchronize the moment.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		void SyncMoment(Button sender)
+		{
+			ShowProgressWhilePerforming(() => {
+				var moment = m_tableSource.MomentAt(m_currentIndexPath);
+			});
 		}
 
 		/// <summary>
