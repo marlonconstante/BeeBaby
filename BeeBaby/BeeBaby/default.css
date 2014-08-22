@@ -468,10 +468,6 @@ switch,
 	box-shadow: 1 1 1 0 rgba(153, 153, 153, 0.5);
 }
 
-.view .button-popover {
-	background-color: #fff;
-}
-
 .view .button-popover:highlighted,
 .view .button-popover:selected {
 	background-color: #f6f6f6;
@@ -800,6 +796,10 @@ text-view {
 
 .view .button-popover.pencil icon {
 	background-image: url(pencil.svg);
+}
+
+.view .button-popover.sync icon {
+	background-image: url(sync.svg);
 }
 
 .view .button-popover.trash icon {
