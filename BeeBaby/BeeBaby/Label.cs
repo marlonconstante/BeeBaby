@@ -65,7 +65,7 @@ namespace BeeBaby
 		public SizeF TextSize
 		{
 			get {
-				return StringSize(Text, Font.WithSize(Font.PointSize + 1f), new SizeF(Frame.Width, MaxHeight));
+				return StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
 			}
 		}
 
