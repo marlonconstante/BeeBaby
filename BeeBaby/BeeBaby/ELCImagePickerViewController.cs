@@ -340,11 +340,21 @@ namespace ELCPicker
 				}
 			}
 
+			public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
+			{
+				base.WillRotate(toInterfaceOrientation, duration);
+
+				UIView.Animate(duration, () => {
+					TableView.Subviews[0].Alpha = 0f;
+				});
+			}
+
 			public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
 			{
 				base.DidRotate(fromInterfaceOrientation);
+
 				Columns = (int) (View.Bounds.Size.Width / 80f);
-				TableView.ReloadData();
+				ReloadAndScrollToBottom();
 			}
 
 			void PreparePhotos()
@@ -352,19 +362,24 @@ namespace ELCPicker
 				AssetGroup.Enumerate(PhotoEnumerator);
 
 				_Dispatcher.BeginInvokeOnMainThread(() => {
-					TableView.ReloadData();
-					int section = NumberOfSections(TableView) - 1;
-					int row = TableView.NumberOfRowsInSection(section) - 1;
-					if (section >= 0 && row >= 0)
-					{
-						var ip = NSIndexPath.FromRowSection(row, section);
-						TableView.ScrollToRow(ip, UITableViewScrollPosition.Bottom, false);
-
-						UIView.Animate(0.3d, () => {
-							TableView.Subviews[0].Alpha = 1f;
-						});
-					}
+					ReloadAndScrollToBottom();
 				});
+			}
+
+			void ReloadAndScrollToBottom()
+			{
+				TableView.ReloadData();
+				int section = NumberOfSections(TableView) - 1;
+				int row = TableView.NumberOfRowsInSection(section) - 1;
+				if (section >= 0 && row >= 0)
+				{
+					var ip = NSIndexPath.FromRowSection(row, section);
+					TableView.ScrollToRow(ip, UITableViewScrollPosition.Bottom, false);
+
+					UIView.Animate(0.3d, () => {
+						TableView.Subviews[0].Alpha = 1f;
+					});
+				}
 			}
 
 			void PhotoEnumerator(ALAsset result, int index, ref bool stop)
