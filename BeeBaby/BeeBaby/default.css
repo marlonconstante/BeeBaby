@@ -94,7 +94,7 @@ segmented-control {
 
 .flash-label,
 .subtitle,
-.moment-label {
+.moment-label label {
 	font-size: 13pt;
 }
 
@@ -419,7 +419,7 @@ segmented-control label,
 .row label,
 .form-label,
 .time-box-label,
-.moment-label,
+.moment-label label,
 .special-event-label,
 .special-message-label,
 .view .button-popover,
