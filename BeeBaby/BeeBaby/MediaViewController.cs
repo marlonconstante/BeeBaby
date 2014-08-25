@@ -63,23 +63,18 @@ namespace BeeBaby
 
 			var picker = ELCImagePickerViewController.Instance;
 			picker.MaximumImagesCount = 15;
-			picker.Completion.ContinueWith(t =>
+			picker.Completion.ContinueWith(task =>
 			{
-				if (t.IsCanceled || t.Exception != null)
-				{
-					picker.Dismiss();
-				}
-				else
+				if (!task.IsCanceled && task.Exception == null)
 				{
 					var m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
 					ActionProgress actionProgress = new ActionProgress(() =>
 					{
-						var results = t.Result as List<AssetResult>;
+						var results = task.Result as List<AssetResult>;
 						foreach (var item in results) 
 						{
 							m_imageProvider.SaveTemporaryImage(item.Image);
 						} 
-						picker.DismissViewController(true, null);
 						UpdateImageCollectionView();
 					}, false);
 					actionProgress.Execute();
