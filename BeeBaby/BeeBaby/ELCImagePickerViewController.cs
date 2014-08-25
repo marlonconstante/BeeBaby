@@ -134,7 +134,7 @@ namespace ELCPicker
 			{
 				base.ViewDidAppear(animated);
 
-				BTProgressHUD.Dismiss();	
+				BTProgressHUD.Dismiss();
 			}
 
 			public override void ViewDidDisappear(bool animated)
@@ -148,12 +148,14 @@ namespace ELCPicker
 
 			void CancelClicked(object sender = null, EventArgs e = null)
 			{
+				BTProgressHUD.Show();
+
 				var parent = Parent;
 				if (parent != null)
 				{
 					parent.CancelledPicker();
+					parent.Dismiss();
 				}
-				DismissViewController(true, null);
 			}
 
 			void GroupsEnumeratorFailed(MonoTouch.Foundation.NSError error)
@@ -309,6 +311,7 @@ namespace ELCPicker
 				TableView.Subviews[0].Alpha = 0f;
 				TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 				TableView.AllowsSelection = false;
+				TableView.ContentInset = new UIEdgeInsets(4f, 0f, 0f, 0f);
 
 				NavigationItem.Title = AssetGroup.Name;
 
@@ -386,6 +389,8 @@ namespace ELCPicker
 
 			void DoneClicked(object sender = null, EventArgs e = null)
 			{
+				BTProgressHUD.Show();
+
 				var selected = new List<ALAsset>();
 
 				foreach (var asset in ElcAssets)
@@ -400,8 +405,8 @@ namespace ELCPicker
 				if (parent != null)
 				{
 					parent.SelectedAssets(selected);
+					parent.Dismiss();
 				}
-				DismissViewController(true, null);
 			}
 
 			bool ShouldSelectAsset(ELCAsset asset)
@@ -548,6 +553,16 @@ namespace ELCPicker
 						view.RemoveFromSuperview();
 					}
 
+					while (ImageViewArray.Count > RowAssets.Count)
+					{
+						ImageViewArray.RemoveAt(ImageViewArray.Count - 1);
+					}
+
+					while (OverlayViewArray.Count > RowAssets.Count)
+					{
+						OverlayViewArray.RemoveAt(OverlayViewArray.Count - 1);
+					}
+
 					for (int i = 0; i < RowAssets.Count; i++)
 					{
 						var asset = RowAssets[i];
@@ -611,7 +626,7 @@ namespace ELCPicker
 					var totalWidth = Columns * 75 + (Columns - 1) * 4;
 					var startX = (Bounds.Size.Width - totalWidth) / 2;
 
-					var frame = new RectangleF(startX, 4, 75, 75);
+					var frame = new RectangleF(startX, 0, 75, 75);
 
 					int i = 0;
 					foreach (var imageView in ImageViewArray)
