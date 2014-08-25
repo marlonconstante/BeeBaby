@@ -130,7 +130,6 @@
     <Reference Include="HelperSharp">
       <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
-    <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="SQLite.Net.Platform.XamarinIOS">
       <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.3.0\lib\monotouch\SQLite.Net.Platform.XamarinIOS.dll</HintPath>
     </Reference>

@@ -1,6 +1,5 @@
 ﻿using System;
 using MonoTouch.Foundation;
-using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 
