@@ -21,9 +21,9 @@ namespace BeeBaby
 		{
 			if (value != null)
 			{
-				if (value is IEnumerable)
+				if (value is ICollection)
 				{
-					ReleaseValues((IEnumerable) value);
+					ReleaseValues((ICollection) value);
 				}
 				if (value is UIImageView)
 				{
@@ -41,7 +41,7 @@ namespace BeeBaby
 		/// Releases the values.
 		/// </summary>
 		/// <param name="values">Values.</param>
-		static void ReleaseValues(IEnumerable values)
+		static void ReleaseValues(ICollection values)
 		{
 			foreach (var value in values)
 			{
