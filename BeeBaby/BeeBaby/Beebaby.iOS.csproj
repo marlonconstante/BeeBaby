@@ -236,21 +236,21 @@
     <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\school_sm.png" />
-    <BundleResource Include="Resources\lapy_sm.png" />
-    <BundleResource Include="Resources\smile_sm.png" />
-    <BundleResource Include="Resources\pregnancy_sm.png" />
-    <BundleResource Include="Resources\celebrations_sm.png" />
-    <BundleResource Include="Resources\birth_sm.png" />
-    <BundleResource Include="Resources\bath_sm.png" />
-    <BundleResource Include="Resources\family_sm.png" />
-    <BundleResource Include="Resources\ride_sm.png" />
-    <BundleResource Include="Resources\sleepy_sm.png" />
-    <BundleResource Include="Resources\firsts_sm.png" />
-    <BundleResource Include="Resources\everyday_sm.png" />
-    <BundleResource Include="Resources\recomendations_sm.png" />
+    <BundleResource Include="Resources\school_sm@2x.png" />
+    <BundleResource Include="Resources\lapy_sm@2x.png" />
+    <BundleResource Include="Resources\smile_sm@2x.png" />
+    <BundleResource Include="Resources\pregnancy_sm@2x.png" />
+    <BundleResource Include="Resources\celebrations_sm@2x.png" />
+    <BundleResource Include="Resources\birth_sm@2x.png" />
+    <BundleResource Include="Resources\bath_sm@2x.png" />
+    <BundleResource Include="Resources\family_sm@2x.png" />
+    <BundleResource Include="Resources\ride_sm@2x.png" />
+    <BundleResource Include="Resources\sleepy_sm@2x.png" />
+    <BundleResource Include="Resources\firsts_sm@2x.png" />
+    <BundleResource Include="Resources\everyday_sm@2x.png" />
+    <BundleResource Include="Resources\recomendations_sm@2x.png" />
     <BundleResource Include="Resources\icon_sm.psd" />
-    <BundleResource Include="Resources\littlebody_sm.png" />
+    <BundleResource Include="Resources\littlebody_sm@2x.png" />
     <BundleResource Include="Resources\tree.svg" />
     <BundleResource Include="Resources\tree-clear.svg" />
     <BundleResource Include="Resources\flying-bee.svg" />
