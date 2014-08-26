@@ -160,14 +160,21 @@ namespace BeeBaby
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		void ResizeViewTags(float height, bool animated)
 		{
-			var time = animated ? Math.Abs(tagsHeightConstraint.Constant - height) / 200d : 0d;
-			UIView.BeginAnimations(string.Empty, IntPtr.Zero);
-			UIView.SetAnimationDuration(time);
-
-			tagsHeightConstraint.Constant = height;
-
-			View.LayoutIfNeeded();
-			UIView.CommitAnimations();
+			var difference = Math.Abs(tagsHeightConstraint.Constant - height);
+			if (difference != 0f)
+			{
+				if (animated)
+				{
+					UIView.Animate(difference / 200d, () => {
+						tagsHeightConstraint.Constant = height;
+						View.LayoutIfNeeded();
+					});
+				}
+				else
+				{
+					tagsHeightConstraint.Constant = height;
+				}
+			}
 		}
 
 		/// <summary>
