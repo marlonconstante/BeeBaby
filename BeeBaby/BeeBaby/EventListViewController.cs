@@ -188,25 +188,6 @@ namespace BeeBaby
 		}
 
 		/// <summary>
-		/// Gets the minimum height view tags.
-		/// </summary>
-		/// <returns>The minimum height view tags.</returns>
-		float GetMinHeightViewTags()
-		{
-			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
-			var minHeight = UIScreen.MainScreen.Bounds.Height - (height + 64f);
-			if (minHeight > m_tagsHeight)
-			{
-				minHeight = m_tagsHeight;
-			}
-			else if (minHeight < 0f)
-			{
-				minHeight = 0f;
-			}
-			return minHeight;
-		}
-
-		/// <summary>
 		/// Adds the buttons.
 		/// </summary>
 		void AddButtons()
@@ -433,8 +414,6 @@ namespace BeeBaby
 		void SetViewSource(IList<Event> events)
 		{
 			m_eventListViewSource.ReloadData(tblView, events);
-			m_minTagsHeight = GetMinHeightViewTags();
-			tblHeightConstraint.Constant = UIScreen.MainScreen.Bounds.Height - m_minTagsHeight;
 
 			MoveScrollToTop();
 		}
@@ -486,6 +465,36 @@ namespace BeeBaby
 		public void GoBackToMoment()
 		{
 			LeftBarButtonAction();
+		}
+
+		/// <summary>
+		/// Updates the height of the view tags.
+		/// </summary>
+		public void UpdateViewTagsHeight()
+		{
+			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
+			var minHeight = UIScreen.MainScreen.Bounds.Height - (height + 64f);
+			if (minHeight > m_tagsHeight)
+			{
+				minHeight = m_tagsHeight;
+			}
+			else if (minHeight < 0f)
+			{
+				minHeight = 0f;
+			}
+			m_minTagsHeight = minHeight;
+
+			tblHeightConstraint.Constant = UIScreen.MainScreen.Bounds.Height - m_minTagsHeight;
+		}
+
+		/// <summary>
+		/// Gets the height of the view tags.
+		/// </summary>
+		/// <value>The height of the view tags.</value>
+		public float ViewTagsHeight {
+			get {
+				return m_tagsHeight;
+			}
 		}
 
 		/// <summary>

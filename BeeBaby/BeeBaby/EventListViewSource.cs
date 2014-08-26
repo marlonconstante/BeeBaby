@@ -16,7 +16,6 @@ namespace BeeBaby
 		IList<Event> m_otherEventsTableItems;
 		IDictionary<string, UIImage> m_tagIcons = new Dictionary<string, UIImage>();
 		float m_scrollY;
-		float m_nextViewHeight;
 
 		public EventListViewSource(EventListViewController viewController, IList<Event> otherItems)
 		{
@@ -122,7 +121,7 @@ namespace BeeBaby
 			var y = m_scrollY - scrollY;
 			var up = y > 0f;
 
-			bool adjustLimit = scrollHeight < m_nextViewHeight && (scrollY < -64f || scrollY > scrollHeight - 64f);
+			bool adjustLimit = scrollHeight < m_viewController.ViewTagsHeight && (scrollY < -64f || scrollY > scrollHeight - 64f);
 			if ((up && scrollHeight > scrollY) || (!up && scrollY >= (adjustLimit ? -20f : 0f)))
 			{
 				m_viewController.MoveScroll(y, adjustLimit);
@@ -138,9 +137,9 @@ namespace BeeBaby
 		/// <param name="items">Items.</param>
 		public void ReloadData(UITableView tableView, IList<Event> items)
 		{
-			m_nextViewHeight = Views.GetNextViews(tableView).First().Frame.Height;
 			m_otherEventsTableItems = items;
 			tableView.ReloadData();
+			m_viewController.UpdateViewTagsHeight();
 		}
 
 		/// <summary>
