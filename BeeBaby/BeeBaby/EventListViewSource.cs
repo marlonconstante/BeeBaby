@@ -14,6 +14,7 @@ namespace BeeBaby
 		const string s_cellIdentifier = "EventCell";
 		EventListViewController m_viewController;
 		IList<Event> m_otherEventsTableItems;
+		IDictionary<string, UIImage> m_tagIcons = new Dictionary<string, UIImage>();
 		float m_scrollY;
 		float m_nextViewHeight;
 
@@ -22,6 +23,7 @@ namespace BeeBaby
 			m_viewController = viewController;
 			m_otherEventsTableItems = otherItems;
 			m_scrollY = 0f;
+			LoadTagIcons();
 		}
 
 		/// <Docs>Table view displaying the rows.</Docs>
@@ -68,16 +70,31 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			var moment = m_otherEventsTableItems[indexPath.Row];
-			EventViewCell cell = (EventViewCell) tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
-			cell.EventDescription = moment.Description;
+			return tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
+		}
 
+		/// <Docs>Table view containing the row.</Docs>
+		/// <param name="indexPath">Location of the row.</param>
+		/// <paramref name="indexPath"></paramref>
+		/// <remarks>Use this method to override properties of the cell before it is rendered (such as selection status or background
+		/// color). After this method has been called, the table view will only modify the Alpha and Frame properties as it
+		/// animates them (if required).</remarks>
+		/// <summary>
+		/// Wills the display.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="cell">Cell.</param>
+		public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
+		{
+			var eventCell = cell as EventViewCell;
+			var eventValue = m_otherEventsTableItems[indexPath.Row];
+			eventCell.EventDescription = eventValue.Description;
 
-			var tagName = Enum.GetName(typeof(TagType), m_otherEventsTableItems[indexPath.Row].Tag).ToLower();
-			var imageName = (moment.Kind == EventType.Achievement) ? "firsts_sm.png" : string.Format("{0}_sm.png", tagName);
-			cell.TagIcon = UIImage.FromFile(imageName);
-
-			return cell;
+			UIImage image;
+			if (m_tagIcons.TryGetValue(eventValue.TagName, out image))
+			{
+				eventCell.TagIcon = image;
+			}
 		}
 
 		/// <Docs>Table view displaying the sections.</Docs>
@@ -124,6 +141,21 @@ namespace BeeBaby
 			m_nextViewHeight = Views.GetNextViews(tableView).First().Frame.Height;
 			m_otherEventsTableItems = items;
 			tableView.ReloadData();
+		}
+
+		/// <summary>
+		/// Loads the tag icons.
+		/// </summary>
+		void LoadTagIcons()
+		{
+			var names = Enum.GetNames(typeof(TagType)).Select((tag) => tag.ToLower()).ToList();
+			names.Add("firsts");
+
+			foreach (var name in names)
+			{
+				var image = UIImage.FromFile(string.Format("{0}_sm.png", name));
+				m_tagIcons.Add(name, image);
+			}
 		}
 	}
 }
