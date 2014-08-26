@@ -65,7 +65,7 @@ namespace BeeBaby
 
 			InvokeInBackground(() =>
 			{
-				m_events = LoadEvents();
+				LoadEvents();
 
 				InvokeOnMainThread(() =>
 				{
@@ -315,11 +315,9 @@ namespace BeeBaby
 		/// <summary>
 		/// Loads the events.
 		/// </summary>
-		/// <returns>The events.</returns>
-		public IList<Event> LoadEvents()
+		void LoadEvents()
 		{
-			var result = m_eventService.GetAllEventsWithNonUsedAchivments().ToList();
-			return result;
+			m_events = m_eventService.GetAllEventsWithNonUsedAchivments().ToList();
 		}
 
 		/// <summary>
@@ -481,6 +479,16 @@ namespace BeeBaby
 		public void GoBackToMoment()
 		{
 			LeftBarButtonAction();
+		}
+
+		/// <summary>
+		/// Gets all events.
+		/// </summary>
+		/// <value>All events.</value>
+		public IList<Event> AllEvents {
+			get {
+				return m_events;
+			}
 		}
 
 		/// <summary>
