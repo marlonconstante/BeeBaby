@@ -133,6 +133,24 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
+		/// Gets the data images.
+		/// </summary>
+		/// <returns>The data images.</returns>
+		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
+		public IDictionary<string, byte[]> GetDataImages(bool thumbnails = false)
+		{
+			var dataImages = new Dictionary<string, byte[]>();
+
+			foreach (var fileName in GetFileNames(thumbnails))
+			{
+				var data = NSData.FromFile(fileName);
+				dataImages.Add(Path.GetFileName(fileName), data.ToArray());
+			}
+
+			return dataImages;
+		}
+
+		/// <summary>
 		/// Saves the permanent images.
 		/// </summary>
 		/// <param name="imagesNames">Images names.</param>
