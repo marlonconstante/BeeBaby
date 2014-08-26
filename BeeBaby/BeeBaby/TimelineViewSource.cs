@@ -167,7 +167,7 @@ namespace BeeBaby
 				imageView.Image = image.Image;
 				imageView.UserInteractionEnabled = true;
 				imageView.MultipleTouchEnabled = true;
-				imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+				imageView.ContentMode = UIViewContentMode.Center;
 				imageView.Opaque = true;
 
 				var proxy = new EventProxy<TimelineViewSource, EventArgs>(this);

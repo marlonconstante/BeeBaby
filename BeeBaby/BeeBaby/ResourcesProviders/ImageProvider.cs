@@ -123,7 +123,7 @@ namespace BeeBaby.ResourcesProviders
 				var data = NSData.FromFile(fileName);
 				var image = new ImageModel
 				{
-					Image = UIImage.LoadFromData(data),
+					Image = UIImage.LoadFromData(data, 2f),
 					FileName = Path.GetFileName(fileName)
 				};
 				images.Add(image);
@@ -276,7 +276,7 @@ namespace BeeBaby.ResourcesProviders
 			if (imagePath != null)
 			{
 				var data = NSData.FromFile(imagePath);
-				return UIImage.LoadFromData(data);
+				return UIImage.LoadFromData(data, 2f);
 			}
 			else
 			{
