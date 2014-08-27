@@ -89,7 +89,7 @@ namespace BeeBaby
 		/// </summary>
 		public void HidePopover()
 		{
-			if (m_popover != null)
+			if (m_popover != null && m_popover.IsVisible)
 			{
 				m_popover.Hide();
 			}
