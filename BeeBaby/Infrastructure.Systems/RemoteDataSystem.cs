@@ -4,6 +4,7 @@ using Domain.Moment;
 using System.Text;
 using Parse;
 using Domain.Log;
+using Infrastructure.Systems.Domain;
 
 namespace Infrastructure.Systems
 {
@@ -60,6 +61,27 @@ namespace Infrastructure.Systems
 
 			try {
 				await flowData.SaveAsync();
+			} catch (Exception ex) {
+				// Ignora..
+			}
+		}
+
+		/// <summary>
+		/// Syncs the moment.
+		/// </summary>
+		/// <param name="moment">Moment.</param>
+		public static async void SyncMoment(Moment moment)
+		{
+			var momentData = new MomentRemoteData(moment);
+
+			try {
+				await momentData.SaveAsync();
+
+				if (moment.ObjectId == null)
+				{
+					moment.ObjectId = momentData.ObjectId;
+					new MomentService().SaveMoment(moment);
+				}
 			} catch (Exception ex) {
 				// Ignora..
 			}

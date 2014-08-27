@@ -12,6 +12,7 @@ using Skahal.Infrastructure.Framework.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
 using System.Collections.Generic;
+using Infrastructure.Systems;
 
 namespace BeeBaby
 {
@@ -236,6 +237,7 @@ namespace BeeBaby
 		{
 			ShowProgressWhilePerforming(() => {
 				var moment = m_tableSource.MomentAt(m_currentIndexPath);
+				RemoteDataSystem.SyncMoment(moment);
 			});
 		}
 

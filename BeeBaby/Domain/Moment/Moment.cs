@@ -18,6 +18,12 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
+		/// Gets the object identifier.
+		/// </summary>
+		/// <value>The object identifier.</value>
+		public string ObjectId { get; set; }
+
+		/// <summary>
 		/// Gets or sets the title.
 		/// </summary>
 		/// <value>The title.</value>

@@ -8,6 +8,12 @@ namespace Infrastructure.Repositories.SqliteNet.Entities
 	public class MomentData : DataBase
 	{
 		/// <summary>
+		/// Gets or sets the object identifier.
+		/// </summary>
+		/// <value>The object identifier.</value>
+		public string ObjectId { get; set; }
+
+		/// <summary>
 		/// Gets or sets the event identifier.
 		/// </summary>
 		/// <value>The event identifier.</value>

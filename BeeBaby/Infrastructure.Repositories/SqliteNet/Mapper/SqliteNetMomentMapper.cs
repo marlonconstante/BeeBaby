@@ -23,6 +23,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 			{
 				result = new Moment();
 				result.Id = source.Id;
+				result.ObjectId = source.ObjectId;
 				result.Description = source.Description;
 				result.Event = new SqliteNetEventMapper().ToDomainEntity(source.Event);
 				result.Position = new Coordinates()
@@ -48,6 +49,7 @@ namespace Infrastructure.Repositories.SqliteNet.Mapper
 			{
 				result = new MomentData();
 				result.Id = source.Id;
+				result.ObjectId = source.ObjectId;
 				result.Description = source.Description;
 				result.Event = new SqliteNetEventMapper().ToRepositoryEntity(source.Event);
 				result.EventId = source.Event != null ? source.Event.Id : null;

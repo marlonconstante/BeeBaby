@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Parse;
 using Domain.Moment;
 using Domain.Baby;
@@ -7,8 +8,18 @@ namespace Infrastructure.Systems.Domain
 {
 	public class MomentRemoteData : ParseObject, IMoment
 	{
-		public MomentRemoteData()
+		public MomentRemoteData(Moment moment) : base("MomentRemoteData")
 		{
+			ObjectId = moment.ObjectId;
+			foreach (var property in typeof(IMoment).GetRuntimeProperties())
+			{
+				var value = property.GetValue(moment);
+				if (value is Enum)
+				{
+					value = value.ToString();
+				}	
+				Add(property.Name, value);
+			}
 		}
 
 		/// <summary>
