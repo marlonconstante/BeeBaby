@@ -55,6 +55,7 @@ namespace BeeBaby
 			{
 				var image = UIImage.FromFile(string.Format("{0}.png", backgroundImageName));
 				var imageView = new UIImageViewClickable(new RectangleF(0f, 0f, InitialFrame.Width, InitialFrame.Height));
+				imageView.ContentMode = UIViewContentMode.Center;
 
 				UpdateImageView(imageView, image, Template == AvatarTemplate.PhotoAndDescription);
 
@@ -188,7 +189,6 @@ namespace BeeBaby
 		/// <param name="addEvent">If set to <c>true</c> add event.</param>
 		protected void UpdateImageView(UIImageViewClickable imageView, UIImage image, bool addEvent)
 		{
-			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 			imageView.ClipsToBounds = true;
 			imageView.Image = image;
 			if (addEvent)

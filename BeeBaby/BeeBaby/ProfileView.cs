@@ -209,6 +209,7 @@ namespace BeeBaby
 			var imageView = new BabyImageView(frame);
 			imageView.BabyProfile = babyProfile;
 			imageView.Layer.CornerRadius = MediaBase.PhotoProfileInnerSize / 2;
+			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 
 			UpdateImageView(imageView, babyProfile.Image, Template == AvatarTemplate.Photo);
 

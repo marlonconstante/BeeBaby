@@ -176,12 +176,12 @@ segmented-control {
 }
 
 .table-menu table-view-cell {
-	background-image: url(menu-item-background.png);
+	background-image: url(menu-item-background@2x.png);
 }
 
 .table-menu table-view-cell:highlighted,
 .table-menu table-view-cell:selected {
-	background-image: url(menu-item-selected-background.png);
+	background-image: url(menu-item-selected-background@2x.png);
 }
 
 .table-menu table-view-cell label {

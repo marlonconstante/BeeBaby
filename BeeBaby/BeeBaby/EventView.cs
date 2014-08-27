@@ -101,6 +101,7 @@ namespace BeeBaby
 			var frame = new RectangleF(position, position, BadgeEventInnerSize, BadgeEventInnerSize);
 
 			var view = new UIView(frame);
+			view.ContentMode = UIViewContentMode.Center;
 			view.SetStyleClass(CurrentContext.Instance.SelectedEvent.TagName);
 
 			return view;

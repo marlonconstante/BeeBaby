@@ -69,6 +69,7 @@ namespace BeeBaby
 		void AddImage()
 		{
 			m_image = new UIImageView(new RectangleF(9f, 14f, 16f, 16f));
+			m_image.ContentMode = UIViewContentMode.Center;
 			AddSubview(m_image);
 		}
 

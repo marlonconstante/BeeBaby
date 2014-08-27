@@ -185,7 +185,6 @@
     <BundleResource Include="Resources\heart-empty.svg" />
     <BundleResource Include="Resources\bee-baby.svg" />
     <BundleResource Include="Resources\bookmark.svg" />
-    <BundleResource Include="Resources\separator.png" />
     <BundleResource Include="Resources\checkmark.svg" />
     <BundleResource Include="Resources\picture.svg" />
     <BundleResource Include="Resources\switch.svg" />
@@ -201,10 +200,6 @@
     <BundleResource Include="Resources\pictures.svg" />
     <BundleResource Include="Resources\cancel.svg" />
     <BundleResource Include="Resources\menu.svg" />
-    <BundleResource Include="Resources\background-profile.png" />
-    <BundleResource Include="Resources\photo-profile.png" />
-    <BundleResource Include="Resources\menu-item-background.png" />
-    <BundleResource Include="Resources\menu-item-selected-background.png" />
     <BundleResource Include="Resources\timeline-clear.svg" />
     <BundleResource Include="Resources\market-clear.svg" />
     <BundleResource Include="Resources\market.svg" />
@@ -236,21 +231,6 @@
     <BundleResource Include="Resources\RobotoCondensed-Regular.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\school_sm@2x.png" />
-    <BundleResource Include="Resources\lapy_sm@2x.png" />
-    <BundleResource Include="Resources\smile_sm@2x.png" />
-    <BundleResource Include="Resources\pregnancy_sm@2x.png" />
-    <BundleResource Include="Resources\celebrations_sm@2x.png" />
-    <BundleResource Include="Resources\birth_sm@2x.png" />
-    <BundleResource Include="Resources\bath_sm@2x.png" />
-    <BundleResource Include="Resources\family_sm@2x.png" />
-    <BundleResource Include="Resources\ride_sm@2x.png" />
-    <BundleResource Include="Resources\sleepy_sm@2x.png" />
-    <BundleResource Include="Resources\firsts_sm@2x.png" />
-    <BundleResource Include="Resources\everyday_sm@2x.png" />
-    <BundleResource Include="Resources\recomendations_sm@2x.png" />
-    <BundleResource Include="Resources\icon_sm.psd" />
-    <BundleResource Include="Resources\littlebody_sm@2x.png" />
     <BundleResource Include="Resources\tree.svg" />
     <BundleResource Include="Resources\tree-clear.svg" />
     <BundleResource Include="Resources\flying-bee.svg" />
@@ -265,7 +245,6 @@
     <BundleResource Include="Resources\photo.svg" />
     <BundleResource Include="Resources\pencil.svg" />
     <BundleResource Include="Resources\comment.svg" />
-    <BundleResource Include="Resources\background-event.png" />
     <BundleResource Include="Resources\flying-bee-bg.svg" />
     <BundleResource Include="Resources\recomendations.svg" />
     <BundleResource Include="Resources\everyday.svg" />
@@ -286,6 +265,26 @@
     <BundleResource Include="Resources\cancel-gray.svg" />
     <BundleResource Include="Resources\RobotoSlab-Bold.otf" />
     <BundleResource Include="Resources\sync.svg" />
+    <BundleResource Include="Resources\school_sm%402x.png" />
+    <BundleResource Include="Resources\lapy_sm%402x.png" />
+    <BundleResource Include="Resources\smile_sm%402x.png" />
+    <BundleResource Include="Resources\pregnancy_sm%402x.png" />
+    <BundleResource Include="Resources\celebrations_sm%402x.png" />
+    <BundleResource Include="Resources\birth_sm%402x.png" />
+    <BundleResource Include="Resources\bath_sm%402x.png" />
+    <BundleResource Include="Resources\family_sm%402x.png" />
+    <BundleResource Include="Resources\ride_sm%402x.png" />
+    <BundleResource Include="Resources\sleepy_sm%402x.png" />
+    <BundleResource Include="Resources\firsts_sm%402x.png" />
+    <BundleResource Include="Resources\everyday_sm%402x.png" />
+    <BundleResource Include="Resources\recomendations_sm%402x.png" />
+    <BundleResource Include="Resources\littlebody_sm%402x.png" />
+    <BundleResource Include="Resources\background-event%402x.png" />
+    <BundleResource Include="Resources\background-profile%402x.png" />
+    <BundleResource Include="Resources\separator%402x.png" />
+    <BundleResource Include="Resources\photo-profile%402x.png" />
+    <BundleResource Include="Resources\menu-item-background%402x.png" />
+    <BundleResource Include="Resources\menu-item-selected-background%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
