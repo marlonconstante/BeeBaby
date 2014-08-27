@@ -102,7 +102,6 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			// Request a recycled cell to save memory
 			var cell = tableView.DequeueReusableCell(s_cellIdentifier) as TimelineMomentCell;
 			ReleasePhotos(cell);
 			UpdateMomentCell(tableView, cell, indexPath);

@@ -69,7 +69,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			return tableView.DequeueReusableCell(new NSString(s_cellIdentifier), indexPath);
+			return tableView.DequeueReusableCell(s_cellIdentifier);
 		}
 
 		/// <Docs>Table view containing the row.</Docs>
