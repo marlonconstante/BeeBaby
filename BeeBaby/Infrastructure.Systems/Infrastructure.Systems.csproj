@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteDataSystem.cs" />
+    <Compile Include="Domain\MomentRemoteData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -74,5 +75,8 @@
       <Project>{9591FB9C-6658-4A0D-A2F6-71D8028E0DA3}</Project>
       <Name>Infrastructure.Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Domain\" />
   </ItemGroup>
 </Project>

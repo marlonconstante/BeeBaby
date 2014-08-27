@@ -1,87 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using Domain.Media;
-using Skahal.Infrastructure.Framework.Domain;
-using System.Linq;
+using Parse;
+using Domain.Moment;
+using Domain.Baby;
 
-namespace Domain.Moment
+namespace Infrastructure.Systems.Domain
 {
-	/// <summary>
-	/// Represents a Moment, usually composed of photos and videos.
-	/// </summary>
-	public class Moment : EntityWithIdBase<string>, IAggregateRoot, IMoment
+	public class MomentRemoteData : ParseObject, IMoment
 	{
-		public Moment() : base()
+		public MomentRemoteData()
 		{
-			SelectedMediaNames = new List<string>();
-			Babies = new List<Baby.Baby>();
 		}
-
-		/// <summary>
-		/// Gets or sets the title.
-		/// </summary>
-		/// <value>The title.</value>
-		public Event Event { set; get; }
-
-		/// <summary>
-		/// Gets or sets the medias.
-		/// </summary>
-		/// <value>The medias.</value>
-		public IList<MediaBase> Medias { set; get; }
-
-		/// <summary>
-		/// Gets or sets the description.
-		/// </summary>
-		/// <value>The description.</value>
-		public string Description { set; get; }
-
-		/// <summary>
-		/// Gets or sets the position.
-		/// </summary>
-		/// <value>The position.</value>
-		public Coordinates Position { set; get; }
-
-		/// <summary>
-		/// Gets or sets the local.
-		/// </summary>
-		/// <value>The local.</value>
-		public Location Location { set; get; }
-
-		/// <summary>
-		/// Gets or sets the date.
-		/// </summary>
-		/// <value>The date.</value>
-		public DateTime Date { set; get; }
-
-		/// <summary>
-		/// Gets or sets the language.
-		/// </summary>
-		/// <value>The language.</value>
-		public string Language {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the media count.
-		/// </summary>
-		/// <value>The media count.</value>
-		public int MediaCount {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the selected media names.
-		/// </summary>
-		/// <value>The selected media names.</value>
-		public IList<string> SelectedMediaNames { set; get; }
-
-		/// <summary>
-		/// Gets or sets the baby.
-		/// </summary>
-		/// <value>The baby.</value>
-		public IList<Baby.Baby> Babies { set; get; }
 
 		/// <summary>
 		/// Gets the moment identifier.
@@ -89,7 +17,7 @@ namespace Domain.Moment
 		/// <value>The moment identifier.</value>
 		public string MomentId {
 			get {
-				return Id;
+				return Get<string>("MomentId");
 			}
 		}
 
@@ -99,7 +27,7 @@ namespace Domain.Moment
 		/// <value>The moment description.</value>
 		public string MomentDescription {
 			get {
-				return Description;
+				return Get<string>("MomentDescription");
 			}
 		}
 
@@ -109,7 +37,7 @@ namespace Domain.Moment
 		/// <value>The moment media count.</value>
 		public int MomentMediaCount {
 			get {
-				return MediaCount;
+				return Get<int>("MomentMediaCount");
 			}
 		}
 
@@ -119,7 +47,7 @@ namespace Domain.Moment
 		/// <value>The moment date.</value>
 		public DateTime MomentDate {
 			get {
-				return Date;
+				return Get<DateTime>("MomentDate");
 			}
 		}
 
@@ -129,7 +57,7 @@ namespace Domain.Moment
 		/// <value>The event identifier.</value>
 		public string EventId {
 			get {
-				return Event.Id;
+				return Get<string>("EventId");
 			}
 		}
 
@@ -139,7 +67,7 @@ namespace Domain.Moment
 		/// <value>The name of the event tag.</value>
 		public string EventTagName {
 			get {
-				return Event.TagName;
+				return Get<string>("EventTagName");
 			}
 		}
 
@@ -149,7 +77,7 @@ namespace Domain.Moment
 		/// <value>The event description.</value>
 		public string EventDescription {
 			get {
-				return Event.Description;
+				return Get<string>("EventDescription");
 			}
 		}
 
@@ -159,7 +87,7 @@ namespace Domain.Moment
 		/// <value>The location identifier.</value>
 		public string LocationId {
 			get {
-				return Location.Id;
+				return Get<string>("LocationId");
 			}
 		}
 
@@ -169,7 +97,7 @@ namespace Domain.Moment
 		/// <value>The name of the location.</value>
 		public string LocationName {
 			get {
-				return Location.Name;
+				return Get<string>("LocationName");
 			}
 		}
 
@@ -179,7 +107,7 @@ namespace Domain.Moment
 		/// <value>The location latitude.</value>
 		public double LocationLatitude {
 			get {
-				return Location.Position.Latitude;
+				return Get<double>("LocationLatitude");
 			}
 		}
 
@@ -189,7 +117,7 @@ namespace Domain.Moment
 		/// <value>The location longitude.</value>
 		public double LocationLongitude {
 			get {
-				return Location.Position.Longitude;
+				return Get<double>("LocationLongitude");
 			}
 		}
 
@@ -199,7 +127,7 @@ namespace Domain.Moment
 		/// <value>The baby identifier.</value>
 		public string BabyId {
 			get {
-				return Babies.FirstOrDefault().Id;
+				return Get<string>("BabyId");
 			}
 		}
 
@@ -209,7 +137,7 @@ namespace Domain.Moment
 		/// <value>The name of the baby.</value>
 		public string BabyName {
 			get {
-				return Babies.FirstOrDefault().Name;
+				return Get<string>("BabyName");
 			}
 		}
 
@@ -217,9 +145,9 @@ namespace Domain.Moment
 		/// Gets the baby gender.
 		/// </summary>
 		/// <value>The baby gender.</value>
-		public Baby.Gender BabyGender {
+		public Gender BabyGender {
 			get {
-				return Babies.FirstOrDefault().Gender;
+				return (Gender) Enum.Parse(typeof(Gender), Get<string>("BabyGender"));
 			}
 		}
 
@@ -229,7 +157,7 @@ namespace Domain.Moment
 		/// <value>The baby birth date time.</value>
 		public DateTime BabyBirthDateTime {
 			get {
-				return Babies.FirstOrDefault().BirthDateTime;
+				return Get<DateTime>("BabyBirthDateTime");
 			}
 		}
 
@@ -239,7 +167,17 @@ namespace Domain.Moment
 		/// <value>The user email.</value>
 		public string UserEmail {
 			get {
-				return Babies.FirstOrDefault().Email;
+				return Get<string>("UserEmail");
+			}
+		}
+
+		/// <summary>
+		/// Gets the language.
+		/// </summary>
+		/// <value>The language.</value>
+		public string Language {
+			get {
+				return Get<string>("Language");
 			}
 		}
 	}
