@@ -28,8 +28,18 @@ namespace Domain.Moment
 		/// <value>The name of the place.</value>
 		public string PlaceName {
 			get {
-				return string.IsNullOrEmpty(Name) ? "AnyPlace".Translate() : Name;
+				return NameOrDefault(Name);
 			}
+		}
+
+		/// <summary>
+		/// Names the or default.
+		/// </summary>
+		/// <returns>The or default.</returns>
+		/// <param name="name">Name.</param>
+		public static string NameOrDefault(string name)
+		{
+			return string.IsNullOrEmpty(name) ? "AnyPlace".Translate() : name;
 		}
 	}
 }
