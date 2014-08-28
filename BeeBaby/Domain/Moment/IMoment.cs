@@ -1,9 +1,10 @@
 ﻿using System;
 using Domain.Baby;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Domain.Moment
 {
-	public interface IMoment
+	public interface IMoment : IParseable
 	{
 		/// <summary>
 		/// Gets the moment identifier.
