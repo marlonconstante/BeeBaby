@@ -3,22 +3,58 @@ using System.Reflection;
 using Parse;
 using Domain.Moment;
 using Domain.Baby;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure.Systems.Domain
 {
-	public class MomentRemoteData : ParseObject, IMoment
+	public class MomentShared : ParseShared, IMoment
 	{
-		public MomentRemoteData(Moment moment) : base("MomentRemoteData")
+		public MomentShared(Moment moment) : base(moment)
 		{
-			ObjectId = moment.ObjectId;
-			foreach (var property in typeof(IMoment).GetRuntimeProperties())
-			{
-				var value = property.GetValue(moment);
-				if (value is Enum)
-				{
-					value = value.ToString();
-				}	
-				Add(property.Name, value);
+		}
+
+		public MomentShared(ParseObject parseObject) : base(parseObject)
+		{
+		}
+
+		/// <summary>
+		/// Sets the thumbnails.
+		/// </summary>
+		/// <value>The thumbnails.</value>
+		public IDictionary<string, byte[]> Thumbnails {
+			set {
+				Add("Thumbnails", value.Select((image) => new ParseFile(image.Key, image.Value)).ToList());
+			}
+		}
+
+		/// <summary>
+		/// Sets the full images.
+		/// </summary>
+		/// <value>The full images.</value>
+		public IDictionary<string, byte[]> FullImages {
+			set {
+				Add("FullImages", value.Select((image) => new ParseFile(image.Key, image.Value)).ToList());
+			}
+		}
+
+		/// <summary>
+		/// Gets the thumbnails URL.
+		/// </summary>
+		/// <value>The thumbnails URL.</value>
+		public IList<Uri> ThumbnailsUrl {
+			get {
+				return Get<IList<ParseFile>>("Thumbnails").Select((file) => file.Url).ToList();
+			}
+		}
+
+		/// <summary>
+		/// Gets the full images URL.
+		/// </summary>
+		/// <value>The full images URL.</value>
+		public IList<Uri> FullImagesUrl {
+			get {
+				return Get<IList<ParseFile>>("FullImages").Select((file) => file.Url).ToList();
 			}
 		}
 
