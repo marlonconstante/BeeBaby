@@ -53,30 +53,6 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
-		/// Syncs the moments.
-		/// </summary>
-		public void SyncMoments()
-		{
-			var moment = MainRepository.FindAllDescending((o) => o.Id).First();
-
-			// Só salva o momento depois de ter um evento atrelado, assim evita lixo na base remota
-			if (moment.Event != null)
-			{
-				try
-				{
-					m_remoteRepository = DependencyService.Create<IMomentRepository>("REMOTE");
-					m_remoteRepository.SetUnitOfWork(UnitOfWork);
-					m_remoteRepository.Add(moment);
-					UnitOfWork.Commit();
-				}
-				catch (Exception ex)
-				{
-					Debug.WriteLine(ex.StackTrace);
-				}
-			}
-		}
-
-		/// <summary>
 		/// Creates the moment.
 		/// </summary>
 		/// <returns>The moment.</returns>
@@ -92,7 +68,7 @@ namespace Domain.Moment
 		/// Gets all moments.
 		/// </summary>
 		/// <returns>The all moments.</returns>
-		public IEnumerable<Moment> GetAllMoments(Baby.Baby baby)
+		public IEnumerable<IMoment> GetAllMoments(Baby.Baby baby)
 		{
 			MainRepository.RemoveInvalidMoments();
 
