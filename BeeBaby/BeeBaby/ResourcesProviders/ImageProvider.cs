@@ -11,6 +11,7 @@ using System.Drawing;
 using MonoTouch.CoreGraphics;
 using BeeBaby.ViewModels;
 using Domain.Moment;
+using Infrastructure.Systems.Domain;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -130,6 +131,48 @@ namespace BeeBaby.ResourcesProviders
 			}
 
 			return images;
+		}
+
+		/// <summary>
+		/// Gets the remote images.
+		/// </summary>
+		/// <returns>The remote images.</returns>
+		/// <param name="urls">Urls.</param>
+		public IList<ImageModel> GetRemoteImages(IList<Uri> urls)
+		{
+			var remoteImages = new List<ImageModel>();
+
+			foreach (var url in urls)
+			{
+				var data = NSData.FromUrl(NSUrl.FromString(url.AbsoluteUri));
+				var image = new ImageModel
+				{
+					Image = UIImage.LoadFromData(data, 2f),
+					FileName = Path.GetFileName(url.AbsolutePath)
+				};
+				remoteImages.Add(image);
+			}
+
+			return remoteImages;
+		}
+
+		/// <summary>
+		/// Gets the moment images.
+		/// </summary>
+		/// <returns>The moment images.</returns>
+		/// <param name="moment">Moment.</param>
+		/// <param name="thumbnails">If set to <c>true</c> thumbnails.</param>
+		public IList<ImageModel> getMomentImages(IMoment moment, bool thumbnails = false)
+		{
+			if (moment is MomentShared)
+			{
+				var momentShared = (MomentShared) moment;
+				return GetRemoteImages(thumbnails ? momentShared.ThumbnailsUrl : momentShared.FullImagesUrl);
+			}
+			else
+			{
+				return GetImages(thumbnails);
+			}
 		}
 
 		/// <summary>
@@ -341,7 +384,8 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The image for share.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		public UIImage CreateImageForShare(UIImage sourceImage, Moment moment)
+		/// <param name="moment">Moment.</param>
+		public UIImage CreateImageForShare(UIImage sourceImage, IMoment moment)
 		{
 			UIImage resultImage;
 
@@ -351,7 +395,7 @@ namespace BeeBaby.ResourcesProviders
 
 			using (var image = CroppedImageResize(sourceImage, MediaBase.ImageShareSize))
 			{
-				controller.SetInformation(moment, CurrentContext.Instance.CurrentBaby, image);
+				controller.SetInformation(moment, image);
 			}
 
 			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
