@@ -35,6 +35,19 @@ namespace BeeBaby
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating whether this instance has options.
+		/// </summary>
+		/// <value><c>true</c> if this instance has options; otherwise, <c>false</c>.</value>
+		public bool HasOptions {
+			get {
+				return !btnOptions.Hidden;
+			}
+			set {
+				btnOptions.Hidden = !value;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether this instance has description.
 		/// </summary>
 		/// <value><c>true</c> if this instance has description; otherwise, <c>false</c>.</value>

@@ -25,7 +25,7 @@ namespace BeeBaby
 		/// Gets or sets the moment.
 		/// </summary>
 		/// <value>The moment.</value>
-		public Moment Moment {
+		public IMoment Moment {
 			get;
 			set;
 		}

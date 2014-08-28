@@ -5,6 +5,8 @@ using System.Text;
 using Parse;
 using Domain.Log;
 using Infrastructure.Systems.Domain;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Systems
 {
@@ -70,9 +72,13 @@ namespace Infrastructure.Systems
 		/// Syncs the moment.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		public static async void SyncMoment(Moment moment)
+		/// <param name="thumbnails">Thumbnails.</param>
+		/// <param name="fullImages">Full images.</param>
+		public static async void SyncMoment(Moment moment, IDictionary<string, byte[]> thumbnails, IDictionary<string, byte[]> fullImages)
 		{
-			var momentData = new MomentRemoteData(moment);
+			var momentData = new MomentShared(moment);
+			momentData.Thumbnails = thumbnails;
+			momentData.FullImages = fullImages;
 
 			try {
 				await momentData.SaveAsync();
@@ -85,6 +91,19 @@ namespace Infrastructure.Systems
 			} catch (Exception ex) {
 				// Ignora..
 			}
+		}
+
+		/// <summary>
+		/// Gets all moments.
+		/// </summary>
+		/// <returns>The all moments.</returns>
+		public static async Task<IEnumerable<IMoment>> GetAllMoments()
+		{
+			var query = from moment in ParseShared.CreateQuery<MomentShared>()
+						orderby moment.Get<DateTime>("MomentDate") descending
+						select moment;
+
+			return await ParseShared.FindAsync<MomentShared>(query);
 		}
 	}
 }

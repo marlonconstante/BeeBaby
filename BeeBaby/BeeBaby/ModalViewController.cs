@@ -82,11 +82,11 @@ namespace BeeBaby
 		/// Sets the information.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		public void SetInformation(Moment moment)
+		public void SetInformation(IMoment moment)
 		{
-			lblEvent.Text = moment.Event.Description;
-			lblDescription.Text = moment.Description;
-			imgEventBadge.SetStyleClass(moment.Event.TagName);
+			lblEvent.Text = moment.EventDescription;
+			lblDescription.Text = moment.MomentDescription;
+			imgEventBadge.SetStyleClass(moment.EventTagName);
 		}
 	}
 }

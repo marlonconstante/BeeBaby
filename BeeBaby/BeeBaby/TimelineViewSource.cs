@@ -20,11 +20,11 @@ namespace BeeBaby
 	{
 		const string s_cellIdentifier = "MomentCell";
 		TimelineViewController m_viewController;
-		IList<Moment> m_tableItems;
+		IList<IMoment> m_tableItems;
 		Baby m_baby;
 		FullscreenViewController m_fullscreenController;
 
-		public TimelineViewSource(TimelineViewController viewController, IList<Moment> moments, Baby baby)
+		public TimelineViewSource(TimelineViewController viewController, IList<IMoment> moments, Baby baby)
 		{
 			m_viewController = viewController;
 			m_tableItems = moments;
@@ -50,9 +50,9 @@ namespace BeeBaby
 		/// </summary>
 		/// <returns>The <see cref="Domain.Moment.Moment"/>.</returns>
 		/// <param name="indexPath">Index path.</param>
-		public Moment MomentAt(NSIndexPath indexPath)
+		public IMoment MomentAt(NSIndexPath indexPath)
 		{
-			return m_tableItems[indexPath.Row] as Moment;
+			return m_tableItems[indexPath.Row];
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		public void RemoveRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			Moment moment = MomentAt(indexPath);
+			var moment = MomentAt(indexPath) as Moment;
 
 			new MomentService().RemoveMoment(moment);
 			new ImageProvider(moment.Id).DeleteFiles(false);
@@ -116,31 +116,32 @@ namespace BeeBaby
 		/// <param name="indexPath">Index path.</param>
 		void UpdateMomentCell(UITableView tableView, TimelineMomentCell cell, NSIndexPath indexPath)
 		{
-			Moment moment = MomentAt(indexPath);
+			var moment = MomentAt(indexPath);
 
-			cell.LabelAge = string.Concat("AtAge".Translate(), " ", Baby.FormatAge(m_baby.BirthDateTime, moment.Date));
-			cell.LabelDate = string.Concat("InDate".Translate(), " ", moment.Date.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo));
-			cell.LabelEventName = moment.Event.Description;
-			cell.LabelWhere = string.Concat("At".Translate(), " ", moment.Location.PlaceName);
+			cell.LabelAge = string.Concat("AtAge".Translate(), " ", Baby.FormatAge(m_baby.BirthDateTime, moment.MomentDate));
+			cell.LabelDate = string.Concat("InDate".Translate(), " ", moment.MomentDate.ToString("LongDateMask".Translate(), System.Globalization.DateTimeFormatInfo.CurrentInfo));
+			cell.LabelEventName = moment.EventDescription;
+			cell.LabelWhere = string.Concat("At".Translate(), " ", Location.NameOrDefault(moment.LocationName));
 
-			var scrollWidth = moment.MediaCount * MediaBase.ImageThumbnailSize;
+			var scrollWidth = moment.MomentMediaCount * MediaBase.ImageThumbnailSize;
 			cell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
 
-			cell.HasDescription = !string.IsNullOrEmpty(moment.Description);
+			cell.HasDescription = !string.IsNullOrEmpty(moment.MomentDescription);
+			cell.HasOptions = moment is Moment;
 			cell.IncreaseOptionsTouchArea();
 
 			InvokeInBackground(() =>
 			{
 				Thread.Sleep(150);
 
-				var imageProvider = new ImageProvider(moment.Id);
-				IList<ImageModel> images = imageProvider.GetImages(true);
+				var imageProvider = new ImageProvider(moment.MomentId);
+				IList<ImageModel> images = imageProvider.getMomentImages(moment, true);
 
 				InvokeOnMainThread(() =>
 				{
 					if (IsVisibleRow(tableView, indexPath))
 					{
-						cell.LoadStyles(moment.Event.TagName);
+						cell.LoadStyles(moment.EventTagName);
 						cell.ViewPhotos.AddSubviews(GetPhotos(moment, images));
 					}
 				});
@@ -153,7 +154,7 @@ namespace BeeBaby
 		/// <returns>The photos.</returns>
 		/// <param name="moment">Moment.</param>
 		/// <param name="images">Images.</param>
-		MomentImageView[] GetPhotos(Moment moment, IList<ImageModel> images)
+		MomentImageView[] GetPhotos(IMoment moment, IList<ImageModel> images)
 		{
 			var photos = new List<MomentImageView>();
 
@@ -176,7 +177,7 @@ namespace BeeBaby
 					{
 						var momentImageView = (MomentImageView) sender;
 						target.m_viewController.PresentViewController(target.m_fullscreenController, true, null);
-						target.m_fullscreenController.SetInformation(momentImageView.Moment, CurrentContext.Instance.CurrentBaby, momentImageView.ItemIndex);
+						target.m_fullscreenController.SetInformation(momentImageView.Moment, momentImageView.ItemIndex);
 					}, false);
 					actionProgress.Execute();
 				};

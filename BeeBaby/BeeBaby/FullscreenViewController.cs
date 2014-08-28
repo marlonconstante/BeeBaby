@@ -14,7 +14,7 @@ namespace BeeBaby
 {
 	public partial class FullscreenViewController : BaseViewController
 	{
-		Moment m_moment;
+		IMoment m_moment;
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -157,7 +157,7 @@ namespace BeeBaby
 				instagramActivity.IncludeURL = false;
 				instagramActivity.PresentFromView = View;
 
-				var shareText = m_moment.Event.Description + ((m_moment.Description.Length > 0) ? " - " + m_moment.Description : string.Empty);
+				var shareText = m_moment.EventDescription + ((m_moment.MomentDescription.Length > 0) ? " - " + m_moment.MomentDescription : string.Empty);
 				var shareUrl = new NSUrl(string.Empty);
 				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imageModel.Image };
 				var applicationActivities = new UIActivity[]{ instagramActivity };
@@ -201,17 +201,16 @@ namespace BeeBaby
 		/// Sets the information.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		/// <param name="baby">Baby.</param>
-		/// <param name="photo">Photo.</param>
-		public void SetInformation(Moment moment, Baby baby, int itemIndex)
+		/// <param name="itemIndex">Item index.</param>
+		public void SetInformation(IMoment moment, int itemIndex)
 		{
-			Images.AddRange(new ImageProvider(moment.Id).GetImages());
+			Images.AddRange(new ImageProvider(moment.MomentId).getMomentImages(moment));
 			vwSwipe.ReloadData();
 			vwSwipe.CurrentItemIndex = itemIndex;
 
-			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
+			lblAge.Text = Baby.FormatAge(moment.BabyBirthDateTime, moment.MomentDate);
 
-			lblEvent.Text = moment.Event.Description;
+			lblEvent.Text = moment.EventDescription;
 
 			m_moment = moment;
 		}

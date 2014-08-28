@@ -139,14 +139,16 @@ namespace BeeBaby
 		/// <summary>
 		/// Inits the timeline.
 		/// </summary>
-		void InitTimeline()
+		async void InitTimeline()
 		{
 			if (CurrentContext.Instance.ReloadMoments)
 			{
 				new ImageProvider().DeleteFiles(true);
 
 				var baby = CurrentContext.Instance.CurrentBaby;
+
 				var moments = new MomentService().GetAllMoments(baby);
+				//var moments = await RemoteDataSystem.GetAllMoments();
 
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords, " ", "old".Translate());
@@ -211,7 +213,7 @@ namespace BeeBaby
 		void AddPhotos(Button sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath);
+				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath) as Moment;
 				RootViewController.PerformSegue("segueMedia", sender);
 			}, false);
 		}
@@ -223,7 +225,7 @@ namespace BeeBaby
 		void ChangeMoment(Button sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath);
+				CurrentContext.Instance.Moment = m_tableSource.MomentAt(m_currentIndexPath) as Moment;
 				CurrentContext.Instance.SelectedEvent = CurrentContext.Instance.Moment.Event;
 				RootViewController.PerformSegue("segueMoment", sender);
 			}, false);
@@ -236,8 +238,9 @@ namespace BeeBaby
 		void SyncMoment(Button sender)
 		{
 			ShowProgressWhilePerforming(() => {
-				var moment = m_tableSource.MomentAt(m_currentIndexPath);
-				RemoteDataSystem.SyncMoment(moment);
+				var moment = m_tableSource.MomentAt(m_currentIndexPath) as Moment;
+				var imageProvider = new ImageProvider(moment.Id);
+				RemoteDataSystem.SyncMoment(moment, imageProvider.GetDataImages(true), imageProvider.GetDataImages(false));
 			});
 		}
 

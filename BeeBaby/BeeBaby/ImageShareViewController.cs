@@ -17,26 +17,24 @@ namespace BeeBaby
 		/// Sets the information.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		/// <param name="baby">Baby.</param>
 		/// <param name="backgroundImage">Background image.</param>
-		public void SetInformation(Moment moment, Baby baby, UIImage backgroundImage)
+		public void SetInformation(IMoment moment, UIImage backgroundImage)
 		{
 			ivwBackgroundImage.Image = backgroundImage;
-			lblAge.Text = Baby.FormatAge(baby.BirthDateTime, moment.Date);
-			lblDay.Text = moment.Date.ToString("dd");
+			lblAge.Text = Baby.FormatAge(moment.BabyBirthDateTime, moment.MomentDate);
+			lblDay.Text = moment.MomentDate.ToString("dd");
 			lblEvent.LineHeight = lblEvent.Font.PointSize + 0.6f;
-			lblEvent.Text = moment.Event.Description;
-			lblMonth.Text = moment.Date.ToString("MMM");
-			lblWhere.Text = moment.Location.PlaceName;
-			lblYear.Text = moment.Date.ToString("yyyy");
-			imgEventBadge.SetStyleClass(moment.Event.TagName);
+			lblEvent.Text = moment.EventDescription;
+			lblMonth.Text = moment.MomentDate.ToString("MMM");
+			lblWhere.Text = Location.NameOrDefault(moment.LocationName);
+			lblYear.Text = moment.MomentDate.ToString("yyyy");
+			imgEventBadge.SetStyleClass(moment.EventTagName);
 
 			var frame = vwImageBadge.Frame;
 			frame.Y = (lblEvent.Frame.Height / 2) - (frame.Height / 2);
-
 			vwImageBadge.Frame = frame;
 
-			vwLowerBackground.SetStyleClass(string.Concat("card-overlay-", moment.Event.TagName));
+			vwLowerBackground.SetStyleClass(string.Concat("card-overlay-", moment.EventTagName));
 		}
 	}
 }
