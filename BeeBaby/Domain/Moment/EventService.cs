@@ -48,24 +48,6 @@ namespace Domain.Moment
 		}
 
 		/// <summary>
-		/// Gets the events ordered.
-		/// </summary>
-		/// <returns>The events ordered.</returns>
-		/// <param name="baby">Baby.</param>
-		public IEnumerable<Event> GetEventsOrdered(Baby.Baby baby)
-		{
-			var momentService = new MomentService();
-			var moments = momentService.GetAllMoments(baby);
-
-			var events = MainRepository.FindAllAscending(
-				             (e) => moments.Count(m => m.Event.Id == e.Id && e.Kind == EventType.Achievement) <= 0,
-				             (o) => o.Priority
-			             );
-
-			return events;
-		}
-
-		/// <summary>
 		/// Gets all events with non used achivments.
 		/// </summary>
 		/// <returns>The all events with non used achivments.</returns>
