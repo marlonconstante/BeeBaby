@@ -22,9 +22,14 @@ text-view,
 }
 
 .table-menu table-view-cell:selected,
-.navigation navigation-bar,
 segmented-control {
 	background-color: #00aead;
+}
+
+.navigation navigation-bar {
+	shadow: none;
+	background-size: 64;
+	background-image: url(navigation-bar-background@2x.png);
 }
 
 .table-view-headerfooter-view {
