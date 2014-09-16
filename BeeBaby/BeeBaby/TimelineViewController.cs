@@ -199,7 +199,7 @@ namespace BeeBaby
 
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
 				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoment);
-				m_popover.AddPopoverItem("SyncMoment".Translate(), "sync", true, c_buttonHeight, proxySyncMoment);
+				//m_popover.AddPopoverItem("SyncMoment".Translate(), "sync", true, c_buttonHeight, proxySyncMoment);
 				m_popover.AddPopoverItem("RemoveMoment".Translate(), "trash", false, c_buttonHeight, proxyRemoveRow);
 
 				m_popover.AddSubviews(m_popover.MenuItems.ToArray());
