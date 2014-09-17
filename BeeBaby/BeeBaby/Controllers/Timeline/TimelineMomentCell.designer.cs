@@ -7,7 +7,7 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	[Register ("TimelineMomentCell")]
 	partial class TimelineMomentCell

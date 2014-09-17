@@ -11,9 +11,8 @@ using MonoTouch.Foundation;
 using System.Diagnostics;
 using Domain.Baby;
 using BeeBaby.Proxy;
-using BeeBaby.Controllers;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class EventListViewController : NavigationViewController
 	{

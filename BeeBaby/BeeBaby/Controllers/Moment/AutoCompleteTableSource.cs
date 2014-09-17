@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Domain.Moment;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public class AutoCompleteTableSource : TableViewSource
 	{

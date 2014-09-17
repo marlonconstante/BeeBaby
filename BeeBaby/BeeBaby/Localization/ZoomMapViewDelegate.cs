@@ -2,6 +2,7 @@
 using MonoTouch.MapKit;
 using MonoTouch.CoreLocation;
 using BeeBaby.Util;
+using BeeBaby.Controllers;
 
 namespace BeeBaby.Localization
 {

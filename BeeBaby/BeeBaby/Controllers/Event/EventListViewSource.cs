@@ -8,7 +8,7 @@ using Application;
 using Skahal.Infrastructure.Framework.Globalization;
 using BeeBaby.Progress;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public class EventListViewSource : TableViewSource
 	{

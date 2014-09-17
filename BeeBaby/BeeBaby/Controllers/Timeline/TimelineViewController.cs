@@ -14,9 +14,8 @@ using PixateFreestyleLib;
 using System.Collections.Generic;
 using Infrastructure.Systems;
 using BeeBaby.Proxy;
-using BeeBaby.Controllers;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class TimelineViewController : NavigationViewController
 	{

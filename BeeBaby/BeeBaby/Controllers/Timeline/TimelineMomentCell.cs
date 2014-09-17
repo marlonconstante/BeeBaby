@@ -6,7 +6,7 @@ using BeeBaby.ResourcesProviders;
 using PixateFreestyleLib;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class TimelineMomentCell : TableViewCell
 	{

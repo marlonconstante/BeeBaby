@@ -9,6 +9,7 @@ using PixateFreestyleLib;
 using Skahal.Infrastructure.Framework.Globalization;
 using BeeBaby.Util;
 using BeeBaby.Progress;
+using BeeBaby.Controllers;
 
 namespace BeeBaby
 {

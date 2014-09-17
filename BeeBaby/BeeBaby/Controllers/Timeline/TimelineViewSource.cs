@@ -16,9 +16,8 @@ using System.Threading;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Progress;
-using BeeBaby.Controllers;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public class TimelineViewSource : TableViewSource
 	{

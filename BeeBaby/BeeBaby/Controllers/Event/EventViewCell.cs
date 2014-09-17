@@ -3,7 +3,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class EventViewCell : TableViewCell
 	{
