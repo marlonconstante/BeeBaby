@@ -118,7 +118,7 @@ namespace BeeBaby.Activity
 
 			var fileUrl = NSUrl.FromFilename(fullUrl);
 			DocumentController = UIDocumentInteractionController.FromUrl(fileUrl);
-			DocumentController.Delegate = new UIDocumentInteractionControllerDelegateClass(this);
+			DocumentController.Delegate = new DocumentInteractionControllerDelegate(this);
 			DocumentController.Uti = "com.instagram.exclusivegram";
 
 			if (!string.IsNullOrEmpty(ShareString))
