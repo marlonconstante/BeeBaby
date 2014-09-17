@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Domain.Moment;
 
-namespace BeeBaby
+namespace BeeBaby.Media
 {
 	public class MomentImagePickerDelegate : ImagePickerDelegate
 	{

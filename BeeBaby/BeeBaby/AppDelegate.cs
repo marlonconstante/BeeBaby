@@ -15,6 +15,7 @@ using RestSharp;
 using System.Net;
 using BeeBaby.Util;
 using BeeBaby.Notifications;
+using BeeBaby.Media;
 
 namespace BeeBaby
 {

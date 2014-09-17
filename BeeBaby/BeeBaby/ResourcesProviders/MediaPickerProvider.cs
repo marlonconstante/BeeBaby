@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using BeeBaby;
 using Application;
 using MonoTouch.CoreGraphics;
+using BeeBaby.Media;
 
 namespace BeeBaby.ResourcesProviders
 {

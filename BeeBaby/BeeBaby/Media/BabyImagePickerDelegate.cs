@@ -9,7 +9,7 @@ using Domain.Baby;
 using Domain.Media;
 using BeeBaby.Progress;
 
-namespace BeeBaby
+namespace BeeBaby.Media
 {
 	public class BabyImagePickerDelegate : ImagePickerDelegate
 	{

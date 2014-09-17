@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using Domain.Baby;
 using BeeBaby.Util;
+using BeeBaby.Media;
 
 namespace BeeBaby.ViewModels
 {

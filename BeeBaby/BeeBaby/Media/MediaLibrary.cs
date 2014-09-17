@@ -5,7 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.CoreGraphics;
 using MonoTouch.ImageIO;
 
-namespace BeeBaby
+namespace BeeBaby.Media
 {
 	public sealed class MediaLibrary : ALAssetsLibrary
 	{

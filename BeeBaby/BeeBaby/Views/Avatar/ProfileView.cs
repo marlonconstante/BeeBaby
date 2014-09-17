@@ -12,6 +12,7 @@ using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
 using BeeBaby.Menu;
+using BeeBaby.Media;
 
 namespace BeeBaby
 {

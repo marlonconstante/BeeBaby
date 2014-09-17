@@ -12,6 +12,7 @@ using MonoTouch.CoreGraphics;
 using BeeBaby.ViewModels;
 using Domain.Moment;
 using Infrastructure.Systems.Domain;
+using BeeBaby.Media;
 
 namespace BeeBaby.ResourcesProviders
 {

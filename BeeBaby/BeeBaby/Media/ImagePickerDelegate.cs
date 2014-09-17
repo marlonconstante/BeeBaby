@@ -5,7 +5,7 @@ using BigTed;
 using PixateFreestyleLib;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Media
 {
 	public class ImagePickerDelegate : UIImagePickerControllerDelegate
 	{
