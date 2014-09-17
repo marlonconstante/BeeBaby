@@ -8,7 +8,7 @@ using Domain.Moment;
 using BeeBaby.Proxy;
 using BeeBaby.Navigations;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public abstract class NavigationViewController : BaseViewController
 	{

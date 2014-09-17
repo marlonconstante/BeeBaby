@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using BigTed;
 using BeeBaby.Navigations;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class BabyViewController : NavigationViewController
 	{

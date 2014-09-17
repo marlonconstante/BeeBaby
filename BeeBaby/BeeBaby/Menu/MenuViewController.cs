@@ -12,6 +12,7 @@ using Infrastructure.Systems;
 using BeeBaby.ViewModels;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
+using BeeBaby.Controllers;
 
 namespace BeeBaby.Menu
 {

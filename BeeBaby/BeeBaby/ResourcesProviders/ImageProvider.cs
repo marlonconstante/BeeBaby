@@ -13,6 +13,7 @@ using BeeBaby.ViewModels;
 using Domain.Moment;
 using Infrastructure.Systems.Domain;
 using BeeBaby.Media;
+using BeeBaby.Controllers;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -391,7 +392,7 @@ namespace BeeBaby.ResourcesProviders
 			UIImage resultImage;
 
 			var board = UIStoryboard.FromName("MainStoryboard", null);
-			var controller = (ImageShareViewController)board.InstantiateViewController("ImageShareViewController");
+			var controller = (ImageShareViewController) board.InstantiateViewController("ImageShareViewController");
 			controller.LoadView();
 
 			using (var image = CroppedImageResize(sourceImage, MediaBase.ImageShareSize))

@@ -10,7 +10,7 @@ using SwipeViewer;
 using System.Collections.Generic;
 using BeeBaby.ViewModels;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class FullscreenViewController : BaseViewController
 	{

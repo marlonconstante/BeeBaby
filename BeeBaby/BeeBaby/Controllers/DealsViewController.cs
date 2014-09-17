@@ -6,7 +6,7 @@ using Application;
 using System.Text;
 using Domain.Moment;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class DealsViewController : NavigationViewController
 	{

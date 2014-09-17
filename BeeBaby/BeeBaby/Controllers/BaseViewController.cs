@@ -13,7 +13,7 @@ using BeeBaby.Progress;
 using BeeBaby.Navigations;
 using BeeBaby.Gestures;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public abstract class BaseViewController : UIViewController
 	{

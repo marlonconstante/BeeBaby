@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using Domain.Moment;
 using PixateFreestyleLib;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class ModalViewController : BaseViewController
 	{

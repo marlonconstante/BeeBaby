@@ -14,7 +14,7 @@ using BeeBaby.Util;
 using BeeBaby.Navigations;
 using BeeBaby.Media;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class CameraViewController : NavigationViewController
 	{

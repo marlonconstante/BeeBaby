@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class MediaViewController : NavigationViewController
 	{

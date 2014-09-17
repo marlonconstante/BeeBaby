@@ -5,7 +5,7 @@ using Domain.Baby;
 using BeeBaby.ResourcesProviders;
 using PixateFreestyleLib;
 
-namespace BeeBaby
+namespace BeeBaby.Controllers
 {
 	public partial class ImageShareViewController : UIViewController
 	{
