@@ -16,6 +16,7 @@ using Domain.Baby;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Navigations;
+using BeeBaby.Localization;
 
 namespace BeeBaby
 {

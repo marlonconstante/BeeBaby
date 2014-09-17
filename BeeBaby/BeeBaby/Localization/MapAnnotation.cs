@@ -2,7 +2,7 @@
 using MonoTouch.MapKit;
 using MonoTouch.CoreLocation;
 
-namespace BeeBaby
+namespace BeeBaby.Localization
 {
 	public class MapAnnotation : MKAnnotation
 	{

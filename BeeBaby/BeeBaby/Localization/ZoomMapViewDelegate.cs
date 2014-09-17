@@ -3,7 +3,7 @@ using MonoTouch.MapKit;
 using MonoTouch.CoreLocation;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Localization
 {
 	public class ZoomMapViewDelegate : MKMapViewDelegate
 	{

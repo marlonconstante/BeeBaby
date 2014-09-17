@@ -4,7 +4,7 @@ using Domain.Moment;
 using MonoTouch.Foundation;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Localization
 {
 	public class UserLocation : CLLocationManagerDelegate
 	{
