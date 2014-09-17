@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using System.Collections.Generic;
 using MonoTouch.CoreGraphics;
 
-namespace BeeBaby
+namespace BeeBaby.Notifications
 {
 	public sealed class OrientationNotification : Notification
 	{

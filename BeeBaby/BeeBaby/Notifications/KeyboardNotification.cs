@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using System.Drawing;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Notifications
 {
 	public sealed class KeyboardNotification : Notification
 	{

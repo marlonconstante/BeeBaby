@@ -8,6 +8,7 @@ using PixateFreestyleLib;
 using MonoTouch.CoreAnimation;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
+using BeeBaby.Notifications;
 
 namespace BeeBaby
 {

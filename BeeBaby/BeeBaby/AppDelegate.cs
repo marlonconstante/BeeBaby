@@ -14,6 +14,7 @@ using MonoTouch.FacebookConnect;
 using RestSharp;
 using System.Net;
 using BeeBaby.Util;
+using BeeBaby.Notifications;
 
 namespace BeeBaby
 {

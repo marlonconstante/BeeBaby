@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using BeeBaby.Util;
+using BeeBaby.Notifications;
 
 namespace BeeBaby
 {
