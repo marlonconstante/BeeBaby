@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class View : UIView
 	{

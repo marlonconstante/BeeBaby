@@ -6,7 +6,7 @@ using BeeBaby.ViewModels;
 using System.Collections.Generic;
 using BeeBaby.ResourcesProviders;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class ImageCollectionViewSource : CollectionViewSource
 	{

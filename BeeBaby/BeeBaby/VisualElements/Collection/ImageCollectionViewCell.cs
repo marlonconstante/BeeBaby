@@ -6,7 +6,7 @@ using MonoTouch.CoreGraphics;
 using Domain.Media;
 using PixateFreestyleLib;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class ImageCollectionViewCell : CollectionViewCell
 	{

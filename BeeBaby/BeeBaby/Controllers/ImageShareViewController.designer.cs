@@ -25,7 +25,7 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UILabel lblDay { get; set; }
 
 		[Outlet]
-		BeeBaby.Label lblEvent { get; set; }
+		BeeBaby.VisualElements.Label lblEvent { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblMonth { get; set; }

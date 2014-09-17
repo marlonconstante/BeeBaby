@@ -4,11 +4,11 @@ using SwipeViewer;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
-	public class SwipeViewDelegate : SwipeViewer.SwipeViewDelegate
+	public class SwipeViewerDelegate : SwipeViewDelegate
 	{
-		public SwipeViewDelegate()
+		public SwipeViewerDelegate()
 		{
 		}
 

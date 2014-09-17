@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using BeeBaby.Notifications;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class TextField : UITextField, IKeyboardSupport
 	{

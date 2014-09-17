@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	/// <summary>
 	/// Avatar template.

@@ -9,6 +9,7 @@ using BeeBaby.Activity;
 using SwipeViewer;
 using System.Collections.Generic;
 using BeeBaby.ViewModels;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {
@@ -61,8 +62,8 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		void InitSwipeView()
 		{
-			vwSwipe.DataSource = new SwipeViewDataSource();
-			vwSwipe.Delegate = new SwipeViewDelegate();
+			vwSwipe.DataSource = new SwipeViewerDataSource();
+			vwSwipe.Delegate = new SwipeViewerDelegate();
 		}
 
 		/// <summary>
@@ -193,7 +194,7 @@ namespace BeeBaby.Controllers
 		/// <value>The images.</value>
 		public List<ImageModel> Images {
 			get {
-				return ((SwipeViewDataSource) vwSwipe.DataSource).Images;
+				return ((SwipeViewerDataSource) vwSwipe.DataSource).Images;
 			}
 		}
 

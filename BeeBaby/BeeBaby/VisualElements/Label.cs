@@ -3,7 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class Label : UILabel
 	{

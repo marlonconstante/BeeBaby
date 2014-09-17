@@ -31,16 +31,16 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
 
 		[Outlet]
-		BeeBaby.TextField txtName { get; set; }
+		BeeBaby.VisualElements.TextField txtName { get; set; }
 
 		[Outlet]
-		BeeBaby.TextField txtUser { get; set; }
+		BeeBaby.VisualElements.TextField txtUser { get; set; }
 
 		[Outlet]
-		BeeBaby.ViewDatePicker vwBirthDay { get; set; }
+		BeeBaby.VisualElements.ViewDatePicker vwBirthDay { get; set; }
 
 		[Outlet]
-		BeeBaby.ViewDatePicker vwBirthTime { get; set; }
+		BeeBaby.VisualElements.ViewDatePicker vwBirthTime { get; set; }
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);

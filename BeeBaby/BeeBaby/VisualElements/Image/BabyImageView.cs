@@ -2,7 +2,7 @@
 using System.Drawing;
 using BeeBaby.ViewModels;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class BabyImageView : UIImageViewClickable
 	{

@@ -7,6 +7,7 @@ using PixateFreestyleLib;
 using Domain.Moment;
 using BeeBaby.Proxy;
 using BeeBaby.Navigations;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

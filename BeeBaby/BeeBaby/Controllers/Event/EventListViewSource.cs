@@ -7,6 +7,7 @@ using Domain.Moment;
 using Application;
 using Skahal.Infrastructure.Framework.Globalization;
 using BeeBaby.Progress;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

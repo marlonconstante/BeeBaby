@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public abstract class TableViewSource : UITableViewSource
 	{

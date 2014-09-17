@@ -5,6 +5,7 @@ using System.Drawing;
 using BeeBaby.ResourcesProviders;
 using PixateFreestyleLib;
 using BeeBaby.Util;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

@@ -449,8 +449,6 @@
       <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="VisualElements\Collection\ImageCollectionViewSource.cs" />
-    <Compile Include="VisualElements\SwipeView\SwipeViewDataSource.cs" />
-    <Compile Include="VisualElements\SwipeView\SwipeViewDelegate.cs" />
     <Compile Include="VisualElements\Image\BabyImageView.cs" />
     <Compile Include="VisualElements\Image\MomentImageView.cs" />
     <Compile Include="VisualElements\Image\UIImageViewClickable.cs" />
@@ -463,6 +461,8 @@
       <DependentUpon>EventView.cs</DependentUpon>
     </Compile>
     <Compile Include="VisualElements\Avatar\AvatarView.cs" />
+    <Compile Include="VisualElements\SwipeViewer\SwipeViewerDelegate.cs" />
+    <Compile Include="VisualElements\SwipeViewer\SwipeViewerDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.Globalization;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class SearchBar : UISearchBar
 	{

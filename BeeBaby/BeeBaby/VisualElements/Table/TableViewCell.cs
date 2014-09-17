@@ -2,7 +2,7 @@
 using MonoTouch.UIKit;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class TableViewCell : UITableViewCell
 	{

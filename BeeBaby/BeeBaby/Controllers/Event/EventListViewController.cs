@@ -11,6 +11,7 @@ using MonoTouch.Foundation;
 using System.Diagnostics;
 using Domain.Baby;
 using BeeBaby.Proxy;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

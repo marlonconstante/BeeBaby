@@ -16,7 +16,7 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UIButton btnSave { get; set; }
 
 		[Outlet]
-		BeeBaby.EventView evtView { get; set; }
+		BeeBaby.VisualElements.EventView evtView { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView scrView { get; set; }
@@ -25,13 +25,13 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UITableView tblView { get; set; }
 
 		[Outlet]
-		BeeBaby.TextView txtDescription { get; set; }
+		BeeBaby.VisualElements.TextView txtDescription { get; set; }
 
 		[Outlet]
-		BeeBaby.TextField txtLocalName { get; set; }
+		BeeBaby.VisualElements.TextField txtLocalName { get; set; }
 
 		[Outlet]
-		BeeBaby.ViewDatePicker vwDate { get; set; }
+		BeeBaby.VisualElements.ViewDatePicker vwDate { get; set; }
 
 		[Action ("Save:")]
 		partial void Save (MonoTouch.UIKit.UIButton sender);

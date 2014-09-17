@@ -7,7 +7,7 @@ using Application;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class Popover<TDelegateController, TEventArgs> : View 
 		where TDelegateController : class

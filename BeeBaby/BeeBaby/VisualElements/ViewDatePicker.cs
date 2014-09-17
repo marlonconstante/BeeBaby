@@ -10,7 +10,7 @@ using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Notifications;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class ViewDatePicker : View
 	{

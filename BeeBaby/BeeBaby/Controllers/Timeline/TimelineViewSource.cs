@@ -16,6 +16,7 @@ using System.Threading;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Progress;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

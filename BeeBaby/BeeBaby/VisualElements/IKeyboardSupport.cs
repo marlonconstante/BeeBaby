@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public interface IKeyboardSupport
 	{

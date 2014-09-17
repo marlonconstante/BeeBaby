@@ -6,7 +6,7 @@ using System.Drawing;
 using BeeBaby.Util;
 using BeeBaby.Notifications;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class TextView : UITextView, IKeyboardSupport
 	{

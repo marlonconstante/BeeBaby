@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Domain.Moment;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

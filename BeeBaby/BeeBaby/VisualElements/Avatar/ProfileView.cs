@@ -14,7 +14,7 @@ using BeeBaby.Navigations;
 using BeeBaby.Menu;
 using BeeBaby.Media;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class ProfileView : AvatarView
 	{

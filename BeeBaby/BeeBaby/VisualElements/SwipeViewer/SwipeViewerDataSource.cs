@@ -4,11 +4,11 @@ using BeeBaby.ViewModels;
 using MonoTouch.UIKit;
 using SwipeViewer;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
-	public class SwipeViewDataSource : SwipeViewer.SwipeViewDataSource
+	public class SwipeViewerDataSource : SwipeViewDataSource
 	{
-		public SwipeViewDataSource()
+		public SwipeViewerDataSource()
 		{
 			Images = new List<ImageModel>();
 		}

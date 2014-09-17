@@ -11,7 +11,7 @@ using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Controllers;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public partial class EventView : AvatarView
 	{

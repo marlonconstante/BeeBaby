@@ -4,7 +4,7 @@ using Domain.Moment;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class MomentImageView : UIImageViewClickable
 	{

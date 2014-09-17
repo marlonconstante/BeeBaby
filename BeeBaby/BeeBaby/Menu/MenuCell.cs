@@ -2,6 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using PixateFreestyleLib;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Menu
 {

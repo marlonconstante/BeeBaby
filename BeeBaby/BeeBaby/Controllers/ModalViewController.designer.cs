@@ -13,16 +13,16 @@ namespace BeeBaby.Controllers
 	partial class ModalViewController
 	{
 		[Outlet]
-		BeeBaby.Button btnCancel { get; set; }
+		BeeBaby.VisualElements.Button btnCancel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
 
 		[Outlet]
-		BeeBaby.Label lblDescription { get; set; }
+		BeeBaby.VisualElements.Label lblDescription { get; set; }
 
 		[Outlet]
-		BeeBaby.Label lblEvent { get; set; }
+		BeeBaby.VisualElements.Label lblEvent { get; set; }
 
 		[Action ("Close:")]
 		partial void Close (MonoTouch.UIKit.UIButton sender);

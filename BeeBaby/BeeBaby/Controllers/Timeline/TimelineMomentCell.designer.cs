@@ -13,10 +13,10 @@ namespace BeeBaby.Controllers
 	partial class TimelineMomentCell
 	{
 		[Outlet]
-		BeeBaby.Button btnDescription { get; set; }
+		BeeBaby.VisualElements.Button btnDescription { get; set; }
 
 		[Outlet]
-		BeeBaby.Button btnOptions { get; set; }
+		BeeBaby.VisualElements.Button btnOptions { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIImageView imgCalendar { get; set; }
@@ -34,7 +34,7 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UILabel lblDate { get; set; }
 
 		[Outlet]
-		BeeBaby.Label lblEventName { get; set; }
+		BeeBaby.VisualElements.Label lblEventName { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblWhere { get; set; }

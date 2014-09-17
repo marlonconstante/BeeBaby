@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

@@ -2,7 +2,7 @@
 using MonoTouch.UIKit;
 using System.Drawing;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class UIImageViewClickable : UIImageView
 	{

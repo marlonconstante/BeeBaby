@@ -4,7 +4,7 @@ using System.Drawing;
 using PixateFreestyleLib;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.VisualElements
 {
 	public class NavigationButtonItem : UIBarButtonItem
 	{
