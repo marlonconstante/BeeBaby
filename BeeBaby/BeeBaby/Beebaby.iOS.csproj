@@ -291,176 +291,178 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ResourcesProviders\MediaPickerProvider.cs" />
     <Compile Include="ResourcesProviders\ImageProvider.cs" />
-    <Compile Include="MomentDetailViewController.cs" />
-    <Compile Include="MomentDetailViewController.designer.cs">
-      <DependentUpon>MomentDetailViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EventListViewController.cs" />
-    <Compile Include="EventListViewController.designer.cs">
-      <DependentUpon>EventListViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EventListViewSource.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="KeyboardNotification.cs" />
-    <Compile Include="TimelineViewSource.cs" />
-    <Compile Include="TimelineViewController.cs" />
-    <Compile Include="TimelineViewController.designer.cs" />
-    <Compile Include="ZoomMapViewDelegate.cs" />
-    <Compile Include="ImageCollectionViewSource.cs" />
-    <Compile Include="MediaViewController.cs" />
-    <Compile Include="MediaViewController.designer.cs">
-      <DependentUpon>MediaViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TimelineMomentCell.cs" />
-    <Compile Include="TimelineMomentCell.designer.cs">
-      <DependentUpon>TimelineMomentCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TimelineEventCell.cs" />
-    <Compile Include="TimelineEventCell.designer.cs">
-      <DependentUpon>TimelineEventCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CameraViewController.cs" />
-    <Compile Include="CameraViewController.designer.cs">
-      <DependentUpon>CameraViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImageCollectionViewCell.cs" />
-    <Compile Include="ImageCollectionViewCell.designer.cs">
-      <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrientationNotification.cs" />
-    <Compile Include="UIImageViewClickable.cs" />
-    <Compile Include="EventTableSearchBarDelegate.cs" />
-    <Compile Include="BabyViewController.cs" />
-    <Compile Include="BabyViewController.designer.cs">
-      <DependentUpon>BabyViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DealsViewController.cs" />
-    <Compile Include="DealsViewController.designer.cs">
-      <DependentUpon>DealsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImageShareViewController.cs" />
-    <Compile Include="ImageShareViewController.designer.cs">
-      <DependentUpon>ImageShareViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TextField.cs" />
-    <Compile Include="TextField.designer.cs">
-      <DependentUpon>TextField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Label.cs" />
-    <Compile Include="Label.designer.cs">
-      <DependentUpon>Label.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ActionProgress.cs" />
-    <Compile Include="ViewDatePicker.cs" />
-    <Compile Include="ViewDatePicker.designer.cs">
-      <DependentUpon>ViewDatePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GestureRecognizerDelegate.cs" />
     <Compile Include="Util\PreferencesEditor.cs" />
-    <Compile Include="NavigationButtonItem.cs" />
-    <Compile Include="NavigationViewController.cs" />
-    <Compile Include="BaseViewController.cs" />
-    <Compile Include="MapAnnotation.cs" />
-    <Compile Include="ProfileView.cs" />
-    <Compile Include="ProfileView.designer.cs">
-      <DependentUpon>ProfileView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MenuViewSource.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
-    <Compile Include="MenuNavigationController.cs" />
-    <Compile Include="MenuNavigationController.designer.cs">
-      <DependentUpon>MenuNavigationController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MenuViewController.cs" />
-    <Compile Include="MenuViewController.designer.cs">
-      <DependentUpon>MenuViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MenuCell.cs" />
-    <Compile Include="MenuCell.designer.cs">
-      <DependentUpon>MenuCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SlideoutNavigationController.cs" />
-    <Compile Include="SlideoutNavigationController.designer.cs">
-      <DependentUpon>SlideoutNavigationController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MomentImagePickerDelegate.cs" />
-    <Compile Include="BabyImagePickerDelegate.cs" />
-    <Compile Include="ImagePickerDelegate.cs" />
     <Compile Include="ViewModels\BabyProfile.cs" />
     <Compile Include="ViewModels\ImageModel.cs" />
-    <Compile Include="AutoCompleteTableSource.cs" />
-    <Compile Include="IKeyboardSupport.cs" />
-    <Compile Include="TextView.cs" />
-    <Compile Include="TextView.designer.cs">
-      <DependentUpon>TextView.cs</DependentUpon>
+    <Compile Include="Activity\InstagramActivity.cs" />
+    <Compile Include="Util\ReleaseControl.cs" />
+    <Compile Include="Globalization\SHCultureInfo.cs" />
+    <Compile Include="Controllers\BabyViewController.cs" />
+    <Compile Include="Controllers\BabyViewController.designer.cs">
+      <DependentUpon>BabyViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FullscreenViewController.cs" />
-    <Compile Include="FullscreenViewController.designer.cs">
+    <Compile Include="Controllers\BaseViewController.cs" />
+    <Compile Include="Controllers\CameraViewController.cs" />
+    <Compile Include="Controllers\CameraViewController.designer.cs">
+      <DependentUpon>CameraViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DealsViewController.cs" />
+    <Compile Include="Controllers\DealsViewController.designer.cs">
+      <DependentUpon>DealsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FullscreenViewController.cs" />
+    <Compile Include="Controllers\FullscreenViewController.designer.cs">
       <DependentUpon>FullscreenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Button.cs" />
-    <Compile Include="Button.designer.cs">
-      <DependentUpon>Button.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TouchArea.cs" />
-    <Compile Include="View.cs" />
-    <Compile Include="View.designer.cs">
-      <DependentUpon>View.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EventViewCell.cs" />
-    <Compile Include="EventViewCell.designer.cs">
-      <DependentUpon>EventViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CollectionViewCell.cs" />
-    <Compile Include="CollectionViewSource.cs" />
-    <Compile Include="Discard.cs" />
-    <Compile Include="TableViewSource.cs" />
-    <Compile Include="TableViewCell.cs" />
-    <Compile Include="UITagButton.cs" />
-    <Compile Include="Notification.cs" />
-    <Compile Include="INavigationController.cs" />
-    <Compile Include="Windows.cs" />
-    <Compile Include="Views.cs" />
-    <Compile Include="EventProxy.cs" />
-    <Compile Include="BabyImageView.cs" />
-    <Compile Include="MomentImageView.cs" />
-    <Compile Include="WeakDelegate.cs" />
-    <Compile Include="SearchBar.cs" />
-    <Compile Include="SearchBar.designer.cs">
-      <DependentUpon>SearchBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Activity\InstagramActivity.cs" />
-    <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
-    <Compile Include="MediaLibrary.cs" />
-    <Compile Include="Util\ReleaseControl.cs" />
-    <Compile Include="Popover.cs" />
-    <Compile Include="Globalization\SHCultureInfo.cs" />
-    <Compile Include="MediaNavigationController.cs" />
-    <Compile Include="MediaNavigationController.designer.cs">
-      <DependentUpon>MediaNavigationController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CameraNavigationController.cs" />
-    <Compile Include="CameraNavigationController.designer.cs">
-      <DependentUpon>CameraNavigationController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MomentNavigationController.cs" />
-    <Compile Include="EventView.cs" />
-    <Compile Include="EventView.designer.cs">
-      <DependentUpon>EventView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AvatarView.cs" />
-    <Compile Include="UserLocation.cs" />
-    <Compile Include="EditMomentNavigationController.cs" />
-    <Compile Include="EditMomentNavigationController.designer.cs">
-      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModalViewController.cs" />
-    <Compile Include="ModalViewController.designer.cs">
+    <Compile Include="Util\Views.cs" />
+    <Compile Include="Util\Windows.cs" />
+    <Compile Include="Controllers\ModalViewController.cs" />
+    <Compile Include="Controllers\ModalViewController.designer.cs">
       <DependentUpon>ModalViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="SwipeViewDataSource.cs" />
-    <Compile Include="SwipeViewDelegate.cs" />
-    <Compile Include="ELCImagePickerViewController.cs" />
+    <Compile Include="Controllers\ImageShareViewController.cs" />
+    <Compile Include="Controllers\ImageShareViewController.designer.cs">
+      <DependentUpon>ImageShareViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Discard.cs" />
+    <Compile Include="Controllers\MediaViewController.cs" />
+    <Compile Include="Controllers\MediaViewController.designer.cs">
+      <DependentUpon>MediaViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Notification.cs" />
+    <Compile Include="Notifications\KeyboardNotification.cs" />
+    <Compile Include="Notifications\OrientationNotification.cs" />
+    <Compile Include="Controllers\NavigationViewController.cs" />
+    <Compile Include="Gestures\GestureRecognizerDelegate.cs" />
+    <Compile Include="Navigations\EditMomentNavigationController.cs" />
+    <Compile Include="Navigations\EditMomentNavigationController.designer.cs">
+      <DependentUpon>EditMomentNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\CameraNavigationController.cs" />
+    <Compile Include="Navigations\CameraNavigationController.designer.cs">
+      <DependentUpon>CameraNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\MediaNavigationController.cs" />
+    <Compile Include="Navigations\MediaNavigationController.designer.cs">
+      <DependentUpon>MediaNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\MomentNavigationController.cs" />
+    <Compile Include="Menu\MenuViewController.cs" />
+    <Compile Include="Menu\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\MenuNavigationController.cs" />
+    <Compile Include="Menu\MenuNavigationController.designer.cs">
+      <DependentUpon>MenuNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\MenuViewSource.cs" />
+    <Compile Include="Menu\MenuCell.cs" />
+    <Compile Include="Menu\MenuCell.designer.cs">
+      <DependentUpon>MenuCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\INavigationController.cs" />
+    <Compile Include="Navigations\SlideoutNavigationController.cs" />
+    <Compile Include="Navigations\SlideoutNavigationController.designer.cs">
+      <DependentUpon>SlideoutNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\TouchArea.cs" />
+    <Compile Include="Localization\UserLocation.cs" />
+    <Compile Include="Localization\MapAnnotation.cs" />
+    <Compile Include="Localization\ZoomMapViewDelegate.cs" />
+    <Compile Include="Media\ELCImagePickerViewController.cs" />
+    <Compile Include="Media\MomentImagePickerDelegate.cs" />
+    <Compile Include="Media\BabyImagePickerDelegate.cs" />
+    <Compile Include="Media\ImagePickerDelegate.cs" />
+    <Compile Include="Media\MediaLibrary.cs" />
+    <Compile Include="Activity\UIDocumentInteractionControllerDelegateClass.cs" />
+    <Compile Include="Controllers\Event\EventListViewSource.cs" />
+    <Compile Include="Controllers\Event\EventTableSearchBarDelegate.cs" />
+    <Compile Include="Controllers\Event\EventViewCell.cs" />
+    <Compile Include="Controllers\Event\EventViewCell.designer.cs">
+      <DependentUpon>..\..\Event\EventViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Timeline\TimelineEventCell.cs" />
+    <Compile Include="Controllers\Timeline\TimelineEventCell.designer.cs">
+      <DependentUpon>..\..\Timeline\TimelineEventCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Timeline\TimelineMomentCell.cs" />
+    <Compile Include="Controllers\Timeline\TimelineMomentCell.designer.cs">
+      <DependentUpon>..\..\Timeline\TimelineMomentCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Timeline\TimelineViewSource.cs" />
+    <Compile Include="Controllers\Event\EventListViewController.cs" />
+    <Compile Include="Controllers\Event\EventListViewController.designer.cs">
+      <DependentUpon>EventListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Timeline\TimelineViewController.cs" />
+    <Compile Include="Controllers\Timeline\TimelineViewController.designer.cs">
+      <DependentUpon>TimelineViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Moment\MomentDetailViewController.cs" />
+    <Compile Include="Controllers\Moment\MomentDetailViewController.designer.cs">
+      <DependentUpon>MomentDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Moment\AutoCompleteTableSource.cs" />
+    <Compile Include="Views\View.cs" />
+    <Compile Include="Views\View.designer.cs">
+      <DependentUpon>View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Button.cs" />
+    <Compile Include="Views\Button.designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Label.cs" />
+    <Compile Include="Views\Label.designer.cs">
+      <DependentUpon>Label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewDatePicker.cs" />
+    <Compile Include="Views\ViewDatePicker.designer.cs">
+      <DependentUpon>ViewDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchBar.cs" />
+    <Compile Include="Views\SearchBar.designer.cs">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextField.cs" />
+    <Compile Include="Views\TextField.designer.cs">
+      <DependentUpon>TextField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextView.cs" />
+    <Compile Include="Views\TextView.designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UITagButton.cs" />
+    <Compile Include="Views\Popover.cs" />
+    <Compile Include="Views\NavigationButtonItem.cs" />
+    <Compile Include="Views\IKeyboardSupport.cs" />
+    <Compile Include="Views\Table\TableViewCell.cs" />
+    <Compile Include="Views\Table\TableViewSource.cs" />
+    <Compile Include="Views\Collection\CollectionViewCell.cs" />
+    <Compile Include="Views\Collection\CollectionViewSource.cs" />
+    <Compile Include="Views\Collection\ImageCollectionViewCell.cs" />
+    <Compile Include="Views\Collection\ImageCollectionViewCell.designer.cs">
+      <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Collection\ImageCollectionViewSource.cs" />
+    <Compile Include="Views\SwipeViewer\SwipeViewDataSource.cs" />
+    <Compile Include="Views\SwipeViewer\SwipeViewDelegate.cs" />
+    <Compile Include="Views\Image\BabyImageView.cs" />
+    <Compile Include="Views\Image\MomentImageView.cs" />
+    <Compile Include="Views\Image\UIImageViewClickable.cs" />
+    <Compile Include="Views\Avatar\ProfileView.cs" />
+    <Compile Include="Views\Avatar\ProfileView.designer.cs">
+      <DependentUpon>ProfileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Avatar\EventView.cs" />
+    <Compile Include="Views\Avatar\EventView.designer.cs">
+      <DependentUpon>EventView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Avatar\AvatarView.cs" />
+    <Compile Include="Action\ActionProgress.cs" />
+    <Compile Include="Action\EventProxy.cs" />
+    <Compile Include="Action\WeakDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
@@ -484,6 +486,20 @@
     <Folder Include="Util\" />
     <Folder Include="Activity\" />
     <Folder Include="Globalization\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Notifications\" />
+    <Folder Include="Gestures\" />
+    <Folder Include="Navigations\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Media\" />
+    <Folder Include="Controllers\Moment\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Table\" />
+    <Folder Include="Views\Collection\" />
+    <Folder Include="Views\Image\" />
+    <Folder Include="Views\Avatar\" />
+    <Folder Include="Action\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
