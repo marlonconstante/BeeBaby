@@ -11,6 +11,7 @@ using Infrastructure.Systems;
 using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
+using BeeBaby.Gestures;
 
 namespace BeeBaby
 {
