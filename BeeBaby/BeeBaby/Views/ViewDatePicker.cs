@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using PixateFreestyleLib;
 using MonoTouch.CoreAnimation;
 using BeeBaby.Util;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

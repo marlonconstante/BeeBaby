@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BeeBaby
+namespace BeeBaby.Proxy
 {
 	public class WeakDelegate<TDelegate> where TDelegate : class
 	{

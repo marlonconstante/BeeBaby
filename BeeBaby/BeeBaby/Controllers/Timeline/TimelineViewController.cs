@@ -13,6 +13,7 @@ using System.Drawing;
 using PixateFreestyleLib;
 using System.Collections.Generic;
 using Infrastructure.Systems;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

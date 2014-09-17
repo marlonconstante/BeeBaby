@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using PixateFreestyleLib;
 using Application;
 using BeeBaby.Util;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

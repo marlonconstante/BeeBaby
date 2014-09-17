@@ -10,6 +10,7 @@ using PixateFreestyleLib;
 using MonoTouch.Foundation;
 using System.Diagnostics;
 using Domain.Baby;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

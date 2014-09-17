@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BeeBaby
+namespace BeeBaby.Proxy
 {
 	public class EventProxy<TDelegate, TEventArgs> : IDisposable
 		where TDelegate : class where TEventArgs : EventArgs

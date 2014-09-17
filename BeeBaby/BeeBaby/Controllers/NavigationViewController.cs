@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using System.Drawing;
 using PixateFreestyleLib;
 using Domain.Moment;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

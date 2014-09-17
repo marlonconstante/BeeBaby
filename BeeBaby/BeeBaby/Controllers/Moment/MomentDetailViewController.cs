@@ -14,6 +14,7 @@ using System.IO;
 using BeeBaby.Globalization;
 using Domain.Baby;
 using BeeBaby.Util;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

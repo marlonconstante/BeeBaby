@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using PixateFreestyleLib;
 using System.Collections.Generic;
 using BeeBaby.Util;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Threading;
 using BeeBaby.Util;
+using BeeBaby.Proxy;
 
 namespace BeeBaby
 {
