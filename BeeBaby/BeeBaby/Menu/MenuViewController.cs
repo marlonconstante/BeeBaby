@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using MonoTouch.Foundation;
 using Domain.Moment;
 using Infrastructure.Systems;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby
 {

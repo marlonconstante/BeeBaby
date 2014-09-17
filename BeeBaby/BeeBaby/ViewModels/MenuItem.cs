@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.ViewModels
 {
 	public class MenuItem : IDisposable
 	{

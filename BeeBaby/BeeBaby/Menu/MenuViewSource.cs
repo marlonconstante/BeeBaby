@@ -2,6 +2,7 @@
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.Collections.Generic;
+using BeeBaby.ViewModels;
 
 namespace BeeBaby
 {
