@@ -459,10 +459,10 @@
       <DependentUpon>EventView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Avatar\AvatarView.cs" />
-    <Compile Include="Action\ActionProgress.cs" />
-    <Compile Include="Action\EventProxy.cs" />
-    <Compile Include="Action\WeakDelegate.cs" />
     <Compile Include="Activity\DocumentInteractionControllerDelegate.cs" />
+    <Compile Include="Proxy\EventProxy.cs" />
+    <Compile Include="Proxy\WeakDelegate.cs" />
+    <Compile Include="Progress\ActionProgress.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
@@ -499,7 +499,8 @@
     <Folder Include="Views\Collection\" />
     <Folder Include="Views\Image\" />
     <Folder Include="Views\Avatar\" />
-    <Folder Include="Action\" />
+    <Folder Include="Proxy\" />
+    <Folder Include="Progress\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
