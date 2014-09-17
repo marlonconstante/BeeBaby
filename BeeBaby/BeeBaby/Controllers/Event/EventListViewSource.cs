@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using Domain.Moment;
 using Application;
 using Skahal.Infrastructure.Framework.Globalization;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -47,7 +48,7 @@ namespace BeeBaby
 		{
 			CurrentContext.Instance.SelectedEvent = m_otherEventsTableItems[indexPath.Row];
 
-			ActionProgress actionProgress = new ActionProgress(() => {
+			var actionProgress = new ActionProgress(() => {
 				if (m_viewController.IsEditFlow())
 				{
 					m_viewController.GoBackToMoment();

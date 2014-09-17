@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Domain.Baby;
 using Domain.Media;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -24,7 +25,7 @@ namespace BeeBaby
 		/// <param name="info">Info.</param>
 		public override void FinishedPickingMedia(UIImagePickerController picker, NSDictionary info)
 		{
-			ActionProgress actionProgress = new ActionProgress(() => {
+			var actionProgress = new ActionProgress(() => {
 				SavePermanentImageOnApp(info);
 				picker.DismissViewController(true, CompletionHandler);
 			}, false);

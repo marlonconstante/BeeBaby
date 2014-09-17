@@ -9,6 +9,7 @@ using System.Linq;
 using Domain.Log;
 using Infrastructure.Systems;
 using BeeBaby.Util;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -196,7 +197,7 @@ namespace BeeBaby
 		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
 		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
 		{
-			ActionProgress actionProgress = new ActionProgress(action, closeProgressWhenFinished);
+			var actionProgress = new ActionProgress(action, closeProgressWhenFinished);
 			actionProgress.Execute();
 		}
 

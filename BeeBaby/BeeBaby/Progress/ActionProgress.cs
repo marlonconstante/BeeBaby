@@ -3,7 +3,7 @@ using System.Threading;
 using MonoTouch.Foundation;
 using BigTed;
 
-namespace BeeBaby
+namespace BeeBaby.Progress
 {
 	public class ActionProgress : NSObject
 	{

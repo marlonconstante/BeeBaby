@@ -10,6 +10,7 @@ using MonoTouch.Foundation;
 using Domain.Moment;
 using Infrastructure.Systems;
 using BeeBaby.ViewModels;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -133,7 +134,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				ActionProgress actionProgress = new ActionProgress(() => {
+				var actionProgress = new ActionProgress(() => {
 					NavigationController.PushViewController((UIViewController) m_board.InstantiateViewController(storyboardId), false);
 					if (deselectRows)
 					{

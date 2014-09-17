@@ -8,6 +8,7 @@ using Domain.Media;
 using PixateFreestyleLib;
 using Skahal.Infrastructure.Framework.Globalization;
 using BeeBaby.Util;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -45,7 +46,7 @@ namespace BeeBaby
 		/// <param name="sender">Sender.</param>
 		protected override void Action(UIView sender)
 		{
-			ActionProgress actionProgress = new ActionProgress(() => {
+			var actionProgress = new ActionProgress(() => {
 				var viewController = Windows.GetTopViewController(Window) as MomentDetailViewController;
 				if (viewController != null)
 				{

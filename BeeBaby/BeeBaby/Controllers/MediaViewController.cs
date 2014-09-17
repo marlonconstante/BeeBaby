@@ -8,6 +8,7 @@ using Domain.Moment;
 using ELCPicker;
 using System.Diagnostics;
 using System.Collections.Generic;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -68,7 +69,7 @@ namespace BeeBaby
 				if (!task.IsCanceled && task.Exception == null)
 				{
 					var m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
-					ActionProgress actionProgress = new ActionProgress(() =>
+					var actionProgress = new ActionProgress(() =>
 					{
 						var results = task.Result as List<AssetResult>;
 						foreach (var item in results) 

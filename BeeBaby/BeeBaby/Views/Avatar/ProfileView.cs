@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using BeeBaby.ViewModels;
 using Domain.Baby;
 using BeeBaby.Util;
+using BeeBaby.Progress;
 
 namespace BeeBaby
 {
@@ -61,7 +62,7 @@ namespace BeeBaby
 			}
 			else
 			{
-				ActionProgress actionProgress = new ActionProgress(() => {
+				var actionProgress = new ActionProgress(() => {
 					var babyImageView = (BabyImageView) sender;
 					var imagePickerDelegate = babyImageView.BabyProfile.Delegate;
 					imagePickerDelegate.CompletionHandler = () => {
