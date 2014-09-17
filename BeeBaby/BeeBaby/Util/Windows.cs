@@ -1,7 +1,7 @@
 ﻿using System;
 using MonoTouch.UIKit;
 
-namespace BeeBaby
+namespace BeeBaby.Util
 {
 	public abstract class Windows
 	{

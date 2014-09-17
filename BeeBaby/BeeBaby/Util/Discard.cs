@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Collections;
 using MonoTouch.Foundation;
 
-namespace BeeBaby
+namespace BeeBaby.Util
 {
 	public abstract class Discard
 	{

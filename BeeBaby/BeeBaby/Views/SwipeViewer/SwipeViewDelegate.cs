@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using SwipeViewer;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {
