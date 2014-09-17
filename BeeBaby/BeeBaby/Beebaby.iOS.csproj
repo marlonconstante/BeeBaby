@@ -404,65 +404,65 @@
       <DependentUpon>MomentDetailViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Moment\AutoCompleteTableSource.cs" />
-    <Compile Include="Views\View.cs" />
-    <Compile Include="Views\View.designer.cs">
-      <DependentUpon>View.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Button.cs" />
-    <Compile Include="Views\Button.designer.cs">
-      <DependentUpon>Button.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Label.cs" />
-    <Compile Include="Views\Label.designer.cs">
-      <DependentUpon>Label.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewDatePicker.cs" />
-    <Compile Include="Views\ViewDatePicker.designer.cs">
-      <DependentUpon>ViewDatePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchBar.cs" />
-    <Compile Include="Views\SearchBar.designer.cs">
-      <DependentUpon>SearchBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TextField.cs" />
-    <Compile Include="Views\TextField.designer.cs">
-      <DependentUpon>TextField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TextView.cs" />
-    <Compile Include="Views\TextView.designer.cs">
-      <DependentUpon>TextView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UITagButton.cs" />
-    <Compile Include="Views\Popover.cs" />
-    <Compile Include="Views\NavigationButtonItem.cs" />
-    <Compile Include="Views\IKeyboardSupport.cs" />
-    <Compile Include="Views\Table\TableViewCell.cs" />
-    <Compile Include="Views\Table\TableViewSource.cs" />
-    <Compile Include="Views\Collection\CollectionViewCell.cs" />
-    <Compile Include="Views\Collection\CollectionViewSource.cs" />
-    <Compile Include="Views\Collection\ImageCollectionViewCell.cs" />
-    <Compile Include="Views\Collection\ImageCollectionViewCell.designer.cs">
-      <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Collection\ImageCollectionViewSource.cs" />
-    <Compile Include="Views\Image\BabyImageView.cs" />
-    <Compile Include="Views\Image\MomentImageView.cs" />
-    <Compile Include="Views\Image\UIImageViewClickable.cs" />
-    <Compile Include="Views\Avatar\ProfileView.cs" />
-    <Compile Include="Views\Avatar\ProfileView.designer.cs">
-      <DependentUpon>ProfileView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Avatar\EventView.cs" />
-    <Compile Include="Views\Avatar\EventView.designer.cs">
-      <DependentUpon>EventView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Avatar\AvatarView.cs" />
     <Compile Include="Activity\DocumentInteractionControllerDelegate.cs" />
     <Compile Include="Proxy\EventProxy.cs" />
     <Compile Include="Proxy\WeakDelegate.cs" />
     <Compile Include="Progress\ActionProgress.cs" />
-    <Compile Include="Views\SwipeView\SwipeViewDataSource.cs" />
-    <Compile Include="Views\SwipeView\SwipeViewDelegate.cs" />
+    <Compile Include="VisualElements\View.cs" />
+    <Compile Include="VisualElements\View.designer.cs">
+      <DependentUpon>View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\Button.cs" />
+    <Compile Include="VisualElements\Button.designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\Label.cs" />
+    <Compile Include="VisualElements\Label.designer.cs">
+      <DependentUpon>Label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\ViewDatePicker.cs" />
+    <Compile Include="VisualElements\ViewDatePicker.designer.cs">
+      <DependentUpon>ViewDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\SearchBar.cs" />
+    <Compile Include="VisualElements\SearchBar.designer.cs">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\TextField.cs" />
+    <Compile Include="VisualElements\TextField.designer.cs">
+      <DependentUpon>TextField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\TextView.cs" />
+    <Compile Include="VisualElements\TextView.designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\UITagButton.cs" />
+    <Compile Include="VisualElements\Popover.cs" />
+    <Compile Include="VisualElements\NavigationButtonItem.cs" />
+    <Compile Include="VisualElements\IKeyboardSupport.cs" />
+    <Compile Include="VisualElements\Table\TableViewCell.cs" />
+    <Compile Include="VisualElements\Table\TableViewSource.cs" />
+    <Compile Include="VisualElements\Collection\CollectionViewCell.cs" />
+    <Compile Include="VisualElements\Collection\CollectionViewSource.cs" />
+    <Compile Include="VisualElements\Collection\ImageCollectionViewCell.cs" />
+    <Compile Include="VisualElements\Collection\ImageCollectionViewCell.designer.cs">
+      <DependentUpon>ImageCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\Collection\ImageCollectionViewSource.cs" />
+    <Compile Include="VisualElements\SwipeView\SwipeViewDataSource.cs" />
+    <Compile Include="VisualElements\SwipeView\SwipeViewDelegate.cs" />
+    <Compile Include="VisualElements\Image\BabyImageView.cs" />
+    <Compile Include="VisualElements\Image\MomentImageView.cs" />
+    <Compile Include="VisualElements\Image\UIImageViewClickable.cs" />
+    <Compile Include="VisualElements\Avatar\ProfileView.cs" />
+    <Compile Include="VisualElements\Avatar\ProfileView.designer.cs">
+      <DependentUpon>ProfileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\Avatar\EventView.cs" />
+    <Compile Include="VisualElements\Avatar\EventView.designer.cs">
+      <DependentUpon>EventView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualElements\Avatar\AvatarView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
@@ -494,13 +494,13 @@
     <Folder Include="Localization\" />
     <Folder Include="Media\" />
     <Folder Include="Controllers\Moment\" />
-    <Folder Include="Views\" />
-    <Folder Include="Views\Table\" />
-    <Folder Include="Views\Collection\" />
-    <Folder Include="Views\Image\" />
-    <Folder Include="Views\Avatar\" />
     <Folder Include="Proxy\" />
     <Folder Include="Progress\" />
+    <Folder Include="VisualElements\" />
+    <Folder Include="VisualElements\Table\" />
+    <Folder Include="VisualElements\Collection\" />
+    <Folder Include="VisualElements\Image\" />
+    <Folder Include="VisualElements\Avatar\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
