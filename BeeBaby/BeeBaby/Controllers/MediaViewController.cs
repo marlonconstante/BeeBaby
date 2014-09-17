@@ -9,6 +9,7 @@ using ELCPicker;
 using System.Diagnostics;
 using System.Collections.Generic;
 using BeeBaby.Progress;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {
@@ -104,7 +105,7 @@ namespace BeeBaby
 						var moment = CurrentContext.Instance.Moment;
 						moment.MediaCount = moment.SelectedMediaNames.Count;
 
-						((MomentNavigationController)NavigationController).SaveCurrentMoment();
+						((MomentNavigationController) NavigationController).SaveCurrentMoment();
 					}
 					else
 					{

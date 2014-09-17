@@ -2,7 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace BeeBaby
+namespace BeeBaby.Navigations
 {
 	public partial class EditMomentNavigationController : MomentNavigationController
 	{

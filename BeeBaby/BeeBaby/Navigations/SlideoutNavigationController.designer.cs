@@ -7,7 +7,7 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace BeeBaby
+namespace BeeBaby.Navigations
 {
 	[Register ("SlideoutNavigationController")]
 	partial class SlideoutNavigationController

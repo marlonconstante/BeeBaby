@@ -10,6 +10,7 @@ using Domain.Log;
 using Infrastructure.Systems;
 using BeeBaby.Util;
 using BeeBaby.Progress;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {

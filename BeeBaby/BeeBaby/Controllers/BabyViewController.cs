@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using BigTed;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {

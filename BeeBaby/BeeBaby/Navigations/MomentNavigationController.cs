@@ -6,7 +6,7 @@ using Domain.Moment;
 using Infrastructure.Systems;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Navigations
 {
 	public class MomentNavigationController : UINavigationController, INavigationController
 	{

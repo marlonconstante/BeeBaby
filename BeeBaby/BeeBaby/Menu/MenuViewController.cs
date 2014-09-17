@@ -11,6 +11,7 @@ using Domain.Moment;
 using Infrastructure.Systems;
 using BeeBaby.ViewModels;
 using BeeBaby.Progress;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {

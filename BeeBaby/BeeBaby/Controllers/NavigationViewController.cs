@@ -6,6 +6,7 @@ using System.Drawing;
 using PixateFreestyleLib;
 using Domain.Moment;
 using BeeBaby.Proxy;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {

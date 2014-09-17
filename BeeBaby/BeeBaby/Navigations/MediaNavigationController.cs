@@ -3,7 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
 
-namespace BeeBaby
+namespace BeeBaby.Navigations
 {
 	public partial class MediaNavigationController : MomentNavigationController
 	{

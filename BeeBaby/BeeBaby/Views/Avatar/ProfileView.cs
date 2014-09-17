@@ -10,6 +10,7 @@ using BeeBaby.ViewModels;
 using Domain.Baby;
 using BeeBaby.Util;
 using BeeBaby.Progress;
+using BeeBaby.Navigations;
 
 namespace BeeBaby
 {

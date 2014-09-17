@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using BeeBaby.Util;
 
-namespace BeeBaby
+namespace BeeBaby.Navigations
 {
 	/// <summary>
 	/// Slideout view controller.
