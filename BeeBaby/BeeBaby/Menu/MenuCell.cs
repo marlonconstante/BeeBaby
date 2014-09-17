@@ -3,7 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using PixateFreestyleLib;
 
-namespace BeeBaby
+namespace BeeBaby.Menu
 {
 	public partial class MenuCell : TableViewCell
 	{

@@ -3,7 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using BeeBaby.Navigations;
 
-namespace BeeBaby
+namespace BeeBaby.Menu
 {
 	public partial class MenuNavigationController : UINavigationController
 	{

@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using System.Collections.Generic;
 using BeeBaby.ViewModels;
 
-namespace BeeBaby
+namespace BeeBaby.Menu
 {
 	public class MenuViewSource : TableViewSource
 	{

@@ -11,6 +11,7 @@ using Domain.Baby;
 using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
+using BeeBaby.Menu;
 
 namespace BeeBaby
 {

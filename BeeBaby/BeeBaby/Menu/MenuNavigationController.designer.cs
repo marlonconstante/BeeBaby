@@ -7,7 +7,7 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace BeeBaby
+namespace BeeBaby.Menu
 {
 	[Register ("MenuNavigationController")]
 	partial class MenuNavigationController

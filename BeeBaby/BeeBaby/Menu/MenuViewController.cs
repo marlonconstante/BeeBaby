@@ -13,7 +13,7 @@ using BeeBaby.ViewModels;
 using BeeBaby.Progress;
 using BeeBaby.Navigations;
 
-namespace BeeBaby
+namespace BeeBaby.Menu
 {
 	public partial class MenuViewController : BaseViewController
 	{
