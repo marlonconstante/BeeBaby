@@ -286,6 +286,7 @@
     <BundleResource Include="Resources\menu-item-background%402x.png" />
     <BundleResource Include="Resources\menu-item-selected-background%402x.png" />
     <BundleResource Include="Resources\navigation-bar-background%402x.png" />
+    <BundleResource Include="Resources\flying-bee-bg%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
