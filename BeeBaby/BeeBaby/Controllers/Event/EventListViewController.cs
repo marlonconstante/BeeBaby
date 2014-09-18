@@ -278,7 +278,7 @@ namespace BeeBaby.Controllers
 
 			var view = new UIView(new RectangleF(x, 0f, s_imageSize, s_imageSize));
 			view.UserInteractionEnabled = false;
-			view.ContentMode = UIViewContentMode.ScaleToFill;
+			view.ContentMode = UIViewContentMode.Center;
 			view.SetStyleClass(tagName.ToLower());
 
 			var overlay = new UIView(new RectangleF(0f, 0f, s_imageSize, s_imageSize));
