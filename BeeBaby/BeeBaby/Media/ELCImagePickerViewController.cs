@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Skahal.Infrastructure.Framework.Globalization;
 using BigTed;
 using PixateFreestyleLib;
+using System.Linq;
 
 namespace ELCPicker
 {
@@ -267,8 +268,13 @@ namespace ELCPicker
 					detailFrame.Width = Superview.Frame.Width - 123f;
 					DetailTextLabel.Frame = detailFrame;
 
-					var subviews = Subviews[0].Subviews;
-					var indicator = subviews[subviews.Length - 1];
+					var indicator = Subviews.FirstOrDefault((view) => view is UIButton);
+					if (indicator == null)
+					{
+						indicator = Subviews.FirstOrDefault((view) => view is UIScrollView).
+									Subviews.FirstOrDefault((view) => view is UIButton);
+					}
+
 					var indicatorFrame = indicator.Frame;
 					indicatorFrame.X = Superview.Frame.Width - 18f;
 					indicator.Frame = indicatorFrame;
