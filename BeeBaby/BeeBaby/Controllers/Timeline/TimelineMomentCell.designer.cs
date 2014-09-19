@@ -19,13 +19,7 @@ namespace BeeBaby.Controllers
 		BeeBaby.VisualElements.Button btnOptions { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgCalendar { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView imgLocation { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblAge { get; set; }
@@ -63,16 +57,6 @@ namespace BeeBaby.Controllers
 			if (imgEventBadge != null) {
 				imgEventBadge.Dispose ();
 				imgEventBadge = null;
-			}
-
-			if (imgLocation != null) {
-				imgLocation.Dispose ();
-				imgLocation = null;
-			}
-
-			if (imgCalendar != null) {
-				imgCalendar.Dispose ();
-				imgCalendar = null;
 			}
 
 			if (lblAge != null) {

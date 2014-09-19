@@ -30,10 +30,6 @@ namespace BeeBaby.Controllers
 		public void LoadStyles(string eventBadgeClass)
 		{
 			imgEventBadge.SetStyleClass(eventBadgeClass);
-			imgLocation.SetStyleClass("location");
-			imgCalendar.SetStyleClass("calendar");
-			btnOptions.SetStyleClass("down-arrow");
-			btnDescription.SetStyleClass("time-button");
 		}
 
 		/// <summary>
