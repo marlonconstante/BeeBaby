@@ -291,6 +291,18 @@
     <BundleResource Include="Resources\comments-button%402x.png" />
     <BundleResource Include="Resources\calendar%402x.png" />
     <BundleResource Include="Resources\location%402x.png" />
+    <BundleResource Include="Resources\firsts-round%402x.png" />
+    <BundleResource Include="Resources\bath-round%402x.png" />
+    <BundleResource Include="Resources\birth-round%402x.png" />
+    <BundleResource Include="Resources\celebrations-round%402x.png" />
+    <BundleResource Include="Resources\family-round%402x.png" />
+    <BundleResource Include="Resources\lapy-round%402x.png" />
+    <BundleResource Include="Resources\littlebody-round%402x.png" />
+    <BundleResource Include="Resources\pregnancy-round%402x.png" />
+    <BundleResource Include="Resources\ride-round%402x.png" />
+    <BundleResource Include="Resources\school-round%402x.png" />
+    <BundleResource Include="Resources\sleepy-round%402x.png" />
+    <BundleResource Include="Resources\smile-round%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
