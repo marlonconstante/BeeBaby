@@ -184,7 +184,7 @@
                                         <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </pageControl>
-                                    <scrollView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK">
+                                    <scrollView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-X6-KYK" customClass="ScrollView">
                                         <rect key="frame" x="0.0" y="12" width="320" height="202"/>
                                     </scrollView>
                                 </subviews>
@@ -212,7 +212,7 @@
                     <connections>
                         <outlet property="pcrPager" destination="vTW-sD-k4E" id="FgB-73-6VO"/>
                         <outlet property="schBar" destination="OQy-eW-gLs" id="TY5-Jg-2Nk"/>
-                        <outlet property="scrView" destination="wIr-X6-KYK" id="h8E-EQ-nav"/>
+                        <outlet property="scrView" destination="wIr-X6-KYK" id="FWe-SA-6au"/>
                         <outlet property="tagsHeightConstraint" destination="0Ue-SX-Gs2" id="Gb7-8b-rwB"/>
                         <outlet property="tblHeightConstraint" destination="Vlt-Am-YjC" id="IEO-ut-4N2"/>
                         <outlet property="tblView" destination="qCH-eT-BbT" id="ays-fV-7Yz"/>

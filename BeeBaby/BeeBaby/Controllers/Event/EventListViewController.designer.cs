@@ -19,7 +19,7 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UISearchBar schBar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+		BeeBaby.VisualElements.ScrollView scrView { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint tagsHeightConstraint { get; set; }
