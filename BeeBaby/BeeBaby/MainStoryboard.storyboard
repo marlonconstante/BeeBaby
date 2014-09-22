@@ -372,7 +372,7 @@
                                         <connections>
                                             <outlet property="btnDescription" destination="9lt-pa-a9O" id="doT-Bx-7TI"/>
                                             <outlet property="btnOptions" destination="jJa-Z5-UnG" id="L1h-oL-mer"/>
-                                            <outlet property="imgEventBadge" destination="tHa-pa-fpI" id="pU4-Rb-Vwu"/>
+                                            <outlet property="imgEventTagIcon" destination="tHa-pa-fpI" id="y0p-1m-cT6"/>
                                             <outlet property="lblAge" destination="z1D-ls-552" id="m3W-17-fNg"/>
                                             <outlet property="lblDate" destination="avP-uf-XxZ" id="vBc-47-Ivn"/>
                                             <outlet property="lblEventName" destination="tAx-tS-3EW" id="UD6-za-a8W"/>

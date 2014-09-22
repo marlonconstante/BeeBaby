@@ -16,6 +16,19 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Prepares for reuse.
+		/// </summary>
+		public override void PrepareForReuse()
+		{
+			base.PrepareForReuse();
+
+			foreach (var view in ViewPhotos.Subviews)
+			{
+				view.RemoveFromSuperview();
+			}
+		}
+
+		/// <summary>
 		/// Increases the options touch area.
 		/// </summary>
 		public void IncreaseOptionsTouchArea()
@@ -24,12 +37,16 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Loads the styles.
+		/// Gets or sets the tag icon.
 		/// </summary>
-		/// <param name="eventBadgeClass">Event badge class.</param>
-		public void LoadStyles(string eventBadgeClass)
-		{
-			imgEventBadge.SetStyleClass(eventBadgeClass);
+		/// <value>The tag icon.</value>
+		public UIImage TagIcon {
+			get {
+				return imgEventTagIcon.Image;
+			}
+			set {
+				imgEventTagIcon.Image = value;
+			}
 		}
 
 		/// <summary>
