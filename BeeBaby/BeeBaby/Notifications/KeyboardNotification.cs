@@ -66,21 +66,15 @@ namespace BeeBaby.Notifications
 				var scrollView = view as UIScrollView;
 				if (scrollView != null)
 				{
-					var contentSize = scrollView.ContentSize;
 					var rectangle = UIKeyboard.FrameBeginFromNotification(notification);
 
 					UIView.Animate(0.3d, () =>
 					{
-						contentSize.Height += up ? rectangle.Height : -rectangle.Height;
-						scrollView.ContentSize = contentSize;
+						var height = up ? -rectangle.Height : rectangle.Height;
+						var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
+						var spare = UIScreen.MainScreen.Bounds.Height + height;
 
-						if (up)
-						{
-							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
-							var spare = UIScreen.MainScreen.Bounds.Height - rectangle.Height;
-
-							scrollView.ContentOffset = new PointF(0f, Math.Max(-64f, bottom - spare));
-						}
+						scrollView.ContentOffset = new PointF(0f, Math.Max(-64f, bottom - spare));
 					});
 				}
 			}
