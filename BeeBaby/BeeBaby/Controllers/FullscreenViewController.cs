@@ -16,6 +16,7 @@ namespace BeeBaby.Controllers
 	public partial class FullscreenViewController : BaseViewController
 	{
 		IMoment m_moment;
+		bool m_showProgress = true;
 
 		public FullscreenViewController(IntPtr handle) : base(handle)
 		{
@@ -169,11 +170,22 @@ namespace BeeBaby.Controllers
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
+					m_showProgress = true;
 				};
 				PresentViewController(activityViewController, true, () => {
-					Console.WriteLine("Action Completed");
+					m_showProgress = false;
 				});
 			});
+		}
+
+		/// <summary>
+		/// Determines whether this instance is show progress.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		public override bool IsShowProgress()
+		{
+			return m_showProgress;
 		}
 
 		/// <summary>
