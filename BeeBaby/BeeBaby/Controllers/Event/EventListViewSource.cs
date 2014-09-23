@@ -39,6 +39,28 @@ namespace BeeBaby.Controllers
 			return m_otherEventsTableItems.Count;
 		}
 
+		/// <summary>
+		/// Gets the height for row.
+		/// </summary>
+		/// <returns>The height for row.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 44f;
+		}
+
+		/// <summary>
+		/// Estimateds the height.
+		/// </summary>
+		/// <returns>The height.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 44f;
+		}
+
 		/// <Docs>Table view containing the row.</Docs>
 		/// <summary>
 		/// Rows the selected.

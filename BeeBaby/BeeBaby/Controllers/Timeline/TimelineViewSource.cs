@@ -153,6 +153,28 @@ namespace BeeBaby.Controllers
 			return m_tableItems.Count;
 		}
 
+		/// <summary>
+		/// Gets the height for row.
+		/// </summary>
+		/// <returns>The height for row.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 301f;
+		}
+
+		/// <summary>
+		/// Estimateds the height.
+		/// </summary>
+		/// <returns>The height.</returns>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="indexPath">Index path.</param>
+		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 301f;
+		}
+
 		/// <Docs>Scroll view where the scrolling occurred.</Docs>
 		/// <summary>
 		/// Scrolled the specified scrollView.
