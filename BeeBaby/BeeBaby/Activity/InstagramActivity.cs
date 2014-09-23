@@ -87,8 +87,6 @@ namespace BeeBaby.Activity
 		/// </summary>
 		public override void Perform()
 		{
-			base.Perform();
-
 			var cropVal = ShareImage.Size.Height > ShareImage.Size.Width ? ShareImage.Size.Width : ShareImage.Size.Height;
 			cropVal *= ShareImage.CurrentScale;
 
@@ -127,6 +125,8 @@ namespace BeeBaby.Activity
 				dict.Add((NSString) "InstagramCaption", (NSString) ShareString);
 				DocumentController.Annotation = dict;
 			}
+
+			base.Perform();
 		}
 
 		/// <summary>
