@@ -24,7 +24,6 @@ namespace BeeBaby.Controllers
 	{
 		UserLocation m_userLocation;
 		IEnumerable<Location> m_locations;
-		bool m_updateConstraints = true;
 
 		public MomentDetailViewController(IntPtr handle) : base(handle)
 		{
@@ -124,8 +123,12 @@ namespace BeeBaby.Controllers
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			scrView.ContentSize = new SizeF(320f, UIScreen.MainScreen.Bounds.Height - 64f);
-			AdjustConstraints();
+
+			if (scrView.ContentSize == SizeF.Empty)
+			{
+				scrView.ContentSize = new SizeF(320f, UIScreen.MainScreen.Bounds.Height - 64f);
+				AdjustConstraints();
+			}
 		}
 
 		/// <summary>
@@ -133,15 +136,11 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		void AdjustConstraints()
 		{
-			if (m_updateConstraints)
+			var constant = UIScreen.MainScreen.Bounds.Height - 568f;
+			if (constant < 0)
 			{
-				var constant = UIScreen.MainScreen.Bounds.Height - 568f;
-				if (constant < 0)
-				{
-					Views.ChangeHeightAndDragNextViews(evtView, constant);
-					evtView.Redraw(true);
-				}
-				m_updateConstraints = false;
+				Views.ChangeHeightAndDragNextViews(evtView, constant);
+				evtView.Redraw(true);
 			}
 		}
 
@@ -271,17 +270,6 @@ namespace BeeBaby.Controllers
 			btnSave.SetTitle("Save".Translate(), UIControlState.Normal);
 			txtLocalName.Placeholder = "WhatsPlaceName".Translate();
 			txtDescription.Placeholder = "MomentRemember".Translate();
-		}
-
-		/// <summary>
-		/// Starts the editing.
-		/// </summary>
-		public override void StartEditing()
-		{
-			base.StartEditing();
-
-			vwDate.Hide();
-			InputLocalReturn(txtLocalName);
 		}
 
 		/// <summary>

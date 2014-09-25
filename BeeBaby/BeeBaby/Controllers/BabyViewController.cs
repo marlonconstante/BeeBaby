@@ -69,7 +69,11 @@ namespace BeeBaby.Controllers
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			scrView.ContentSize = new SizeF(320f, 504f);
+
+			if (scrView.ContentSize == SizeF.Empty)
+			{
+				scrView.ContentSize = new SizeF(320f, 504f);
+			}
 		}
 
 		/// <summary>
@@ -85,17 +89,6 @@ namespace BeeBaby.Controllers
 			segGender.SetTitle("Male".Translate(), 0);
 			segGender.SetTitle("Female".Translate(), 1);
 			segGender.SetTitle("Unknown".Translate(), 2);
-		}
-
-		/// <summary>
-		/// Starts the editing.
-		/// </summary>
-		public override void StartEditing()
-		{
-			base.StartEditing();
-
-			vwBirthDay.Hide();
-			vwBirthTime.Hide();
 		}
 
 		/// <summary>

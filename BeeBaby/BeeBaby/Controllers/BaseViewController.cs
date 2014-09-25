@@ -99,13 +99,6 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Starts the editing.
-		/// </summary>
-		public virtual void StartEditing()
-		{
-		}
-
-		/// <summary>
 		/// Ends the editing.
 		/// </summary>
 		public virtual void EndEditing()
