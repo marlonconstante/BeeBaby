@@ -29,12 +29,7 @@ namespace BeeBaby.Notifications
 		/// <param name="notification">Notification.</param>
 		void KeyboardUpNotification(NSNotification notification)
 		{
-			var viewController = CurrentViewController;
-			if (viewController is BaseViewController)
-			{
-				((BaseViewController) viewController).StartEditing();
-			}
-			m_weakResponder = new WeakReference(GetFirstResponder(viewController.View));
+			m_weakResponder = new WeakReference(GetFirstResponder(CurrentViewController.View));
 
 			MoveScroll(!KeyboardVisible, notification);
 		}
@@ -70,11 +65,17 @@ namespace BeeBaby.Notifications
 
 					UIView.Animate(0.3d, () =>
 					{
-						var height = up ? -rectangle.Height : rectangle.Height;
-						var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
-						var spare = UIScreen.MainScreen.Bounds.Height + height;
+						var contentSize = scrollView.ContentSize;
+						contentSize.Height += up ? rectangle.Height : -rectangle.Height;
+						scrollView.ContentSize = contentSize;
+					}, () => {
+						if (up)
+						{
+							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
+							var spare = UIScreen.MainScreen.Bounds.Height - rectangle.Height;
 
-						scrollView.ContentOffset = new PointF(0f, Math.Max(-64f, bottom - spare));
+							scrollView.SetContentOffset(new PointF(0f, Math.Max(-64f, bottom - spare)), true);
+						}
 					});
 				}
 			}
