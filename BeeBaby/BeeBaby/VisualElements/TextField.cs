@@ -9,27 +9,12 @@ namespace BeeBaby.VisualElements
 	public partial class TextField : UITextField, IKeyboardSupport
 	{
 		const string s_placeholderColorKey = "_placeholderLabel.textColor";
-		bool m_updateKeyboardPosition = true;
 
 		public TextField(IntPtr handle) : base(handle)
 		{
 			OffsetHeight = 0f;
 			ShouldReturn += (textField) => { 
 				textField.ResignFirstResponder();
-				return true;
-			};
-			ShouldBeginEditing += (textField) => {
-				if (m_updateKeyboardPosition && KeyboardNotification.KeyboardVisible)
-				{
-					InvokeInBackground(() => {
-						InvokeOnMainThread(() => {
-							m_updateKeyboardPosition = false;
-							textField.ResignFirstResponder();
-							textField.BecomeFirstResponder();
-							m_updateKeyboardPosition = true;
-						});
-					});
-				}
 				return true;
 			};
 			SetKeyboardAcessory();

@@ -11,24 +11,12 @@ namespace BeeBaby.VisualElements
 	public partial class TextView : UITextView, IKeyboardSupport
 	{
 		Label m_placeholder;
-		bool m_updateKeyboardPosition = true;
 
 		public TextView(IntPtr handle) : base(handle)
 		{
 			OffsetHeight = 0f;
 			ShouldBeginEditing += (textView) => {
 				m_placeholder.Hidden = true;
-				if (m_updateKeyboardPosition && KeyboardNotification.KeyboardVisible)
-				{
-					InvokeInBackground(() => {
-						InvokeOnMainThread(() => {
-							m_updateKeyboardPosition = false;
-							textView.ResignFirstResponder();
-							textView.BecomeFirstResponder();
-							m_updateKeyboardPosition = true;
-						});
-					});
-				}
 				return true;
 			};
 			ShouldEndEditing += (textView) => {
