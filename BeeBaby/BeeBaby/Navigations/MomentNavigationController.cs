@@ -60,11 +60,6 @@ namespace BeeBaby.Navigations
 			CurrentContext.Instance.SelectedEvent = null;
 
 			PresentingViewController.DismissViewController(true, () => {
-				var viewController = GetCurrentViewController();
-				if (viewController is CameraViewController)
-				{
-					((CameraViewController) viewController).ClosePicker();
-				}
 				Discard.ReleaseNavigation(this);
 			});
 		}

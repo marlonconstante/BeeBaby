@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ebN-f3-L5i">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Moment Detail View Controller-->
@@ -732,6 +733,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-Vs-Zxg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="Y2j-du-Rnm"/>
+                                    <constraint firstAttribute="width" constant="320" id="bD1-zO-f0X"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeX-HZ-OaN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                 <subviews>
@@ -866,9 +875,11 @@
                             <constraint firstAttribute="trailing" secondItem="CQe-vY-8uK" secondAttribute="trailing" constant="112" id="57X-Gb-zVf"/>
                             <constraint firstAttribute="bottom" secondItem="C5X-Yu-geP" secondAttribute="bottom" id="C4H-LI-DkB"/>
                             <constraint firstItem="OeX-HZ-OaN" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="CQL-Kf-pSs"/>
+                            <constraint firstItem="0dg-Vs-Zxg" firstAttribute="top" secondItem="Rmd-Gj-FRB" secondAttribute="bottom" constant="-64" id="YOg-6f-YKU"/>
                             <constraint firstAttribute="centerY" secondItem="CQe-vY-8uK" secondAttribute="centerY" id="rOD-FC-lYr"/>
                             <constraint firstItem="C5X-Yu-geP" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="tY6-1p-fPz"/>
                             <constraint firstItem="OeX-HZ-OaN" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="u1L-4k-irT"/>
+                            <constraint firstItem="0dg-Vs-Zxg" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leadingMargin" constant="-16" id="weY-dw-eZ7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Gz-EA-XTQ"/>

@@ -88,6 +88,7 @@ namespace BeeBaby.Media
 			{
 				Thread.Sleep(300);
 			}
+			m_performTasks = null;
 		}
 	}
 }

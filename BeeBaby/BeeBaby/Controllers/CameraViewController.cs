@@ -39,17 +39,6 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Views the will appear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
-			View.BackgroundColor = UIColor.Black;
-		}
-
-		/// <summary>
 		/// View did appear.
 		/// </summary>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
@@ -57,19 +46,19 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidAppear(animated);
 
-			if (MediaPickerProvider.IsCameraAvailable())
+			if (MediaPickerProvider.IsCameraAvailable() && m_picker == null)
 			{
 				var imagePickerDelegate = new MomentImagePickerDelegate(CurrentContext.Instance.Moment);
 				m_mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.Camera, imagePickerDelegate);
 				m_picker = m_mediaPickerProvider.GetUIImagePickerController();
-				m_picker.CameraOverlayView = View;
 
-				PresentViewController(m_picker, false, null);
+				View.InsertSubview(m_picker.View, 0);
+
+				AddChildViewController(m_picker);
+				m_picker.DidMoveToParentViewController(this);
 
 				m_cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off;
 				ChangeFlashMode(btnFlash);
-
-				View.BackgroundColor = UIColor.Clear;
 			}
 
 			ReleaseControl.CheckForUpdates();
@@ -198,10 +187,8 @@ namespace BeeBaby.Controllers
 			FlurryAnalytics.Flurry.LogEvent("Camera: Trocou entre as cameras.");
 
 			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
-			View.BackgroundColor = UIColor.Black;
 			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
 				m_picker.CameraDevice = front ? UIImagePickerControllerCameraDevice.Rear : UIImagePickerControllerCameraDevice.Front;
-				View.BackgroundColor = UIColor.Clear;
 			}, null);
 		}
 
@@ -230,10 +217,13 @@ namespace BeeBaby.Controllers
 		partial void TakePhoto(UIButton sender)
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Tirou uma foto.");
-			View.BackgroundColor = UIColor.Black;
 			m_picker.TakePicture();
-			UIView.Animate(0.3d, () => {
-				View.BackgroundColor = UIColor.Clear;
+			UIView.Animate(0.15d, () => {
+				View.Subviews[1].Alpha = 0.7f;
+			}, () => {
+				UIView.Animate(0.15d, () => {
+					View.Subviews[1].Alpha = 0f;
+				});
 			});
 		}
 
@@ -249,21 +239,8 @@ namespace BeeBaby.Controllers
 					var imagePickerDelegate = (MomentImagePickerDelegate) m_mediaPickerProvider.Delegate;
 					imagePickerDelegate.WaitForPendingTasks();
 				}
-				StopSound();
 				PerformSegue("segueMedia", sender);
-				ClosePicker();
 			}, false);
-		}
-
-		/// <summary>
-		/// Closes the picker.
-		/// </summary>
-		public void ClosePicker()
-		{
-			if (m_picker != null)
-			{
-				m_picker.DismissViewController(true, null);
-			}
 		}
 	}
 }
