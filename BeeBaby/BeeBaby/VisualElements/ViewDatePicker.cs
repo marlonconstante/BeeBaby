@@ -172,10 +172,7 @@ namespace BeeBaby.VisualElements
 					contentSize.Height += constant;
 					scrollView.ContentSize = contentSize;
 
-					if (!KeyboardNotification.KeyboardVisible)
-					{
-						scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, UIScreen.MainScreen.Bounds.Height - 64f), true);
-					}
+					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, UIScreen.MainScreen.Bounds.Height - 64f), true);
 				}
 			});
 		}
