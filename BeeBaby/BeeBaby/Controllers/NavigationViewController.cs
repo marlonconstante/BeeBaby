@@ -134,7 +134,9 @@ namespace BeeBaby.Controllers
 			}
 			else
 			{
-				((MomentNavigationController) NavigationController).Close();
+				ShowProgressWhilePerforming(() => {
+					((MomentNavigationController) NavigationController).Close();
+				}, false);
 			}
 		}
 
