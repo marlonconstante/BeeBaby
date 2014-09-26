@@ -24,12 +24,15 @@ namespace BeeBaby.Controllers
 	{
 		const string s_cellIdentifier = "MomentCell";
 		const int s_maxMomentCacheSize = 15;
+
 		TimelineViewController m_viewController;
-		IList<IMoment> m_tableItems;
+		FullscreenViewController m_fullscreenController;
+
+		IList<IMoment> m_moments;
+		Baby m_baby;
+
 		IDictionary<string, UIImage> m_tagIcons = new Dictionary<string, UIImage>();
 		SortedDictionary<int, IList<ImageModel>> m_momentPhotos = new SortedDictionary<int, IList<ImageModel>>();
-		Baby m_baby;
-		FullscreenViewController m_fullscreenController;
 
 		public TimelineViewSource(TimelineViewController viewController)
 		{
@@ -73,7 +76,7 @@ namespace BeeBaby.Controllers
 		void LoadMomentPhotos(List<MomentImageView> imageViews)
 		{
 			var moment = imageViews.FirstOrDefault().Moment;
-			var key = m_tableItems.IndexOf(moment);
+			var key = m_moments.IndexOf(moment);
 			if (!m_momentPhotos.ContainsKey(key))
 			{
 				Thread.Sleep(300);
@@ -159,7 +162,7 @@ namespace BeeBaby.Controllers
 		/// <param name="indexPath">Index path.</param>
 		public IMoment MomentAt(NSIndexPath indexPath)
 		{
-			return m_tableItems[indexPath.Row];
+			return m_moments[indexPath.Row];
 		}
 
 		/// <summary>
@@ -176,7 +179,7 @@ namespace BeeBaby.Controllers
 
 			ClearMomentPhotos();
 
-			m_tableItems.RemoveAt(indexPath.Row);
+			m_moments.RemoveAt(indexPath.Row);
 			tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 		}
 
@@ -189,7 +192,7 @@ namespace BeeBaby.Controllers
 		/// <param name="section">Section.</param>
 		public override int RowsInSection(UITableView tableView, int section)
 		{
-			return m_tableItems.Count;
+			return m_moments.Count;
 		}
 
 		/// <summary>
@@ -328,7 +331,7 @@ namespace BeeBaby.Controllers
 		/// <param name="baby">Baby.</param>
 		public void ReloadData(UITableView tableView, IList<IMoment> moments, Baby baby)
 		{
-			m_tableItems = moments;
+			m_moments = moments;
 			m_baby = baby;
 
 			ClearMomentPhotos();
