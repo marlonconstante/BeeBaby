@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-MY-n35">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n25-zG-hv5" customClass="EventView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
@@ -448,7 +448,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lWb-dp-OQB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJI-bt-ce0" customClass="ProfileView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
@@ -483,7 +483,7 @@
                                             </segment>
                                         </segments>
                                     </segmentedControl>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qual é o usuário do bebê?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kx-aM-nfm">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail para login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kx-aM-nfm">
                                         <rect key="frame" x="9" y="241" width="302" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -499,7 +499,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="input-text"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quando ele nasceu?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-a9-DOe">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data de nascimento (ou data prevista)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-a9-DOe">
                                         <rect key="frame" x="9" y="319" width="302" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -562,6 +562,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLl-GD-09a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2208" y="-251"/>
+        </scene>
+        <!--Invite Friends Controller-->
+        <scene sceneID="Djg-zq-F5e">
+            <objects>
+                <viewController storyboardIdentifier="InviteFriendsController" id="cEC-at-yyW" customClass="InviteFriendsController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e9u-3V-PUD"/>
+                        <viewControllerLayoutGuide type="bottom" id="e7G-Kj-Rmx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5cz-ZE-UXk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="SxT-Nv-n5C">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D5f-Ki-r1c" customClass="ProfileView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail do amigo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tv-OE-gGm">
+                                        <rect key="frame" x="9" y="125" width="302" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-label"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z81-0w-m6s" customClass="TextField">
+                                        <rect key="frame" x="0.0" y="151" width="320" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="input-text"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUN-Oy-cAX">
+                                        <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Convidar">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-button default-button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Invite:" destination="cEC-at-yyW" eventType="touchUpInside" id="WYe-8N-rD4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e7G-Kj-Rmx" firstAttribute="top" secondItem="SxT-Nv-n5C" secondAttribute="bottom" id="Brj-Cy-U5J"/>
+                            <constraint firstAttribute="trailing" secondItem="SxT-Nv-n5C" secondAttribute="trailing" id="C7V-0v-Knk"/>
+                            <constraint firstItem="SxT-Nv-n5C" firstAttribute="leading" secondItem="5cz-ZE-UXk" secondAttribute="leading" id="uWM-gQ-ixn"/>
+                            <constraint firstItem="SxT-Nv-n5C" firstAttribute="top" secondItem="5cz-ZE-UXk" secondAttribute="top" id="zKR-Ea-qSb"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="form-screen-background"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="btnInvite" destination="jUN-Oy-cAX" id="Zo5-Xx-wb6"/>
+                        <outlet property="lblFriendUser" destination="2Tv-OE-gGm" id="7z8-nI-ZRn"/>
+                        <outlet property="scrView" destination="SxT-Nv-n5C" id="T3x-qc-aaG"/>
+                        <outlet property="txtFriendUser" destination="Z81-0w-m6s" id="GAb-ob-3gY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pF9-Yl-pz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208" y="477"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">
@@ -1425,8 +1497,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="NxF-Hd-fPk"/>
+        <segue reference="j2f-ev-klq"/>
         <segue reference="I7o-pn-b4x"/>
-        <segue reference="96T-Ym-H7P"/>
-        <segue reference="aR7-vp-laA"/>
     </inferredMetricsTieBreakers>
 </document>
