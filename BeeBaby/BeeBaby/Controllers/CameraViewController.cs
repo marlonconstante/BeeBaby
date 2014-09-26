@@ -218,11 +218,11 @@ namespace BeeBaby.Controllers
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Tirou uma foto.");
 			m_picker.TakePicture();
-			UIView.Animate(0.15d, () => {
-				View.Subviews[1].Alpha = 0.7f;
+			UIView.Animate(0.1d, () => {
+				vwFlash.Alpha = 0.7f;
 			}, () => {
-				UIView.Animate(0.15d, () => {
-					View.Subviews[1].Alpha = 0f;
+				UIView.Animate(0.2d, () => {
+					vwFlash.Alpha = 0f;
 				});
 			});
 		}

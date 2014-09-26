@@ -733,14 +733,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-Vs-Zxg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="568" id="Y2j-du-Rnm"/>
-                                    <constraint firstAttribute="width" constant="320" id="bD1-zO-f0X"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeX-HZ-OaN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                 <subviews>
@@ -870,6 +862,14 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="target-camera"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-Vs-Zxg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="Y2j-du-Rnm"/>
+                                    <constraint firstAttribute="width" constant="320" id="bD1-zO-f0X"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CQe-vY-8uK" secondAttribute="trailing" constant="112" id="57X-Gb-zVf"/>
@@ -891,6 +891,7 @@
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>
                         <outlet property="lblFlash" destination="lsM-AA-iTR" id="LjC-Sf-zux"/>
                         <outlet property="lblReady" destination="XAT-al-0YN" id="ze7-tw-rgv"/>
+                        <outlet property="vwFlash" destination="0dg-Vs-Zxg" id="kJ5-8M-yao"/>
                         <segue destination="4UP-at-KPN" kind="push" identifier="segueMedia" id="2yy-uq-YpW"/>
                     </connections>
                 </viewController>

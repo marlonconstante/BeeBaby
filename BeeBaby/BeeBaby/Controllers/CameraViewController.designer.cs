@@ -33,6 +33,9 @@ namespace BeeBaby.Controllers
 		[Outlet]
 		MonoTouch.UIKit.UILabel lblReady { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIView vwFlash { get; set; }
+
 		[Action ("ChangeFlashMode:")]
 		partial void ChangeFlashMode (MonoTouch.UIKit.UIButton sender);
 
@@ -61,6 +64,11 @@ namespace BeeBaby.Controllers
 			if (btnOpenTimeline != null) {
 				btnOpenTimeline.Dispose ();
 				btnOpenTimeline = null;
+			}
+
+			if (vwFlash != null) {
+				vwFlash.Dispose ();
+				vwFlash = null;
 			}
 
 			if (btnSound != null) {
