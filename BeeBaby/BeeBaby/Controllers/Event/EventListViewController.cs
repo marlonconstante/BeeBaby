@@ -474,7 +474,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public void UpdateViewTagsHeight()
 		{
-			var height = tblView.RowHeight * tblView.NumberOfRowsInSection(0);
+			var height = m_eventListViewSource.GetHeightForRow(tblView, NSIndexPath.FromRowSection(0, 0)) * tblView.NumberOfRowsInSection(0);
 			var minHeight = UIScreen.MainScreen.Bounds.Height - (height + 64f);
 			if (minHeight > m_tagsHeight)
 			{
