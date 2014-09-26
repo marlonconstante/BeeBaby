@@ -157,9 +157,13 @@ namespace BeeBaby.Controllers
 
 				InitPopover();
 
-				m_tableSource = new TimelineViewSource(this, moments.ToList(), baby);
-				tblView.Source = m_tableSource;
-				tblView.ReloadData();
+				if (m_tableSource == null)
+				{
+					m_tableSource = new TimelineViewSource(this);
+					tblView.Source = m_tableSource;
+				}
+
+				m_tableSource.ReloadData(tblView, moments.ToList(), baby); 
 
 				CurrentContext.Instance.ReloadMoments = false;
 			}

@@ -31,11 +31,9 @@ namespace BeeBaby.Controllers
 		Baby m_baby;
 		FullscreenViewController m_fullscreenController;
 
-		public TimelineViewSource(TimelineViewController viewController, IList<IMoment> moments, Baby baby)
+		public TimelineViewSource(TimelineViewController viewController)
 		{
 			m_viewController = viewController;
-			m_tableItems = moments;
-			m_baby = baby;
 
 			LoadTagIcons();
 			LoadFullscreenViewController();
@@ -86,19 +84,23 @@ namespace BeeBaby.Controllers
 					var lastKey = m_momentPhotos.Keys.Last();
 					var targetKey = Math.Abs(firstKey - key) > Math.Abs(lastKey - key) ? firstKey : lastKey;
 
-					IList<ImageModel> releaseImages;
-					if (m_momentPhotos.TryGetValue(targetKey, out releaseImages))
-					{
-						Discard.ReleaseFields(releaseImages);
-					}
-
-					m_momentPhotos.Remove(targetKey);
+					RemoveMomentPhotos(targetKey);
 				}
 
 				var imageProvider = new ImageProvider(moment.MomentId);
 				m_momentPhotos.Add(key, imageProvider.getMomentImages(moment, true));
 			}
 
+			SetMomentPhotos(key, imageViews);
+		}
+
+		/// <summary>
+		/// Set the moment photos.
+		/// </summary>
+		/// <param name="key">Key.</param>
+		/// <param name="imageViews">Image views.</param>
+		void SetMomentPhotos(int key, List<MomentImageView> imageViews)
+		{
 			IList<ImageModel> images;
 			if (m_momentPhotos.TryGetValue(key, out images))
 			{
@@ -112,6 +114,41 @@ namespace BeeBaby.Controllers
 					});
 					Thread.Sleep(100);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Remove the moment photos.
+		/// </summary>
+		/// <param name="key">Key.</param>
+		void RemoveMomentPhotos(int key)
+		{
+			ReleaseMomentPhotos(key);
+			m_momentPhotos.Remove(key);
+		}
+
+		/// <summary>
+		/// Clear the moment photos.
+		/// </summary>
+		void ClearMomentPhotos()
+		{
+			foreach (var key in m_momentPhotos.Keys)
+			{
+				ReleaseMomentPhotos(key);
+			}
+			m_momentPhotos.Clear();
+		}
+
+		/// <summary>
+		/// Release the moment photos.
+		/// </summary>
+		/// <param name="key">Key.</param>
+		void ReleaseMomentPhotos(int key)
+		{
+			IList<ImageModel> images;
+			if (m_momentPhotos.TryGetValue(key, out images))
+			{
+				Discard.ReleaseFields(images);
 			}
 		}
 
@@ -136,6 +173,8 @@ namespace BeeBaby.Controllers
 
 			new MomentService().RemoveMoment(moment);
 			new ImageProvider(moment.Id).DeleteFiles(false);
+
+			ClearMomentPhotos();
 
 			m_tableItems.RemoveAt(indexPath.Row);
 			tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
@@ -279,6 +318,21 @@ namespace BeeBaby.Controllers
 			});
 
 			return photos.ToArray();
+		}
+
+		/// <summary>
+		/// Reloads the data.
+		/// </summary>
+		/// <param name="tableView">Table view.</param>
+		/// <param name="moments">Moments.</param>
+		/// <param name="baby">Baby.</param>
+		public void ReloadData(UITableView tableView, IList<IMoment> moments, Baby baby)
+		{
+			m_tableItems = moments;
+			m_baby = baby;
+
+			ClearMomentPhotos();
+			tableView.ReloadData();
 		}
 	}
 }
