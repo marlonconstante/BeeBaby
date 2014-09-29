@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "BeeBaby": {
+            "applicationId": "YHCep6FtlizzWo4SEHWVUimSoFwBykLXkwJxcnXm", 
+            "masterKey": "pTgx6IPaCTicPzecba03g2rcDeZwknSgukMxUBFX"
+        }, 
+        "_default": {
+            "link": "BeeBaby"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.0"
+    }
+}
