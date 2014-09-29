@@ -150,7 +150,7 @@ namespace BeeBaby.Controllers
 				var baby = CurrentContext.Instance.CurrentBaby;
 
 				var moments = new MomentService().GetAllMoments(baby);
-				//var moments = await RemoteDataSystem.GetAllMoments();
+				//var moments = await RemoteDataSystem.GetAllMoments(baby);
 
 				lblBabyName.Text = baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords, " ", "old".Translate());
@@ -205,7 +205,7 @@ namespace BeeBaby.Controllers
 
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
 				m_popover.AddPopoverItem("ChangeMoment".Translate(), "pencil", true, c_buttonHeight, proxyChangeMoment);
-				//m_popover.AddPopoverItem("SyncMoment".Translate(), "sync", true, c_buttonHeight, proxySyncMoment);
+				m_popover.AddPopoverItem("SyncMoment".Translate(), "sync", true, c_buttonHeight, proxySyncMoment);
 				m_popover.AddPopoverItem("RemoveMoment".Translate(), "trash", false, c_buttonHeight, proxyRemoveRow);
 
 				m_popover.AddSubviews(m_popover.MenuItems.ToArray());
