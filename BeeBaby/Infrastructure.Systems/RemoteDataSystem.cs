@@ -7,6 +7,7 @@ using Domain.Log;
 using Infrastructure.Systems.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain.Baby;
 
 namespace Infrastructure.Systems
 {
@@ -69,6 +70,19 @@ namespace Infrastructure.Systems
 		}
 
 		/// <summary>
+		/// Sends the invite.
+		/// </summary>
+		/// <param name="invite">Invite.</param>
+		public static async void SendInvite(FriendshipShared invite)
+		{
+			try {
+				await invite.SaveAsync();
+			} catch (Exception ex) {
+				// Ignora..
+			}
+		}
+
+		/// <summary>
 		/// Syncs the moment.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
@@ -97,13 +111,29 @@ namespace Infrastructure.Systems
 		/// Gets all moments.
 		/// </summary>
 		/// <returns>The all moments.</returns>
-		public static async Task<IEnumerable<IMoment>> GetAllMoments()
+		public static async Task<IEnumerable<IMoment>> GetAllMoments(Baby baby)
 		{
-			var query = from moment in ParseShared.CreateQuery<MomentShared>()
-						orderby moment.Get<DateTime>("MomentDate") descending
-						select moment;
+			var babyMoments = ParseShared.CreateQuery<MomentShared>().WhereEqualTo("UserEmail", baby.Email);
+			var friendMoments = ParseShared.CreateQuery<MomentShared>().WhereMatchesKeyInQuery("UserEmail", "UserEmail", FriendshipQuery(baby));
+
+			var query = babyMoments.Or(friendMoments);
+			query.OrderByDescending("MomentDate");
 
 			return await ParseShared.FindAsync<MomentShared>(query);
+		}
+
+		/// <summary>
+		/// Friendships the query.
+		/// </summary>
+		/// <returns>The query.</returns>
+		/// <param name="baby">Baby.</param>
+		static ParseQuery<ParseObject> FriendshipQuery(Baby baby)
+		{
+			var query = from friendship in ParseShared.CreateQuery<FriendshipShared>()
+						where friendship.Get<string>("FriendUserEmail") == baby.Email
+						select friendship;
+
+			return query;
 		}
 	}
 }
