@@ -6,9 +6,9 @@ using Domain.Baby;
 using Application;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using BigTed;
 using BeeBaby.Navigations;
+using BeeBaby.Util;
 
 namespace BeeBaby.Controllers
 {
@@ -116,24 +116,13 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Determines whether this instance is valid email the specified email.
-		/// </summary>
-		/// <returns><c>true</c> if this instance is valid email the specified email; otherwise, <c>false</c>.</returns>
-		/// <param name="email">Email.</param>
-		bool IsValidEmail(string email)
-		{
-			return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-		}
-
-		/// <summary>
 		/// Save the moment.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
 			var email = txtUser.Text;
-			if (IsValidEmail(email))
-			{
+			Email.RunIfValid(email, () => {
 				var containsMenu = IsContainsMenu();
 				ShowProgressWhilePerforming(() => {
 					var babyService = new BabyService();
@@ -156,11 +145,7 @@ namespace BeeBaby.Controllers
 						((MomentNavigationController) NavigationController).SaveCurrentMoment();
 					}
 				}, false);
-			}
-			else
-			{
-				new UIAlertView("Ops".Translate(), "WeNeedValidEmail".Translate(), null, "GotIt".Translate(), null).Show();
-			}
+			});
 		}
 	}
 }

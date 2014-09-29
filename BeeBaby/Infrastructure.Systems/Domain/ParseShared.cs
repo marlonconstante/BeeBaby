@@ -10,6 +10,10 @@ namespace Infrastructure.Systems.Domain
 {
 	public abstract class ParseShared : ParseObject
 	{
+		public ParseShared(string className) : base(className)
+		{
+		}
+
 		public ParseShared(IParseable parseable) : base(string.Concat(parseable.GetType().Name, "Shared"))
 		{
 			Convert(parseable);

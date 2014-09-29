@@ -37,6 +37,7 @@
     <Compile Include="RemoteDataSystem.cs" />
     <Compile Include="Domain\MomentShared.cs" />
     <Compile Include="Domain\ParseShared.cs" />
+    <Compile Include="Domain\FriendshipShared.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
