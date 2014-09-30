@@ -105,7 +105,7 @@ namespace BeeBaby.Menu
 				PushViewController("DealsViewController");
 			}));
 //			menuItems.Add(new MenuItem("InviteFriends".Translate(), "invite", () => {
-//				PushViewController("InviteFriendsController");
+//				PushViewController("InviteFriendsViewController");
 //			}));
 
 			/************************************************************************

@@ -12,9 +12,9 @@ using BigTed;
 
 namespace BeeBaby.Controllers
 {
-	public partial class InviteFriendsController : NavigationViewController
+	public partial class InviteFriendsViewController : NavigationViewController
 	{
-		public InviteFriendsController(IntPtr handle) : base(handle)
+		public InviteFriendsViewController(IntPtr handle) : base(handle)
 		{
 		}
 

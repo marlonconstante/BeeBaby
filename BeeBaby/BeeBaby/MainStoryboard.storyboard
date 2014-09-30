@@ -563,10 +563,10 @@
             </objects>
             <point key="canvasLocation" x="2208" y="-251"/>
         </scene>
-        <!--Invite Friends Controller-->
+        <!--Invite Friends View Controller-->
         <scene sceneID="Djg-zq-F5e">
             <objects>
-                <viewController storyboardIdentifier="InviteFriendsController" id="cEC-at-yyW" customClass="InviteFriendsController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InviteFriendsViewController" id="cEC-at-yyW" customClass="InviteFriendsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e9u-3V-PUD"/>
                         <viewControllerLayoutGuide type="bottom" id="e7G-Kj-Rmx"/>
@@ -633,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pF9-Yl-pz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208" y="477"/>
+            <point key="canvasLocation" x="-41" y="1911"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">

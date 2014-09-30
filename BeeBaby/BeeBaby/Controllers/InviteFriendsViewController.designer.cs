@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
 {
-	[Register ("InviteFriendsController")]
-	partial class InviteFriendsController
+	[Register ("InviteFriendsViewController")]
+	partial class InviteFriendsViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnInvite { get; set; }
