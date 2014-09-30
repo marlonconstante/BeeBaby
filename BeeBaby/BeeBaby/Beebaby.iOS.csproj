@@ -303,6 +303,8 @@
     <BundleResource Include="Resources\school-round%402x.png" />
     <BundleResource Include="Resources\sleepy-round%402x.png" />
     <BundleResource Include="Resources\smile-round%402x.png" />
+    <BundleResource Include="Resources\mail.svg" />
+    <BundleResource Include="Resources\key.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -488,6 +490,10 @@
     <Compile Include="Controllers\InviteFriendsViewController.cs" />
     <Compile Include="Controllers\InviteFriendsViewController.designer.cs">
       <DependentUpon>InviteFriendsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LoginViewController.cs" />
+    <Compile Include="Controllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
