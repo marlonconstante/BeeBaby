@@ -1141,22 +1141,22 @@
                                         </subviews>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u5X-p7-oGJ">
-                                        <rect key="frame" x="34" y="228" width="253" height="115"/>
+                                        <rect key="frame" x="34" y="228" width="253" height="116"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9m-04-lno">
-                                                <rect key="frame" x="13" y="17" width="23" height="23"/>
+                                                <rect key="frame" x="13" y="17.5" width="23" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="mail"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIj-90-NmJ">
-                                                <rect key="frame" x="0.5" y="57.25" width="252" height="0.5"/>
+                                                <rect key="frame" x="0.5" y="58" width="252" height="0.5"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="login-separator"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FcA-Cc-xEf">
-                                                <rect key="frame" x="13" y="74" width="23" height="23"/>
+                                                <rect key="frame" x="13" y="75.5" width="23" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="key"/>
                                                 </userDefinedRuntimeAttributes>
@@ -1167,7 +1167,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rY8-Ov-kM9" customClass="TextField">
-                                        <rect key="frame" x="84" y="228" width="203" height="57"/>
+                                        <rect key="frame" x="84" y="228" width="203" height="58"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -1175,7 +1175,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="54y-nP-qNX" customClass="TextField">
-                                        <rect key="frame" x="84" y="286" width="203" height="57"/>
+                                        <rect key="frame" x="84" y="286" width="203" height="58"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
@@ -1183,7 +1183,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv5-4z-AVC">
-                                        <rect key="frame" x="34" y="351" width="253" height="60"/>
+                                        <rect key="frame" x="34" y="352" width="253" height="60"/>
                                         <state key="normal" title="Entrar">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>

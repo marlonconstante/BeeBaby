@@ -385,6 +385,7 @@ segmented-control label,
 .login-input,
 .login-input label {
 	font-size: 19pt;
+	padding-top: 0;
 }
 
 .login-separator {
