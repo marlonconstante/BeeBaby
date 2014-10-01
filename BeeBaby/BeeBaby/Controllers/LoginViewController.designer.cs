@@ -23,17 +23,20 @@ namespace BeeBaby.Controllers
 
 		[Outlet]
 		BeeBaby.VisualElements.TextField txtUser { get; set; }
+
+		[Action ("Login:")]
+		partial void Login (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnLogin != null) {
+				btnLogin.Dispose ();
+				btnLogin = null;
+			}
+
 			if (scrView != null) {
 				scrView.Dispose ();
 				scrView = null;
-			}
-
-			if (txtUser != null) {
-				txtUser.Dispose ();
-				txtUser = null;
 			}
 
 			if (txtPassword != null) {
@@ -41,9 +44,9 @@ namespace BeeBaby.Controllers
 				txtPassword = null;
 			}
 
-			if (btnLogin != null) {
-				btnLogin.Dispose ();
-				btnLogin = null;
+			if (txtUser != null) {
+				txtUser.Dispose ();
+				txtUser = null;
 			}
 		}
 	}

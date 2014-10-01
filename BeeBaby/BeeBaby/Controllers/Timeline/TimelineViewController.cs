@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Infrastructure.Systems;
 using BeeBaby.Proxy;
 using BeeBaby.VisualElements;
+using BigTed;
 
 namespace BeeBaby.Controllers
 {
@@ -241,13 +242,15 @@ namespace BeeBaby.Controllers
 		/// Synchronize the moment.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		void SyncMoment(Button sender)
+		async void SyncMoment(Button sender)
 		{
-			ShowProgressWhilePerforming(() => {
-				var moment = m_tableSource.MomentAt(m_currentIndexPath) as Moment;
-				var imageProvider = new ImageProvider(moment.Id);
-				RemoteDataSystem.SyncMoment(moment, imageProvider.GetDataImages(true), imageProvider.GetDataImages(false));
-			});
+			BTProgressHUD.Show();
+
+			var moment = m_tableSource.MomentAt(m_currentIndexPath) as Moment;
+			var imageProvider = new ImageProvider(moment.Id);
+			await RemoteDataSystem.SyncMoment(moment, imageProvider.GetDataImages(true), imageProvider.GetDataImages(false));
+
+			BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
 		}
 
 		/// <summary>

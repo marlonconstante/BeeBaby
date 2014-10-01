@@ -1190,6 +1190,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="login-button"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Login:" destination="eYq-u1-wLc" eventType="touchUpInside" id="cco-Aw-uk7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </scrollView>

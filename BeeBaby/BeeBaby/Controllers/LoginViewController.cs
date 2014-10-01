@@ -3,6 +3,10 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
+using BeeBaby.Util;
+using BigTed;
+using Infrastructure.Systems;
+using Parse;
 
 namespace BeeBaby.Controllers
 {
@@ -34,6 +38,29 @@ namespace BeeBaby.Controllers
 			{
 				scrView.ContentSize = new SizeF(320f, 504f);
 			}
+		}
+
+		/// <summary>
+		/// Signs up.
+		/// </summary>
+		async void SignUp()
+		{
+			BTProgressHUD.Show();
+
+			await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text);
+
+			BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
+		}
+
+		/// <summary>
+		/// Login the specified sender.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void Login(UIButton sender)
+		{
+			Email.RunIfValid(txtUser.Text, () => {
+				SignUp();
+			});
 		}
 	}
 }
