@@ -14,6 +14,7 @@ using BeeBaby.Progress;
 using BeeBaby.Navigations;
 using BeeBaby.Controllers;
 using BeeBaby.VisualElements;
+using Parse;
 
 namespace BeeBaby.Menu
 {
@@ -107,6 +108,14 @@ namespace BeeBaby.Menu
 //			menuItems.Add(new MenuItem("InviteFriends".Translate(), "invite", () => {
 //				PushViewController("InviteFriendsViewController");
 //			}));
+			menuItems.Add(new MenuItem("Exit".Translate(), "logoff", () => {
+				var actionProgress = new ActionProgress(() => {
+					ParseUser.LogOut();
+
+					Windows.ChangeRootViewController("LoginViewController");
+				}, false);
+				actionProgress.Execute();
+			}));
 
 			/************************************************************************
 			menuItems.Add(new MenuItem("MyProfile".Translate(), "profile", () => {
@@ -116,8 +125,6 @@ namespace BeeBaby.Menu
 			menuItems.Add(new MenuItem("Configurations".Translate(), "gear", () => {
 			}));
 			menuItems.Add(new MenuItem("About".Translate(), "about", () => {
-			}));
-			menuItems.Add(new MenuItem("Exit".Translate(), "logoff", () => {
 			}));
 			************************************************************************/
 

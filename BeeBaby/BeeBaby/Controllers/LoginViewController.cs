@@ -7,6 +7,7 @@ using BeeBaby.Util;
 using BigTed;
 using Infrastructure.Systems;
 using Parse;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby.Controllers
 {
@@ -41,15 +42,34 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Signs up.
+		/// Enter the specified signUp.
 		/// </summary>
-		async void SignUp()
+		/// <param name="signUp">If set to <c>true</c> sign up.</param>
+		async void Enter(bool signUp)
 		{
 			BTProgressHUD.Show();
 
-			await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text);
+			if (signUp ? await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text) : await RemoteDataSystem.Login(txtUser.Text, txtPassword.Text))
+			{
+				Windows.ChangeRootViewController("SlideoutNavigationController");
+			}
+			else
+			{
+				BTProgressHUD.Dismiss();
 
-			BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
+				new UIAlertView("Ops".Translate(), (signUp ? "SignUpError" : "EmailAndPasswordNotMatch").Translate(), null, "TryAgain".Translate(), null).Show();
+			}
+		}
+
+		/// <summary>
+		/// Resets the password.
+		/// </summary>
+		void ResetPassword()
+		{
+			var email = txtUser.Text;
+			Validators.RunIfValidEmail(email, () => {
+				ParseUser.RequestPasswordResetAsync(email);
+			});
 		}
 
 		/// <summary>
@@ -58,8 +78,8 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Login(UIButton sender)
 		{
-			Email.RunIfValid(txtUser.Text, () => {
-				SignUp();
+			Validators.RunIfValidLogin(txtUser.Text, txtPassword.Text, () => {
+				Enter(false);
 			});
 		}
 	}

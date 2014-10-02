@@ -63,7 +63,7 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Invite(UIButton sender)
 		{
-			Email.RunIfValid(txtFriendUser.Text, () => {
+			Validators.RunIfValidEmail(txtFriendUser.Text, () => {
 				SendInvite();
 			});
 		}

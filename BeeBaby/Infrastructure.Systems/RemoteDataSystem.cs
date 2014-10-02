@@ -16,12 +16,30 @@ namespace Infrastructure.Systems
 		const string s_dateFormat = "yyyyMMddhhmmssff";
 
 		/// <summary>
+		/// Login the specified username and password.
+		/// </summary>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		public static async Task<bool> Login(string username, string password)
+		{
+			try
+			{
+				var user = await ParseUser.LogInAsync(username, password);
+				return user.IsAuthenticated;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Signs up.
 		/// </summary>
 		/// <returns>The up.</returns>
 		/// <param name="username">Username.</param>
 		/// <param name="password">Password.</param>
-		public static async Task SignUp(string username, string password)
+		public static async Task<bool> SignUp(string username, string password)
 		{
 			try
 			{
@@ -30,12 +48,13 @@ namespace Infrastructure.Systems
 					Password = password,
 					Email = username
 				};
-
 				await user.SignUpAsync();
+
+				return user.IsAuthenticated;
 			}
 			catch (Exception ex)
 			{
-				// Ignora..
+				return false;
 			}
 		}
 
