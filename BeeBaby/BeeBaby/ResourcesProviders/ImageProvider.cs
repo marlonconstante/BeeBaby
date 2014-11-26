@@ -120,13 +120,14 @@ namespace BeeBaby.ResourcesProviders
 		public IList<ImageModel> GetImages(bool thumbnails = false)
 		{
 			var images = new List<ImageModel>();
+			float scale = CurrentContext.Instance.Scale;
 
 			foreach (var fileName in GetFileNames(thumbnails))
 			{
 				var data = NSData.FromFile(fileName);
 				var image = new ImageModel
 				{
-					Image = UIImage.LoadFromData(data, 2f),
+					Image = UIImage.LoadFromData(data, scale),
 					FileName = Path.GetFileName(fileName)
 				};
 				images.Add(image);

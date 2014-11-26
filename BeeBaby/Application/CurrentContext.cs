@@ -91,5 +91,11 @@ namespace Application
 			get;
 			set;
 		}
+
+		public float Scale
+		{
+			get;
+			set;
+		}
 	}
 }
