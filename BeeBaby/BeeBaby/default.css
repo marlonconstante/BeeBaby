@@ -13,6 +13,12 @@ text-view,
 	font-family: "Quicksand";
 }
 
+tab-bar {
+	color: #889696;
+	selected-color: #00aead;
+	background-color: #e7ebe7;
+}
+
 .view .table-view table-view-cell:selected {
 	background-color: #cedbdb;
 }

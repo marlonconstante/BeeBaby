@@ -21,7 +21,7 @@ namespace BeeBaby.Controllers
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
-		static bool s_openCamera = true;
+		static bool s_openCamera = false;
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
