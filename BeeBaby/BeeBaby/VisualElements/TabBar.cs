@@ -16,7 +16,8 @@ namespace BeeBaby.VisualElements
 
 			Items = new UITabBarItem[] { TimelineItem, CameraItem, DealsItem };
 
-			SelectedItem = TimelineItem;
+			PreviousSelectedItem = TimelineItem;
+			SelectedItem = PreviousSelectedItem;
 			ItemSelected += SelectItem;
 		}
 
@@ -27,7 +28,37 @@ namespace BeeBaby.VisualElements
 		/// <param name="args">Arguments.</param>
 		void SelectItem(object sender, UITabBarItemEventArgs args)
 		{
-			
+			if (args.Item == TimelineItem)
+			{
+			}
+			else if (args.Item == CameraItem)
+			{
+				SelectedItem = PreviousSelectedItem;
+				RootViewController.PerformSegue("segueCamera", this);
+			}
+			else if (args.Item == DealsItem)
+			{
+			}
+			PreviousSelectedItem = SelectedItem;
+		}
+
+		/// <summary>
+		/// Gets the root view controller.
+		/// </summary>
+		/// <value>The root view controller.</value>
+		public UIViewController RootViewController {
+			get {
+				return UIApplication.SharedApplication.Windows[0].RootViewController;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the previous selected item.
+		/// </summary>
+		/// <value>The previous selected item.</value>
+		UITabBarItem PreviousSelectedItem {
+			get;
+			set;
 		}
 
 		/// <summary>
