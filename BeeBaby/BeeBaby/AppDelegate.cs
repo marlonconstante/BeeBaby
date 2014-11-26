@@ -16,6 +16,7 @@ using System.Net;
 using BeeBaby.Util;
 using BeeBaby.Notifications;
 using BeeBaby.Media;
+using Xamarin;
 
 namespace BeeBaby
 {
@@ -163,6 +164,15 @@ namespace BeeBaby
 			InitFacebook();
 			InitParse();
 			InitFlurry();
+			InitInsights();
+		}
+
+		/// <summary>
+		/// Inits the insights.
+		/// </summary>
+		void InitInsights()
+		{
+			Insights.Initialize("adcd994ba92f33cf0ee12721261321c4c9c7632f");
 		}
 
 		/// <summary>

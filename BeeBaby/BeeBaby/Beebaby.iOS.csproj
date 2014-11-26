@@ -160,6 +160,12 @@
     <Reference Include="SwipeViewer">
       <HintPath>..\references\SwipeViewer.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.6.0\lib\MonoTouch10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporter">
+      <HintPath>..\packages\Xamarin.Insights.1.6.0\lib\MonoTouch10\PLCrashReporter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
