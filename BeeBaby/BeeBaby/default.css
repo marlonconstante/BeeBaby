@@ -359,9 +359,14 @@ segmented-control label,
 	background-color: linear-gradient(to right, rgba(0, 174, 239, 0.5), rgba(0, 174, 239, 0.5), rgba(0, 174, 239, 0));
 }		
 
+.login-box,
 .card-separator,
 .default-screen-background {
 	background-color: #fff;
+}
+
+.login-screen-background {
+	background-color: #63c5b5;
 }
 
 .form-screen-background {
@@ -370,6 +375,36 @@ segmented-control label,
 
 .modal-background {
 	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.login-box {
+	border: 0.5 solid #188469;
+	border-radius: 5;
+}
+
+.login-input,
+.login-input label {
+	font-size: 19pt;
+	padding-top: 0;
+}
+
+.login-separator {
+	background-color: #1a9979;
+}
+
+.view .login-button,
+.view .login-button:highlighted,
+.view .login-button:selected {
+	color: #fff;
+	background-color: #1a9979;
+	font-size: 21pt;
+	font-weight: normal;
+	border-radius: 5;
+	box-shadow: 0 5 0 0 #188469;
+}
+
+.bee.shadow {
+	box-shadow: -2 3 2.5 0 rgba(66, 160, 145, 0.85);
 }
 
 .table-menu,
@@ -545,19 +580,16 @@ text-view {
 .image-share-day,
 .image-share-month,
 .image-share-year,
-.image-share-where-label
- {
+.image-share-where-label {
 	box-shadow: 1 2 0 0 rgba(0, 0, 0, 0.4);
 }
 
 .image-share-logo,
-.image-share-age-label
-{
+.image-share-age-label {
 	box-shadow: 1 1 0 0 rgba(0, 0, 0, 0.4);
 }
 
-.image-share-title
-{
+.image-share-title {
 	font-family: "Roboto Slab";
 	font-weight: bold;
 	font-size: 24pt;
@@ -569,13 +601,11 @@ text-view {
 	font-family: "Roboto Condensed";
 }
 
-
 .image-share-where-label,
 .image-share-age-label {
 	font-family: "Quicksand";
 	font-weight: bold;
 }
-
 
 .avatar-label,
 .baby-label,
@@ -784,6 +814,14 @@ text-view {
 
 .location-clear {
 	background-image: url(location-clear.svg);
+}
+
+.mail {
+	background-image: url(mail.svg);
+}
+
+.key {
+	background-image: url(key.svg);
 }
 
 .menu {

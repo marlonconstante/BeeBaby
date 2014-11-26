@@ -12,9 +12,9 @@ using BigTed;
 
 namespace BeeBaby.Controllers
 {
-	public partial class InviteFriendsController : NavigationViewController
+	public partial class InviteFriendsViewController : NavigationViewController
 	{
-		public InviteFriendsController(IntPtr handle) : base(handle)
+		public InviteFriendsViewController(IntPtr handle) : base(handle)
 		{
 		}
 
@@ -43,19 +43,28 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Sends the invite.
+		/// </summary>
+		async void SendInvite()
+		{
+			BTProgressHUD.Show();
+
+			await RemoteDataSystem.SendInvite(new FriendshipShared {
+				UserEmail = CurrentContext.Instance.CurrentBaby.Email,
+				FriendUserEmail = txtFriendUser.Text
+			});
+
+			BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
+		}
+
+		/// <summary>
 		/// Invite the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		partial void Invite(UIButton sender)
 		{
-			var friendUserEmail = txtFriendUser.Text;
-			Email.RunIfValid(friendUserEmail, () => {
-				RemoteDataSystem.SendInvite(new FriendshipShared {
-					UserEmail = CurrentContext.Instance.CurrentBaby.Email,
-					FriendUserEmail = friendUserEmail
-				});
-
-				BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
+			Validators.RunIfValidEmail(txtFriendUser.Text, () => {
+				SendInvite();
 			});
 		}
 	}

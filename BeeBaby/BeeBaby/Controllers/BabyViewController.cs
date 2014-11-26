@@ -122,7 +122,7 @@ namespace BeeBaby.Controllers
 		partial void Save(UIButton sender)
 		{
 			var email = txtUser.Text;
-			Email.RunIfValid(email, () => {
+			Validators.RunIfValidEmail(email, () => {
 				var containsMenu = IsContainsMenu();
 				ShowProgressWhilePerforming(() => {
 					var babyService = new BabyService();

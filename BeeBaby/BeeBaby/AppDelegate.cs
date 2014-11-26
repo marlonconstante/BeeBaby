@@ -60,8 +60,7 @@ namespace BeeBaby
 				request.Parameters.Clear();
 				request.AddParameter("application/json", json, ParameterType.RequestBody);
 
-				client.ExecuteAsync(request, response =>
-				{
+				client.ExecuteAsync(request, response => {
 					Console.WriteLine("Dispositivo registrado com sucesso:\n" + response.Content);
 				});
 			}
@@ -96,9 +95,11 @@ namespace BeeBaby
 		/// <summary>
 		/// Finisheds the launching.
 		/// </summary>
-		/// <param name="application">Application.</param>https://twitter.com/pedrovanzella/status/491622713510068224
+		/// <param name="application">Application.</param>
 		public override void FinishedLaunching(UIApplication application)
 		{
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
 			ThirdPartyIntegrationsRegister();
 
 			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
@@ -117,6 +118,9 @@ namespace BeeBaby
 			PreferencesEditor.CreateSession();
 
 			InitProgressHUD();
+
+			Window.RootViewController = RootViewController;
+			Window.MakeKeyAndVisible();
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
@@ -205,16 +209,27 @@ namespace BeeBaby
 			hud.SetStyleClass("progress");
 
 			var frame = hud.Frame;
-			frame.Y = (float)Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
+		}
+
+		/// <summary>
+		/// Gets the root view controller.
+		/// </summary>
+		/// <value>The root view controller.</value>
+		UIViewController RootViewController {
+			get {
+				var storyboardId = (ParseUser.CurrentUser == null) ? "LoginViewController" : "SlideoutNavigationController";
+				var board = UIStoryboard.FromName("MainStoryboard", null);
+				return board.InstantiateViewController(storyboardId) as UIViewController;
+			}
 		}
 
 		/// <summary>
 		/// Gets or sets the window.
 		/// </summary>
 		/// <value>The window.</value>
-		public override UIWindow Window
-		{
+		public override UIWindow Window {
 			get;
 			set;
 		}

@@ -16,10 +16,53 @@ namespace Infrastructure.Systems
 		const string s_dateFormat = "yyyyMMddhhmmssff";
 
 		/// <summary>
+		/// Login the specified username and password.
+		/// </summary>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		public static async Task<bool> Login(string username, string password)
+		{
+			try
+			{
+				var user = await ParseUser.LogInAsync(username, password);
+				return user.IsAuthenticated;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Signs up.
+		/// </summary>
+		/// <returns>The up.</returns>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		public static async Task<bool> SignUp(string username, string password)
+		{
+			try
+			{
+				var user = new ParseUser() {
+					Username = username,
+					Password = password,
+					Email = username
+				};
+				await user.SignUpAsync();
+
+				return user.IsAuthenticated;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Sends the moment data.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
-		public static async void SendMomentData(Moment moment)
+		public static async Task SendMomentData(Moment moment)
 		{
 			var baby = moment.Babies[0];
 			var momentData = new ParseObject("Moment");
@@ -41,9 +84,12 @@ namespace Infrastructure.Systems
 			momentData["User"] = baby.Email;
 			momentData["Language"] = moment.Language;
 
-			try {
+			try
+			{
 				await momentData.SaveAsync();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				// Ignora..
 			}
 		}
@@ -52,7 +98,7 @@ namespace Infrastructure.Systems
 		/// Sends the flow data.
 		/// </summary>
 		/// <param name="flow">Flow.</param>
-		public static async void SendFlowData(Flow flow)
+		public static async Task SendFlowData(Flow flow)
 		{
 			var flowData = new ParseObject("Flow");
 
@@ -62,9 +108,12 @@ namespace Infrastructure.Systems
 			flowData["Name"] = flow.Name;
 			flowData["Date"] = flow.Date.ToString(s_dateFormat);
 
-			try {
+			try
+			{
 				await flowData.SaveAsync();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				// Ignora..
 			}
 		}
@@ -73,11 +122,14 @@ namespace Infrastructure.Systems
 		/// Sends the invite.
 		/// </summary>
 		/// <param name="invite">Invite.</param>
-		public static async void SendInvite(FriendshipShared invite)
+		public static async Task SendInvite(FriendshipShared invite)
 		{
-			try {
+			try
+			{
 				await invite.SaveAsync();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				// Ignora..
 			}
 		}
@@ -88,13 +140,14 @@ namespace Infrastructure.Systems
 		/// <param name="moment">Moment.</param>
 		/// <param name="thumbnails">Thumbnails.</param>
 		/// <param name="fullImages">Full images.</param>
-		public static async void SyncMoment(Moment moment, IDictionary<string, byte[]> thumbnails, IDictionary<string, byte[]> fullImages)
+		public static async Task SyncMoment(Moment moment, IDictionary<string, byte[]> thumbnails, IDictionary<string, byte[]> fullImages)
 		{
 			var momentData = new MomentShared(moment);
 			momentData.Thumbnails = thumbnails;
 			momentData.FullImages = fullImages;
 
-			try {
+			try
+			{
 				await momentData.SaveAsync();
 
 				if (moment.ObjectId == null)
@@ -102,7 +155,9 @@ namespace Infrastructure.Systems
 					moment.ObjectId = momentData.ObjectId;
 					new MomentService().SaveMoment(moment);
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				// Ignora..
 			}
 		}
@@ -130,8 +185,8 @@ namespace Infrastructure.Systems
 		static ParseQuery<ParseObject> FriendshipQuery(Baby baby)
 		{
 			var query = from friendship in ParseShared.CreateQuery<FriendshipShared>()
-						where friendship.Get<string>("FriendUserEmail") == baby.Email
-						select friendship;
+			            where friendship.Get<string>("FriendUserEmail") == baby.Email
+			            select friendship;
 
 			return query;
 		}
