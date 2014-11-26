@@ -32,7 +32,6 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			CurrentContext.Instance.Scale = UIScreen.MainScreen.Scale;
 			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu a Camera.", true);
 			base.ViewDidLoad();
 

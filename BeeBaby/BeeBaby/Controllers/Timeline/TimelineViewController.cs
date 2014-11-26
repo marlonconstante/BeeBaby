@@ -41,6 +41,7 @@ namespace BeeBaby.Controllers
 
 			FlurryAnalytics.Flurry.LogEvent("Momento: Timeline.", true);
 
+			CurrentContext.Instance.Scale = UIScreen.MainScreen.Scale;
 			CurrentContext.Instance.ReloadMoments = true;
 
 			LoadUser();

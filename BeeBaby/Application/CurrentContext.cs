@@ -92,6 +92,10 @@ namespace Application
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the scale.
+		/// </summary>
+		/// <value>The scale.</value>
 		public float Scale
 		{
 			get;
