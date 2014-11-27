@@ -1119,10 +1119,10 @@
             </objects>
             <point key="canvasLocation" x="562" y="1193"/>
         </scene>
-        <!--On Boarding View Conrtoller-->
+        <!--On Boarding View Controller-->
         <scene sceneID="Fco-7v-sEC">
             <objects>
-                <viewController id="t7m-Zp-rLY" customClass="OnBoardingViewConrtoller" sceneMemberID="viewController">
+                <viewController id="t7m-Zp-rLY" customClass="OnBoardingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Ch-8U-Rji"/>
                         <viewControllerLayoutGuide type="bottom" id="JpE-3s-NZF"/>

@@ -21,6 +21,7 @@ namespace BeeBaby.Util
 		{
 			RunActions(1.1f, "MediaCount", UpdateMediaCount);
 			RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
+//			ShowOnBoarding();
 		}
 
 		/// <summary>
@@ -68,11 +69,25 @@ namespace BeeBaby.Util
 		}
 
 		/// <summary>
+		/// Shows the on boarding.
+		/// </summary>
+		static void ShowOnBoarding()
+		{
+			var board = UIStoryboard.FromName("MainStoryboard", null);
+			var modalViewController = (OnBoardingViewConrtoller)board.InstantiateViewController("OnBoardingViewController");
+			modalViewController.LoadView();
+			modalViewController.ShowViewController();
+		}
+
+
+		/// <summary>
 		/// Gets the user defaults.
 		/// </summary>
 		/// <value>The user defaults.</value>
-		static NSUserDefaults UserDefaults {
-			get {
+		static NSUserDefaults UserDefaults
+		{
+			get
+			{
 				return NSUserDefaults.StandardUserDefaults;
 			}
 		}

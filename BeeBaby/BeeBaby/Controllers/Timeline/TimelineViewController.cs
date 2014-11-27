@@ -46,6 +46,8 @@ namespace BeeBaby.Controllers
 
 			LoadUser();
 			LoadBaby();
+
+			ReleaseControl.CheckForUpdates();
 		}
 
 		/// <summary>

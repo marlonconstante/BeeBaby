@@ -61,7 +61,6 @@ namespace BeeBaby.Controllers
 				ChangeFlashMode(btnFlash);
 			}
 
-			ReleaseControl.CheckForUpdates();
 		}
 
 		/// <summary>
