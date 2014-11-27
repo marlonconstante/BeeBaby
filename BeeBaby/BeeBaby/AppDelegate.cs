@@ -1,22 +1,20 @@
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using Application;
-using SQLite.Net;
 using System;
 using System.IO;
-using BeeBaby;
-using BigTed;
-using PixateFreestyleLib;
-using Parse;
-using BeeBaby.Globalization;
-using Infrastructure.Configuration;
-using MonoTouch.FacebookConnect;
-using RestSharp;
 using System.Net;
-using BeeBaby.Util;
-using BeeBaby.Notifications;
-using BeeBaby.Media;
+using Application;
+using BigTed;
+using MonoTouch.FacebookConnect;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using Parse;
+using PixateFreestyleLib;
+using RestSharp;
+using SQLite.Net;
 using Xamarin;
+using BeeBaby.Globalization;
+using BeeBaby.Media;
+using BeeBaby.Notifications;
+using BeeBaby.Util;
 
 namespace BeeBaby
 {

@@ -505,6 +505,10 @@
     <Compile Include="VisualElements\TabBar.designer.cs">
       <DependentUpon>TabBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\OnBoardingViewConrtoller.cs" />
+    <Compile Include="Controllers\OnBoardingViewConrtoller.designer.cs">
+      <DependentUpon>OnBoardingViewConrtoller.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
