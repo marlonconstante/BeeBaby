@@ -513,6 +513,7 @@
     <Compile Include="OnBoardingViewController.cs" />
     <Compile Include="OnBoardingViewController.designer.cs">
       <DependentUpon>OnBoardingViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\TabBarController.cs" />
     <Compile Include="Controllers\TabBarController.designer.cs">
       <DependentUpon>TabBarController.cs</DependentUpon>
