@@ -38,7 +38,6 @@ namespace BeeBaby.Controllers
 			builder.Query = queryBuilder.ToString();
 			
 			vwWeb.LoadRequest(new NSUrlRequest(new NSUrl(builder.ToString()), NSUrlRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData, 30));
-
 		}
 	}
 }

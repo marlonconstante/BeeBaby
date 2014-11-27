@@ -311,6 +311,7 @@
     <BundleResource Include="Resources\smile-round%402x.png" />
     <BundleResource Include="Resources\mail.svg" />
     <BundleResource Include="Resources\key.svg" />
+    <BundleResource Include="Resources\baby-bee.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -504,6 +505,14 @@
     <Compile Include="VisualElements\TabBar.cs" />
     <Compile Include="VisualElements\TabBar.designer.cs">
       <DependentUpon>TabBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TabBarController.cs" />
+    <Compile Include="Controllers\TabBarController.designer.cs">
+      <DependentUpon>TabBarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\MainNavigationController.cs" />
+    <Compile Include="Navigations\MainNavigationController.designer.cs">
+      <DependentUpon>MainNavigationController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

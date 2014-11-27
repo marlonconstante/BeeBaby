@@ -35,6 +35,10 @@ namespace BeeBaby.Util
 				{
 					topViewController = ((INavigationController) topViewController).GetCurrentViewController();
 				}
+				if (topViewController is UITabBarController)
+				{
+					topViewController = ((UITabBarController) topViewController).SelectedViewController;
+				}
 			}
 
 			return topViewController;

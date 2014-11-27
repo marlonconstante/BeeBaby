@@ -52,7 +52,7 @@ namespace BeeBaby.Controllers
 		/// <returns><c>true</c> if this instance is add left bar button item; otherwise, <c>false</c>.</returns>
 		public virtual bool IsAddLeftBarButtonItem()
 		{
-			return IsContainsMenu() || GetType() != NavigationController.ViewControllers[0].GetType();
+			return !IsContainsTabs() && GetType() != NavigationController.ViewControllers[0].GetType();
 		}
 
 		/// <summary>
@@ -61,14 +61,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The bar button frame.</returns>
 		public virtual RectangleF LeftBarButtonFrame()
 		{
-			if (IsContainsMenu())
-			{
-				return new RectangleF(0f, 0f, 24f, 24f);
-			}
-			else
-			{
-				return new RectangleF(0f, 0f, 18f, 24f);
-			}
+			return new RectangleF(0f, 0f, 18f, 24f);
 		}
 
 		/// <summary>
@@ -76,17 +69,9 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public virtual void LeftBarButtonAction()
 		{
-			if (IsContainsMenu())
-			{
-				var slideoutNavigation = (SlideoutNavigationController) RootViewController;
-				slideoutNavigation.ShowMenuLeft();
-			}
-			else
-			{
-				ShowProgressWhilePerforming(() => {
-					NavigationController.PopViewControllerAnimated(true);
-				}, false);
-			}
+			ShowProgressWhilePerforming(() => {
+				NavigationController.PopViewControllerAnimated(true);
+			}, false);
 		}
 
 		/// <summary>
@@ -95,14 +80,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The bar button style class.</returns>
 		public virtual string LeftBarButtonStyleClass()
 		{
-			if (IsContainsMenu())
-			{
-				return "menu";
-			}
-			else
-			{
-				return "comeback";
-			}
+			return "comeback";
 		}
 
 		/// <summary>
@@ -111,7 +89,7 @@ namespace BeeBaby.Controllers
 		/// <returns><c>true</c> if this instance is add right bar button item; otherwise, <c>false</c>.</returns>
 		public virtual bool IsAddRightBarButtonItem()
 		{
-			return IsCameraFlow() || new MomentService().HasValidMoments();
+			return !IsContainsTabs() && (IsCameraFlow() || new MomentService().HasValidMoments());
 		}
 
 		/// <summary>
@@ -191,7 +169,7 @@ namespace BeeBaby.Controllers
 		public void OpenCamera()
 		{
 			ShowProgressWhilePerforming(() => {
-				if (IsContainsMenu())
+				if (IsContainsTabs())
 				{
 					RootViewController.PerformSegue("segueCamera", NavigationItem.RightBarButtonItem);
 				}
@@ -281,6 +259,16 @@ namespace BeeBaby.Controllers
 				m_rightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
 			NavigationItem.SetRightBarButtonItem(m_rightBarButtonItem, true);
+		}
+
+		/// <summary>
+		/// Gets the navigation item.
+		/// </summary>
+		/// <value>The navigation item.</value>
+		public UINavigationItem NavigationItem {
+			get {
+				return IsContainsTabs() ? TabBarController.NavigationItem : base.NavigationItem;
+			}
 		}
 
 		/// <summary>

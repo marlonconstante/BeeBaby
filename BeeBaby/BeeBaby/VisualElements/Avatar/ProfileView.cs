@@ -75,7 +75,7 @@ namespace BeeBaby.VisualElements
 					var mediaPickerProvider = new MediaPickerProvider(UIImagePickerControllerSourceType.SavedPhotosAlbum, imagePickerDelegate);
 					var picker = mediaPickerProvider.GetUIImagePickerController();
 
-					var viewController = Windows.GetTopViewController(Window);
+					var viewController = Window.RootViewController;
 					viewController.PresentViewController(picker, false, null);
 				}, false);
 				actionProgress.Execute();

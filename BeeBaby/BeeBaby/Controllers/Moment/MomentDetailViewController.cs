@@ -321,11 +321,6 @@ namespace BeeBaby.Controllers
 				{
 					((MomentNavigationController) NavigationController).SaveCurrentMoment();
 				}
-				else
-				{
-					PerformSegue("segueBaby", sender);
-				}
-			
 			}, false);
 		}
 	}
