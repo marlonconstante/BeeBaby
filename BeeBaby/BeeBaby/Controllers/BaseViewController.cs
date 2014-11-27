@@ -151,13 +151,12 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Determines whether this instance is contains menu.
+		/// Determines whether this instance is contains tabs.
 		/// </summary>
-		/// <returns><c>true</c> if this instance is contains menu; otherwise, <c>false</c>.</returns>
-		public bool IsContainsMenu()
+		/// <returns><c>true</c> if this instance is contains tabs; otherwise, <c>false</c>.</returns>
+		public bool IsContainsTabs()
 		{
-			var viewController = RootViewController;
-			return viewController.GetType() == typeof(SlideoutNavigationController) && viewController.PresentedViewController == null;
+			return TabBarController != null;
 		}
 
 		/// <summary>

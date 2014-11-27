@@ -673,6 +673,10 @@ text-view {
 	background-image: url(bee.svg);
 }
 
+.baby-bee {
+	background-image: url(baby-bee.svg);
+}
+
 .bee-baby {
 	background-image: url(bee-baby.svg);
 }

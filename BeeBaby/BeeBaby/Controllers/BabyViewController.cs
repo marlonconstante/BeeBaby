@@ -123,7 +123,7 @@ namespace BeeBaby.Controllers
 		{
 			var email = txtUser.Text;
 			Validators.RunIfValidEmail(email, () => {
-				var containsMenu = IsContainsMenu();
+				var containsTabs = IsContainsTabs();
 				ShowProgressWhilePerforming(() => {
 					var babyService = new BabyService();
 					var baby = CurrentContext.Instance.CurrentBaby;
@@ -136,7 +136,7 @@ namespace BeeBaby.Controllers
 
 					babyService.SaveBaby(baby);
 
-					if (containsMenu)
+					if (containsTabs)
 					{
 						BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
 					}
