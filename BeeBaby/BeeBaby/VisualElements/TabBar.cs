@@ -67,7 +67,9 @@ namespace BeeBaby.VisualElements
 		/// <value>The timeline item.</value>
 		UITabBarItem TimelineItem {
 			get;
-		} = new UITabBarItem();
+		} = new UITabBarItem {
+			ImageInsets = new UIEdgeInsets(5f, 0f, -5f, 0f)
+		};
 
 		/// <summary>
 		/// Gets the camera item.
@@ -75,7 +77,9 @@ namespace BeeBaby.VisualElements
 		/// <value>The camera item.</value>
 		UITabBarItem CameraItem {
 			get;
-		} = new UITabBarItem();
+		} = new UITabBarItem {
+			ImageInsets = new UIEdgeInsets(5f, 0f, -5f, 0f)
+		};
 
 		/// <summary>
 		/// Gets the deals item.
@@ -83,7 +87,9 @@ namespace BeeBaby.VisualElements
 		/// <value>The deals item.</value>
 		UITabBarItem DealsItem {
 			get;
-		} = new UITabBarItem();
+		} = new UITabBarItem {
+			ImageInsets = new UIEdgeInsets(5f, 0f, -5f, 0f)
+		};
 
 		/// <summary>
 		/// Dispose the specified disposing.
