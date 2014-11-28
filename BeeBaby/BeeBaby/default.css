@@ -14,9 +14,7 @@ text-view,
 }
 
 tab-bar {
-	color: #889696;
-	selected-color: #00aead;
-	background-color: #e7ebe7;
+	selected-color: #109bcb;
 }
 
 .view .table-view table-view-cell:selected {

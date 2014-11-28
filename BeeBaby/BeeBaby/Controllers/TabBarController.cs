@@ -48,13 +48,36 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Views the will layout subviews.
+		/// </summary>
+		public override void ViewWillLayoutSubviews()
+		{
+			base.ViewWillLayoutSubviews();
+
+			UpdateTabBar();
+		}
+
+		/// <summary>
+		/// Updates the tab bar.
+		/// </summary>
+		void UpdateTabBar()
+		{
+			TabBar.ShadowImage = EmptyImage;
+			TabBar.BackgroundImage = EmptyImage;
+			TabBar.BackgroundColor = UIColor.FromRGB(242, 245, 245);
+			TabBar.Frame = TabBarFrame;
+
+			CameraButton.Center = TabBar.Center;
+		}
+
+		/// <summary>
 		/// Sets the image insets.
 		/// </summary>
 		void SetImageInsets()
 		{
 			foreach (var item in TabBar.Items)
 			{
-				item.ImageInsets = new UIEdgeInsets(5f, 0f, -5f, 0f);
+				item.ImageInsets = new UIEdgeInsets(6f, 0f, -6f, 0f);
 			}
 		}
 
@@ -64,7 +87,6 @@ namespace BeeBaby.Controllers
 		void AddCameraButton()
 		{
 			CameraButton.SetStyleClass("camera");
-			CameraButton.Center = TabBar.Center;
 
 			View.Add(CameraButton);
 		}
@@ -81,6 +103,27 @@ namespace BeeBaby.Controllers
 			}, false);
 			actionProgress.Execute();
 		}
+
+		/// <summary>
+		/// Gets the tab bar frame.
+		/// </summary>
+		/// <value>The tab bar frame.</value>
+		RectangleF TabBarFrame {
+			get {
+				var frame = TabBar.Frame;
+				frame.Height = 40;
+				frame.Y = View.Frame.Height - frame.Height;
+				return frame;
+			}
+		}
+
+		/// <summary>
+		/// Gets the empty image.
+		/// </summary>
+		/// <value>The empty image.</value>
+		UIImage EmptyImage {
+			get;
+		} = new UIImage();
 
 		/// <summary>
 		/// Gets the camera button.
