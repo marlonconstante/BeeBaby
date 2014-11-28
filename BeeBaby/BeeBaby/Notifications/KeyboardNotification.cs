@@ -62,6 +62,7 @@ namespace BeeBaby.Notifications
 				if (scrollView != null)
 				{
 					var rectangle = UIKeyboard.FrameBeginFromNotification(notification);
+					var navigationController = Windows.GetTopViewController(firstResponder.Window).NavigationController;
 
 					UIView.Animate(0.3d, () =>
 					{
@@ -71,10 +72,12 @@ namespace BeeBaby.Notifications
 					}, () => {
 						if (up)
 						{
-							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
-							var spare = UIScreen.MainScreen.Bounds.Height - rectangle.Height;
+							var isAdjustsInsets = navigationController.AutomaticallyAdjustsScrollViewInsets;
 
-							scrollView.SetContentOffset(new PointF(0f, Math.Max(-64f, bottom - spare)), true);
+							var bottom = firstResponder.Frame.Y + firstResponder.Frame.Height + iKeyboardSupport.OffsetHeight;
+							var spare = UIScreen.MainScreen.Bounds.Height + (isAdjustsInsets ? 0f : -64f) - rectangle.Height;
+
+							scrollView.SetContentOffset(new PointF(0f, Math.Max(isAdjustsInsets ? -64f : 0f, bottom - spare)), true);
 						}
 					});
 				}
