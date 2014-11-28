@@ -94,5 +94,14 @@ namespace Domain.Baby
 		{
 			return Convert.ToInt32((date - BirthDateTime).TotalDays);
 		}
+
+		/// <summary>
+		/// Serves as a hash function for a <see cref="Domain.Baby.Baby"/> object.
+		/// </summary>
+		/// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</returns>
+		public override int GetHashCode()
+		{
+			return string.Concat(Name, Email, Gender, BirthDateTime).GetHashCode();
+		}
 	}
 }

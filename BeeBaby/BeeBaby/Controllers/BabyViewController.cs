@@ -61,6 +61,8 @@ namespace BeeBaby.Controllers
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Baby: Cadastro do Bebe", null);
 			base.ViewWillDisappear(animated);
+
+			Save();
 		}
 
 		/// <summary>
@@ -72,7 +74,7 @@ namespace BeeBaby.Controllers
 
 			if (scrView.ContentSize == SizeF.Empty)
 			{
-				scrView.ContentSize = new SizeF(320f, 504f);
+				scrView.ContentSize = new SizeF(320f, 455f);
 			}
 		}
 
@@ -116,36 +118,25 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Save the moment.
+		/// Save the baby.
 		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void Save(UIButton sender)
+		void Save()
 		{
-			var email = txtUser.Text;
-			Validators.RunIfValidEmail(email, () => {
-				var containsTabs = IsContainsTabs();
-				ShowProgressWhilePerforming(() => {
-					var babyService = new BabyService();
-					var baby = CurrentContext.Instance.CurrentBaby;
-					var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
+			var babyService = new BabyService();
+			var baby = CurrentContext.Instance.CurrentBaby;
+			var birthDateTime = vwBirthDay.GetText("dd/MM/yyyy") + " " + vwBirthTime.GetText("HH:mm");
+			var previousHashCode = baby.GetHashCode();
 
-					baby.Name = txtName.Text;
-					baby.Email = email;
-					baby.Gender = (Gender) segGender.SelectedSegment;
-					baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
+			baby.Name = txtName.Text;
+			baby.Email = txtUser.Text;
+			baby.Gender = (Gender) segGender.SelectedSegment;
+			baby.BirthDateTime = DateTime.ParseExact(birthDateTime, "dd/MM/yyyy HH:mm", null);
 
-					babyService.SaveBaby(baby);
-
-					if (containsTabs)
-					{
-						BTProgressHUD.ShowSuccessWithStatus(string.Empty, 2000);
-					}
-					else
-					{
-						((MomentNavigationController) NavigationController).SaveCurrentMoment();
-					}
-				}, false);
-			});
+			if (previousHashCode != baby.GetHashCode())
+			{
+				babyService.SaveBaby(baby);
+				CurrentContext.Instance.ReloadMoments = true;
+			}
 		}
 	}
 }

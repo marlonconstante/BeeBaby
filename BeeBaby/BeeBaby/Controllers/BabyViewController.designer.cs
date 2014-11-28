@@ -13,9 +13,6 @@ namespace BeeBaby.Controllers
 	partial class BabyViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSave { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UILabel lblBirthDate { get; set; }
 
 		[Outlet]
@@ -41,9 +38,6 @@ namespace BeeBaby.Controllers
 
 		[Outlet]
 		BeeBaby.VisualElements.ViewDatePicker vwBirthTime { get; set; }
-
-		[Action ("Save:")]
-		partial void Save (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -65,11 +59,6 @@ namespace BeeBaby.Controllers
 			if (scrView != null) {
 				scrView.Dispose ();
 				scrView = null;
-			}
-
-			if (btnSave != null) {
-				btnSave.Dispose ();
-				btnSave = null;
 			}
 
 			if (segGender != null) {
