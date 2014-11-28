@@ -12,6 +12,8 @@ namespace BeeBaby
 	[Register ("OnBoardingViewController")]
 	partial class OnBoardingViewController
 	{
+		[Action ("Close:")]
+		partial void Close (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

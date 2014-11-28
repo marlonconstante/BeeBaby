@@ -312,6 +312,7 @@
     <BundleResource Include="Resources\mail.svg" />
     <BundleResource Include="Resources\key.svg" />
     <BundleResource Include="Resources\baby-bee.svg" />
+    <BundleResource Include="Resources\seta.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -506,14 +507,6 @@
     <Compile Include="VisualElements\TabBar.designer.cs">
       <DependentUpon>TabBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\OnBoardingViewConrtoller.cs" />
-    <Compile Include="Controllers\OnBoardingViewConrtoller.designer.cs">
-      <DependentUpon>OnBoardingViewConrtoller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OnBoardingViewController.cs" />
-    <Compile Include="OnBoardingViewController.designer.cs">
-      <DependentUpon>OnBoardingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\TabBarController.cs" />
     <Compile Include="Controllers\TabBarController.designer.cs">
       <DependentUpon>TabBarController.cs</DependentUpon>
@@ -521,6 +514,10 @@
     <Compile Include="Navigations\MainNavigationController.cs" />
     <Compile Include="Navigations\MainNavigationController.designer.cs">
       <DependentUpon>MainNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\OnBoardingViewController.cs" />
+    <Compile Include="Controllers\OnBoardingViewController.designer.cs">
+      <DependentUpon>OnBoardingViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

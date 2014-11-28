@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -607,6 +607,47 @@
             </objects>
             <point key="canvasLocation" x="736" y="1661"/>
         </scene>
+        <!--On Boarding View Controller-->
+        <scene sceneID="uxh-Qv-fXe">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingViewController" id="Tkb-xM-ljJ" customClass="OnBoardingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fdn-wE-SZK"/>
+                        <viewControllerLayoutGuide type="bottom" id="KeQ-5x-166"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="whu-f0-oOS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FK-cT-i00">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="seta.png">
+                                    <color key="titleColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Close:" destination="Tkb-xM-ljJ" eventType="touchUpInside" id="XxY-xh-9Ml"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seta.png" translatesAutoresizingMaskIntoConstraints="NO" id="UUS-6a-ESW">
+                                <rect key="frame" x="0.0" y="478" width="99" height="90"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seta.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jg5-aG-q5e">
+                                <rect key="frame" x="0.0" y="150" width="99" height="90"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seta.png" translatesAutoresizingMaskIntoConstraints="NO" id="JHd-CD-yq0">
+                                <rect key="frame" x="205" y="227" width="99" height="90"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.29143246999478556" green="1" blue="0.39413543749124169" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztx-2p-Tjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276" y="1637"/>
+        </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">
             <objects>
@@ -1079,32 +1120,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWM-JI-QaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1250" y="712"/>
-        </scene>
-        <!--On Boarding View Controller-->
-        <scene sceneID="Fco-7v-sEC">
-            <objects>
-                <viewController id="t7m-Zp-rLY" customClass="OnBoardingViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3Ch-8U-Rji"/>
-                        <viewControllerLayoutGuide type="bottom" id="JpE-3s-NZF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Jvh-Ve-u17">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qualquer texto de teste para onBoarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Th-2t-uK7">
-                                <rect key="frame" x="3" y="273" width="314" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.33739487097669019" green="0.53661830357142859" blue="0.3548641385353003" alpha="0.23000000000000001" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RFR-ae-EdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1250" y="1661"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AMm-X7-CW2">
@@ -1642,6 +1657,7 @@
         <image name="flying-bee-bg.png" width="130" height="100"/>
         <image name="location.png" width="20" height="20"/>
         <image name="separator.png" width="1" height="1"/>
+        <image name="seta.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
