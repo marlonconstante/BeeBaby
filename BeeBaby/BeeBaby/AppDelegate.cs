@@ -100,8 +100,9 @@ namespace BeeBaby
 
 			ThirdPartyIntegrationsRegister();
 
-			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
-			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
+			var notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
+			application.RegisterForRemoteNotificationTypes(notificationTypes);
+			application.StatusBarStyle = UIStatusBarStyle.LightContent;
 
 			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
