@@ -317,10 +317,7 @@ namespace BeeBaby.Controllers
 					Position = moment.Position
 				};
 
-				if (CurrentContext.Instance.CurrentBaby.IsValid())
-				{
-					((MomentNavigationController) NavigationController).SaveCurrentMoment();
-				}
+				((MomentNavigationController) NavigationController).SaveCurrentMoment();
 			}, false);
 		}
 	}

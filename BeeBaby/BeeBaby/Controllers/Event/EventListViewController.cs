@@ -76,11 +76,8 @@ namespace BeeBaby.Controllers
 					tblView.Source = m_eventListViewSource;
 					tblView.ReloadData();
 					
-					if (CurrentContext.Instance.CurrentBaby.IsValid())
-					{
-						var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
-						SelectTag(recomendedButton);
-					}
+					var recomendedButton = scrView.Subviews.FirstOrDefault(s => s.Tag == s_recomendationTagName.GetHashCode()) as UIButton;
+					SelectTag(recomendedButton);
 				});
 			});
 		}

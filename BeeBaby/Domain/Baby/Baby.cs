@@ -75,15 +75,6 @@ namespace Domain.Baby
 		}
 
 		/// <summary>
-		/// Determines whether this instance is valid.
-		/// </summary>
-		/// <returns><c>true</c> if this instance is valid; otherwise, <c>false</c>.</returns>
-		public bool IsValid()
-		{
-			return !string.IsNullOrEmpty(Email);
-		}
-
-		/// <summary>
 		/// Formats the age.
 		/// </summary>
 		/// <returns>The age.</returns>
