@@ -21,7 +21,6 @@ namespace BeeBaby.Controllers
 {
 	public partial class TimelineViewController : NavigationViewController
 	{
-		static bool s_openCamera = false;
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
@@ -59,16 +58,7 @@ namespace BeeBaby.Controllers
 			base.ViewDidAppear(animated);
 
 			LoadEvents();
-
-			if (s_openCamera)
-			{
-				OpenCamera();
-				s_openCamera = false;
-			}
-			else
-			{
-				InitTimeline();
-			}
+			InitTimeline();
 		}
 
 		/// <summary>
@@ -268,10 +258,6 @@ namespace BeeBaby.Controllers
 				if (args.ButtonIndex == 0)
 				{
 					target.m_tableSource.RemoveRow(target.tblView, target.m_currentIndexPath);
-					if (target.tblView.NumberOfRowsInSection(0) == 0)
-					{
-						target.OpenCamera();
-					}
 				}
 			};
 			alertView.Clicked += proxy.HandleEvent;
