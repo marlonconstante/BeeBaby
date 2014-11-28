@@ -114,8 +114,6 @@ namespace BeeBaby.Controllers
 			var momentService = new MomentService();
 			new ImageProvider().DeleteFiles(true);
 			CurrentContext.Instance.Moment = momentService.CreateMoment();
-
-			btnOpenTimeline.Hidden = !momentService.HasValidMoments();
 		}
 
 		/// <summary>

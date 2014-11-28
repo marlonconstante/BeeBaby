@@ -4,7 +4,6 @@ using BigTed;
 using MonoTouch.Foundation;
 using System.Drawing;
 using PixateFreestyleLib;
-using Domain.Moment;
 using BeeBaby.Proxy;
 using BeeBaby.Navigations;
 using BeeBaby.VisualElements;
@@ -89,7 +88,7 @@ namespace BeeBaby.Controllers
 		/// <returns><c>true</c> if this instance is add right bar button item; otherwise, <c>false</c>.</returns>
 		public virtual bool IsAddRightBarButtonItem()
 		{
-			return !IsContainsTabs() && (IsCameraFlow() || new MomentService().HasValidMoments());
+			return !IsContainsTabs();
 		}
 
 		/// <summary>
