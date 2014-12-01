@@ -78,7 +78,7 @@ namespace BeeBaby.Util
 		static void ShowOnBoarding()
 		{
 			var board = UIStoryboard.FromName("MainStoryboard", null);
-			var modalViewController = (OnBoardingViewController) board.InstantiateViewController("OnBoardingViewController");
+			var modalViewController = (OnBoardingModalViewController) board.InstantiateViewController("OnBoardingModalViewController");
 			modalViewController.LoadView();
 			modalViewController.Show();
 		}

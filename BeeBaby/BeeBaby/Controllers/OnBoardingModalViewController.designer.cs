@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
 {
-	[Register ("OnBoardingViewController")]
-	partial class OnBoardingViewController
+	[Register ("OnBoardingModalViewController")]
+	partial class OnBoardingModalViewController
 	{
 		[Action ("Close:")]
 		partial void Close (MonoTouch.UIKit.UIButton sender);

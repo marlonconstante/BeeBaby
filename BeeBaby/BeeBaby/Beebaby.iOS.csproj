@@ -511,15 +511,15 @@
     <Compile Include="Navigations\MainNavigationController.designer.cs">
       <DependentUpon>MainNavigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\OnBoardingViewController.cs" />
-    <Compile Include="Controllers\OnBoardingViewController.designer.cs">
-      <DependentUpon>OnBoardingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\MomentModalViewController.cs" />
     <Compile Include="Controllers\MomentModalViewController.designer.cs">
       <DependentUpon>MomentModalViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ModalViewController.cs" />
+    <Compile Include="Controllers\OnBoardingModalViewController.cs" />
+    <Compile Include="Controllers\OnBoardingModalViewController.designer.cs">
+      <DependentUpon>OnBoardingModalViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
