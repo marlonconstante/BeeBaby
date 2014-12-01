@@ -24,7 +24,7 @@ namespace BeeBaby.Controllers
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
-		ModalViewController m_modalViewController;
+		MomentModalViewController m_modalViewController;
 		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
@@ -127,7 +127,7 @@ namespace BeeBaby.Controllers
 			if (m_modalViewController == null)
 			{
 				var board = UIStoryboard.FromName("MainStoryboard", null);
-				m_modalViewController = (ModalViewController) board.InstantiateViewController("ModalViewController");
+				m_modalViewController = (MomentModalViewController) board.InstantiateViewController("MomentModalViewController");
 				m_modalViewController.LoadView();
 			}
 		}

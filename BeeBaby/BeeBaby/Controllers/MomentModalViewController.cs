@@ -7,11 +7,11 @@ using PixateFreestyleLib;
 
 namespace BeeBaby.Controllers
 {
-	public partial class ModalViewController : BaseViewController
+	public partial class MomentModalViewController : BaseViewController
 	{
 		UIView m_modalView;
 
-		public ModalViewController(IntPtr handle) : base(handle)
+		public MomentModalViewController(IntPtr handle) : base(handle)
 		{
 			View.Alpha = 0f;
 

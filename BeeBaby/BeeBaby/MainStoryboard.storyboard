@@ -1430,10 +1430,10 @@
             </objects>
             <point key="canvasLocation" x="736" y="836"/>
         </scene>
-        <!--Modal View Controller-->
+        <!--Moment Modal View Controller-->
         <scene sceneID="Ofi-Z9-VZO">
             <objects>
-                <viewController storyboardIdentifier="ModalViewController" modalTransitionStyle="crossDissolve" id="GWk-0X-xuc" customClass="ModalViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MomentModalViewController" modalTransitionStyle="crossDissolve" id="GWk-0X-xuc" customClass="MomentModalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ubA-hF-Uwj"/>
                         <viewControllerLayoutGuide type="bottom" id="Y1T-NT-AWe"/>

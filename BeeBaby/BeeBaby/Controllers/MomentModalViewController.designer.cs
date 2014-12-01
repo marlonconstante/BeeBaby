@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
 {
-	[Register ("ModalViewController")]
-	partial class ModalViewController
+	[Register ("MomentModalViewController")]
+	partial class MomentModalViewController
 	{
 		[Outlet]
 		BeeBaby.VisualElements.Button btnCancel { get; set; }

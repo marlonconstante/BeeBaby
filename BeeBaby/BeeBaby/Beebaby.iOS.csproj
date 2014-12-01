@@ -345,10 +345,6 @@
     </Compile>
     <Compile Include="Util\Views.cs" />
     <Compile Include="Util\Windows.cs" />
-    <Compile Include="Controllers\ModalViewController.cs" />
-    <Compile Include="Controllers\ModalViewController.designer.cs">
-      <DependentUpon>ModalViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ImageShareViewController.cs" />
     <Compile Include="Controllers\ImageShareViewController.designer.cs">
       <DependentUpon>ImageShareViewController.cs</DependentUpon>
@@ -518,6 +514,10 @@
     <Compile Include="Controllers\OnBoardingViewController.cs" />
     <Compile Include="Controllers\OnBoardingViewController.designer.cs">
       <DependentUpon>OnBoardingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MomentModalViewController.cs" />
+    <Compile Include="Controllers\MomentModalViewController.designer.cs">
+      <DependentUpon>MomentModalViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
