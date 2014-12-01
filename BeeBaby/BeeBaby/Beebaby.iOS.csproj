@@ -519,6 +519,7 @@
     <Compile Include="Controllers\MomentModalViewController.designer.cs">
       <DependentUpon>MomentModalViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ModalViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

@@ -7,38 +7,10 @@ using PixateFreestyleLib;
 
 namespace BeeBaby.Controllers
 {
-	public partial class MomentModalViewController : BaseViewController
+	public partial class MomentModalViewController : ModalViewController
 	{
-		UIView m_modalView;
-
 		public MomentModalViewController(IntPtr handle) : base(handle)
 		{
-			View.Alpha = 0f;
-
-			m_modalView = new UIView(UIScreen.MainScreen.Bounds);
-			m_modalView.SetStyleClass("view modal-background");
-			m_modalView.AddGestureRecognizer(EditingTapGestureRecognizer);
-			m_modalView.Alpha = 0f;
-
-			RootViewController.View.AddSubview(m_modalView);
-		}
-
-		/// <summary>
-		/// Touchs the action.
-		/// </summary>
-		public override void TouchAction()
-		{
-			Close(btnCancel);
-		}
-
-		/// <summary>
-		/// Determines whether this instance is show progress.
-		/// </summary>
-		/// <returns>true</returns>
-		/// <c>false</c>
-		public override bool IsShowProgress()
-		{
-			return false;
 		}
 
 		/// <summary>
@@ -47,19 +19,7 @@ namespace BeeBaby.Controllers
 		public void Show()
 		{
 			btnCancel.ExtraTouchArea = 20;
-			foreach (var subview in View.Subviews)
-			{
-				subview.ExclusiveTouch = true;
-			}
-
-			UIView.Animate(0.3d, () => {
-				m_modalView.AddSubview(View);
-				m_modalView.Alpha = 1f;
-			}, () => {
-				UIView.Animate(0.3d, () => {
-					View.Alpha = 1f;
-				});
-			});
+			base.Show();
 		}
 
 		/// <summary>
@@ -68,14 +28,7 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			UIView.Animate(0.3d, () => {
-				View.Alpha = 0f;
-			}, () => {
-				UIView.Animate(0.3d, () => {
-					m_modalView.Alpha = 0f;
-					View.RemoveFromSuperview();
-				});
-			});
+			Hide();
 		}
 
 		/// <summary>
