@@ -97,7 +97,14 @@ namespace BeeBaby.Controllers
 		/// <returns>The bar button frame.</returns>
 		public virtual RectangleF RightBarButtonFrame()
 		{
-			return new RectangleF(0f, 0f, 34f, 34f);
+			if (IsCameraFlow())
+			{
+				return new RectangleF(0f, 0f, 34f, 34f);
+			}
+			else
+			{
+				return new RectangleF(0f, 0f, 24f, 24f);
+			}
 		}
 
 		/// <summary>
@@ -123,7 +130,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The bar button style class.</returns>
 		public virtual string RightBarButtonStyleClass()
 		{
-			return IsCameraFlow() ? "camera" : "tree-clear";
+			return IsCameraFlow() ? "camera" : "cancel";
 		}
 
 		/// <summary>
