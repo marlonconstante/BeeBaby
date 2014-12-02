@@ -400,7 +400,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="afO-96-K0D">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="tree"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="home"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
@@ -515,7 +515,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="vFU-Fn-cG4">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="baby-bee"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="gear"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="U1O-oW-Inl"/>
@@ -1653,7 +1653,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="I7o-pn-b4x"/>
+        <segue reference="2yy-uq-YpW"/>
         <segue reference="aR7-vp-laA"/>
         <segue reference="j2f-ev-klq"/>
     </inferredMetricsTieBreakers>

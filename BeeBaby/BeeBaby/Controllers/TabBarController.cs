@@ -64,8 +64,11 @@ namespace BeeBaby.Controllers
 		{
 			TabBar.ShadowImage = EmptyImage;
 			TabBar.BackgroundImage = EmptyImage;
-			TabBar.BackgroundColor = UIColor.FromRGB(242, 245, 245);
+			TabBar.BackgroundColor = UIColor.FromRGB(241, 241, 233);
 			TabBar.Frame = TabBarFrame;
+
+			TabBar.ItemPositioning = UITabBarItemPositioning.Centered;
+			TabBar.ItemSpacing = View.Bounds.Width / 2.5f;
 
 			CameraButton.Center = TabBar.Center;
 		}
@@ -78,6 +81,7 @@ namespace BeeBaby.Controllers
 			foreach (var item in TabBar.Items)
 			{
 				item.ImageInsets = new UIEdgeInsets(6f, 0f, -6f, 0f);
+				item.Image = item.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
 			}
 		}
 
@@ -86,7 +90,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		void AddCameraButton()
 		{
-			CameraButton.SetStyleClass("camera");
+			CameraButton.SetStyleClass("tab-bar-camera");
 
 			View.Add(CameraButton);
 		}
@@ -131,9 +135,7 @@ namespace BeeBaby.Controllers
 		/// <value>The camera button.</value>
 		UIButton CameraButton {
 			get;
-		} = new UIButton {
-			Frame = new RectangleF(0f, 0f, 40f, 40f)
-		};
+		} = new UIButton();
 
 		/// <summary>
 		/// Gets the root view controller.

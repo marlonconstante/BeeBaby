@@ -15,6 +15,24 @@ text-view,
 
 tab-bar {
 	selected-color: #109bcb;
+	box-shadow: 0 -0.5 0 0 #ddddd5;
+}
+
+tab-bar-item {
+	background-padding: 4;
+}
+
+.tab-bar-camera {
+	size: 106.66 40;
+	border:	1 solid #ddddd5;
+	border-radius: 20;
+	background-color: linear-gradient(to bottom, #f1f1e9, #fff);
+	background-padding: 2;
+}
+
+.tab-bar-camera icon {
+	background-image: url(camera.svg);
+	background-size: 36;
 }
 
 .view .table-view table-view-cell:selected {
@@ -111,8 +129,7 @@ segmented-control {
 	background-color: #e7ebe7;
 }
 
-.babyname-container
-{
+.babyname-container {
 	background-color: #01cecd;
 }
 
@@ -858,7 +875,7 @@ text-view {
 
 .camera,
 .button-camera icon {
-	background-image: url(camera.svg);
+	background-image: url(camera-clear.svg);
 }
 
 .target-camera {
@@ -871,6 +888,22 @@ text-view {
 
 .pictures {
 	background-image: url(pictures.svg);
+}
+
+.gear {
+	background-image: url(gear.svg);
+}
+
+.gear-clear {
+	background-image: url(gear-clear.svg);
+}
+
+.home {
+	background-image: url(home.svg);
+}
+
+.home-clear {
+	background-image: url(home-clear.svg);
 }
 
 .tree {
@@ -911,16 +944,6 @@ text-view {
 .table-menu table-view-cell .profile:highlighted,
 .table-menu table-view-cell .profile:selected {
 	background-image: url(profile-clear.svg);
-}
-
-.gear {
-	background-image: url(gear.svg);
-}
-
-.gear-clear,
-.table-menu table-view-cell .gear:highlighted,
-.table-menu table-view-cell .gear:selected {
-	background-image: url(gear-clear.svg);
 }
 
 .about {

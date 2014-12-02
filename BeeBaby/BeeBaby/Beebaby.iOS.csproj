@@ -181,7 +181,6 @@
     <BundleResource Include="Resources\calendar.svg" />
     <BundleResource Include="Resources\location.svg" />
     <BundleResource Include="Resources\checklist.svg" />
-    <BundleResource Include="Resources\camera.svg" />
     <BundleResource Include="Resources\comeback.svg" />
     <BundleResource Include="Resources\hourglass.svg" />
     <BundleResource Include="Resources\badge.svg" />
@@ -313,6 +312,10 @@
     <BundleResource Include="Resources\key.svg" />
     <BundleResource Include="Resources\baby-bee.svg" />
     <BundleResource Include="Resources\seta.png" />
+    <BundleResource Include="Resources\home-clear.svg" />
+    <BundleResource Include="Resources\home.svg" />
+    <BundleResource Include="Resources\camera-clear.svg" />
+    <BundleResource Include="Resources\camera.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
