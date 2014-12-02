@@ -499,10 +499,6 @@
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\Validators.cs" />
-    <Compile Include="VisualElements\TabBar.cs" />
-    <Compile Include="VisualElements\TabBar.designer.cs">
-      <DependentUpon>TabBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\TabBarController.cs" />
     <Compile Include="Controllers\TabBarController.designer.cs">
       <DependentUpon>TabBarController.cs</DependentUpon>
