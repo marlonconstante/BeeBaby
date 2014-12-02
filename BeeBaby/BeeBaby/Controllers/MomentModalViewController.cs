@@ -16,7 +16,7 @@ namespace BeeBaby.Controllers
 		/// <summary>
 		/// Show this instance.
 		/// </summary>
-		public void Show()
+		public override void Show()
 		{
 			btnCancel.ExtraTouchArea = 20;
 			base.Show();
