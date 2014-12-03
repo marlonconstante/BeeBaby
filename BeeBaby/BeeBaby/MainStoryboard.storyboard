@@ -880,7 +880,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="cancel"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="OpenTimeline:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tF9-tO-9rF"/>
+                                            <action selector="Close:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="tF9-tO-9rF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPJ-De-Kr0" customClass="Button">
@@ -957,8 +957,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Gz-EA-XTQ"/>
                     <connections>
+                        <outlet property="btnClose" destination="gX6-ac-dkX" id="Pkb-Er-eng"/>
                         <outlet property="btnFlash" destination="BPG-NX-zxb" id="kfJ-Qj-Bkt"/>
-                        <outlet property="btnOpenTimeline" destination="gX6-ac-dkX" id="Pkb-Er-eng"/>
                         <outlet property="btnSound" destination="eh5-hI-R5l" id="4EC-WN-PBt"/>
                         <outlet property="btnSwitchCamera" destination="Z7i-gU-gTy" id="5Pk-Ai-SkY"/>
                         <outlet property="btnTakePhoto" destination="lPJ-De-Kr0" id="fEh-eE-h9P"/>

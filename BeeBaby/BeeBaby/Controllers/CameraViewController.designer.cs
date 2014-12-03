@@ -16,7 +16,7 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UIButton btnFlash { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnOpenTimeline { get; set; }
+		MonoTouch.UIKit.UIButton btnClose { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnSound { get; set; }
@@ -42,8 +42,8 @@ namespace BeeBaby.Controllers
 		[Action ("OpenMedia:")]
 		partial void OpenMedia (MonoTouch.UIKit.UIButton sender);
 
-		[Action ("OpenTimeline:")]
-		partial void OpenTimeline (MonoTouch.UIKit.UIButton sender);
+		[Action ("Close:")]
+		partial void Close (MonoTouch.UIKit.UIButton sender);
 
 		[Action ("PlaySound:")]
 		partial void PlaySound (MonoTouch.UIKit.UIButton sender);
@@ -61,9 +61,9 @@ namespace BeeBaby.Controllers
 				btnFlash = null;
 			}
 
-			if (btnOpenTimeline != null) {
-				btnOpenTimeline.Dispose ();
-				btnOpenTimeline = null;
+			if (btnClose != null) {
+				btnClose.Dispose ();
+				btnClose = null;
 			}
 
 			if (vwFlash != null) {

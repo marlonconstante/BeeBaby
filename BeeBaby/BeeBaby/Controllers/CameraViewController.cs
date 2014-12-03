@@ -189,10 +189,10 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Opens the timeline.
+		/// Close the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void OpenTimeline(UIButton sender)
+		partial void Close(UIButton sender)
 		{
 			FlurryAnalytics.Flurry.LogEvent("Camera: Botão Timeline.");
 
