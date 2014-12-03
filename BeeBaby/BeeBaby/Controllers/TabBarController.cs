@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using PixateFreestyleLib;
 using BeeBaby.Progress;
+using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby.Controllers
 {
@@ -23,6 +24,7 @@ namespace BeeBaby.Controllers
 
 			SetImageInsets();
 			AddCameraButton();
+			AddCameraOptions();
 		}
 
 		/// <summary>
@@ -33,7 +35,10 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewWillAppear(animated);
 
-			CameraButton.TouchUpInside += OpenCamera;
+			ViewControllerSelected += CloseCameraOptions;
+			CameraButton.TouchUpInside += OpenCameraOptions;
+			ButtonTakePhotos.TouchUpInside += TakePhotos;
+			ButtonImportPhotos.TouchUpInside += TakePhotos;
 		}
 
 		/// <summary>
@@ -44,7 +49,10 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewWillDisappear(animated);
 
-			CameraButton.TouchUpInside -= OpenCamera;
+			ViewControllerSelected -= CloseCameraOptions;
+			CameraButton.TouchUpInside -= OpenCameraOptions;
+			ButtonTakePhotos.TouchUpInside -= TakePhotos;
+			ButtonImportPhotos.TouchUpInside -= TakePhotos;
 		}
 
 		/// <summary>
@@ -96,11 +104,60 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Opens the camera.
+		/// Adds the camera options.
+		/// </summary>
+		void AddCameraOptions()
+		{
+			CameraOptions.Frame = new RectangleF(0f, View.Frame.Height - 80.5f, View.Frame.Width, 40f);
+			CameraOptions.SetStyleClass("camera-options");
+
+			ButtonTakePhotos.SetStyleClass("take-photos");
+			ButtonTakePhotos.SetTitle("TakePhotos".Translate(), UIControlState.Normal);
+			CameraOptions.Add(ButtonTakePhotos);
+
+			ButtonImportPhotos.SetStyleClass("import-photos");
+			ButtonImportPhotos.SetTitle("ImportPhotos".Translate(), UIControlState.Normal);
+			CameraOptions.Add(ButtonImportPhotos);
+
+			Arrow.SetStyleClass("arrow");
+			CameraOptions.Add(Arrow);
+
+			View.Add(CameraOptions);
+		}
+
+		/// <summary>
+		/// Opens the camera options.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		/// <param name="args">Arguments.</param>
-		void OpenCamera(object sender, EventArgs args)
+		void OpenCameraOptions(object sender, EventArgs args)
+		{
+			if (CameraOptions.Alpha == 0f)
+			{
+				CameraOptions.SetStyleClass("camera-options bubble");
+			}
+			else
+			{
+				CloseCameraOptions(sender, args);
+			}
+		}
+
+		/// <summary>
+		/// Closes the camera options.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="args">Arguments.</param>
+		void CloseCameraOptions(object sender, EventArgs args)
+		{
+			CameraOptions.SetStyleClass("camera-options fadeOut");
+		}
+
+		/// <summary>
+		/// Takes the photos.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="args">Arguments.</param>
+		void TakePhotos(object sender, EventArgs args)
 		{
 			var actionProgress = new ActionProgress(() => {
 				RootViewController.PerformSegue("segueCamera", sender as NSObject);
@@ -136,6 +193,38 @@ namespace BeeBaby.Controllers
 		UIButton CameraButton {
 			get;
 		} = new UIButton();
+
+		/// <summary>
+		/// Gets the camera options.
+		/// </summary>
+		/// <value>The camera options.</value>
+		UIView CameraOptions {
+			get;
+		} = new UIView();
+
+		/// <summary>
+		/// Gets the button take photos.
+		/// </summary>
+		/// <value>The button take photos.</value>
+		UIButton ButtonTakePhotos {
+			get;
+		} = new UIButton();
+
+		/// <summary>
+		/// Gets the button import photos.
+		/// </summary>
+		/// <value>The button import photos.</value>
+		UIButton ButtonImportPhotos {
+			get;
+		} = new UIButton();
+
+		/// <summary>
+		/// Gets the arrow.
+		/// </summary>
+		/// <value>The arrow.</value>
+		UIView Arrow {
+			get;
+		} = new UIView();
 
 		/// <summary>
 		/// Gets the root view controller.

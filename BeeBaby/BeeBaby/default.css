@@ -9,12 +9,17 @@ table-view-headerfooter-view label,
 segmented-control,
 text-field,
 text-view,
+.camera-options button,
 .view label {
 	font-family: "Quicksand";
 }
 
 tab-bar {
 	selected-color: #109bcb;
+}
+
+tab-bar,
+.camera-options {
 	box-shadow: 0 -0.5 0 0 #ddddd5;
 }
 
@@ -27,7 +32,8 @@ tab-bar-item {
 	border:	1 solid #ddddd5;
 	border-radius: 20;
 	background-color: linear-gradient(to bottom, #f1f1e9, #fff);
-	background-padding: 2;
+	background-padding: 2 0 2 0;
+	image-edge-left-inset: 1.5;
 }
 
 .tab-bar-camera icon {
@@ -239,6 +245,7 @@ segmented-control {
 }
 
 segmented-control label,
+.camera-options button,
 .view .small-button,
 .view .small-button:highlighted,
 .view .small-button:selected {
@@ -503,6 +510,7 @@ text-view,
 }
 
 switch,
+.camera-options button,
 .view button,
 .view button:highlighted,
 .view button:selected {
@@ -882,6 +890,42 @@ text-view {
 	background-image: url(target-camera.svg);
 }
 
+.camera-options {
+	background-color: #fff;
+	opacity: 0;
+}
+
+.camera-options.bubble {
+	opacity: 1;
+}
+
+.camera-options button {
+	size: 160 40;
+	title-edge-left-inset: 10;
+}
+
+.camera-options .take-photos icon {
+	background-image: url(camera.svg);
+	background-size: 26;
+}
+
+.camera-options .import-photos icon {
+	background-image: url(picture.svg);
+	background-size: 20;
+}
+
+.camera-options .import-photos {
+	left: 160;
+}
+
+.camera-options .arrow {
+	size: 10;
+	left: 155;
+	top: 35;
+	transform: rotate(45);
+	background-color: #fff;
+}
+
 .picture {
 	background-image: url(picture.svg);
 }
@@ -1007,13 +1051,12 @@ text-view {
 
 .bubble {
     animation: bubble;
- 	animation-duration: 3s;
+ 	animation-duration: 1s;
 }
 
 @keyframes bubble {
     from {
-    	opacity: .5;
-        scale: .2;
+        scale: 0;
     }
     50% {
         scale: 1.1;
@@ -1028,7 +1071,34 @@ text-view {
         scale: .95;
     }
     to {
-        opacity: 1;
         scale: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn;
+ 	animation-duration: 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut;
+ 	animation-duration: 0.5s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
