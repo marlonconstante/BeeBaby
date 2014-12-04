@@ -4,9 +4,7 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using BeeBaby.ResourcesProviders;
-using Domain.Moment;
 using Application;
-using Domain.Baby;
 using Skahal.Infrastructure.Framework.Globalization;
 using MonoTouch.AudioToolbox;
 using System.Collections.Generic;
@@ -34,7 +32,7 @@ namespace BeeBaby.Controllers
 			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu a Camera.", true);
 			base.ViewDidLoad();
 
-			CreateMoment();
+			((MomentNavigationController) NavigationController).CreateMoment();
 		}
 
 		/// <summary>
@@ -103,16 +101,6 @@ namespace BeeBaby.Controllers
 		public override bool IsShowStatusBar()
 		{
 			return false;
-		}
-
-		/// <summary>
-		/// Creates the moment.
-		/// </summary>
-		void CreateMoment()
-		{
-			var momentService = new MomentService();
-			new ImageProvider().DeleteFiles(true);
-			CurrentContext.Instance.Moment = momentService.CreateMoment();
 		}
 
 		/// <summary>

@@ -34,6 +34,16 @@ namespace BeeBaby.Navigations
 		}
 
 		/// <summary>
+		/// Creates the moment.
+		/// </summary>
+		public void CreateMoment()
+		{
+			new ImageProvider().DeleteFiles(true);
+
+			CurrentContext.Instance.Moment = new MomentService().CreateMoment();
+		}
+
+		/// <summary>
 		/// Saves the current moment.
 		/// </summary>
 		public void SaveCurrentMoment()
@@ -62,6 +72,8 @@ namespace BeeBaby.Navigations
 			PresentingViewController.DismissViewController(true, () => {
 				Discard.ReleaseNavigation(this);
 			});
+
+			new ImageProvider().DeleteFiles(true);
 		}
 	}
 }
