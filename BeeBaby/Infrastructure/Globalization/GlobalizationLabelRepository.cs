@@ -174,6 +174,12 @@ AtAge = Com
 Have = Tem
 AboutThisMoment = Sobre esse momento
 old = 
+EditMomentTitle = Edite o momento
+EditMomentText = Acrescente fotos \n e altere os detalhes \n deste momento
+ViewAndShareTitle = Visualize e compartilhe
+ViewAndShareText = Toque na foto para \n vê-la ampliada e compartilhar \n nas redes sociais
+LetsStartTitle = Vamos começar?
+LetsStartText = Toque no botão da câmera \n para tirar ou importar \n fotos
 Version-1.2-ChangeLog = - Altere os momentos \n - Aproveite a facilidade da nova tela de momento \n - Novas cores, detalhes e lindezas no layout da linha do tempo \n - Veja os comentários do momento na linha do tempo \n - Compartilhe o novo card nas redes sociais
 Version-1.3-ChangeLog = - Agora você pode selecionar múltiplas fotos do seu bebê para serem importadas. \n - E na Timeline, ao visualizar as fotos em tela cheia, é possível navegar entre elas.
 
@@ -287,6 +293,12 @@ AtAge = At
 Have = Is
 AboutThisMoment = About this moment
 old = old
+EditMomentTitle = Edit the moment
+EditMomentText = Add photos \n and change the details \n this moment
+ViewAndShareTitle = View and share
+ViewAndShareText = Tap the photo to \n see it enlarged and share \n on social networks
+LetsStartTitle = Let's start?
+LetsStartText = Touch the camera button \n to take or import \n photos
 Version-1.2-ChangeLog = Say hi to the new version of BeeBaby. \n After being featured in Best New Apps in Brazil, BeeBaby App goes worldwide in english version. 
 Version-1.3-ChangeLog = - Now you can select multiple photos of your baby to be imported. \n - And in the Timeline when viewing photos in full screen, you can navigate between them.
 ";

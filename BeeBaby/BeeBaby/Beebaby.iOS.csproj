@@ -311,12 +311,14 @@
     <BundleResource Include="Resources\mail.svg" />
     <BundleResource Include="Resources\key.svg" />
     <BundleResource Include="Resources\baby-bee.svg" />
-    <BundleResource Include="Resources\seta.png" />
     <BundleResource Include="Resources\home-clear.svg" />
     <BundleResource Include="Resources\home.svg" />
     <BundleResource Include="Resources\camera-clear.svg" />
     <BundleResource Include="Resources\camera.svg" />
     <BundleResource Include="Resources\Secret-Recipe.otf" />
+    <BundleResource Include="Resources\big-down-arrow.svg" />
+    <BundleResource Include="Resources\curved-down-arrow.svg" />
+    <BundleResource Include="Resources\curved-side-arrow.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

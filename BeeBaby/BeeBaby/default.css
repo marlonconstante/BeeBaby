@@ -41,6 +41,47 @@ tab-bar-item {
 	background-size: 36;
 }
 
+.walkthrough {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.walkthrough .title,
+.walkthrough .big-title {
+	font-family: "Secret Recipe";
+}
+
+.walkthrough .text,
+.walkthrough .big-text {
+	font-family: "Quicksand";
+	font-weight: bold;
+}
+
+.walkthrough .title {
+	font-size: 33pt;
+}
+
+.walkthrough .big-title {
+	font-size: 55pt;
+}
+
+.walkthrough .text {
+	font-size: 15pt;
+}
+
+.walkthrough .big-text {
+	font-size: 20pt;
+}
+
+.walkthrough > view {
+	opacity: 0;
+}
+
+.walkthrough > view.bubble {
+	opacity: 1;
+	animation: bubble;
+	animation-duration: 2s;
+}
+
 .view .table-view table-view-cell:selected {
 	background-color: #cedbdb;
 }
@@ -863,6 +904,18 @@ text-view {
 
 .down-arrow {
 	background-image: url(down-arrow.svg);
+}
+
+.big-down-arrow {
+	background-image: url(big-down-arrow.svg);
+}
+
+.curved-down-arrow {
+	background-image: url(curved-down-arrow.svg);
+}
+
+.curved-side-arrow {
+	background-image: url(curved-side-arrow.svg);
 }
 
 .view .button-popover.photo icon {
