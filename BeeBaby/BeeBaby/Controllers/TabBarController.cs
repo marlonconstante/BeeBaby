@@ -38,7 +38,7 @@ namespace BeeBaby.Controllers
 			ViewControllerSelected += CloseCameraOptions;
 			CameraButton.TouchUpInside += OpenCameraOptions;
 			ButtonTakePhotos.TouchUpInside += TakePhotos;
-			ButtonImportPhotos.TouchUpInside += TakePhotos;
+			ButtonImportPhotos.TouchUpInside += ImportPhotos;
 		}
 
 		/// <summary>
@@ -52,7 +52,9 @@ namespace BeeBaby.Controllers
 			ViewControllerSelected -= CloseCameraOptions;
 			CameraButton.TouchUpInside -= OpenCameraOptions;
 			ButtonTakePhotos.TouchUpInside -= TakePhotos;
-			ButtonImportPhotos.TouchUpInside -= TakePhotos;
+			ButtonImportPhotos.TouchUpInside -= ImportPhotos;
+
+			CloseCameraOptions(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -149,7 +151,10 @@ namespace BeeBaby.Controllers
 		/// <param name="args">Arguments.</param>
 		void CloseCameraOptions(object sender, EventArgs args)
 		{
-			CameraOptions.SetStyleClass("camera-options fadeOut");
+			if (CameraOptions.Alpha != 0f)
+			{
+				CameraOptions.SetStyleClass("camera-options fadeOut");
+			}
 		}
 
 		/// <summary>
@@ -161,6 +166,19 @@ namespace BeeBaby.Controllers
 		{
 			var actionProgress = new ActionProgress(() => {
 				RootViewController.PerformSegue("segueCamera", sender as NSObject);
+			}, false);
+			actionProgress.Execute();
+		}
+
+		/// <summary>
+		/// Imports the photos.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="args">Arguments.</param>
+		void ImportPhotos(object sender, EventArgs args)
+		{
+			var actionProgress = new ActionProgress(() => {
+				RootViewController.PerformSegue("segueMedia", sender as NSObject);
 			}, false);
 			actionProgress.Execute();
 		}

@@ -17,9 +17,27 @@ namespace BeeBaby.Controllers
 	public partial class MediaViewController : NavigationViewController
 	{
 		ImageCollectionViewSource m_collectionViewSource;
+		bool m_isOpenMediaLibrary;
+		bool m_isSaveCurrentMoment; 
 
 		public MediaViewController(IntPtr handle) : base(handle)
 		{
+		}
+
+		/// <summary>
+		/// Views the did load.
+		/// </summary>
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			m_isOpenMediaLibrary = CurrentContext.Instance.Moment == null;
+			m_isSaveCurrentMoment = IsMediaFlow() && !m_isOpenMediaLibrary;
+
+			if (m_isOpenMediaLibrary)
+			{
+				((MomentNavigationController) NavigationController).CreateMoment();
+			}
 		}
 
 		/// <summary>
@@ -32,7 +50,15 @@ namespace BeeBaby.Controllers
 
 			FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Entrou na tela.", true);
 
-			UpdateImageCollectionView();
+			if (m_isOpenMediaLibrary)
+			{
+				AddMediaFromLibrary(btnAddMediaFromLibrary);
+				m_isOpenMediaLibrary = false;
+			}
+			else
+			{
+				UpdateImageCollectionView();
+			}
 		}
 
 		/// <summary>
@@ -101,7 +127,7 @@ namespace BeeBaby.Controllers
 			{
 				ShowProgressWhilePerforming(() =>
 				{
-					if (IsMediaFlow())
+					if (m_isSaveCurrentMoment)
 					{
 						var moment = CurrentContext.Instance.Moment;
 						moment.MediaCount = moment.SelectedMediaNames.Count;
