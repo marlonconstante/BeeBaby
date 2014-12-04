@@ -316,6 +316,7 @@
     <BundleResource Include="Resources\home.svg" />
     <BundleResource Include="Resources\camera-clear.svg" />
     <BundleResource Include="Resources\camera.svg" />
+    <BundleResource Include="Resources\Secret-Recipe.otf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

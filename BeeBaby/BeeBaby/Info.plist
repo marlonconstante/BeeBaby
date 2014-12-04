@@ -44,6 +44,7 @@
 		<string>Quicksand_Book.otf</string>
 		<string>Quicksand_Bold.otf</string>
 		<string>RobotoSlab-Bold.otf</string>
+		<string>Secret-Recipe.otf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
