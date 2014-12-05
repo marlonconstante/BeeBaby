@@ -18,6 +18,11 @@ tab-bar {
 	selected-color: #109bcb;
 }
 
+tab-bar selection {
+	background-image: url(selected-bar.svg);
+	background-size: 36 40;
+}
+
 tab-bar,
 .camera-options {
 	box-shadow: 0 -0.5 0 0 #ddddd5;
