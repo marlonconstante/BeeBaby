@@ -619,8 +619,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edN-RA-ZBn">
-                                <rect key="frame" x="0.0" y="64" width="320" height="94"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edN-RA-ZBn">
+                                <rect key="frame" x="0.0" y="52" width="320" height="91"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edite o momento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ti-9F-feM" customClass="Label">
                                         <rect key="frame" x="16" y="0.0" width="240" height="40"/>
@@ -632,7 +632,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9A-CX-1qm" customClass="Label">
-                                        <rect key="frame" x="16" y="33" width="240" height="61"/>
+                                        <rect key="frame" x="16" y="30" width="240" height="61"/>
                                         <string key="text">Acrescente fotos
 e altere os detalhes
 deste momento</string>
@@ -644,15 +644,19 @@ deste momento</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-Kz-pvQ">
-                                        <rect key="frame" x="228" y="3" width="70" height="35"/>
+                                        <rect key="frame" x="228" y="16" width="70" height="35"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="curved-side-arrow"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="2M4-Sh-sVc"/>
+                                    <constraint firstAttribute="height" constant="91" id="kVv-yo-Kn4"/>
+                                </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Fm-B7-7Xl">
-                                <rect key="frame" x="0.0" y="181" width="320" height="100"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Fm-B7-7Xl">
+                                <rect key="frame" x="0.0" y="155" width="320" height="91"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visualize e compartilhe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8a-ux-joF" customClass="Label">
                                         <rect key="frame" x="24" y="0.0" width="240" height="40"/>
@@ -664,7 +668,7 @@ deste momento</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9O-CT-aed" customClass="Label">
-                                        <rect key="frame" x="24" y="33" width="240" height="61"/>
+                                        <rect key="frame" x="24" y="30" width="240" height="61"/>
                                         <string key="text">Toque na foto para
 vê-la ampliada e compartilhar
 nas redes sociais</string>
@@ -676,15 +680,19 @@ nas redes sociais</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byQ-Il-frR">
-                                        <rect key="frame" x="233" y="22" width="63" height="78"/>
+                                        <rect key="frame" x="233" y="13" width="63" height="78"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="curved-down-arrow"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="1PD-Bm-WTx"/>
+                                    <constraint firstAttribute="height" constant="91" id="qqf-MO-8XJ"/>
+                                </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myN-vE-yIP">
-                                <rect key="frame" x="0.0" y="324" width="320" height="203"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myN-vE-yIP">
+                                <rect key="frame" x="0.0" y="347" width="320" height="181"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vamos começar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uft-XM-i4W" customClass="Label">
                                         <rect key="frame" x="16" y="0.0" width="288" height="64"/>
@@ -696,7 +704,7 @@ nas redes sociais</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klA-bt-aLv" customClass="Label">
-                                        <rect key="frame" x="16" y="52" width="288" height="80"/>
+                                        <rect key="frame" x="16" y="46" width="288" height="77"/>
                                         <string key="text">Toque no botão da câmera
 para tirar ou importar
 fotos</string>
@@ -708,15 +716,27 @@ fotos</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-yg-25v">
-                                        <rect key="frame" x="125" y="133" width="70" height="70"/>
+                                        <rect key="frame" x="130" y="121" width="60" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="big-down-arrow"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="HKc-Ip-sRu"/>
+                                    <constraint firstAttribute="height" constant="181" id="lKc-89-1fY"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Fm-B7-7Xl" firstAttribute="leading" secondItem="whu-f0-oOS" secondAttribute="leading" id="DhD-9v-KXK"/>
+                            <constraint firstItem="edN-RA-ZBn" firstAttribute="leading" secondItem="whu-f0-oOS" secondAttribute="leading" id="FhL-oQ-Dbx"/>
+                            <constraint firstItem="myN-vE-yIP" firstAttribute="leading" secondItem="whu-f0-oOS" secondAttribute="leading" id="aIY-bf-EUa"/>
+                            <constraint firstItem="4Fm-B7-7Xl" firstAttribute="top" secondItem="whu-f0-oOS" secondAttribute="top" constant="155" id="n0W-jp-JdA"/>
+                            <constraint firstItem="edN-RA-ZBn" firstAttribute="top" secondItem="whu-f0-oOS" secondAttribute="top" constant="52" id="vOB-R7-eDh"/>
+                            <constraint firstAttribute="bottom" secondItem="myN-vE-yIP" secondAttribute="bottom" constant="40" id="zYA-mz-uRs"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="walkthrough"/>
                         </userDefinedRuntimeAttributes>
