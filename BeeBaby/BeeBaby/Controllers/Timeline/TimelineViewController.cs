@@ -25,6 +25,7 @@ namespace BeeBaby.Controllers
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
 		MomentModalViewController m_modalViewController;
+		OnBoardingModalViewController m_onBoarding;
 		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
@@ -133,6 +134,20 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Shows the on boarding.
+		/// </summary>
+		void ShowOnBoarding()
+		{
+			if (m_onBoarding == null)
+			{
+				var board = UIStoryboard.FromName("MainStoryboard", null);
+				m_onBoarding = (OnBoardingModalViewController) board.InstantiateViewController("OnBoardingModalViewController");
+				m_onBoarding.LoadView();
+			}
+			m_onBoarding.Show();
+		}
+
+		/// <summary>
 		/// Inits the timeline.
 		/// </summary>
 		async void InitTimeline()
@@ -143,10 +158,10 @@ namespace BeeBaby.Controllers
 
 				var baby = CurrentContext.Instance.CurrentBaby;
 
-				var moments = new MomentService().GetAllMoments(baby);
-				//var moments = await RemoteDataSystem.GetAllMoments(baby);
+				var moments = new MomentService().GetAllMoments(baby).ToList();
+				//var moments = await RemoteDataSystem.GetAllMoments(baby).ToList();
 
-				lblBabyName.Text = baby.Name;
+				lblBabyName.Text = string.IsNullOrEmpty(baby.Name) ? "MyBaby".Translate() : baby.Name;
 				lblBabyAge.Text = string.Concat("Have".Translate(), " ", baby.AgeInWords, " ", "old".Translate());
 
 				InitPopover();
@@ -157,7 +172,13 @@ namespace BeeBaby.Controllers
 					tblView.Source = m_tableSource;
 				}
 
-				m_tableSource.ReloadData(tblView, moments.ToList(), baby); 
+				if (moments.Count == 0)
+				{
+					BuildMomentTemplateIfNeeded();
+					moments.Add(MomentTemplate);
+				}
+
+				m_tableSource.ReloadData(tblView, moments, baby); 
 
 				CurrentContext.Instance.ReloadMoments = false;
 			}
@@ -290,6 +311,59 @@ namespace BeeBaby.Controllers
 			m_modalViewController.SetInformation(moment);
 
 			m_modalViewController.Show();
+		}
+
+		/// <summary>
+		/// Builds the moment template if needed.
+		/// </summary>
+		void BuildMomentTemplateIfNeeded()
+		{
+			if (MomentTemplate == null)
+			{
+				MomentTemplate = new Moment {
+					Id = Moment.IdTemplate,
+					Description = "MomentTemplateDescription".Translate(),
+					Date = DateTime.Now,
+					MediaCount = 2,
+					Event = new Event {
+						Description = "MomentTemplateEvent".Translate(),
+						Kind = EventType.Achievement
+					},
+					Location = new Location {
+						Name = "MomentTemplateLocation".Translate()
+					}
+				};
+				MomentTemplate.Babies.Add(CurrentContext.Instance.CurrentBaby);
+
+				SaveMomentTemplateImages();
+				ShowOnBoarding();
+			}
+		}
+
+		/// <summary>
+		/// Saves the moment template images.
+		/// </summary>
+		void SaveMomentTemplateImages()
+		{
+			var imageProvider = new ImageProvider(MomentTemplate.Id);
+			imageProvider.DeleteFiles(false);
+
+			for (var index = 1; index <= MomentTemplate.MediaCount; index++)
+			{
+				using (var photo = UIImage.FromFile(string.Concat("template-", index, ".jpg")))
+				{
+					imageProvider.SavePermanentImageOnApp(photo);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the moment template.
+		/// </summary>
+		/// <value>The moment template.</value>
+		Moment MomentTemplate {
+			get;
+			set;
 		}
 
 		/// <summary>
