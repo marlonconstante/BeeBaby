@@ -47,6 +47,7 @@ namespace Domain.Baby
 		public Baby CreateBaby()
 		{
 			var baby = new Baby();
+			baby.Gender = Gender.Unknown;
 			baby.BirthDateTime = DateTime.Now;
 			SaveBaby(baby);
 
