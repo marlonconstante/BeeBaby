@@ -6,7 +6,6 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Moment;
 using Application;
 using BeeBaby.ResourcesProviders;
-using BeeBaby.Controllers;
 
 namespace BeeBaby.Util
 {
@@ -22,10 +21,6 @@ namespace BeeBaby.Util
 		{
 			RunActions(1.1f, "MediaCount", UpdateMediaCount);
 			RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
-
-			//TODO: descomentar esse e deletar a chamada direta, ela é só de teste.
-			//RunActions(2.0f, "ShowOnBoarding", ShowOnBoarding);
-			ShowOnBoarding();
 		}
 
 		/// <summary>
@@ -71,18 +66,6 @@ namespace BeeBaby.Util
 		{
 			new UIAlertView("WhatsNew".Translate(), "Version-1.3-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
 		}
-
-		/// <summary>
-		/// Shows the on boarding.
-		/// </summary>
-		static void ShowOnBoarding()
-		{
-			var board = UIStoryboard.FromName("MainStoryboard", null);
-			var modalViewController = (OnBoardingModalViewController) board.InstantiateViewController("OnBoardingModalViewController");
-			modalViewController.LoadView();
-			modalViewController.Show();
-		}
-
 
 		/// <summary>
 		/// Gets the user defaults.
