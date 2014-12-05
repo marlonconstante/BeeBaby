@@ -320,6 +320,8 @@
     <BundleResource Include="Resources\curved-down-arrow.svg" />
     <BundleResource Include="Resources\curved-side-arrow.svg" />
     <BundleResource Include="Resources\selected-bar.svg" />
+    <BundleResource Include="Resources\template-1.jpg" />
+    <BundleResource Include="Resources\template-2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
