@@ -44,7 +44,6 @@ namespace BeeBaby.Controllers
 		void StartAnimation()
 		{
 			InvokeInBackground(() => {
-				Thread.Sleep(1000);
 				var views = new UIView[] { vwEditMoment, vwViewAndShare, vwLetsStart };
 				foreach (var view in views)
 				{
