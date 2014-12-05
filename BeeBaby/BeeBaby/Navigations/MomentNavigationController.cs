@@ -49,13 +49,14 @@ namespace BeeBaby.Navigations
 		public void SaveCurrentMoment()
 		{
 			var moment = CurrentContext.Instance.Moment;
-			moment.Location = new LocationService().SaveLocation(moment.Location);
+			if (!moment.IsTemplate())
+			{
+				moment.Location = new LocationService().SaveLocation(moment.Location);
 
+				new MomentService().SaveMoment(moment);
+				RemoteDataSystem.SendMomentData(moment);
+			}
 			new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
-			new MomentService().SaveMoment(moment);
-
-			RemoteDataSystem.SendMomentData(moment);
-
 			CurrentContext.Instance.ReloadMoments = true;
 			Close();
 		}

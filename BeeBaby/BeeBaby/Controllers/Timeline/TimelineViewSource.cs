@@ -174,8 +174,11 @@ namespace BeeBaby.Controllers
 		{
 			var moment = MomentAt(indexPath) as Moment;
 
-			new MomentService().RemoveMoment(moment);
-			new ImageProvider(moment.Id).DeleteFiles(false);
+			if (!moment.IsTemplate())
+			{
+				new MomentService().RemoveMoment(moment);
+				new ImageProvider(moment.Id).DeleteFiles(false);
+			}
 
 			ClearMomentPhotos();
 

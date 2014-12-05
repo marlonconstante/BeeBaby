@@ -11,6 +11,11 @@ namespace Domain.Moment
 	/// </summary>
 	public class Moment : EntityWithIdBase<string>, IAggregateRoot, IMoment
 	{
+		/// <summary>
+		/// The identifier template.
+		/// </summary>
+		public const string IdTemplate = "MomentTemplate";
+
 		public Moment() : base()
 		{
 			SelectedMediaNames = new List<string>();
@@ -247,6 +252,14 @@ namespace Domain.Moment
 			get {
 				return Babies.FirstOrDefault().Email;
 			}
+		}
+
+		/// <summary>
+		/// Determines whether this instance is template.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is template; otherwise, <c>false</c>.</returns>
+		public bool IsTemplate() {
+			return Id == IdTemplate;
 		}
 	}
 }
