@@ -716,7 +716,7 @@ fotos</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-yg-25v">
-                                        <rect key="frame" x="130" y="121" width="60" height="60"/>
+                                        <rect key="frame" x="129" y="121" width="60" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="big-down-arrow"/>
                                         </userDefinedRuntimeAttributes>
