@@ -64,7 +64,7 @@ namespace BeeBaby.Util
 		/// </summary>
 		static void ShowNewVersionAlert()
 		{
-			new UIAlertView("WhatsNew".Translate(), "Version-1.3-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
+			//new UIAlertView("WhatsNew".Translate(), "Version-1.3-ChangeLog".Translate(), null, "GotIt".Translate(), null).Show();
 		}
 
 		/// <summary>
