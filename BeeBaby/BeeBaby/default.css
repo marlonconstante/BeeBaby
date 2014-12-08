@@ -9,7 +9,6 @@ table-view-headerfooter-view label,
 segmented-control,
 text-field,
 text-view,
-.camera-options button,
 .view label {
 	font-family: "Quicksand";
 }
@@ -23,8 +22,7 @@ tab-bar selection {
 	background-size: 36 40;
 }
 
-tab-bar,
-.camera-options {
+tab-bar {
 	box-shadow: 0 -0.5 0 0 #ddddd5;
 }
 
@@ -33,17 +31,11 @@ tab-bar-item {
 }
 
 .tab-bar-camera {
-	size: 106.66 40;
-	border:	1 solid #ddddd5;
-	border-radius: 20;
-	background-color: linear-gradient(to bottom, #f1f1e9, #fff);
-	background-padding: 2 0 2 0;
-	image-edge-left-inset: 1.5;
+	size: 80 52;
 }
 
 .tab-bar-camera icon {
-	background-image: url(camera.svg);
-	background-size: 36;
+	background-image: url(camera-button.svg);
 }
 
 .walkthrough {
@@ -291,7 +283,6 @@ segmented-control {
 }
 
 segmented-control label,
-.camera-options button,
 .view .small-button,
 .view .small-button:highlighted,
 .view .small-button:selected {
@@ -556,7 +547,6 @@ text-view,
 }
 
 switch,
-.camera-options button,
 .view button,
 .view button:highlighted,
 .view button:selected {
@@ -949,7 +939,7 @@ text-view {
 }
 
 .camera-options {
-	background-color: #fff;
+	box-shadow: 0 0.5 0 0 #ddddd5;
 	opacity: 0;
 }
 
@@ -957,31 +947,27 @@ text-view {
 	opacity: 1;
 }
 
-.camera-options button {
-	size: 160 40;
-	title-edge-left-inset: 10;
+.camera-options > view {
+	background-color: #fff;
 }
 
-.camera-options .take-photos icon {
+.camera-options button,
+.camera-options button:highlighted,
+.camera-options button:selected {
+	font-size: 13pt;
+	font-weight: normal;
+}
+
+.camera-options .camera {
 	background-image: url(camera.svg);
-	background-size: 26;
 }
 
-.camera-options .import-photos icon {
-	background-image: url(picture.svg);
-	background-size: 20;
-}
-
-.camera-options .import-photos {
-	left: 160;
-}
+.camera-options .separator {
+	background-color: #f1f1e9;
+}	
 
 .camera-options .arrow {
-	size: 10;
-	left: 155;
-	top: 35;
 	transform: rotate(45);
-	background-color: #fff;
 }
 
 .picture {
@@ -1109,7 +1095,7 @@ text-view {
 
 .bubble {
     animation: bubble;
- 	animation-duration: 1s;
+ 	animation-duration: 1.5s;
 }
 
 @keyframes bubble {

@@ -4,13 +4,13 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using PixateFreestyleLib;
-using BeeBaby.Progress;
-using Skahal.Infrastructure.Framework.Globalization;
 
 namespace BeeBaby.Controllers
 {
 	public partial class TabBarController : UITabBarController
 	{
+		CameraOptionsModalViewController m_cameraOptionsModal;
+
 		public TabBarController(IntPtr handle) : base(handle)
 		{
 		}
@@ -24,7 +24,8 @@ namespace BeeBaby.Controllers
 
 			SetImageInsets();
 			AddCameraButton();
-			AddCameraOptions();
+
+			LoadModalViewController();
 		}
 
 		/// <summary>
@@ -37,8 +38,6 @@ namespace BeeBaby.Controllers
 
 			ViewControllerSelected += CloseCameraOptions;
 			CameraButton.TouchUpInside += OpenCameraOptions;
-			ButtonTakePhotos.TouchUpInside += TakePhotos;
-			ButtonImportPhotos.TouchUpInside += ImportPhotos;
 		}
 
 		/// <summary>
@@ -51,8 +50,6 @@ namespace BeeBaby.Controllers
 
 			ViewControllerSelected -= CloseCameraOptions;
 			CameraButton.TouchUpInside -= OpenCameraOptions;
-			ButtonTakePhotos.TouchUpInside -= TakePhotos;
-			ButtonImportPhotos.TouchUpInside -= ImportPhotos;
 
 			CloseCameraOptions(this, EventArgs.Empty);
 		}
@@ -68,6 +65,19 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Loads the modal view controller.
+		/// </summary>
+		void LoadModalViewController()
+		{
+			if (m_cameraOptionsModal == null)
+			{
+				var board = UIStoryboard.FromName("MainStoryboard", null);
+				m_cameraOptionsModal = (CameraOptionsModalViewController) board.InstantiateViewController("CameraOptionsModalViewController");
+				m_cameraOptionsModal.LoadView();
+			}
+		}
+
+		/// <summary>
 		/// Updates the tab bar.
 		/// </summary>
 		void UpdateTabBar()
@@ -78,9 +88,9 @@ namespace BeeBaby.Controllers
 			TabBar.Frame = TabBarFrame;
 
 			TabBar.ItemPositioning = UITabBarItemPositioning.Centered;
-			TabBar.ItemSpacing = View.Bounds.Width / 2.5f;
+			TabBar.ItemSpacing = View.Bounds.Width / 3f;
 
-			CameraButton.Center = TabBar.Center;
+			CameraButton.Center = new PointF(TabBar.Center.X, TabBar.Center.Y - 6f);
 		}
 
 		/// <summary>
@@ -106,41 +116,19 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Adds the camera options.
-		/// </summary>
-		void AddCameraOptions()
-		{
-			CameraOptions.Frame = new RectangleF(0f, View.Frame.Height - 80.5f, View.Frame.Width, 40f);
-			CameraOptions.SetStyleClass("camera-options");
-
-			ButtonTakePhotos.SetStyleClass("take-photos");
-			ButtonTakePhotos.SetTitle("TakePhotos".Translate(), UIControlState.Normal);
-			CameraOptions.Add(ButtonTakePhotos);
-
-			ButtonImportPhotos.SetStyleClass("import-photos");
-			ButtonImportPhotos.SetTitle("ImportPhotos".Translate(), UIControlState.Normal);
-			CameraOptions.Add(ButtonImportPhotos);
-
-			Arrow.SetStyleClass("arrow");
-			CameraOptions.Add(Arrow);
-
-			View.Add(CameraOptions);
-		}
-
-		/// <summary>
 		/// Opens the camera options.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		/// <param name="args">Arguments.</param>
 		void OpenCameraOptions(object sender, EventArgs args)
 		{
-			if (CameraOptions.Alpha == 0f)
+			if (m_cameraOptionsModal.IsVisible)
 			{
-				CameraOptions.SetStyleClass("camera-options bubble");
+				CloseCameraOptions(sender, args);
 			}
 			else
 			{
-				CloseCameraOptions(sender, args);
+				m_cameraOptionsModal.Show();
 			}
 		}
 
@@ -151,36 +139,7 @@ namespace BeeBaby.Controllers
 		/// <param name="args">Arguments.</param>
 		void CloseCameraOptions(object sender, EventArgs args)
 		{
-			if (CameraOptions.Alpha != 0f)
-			{
-				CameraOptions.SetStyleClass("camera-options fadeOut");
-			}
-		}
-
-		/// <summary>
-		/// Takes the photos.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="args">Arguments.</param>
-		void TakePhotos(object sender, EventArgs args)
-		{
-			var actionProgress = new ActionProgress(() => {
-				RootViewController.PerformSegue("segueCamera", sender as NSObject);
-			}, false);
-			actionProgress.Execute();
-		}
-
-		/// <summary>
-		/// Imports the photos.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="args">Arguments.</param>
-		void ImportPhotos(object sender, EventArgs args)
-		{
-			var actionProgress = new ActionProgress(() => {
-				RootViewController.PerformSegue("segueMedia", sender as NSObject);
-			}, false);
-			actionProgress.Execute();
+			m_cameraOptionsModal.Hide();
 		}
 
 		/// <summary>
@@ -211,47 +170,5 @@ namespace BeeBaby.Controllers
 		UIButton CameraButton {
 			get;
 		} = new UIButton();
-
-		/// <summary>
-		/// Gets the camera options.
-		/// </summary>
-		/// <value>The camera options.</value>
-		UIView CameraOptions {
-			get;
-		} = new UIView();
-
-		/// <summary>
-		/// Gets the button take photos.
-		/// </summary>
-		/// <value>The button take photos.</value>
-		UIButton ButtonTakePhotos {
-			get;
-		} = new UIButton();
-
-		/// <summary>
-		/// Gets the button import photos.
-		/// </summary>
-		/// <value>The button import photos.</value>
-		UIButton ButtonImportPhotos {
-			get;
-		} = new UIButton();
-
-		/// <summary>
-		/// Gets the arrow.
-		/// </summary>
-		/// <value>The arrow.</value>
-		UIView Arrow {
-			get;
-		} = new UIView();
-
-		/// <summary>
-		/// Gets the root view controller.
-		/// </summary>
-		/// <value>The root view controller.</value>
-		public UIViewController RootViewController {
-			get {
-				return UIApplication.SharedApplication.Windows[0].RootViewController;
-			}
-		}
 	}
 }
