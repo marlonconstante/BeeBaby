@@ -695,7 +695,7 @@ nas redes sociais</string>
                                 <rect key="frame" x="0.0" y="347" width="320" height="181"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vamos começar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uft-XM-i4W" customClass="Label">
-                                        <rect key="frame" x="16" y="0.0" width="288" height="64"/>
+                                        <rect key="frame" x="16" y="0.0" width="288" height="65"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
