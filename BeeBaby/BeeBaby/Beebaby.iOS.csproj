@@ -101,7 +101,7 @@
     </IpaPackageName>
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <CodesignProvision>A93DC3C6-2577-4653-B5EC-0496F805C2B8</CodesignProvision>
+    <CodesignProvision>0384743d-61ab-45e6-a222-2bde86fe4984</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
