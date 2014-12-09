@@ -19,6 +19,20 @@ namespace BeeBaby.Util
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating is on boarding viewed.
+		/// </summary>
+		/// <value><c>true</c> if is on boarding viewed; otherwise, <c>false</c>.</value>
+		public static bool IsOnBoardingViewed {
+			get {
+				return UserDefaults.BoolForKey("IsOnBoardingViewed");
+			}
+			set {
+				UserDefaults.SetBool(value, "IsOnBoardingViewed");
+				UserDefaults.Synchronize();
+			}
+		}
+
+		/// <summary>
 		/// Gets the device identifier.
 		/// </summary>
 		/// <value>The device identifier.</value>

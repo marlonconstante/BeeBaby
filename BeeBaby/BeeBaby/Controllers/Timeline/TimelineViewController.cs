@@ -178,7 +178,13 @@ namespace BeeBaby.Controllers
 					moments.Add(MomentTemplate);
 				}
 
-				m_tableSource.ReloadData(tblView, moments, baby); 
+				m_tableSource.ReloadData(tblView, moments, baby);
+
+				if (!PreferencesEditor.IsOnBoardingViewed)
+				{
+					ShowOnBoarding();
+					PreferencesEditor.IsOnBoardingViewed = true;
+				}
 
 				CurrentContext.Instance.ReloadMoments = false;
 			}
@@ -336,7 +342,7 @@ namespace BeeBaby.Controllers
 				MomentTemplate.Babies.Add(CurrentContext.Instance.CurrentBaby);
 
 				SaveMomentTemplateImages();
-				ShowOnBoarding();
+				PreferencesEditor.IsOnBoardingViewed = false;
 			}
 		}
 
