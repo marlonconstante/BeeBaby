@@ -695,7 +695,7 @@ nas redes sociais</string>
                                 <rect key="frame" x="0.0" y="347" width="320" height="181"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vamos começar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uft-XM-i4W" customClass="Label">
-                                        <rect key="frame" x="16" y="0.0" width="288" height="64"/>
+                                        <rect key="frame" x="16" y="0.0" width="288" height="65"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -716,7 +716,7 @@ fotos</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-yg-25v">
-                                        <rect key="frame" x="130" y="121" width="60" height="60"/>
+                                        <rect key="frame" x="129" y="121" width="60" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="big-down-arrow"/>
                                         </userDefinedRuntimeAttributes>
@@ -749,7 +749,7 @@ fotos</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztx-2p-Tjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="1653"/>
+            <point key="canvasLocation" x="1250" y="1661"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">
@@ -1372,6 +1372,95 @@ fotos</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAS-x7-Mbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1239" y="836"/>
+        </scene>
+        <!--Camera Options Modal View Controller-->
+        <scene sceneID="D5H-PH-BN3">
+            <objects>
+                <viewController storyboardIdentifier="CameraOptionsModalViewController" id="zZZ-lm-UmF" customClass="CameraOptionsModalViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MTX-3i-SU2"/>
+                        <viewControllerLayoutGuide type="bottom" id="DKo-5m-G74"/>
+                    </layoutGuides>
+                    <view key="view" alpha="0.0" contentMode="scaleToFill" id="lV5-Jd-Uwa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1K-zC-ZLa">
+                                <rect key="frame" x="0.0" y="440" width="320" height="92"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpB-49-ofo">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvt-QF-sxh">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="88"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="48" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Tirar fotos">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="TakePhotos:" destination="zZZ-lm-UmF" eventType="touchUpInside" id="0qH-6f-BbV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYV-gi-J5q">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="88"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="48" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Importar fotos">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="ImportPhotos:" destination="zZZ-lm-UmF" eventType="touchUpInside" id="cVc-jE-vXL"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daQ-O4-Fyy">
+                                                <rect key="frame" x="55" y="8" width="50" height="50"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAd-4U-Edp">
+                                                <rect key="frame" x="221" y="14" width="39" height="39"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="picture"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tMC-ua-gG7">
+                                                <rect key="frame" x="159" y="14" width="1" height="60"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="separator"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUv-c2-4Sh">
+                                        <rect key="frame" x="156" y="84" width="8" height="8"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="arrow"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="6ke-5m-zYN"/>
+                                    <constraint firstAttribute="height" constant="92" id="UFe-7n-Qjy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="camera-options"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="S1K-zC-ZLa" firstAttribute="leading" secondItem="lV5-Jd-Uwa" secondAttribute="leading" id="MW9-mQ-0sH"/>
+                            <constraint firstAttribute="bottom" secondItem="S1K-zC-ZLa" secondAttribute="bottom" constant="36" id="dMl-y2-SJZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnImportPhotos" destination="ZYV-gi-J5q" id="nWH-Uy-znX"/>
+                        <outlet property="btnTakePhotos" destination="Bvt-QF-sxh" id="cXv-z3-phV"/>
+                        <outlet property="vwPopover" destination="S1K-zC-ZLa" id="7qn-Qo-lgp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7M5-m3-n1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1239" y="1661"/>
         </scene>
         <!--Deals View Controller-->
         <scene sceneID="Q0l-YW-0bD">

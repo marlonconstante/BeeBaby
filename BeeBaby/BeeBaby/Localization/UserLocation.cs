@@ -3,6 +3,7 @@ using MonoTouch.CoreLocation;
 using Domain.Moment;
 using MonoTouch.Foundation;
 using BeeBaby.Util;
+using MonoTouch.ObjCRuntime;
 
 namespace BeeBaby.Localization
 {
@@ -12,6 +13,11 @@ namespace BeeBaby.Localization
 		{
 			LocationManager = new CLLocationManager();
 			LocationManager.Delegate = this;
+
+			if (LocationManager.RespondsToSelector(new Selector("requestWhenInUseAuthorization")))
+			{
+				LocationManager.RequestWhenInUseAuthorization();
+			}
 		}
 
 		/// <summary>

@@ -322,6 +322,7 @@
     <BundleResource Include="Resources\selected-bar.svg" />
     <BundleResource Include="Resources\template-1.jpg" />
     <BundleResource Include="Resources\template-2.jpg" />
+    <BundleResource Include="Resources\camera-button.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -524,6 +525,10 @@
     <Compile Include="Controllers\OnBoardingModalViewController.cs" />
     <Compile Include="Controllers\OnBoardingModalViewController.designer.cs">
       <DependentUpon>OnBoardingModalViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CameraOptionsModalViewController.cs" />
+    <Compile Include="Controllers\CameraOptionsModalViewController.designer.cs">
+      <DependentUpon>CameraOptionsModalViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
