@@ -35,12 +35,6 @@ namespace Domain.Moment
 		public Event Event { set; get; }
 
 		/// <summary>
-		/// Gets or sets the medias.
-		/// </summary>
-		/// <value>The medias.</value>
-		public IList<MediaBase> Medias { set; get; }
-
-		/// <summary>
 		/// Gets or sets the description.
 		/// </summary>
 		/// <value>The description.</value>
