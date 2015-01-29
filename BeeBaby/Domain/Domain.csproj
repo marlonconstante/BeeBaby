@@ -39,8 +39,6 @@
     <Compile Include="Moment\Moment.cs" />
     <Compile Include="Moment\MomentService.cs" />
     <Compile Include="Media\MediaBase.cs" />
-    <Compile Include="Media\Photo.cs" />
-    <Compile Include="Media\Video.cs" />
     <Compile Include="Moment\Event.cs" />
     <Compile Include="Moment\EventService.cs" />
     <Compile Include="Moment\IEventRepository.cs" />
