@@ -44,10 +44,6 @@ namespace Domain.UnitTests.Moment
 			{
 				Description = "Descrição livre momento 1",
 				Location = new Location(),
-				Medias = new List<MediaBase>()
-				{
-					new Photo() 
-				},
 				Event = momentKind,
 				Babies = { baby }
 			});
@@ -55,10 +51,6 @@ namespace Domain.UnitTests.Moment
 			{
 				Description = "Descrição livre momento 2",
 				Location = new Location(),
-				Medias = new List<MediaBase>()
-				{
-					new Photo() 
-				},
 				Event = momentKind,
 				Babies = { baby }
 			});
@@ -66,10 +58,6 @@ namespace Domain.UnitTests.Moment
 			{
 				Description = "Descrição livre momento 3",
 				Location = new Location(),
-				Medias = new List<MediaBase>()
-				{
-					new Photo() 
-				},
 				Event = momentKind,
 				Babies = { baby }
 			});
