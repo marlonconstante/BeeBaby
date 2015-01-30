@@ -286,26 +286,26 @@ namespace BeeBaby.ResourcesProviders
 
 			using (var fullScreenImage = ResizeFullScreenImage(image))
 			{
-			using (var imageData = fullScreenImage.AsJPEG(MediaBase.ImageCompressionQuality))
-			{
-				NSError error;
-				if (!imageData.Save(fullImagePath, false, out error))
+				using (var imageData = fullScreenImage.AsJPEG(MediaBase.ImageCompressionQuality))
 				{
-					Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+					NSError error;
+					if (!imageData.Save(fullImagePath, false, out error))
+					{
+						Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+					}
 				}
-			}
 
-			using (var thumbnail = GenerateThumbnail(fullScreenImage))
-			{
-			using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
-			{
-				NSError error;
-				if (!imageData.Save(thumbnailImagePath, false, out error))
+				using (var thumbnail = GenerateThumbnail(fullScreenImage))
 				{
-					Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+					using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
+					{
+						NSError error;
+						if (!imageData.Save(thumbnailImagePath, false, out error))
+						{
+							Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+						}
+					}
 				}
-			}
-			}
 			}
 
 			return fileName;
@@ -492,16 +492,16 @@ namespace BeeBaby.ResourcesProviders
 		{
 			using (photo)
 			{
-			var fileName = SaveTemporaryImageOnApp(photo);
-			if (saveToAlbum)
-			{
-				MediaLibrary.Instance.Save(photo);
-			}
-			if (selected)
-			{
-				var thumbnailImageName = GetThumbnailImageName(fileName);
-				CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
-			}
+				var fileName = SaveTemporaryImageOnApp(photo);
+				if (saveToAlbum)
+				{
+					MediaLibrary.Instance.Save(photo);
+				}
+				if (selected)
+				{
+					var thumbnailImageName = GetThumbnailImageName(fileName);
+					CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+				}
 			}
 		}
 	}
