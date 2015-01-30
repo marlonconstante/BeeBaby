@@ -77,8 +77,7 @@ namespace BeeBaby.ResourcesProviders
 			Directory.CreateDirectory(path);
 
 			Directory.EnumerateDirectories(path)
-				.ToList().ForEach(directoryName =>
-			{
+				.ToList().ForEach(directoryName => {
 				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
 				var validPermanentDirectory = !temporary && !string.IsNullOrEmpty(m_name) && directoryName.EndsWith(m_name);
 
@@ -88,6 +87,23 @@ namespace BeeBaby.ResourcesProviders
 							.ToList().ForEach(fileName => File.Delete(fileName));
 
 					Directory.Delete(directoryName);
+				}
+			});
+		}
+
+		/// <summary>
+		/// Removes the empty directories.
+		/// </summary>
+		public void RemoveEmptyDirectories()
+		{
+			Directory.EnumerateDirectories(m_appDocumentsDirectory)
+				.ToList().ForEach(directoryName => {
+				if (Directory.EnumerateFileSystemEntries(directoryName).Count() == 0)
+				{
+					if (!directoryName.EndsWith("/temp"))
+					{
+						Directory.Delete(directoryName);
+					}
 				}
 			});
 		}
@@ -125,8 +141,7 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var fileName in GetFileNames(thumbnails))
 			{
 				var data = NSData.FromFile(fileName);
-				var image = new ImageModel
-				{
+				var image = new ImageModel {
 					Image = UIImage.LoadFromData(data, scale),
 					FileName = Path.GetFileName(fileName)
 				};
@@ -148,8 +163,7 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var url in urls)
 			{
 				var data = NSData.FromUrl(NSUrl.FromString(url.AbsoluteUri));
-				var image = new ImageModel
-				{
+				var image = new ImageModel {
 					Image = UIImage.LoadFromData(data, 2f),
 					FileName = Path.GetFileName(url.AbsolutePath)
 				};
@@ -206,8 +220,7 @@ namespace BeeBaby.ResourcesProviders
 			var permanentDirectory = GetPermanentDirectory();
 
 			Directory.EnumerateFiles(permanentDirectory)
-				.ToList().ForEach(source =>
-			{
+				.ToList().ForEach(source => {
 				var destiny = Path.Combine(temporaryDirectory, Path.GetFileName(source));
 
 				File.Move(source, destiny);
@@ -426,7 +439,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="selected">If set to <c>true</c> selected.</param>
 		public void SaveTemporaryImage(NSDictionary info, bool saveToAlbum = false, bool selected = true)
 		{
-			using (var photo = (UIImage)info.ObjectForKey(UIImagePickerController.OriginalImage))
+			using (var photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
 			{
 				SaveTemporaryImage(photo, saveToAlbum, selected);
 			}

@@ -154,7 +154,9 @@ namespace BeeBaby.Controllers
 		{
 			if (CurrentContext.Instance.ReloadMoments)
 			{
-				new ImageProvider().DeleteFiles(true);
+				var imageProvider = new ImageProvider();
+				imageProvider.DeleteFiles(true);
+				imageProvider.RemoveEmptyDirectories();
 
 				var baby = CurrentContext.Instance.CurrentBaby;
 
