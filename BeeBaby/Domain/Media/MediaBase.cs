@@ -5,6 +5,7 @@ namespace Domain.Media
 	public static class MediaBase
 	{
 		#region Constants
+		public const int FullScreenImageMaxSizeInPixels = 2500;
 		public const int ImageThumbnailSize = 150;
 		public const int ImageShareSize = 320;
 		public const float ImageCompressionQuality = 0.7f;

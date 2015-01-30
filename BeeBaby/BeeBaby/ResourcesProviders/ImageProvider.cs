@@ -136,7 +136,7 @@ namespace BeeBaby.ResourcesProviders
 		public IList<ImageModel> GetImages(bool thumbnails = false)
 		{
 			var images = new List<ImageModel>();
-			float scale = CurrentContext.Instance.Scale;
+			var scale = CurrentContext.Instance.Scale;
 
 			foreach (var fileName in GetFileNames(thumbnails))
 			{
@@ -159,12 +159,13 @@ namespace BeeBaby.ResourcesProviders
 		public IList<ImageModel> GetRemoteImages(IList<Uri> urls)
 		{
 			var remoteImages = new List<ImageModel>();
+			var scale = CurrentContext.Instance.Scale;
 
 			foreach (var url in urls)
 			{
 				var data = NSData.FromUrl(NSUrl.FromString(url.AbsoluteUri));
 				var image = new ImageModel {
-					Image = UIImage.LoadFromData(data, 2f),
+					Image = UIImage.LoadFromData(data, scale),
 					FileName = Path.GetFileName(url.AbsolutePath)
 				};
 				remoteImages.Add(image);
@@ -283,7 +284,9 @@ namespace BeeBaby.ResourcesProviders
 			var fullImagePath = Path.Combine(directoryPath, fileName);
 			var thumbnailImagePath = Path.Combine(directoryPath, GetThumbnailImageName(fileName));
 
-			using (NSData imageData = image.AsJPEG(MediaBase.ImageCompressionQuality))
+			using (var fullScreenImage = ResizeFullScreenImage(image))
+			{
+			using (var imageData = fullScreenImage.AsJPEG(MediaBase.ImageCompressionQuality))
 			{
 				NSError error;
 				if (!imageData.Save(fullImagePath, false, out error))
@@ -292,13 +295,17 @@ namespace BeeBaby.ResourcesProviders
 				}
 			}
 
-			using (NSData imageData = GenerateThumbnail(image).AsJPEG(MediaBase.ImageCompressionQuality))
+			using (var thumbnail = GenerateThumbnail(fullScreenImage))
+			{
+			using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
 			{
 				NSError error;
 				if (!imageData.Save(thumbnailImagePath, false, out error))
 				{
 					Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
 				}
+			}
+			}
 			}
 
 			return fileName;
@@ -323,6 +330,7 @@ namespace BeeBaby.ResourcesProviders
 		public UIImage GetImage(string imageName, bool thumbnail = false)
 		{
 			var permanentDirectory = GetPermanentDirectory();
+			var scale = CurrentContext.Instance.Scale;
 
 			if (!thumbnail)
 			{
@@ -335,7 +343,7 @@ namespace BeeBaby.ResourcesProviders
 			if (imagePath != null)
 			{
 				var data = NSData.FromFile(imagePath);
-				return UIImage.LoadFromData(data, 2f);
+				return UIImage.LoadFromData(data, scale);
 			}
 			else
 			{
@@ -396,6 +404,38 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
+		/// Resizes the full screen image.
+		/// </summary>
+		/// <returns>The full screen image.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		UIImage ResizeFullScreenImage(UIImage sourceImage)
+		{
+			return ResizeImage(sourceImage, MediaBase.FullScreenImageMaxSizeInPixels);
+		}
+
+		/// <summary>
+		/// Resizes the image.
+		/// </summary>
+		/// <returns>The image.</returns>
+		/// <param name="sourceImage">Source image.</param>
+		/// <param name="maxSizeInPixels">Max size in pixels.</param>
+		UIImage ResizeImage(UIImage sourceImage, float maxSizeInPixels)
+		{
+			var size = sourceImage.Size;
+			var scale = sourceImage.CurrentScale;
+
+			var maxSize = maxSizeInPixels / scale;
+			var ratio = Math.Min(maxSize / size.Width, maxSize / size.Height);
+
+			if (ratio < 1f)
+			{
+				var preferredSize = new SizeF(size.Width * ratio, size.Height * ratio);
+				return sourceImage.Scale(preferredSize, scale);
+			}
+			return sourceImage;
+		}
+
+		/// <summary>
 		/// Creates the image for share.
 		/// </summary>
 		/// <returns>The image for share.</returns>
@@ -439,10 +479,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="selected">If set to <c>true</c> selected.</param>
 		public void SaveTemporaryImage(NSDictionary info, bool saveToAlbum = false, bool selected = true)
 		{
-			using (var photo = (UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage))
-			{
-				SaveTemporaryImage(photo, saveToAlbum, selected);
-			}
+			SaveTemporaryImage((UIImage) info.ObjectForKey(UIImagePickerController.OriginalImage), saveToAlbum, selected);
 		}
 
 		/// <summary>
@@ -453,6 +490,8 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="selected">If set to <c>true</c> selected.</param>
 		public void SaveTemporaryImage(UIImage photo, bool saveToAlbum = false, bool selected = true)
 		{
+			using (photo)
+			{
 			var fileName = SaveTemporaryImageOnApp(photo);
 			if (saveToAlbum)
 			{
@@ -462,6 +501,7 @@ namespace BeeBaby.ResourcesProviders
 			{
 				var thumbnailImageName = GetThumbnailImageName(fileName);
 				CurrentContext.Instance.Moment.SelectedMediaNames.Add(thumbnailImageName);
+			}
 			}
 		}
 	}

@@ -62,9 +62,7 @@ namespace ELCPicker
 				if (rep != null)
 				{
 					var result = new AssetResult();
-					const UIImageOrientation orientation = UIImageOrientation.Up;
-					var cgImage = rep.GetFullScreenImage();
-					result.Image = new UIImage(cgImage, 1.0f, orientation);
+					result.Image = new UIImage(rep.GetImage(), rep.Scale, (UIImageOrientation) rep.Orientation);
 					results.Add(result);
 				}
 			}
