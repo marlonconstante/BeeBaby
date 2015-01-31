@@ -6,6 +6,9 @@ using Skahal.Infrastructure.Framework.Globalization;
 using Domain.Moment;
 using Application;
 using BeeBaby.ResourcesProviders;
+using System.IO;
+using BeeBaby.Progress;
+using Domain.Media;
 
 namespace BeeBaby.Util
 {
@@ -19,8 +22,11 @@ namespace BeeBaby.Util
 		/// </summary>
 		public static void CheckForUpdates()
 		{
+			new ActionProgress(() => {
 			RunActions(1.1f, "MediaCount", UpdateMediaCount);
 			RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
+			RunActions(1.5f, "SizePictures", UpdateSizePictures);
+			}, false).Execute("Wait".Translate());
 		}
 
 		/// <summary>
@@ -51,10 +57,30 @@ namespace BeeBaby.Util
 			var momentService = new MomentService();
 			foreach (var moment in momentService.FindAllMoments())
 			{
-				if (!CurrentContext.Instance.Moment.Equals(moment))
-				{
-					moment.MediaCount = new ImageProvider(moment.Id).GetFileNames(false).Count;
+					moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
 					momentService.SaveMoment(moment);
+			}
+		}
+
+		/// <summary>
+		/// Updates the size pictures.
+		/// </summary>
+		static void UpdateSizePictures()
+		{
+			foreach (var moment in new MomentService().FindAllMoments())
+			{
+				var imageProvider = new ImageProvider(moment.Id);
+				foreach (var fileName in imageProvider.GetFileNames())
+				{
+					using (var image = imageProvider.LoadImage(fileName))
+					{
+						var size = image.Size;
+						var maxSizeInPixels = Math.Max(size.Width, size.Height) * image.CurrentScale;
+						if (maxSizeInPixels > MediaBase.FullScreenImageMaxSizeInPixels)
+						{
+							imageProvider.SavePermanentImageOnApp(image, Path.GetFileNameWithoutExtension(fileName), false); 
+						}
+					}
 				}
 			}
 		}
