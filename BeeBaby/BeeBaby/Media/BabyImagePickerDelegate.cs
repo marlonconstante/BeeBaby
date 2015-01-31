@@ -42,7 +42,7 @@ namespace BeeBaby.Media
 			{
 				using (var thumbnail = ImageProvider.GenerateThumbnail(photo))
 				{
-					ImageProvider.SavePermanentImageOnApp(thumbnail, MediaBase.PhotoProfileName);
+					ImageProvider.SavePermanentImageOnApp(thumbnail, MediaBase.PhotoProfileName, false);
 				}
 			}
 		}
