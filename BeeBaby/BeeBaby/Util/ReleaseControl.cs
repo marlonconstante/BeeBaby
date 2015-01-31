@@ -26,6 +26,7 @@ namespace BeeBaby.Util
 				RunActions(1.1f, "MediaCount", UpdateMediaCount);
 				RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
 				RunActions(1.5f, "SizePictures", UpdateSizePictures);
+				RunActions(1.5f, "ThumbnailPhotoProfile", DeleteThumbnailPhotoProfile);
 			}, false).Execute("Wait".Translate());
 		}
 
@@ -82,6 +83,20 @@ namespace BeeBaby.Util
 						}
 					}
 				}
+			}
+		}
+
+		/// <summary>
+		/// Deletes the thumbnail photo profile.
+		/// </summary>
+		static void DeleteThumbnailPhotoProfile()
+		{
+			var baby = CurrentContext.Instance.CurrentBaby;
+			if (baby != null)
+			{
+				var imageProvider = new ImageProvider(baby.Id);
+				var fileName = imageProvider.GetThumbnailImageName(MediaBase.PhotoProfileName);
+				imageProvider.DeleteFile(fileName);
 			}
 		}
 
