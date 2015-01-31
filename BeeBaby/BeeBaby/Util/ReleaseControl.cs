@@ -23,9 +23,9 @@ namespace BeeBaby.Util
 		public static void CheckForUpdates()
 		{
 			new ActionProgress(() => {
-			RunActions(1.1f, "MediaCount", UpdateMediaCount);
-			RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
-			RunActions(1.5f, "SizePictures", UpdateSizePictures);
+				RunActions(1.1f, "MediaCount", UpdateMediaCount);
+				RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
+				RunActions(1.5f, "SizePictures", UpdateSizePictures);
 			}, false).Execute("Wait".Translate());
 		}
 
@@ -57,8 +57,8 @@ namespace BeeBaby.Util
 			var momentService = new MomentService();
 			foreach (var moment in momentService.FindAllMoments())
 			{
-					moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
-					momentService.SaveMoment(moment);
+				moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
+				momentService.SaveMoment(moment);
 			}
 		}
 
@@ -97,10 +97,8 @@ namespace BeeBaby.Util
 		/// Gets the user defaults.
 		/// </summary>
 		/// <value>The user defaults.</value>
-		static NSUserDefaults UserDefaults
-		{
-			get
-			{
+		static NSUserDefaults UserDefaults {
+			get {
 				return NSUserDefaults.StandardUserDefaults;
 			}
 		}

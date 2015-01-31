@@ -300,17 +300,17 @@ namespace BeeBaby.ResourcesProviders
 
 				if (createThumbnail)
 				{
-				using (var thumbnail = GenerateThumbnail(fullScreenImage))
-				{
-					using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
+					using (var thumbnail = GenerateThumbnail(fullScreenImage))
 					{
-						NSError error;
-						if (!imageData.Save(thumbnailImagePath, false, out error))
+						using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
 						{
-							Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+							NSError error;
+							if (!imageData.Save(thumbnailImagePath, false, out error))
+							{
+								Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
+							}
 						}
 					}
-				}
 				}
 			}
 
