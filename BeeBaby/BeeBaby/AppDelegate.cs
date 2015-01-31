@@ -206,6 +206,7 @@ namespace BeeBaby
 		{
 			var hud = ProgressHUD.Shared;
 			hud.SetStyleClass("progress");
+			hud.HudFont = UIFont.FromName("Quicksand", 16f);
 
 			var frame = hud.Frame;
 			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
