@@ -250,9 +250,10 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The temporary image on app.</returns>
 		/// <param name="image">Image.</param>
 		/// <param name="fileName">File name.</param>
-		public string SaveTemporaryImageOnApp(UIImage image, string fileName = null)
+		/// <param name="createThumbnail">If set to <c>true</c> create thumbnail.</param>
+		public string SaveTemporaryImageOnApp(UIImage image, string fileName = null, bool createThumbnail = true)
 		{
-			return SaveImageOnApp(image, fileName, GetTemporaryDirectory());
+			return SaveImageOnApp(image, fileName, GetTemporaryDirectory(), createThumbnail);
 		}
 
 		/// <summary>
@@ -261,19 +262,21 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The permanent image on app.</returns>
 		/// <param name="image">Image.</param>
 		/// <param name="fileName">File name.</param>
-		public string SavePermanentImageOnApp(UIImage image, string fileName = null)
+		/// <param name="createThumbnail">If set to <c>true</c> create thumbnail.</param>
+		public string SavePermanentImageOnApp(UIImage image, string fileName = null, bool createThumbnail = true)
 		{
-			return SaveImageOnApp(image, fileName, GetPermanentDirectory());
+			return SaveImageOnApp(image, fileName, GetPermanentDirectory(), createThumbnail);
 		}
 
 		/// <summary>
 		/// Saves the image on app.
 		/// </summary>
-		/// <returns>The file name.</returns>
+		/// <returns>The image on app.</returns>
 		/// <param name="image">Image.</param>
 		/// <param name="fileName">File name.</param>
 		/// <param name="directoryPath">Directory path.</param>
-		string SaveImageOnApp(UIImage image, string fileName, string directoryPath)
+		/// <param name="createThumbnail">If set to <c>true</c> create thumbnail.</param>
+		string SaveImageOnApp(UIImage image, string fileName, string directoryPath, bool createThumbnail)
 		{
 			if (String.IsNullOrEmpty(fileName))
 			{
@@ -295,6 +298,8 @@ namespace BeeBaby.ResourcesProviders
 					}
 				}
 
+				if (createThumbnail)
+				{
 				using (var thumbnail = GenerateThumbnail(fullScreenImage))
 				{
 					using (var imageData = thumbnail.AsJPEG(MediaBase.ImageCompressionQuality))
@@ -305,6 +310,7 @@ namespace BeeBaby.ResourcesProviders
 							Console.WriteLine("Ocorreu um erro ao salvar o arquivo \"" + fileName + "\":\n" + error.LocalizedDescription);
 						}
 					}
+				}
 				}
 			}
 
@@ -326,29 +332,33 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The image.</returns>
 		/// <param name="imageName">Image name.</param>
-		/// <param name="thumbnail">If set to <c>true</c> thumbnail.</param>
-		public UIImage GetImage(string imageName, bool thumbnail = false)
+		public UIImage GetImage(string imageName)
 		{
 			var permanentDirectory = GetPermanentDirectory();
-			var scale = CurrentContext.Instance.Scale;
-
-			if (!thumbnail)
-			{
-				imageName = imageName.Remove(0, m_thumbnailPrefix.Length);
-			}
 
 			var imagePath = Directory.GetFiles(permanentDirectory, string.Concat("*", m_fileExtension))
-				.FirstOrDefault(i => i.Contains(Path.Combine(GetPermanentDirectory(), imageName)));
+				.FirstOrDefault(i => i.Contains(Path.Combine(permanentDirectory, imageName)));
 
 			if (imagePath != null)
 			{
-				var data = NSData.FromFile(imagePath);
-				return UIImage.LoadFromData(data, scale);
+				return LoadImage(imagePath);
 			}
 			else
 			{
 				return null;
 			}
+		}
+
+		/// <summary>
+		/// Loads the image.
+		/// </summary>
+		/// <returns>The image.</returns>
+		/// <param name="imagePath">Image path.</param>
+		public UIImage LoadImage(string imagePath)
+		{
+			var scale = CurrentContext.Instance.Scale;
+			var data = NSData.FromFile(imagePath);
+			return UIImage.LoadFromData(data, scale);
 		}
 
 		/// <summary>
