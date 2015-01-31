@@ -135,7 +135,7 @@ namespace BeeBaby.VisualElements
 		/// <param name="imageProvider">Image provider.</param>
 		UIImage GetPhotoProfile(ImageProvider imageProvider)
 		{
-			var photoProfile = imageProvider.GetImage(MediaBase.PhotoProfileName, true);
+			var photoProfile = imageProvider.GetImage(MediaBase.PhotoProfileName);
 			if (photoProfile == null)
 			{
 				photoProfile = UIImage.FromFile("photo-profile.png");
