@@ -17,12 +17,13 @@ namespace BeeBaby.Progress
 		}
 
 		/// <summary>
-		/// Execute this instance.
+		/// Execute the specified status.
 		/// </summary>
-		public void Execute()
+		/// <param name="status">Status.</param>
+		public void Execute(string status = null)
 		{
 			// Shows the spinner
-			BTProgressHUD.Show();
+			BTProgressHUD.Show(status);
 
 			InvokeInBackground(() => {
 				InvokeOnMainThread(() => {
