@@ -234,6 +234,7 @@ namespace BeeBaby.ResourcesProviders
 			var permanentDirectory = GetPermanentDirectory();
 
 			Directory.EnumerateFiles(permanentDirectory)
+				.Where(f => f.EndsWith(m_fileExtension))
 				.ToList().ForEach(source => {
 				var destiny = Path.Combine(temporaryDirectory, Path.GetFileName(source));
 
