@@ -96,7 +96,7 @@ namespace BeeBaby.Util
 			{
 				var imageProvider = new ImageProvider(baby.Id);
 				var fileName = imageProvider.GetThumbnailImageName(MediaBase.PhotoProfileName);
-				imageProvider.DeleteFile(fileName);
+				imageProvider.DeletePermanentFile(fileName);
 			}
 		}
 

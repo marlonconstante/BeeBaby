@@ -68,10 +68,10 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
-		/// Deletes the file.
+		/// Deletes the permanent file.
 		/// </summary>
 		/// <param name="fileName">File name.</param>
-		public void DeleteFile(string fileName)
+		public void DeletePermanentFile(string fileName)
 		{
 			var filePath = Path.Combine(GetPermanentDirectory(), string.Concat(fileName, m_fileExtension));
 			if (File.Exists(filePath))
