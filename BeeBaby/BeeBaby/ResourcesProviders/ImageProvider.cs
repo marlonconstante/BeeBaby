@@ -32,7 +32,7 @@ namespace BeeBaby.ResourcesProviders
 		public ImageProvider(string name = "")
 		{
 			m_name = name;
-			m_appDocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			m_appDocumentsDirectory = FileHandle.RootFolderPath;
 		}
 
 		/// <summary>
