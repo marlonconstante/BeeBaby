@@ -6,6 +6,7 @@ using Domain.Moment;
 using Infrastructure.Systems;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
+using BeeBaby.Backup;
 
 namespace BeeBaby.Navigations
 {
@@ -54,6 +55,7 @@ namespace BeeBaby.Navigations
 				moment.Location = new LocationService().SaveLocation(moment.Location);
 
 				new MomentService().SaveMoment(moment);
+				new MomentBackup(moment).Save();
 				RemoteDataSystem.SendMomentData(moment);
 			}
 			new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
