@@ -14,6 +14,7 @@ using Domain.Moment;
 using Infrastructure.Systems.Domain;
 using BeeBaby.Media;
 using BeeBaby.Controllers;
+using BeeBaby.Backup;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -74,9 +75,17 @@ namespace BeeBaby.ResourcesProviders
 		public void DeletePermanentFile(string fileName)
 		{
 			var filePath = Path.Combine(GetPermanentDirectory(), string.Concat(fileName, m_fileExtension));
-			if (File.Exists(filePath))
+			File.Delete(filePath);
+		}
+
+		/// <summary>
+		/// Creates the empty file.
+		/// </summary>
+		/// <param name="filePath">File path.</param>
+		void CreateEmptyFile(string filePath) {
+			if (FileHandle.IsValid(filePath))
 			{
-				File.Delete(filePath);
+				File.Create(filePath).Close();
 			}
 		}
 
@@ -94,12 +103,15 @@ namespace BeeBaby.ResourcesProviders
 				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
 				var validPermanentDirectory = !temporary && !string.IsNullOrEmpty(m_name) && directoryName.EndsWith(m_name);
 
-				if (validTemporaryDirectory || validPermanentDirectory)
+				var files = Directory.EnumerateFiles(directoryName).ToList();
+				if (validTemporaryDirectory)
 				{
-					Directory.EnumerateFiles(directoryName)
-							.ToList().ForEach(fileName => File.Delete(fileName));
-
+					files.ForEach(file => File.Delete(file));
 					Directory.Delete(directoryName);
+				}
+				else if (validPermanentDirectory)
+				{
+					files.ForEach(file => CreateEmptyFile(file));
 				}
 			});
 		}
@@ -136,7 +148,7 @@ namespace BeeBaby.ResourcesProviders
 				thumbnails 
 				? f.Contains(m_thumbnailPrefix)
 				: !f.Contains(m_thumbnailPrefix)
-			).ToList();
+			).Where(f => new FileInfo(f).Length > 0L).ToList();
 
 			return fileNames;
 		}
@@ -227,34 +239,36 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Saves the permanent images.
 		/// </summary>
-		/// <param name="imagesNames">Images names.</param>
-		public void SavePermanentImages(IList<string> imagesNames)
+		/// <param name="thumbnailNames">Thumbnail names.</param>
+		public void SavePermanentImages(IList<string> thumbnailNames)
 		{
 			var temporaryDirectory = GetTemporaryDirectory();
 			var permanentDirectory = GetPermanentDirectory();
 
+			var imageNames = new List<string>();
+			foreach (var thumbnailName in thumbnailNames)
+			{
+				imageNames.Add(thumbnailName);
+				imageNames.Add(thumbnailName.Remove(0, m_thumbnailPrefix.Length));
+			}
+
 			Directory.EnumerateFiles(permanentDirectory)
 				.Where(f => f.EndsWith(m_fileExtension))
-				.ToList().ForEach(source => {
-				var destiny = Path.Combine(temporaryDirectory, Path.GetFileName(source));
-
-				File.Move(source, destiny);
+				.ToList().ForEach(filePath => {
+				var imageName = Path.GetFileName(filePath);
+				if (imageNames.Contains(imageName))
+				{
+					imageNames.Remove(imageName);
+				}
+				else
+				{
+					CreateEmptyFile(filePath);
+				}
 			});
 
-			foreach (var imageName in imagesNames)
+			foreach (var imageName in imageNames)
 			{
-				// Thumbnails
-				var source = Path.Combine(temporaryDirectory, imageName);
-				var destiny = Path.Combine(permanentDirectory, imageName);
-
-				File.Move(source, destiny);
-
-				// Images at full size
-				var imageFullSizedName = imageName.Remove(0, m_thumbnailPrefix.Length);
-				source = Path.Combine(temporaryDirectory, imageFullSizedName);
-				destiny = Path.Combine(permanentDirectory, imageFullSizedName);
-
-				File.Move(source, destiny);
+				File.Move(Path.Combine(temporaryDirectory, imageName), Path.Combine(permanentDirectory, imageName));
 			}
 		}
 
