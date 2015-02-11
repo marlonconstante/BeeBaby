@@ -323,6 +323,7 @@
     <BundleResource Include="Resources\template-1.jpg" />
     <BundleResource Include="Resources\template-2.jpg" />
     <BundleResource Include="Resources\camera-button.svg" />
+    <BundleResource Include="Resources\whatsapp%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
