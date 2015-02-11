@@ -159,10 +159,15 @@ namespace BeeBaby.Controllers
 				instagramActivity.IncludeURL = false;
 				instagramActivity.PresentFromView = View;
 
+				var whatsAppActivity = new WhatsAppActivity();
+				whatsAppActivity.IncludeURL = false;
+				whatsAppActivity.PresentFromView = View;
+
+
 				var shareText = m_moment.EventDescription + ((m_moment.MomentDescription.Length > 0) ? " - " + m_moment.MomentDescription : string.Empty);
 				var shareUrl = new NSUrl(string.Empty);
 				var activityItems = new NSObject[]{ (NSString) shareText, shareUrl, imageModel.Image };
-				var applicationActivities = new UIActivity[]{ instagramActivity };
+				var applicationActivities = new UIActivity[]{ instagramActivity, whatsAppActivity };
 				var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
 
 				activityViewController.CompletionHandler += (activityTitle, close) => {
@@ -170,6 +175,11 @@ namespace BeeBaby.Controllers
 					{
 						instagramActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
 					}
+					else if(activityTitle != null && activityTitle.ToString().Equals("UIActivityTypePostToWhatsApp"))
+					{
+						whatsAppActivity.DocumentController.PresentOpenInMenu(View.Bounds, View, true);
+					}
+
 					m_showProgress = true;
 				};
 				PresentViewController(activityViewController, true, () => {

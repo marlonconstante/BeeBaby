@@ -54,7 +54,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (DMDW9DQEA6)</CodesignKey>
+    <CodesignKey>iPhone Developer: Wagner Assis (KSS7PGS4U8)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -63,7 +63,6 @@
     <BuildIpa>true</BuildIpa>
     <MtouchExtraArgs>-time -time --dsym=false</MtouchExtraArgs>
     <OptimizePNGs>false</OptimizePNGs>
-    <CodesignProvision>D14C94B8-86B1-42EF-BEF6-83415A09C274</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -536,6 +535,7 @@
     <Compile Include="Backup\FileHandle.cs" />
     <Compile Include="Backup\FileBackup.cs" />
     <Compile Include="Backup\MomentBackup.cs" />
+    <Compile Include="Activity\WhatsAppActivity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

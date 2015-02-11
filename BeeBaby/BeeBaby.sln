@@ -209,7 +209,6 @@ Global
 		{940DBD83-CDFA-40BD-8139-5FB32851D1DB} = {0D61ADF6-DA94-4E23-8E22-79C896D46C6C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BeeBaby\BeeBaby.iOS.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
