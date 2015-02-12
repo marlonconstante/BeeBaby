@@ -43,53 +43,53 @@ namespace BeeBaby.Synchronization
 		{
 			if (!IsRunning)
 			{
-			try
-			{
-				IsRunning = true;
-				syncEvent.StartedSynchronizing();
-
-				DateLastSync = dateLastSync;
-				CurrentDirectory = directory;
-				FileKeys.Clear();
-
-				LoadLocalMapFiles();
-				await LoadRemoteMapFiles();
-
-				foreach (var fileKey in FileKeys.Reverse())
+				try
 				{
-					var localFile = GetFileData(LocalMapFiles, fileKey);
-					var remoteFile = GetFileData(RemoteMapFiles, fileKey);
+					IsRunning = true;
+					syncEvent.StartedSynchronizing();
 
-					localFile.ObjectId = remoteFile.ObjectId;
+					DateLastSync = dateLastSync;
+					CurrentDirectory = directory;
+					FileKeys.Clear();
 
-					if (localFile.DateLastModified > remoteFile.DateLastModified)
+					LoadLocalMapFiles();
+					await LoadRemoteMapFiles();
+
+					foreach (var fileKey in FileKeys.Reverse())
 					{
-						await localFile.Upload();
-					}
-					else if (localFile.DateLastModified < remoteFile.DateLastModified)
-					{
-						await remoteFile.Download((data) => {
-							if (remoteFile.IsMomentBackup())
-							{
-								var momentBackup = new MomentBackup(remoteFile.DirectoryName);
-								momentBackup.ReadAndUpdate(new MemoryStream(data));
-								return momentBackup.Restore();
-							}
-							return true;
-						});
+						var localFile = GetFileData(LocalMapFiles, fileKey);
+						var remoteFile = GetFileData(RemoteMapFiles, fileKey);
+
+						localFile.ObjectId = remoteFile.ObjectId;
+
+						if (localFile.DateLastModified > remoteFile.DateLastModified)
+						{
+							await localFile.Upload();
+						}
+						else if (localFile.DateLastModified < remoteFile.DateLastModified)
+						{
+							await remoteFile.Download((data) => {
+								if (remoteFile.IsMomentBackup())
+								{
+									var momentBackup = new MomentBackup(remoteFile.DirectoryName);
+									momentBackup.ReadAndUpdate(new MemoryStream(data));
+									return momentBackup.Restore();
+								}
+								return true;
+							});
+						}
 					}
 				}
+				catch (Exception ex)
+				{
+					// Ignora..
+				}
+				finally
+				{
+					syncEvent.EndedSynchronizing();
+					IsRunning = false;
+				}
 			}
-			catch (Exception ex)
-			{
-				// Ignora..
-			}
-			finally
-			{
-				syncEvent.EndedSynchronizing();
-				IsRunning = false;
-			}
-		}
 		}
 
 		/// <summary>
