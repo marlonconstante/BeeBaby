@@ -50,11 +50,11 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		/// <param name="args">Arguments.</param>
-		static void OnTimerElapsed(object sender, ElapsedEventArgs args)
+		static async void OnTimerElapsed(object sender, ElapsedEventArgs args)
 		{
 			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 			{
-				FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue);
+				await FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue);
 			}
 		}
 
