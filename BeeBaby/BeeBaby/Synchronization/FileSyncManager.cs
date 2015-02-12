@@ -30,7 +30,7 @@ namespace BeeBaby.Synchronization
 			LocalMapFiles = new Dictionary<string, FileData>();
 			RemoteMapFiles = new Dictionary<string, FileData>();
 			EmptyFileData = new FileData();
-			Semaphore = new SemaphoreSlim(1);
+			IsRunning = false;
 		}
 
 		/// <summary>
@@ -39,11 +39,13 @@ namespace BeeBaby.Synchronization
 		/// <param name="syncEvent">Sync event.</param>
 		/// <param name="dateLastSync">Date last sync.</param>
 		/// <param name="directory">Directory.</param>
-		public async void Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
+		public async Task Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
 		{
+			if (!IsRunning)
+			{
 			try
 			{
-				await Semaphore.WaitAsync();
+				IsRunning = true;
 				syncEvent.StartedSynchronizing();
 
 				DateLastSync = dateLastSync;
@@ -85,8 +87,9 @@ namespace BeeBaby.Synchronization
 			finally
 			{
 				syncEvent.EndedSynchronizing();
-				Semaphore.Release();
+				IsRunning = false;
 			}
+		}
 		}
 
 		/// <summary>
@@ -240,10 +243,10 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
-		/// Gets or sets the semaphore.
+		/// Gets or sets a value indicating whether this instance is running.
 		/// </summary>
-		/// <value>The semaphore.</value>
-		SemaphoreSlim Semaphore {
+		/// <value><c>true</c> if this instance is running; otherwise, <c>false</c>.</value>
+		bool IsRunning {
 			get;
 			set;
 		}
