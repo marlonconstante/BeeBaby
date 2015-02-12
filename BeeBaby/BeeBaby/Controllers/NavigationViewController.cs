@@ -12,7 +12,7 @@ namespace BeeBaby.Controllers
 {
 	public abstract class NavigationViewController : BaseViewController
 	{
-		UIView m_titleView;
+		protected UIView TitleView { get; set; }
 		protected NavigationButtonItem LeftBarButtonItem { get; set; }
 		protected NavigationButtonItem RightBarButtonItem { get; set; }
 
@@ -215,14 +215,14 @@ namespace BeeBaby.Controllers
 				label.Text = TitleScreen;
 				label.SizeToFit();
 				label.SetStyleClass("title-label");
-				m_titleView = label;
+				TitleView = label;
 			}
 			else
 			{
-				m_titleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
-				m_titleView.SetStyleClass("bee-baby");
+				TitleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
+				TitleView.SetStyleClass("bee-baby");
 			}
-			NavigationItem.TitleView = m_titleView;
+			NavigationItem.TitleView = TitleView;
 		}
 
 		/// <summary>
