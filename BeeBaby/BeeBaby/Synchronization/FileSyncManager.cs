@@ -34,15 +34,17 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
-		/// Synchronize the specified dateLastSync and directory.
+		/// Synchronize files.
 		/// </summary>
+		/// <param name="syncEvent">Sync event.</param>
 		/// <param name="dateLastSync">Date last sync.</param>
 		/// <param name="directory">Directory.</param>
-		public async void Synchronize(DateTime dateLastSync, string directory = null)
+		public async void Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
 		{
 			try
 			{
 				await Semaphore.WaitAsync();
+				syncEvent.StartedSynchronizing();
 
 				DateLastSync = dateLastSync;
 				CurrentDirectory = directory;
@@ -82,6 +84,7 @@ namespace BeeBaby.Synchronization
 			}
 			finally
 			{
+				syncEvent.EndedSynchronizing();
 				Semaphore.Release();
 			}
 		}
@@ -249,7 +252,7 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the date last sync.
 		/// </summary>
 		/// <value>The date last sync.</value>
-		public DateTime DateLastSync {
+		DateTime DateLastSync {
 			get;
 			set;
 		}
