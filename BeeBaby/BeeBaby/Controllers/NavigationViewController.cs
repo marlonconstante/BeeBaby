@@ -12,10 +12,6 @@ namespace BeeBaby.Controllers
 {
 	public abstract class NavigationViewController : BaseViewController
 	{
-		protected UIView TitleView { get; set; }
-		protected NavigationButtonItem LeftBarButtonItem { get; set; }
-		protected NavigationButtonItem RightBarButtonItem { get; set; }
-
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -266,6 +262,24 @@ namespace BeeBaby.Controllers
 			}
 			NavigationItem.SetRightBarButtonItem(RightBarButtonItem, true);
 		}
+
+		/// <summary>
+		/// Gets or sets the title view.
+		/// </summary>
+		/// <value>The title view.</value>
+		protected UIView TitleView { get; set; }
+
+		/// <summary>
+		/// Gets or sets the left bar button item.
+		/// </summary>
+		/// <value>The left bar button item.</value>
+		protected NavigationButtonItem LeftBarButtonItem { get; set; }
+
+		/// <summary>
+		/// Gets or sets the right bar button item.
+		/// </summary>
+		/// <value>The right bar button item.</value>
+		protected NavigationButtonItem RightBarButtonItem { get; set; }
 
 		/// <summary>
 		/// Gets the navigation item.
