@@ -19,7 +19,7 @@ using BigTed;
 
 namespace BeeBaby.Controllers
 {
-	public partial class TimelineViewController : NavigationViewController
+	public partial class TimelineViewController : SyncNavigationViewController
 	{
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
