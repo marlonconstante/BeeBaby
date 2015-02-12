@@ -3,6 +3,7 @@ using BeeBaby.Synchronization;
 using BeeBaby.VisualElements;
 using System.Drawing;
 using System.Timers;
+using BeeBaby.Network;
 
 namespace BeeBaby.Controllers
 {
@@ -51,7 +52,10 @@ namespace BeeBaby.Controllers
 		/// <param name="args">Arguments.</param>
 		static void OnTimerElapsed(object sender, ElapsedEventArgs args)
 		{
-			FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue);
+			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
+			{
+				FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue);
+			}
 		}
 
 		/// <summary>
