@@ -13,8 +13,8 @@ namespace BeeBaby.Controllers
 	public abstract class NavigationViewController : BaseViewController
 	{
 		UIView m_titleView;
-		NavigationButtonItem LeftBarButtonItem;
-		NavigationButtonItem RightBarButtonItem;
+		protected NavigationButtonItem LeftBarButtonItem { get; set; }
+		protected NavigationButtonItem RightBarButtonItem { get; set; }
 
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{
