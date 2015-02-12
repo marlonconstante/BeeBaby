@@ -13,8 +13,8 @@ namespace BeeBaby.Controllers
 	public abstract class NavigationViewController : BaseViewController
 	{
 		UIView m_titleView;
-		NavigationButtonItem m_leftBarButtonItem;
-		NavigationButtonItem m_rightBarButtonItem;
+		NavigationButtonItem LeftBarButtonItem;
+		NavigationButtonItem RightBarButtonItem;
 
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{
@@ -232,7 +232,7 @@ namespace BeeBaby.Controllers
 		{
 			if (IsAddLeftBarButtonItem())
 			{
-				m_leftBarButtonItem =
+				LeftBarButtonItem =
 					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
 					, LeftBarButtonStyleClass());
@@ -241,9 +241,9 @@ namespace BeeBaby.Controllers
 				proxy.Action = (target, sender, args) => {
 					target.LeftBarButtonAction();
 				};
-				m_leftBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
+				LeftBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
-			NavigationItem.SetLeftBarButtonItem(m_leftBarButtonItem, true);
+			NavigationItem.SetLeftBarButtonItem(LeftBarButtonItem, true);
 		}
 
 		/// <summary>
@@ -253,7 +253,7 @@ namespace BeeBaby.Controllers
 		{
 			if (IsAddRightBarButtonItem())
 			{
-				m_rightBarButtonItem =
+				RightBarButtonItem =
 					new NavigationButtonItem(RightBarButtonFrame()
 					, 6f
 					, RightBarButtonStyleClass());
@@ -262,9 +262,9 @@ namespace BeeBaby.Controllers
 				proxy.Action = (target, sender, args) => {
 					target.RightBarButtonAction();
 				};
-				m_rightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
+				RightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
-			NavigationItem.SetRightBarButtonItem(m_rightBarButtonItem, true);
+			NavigationItem.SetRightBarButtonItem(RightBarButtonItem, true);
 		}
 
 		/// <summary>
