@@ -31,15 +31,15 @@ namespace BeeBaby.Synchronization
 			RemoteMapFiles = new Dictionary<string, FileData>();
 			EmptyFileData = new FileData();
 			IsRunning = false;
+			DateLastSync = DateTime.MinValue;
 		}
 
 		/// <summary>
 		/// Synchronize files.
 		/// </summary>
 		/// <param name="syncEvent">Sync event.</param>
-		/// <param name="dateLastSync">Date last sync.</param>
 		/// <param name="directory">Directory.</param>
-		public async Task<bool> Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
+		public async Task<bool> Synchronize(ISyncEvent syncEvent, string directory = null)
 		{
 			if (!IsRunning)
 			{
@@ -48,7 +48,6 @@ namespace BeeBaby.Synchronization
 					IsRunning = true;
 					syncEvent.StartedSynchronizing();
 
-					DateLastSync = dateLastSync;
 					CurrentDirectory = directory;
 					FileKeys.Clear();
 
@@ -78,6 +77,8 @@ namespace BeeBaby.Synchronization
 								return true;
 							});
 						}
+
+						UpdateDateLastSync(localFile.DateLastModified, remoteFile.DateLastModified);
 					}
 					return FileKeys.Count > 0;
 				}
@@ -92,6 +93,21 @@ namespace BeeBaby.Synchronization
 				}
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// Updates the date last sync.
+		/// </summary>
+		/// <param name="dates">Dates.</param>
+		void UpdateDateLastSync(params DateTime[] dates)
+		{
+			foreach (var date in dates)
+			{
+				if (date > DateLastSync)
+				{
+					DateLastSync = date;
+				}
+			}
 		}
 
 		/// <summary>

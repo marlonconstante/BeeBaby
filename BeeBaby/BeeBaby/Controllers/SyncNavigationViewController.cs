@@ -73,7 +73,7 @@ namespace BeeBaby.Controllers
 		{
 			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 			{
-				if (await FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue))
+				if (await FileSyncManager.Instance.Synchronize(SyncButton))
 				{
 					if (WeakViewController != null && WeakViewController.IsAlive)
 					{
