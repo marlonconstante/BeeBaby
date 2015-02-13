@@ -33,6 +33,7 @@ namespace BeeBaby.Controllers
 		/// <param name="handle">Handle.</param>
 		public SyncNavigationViewController(IntPtr handle) : base(handle)
 		{
+			RightBarButtonItem = SyncBarButtonItem;
 		}
 
 		/// <summary>
@@ -40,9 +41,27 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			RightBarButtonItem = SyncBarButtonItem;
-
 			base.ViewDidLoad();
+
+			SyncButton.Update();
+		}
+
+		/// <summary>
+		/// Views the will appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			WeakViewController = new WeakReference(this);
+		}
+
+		/// <summary>
+		/// Raises the sync performed event.
+		/// </summary>
+		public virtual void OnSyncPerformed()
+		{
 		}
 
 		/// <summary>
@@ -54,7 +73,16 @@ namespace BeeBaby.Controllers
 		{
 			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 			{
-				await FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue);
+				if (await FileSyncManager.Instance.Synchronize(SyncButton, DateTime.MinValue))
+				{
+					if (WeakViewController != null && WeakViewController.IsAlive)
+					{
+						var viewController = (SyncNavigationViewController) WeakViewController.Target;
+						viewController.InvokeOnMainThread(() => {
+							viewController.OnSyncPerformed();
+						});
+					}
+				}
 			}
 		}
 
@@ -75,5 +103,10 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <value>The sync bar button item.</value>
 		static NavigationButtonItem SyncBarButtonItem { get; set; }
+
+		/// <summary>
+		/// The weak view controller.
+		/// </summary>
+		static WeakReference WeakViewController;
 	}
 }
