@@ -38,8 +38,7 @@ namespace BeeBaby.Synchronization
 		/// Synchronize files.
 		/// </summary>
 		/// <param name="syncEvent">Sync event.</param>
-		/// <param name="directory">Directory.</param>
-		public async Task<bool> Synchronize(ISyncEvent syncEvent, string directory = null)
+		public async Task<bool> Synchronize(ISyncEvent syncEvent)
 		{
 			if (!IsRunning)
 			{
@@ -48,7 +47,6 @@ namespace BeeBaby.Synchronization
 					IsRunning = true;
 					syncEvent.StartedSynchronizing();
 
-					CurrentDirectory = directory;
 					FileKeys.Clear();
 
 					LoadLocalMapFiles();
@@ -150,13 +148,9 @@ namespace BeeBaby.Synchronization
 		/// <returns>The file data.</returns>
 		async Task<IEnumerable<ParseObject>> FindFileData()
 		{
-			var query = ParseObject.GetQuery("FileData");
-			query.WhereEqualTo("DeviceId", DeviceId);
-			if (CurrentDirectory != null)
-			{
-				query.WhereEqualTo("DirectoryName", CurrentDirectory);
-			}
-			query.WhereGreaterThan("DateLastModified", DateLastSync);
+			var query = ParseObject.GetQuery("FileData")
+				.WhereEqualTo("DeviceId", DeviceId)
+				.WhereGreaterThan("DateLastModified", DateLastSync);
 			return await query.FindAsync();
 		}
 
@@ -196,7 +190,6 @@ namespace BeeBaby.Synchronization
 		List<string> GetDirectories(string path)
 		{
 			return Directory.EnumerateDirectories(path).Where(dir => IsValidDirectory(dir))
-				.Where(dir => string.IsNullOrEmpty(CurrentDirectory) || CurrentDirectory.Equals(dir))
 				.Where(dir => Directory.GetLastWriteTimeUtc(dir) > DateLastSync)
 				.ToList();
 		}
@@ -274,15 +267,6 @@ namespace BeeBaby.Synchronization
 		/// </summary>
 		/// <value>The date last sync.</value>
 		DateTime DateLastSync {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the current directory.
-		/// </summary>
-		/// <value>The current directory.</value>
-		string CurrentDirectory {
 			get;
 			set;
 		}
