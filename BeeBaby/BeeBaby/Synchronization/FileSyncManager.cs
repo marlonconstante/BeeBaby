@@ -31,7 +31,7 @@ namespace BeeBaby.Synchronization
 			RemoteMapFiles = new Dictionary<string, FileData>();
 			EmptyFileData = new FileData();
 			IsRunning = false;
-			DateLastSync = DateTime.MinValue;
+			DateLastSync = PreferencesEditor.DateLastSync;
 		}
 
 		/// <summary>
@@ -78,6 +78,8 @@ namespace BeeBaby.Synchronization
 
 						UpdateDateLastSync(localFile.DateLastModified, remoteFile.DateLastModified);
 					}
+
+					PreferencesEditor.DateLastSync = DateLastSync;
 					return FileKeys.Count > 0;
 				}
 				catch (Exception ex)

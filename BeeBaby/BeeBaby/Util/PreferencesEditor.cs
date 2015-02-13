@@ -33,6 +33,20 @@ namespace BeeBaby.Util
 		}
 
 		/// <summary>
+		/// Gets or sets the date last sync.
+		/// </summary>
+		/// <value>The date last sync.</value>
+		public static DateTime DateLastSync {
+			get {
+				return new DateTime(long.Parse(UserDefaults.StringForKey("DateLastSync") ?? "0"));
+			}
+			set {
+				UserDefaults.SetString(value.Ticks.ToString(), "DateLastSync");
+				UserDefaults.Synchronize();
+			}
+		}
+
+		/// <summary>
 		/// Gets the device identifier.
 		/// </summary>
 		/// <value>The device identifier.</value>
