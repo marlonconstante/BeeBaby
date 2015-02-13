@@ -39,7 +39,7 @@ namespace BeeBaby.Synchronization
 		/// <param name="syncEvent">Sync event.</param>
 		/// <param name="dateLastSync">Date last sync.</param>
 		/// <param name="directory">Directory.</param>
-		public async Task Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
+		public async Task<bool> Synchronize(ISyncEvent syncEvent, DateTime dateLastSync, string directory = null)
 		{
 			if (!IsRunning)
 			{
@@ -79,6 +79,7 @@ namespace BeeBaby.Synchronization
 							});
 						}
 					}
+					return FileKeys.Count > 0;
 				}
 				catch (Exception ex)
 				{
@@ -90,6 +91,7 @@ namespace BeeBaby.Synchronization
 					IsRunning = false;
 				}
 			}
+			return false;
 		}
 
 		/// <summary>
