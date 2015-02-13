@@ -73,6 +73,16 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Raises the sync performed event.
+		/// </summary>
+		public override void OnSyncPerformed()
+		{
+			base.OnSyncPerformed();
+
+			InitTimeline();
+		}
+
+		/// <summary>
 		/// Ends the editing.
 		/// </summary>
 		public override void EndEditing()
