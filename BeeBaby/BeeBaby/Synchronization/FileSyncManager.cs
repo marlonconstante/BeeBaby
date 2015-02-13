@@ -30,8 +30,8 @@ namespace BeeBaby.Synchronization
 			LocalMapFiles = new Dictionary<string, FileData>();
 			RemoteMapFiles = new Dictionary<string, FileData>();
 			EmptyFileData = new FileData();
-			IsRunning = false;
 			DateLastSync = PreferencesEditor.DateLastSync;
+			IsRunning = false;
 		}
 
 		/// <summary>
@@ -256,19 +256,19 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this instance is running.
+		/// Gets or sets the date last sync.
 		/// </summary>
-		/// <value><c>true</c> if this instance is running; otherwise, <c>false</c>.</value>
-		bool IsRunning {
+		/// <value>The date last sync.</value>
+		DateTime DateLastSync {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the date last sync.
+		/// Gets or sets a value indicating whether this instance is running.
 		/// </summary>
-		/// <value>The date last sync.</value>
-		DateTime DateLastSync {
+		/// <value><c>true</c> if this instance is running; otherwise, <c>false</c>.</value>
+		bool IsRunning {
 			get;
 			set;
 		}
