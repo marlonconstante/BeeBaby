@@ -33,6 +33,36 @@ namespace BeeBaby.VisualElements
 		void SetUp()
 		{
 			this.SetStyleClass("button-sync");
+			InitialTransform = Transform;
+		}
+
+		/// <summary>
+		/// Rotate this instance.
+		/// </summary>
+		void Rotate()
+		{
+			Transform = InitialTransform;
+
+			UIView.Animate(1d, 0d, UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveLinear, () => {
+				Transform = CGAffineTransform.MakeRotation((float) -Math.PI);
+			}, () => {
+				if (IsSynchronizing)
+				{
+					Rotate();
+				} else {
+					UIView.Animate(0.3d, () => {
+						Alpha = 0f;
+					});
+				}
+			});
+		}
+
+		/// <summary>
+		/// Update this instance.
+		/// </summary>
+		public void Update()
+		{
+			Alpha = IsSynchronizing ? 1f : 0f;
 		}
 
 		/// <summary>
@@ -40,13 +70,13 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		public void StartedSynchronizing()
 		{
+			IsSynchronizing = true;
+
 			BeginInvokeOnMainThread(() => {
 				UIView.Animate(0.3d, () => {
 					Alpha = 1f;
 				}, () => {
-					UIView.Animate(1d, 0d, UIViewAnimationOptions.Repeat | UIViewAnimationOptions.CurveLinear, () => {
-						Transform = CGAffineTransform.MakeRotation((float) -Math.PI);
-					}, null);
+					Rotate();
 				});
 			});
 		}
@@ -56,11 +86,25 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		public void EndedSynchronizing()
 		{
-			BeginInvokeOnMainThread(() => {
-				UIView.Animate(0.3d, () => {
-					Alpha = 0f;
-				});
-			});
+			IsSynchronizing = false;
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is synchronizing.
+		/// </summary>
+		/// <value><c>true</c> if this instance is synchronizing; otherwise, <c>false</c>.</value>
+		bool IsSynchronizing {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the initial transform.
+		/// </summary>
+		/// <value>The initial transform.</value>
+		CGAffineTransform InitialTransform {
+			get;
+			set;
 		}
 	}
 }
