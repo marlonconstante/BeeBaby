@@ -117,6 +117,15 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
+		/// Gets or sets the size.
+		/// </summary>
+		/// <value>The size.</value>
+		public long Size {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the parse file.
 		/// </summary>
 		/// <value>The parse file.</value>

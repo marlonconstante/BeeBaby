@@ -123,6 +123,7 @@ namespace BeeBaby.Synchronization
 						DeviceId = DeviceId,
 						DirectoryName = Path.GetFileName(dir),
 						FileName = Path.GetFileName(file),
+						Size = new FileInfo(file).Length,
 						DateLastModified = File.GetLastWriteTimeUtc(file)
 					});
 				});
