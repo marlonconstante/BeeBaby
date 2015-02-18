@@ -16,6 +16,8 @@ namespace Infrastructure.Systems.Utils
 		{
 			var target = Activator.CreateInstance<T>();
 			SetPropertyValue("ObjectId", target, source.ObjectId);
+			SetPropertyValue("CreatedAt", target, source.CreatedAt);
+			SetPropertyValue("UpdatedAt", target, source.UpdatedAt);
 			foreach (var key in source.Keys)
 			{
 				object value;
