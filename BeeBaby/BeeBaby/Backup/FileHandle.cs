@@ -9,7 +9,7 @@ namespace BeeBaby.Backup
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.Backup.FileHandle"/> class.
 		/// </summary>
-		public FileHandle()
+		protected FileHandle()
 		{
 		}
 
