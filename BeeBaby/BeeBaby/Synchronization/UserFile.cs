@@ -10,7 +10,7 @@ using Skahal.Infrastructure.Framework.Domain;
 
 namespace BeeBaby.Synchronization
 {
-	public class UserFile : FileHandle, IParseDomain
+	public class UserFile : FileHandle, IParseDomain, IFileRelease
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.UserFile"/> class.
@@ -109,6 +109,24 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
+		/// Gets or sets the size.
+		/// </summary>
+		/// <value>The size.</value>
+		public long Size {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the version.
+		/// </summary>
+		/// <value>The version.</value>
+		public long Version {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the device identifier.
 		/// </summary>
 		/// <value>The device identifier.</value>
@@ -131,24 +149,6 @@ namespace BeeBaby.Synchronization
 		/// </summary>
 		/// <value>The name of the file.</value>
 		public string FileName {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the size.
-		/// </summary>
-		/// <value>The size.</value>
-		public long Size {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the version.
-		/// </summary>
-		/// <value>The version.</value>
-		public long Version {
 			get;
 			set;
 		}
