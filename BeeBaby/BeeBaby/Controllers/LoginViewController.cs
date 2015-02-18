@@ -24,6 +24,8 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLoad();
 
+			NavigationController.NavigationBarHidden = true;
+
 			txtUser.PlaceholderColor = UIColor.Gray;
 			txtPassword.PlaceholderColor = UIColor.Gray;
 		}
@@ -45,17 +47,21 @@ namespace BeeBaby.Controllers
 		/// Enter the specified signUp.
 		/// </summary>
 		/// <param name="signUp">If set to <c>true</c> sign up.</param>
+		/// ZBKEY
 		async void Enter(bool signUp)
 		{
 			BTProgressHUD.Show();
 
-			if (signUp ? await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text) : await RemoteDataSystem.Login(txtUser.Text, txtPassword.Text))
+			if (signUp ? await RemoteDataSystem.Login(txtUser.Text, txtPassword.Text) :await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text))
 			{
-				Windows.ChangeRootViewController("SlideoutNavigationController");
+				BTProgressHUD.Dismiss();
+				//Windows.ChangeRootViewController("SlideoutNavigationController");
+				Console.WriteLine("Sucesso");
 			}
 			else
 			{
 				BTProgressHUD.Dismiss();
+				Console.WriteLine("Error");
 
 				new UIAlertView("Ops".Translate(), (signUp ? "SignUpError" : "EmailAndPasswordNotMatch").Translate(), null, "TryAgain".Translate(), null).Show();
 			}
@@ -68,18 +74,26 @@ namespace BeeBaby.Controllers
 		{
 			var email = txtUser.Text;
 			Validators.RunIfValidEmail(email, () => {
+
 				ParseUser.RequestPasswordResetAsync(email);
+				Console.WriteLine("Enviado ao seu email.");
 			});
+		}
+
+		partial void forgotPass(UIButton sender)
+		{
+			ResetPassword();
 		}
 
 		/// <summary>
 		/// Login the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
+		/// ZBKEY
 		partial void Login(UIButton sender)
 		{
 			Validators.RunIfValidLogin(txtUser.Text, txtPassword.Text, () => {
-				Enter(false);
+				Enter(true);
 			});
 		}
 	}

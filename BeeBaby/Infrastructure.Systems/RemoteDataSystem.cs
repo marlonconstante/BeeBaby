@@ -22,10 +22,12 @@ namespace Infrastructure.Systems
 		/// <param name="password">Password.</param>
 		public static async Task<bool> Login(string username, string password)
 		{
+
 			try
 			{
 				var user = await ParseUser.LogInAsync(username, password);
 				return user.IsAuthenticated;
+
 			}
 			catch (Exception ex)
 			{

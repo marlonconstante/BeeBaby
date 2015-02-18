@@ -13,6 +13,9 @@ namespace BeeBaby.Controllers
 	partial class LoginViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnForgotPass { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton btnLogin { get; set; }
 
 		[Outlet]
@@ -23,6 +26,9 @@ namespace BeeBaby.Controllers
 
 		[Outlet]
 		BeeBaby.VisualElements.TextField txtUser { get; set; }
+
+		[Action ("forgotPass:")]
+		partial void forgotPass (MonoTouch.UIKit.UIButton sender);
 
 		[Action ("Login:")]
 		partial void Login (MonoTouch.UIKit.UIButton sender);
@@ -47,6 +53,11 @@ namespace BeeBaby.Controllers
 			if (txtUser != null) {
 				txtUser.Dispose ();
 				txtUser = null;
+			}
+
+			if (btnForgotPass != null) {
+				btnForgotPass.Dispose ();
+				btnForgotPass = null;
 			}
 		}
 	}

@@ -110,7 +110,7 @@ namespace BeeBaby
 			DomainConfig.InitializeGlobalization(currentCulture);
 			DomainConfig.RegisterDependencies(connection, currentCulture);
 
-			KeyboardNotification.Initialize();
+			//ZBKEY//KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
 			MediaLibrary.Instance.Initialize();
 
@@ -219,7 +219,7 @@ namespace BeeBaby
 		/// <value>The root view controller.</value>
 		UIViewController RootViewController {
 			get {
-				var storyboardId = "MainNavigationController";
+				var storyboardId = "navtest";
 				var board = UIStoryboard.FromName("MainStoryboard", null);
 				return board.InstantiateViewController(storyboardId) as UIViewController;
 			}
