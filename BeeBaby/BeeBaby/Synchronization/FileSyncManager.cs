@@ -27,9 +27,9 @@ namespace BeeBaby.Synchronization
 		private FileSyncManager()
 		{
 			FileKeys = new SortedSet<string>();
-			LocalMapFiles = new Dictionary<string, FileData>();
-			RemoteMapFiles = new Dictionary<string, FileData>();
-			EmptyFileData = new FileData();
+			LocalMapFiles = new Dictionary<string, UserFile>();
+			RemoteMapFiles = new Dictionary<string, UserFile>();
+			EmptyUserFile = new UserFile();
 			DateLastSync = PreferencesEditor.DateLastSync;
 			IsRunning = false;
 		}
@@ -54,8 +54,8 @@ namespace BeeBaby.Synchronization
 
 					foreach (var fileKey in FileKeys.Reverse())
 					{
-						var localFile = GetFileData(LocalMapFiles, fileKey);
-						var remoteFile = GetFileData(RemoteMapFiles, fileKey);
+						var localFile = GetUserFile(LocalMapFiles, fileKey);
+						var remoteFile = GetUserFile(RemoteMapFiles, fileKey);
 
 						localFile.ObjectId = remoteFile.ObjectId;
 
@@ -119,7 +119,7 @@ namespace BeeBaby.Synchronization
 
 			GetDirectories(FileHandle.RootFolderPath).ForEach(dir => {
 				GetFiles(dir).ForEach(file => {
-					AddFileData(LocalMapFiles, new FileData {
+					AddUserFile(LocalMapFiles, new UserFile {
 						DeviceId = DeviceId,
 						DirectoryName = Path.GetFileName(dir),
 						FileName = Path.GetFileName(file),
@@ -138,51 +138,51 @@ namespace BeeBaby.Synchronization
 		{
 			RemoteMapFiles.Clear();
 
-			var parseObjects = await FindFileData();
+			var parseObjects = await FindUserFile();
 			foreach (var parseObject in parseObjects)
 			{
-				AddFileData(RemoteMapFiles, parseObject.ToDomain<FileData>());
+				AddUserFile(RemoteMapFiles, parseObject.ToDomain<UserFile>());
 			}
 		}
 
 		/// <summary>
-		/// Finds the file data.
+		/// Finds the user file.
 		/// </summary>
-		/// <returns>The file data.</returns>
-		async Task<IEnumerable<ParseObject>> FindFileData()
+		/// <returns>The user file.</returns>
+		async Task<IEnumerable<ParseObject>> FindUserFile()
 		{
-			var query = ParseObject.GetQuery("FileData")
+			var query = ParseObject.GetQuery("UserFile")
 				.WhereEqualTo("DeviceId", DeviceId)
 				.WhereGreaterThan("DateLastModified", DateLastSync);
 			return await query.FindAsync();
 		}
 
 		/// <summary>
-		/// Adds the file data.
+		/// Adds the user file.
 		/// </summary>
 		/// <param name="dictionary">Dictionary.</param>
-		/// <param name="fileData">File data.</param>
-		void AddFileData(IDictionary<string, FileData> dictionary, FileData fileData)
+		/// <param name="userFile">User file.</param>
+		void AddUserFile(IDictionary<string, UserFile> dictionary, UserFile userFile)
 		{
-			var fileKey = fileData.GetFileKey();
+			var fileKey = userFile.GetFileKey();
 			FileKeys.Add(fileKey);
 
-			dictionary.Add(fileKey, fileData);
+			dictionary.Add(fileKey, userFile);
 		}
 
 		/// <summary>
-		/// Gets the file data.
+		/// Gets the user file.
 		/// </summary>
-		/// <returns>The file data.</returns>
+		/// <returns>The user file.</returns>
 		/// <param name="dictionary">Dictionary.</param>
 		/// <param name="key">Key.</param>
-		FileData GetFileData(IDictionary<string, FileData> dictionary, string key)
+		UserFile GetUserFile(IDictionary<string, UserFile> dictionary, string key)
 		{
 			if (dictionary.ContainsKey(key))
 			{
 				return dictionary[key];
 			}
-			return EmptyFileData;
+			return EmptyUserFile;
 		}
 
 		/// <summary>
@@ -233,7 +233,7 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the local map files.
 		/// </summary>
 		/// <value>The local map files.</value>
-		IDictionary<string, FileData> LocalMapFiles {
+		IDictionary<string, UserFile> LocalMapFiles {
 			get;
 			set;
 		}
@@ -242,16 +242,16 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the remote map files.
 		/// </summary>
 		/// <value>The remote map files.</value>
-		IDictionary<string, FileData> RemoteMapFiles {
+		IDictionary<string, UserFile> RemoteMapFiles {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the empty file data.
+		/// Gets or sets the empty user file.
 		/// </summary>
-		/// <value>The empty file data.</value>
-		FileData EmptyFileData {
+		/// <value>The empty user file.</value>
+		UserFile EmptyUserFile {
 			get;
 			set;
 		}

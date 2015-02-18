@@ -9,12 +9,12 @@ using BeeBaby.Backup;
 
 namespace BeeBaby.Synchronization
 {
-	public class FileData : FileHandle
+	public class UserFile : FileHandle
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.FileData"/> class.
+		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.UserFile"/> class.
 		/// </summary>
-		public FileData()
+		public UserFile()
 		{
 		}
 
