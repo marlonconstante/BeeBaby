@@ -46,9 +46,7 @@ namespace BeeBaby.Synchronization
 				{
 					using (var stream = new MemoryStream(data))
 					{
-						var filePath = GetFilePath();
-						base.Save(filePath, stream);
-						File.SetLastWriteTimeUtc(filePath, DateLastModified);
+						base.Save(GetFilePath(), stream);
 					}
 				}
 			}
@@ -158,15 +156,6 @@ namespace BeeBaby.Synchronization
 		/// </summary>
 		/// <value>The parse file.</value>
 		public ParseFile ParseFile {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the date last modified.
-		/// </summary>
-		/// <value>The date last modified.</value>
-		public DateTime DateLastModified {
 			get;
 			set;
 		}

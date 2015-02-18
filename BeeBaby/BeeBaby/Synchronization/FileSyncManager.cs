@@ -30,7 +30,6 @@ namespace BeeBaby.Synchronization
 			LocalMapFiles = new Dictionary<string, UserFile>();
 			RemoteMapFiles = new Dictionary<string, UserFile>();
 			EmptyUserFile = new UserFile();
-			DateLastSync = PreferencesEditor.DateLastSync;
 			IsRunning = false;
 		}
 
@@ -59,11 +58,11 @@ namespace BeeBaby.Synchronization
 
 						localFile.ObjectId = remoteFile.ObjectId;
 
-						if (localFile.DateLastModified > remoteFile.DateLastModified)
+						if (localFile.Version > remoteFile.Version)
 						{
 							await localFile.Upload();
 						}
-						else if (localFile.DateLastModified < remoteFile.DateLastModified)
+						else if (localFile.Version < remoteFile.Version)
 						{
 							await remoteFile.Download((data) => {
 								if (remoteFile.IsMomentBackup())
@@ -75,11 +74,8 @@ namespace BeeBaby.Synchronization
 								return true;
 							});
 						}
-
-						UpdateDateLastSync(localFile.DateLastModified, remoteFile.DateLastModified);
 					}
 
-					PreferencesEditor.DateLastSync = DateLastSync;
 					return FileKeys.Count > 0;
 				}
 				catch (Exception ex)
@@ -96,21 +92,6 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
-		/// Updates the date last sync.
-		/// </summary>
-		/// <param name="dates">Dates.</param>
-		void UpdateDateLastSync(params DateTime[] dates)
-		{
-			foreach (var date in dates)
-			{
-				if (date > DateLastSync)
-				{
-					DateLastSync = date;
-				}
-			}
-		}
-
-		/// <summary>
 		/// Loads the local map files.
 		/// </summary>
 		void LoadLocalMapFiles()
@@ -124,7 +105,7 @@ namespace BeeBaby.Synchronization
 						DirectoryName = Path.GetFileName(dir),
 						FileName = Path.GetFileName(file),
 						Size = new FileInfo(file).Length,
-						DateLastModified = File.GetLastWriteTimeUtc(file)
+						Version = 0L
 					});
 				});
 			});
@@ -152,8 +133,7 @@ namespace BeeBaby.Synchronization
 		async Task<IEnumerable<ParseObject>> FindUserFile()
 		{
 			var query = ParseObject.GetQuery("UserFile")
-				.WhereEqualTo("DeviceId", DeviceId)
-				.WhereGreaterThan("DateLastModified", DateLastSync);
+				.WhereEqualTo("DeviceId", DeviceId);
 			return await query.FindAsync();
 		}
 
@@ -193,7 +173,6 @@ namespace BeeBaby.Synchronization
 		List<string> GetDirectories(string path)
 		{
 			return Directory.EnumerateDirectories(path).Where(dir => IsValidDirectory(dir))
-				.Where(dir => Directory.GetLastWriteTimeUtc(dir) > DateLastSync)
 				.ToList();
 		}
 
@@ -205,7 +184,6 @@ namespace BeeBaby.Synchronization
 		List<string> GetFiles(string path)
 		{
 			return Directory.EnumerateFiles(path)
-				.Where(file => File.GetLastWriteTimeUtc(file) > DateLastSync)
 				.ToList();
 		}
 
@@ -252,15 +230,6 @@ namespace BeeBaby.Synchronization
 		/// </summary>
 		/// <value>The empty user file.</value>
 		UserFile EmptyUserFile {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the date last sync.
-		/// </summary>
-		/// <value>The date last sync.</value>
-		DateTime DateLastSync {
 			get;
 			set;
 		}
