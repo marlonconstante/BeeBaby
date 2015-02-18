@@ -2,6 +2,9 @@
 
 namespace Skahal.Infrastructure.Framework.Domain
 {
+	/// <summary>
+	/// File release.
+	/// </summary>
 	public interface IFileRelease
 	{
 		/// <summary>
