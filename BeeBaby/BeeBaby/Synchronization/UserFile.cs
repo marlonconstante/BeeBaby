@@ -6,10 +6,11 @@ using Infrastructure.Systems.Utils;
 using System.IO;
 using System.Threading.Tasks;
 using BeeBaby.Backup;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace BeeBaby.Synchronization
 {
-	public class UserFile : FileHandle
+	public class UserFile : FileHandle, IParseDomain
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.UserFile"/> class.
@@ -85,6 +86,24 @@ namespace BeeBaby.Synchronization
 		/// </summary>
 		/// <value>The object identifier.</value>
 		public string ObjectId {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the created at.
+		/// </summary>
+		/// <value>The created at.</value>
+		public DateTime? CreatedAt {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the updated at.
+		/// </summary>
+		/// <value>The updated at.</value>
+		public DateTime? UpdatedAt {
 			get;
 			set;
 		}
