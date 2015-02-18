@@ -126,6 +126,15 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
+		/// Gets or sets the version.
+		/// </summary>
+		/// <value>The version.</value>
+		public long Version {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the parse file.
 		/// </summary>
 		/// <value>The parse file.</value>
