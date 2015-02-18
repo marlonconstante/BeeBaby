@@ -19,7 +19,7 @@ using BigTed;
 
 namespace BeeBaby.Controllers
 {
-	public partial class TimelineViewController : NavigationViewController
+	public partial class TimelineViewController : SyncNavigationViewController
 	{
 		const float c_buttonHeight = 44f;
 		NSIndexPath m_currentIndexPath;
@@ -70,6 +70,16 @@ namespace BeeBaby.Controllers
 		{
 			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Timeline.", null);
 			base.ViewDidDisappear(animated);
+		}
+
+		/// <summary>
+		/// Raises the sync performed event.
+		/// </summary>
+		public override void OnSyncPerformed()
+		{
+			base.OnSyncPerformed();
+
+			InitTimeline();
 		}
 
 		/// <summary>

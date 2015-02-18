@@ -27,62 +27,86 @@ namespace BeeBaby.Synchronization
 		private FileSyncManager()
 		{
 			FileKeys = new SortedSet<string>();
-			LocalMapFiles = new Dictionary<string, FileData>();
-			RemoteMapFiles = new Dictionary<string, FileData>();
-			EmptyFileData = new FileData();
-			Semaphore = new SemaphoreSlim(1);
+			LocalMapFiles = new Dictionary<string, UserFile>();
+			RemoteMapFiles = new Dictionary<string, UserFile>();
+			EmptyUserFile = new UserFile();
+			DateLastSync = PreferencesEditor.DateLastSync;
+			IsRunning = false;
 		}
 
 		/// <summary>
-		/// Synchronize the specified dateLastSync and directory.
+		/// Synchronize files.
 		/// </summary>
-		/// <param name="dateLastSync">Date last sync.</param>
-		/// <param name="directory">Directory.</param>
-		public async void Synchronize(DateTime dateLastSync, string directory = null)
+		/// <param name="syncEvent">Sync event.</param>
+		public async Task<bool> Synchronize(ISyncEvent syncEvent)
 		{
-			try
+			if (!IsRunning)
 			{
-				await Semaphore.WaitAsync();
-
-				DateLastSync = dateLastSync;
-				CurrentDirectory = directory;
-				FileKeys.Clear();
-
-				LoadLocalMapFiles();
-				await LoadRemoteMapFiles();
-
-				foreach (var fileKey in FileKeys.Reverse())
+				try
 				{
-					var localFile = GetFileData(LocalMapFiles, fileKey);
-					var remoteFile = GetFileData(RemoteMapFiles, fileKey);
+					IsRunning = true;
+					syncEvent.StartedSynchronizing();
 
-					localFile.ObjectId = remoteFile.ObjectId;
+					FileKeys.Clear();
 
-					if (localFile.DateLastModified > remoteFile.DateLastModified)
+					LoadLocalMapFiles();
+					await LoadRemoteMapFiles();
+
+					foreach (var fileKey in FileKeys.Reverse())
 					{
-						await localFile.Upload();
+						var localFile = GetUserFile(LocalMapFiles, fileKey);
+						var remoteFile = GetUserFile(RemoteMapFiles, fileKey);
+
+						localFile.ObjectId = remoteFile.ObjectId;
+
+						if (localFile.DateLastModified > remoteFile.DateLastModified)
+						{
+							await localFile.Upload();
+						}
+						else if (localFile.DateLastModified < remoteFile.DateLastModified)
+						{
+							await remoteFile.Download((data) => {
+								if (remoteFile.IsMomentBackup())
+								{
+									var momentBackup = new MomentBackup(remoteFile.DirectoryName);
+									momentBackup.ReadAndUpdate(new MemoryStream(data));
+									return momentBackup.Restore();
+								}
+								return true;
+							});
+						}
+
+						UpdateDateLastSync(localFile.DateLastModified, remoteFile.DateLastModified);
 					}
-					else if (localFile.DateLastModified < remoteFile.DateLastModified)
-					{
-						await remoteFile.Download((data) => {
-							if (remoteFile.IsMomentBackup())
-							{
-								var momentBackup = new MomentBackup(remoteFile.DirectoryName);
-								momentBackup.ReadAndUpdate(new MemoryStream(data));
-								return momentBackup.Restore();
-							}
-							return true;
-						});
-					}
+
+					PreferencesEditor.DateLastSync = DateLastSync;
+					return FileKeys.Count > 0;
+				}
+				catch (Exception ex)
+				{
+					// Ignora..
+				}
+				finally
+				{
+					syncEvent.EndedSynchronizing();
+					IsRunning = false;
 				}
 			}
-			catch (Exception ex)
+			return false;
+		}
+
+		/// <summary>
+		/// Updates the date last sync.
+		/// </summary>
+		/// <param name="dates">Dates.</param>
+		void UpdateDateLastSync(params DateTime[] dates)
+		{
+			foreach (var date in dates)
 			{
-				// Ignora..
-			}
-			finally
-			{
-				Semaphore.Release();
+				if (date > DateLastSync)
+				{
+					DateLastSync = date;
+				}
 			}
 		}
 
@@ -95,10 +119,11 @@ namespace BeeBaby.Synchronization
 
 			GetDirectories(FileHandle.RootFolderPath).ForEach(dir => {
 				GetFiles(dir).ForEach(file => {
-					AddFileData(LocalMapFiles, new FileData {
+					AddUserFile(LocalMapFiles, new UserFile {
 						DeviceId = DeviceId,
 						DirectoryName = Path.GetFileName(dir),
 						FileName = Path.GetFileName(file),
+						Size = new FileInfo(file).Length,
 						DateLastModified = File.GetLastWriteTimeUtc(file)
 					});
 				});
@@ -113,55 +138,51 @@ namespace BeeBaby.Synchronization
 		{
 			RemoteMapFiles.Clear();
 
-			var parseObjects = await FindFileData();
+			var parseObjects = await FindUserFile();
 			foreach (var parseObject in parseObjects)
 			{
-				AddFileData(RemoteMapFiles, parseObject.ToDomain<FileData>());
+				AddUserFile(RemoteMapFiles, parseObject.ToDomain<UserFile>());
 			}
 		}
 
 		/// <summary>
-		/// Finds the file data.
+		/// Finds the user file.
 		/// </summary>
-		/// <returns>The file data.</returns>
-		async Task<IEnumerable<ParseObject>> FindFileData()
+		/// <returns>The user file.</returns>
+		async Task<IEnumerable<ParseObject>> FindUserFile()
 		{
-			var query = ParseObject.GetQuery("FileData");
-			query.WhereEqualTo("DeviceId", DeviceId);
-			if (CurrentDirectory != null)
-			{
-				query.WhereEqualTo("DirectoryName", CurrentDirectory);
-			}
-			query.WhereGreaterThan("DateLastModified", DateLastSync);
+			var query = ParseObject.GetQuery("UserFile")
+				.WhereEqualTo("DeviceId", DeviceId)
+				.WhereGreaterThan("DateLastModified", DateLastSync);
 			return await query.FindAsync();
 		}
 
 		/// <summary>
-		/// Adds the file data.
+		/// Adds the user file.
 		/// </summary>
 		/// <param name="dictionary">Dictionary.</param>
-		/// <param name="fileData">File data.</param>
-		void AddFileData(IDictionary<string, FileData> dictionary, FileData fileData)
+		/// <param name="userFile">User file.</param>
+		void AddUserFile(IDictionary<string, UserFile> dictionary, UserFile userFile)
 		{
-			var fileKey = fileData.GetFileKey();
+			var fileKey = userFile.GetFileKey();
 			FileKeys.Add(fileKey);
 
-			dictionary.Add(fileKey, fileData);
+			dictionary.Add(fileKey, userFile);
 		}
 
 		/// <summary>
-		/// Gets the file data.
+		/// Gets the user file.
 		/// </summary>
-		/// <returns>The file data.</returns>
+		/// <returns>The user file.</returns>
 		/// <param name="dictionary">Dictionary.</param>
 		/// <param name="key">Key.</param>
-		FileData GetFileData(IDictionary<string, FileData> dictionary, string key)
+		UserFile GetUserFile(IDictionary<string, UserFile> dictionary, string key)
 		{
 			if (dictionary.ContainsKey(key))
 			{
 				return dictionary[key];
 			}
-			return EmptyFileData;
+			return EmptyUserFile;
 		}
 
 		/// <summary>
@@ -172,7 +193,6 @@ namespace BeeBaby.Synchronization
 		List<string> GetDirectories(string path)
 		{
 			return Directory.EnumerateDirectories(path).Where(dir => IsValidDirectory(dir))
-				.Where(dir => string.IsNullOrEmpty(CurrentDirectory) || CurrentDirectory.Equals(dir))
 				.Where(dir => Directory.GetLastWriteTimeUtc(dir) > DateLastSync)
 				.ToList();
 		}
@@ -213,7 +233,7 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the local map files.
 		/// </summary>
 		/// <value>The local map files.</value>
-		IDictionary<string, FileData> LocalMapFiles {
+		IDictionary<string, UserFile> LocalMapFiles {
 			get;
 			set;
 		}
@@ -222,25 +242,16 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the remote map files.
 		/// </summary>
 		/// <value>The remote map files.</value>
-		IDictionary<string, FileData> RemoteMapFiles {
+		IDictionary<string, UserFile> RemoteMapFiles {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the empty file data.
+		/// Gets or sets the empty user file.
 		/// </summary>
-		/// <value>The empty file data.</value>
-		FileData EmptyFileData {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the semaphore.
-		/// </summary>
-		/// <value>The semaphore.</value>
-		SemaphoreSlim Semaphore {
+		/// <value>The empty user file.</value>
+		UserFile EmptyUserFile {
 			get;
 			set;
 		}
@@ -249,16 +260,16 @@ namespace BeeBaby.Synchronization
 		/// Gets or sets the date last sync.
 		/// </summary>
 		/// <value>The date last sync.</value>
-		public DateTime DateLastSync {
+		DateTime DateLastSync {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the current directory.
+		/// Gets or sets a value indicating whether this instance is running.
 		/// </summary>
-		/// <value>The current directory.</value>
-		string CurrentDirectory {
+		/// <value><c>true</c> if this instance is running; otherwise, <c>false</c>.</value>
+		bool IsRunning {
 			get;
 			set;
 		}

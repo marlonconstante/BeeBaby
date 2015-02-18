@@ -12,7 +12,7 @@ using BeeBaby.Util;
 
 namespace BeeBaby.Controllers
 {
-	public partial class BabyViewController : NavigationViewController
+	public partial class BabyViewController : SyncNavigationViewController
 	{
 		public BabyViewController(IntPtr handle) : base(handle)
 		{

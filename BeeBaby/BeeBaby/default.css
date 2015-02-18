@@ -929,6 +929,11 @@ text-view {
 	background-image: url(trash.svg);
 }
 
+.button-sync {
+	background-image: url(sync-clear.svg);
+	opacity: 0;
+}
+
 .camera,
 .button-camera icon {
 	background-image: url(camera-clear.svg);

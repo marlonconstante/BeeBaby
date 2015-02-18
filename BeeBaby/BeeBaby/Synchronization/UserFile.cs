@@ -6,15 +6,16 @@ using Infrastructure.Systems.Utils;
 using System.IO;
 using System.Threading.Tasks;
 using BeeBaby.Backup;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace BeeBaby.Synchronization
 {
-	public class FileData : FileHandle
+	public class UserFile : FileHandle, IParseDomain, IParseUser, IFileRelease
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.FileData"/> class.
+		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.UserFile"/> class.
 		/// </summary>
-		public FileData()
+		public UserFile()
 		{
 		}
 
@@ -90,10 +91,46 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
+		/// Gets or sets the created at.
+		/// </summary>
+		/// <value>The created at.</value>
+		public DateTime? CreatedAt {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the updated at.
+		/// </summary>
+		/// <value>The updated at.</value>
+		public DateTime? UpdatedAt {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the device identifier.
 		/// </summary>
 		/// <value>The device identifier.</value>
 		public string DeviceId {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the size.
+		/// </summary>
+		/// <value>The size.</value>
+		public long Size {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the version.
+		/// </summary>
+		/// <value>The version.</value>
+		public long Version {
 			get;
 			set;
 		}

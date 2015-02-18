@@ -1,6 +1,7 @@
 ﻿using System;
 using Parse;
 using System.Reflection;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace Infrastructure.Systems.Utils
 {
@@ -12,10 +13,12 @@ namespace Infrastructure.Systems.Utils
 		/// <returns>The domain.</returns>
 		/// <param name="source">Source.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public static T ToDomain<T>(this ParseObject source)
+		public static T ToDomain<T>(this ParseObject source) where T : IParseDomain
 		{
 			var target = Activator.CreateInstance<T>();
 			SetPropertyValue("ObjectId", target, source.ObjectId);
+			SetPropertyValue("CreatedAt", target, source.CreatedAt);
+			SetPropertyValue("UpdatedAt", target, source.UpdatedAt);
 			foreach (var key in source.Keys)
 			{
 				object value;

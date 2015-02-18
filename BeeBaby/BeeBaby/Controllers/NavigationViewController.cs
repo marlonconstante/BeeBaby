@@ -12,10 +12,6 @@ namespace BeeBaby.Controllers
 {
 	public abstract class NavigationViewController : BaseViewController
 	{
-		UIView m_titleView;
-		NavigationButtonItem m_leftBarButtonItem;
-		NavigationButtonItem m_rightBarButtonItem;
-
 		public NavigationViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -215,14 +211,14 @@ namespace BeeBaby.Controllers
 				label.Text = TitleScreen;
 				label.SizeToFit();
 				label.SetStyleClass("title-label");
-				m_titleView = label;
+				TitleView = label;
 			}
 			else
 			{
-				m_titleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
-				m_titleView.SetStyleClass("bee-baby");
+				TitleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
+				TitleView.SetStyleClass("bee-baby");
 			}
-			NavigationItem.TitleView = m_titleView;
+			NavigationItem.TitleView = TitleView;
 		}
 
 		/// <summary>
@@ -232,7 +228,7 @@ namespace BeeBaby.Controllers
 		{
 			if (IsAddLeftBarButtonItem())
 			{
-				m_leftBarButtonItem =
+				LeftBarButtonItem =
 					new NavigationButtonItem(LeftBarButtonFrame()
 					, -6f
 					, LeftBarButtonStyleClass());
@@ -241,9 +237,9 @@ namespace BeeBaby.Controllers
 				proxy.Action = (target, sender, args) => {
 					target.LeftBarButtonAction();
 				};
-				m_leftBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
+				LeftBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
-			NavigationItem.SetLeftBarButtonItem(m_leftBarButtonItem, true);
+			NavigationItem.SetLeftBarButtonItem(LeftBarButtonItem, true);
 		}
 
 		/// <summary>
@@ -253,7 +249,7 @@ namespace BeeBaby.Controllers
 		{
 			if (IsAddRightBarButtonItem())
 			{
-				m_rightBarButtonItem =
+				RightBarButtonItem =
 					new NavigationButtonItem(RightBarButtonFrame()
 					, 6f
 					, RightBarButtonStyleClass());
@@ -262,10 +258,28 @@ namespace BeeBaby.Controllers
 				proxy.Action = (target, sender, args) => {
 					target.RightBarButtonAction();
 				};
-				m_rightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
+				RightBarButtonItem.Button.TouchUpInside += proxy.HandleEvent;
 			}
-			NavigationItem.SetRightBarButtonItem(m_rightBarButtonItem, true);
+			NavigationItem.SetRightBarButtonItem(RightBarButtonItem, true);
 		}
+
+		/// <summary>
+		/// Gets or sets the title view.
+		/// </summary>
+		/// <value>The title view.</value>
+		protected UIView TitleView { get; set; }
+
+		/// <summary>
+		/// Gets or sets the left bar button item.
+		/// </summary>
+		/// <value>The left bar button item.</value>
+		protected NavigationButtonItem LeftBarButtonItem { get; set; }
+
+		/// <summary>
+		/// Gets or sets the right bar button item.
+		/// </summary>
+		/// <value>The right bar button item.</value>
+		protected NavigationButtonItem RightBarButtonItem { get; set; }
 
 		/// <summary>
 		/// Gets the navigation item.
