@@ -219,7 +219,7 @@ namespace BeeBaby
 		/// <value>The root view controller.</value>
 		UIViewController RootViewController {
 			get {
-				var storyboardId = "navtest";
+				var storyboardId = "MainNavigationController";
 				var board = UIStoryboard.FromName("MainStoryboard", null);
 				return board.InstantiateViewController(storyboardId) as UIViewController;
 			}
