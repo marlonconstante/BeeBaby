@@ -13,8 +13,6 @@ namespace Domain.Moment
 	/// </summary>
 	public class MomentService : ServiceBase<Moment, IMomentRepository, IUnitOfWork>
 	{
-		IMomentRepository m_remoteRepository;
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Domain.Moment.MomentService"/> class.
 		/// </summary>
