@@ -239,8 +239,9 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Saves the permanent images.
 		/// </summary>
+		/// <returns>The permanent images.</returns>
 		/// <param name="thumbnailNames">Thumbnail names.</param>
-		public void SavePermanentImages(IList<string> thumbnailNames)
+		public IList<string> SavePermanentImages(IList<string> thumbnailNames)
 		{
 			var temporaryDirectory = GetTemporaryDirectory();
 			var permanentDirectory = GetPermanentDirectory();
@@ -266,10 +267,15 @@ namespace BeeBaby.ResourcesProviders
 				}
 			});
 
+			var permanentImages = new List<string>();
 			foreach (var imageName in imageNames)
 			{
-				File.Move(Path.Combine(temporaryDirectory, imageName), Path.Combine(permanentDirectory, imageName));
+				var permanentImage = Path.Combine(permanentDirectory, imageName);
+				File.Move(Path.Combine(temporaryDirectory, imageName), permanentImage);
+				permanentImages.Add(permanentImage);
 			}
+
+			return permanentImages;
 		}
 
 		/// <summary>
