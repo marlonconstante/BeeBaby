@@ -56,6 +56,9 @@
     <Compile Include="Log\IFlowRepository.cs" />
     <Compile Include="Log\FlowService.cs" />
     <Compile Include="Moment\IMoment.cs" />
+    <Compile Include="Synchronization\FileUpload.cs" />
+    <Compile Include="Synchronization\IFileUploadRepository.cs" />
+    <Compile Include="Synchronization\FileUploadService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -64,6 +67,7 @@
     <Folder Include="Baby\" />
     <Folder Include="User\" />
     <Folder Include="Log\" />
+    <Folder Include="Synchronization\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core" />

@@ -65,6 +65,9 @@
     <Compile Include="SqliteNet\Entities\FlowData.cs" />
     <Compile Include="SqliteNet\Mapper\SqliteNetFlowMapper.cs" />
     <Compile Include="SqliteNet\SqliteNetFlowRepository.cs" />
+    <Compile Include="SqliteNet\Entities\FileUploadData.cs" />
+    <Compile Include="SqliteNet\SqliteNetFileUploadRepository.cs" />
+    <Compile Include="SqliteNet\Mapper\SqliteNetFileUploadMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
