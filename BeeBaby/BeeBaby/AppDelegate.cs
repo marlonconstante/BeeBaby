@@ -110,7 +110,7 @@ namespace BeeBaby
 			DomainConfig.InitializeGlobalization(currentCulture);
 			DomainConfig.RegisterDependencies(connection, currentCulture);
 
-			//ZBKEY//KeyboardNotification.Initialize();
+			KeyboardNotification.Initialize();
 			OrientationNotification.Initialize();
 			MediaLibrary.Instance.Initialize();
 
