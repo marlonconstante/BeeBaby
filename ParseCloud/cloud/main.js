@@ -45,6 +45,13 @@ Parse.Cloud.beforeSave("UserFile", function(request, response) {
 });
 
 Parse.Cloud.afterSave("UserFile", function(request) {
+  BuildObject("UserDeviceFile", {
+    DeviceId: request.object.get("DeviceId"),
+    DeviceIdOrigin: request.object.get("DeviceId"),
+    UserFile: request.object,
+    User: request.user
+  }).save();
+
   var clauses = {
     User: request.user,
     DirectoryName: request.object.get("DirectoryName")
