@@ -1,6 +1,7 @@
 ﻿using System;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
+using System.Collections.Generic;
 
 namespace Domain.Synchronization
 {
@@ -27,12 +28,17 @@ namespace Domain.Synchronization
 		}
 
 		/// <summary>
-		/// Saves the file upload.
+		/// Inserts the file paths.
 		/// </summary>
-		/// <param name="fileUpload">File upload.</param>
-		public void SaveFileUpload(FileUpload fileUpload)
+		/// <param name="filePaths">File paths.</param>
+		public void InsertFilePaths(IEnumerable<string> filePaths)
 		{
-			MainRepository[fileUpload.Id] = fileUpload;
+			foreach (var filePath in filePaths)
+			{
+				MainRepository.Add(new FileUpload {
+					FilePath = filePath
+				});
+			}
 			UnitOfWork.Commit();
 		}
 

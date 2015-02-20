@@ -7,6 +7,7 @@ using Infrastructure.Systems;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
 using BeeBaby.Backup;
+using Domain.Synchronization;
 
 namespace BeeBaby.Navigations
 {
@@ -58,7 +59,11 @@ namespace BeeBaby.Navigations
 				new MomentBackup(moment).Save();
 				RemoteDataSystem.SendMomentData(moment);
 			}
-			new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
+			var filePaths = new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
+			if (!moment.IsTemplate())
+			{
+				new FileUploadService().InsertFilePaths(filePaths);
+			}
 			CurrentContext.Instance.ReloadMoments = true;
 			Close();
 		}
