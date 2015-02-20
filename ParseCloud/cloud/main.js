@@ -39,32 +39,14 @@ var Find = function(name, clauses, callback) {
 }
 
 Parse.Cloud.beforeSave("UserFile", function(request, response) {
-  var id = request.object.id;
-  if (id) {
-    var query = new Parse.Query(Parse.Object.extend("UserFile"));
-    query.get(id, {
-      success: function(userFile) {
-        var version = userFile.get("Version");
-        if (request.object.get("Version") == version) {
-          request.object.set("Version", version + 1);
-          response.success();
-        } else {
-          response.error("Versão do arquivo " + id + " deveria ser " + version);
-        }
-      },
-      error: function(model, error) {
-        response.error("Erro ao carregar arquivo " + id + ". Motivo: " + error.message);
-      }
-    });
-  } else {
-    request.object.set("Version", 1);
-    response.success();
-  }
+  request.object.set("User", request.user);
+  request.object.set("Version", 1);
+  response.success();
 });
 
 Parse.Cloud.afterSave("UserFile", function(request) {
   var clauses = {
-    DeviceId: request.object.get("DeviceId"),
+    User: request.user,
     DirectoryName: request.object.get("DirectoryName")
   };
 
@@ -92,7 +74,7 @@ Parse.Cloud.afterSave("UserFile", function(request) {
 
 Parse.Cloud.afterSave("UserFolder", function(request) {
   var clauses = {
-    DeviceId: request.object.get("DeviceId")
+    User: request.user
   };
 
   Find("UserFolder", clauses, function(folders, error) {
