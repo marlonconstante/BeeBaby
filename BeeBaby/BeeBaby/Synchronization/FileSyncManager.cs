@@ -11,6 +11,7 @@ using MonoTouch.Foundation;
 using BeeBaby.Backup;
 using Domain.Moment;
 using System.Threading;
+using Domain.Synchronization;
 
 namespace BeeBaby.Synchronization
 {
@@ -46,6 +47,7 @@ namespace BeeBaby.Synchronization
 					IsRunning = true;
 					syncEvent.StartedSynchronizing();
 
+					/*
 					FileKeys.Clear();
 
 					LoadLocalMapFiles();
@@ -77,6 +79,9 @@ namespace BeeBaby.Synchronization
 					}
 
 					return FileKeys.Count > 0;
+					*/
+
+					return await Upload();
 				}
 				catch (Exception ex)
 				{
@@ -89,6 +94,21 @@ namespace BeeBaby.Synchronization
 				}
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// Upload this instance.
+		/// </summary>
+		async Task<bool> Upload()
+		{
+			var service = new FileUploadService();
+			var fileUploads = service.FindAllFileUploads();
+			foreach (var fileUpload in fileUploads)
+			{
+				await new UserFile(DeviceId, fileUpload.FilePath).Upload();
+				service.RemoveFileUpload(fileUpload);
+			}
+			return fileUploads.Count() > 0;
 		}
 
 		/// <summary>

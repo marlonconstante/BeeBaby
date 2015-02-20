@@ -20,6 +20,21 @@ namespace BeeBaby.Synchronization
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="BeeBaby.Synchronization.UserFile"/> class.
+		/// </summary>
+		/// <param name="deviceId">Device identifier.</param>
+		/// <param name="filePath">File path.</param>
+		public UserFile(string deviceId, string filePath)
+		{
+			DeviceId = deviceId;
+			DirectoryName = Path.GetDirectoryName(filePath);
+			FileName = Path.GetFileName(filePath);
+			Version = 0L;
+
+			UpdateSize();
+		}
+
+		/// <summary>
 		/// Upload this instance.
 		/// </summary>
 		public async Task Upload()
@@ -68,6 +83,15 @@ namespace BeeBaby.Synchronization
 		public string GetFileKey()
 		{
 			return string.Concat(DirectoryName, FileName);
+		}
+
+		/// <summary>
+		/// Updates the size.
+		/// </summary>
+		void UpdateSize()
+		{
+			var filePath = GetFilePath();
+			Size = File.Exists(filePath) ? new FileInfo(filePath).Length : 0L;
 		}
 
 		/// <summary>
