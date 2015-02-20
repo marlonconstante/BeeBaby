@@ -38,6 +38,31 @@ var Find = function(name, clauses, callback) {
   });
 }
 
+var InsertUserDeviceFile = function(file, user, deviceId) {
+  BuildObject("UserDeviceFile", {
+    DeviceId: deviceId || file.get("DeviceId"),
+    DeviceIdOrigin: file.get("DeviceId"),
+    UserFile: file,
+    User: user
+  }).save();
+}
+
+Parse.Cloud.define("ConfirmReceiptFile", function(request, response) {
+  var deviceId = request.params.DeviceId;
+  var clauses = {
+    objectId: request.params.ObjectId
+  };
+
+  LoadOrNew("UserFile", clauses, function(file, error) {
+    if (error || file.isNew()) {
+      response.success(false);
+    } else {
+      InsertUserDeviceFile(file, request.user, deviceId);
+      response.success(true);
+    }
+  });
+});
+
 Parse.Cloud.beforeSave("UserFile", function(request, response) {
   request.object.set("User", request.user);
   request.object.set("Version", 1);
@@ -45,12 +70,7 @@ Parse.Cloud.beforeSave("UserFile", function(request, response) {
 });
 
 Parse.Cloud.afterSave("UserFile", function(request) {
-  BuildObject("UserDeviceFile", {
-    DeviceId: request.object.get("DeviceId"),
-    DeviceIdOrigin: request.object.get("DeviceId"),
-    UserFile: request.object,
-    User: request.user
-  }).save();
+  InsertUserDeviceFile(request.object, request.user);
 
   var clauses = {
     User: request.user,
