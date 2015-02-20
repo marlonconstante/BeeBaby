@@ -28,6 +28,15 @@ namespace Domain.Synchronization
 		}
 
 		/// <summary>
+		/// Finds all files.
+		/// </summary>
+		/// <returns>The all files.</returns>
+		public IEnumerable<FileUpload> FindAllFiles()
+		{
+			return MainRepository.FindAll();
+		}
+
+		/// <summary>
 		/// Inserts the file paths.
 		/// </summary>
 		/// <param name="filePaths">File paths.</param>
