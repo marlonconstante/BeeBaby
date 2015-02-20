@@ -270,9 +270,8 @@ namespace BeeBaby.ResourcesProviders
 			var permanentImages = new List<string>();
 			foreach (var imageName in imageNames)
 			{
-				var permanentImage = Path.Combine(permanentDirectory, imageName);
-				File.Move(Path.Combine(temporaryDirectory, imageName), permanentImage);
-				permanentImages.Add(permanentImage);
+				File.Move(Path.Combine(temporaryDirectory, imageName), Path.Combine(permanentDirectory, imageName));
+				permanentImages.Add(Path.Combine(m_name, imageName));
 			}
 
 			return permanentImages;
