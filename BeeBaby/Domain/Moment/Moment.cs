@@ -184,7 +184,7 @@ namespace Domain.Moment
 		/// <value>The location latitude.</value>
 		public double LocationLatitude {
 			get {
-				return Location.Position.Latitude;
+				return (Location.Position == null) ? 0d : Location.Position.Latitude;
 			}
 		}
 
@@ -194,7 +194,7 @@ namespace Domain.Moment
 		/// <value>The location longitude.</value>
 		public double LocationLongitude {
 			get {
-				return Location.Position.Longitude;
+				return (Location.Position == null) ? 0d : Location.Position.Longitude;
 			}
 		}
 
