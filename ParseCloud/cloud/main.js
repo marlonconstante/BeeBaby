@@ -28,7 +28,11 @@ var LoadOrNew = function(name, clauses, callback) {
 }
 
 var Find = function(name, clauses, callback) {
-  BuildQuery(name, clauses).find({
+  FindByQuery(BuildQuery(name, clauses), callback);
+}
+
+var FindByQuery = function(query, callback) {
+  query.find({
     success: function(objects) {
       callback(objects);
     },
@@ -47,6 +51,19 @@ var InsertUserDeviceFile = function(file, user, deviceId) {
   }).save();
 }
 
+var BuildQueryUserDeviceFile = function(user, deviceId, deviceIdEqualTo) {
+  var query = new Parse.Query(Parse.Object.extend("UserDeviceFile"));
+  query.equalTo("User", user);
+  query.notEqualTo("DeviceIdOrigin", deviceId);
+  if (deviceIdEqualTo) {
+    query.equalTo("DeviceId", deviceId);
+  } else {
+    query.notEqualTo("DeviceId", deviceId);
+  }
+  query.limit(1000);
+  return query;
+}
+
 Parse.Cloud.define("ConfirmReceiptFile", function(request, response) {
   var deviceId = request.params.DeviceId;
   var clauses = {
@@ -61,6 +78,28 @@ Parse.Cloud.define("ConfirmReceiptFile", function(request, response) {
       response.success(true);
     }
   });
+});
+
+Parse.Cloud.define("FindNewFiles", function(request, response) {
+  var deviceId = request.params.DeviceId;
+
+  var query = BuildQueryUserDeviceFile(request.user, deviceId, false);
+  query.equalTo("SameDeviceId", true);
+  query.doesNotMatchKeyInQuery("UserFile", "UserFile", BuildQueryUserDeviceFile(request.user, deviceId, true));
+  query.include("UserFile");
+
+  FindByQuery(query, function(deviceFiles, error) {
+    var files = [];
+    for (var index = 0; index < deviceFiles.length; index++) {
+      files.push(deviceFiles[index].get("UserFile"));
+    }
+    response.success(files);
+  });
+});
+
+Parse.Cloud.beforeSave("UserDeviceFile", function(request, response) {
+  request.object.set("SameDeviceId", request.object.get("DeviceId") == request.object.get("DeviceIdOrigin"));
+  response.success();
 });
 
 Parse.Cloud.beforeSave("UserFile", function(request, response) {
