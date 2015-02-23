@@ -52,12 +52,12 @@ namespace BeeBaby.Synchronization
 		/// Download the specified beforeSaveAction.
 		/// </summary>
 		/// <param name="beforeSaveAction">Before save action.</param>
-		public async Task Download(Func<byte[], bool> beforeSaveAction)
+		public async Task Download(Func<byte[], Task<bool>> beforeSaveAction)
 		{
 			using (var webClient = new WebClient())
 			{
 				var data = await webClient.DownloadDataTaskAsync(ParseFile.Url);
-				if (beforeSaveAction(data))
+				if (await beforeSaveAction(data))
 				{
 					using (var stream = new MemoryStream(data))
 					{

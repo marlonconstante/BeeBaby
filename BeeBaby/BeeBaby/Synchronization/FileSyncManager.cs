@@ -81,7 +81,8 @@ namespace BeeBaby.Synchronization
 					return FileKeys.Count > 0;
 					*/
 
-					return await Upload();
+					await Upload();
+					return await Download();
 				}
 				catch (Exception ex)
 				{
@@ -109,6 +110,40 @@ namespace BeeBaby.Synchronization
 				service.RemoveFileUpload(fileUpload);
 			}
 			return fileUploads.Count() > 0;
+		}
+
+		/// <summary>
+		/// Download this instance.
+		/// </summary>
+		async Task<bool> Download()
+		{
+			var files = await ParseCloud.CallFunctionAsync<IEnumerable<object>>("FindNewFiles", GetParameters());
+			foreach (var file in files)
+			{
+				var parseObject = file as ParseObject;
+				await parseObject.ToDomain<UserFile>().Download((data) => {
+					return ParseCloud.CallFunctionAsync<bool>("ConfirmReceiptFile", GetParameters(parseObject.ObjectId));
+				});
+			}
+			return files.Count() > 0;
+		}
+
+		/// <summary>
+		/// Gets the parameters.
+		/// </summary>
+		/// <returns>The parameters.</returns>
+		/// <param name="objectId">Object identifier.</param>
+		IDictionary<string, object> GetParameters(string objectId = null)
+		{
+			var parameters = new Dictionary<string, object>();
+			parameters.Add("DeviceId", DeviceId);
+
+			if (!string.IsNullOrEmpty(objectId))
+			{
+				parameters.Add("ObjectId", objectId);
+			}
+
+			return parameters;
 		}
 
 		/// <summary>
