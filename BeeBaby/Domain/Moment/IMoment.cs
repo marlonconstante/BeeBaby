@@ -97,12 +97,6 @@ namespace Domain.Moment
 		DateTime BabyBirthDateTime { get; }
 
 		/// <summary>
-		/// Gets the user email.
-		/// </summary>
-		/// <value>The user email.</value>
-		string UserEmail { get; }
-
-		/// <summary>
 		/// Gets the language.
 		/// </summary>
 		/// <value>The language.</value>

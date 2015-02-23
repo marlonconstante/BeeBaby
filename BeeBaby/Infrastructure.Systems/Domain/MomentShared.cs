@@ -209,16 +209,6 @@ namespace Infrastructure.Systems.Domain
 		}
 
 		/// <summary>
-		/// Gets the user email.
-		/// </summary>
-		/// <value>The user email.</value>
-		public string UserEmail {
-			get {
-				return Get<string>("UserEmail");
-			}
-		}
-
-		/// <summary>
 		/// Gets the language.
 		/// </summary>
 		/// <value>The language.</value>
