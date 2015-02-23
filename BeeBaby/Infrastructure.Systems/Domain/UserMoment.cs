@@ -2,12 +2,12 @@
 using Domain.Moment;
 using Domain.Baby;
 
-namespace BeeBaby.Backup
+namespace Infrastructure.Systems.Domain
 {
 	public class UserMoment : IMoment
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeeBaby.Backup.UserMoment"/> class.
+		/// Initializes a new instance of the <see cref="Infrastructure.Systems.Domain.UserMoment"/> class.
 		/// </summary>
 		public UserMoment()
 		{
