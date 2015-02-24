@@ -51,6 +51,26 @@ var InsertUserDeviceFile = function(file, user, deviceId) {
   }).save();
 }
 
+var SaveUserMoment = function(file, user) {
+  Parse.Cloud.httpRequest({ url: file.url() }).then(function(response) {
+    var momentPlan = JSON.parse(response.buffer.toString('utf8'));
+
+    var clauses = {
+      MomentId: momentPlan.MomentId,
+      User: user
+    };
+
+    LoadOrNew("UserMoment", clauses, function(moment, error) {
+      if (!error) {
+        for (var fieldName in momentPlan) {
+          moment.set(fieldName, momentPlan[fieldName]);
+        }
+        moment.save();
+      }
+    });
+  });
+}
+
 var BuildQueryUserDeviceFile = function(user, deviceId, deviceIdEqualTo) {
   var query = new Parse.Query(Parse.Object.extend("UserDeviceFile"));
   query.equalTo("User", user);
@@ -136,6 +156,10 @@ Parse.Cloud.beforeSave("UserFile", function(request, response) {
 
 Parse.Cloud.afterSave("UserFile", function(request) {
   InsertUserDeviceFile(request.object, request.user);
+
+  if (request.object.get("FileName") == "_moment.backup") {
+    SaveUserMoment(request.object.get("ParseFile"), request.user);
+  }
 
   var clauses = {
     User: request.user,
