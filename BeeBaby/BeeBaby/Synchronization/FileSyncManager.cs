@@ -120,12 +120,33 @@ namespace BeeBaby.Synchronization
 			var files = await ParseCloud.CallFunctionAsync<IEnumerable<object>>("FindNewFiles", GetParameters());
 			foreach (var file in files)
 			{
-				var parseObject = file as ParseObject;
-				await parseObject.ToDomain<UserFile>().Download((data) => {
-					return ParseCloud.CallFunctionAsync<bool>("ConfirmReceiptFile", GetParameters(parseObject.ObjectId));
+				var fileDomain = (file as ParseObject).ToDomain<UserFile>();
+				await fileDomain.Download((data) => {
+					return ConfirmReceiptFile(fileDomain, data);
 				});
 			}
 			return files.Count() > 0;
+		}
+
+		/// <summary>
+		/// Confirms the receipt file.
+		/// </summary>
+		/// <returns>The receipt file.</returns>
+		/// <param name="file">File.</param>
+		/// <param name="data">Data.</param>
+		async Task<bool> ConfirmReceiptFile(UserFile file, byte[] data)
+		{
+			if (file.IsMomentBackup())
+			{
+				var momentBackup = new MomentBackup(file.DirectoryName);
+				momentBackup.ReadAndUpdate(new MemoryStream(data));
+				if (!momentBackup.Restore())
+				{
+					return false;
+				}
+			}
+
+			return await ParseCloud.CallFunctionAsync<bool>("ConfirmReceiptFile", GetParameters(file.ObjectId));
 		}
 
 		/// <summary>
