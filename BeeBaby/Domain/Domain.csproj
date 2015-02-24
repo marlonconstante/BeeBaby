@@ -59,6 +59,7 @@
     <Compile Include="Synchronization\FileUpload.cs" />
     <Compile Include="Synchronization\IFileUploadRepository.cs" />
     <Compile Include="Synchronization\FileUploadService.cs" />
+    <Compile Include="Moment\MomentPlan.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
