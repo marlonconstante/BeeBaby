@@ -104,8 +104,34 @@ Parse.Cloud.beforeSave("UserDeviceFile", function(request, response) {
 
 Parse.Cloud.beforeSave("UserFile", function(request, response) {
   request.object.set("User", request.user);
-  request.object.set("Version", 1);
-  response.success();
+
+  var clauses = {
+    User: request.user,
+    DirectoryName: request.object.get("DirectoryName"),
+    FileName: request.object.get("FileName")
+  };
+
+  LoadOrNew("UserFile", clauses, function(file, error) {
+    if (file.isNew()) {
+      request.object.set("Version", 1);
+      response.success();
+    } else {
+      Find("UserDeviceFile", { UserFile: file }, function(deviceFiles, error) {
+        var promises = [];
+        for (var index = 0; index < deviceFiles.length; index++) {
+          promises.push(deviceFiles[index].destroy());
+        }
+        promises.push(file.destroy());
+
+        Parse.Promise.when(promises).then(function() {
+          request.object.set("Version", file.get("Version") + 1);
+          response.success();
+        }, function(error) {
+          response.error(error);
+        });
+      });
+    }
+  });
 });
 
 Parse.Cloud.afterSave("UserFile", function(request) {

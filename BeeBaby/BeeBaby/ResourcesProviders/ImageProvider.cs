@@ -134,6 +134,16 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
+		/// Gets the relative file path.
+		/// </summary>
+		/// <returns>The relative file path.</returns>
+		/// <param name="imageName">Image name.</param>
+		public string GetRelativeFilePath(string imageName)
+		{
+			return Path.Combine(m_name, imageName);
+		}
+
+		/// <summary>
 		/// Gets the file names.
 		/// </summary>
 		/// <returns>The file names.</returns>
@@ -271,7 +281,7 @@ namespace BeeBaby.ResourcesProviders
 			foreach (var imageName in imageNames)
 			{
 				File.Move(Path.Combine(temporaryDirectory, imageName), Path.Combine(permanentDirectory, imageName));
-				permanentImages.Add(Path.Combine(m_name, imageName));
+				permanentImages.Add(GetRelativeFilePath(imageName));
 			}
 
 			return permanentImages;

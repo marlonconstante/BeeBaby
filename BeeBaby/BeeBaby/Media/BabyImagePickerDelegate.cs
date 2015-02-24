@@ -8,6 +8,7 @@ using System.Threading;
 using Domain.Baby;
 using Domain.Media;
 using BeeBaby.Progress;
+using Domain.Synchronization;
 
 namespace BeeBaby.Media
 {
@@ -42,7 +43,8 @@ namespace BeeBaby.Media
 			{
 				using (var thumbnail = ImageProvider.GenerateThumbnail(photo))
 				{
-					ImageProvider.SavePermanentImageOnApp(thumbnail, MediaBase.PhotoProfileName, false);
+					var fileName = ImageProvider.SavePermanentImageOnApp(thumbnail, MediaBase.PhotoProfileName, false);
+					new FileUploadService().InsertFilePaths(new string[] { ImageProvider.GetRelativeFilePath(fileName) });
 				}
 			}
 		}
