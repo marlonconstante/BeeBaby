@@ -56,12 +56,16 @@ namespace BeeBaby.Navigations
 				moment.Location = new LocationService().SaveLocation(moment.Location);
 
 				new MomentService().SaveMoment(moment);
-				new MomentBackup(moment).Save();
 				RemoteDataSystem.SendMomentData(moment);
 			}
 			var filePaths = new ImageProvider(moment.Id).SavePermanentImages(moment.SelectedMediaNames);
 			if (!moment.IsTemplate())
 			{
+				var momentBackup = new MomentBackup(moment);
+				momentBackup.Save();
+
+				filePaths.Add(momentBackup.RelativeFilePath);
+
 				new FileUploadService().InsertFilePaths(filePaths);
 			}
 			CurrentContext.Instance.ReloadMoments = true;
