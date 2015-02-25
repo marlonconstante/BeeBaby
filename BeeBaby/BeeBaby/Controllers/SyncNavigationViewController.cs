@@ -4,6 +4,7 @@ using BeeBaby.VisualElements;
 using System.Drawing;
 using System.Timers;
 using BeeBaby.Network;
+using MonoTouch.UIKit;
 
 namespace BeeBaby.Controllers
 {
@@ -19,12 +20,27 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static SyncNavigationViewController()
 		{
+			leftBarButtonLoad ();
+
 			SyncButton = new SyncButton(new RectangleF(6f, 0f, 24f, 24f));
 			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
 
 			Timer = new Timer(c_timerInterval);
 			Timer.Elapsed += OnTimerElapsed;
 			Timer.Start();
+		}
+
+		public static void leftBarButtonLoad()
+		{
+			ConfigButton = new Button (new RectangleF(6f,0f,24f,24f));
+			//ConfigButton.SetTitle("Teste", UIControlState.Normal);
+
+			ConfigButton.SetImage (UIImage.FromBundle("Resources/gear-clear.svg"),UIControlState.Normal);
+			ConfigButton.TouchUpInside += (sender, e) => {
+				Console.WriteLine("Cliclou no CONFIG");
+			};
+
+			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f,0f,24f,24f), ConfigButton);
 		}
 
 		/// <summary>
@@ -34,6 +50,7 @@ namespace BeeBaby.Controllers
 		public SyncNavigationViewController(IntPtr handle) : base(handle)
 		{
 			RightBarButtonItem = SyncBarButtonItem;
+			LeftBarButtonItem = ConfigBarButtonItem;
 		}
 
 		/// <summary>
@@ -103,6 +120,10 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <value>The sync bar button item.</value>
 		static NavigationButtonItem SyncBarButtonItem { get; set; }
+
+		static NavigationButtonItem ConfigBarButtonItem { get; set; }
+
+		static Button ConfigButton { get; set; }
 
 		/// <summary>
 		/// The weak view controller.

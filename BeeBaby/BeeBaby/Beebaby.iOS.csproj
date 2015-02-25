@@ -55,7 +55,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Marlon Constante (DMDW9DQEA6)</CodesignKey>
+    <CodesignKey>iPhone Developer: Wagner Assis (KSS7PGS4U8)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
