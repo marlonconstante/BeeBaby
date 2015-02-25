@@ -1,7 +1,8 @@
 ﻿using System;
 using Parse;
 using System.Reflection;
-using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.PCL.Domain;
+using Infrastructure.Parse;
 
 namespace Infrastructure.Systems.Utils
 {

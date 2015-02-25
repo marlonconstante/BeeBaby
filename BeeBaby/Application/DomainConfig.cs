@@ -4,15 +4,15 @@ using Domain.User;
 using Infrastructure.Repositories.Memory;
 using SQLite.Net;
 using Infrastructure.Repositories.SqliteNet;
-using Skahal.Infrastructure.Framework.Repositories;
-using Skahal.Infrastructure.Framework.Commons;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 using Infrastructure.Globalization;
 using Domain.Baby;
 using System.Globalization;
 using Infrastructure.Configuration;
 using Domain.Log;
 using Domain.Synchronization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 
 namespace Application
 {

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
-using Skahal.Infrastructure.Framework.Commons;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Commons;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
 using System.Linq;

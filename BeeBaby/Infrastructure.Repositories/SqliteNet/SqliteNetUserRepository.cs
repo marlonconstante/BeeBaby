@@ -1,7 +1,7 @@
 ﻿using System;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using SQLite.Net;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 using Domain.User;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using SQLite.Net;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Domain.Synchronization;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Infrastructure.Repositories.SqliteNet.Mapper;

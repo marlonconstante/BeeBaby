@@ -3,7 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Domain.Moment;
 using BeeBaby.ResourcesProviders;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Domain.Baby;
 using BeeBaby.Activity;
 using SwipeViewer;

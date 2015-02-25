@@ -7,7 +7,7 @@ using Infrastructure.Systems;
 using Infrastructure.Systems.Domain;
 using Application;
 using BeeBaby.Util;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BigTed;
 
 namespace BeeBaby.Controllers

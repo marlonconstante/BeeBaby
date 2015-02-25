@@ -6,7 +6,7 @@ using System.Drawing;
 using Application;
 using Domain.Media;
 using PixateFreestyleLib;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Controllers;

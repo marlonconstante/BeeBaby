@@ -1,6 +1,6 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Domain;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 
 namespace Domain.User
 {

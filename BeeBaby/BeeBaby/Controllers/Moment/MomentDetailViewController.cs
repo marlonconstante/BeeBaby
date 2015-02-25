@@ -5,7 +5,7 @@ using Domain.Moment;
 using Application;
 using System.Drawing;
 using BeeBaby.ResourcesProviders;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.CoreLocation;

@@ -4,7 +4,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 using Application;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
 using MonoTouch.Foundation;

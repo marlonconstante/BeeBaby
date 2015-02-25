@@ -1,5 +1,5 @@
 ﻿using Domain.Moment;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 
 namespace Infrastructure.Repositories.Memory
 {

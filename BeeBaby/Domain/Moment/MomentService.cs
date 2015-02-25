@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Skahal.Infrastructure.Framework.Domain;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Domain;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 
 namespace Domain.Moment
 {

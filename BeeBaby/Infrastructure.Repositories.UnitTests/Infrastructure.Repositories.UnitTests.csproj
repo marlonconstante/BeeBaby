@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="nunit.framework" />
+    <Reference Include="Skahal.Infrastructure.Framework.PCL">
+      <HintPath>..\references\Skahal.Infrastructure.Framework.PCL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqliteNet\Mapper\SqliteNetEventMapperTest.cs" />
@@ -55,10 +58,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{44A38002-014A-4297-A53F-EDC91F3E75E6}</Project>
       <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Skahal.Infrastructure.Framework\Skahal.Infrastructure.Framework.csproj">
-      <Project>{404971D6-D685-40C7-80C6-F412697EEF75}</Project>
-      <Name>Skahal.Infrastructure.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{88AA3A37-97FF-4D48-8054-EE19ABBED0C8}</Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Skahal.Infrastructure.Framework.Domain
+namespace Infrastructure.Parse
 {
 	/// <summary>
 	/// Parse domain.

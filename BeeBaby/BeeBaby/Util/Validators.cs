@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using MonoTouch.UIKit;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 
 namespace BeeBaby.Util
 {

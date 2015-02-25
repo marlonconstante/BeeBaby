@@ -8,7 +8,7 @@ using Application;
 using BeeBaby.ResourcesProviders;
 using BeeBaby.Util;
 using Domain.User;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using System.Drawing;
 using PixateFreestyleLib;
 using System.Collections.Generic;

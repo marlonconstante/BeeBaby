@@ -1,5 +1,5 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Domain.Baby;
 
 namespace Infrastructure.Repositories.Memory

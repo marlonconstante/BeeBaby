@@ -1,10 +1,12 @@
 ﻿using System;
 using Parse;
-using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.PCL.Domain;
 using System.Reflection;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Domain;
+using Infrastructure.Parse;
 
 namespace Infrastructure.Systems.Domain
 {

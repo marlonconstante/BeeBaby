@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using PixateFreestyleLib;
 using System.Threading;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 
 namespace BeeBaby.Controllers
 {

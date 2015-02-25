@@ -8,7 +8,7 @@ using Domain.Media;
 using System.Drawing;
 using Domain.Baby;
 using BeeBaby.ViewModels;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Application;
 using System.Linq;
 using System.Diagnostics;

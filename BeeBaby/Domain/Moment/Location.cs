@@ -1,6 +1,6 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Domain;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 
 
 namespace Domain.Moment

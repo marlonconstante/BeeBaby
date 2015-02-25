@@ -2,7 +2,7 @@
 using MonoTouch.Foundation;
 using Domain.Baby;
 using MonoTouch.UIKit;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Domain.Moment;
 using Application;
 using BeeBaby.ResourcesProviders;

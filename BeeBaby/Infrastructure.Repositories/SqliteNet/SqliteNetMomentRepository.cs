@@ -3,7 +3,7 @@ using Domain.Moment;
 using SQLite.Net;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Infrastructure.Repositories.SqliteNet.Mapper;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 

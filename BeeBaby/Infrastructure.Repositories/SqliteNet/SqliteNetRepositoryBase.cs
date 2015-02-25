@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.PCL.Domain;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using SQLite.Net;
 using Infrastructure.Repositories.Commons;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using SQLiteNetExtensions.Extensions;
 using Infrastructure.Repositories.SqliteNet.Entities;
 

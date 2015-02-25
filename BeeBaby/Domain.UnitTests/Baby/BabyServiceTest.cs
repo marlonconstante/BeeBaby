@@ -2,9 +2,9 @@
 using System;
 using System.Linq;
 using Domain.Baby;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Infrastructure.Repositories.Memory;
-using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 
 namespace Domain.UnitTests.Baby
 {

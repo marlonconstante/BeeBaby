@@ -5,7 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using BeeBaby.ResourcesProviders;
 using Application;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using MonoTouch.AudioToolbox;
 using System.Collections.Generic;
 using BeeBaby.Navigations;

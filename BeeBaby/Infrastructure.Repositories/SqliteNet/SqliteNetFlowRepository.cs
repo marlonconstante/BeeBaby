@@ -2,7 +2,7 @@
 using Infrastructure.Repositories.SqliteNet.Entities;
 using SQLite.Net;
 using Domain.Log;
-using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
 using Infrastructure.Repositories.SqliteNet.Mapper;
 
 namespace Infrastructure.Repositories.SqliteNet

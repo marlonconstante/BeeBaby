@@ -1,6 +1,6 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Globalization;
-using Skahal.Infrastructure.Framework.Logging;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,8 +11,64 @@ namespace Infrastructure.Globalization
 	/// </summary>
 	public class GlobalizationLabelRepository : IGlobalizationLabelRepository
 	{
+		#region Not Implemented
+		public void SetUnitOfWork(Skahal.Infrastructure.Framework.PCL.Repositories.IUnitOfWork unitOfWork)
+		{
+			throw new NotImplementedException();
+		}
+
+		public GlobalizationLabel FindBy(object key)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<GlobalizationLabel> FindAllAscending<TOrderByKey>(int offset, int limit, System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter, System.Linq.Expressions.Expression<Func<GlobalizationLabel, TOrderByKey>> orderBy)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<GlobalizationLabel> FindAllDescending<TOrderByKey>(int offset, int limit, System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter, System.Linq.Expressions.Expression<Func<GlobalizationLabel, TOrderByKey>> orderBy)
+		{
+			throw new NotImplementedException();
+		}
+
+		public long CountAll(System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Add(GlobalizationLabel item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Remove(GlobalizationLabel item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public GlobalizationLabel this [object index]
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
+		#endregion
 
 		List<GlobalizationLabel> m_entities = new List<GlobalizationLabel>();
+
+		public IEnumerable<GlobalizationLabel> FindAll(int offset, int limit, System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter)
+		{
+			return m_entities.Where(e => filter.Compile()(e))
+				.OrderBy(e => e.Key)
+				.Skip(offset)
+				.Take(limit);
+		}
 
 		/// <summary>
 		/// Loads the culture labels.
@@ -55,8 +111,8 @@ namespace Infrastructure.Globalization
 		public GlobalizationLabel FindFirst(string englishText, string currentCulture)
 		{
 			return m_entities.FindAll(
-				f =>   f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
-					.FirstOrDefault ();
+				f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
+					.FirstOrDefault();
 
 		}
 

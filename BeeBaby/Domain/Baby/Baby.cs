@@ -1,7 +1,8 @@
 ﻿using System;
-using Skahal.Infrastructure.Framework.Domain;
-using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.PCL.Domain;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 using Itenso.TimePeriod;
+using Infrastructure.Commons;
 
 namespace Domain.Baby
 {

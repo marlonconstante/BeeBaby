@@ -4,8 +4,8 @@ using Infrastructure.Repositories.SqliteNet.Mapper;
 using Infrastructure.Repositories.SqliteNet.Entities;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
-using Skahal.Infrastructure.Framework.Repositories;
-using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 using System.Collections.Generic;
 using Domain.Baby;
 

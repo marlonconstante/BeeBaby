@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using MonoTouch.Foundation;
 using Domain.Moment;
 using Application;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BeeBaby.Progress;
 using BeeBaby.VisualElements;
 

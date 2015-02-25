@@ -1,4 +1,6 @@
-﻿namespace Skahal.Infrastructure.Framework.Domain
+﻿using System;
+
+namespace Infrastructure.Parse
 {
 	/// <summary>
 	/// I parseable.

@@ -2,8 +2,8 @@
 using System.Linq;
 using Domain.Moment;
 using Infrastructure.Repositories.Memory;
-using Skahal.Infrastructure.Framework.Repositories;
-using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.PCL.Repositories;
+using Skahal.Infrastructure.Framework.PCL.Commons;
 
 namespace Domain.UnitTests.Moment
 {

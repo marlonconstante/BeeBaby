@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using MonoTouch.Foundation;
 using System.Threading.Tasks;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BigTed;
 using PixateFreestyleLib;
 using System.Linq;

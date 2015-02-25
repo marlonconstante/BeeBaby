@@ -1,7 +1,7 @@
 using System;
 using MonoTouch.UIKit;
 using BeeBaby.ResourcesProviders;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Application;
 using System.Drawing;
 using Domain.Moment;

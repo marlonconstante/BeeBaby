@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Skahal.Infrastructure.Framework.Globalization;
+using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Itenso.TimePeriod;
 
-namespace Skahal.Infrastructure.Framework.Commons
+namespace Infrastructure.Commons
 {
 	public static class TimeSpanExtensions
 	{
