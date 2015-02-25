@@ -17,6 +17,7 @@ using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Progress;
 using BeeBaby.VisualElements;
+using Domain.Synchronization;
 
 namespace BeeBaby.Controllers
 {
@@ -177,7 +178,8 @@ namespace BeeBaby.Controllers
 			if (!moment.IsTemplate())
 			{
 				new MomentService().RemoveMoment(moment);
-				new ImageProvider(moment.Id).DeleteFiles(false);
+				var filePaths = new ImageProvider(moment.Id).DeleteFiles(false);
+				new FileUploadService().InsertFilePaths(filePaths);
 			}
 
 			ClearMomentPhotos();

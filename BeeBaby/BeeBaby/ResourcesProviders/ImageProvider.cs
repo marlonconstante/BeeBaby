@@ -81,12 +81,14 @@ namespace BeeBaby.ResourcesProviders
 		/// <summary>
 		/// Deletes the files.
 		/// </summary>
+		/// <returns>The files.</returns>
 		/// <param name="temporary">If set to <c>true</c> temporary.</param>
-		public void DeleteFiles(bool temporary)
+		public IList<string> DeleteFiles(bool temporary)
 		{
 			var path = Path.Combine(m_appDocumentsDirectory, temporary ? m_temporaryDirectoryName : "");
 			Directory.CreateDirectory(path);
 
+			var deleteFiles = new SortedSet<string>();
 			Directory.EnumerateDirectories(path)
 				.ToList().ForEach(directoryName => {
 				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
@@ -95,11 +97,16 @@ namespace BeeBaby.ResourcesProviders
 				if (validTemporaryDirectory || validPermanentDirectory)
 				{
 					Directory.EnumerateFiles(directoryName)
-						.ToList().ForEach(fileName => File.Delete(fileName));
+						.ToList().ForEach(filePath => {
+							File.Delete(filePath);
+							deleteFiles.Add(GetRelativeFilePath(Path.GetFileName(filePath)));
+						});
 
 					Directory.Delete(directoryName);
 				}
 			});
+
+			return deleteFiles.Reverse().ToList();
 		}
 
 		/// <summary>
@@ -123,10 +130,10 @@ namespace BeeBaby.ResourcesProviders
 		/// Gets the relative file path.
 		/// </summary>
 		/// <returns>The relative file path.</returns>
-		/// <param name="imageName">Image name.</param>
-		public string GetRelativeFilePath(string imageName)
+		/// <param name="fileName">File name.</param>
+		public string GetRelativeFilePath(string fileName)
 		{
-			return Path.Combine(m_name, imageName);
+			return Path.Combine(m_name, fileName);
 		}
 
 		/// <summary>
