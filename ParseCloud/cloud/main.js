@@ -107,6 +107,7 @@ Parse.Cloud.define("FindNewFiles", function(request, response) {
   query.equalTo("SameDeviceId", true);
   query.doesNotMatchKeyInQuery("UserFile", "UserFile", BuildQueryUserDeviceFile(request.user, deviceId, true));
   query.include("UserFile");
+  query.ascending("updatedAt");
 
   FindByQuery(query, function(deviceFiles, error) {
     var files = [];
