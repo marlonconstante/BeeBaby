@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Timers;
 using BeeBaby.Network;
 using MonoTouch.UIKit;
+using PixateFreestyleLib;
 
 namespace BeeBaby.Controllers
 {
@@ -20,7 +21,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static SyncNavigationViewController()
 		{
-			leftBarButtonLoad ();
+			LeftBarButtonLoad ();
 
 			SyncButton = new SyncButton(new RectangleF(6f, 0f, 24f, 24f));
 			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
@@ -30,12 +31,10 @@ namespace BeeBaby.Controllers
 			Timer.Start();
 		}
 
-		public static void leftBarButtonLoad()
+		public static void LeftBarButtonLoad()
 		{
 			ConfigButton = new Button (new RectangleF(6f,0f,24f,24f));
-			//ConfigButton.SetTitle("Teste", UIControlState.Normal);
-
-			ConfigButton.SetImage (UIImage.FromBundle("Resources/gear-clear.svg"),UIControlState.Normal);
+			ConfigButton.SetStyleClass ("gear-clear");
 			ConfigButton.TouchUpInside += (sender, e) => {
 				Console.WriteLine("Cliclou no CONFIG");
 			};
