@@ -79,17 +79,6 @@ namespace BeeBaby.ResourcesProviders
 		}
 
 		/// <summary>
-		/// Creates the empty file.
-		/// </summary>
-		/// <param name="filePath">File path.</param>
-		void CreateEmptyFile(string filePath) {
-			if (FileHandle.IsValid(filePath))
-			{
-				File.Create(filePath).Close();
-			}
-		}
-
-		/// <summary>
 		/// Deletes the files.
 		/// </summary>
 		/// <param name="temporary">If set to <c>true</c> temporary.</param>
@@ -103,15 +92,12 @@ namespace BeeBaby.ResourcesProviders
 				var validTemporaryDirectory = temporary && (string.IsNullOrEmpty(m_name) || !directoryName.EndsWith(m_name));
 				var validPermanentDirectory = !temporary && !string.IsNullOrEmpty(m_name) && directoryName.EndsWith(m_name);
 
-				var files = Directory.EnumerateFiles(directoryName).ToList();
-				if (validTemporaryDirectory)
+				if (validTemporaryDirectory || validPermanentDirectory)
 				{
-					files.ForEach(file => File.Delete(file));
+					Directory.EnumerateFiles(directoryName)
+						.ToList().ForEach(fileName => File.Delete(fileName));
+
 					Directory.Delete(directoryName);
-				}
-				else if (validPermanentDirectory)
-				{
-					files.ForEach(file => CreateEmptyFile(file));
 				}
 			});
 		}
@@ -158,7 +144,7 @@ namespace BeeBaby.ResourcesProviders
 				thumbnails 
 				? f.Contains(m_thumbnailPrefix)
 				: !f.Contains(m_thumbnailPrefix)
-			).Where(f => new FileInfo(f).Length > 0L).ToList();
+			).ToList();
 
 			return fileNames;
 		}
@@ -263,6 +249,7 @@ namespace BeeBaby.ResourcesProviders
 				imageNames.Add(thumbnailName.Remove(0, m_thumbnailPrefix.Length));
 			}
 
+			var permanentImages = new List<string>();
 			Directory.EnumerateFiles(permanentDirectory)
 				.Where(f => f.EndsWith(m_fileExtension))
 				.ToList().ForEach(filePath => {
@@ -273,11 +260,11 @@ namespace BeeBaby.ResourcesProviders
 				}
 				else
 				{
-					CreateEmptyFile(filePath);
+					File.Delete(filePath);
+					permanentImages.Add(GetRelativeFilePath(imageName));
 				}
 			});
 
-			var permanentImages = new List<string>();
 			foreach (var imageName in imageNames)
 			{
 				File.Move(Path.Combine(temporaryDirectory, imageName), Path.Combine(permanentDirectory, imageName));

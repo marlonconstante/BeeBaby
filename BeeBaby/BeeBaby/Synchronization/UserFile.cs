@@ -41,7 +41,10 @@ namespace BeeBaby.Synchronization
 		{
 			using (var stream = base.Load(GetFilePath()))
 			{
-				ParseFile = new ParseFile(FileName, stream);
+				if (!Stream.Null.Equals(stream))
+				{
+					ParseFile = new ParseFile(FileName, stream);
+				}
 
 				var parseObject = this.ToParseObject<ParseObject>();
 				await parseObject.SaveAsync();
@@ -56,12 +59,19 @@ namespace BeeBaby.Synchronization
 		{
 			using (var webClient = new WebClient())
 			{
-				var data = await webClient.DownloadDataTaskAsync(ParseFile.Url);
+				var data = (ParseFile == null) ? new byte[] { } : await webClient.DownloadDataTaskAsync(ParseFile.Url);
 				if (await beforeSaveAction(data))
 				{
-					using (var stream = new MemoryStream(data))
+					if (data.Length == 0)
 					{
-						base.Save(GetFilePath(), stream);
+						base.Delete(GetFilePath());
+					}
+					else
+					{
+						using (var stream = new MemoryStream(data))
+						{
+							base.Save(GetFilePath(), stream);
+						}
 					}
 				}
 			}
