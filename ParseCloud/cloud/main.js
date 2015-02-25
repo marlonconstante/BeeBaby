@@ -52,22 +52,31 @@ var InsertUserDeviceFile = function(file, user, deviceId) {
 }
 
 var SaveUserMoment = function(file, user) {
-  Parse.Cloud.httpRequest({ url: file.url() }).then(function(response) {
-    var momentPlan = JSON.parse(response.buffer.toString('utf8'));
+  var parseFile = file.get("ParseFile");
+  var clauses = {
+    MomentId: file.get("DirectoryName"),
+    User: user
+  };
 
-    var clauses = {
-      MomentId: momentPlan.MomentId,
-      User: user
-    };
-
-    LoadOrNew("UserMoment", clauses, function(moment, error) {
-      if (!error) {
-        for (var fieldName in momentPlan) {
-          moment.set(fieldName, momentPlan[fieldName]);
-        }
-        moment.save();
-      }
+  if (parseFile) {
+    Parse.Cloud.httpRequest({ url: parseFile.url() }).then(function(response) {
+      var data = JSON.parse(response.buffer.toString('utf8'));
+      data.Active = true;
+      UpdateUserMoment(clauses, data);
     });
+  } else {
+    UpdateUserMoment(clauses, { Active: false });
+  }
+}
+
+var UpdateUserMoment = function(clauses, data) {
+  LoadOrNew("UserMoment", clauses, function(moment, error) {
+    if (!error) {
+      for (var fieldName in data) {
+        moment.set(fieldName, data[fieldName]);
+      }
+      moment.save();
+    }
   });
 }
 
@@ -159,7 +168,7 @@ Parse.Cloud.afterSave("UserFile", function(request) {
   InsertUserDeviceFile(request.object, request.user);
 
   if (request.object.get("FileName") == "_moment.backup") {
-    SaveUserMoment(request.object.get("ParseFile"), request.user);
+    SaveUserMoment(request.object, request.user);
   }
 
   var clauses = {
