@@ -89,6 +89,10 @@ namespace BeeBaby.Backup
 		/// <returns>The value.</returns>
 		public T GetValue()
 		{
+			if (string.IsNullOrEmpty(TextData))
+			{
+				return null;
+			}
 			return JsonConvert.DeserializeObject<T>(TextData);
 		}
 
