@@ -44,6 +44,15 @@ namespace BeeBaby.Backup
 		}
 
 		/// <summary>
+		/// Delete the specified path.
+		/// </summary>
+		/// <param name="path">Path.</param>
+		protected void Delete(string path)
+		{
+			File.Delete(path);
+		}
+
+		/// <summary>
 		/// Determines if is valid the specified path.
 		/// </summary>
 		/// <returns><c>true</c> if is valid the specified path; otherwise, <c>false</c>.</returns>
