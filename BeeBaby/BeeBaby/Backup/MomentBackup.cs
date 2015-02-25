@@ -51,13 +51,13 @@ namespace BeeBaby.Backup
 			}
 			else
 			{
-			var moment = value.ToMomentDomain();
-			moment.Event = CurrentContext.Instance.AllEvents.Where(ev => ev.Id == moment.EventId).FirstOrDefault();
-			moment.Location = new LocationService().SaveLocation(moment.Location);
-			moment.Babies = new List<Baby> { CurrentContext.Instance.CurrentBaby };
-			moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
+				var moment = value.ToMomentDomain();
+				moment.Event = CurrentContext.Instance.AllEvents.Where(ev => ev.Id == moment.EventId).FirstOrDefault();
+				moment.Location = new LocationService().SaveLocation(moment.Location);
+				moment.Babies = new List<Baby> { CurrentContext.Instance.CurrentBaby };
+				moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
 
-			new MomentService().SaveMoment(moment);
+				new MomentService().SaveMoment(moment);
 			}
 
 			CurrentContext.Instance.ReloadMoments = true;
