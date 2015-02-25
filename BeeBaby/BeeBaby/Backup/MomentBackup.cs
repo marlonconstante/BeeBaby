@@ -32,6 +32,7 @@ namespace BeeBaby.Backup
 		/// <param name="momentPlan">Moment plan.</param>
 		public MomentBackup(string id, MomentPlan momentPlan = null) : base(FileHandle.GetPath(id, FileName), momentPlan)
 		{
+			MomentId = id;
 			RelativeFilePath = Path.Combine(id, FileName);
 		}
 
@@ -40,15 +41,35 @@ namespace BeeBaby.Backup
 		/// </summary>
 		protected override void PerformAction()
 		{
-			var moment = GetValue().ToMomentDomain();
+			var value = GetValue();
+			if (value == null)
+			{
+				new MomentService().RemoveMoment(new Moment {
+					Id = MomentId
+				});
+				new ImageProvider(MomentId).DeleteFiles(false);
+			}
+			else
+			{
+			var moment = value.ToMomentDomain();
 			moment.Event = CurrentContext.Instance.AllEvents.Where(ev => ev.Id == moment.EventId).FirstOrDefault();
 			moment.Location = new LocationService().SaveLocation(moment.Location);
 			moment.Babies = new List<Baby> { CurrentContext.Instance.CurrentBaby };
 			moment.MediaCount = new ImageProvider(moment.Id).GetFileNames().Count;
 
 			new MomentService().SaveMoment(moment);
+			}
 
 			CurrentContext.Instance.ReloadMoments = true;
+		}
+
+		/// <summary>
+		/// Gets or sets the moment identifier.
+		/// </summary>
+		/// <value>The moment identifier.</value>
+		public string MomentId {
+			get;
+			set;
 		}
 
 		/// <summary>
