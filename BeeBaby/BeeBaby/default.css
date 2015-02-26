@@ -991,6 +991,10 @@ text-view {
 	background-image: url(gear-clear.svg);
 }
 
+.baby-tab {
+	background-image: url(baby-icon.svg);
+}
+
 .home {
 	background-image: url(home.svg);
 }
