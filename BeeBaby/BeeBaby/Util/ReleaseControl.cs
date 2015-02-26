@@ -9,6 +9,9 @@ using BeeBaby.ResourcesProviders;
 using System.IO;
 using BeeBaby.Progress;
 using Domain.Media;
+using BeeBaby.Backup;
+using System.Collections.Generic;
+using Domain.Synchronization;
 
 namespace BeeBaby.Util
 {
@@ -25,8 +28,8 @@ namespace BeeBaby.Util
 			new ActionProgress(() => {
 				RunActions(1.1f, "MediaCount", UpdateMediaCount);
 				RunActions(1.3f, "VersionAlert", ShowNewVersionAlert);
-				RunActions(1.5f, "SizePictures", UpdateSizePictures);
-				RunActions(1.5f, "ThumbnailPhotoProfile", DeleteThumbnailPhotoProfile);
+				RunActions(1.5f, "BackupMomentAndChangeSizePictures", BackupMomentAndChangeSizePictures);
+				RunActions(1.5f, "DeleteThumbnailPhotoProfile", DeleteThumbnailPhotoProfile);
 			}, false).Execute("Wait".Translate());
 		}
 
@@ -64,26 +67,39 @@ namespace BeeBaby.Util
 		}
 
 		/// <summary>
-		/// Updates the size pictures.
+		/// Backups the moment and change size pictures.
 		/// </summary>
-		static void UpdateSizePictures()
+		static void BackupMomentAndChangeSizePictures()
 		{
+			var filePaths = new List<string>();
 			foreach (var moment in new MomentService().FindAllMoments())
 			{
 				var imageProvider = new ImageProvider(moment.Id);
-				foreach (var fileName in imageProvider.GetFileNames())
+				foreach (var filePath in imageProvider.GetFileNames())
 				{
-					using (var image = imageProvider.LoadImage(fileName))
+					using (var image = imageProvider.LoadImage(filePath))
 					{
 						var size = image.Size;
 						var maxSizeInPixels = Math.Max(size.Width, size.Height) * image.CurrentScale;
 						if (maxSizeInPixels > MediaBase.FullScreenImageMaxSizeInPixels)
 						{
-							imageProvider.SavePermanentImageOnApp(image, Path.GetFileNameWithoutExtension(fileName), false); 
+							imageProvider.SavePermanentImageOnApp(image, Path.GetFileNameWithoutExtension(filePath), false); 
 						}
 					}
+
+					var imageName = Path.GetFileName(filePath);
+					var thumbnailImageName = imageProvider.GetThumbnailImageName(imageName);
+
+					filePaths.Add(imageProvider.GetRelativeFilePath(thumbnailImageName));
+					filePaths.Add(imageProvider.GetRelativeFilePath(imageName));
 				}
+
+				var momentBackup = new MomentBackup(moment);
+				momentBackup.Save();
+
+				filePaths.Add(momentBackup.RelativeFilePath);
 			}
+			new FileUploadService().InsertFilePaths(filePaths);
 		}
 
 		/// <summary>
@@ -95,8 +111,16 @@ namespace BeeBaby.Util
 			if (baby != null)
 			{
 				var imageProvider = new ImageProvider(baby.Id);
-				var fileName = imageProvider.GetThumbnailImageName(MediaBase.PhotoProfileName);
-				imageProvider.DeletePermanentFile(fileName);
+
+				var imageName = imageProvider.GetImageNameWithExtension(MediaBase.PhotoProfileName);
+				var thumbnailImageName = imageProvider.GetThumbnailImageName(imageName);
+
+				imageProvider.DeletePermanentFile(thumbnailImageName);
+
+				if (FileHandle.IsValid(Path.Combine(FileHandle.RootFolderPath, baby.Id, imageName)))
+				{
+					new FileUploadService().InsertFilePaths(new string[] { imageProvider.GetRelativeFilePath(imageName) });
+				}
 			}
 		}
 
