@@ -22,7 +22,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static SyncNavigationViewController()
 		{
-			LeftBarButtonLoad ();
+			LeftBarButtonLoad();
 
 			SyncButton = new SyncButton(new RectangleF(6f, 0f, 24f, 24f));
 			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
@@ -34,13 +34,13 @@ namespace BeeBaby.Controllers
 
 		public static void LeftBarButtonLoad()
 		{
-			ConfigButton = new Button (new RectangleF(6f,0f,24f,24f));
-			ConfigButton.SetStyleClass ("gear-clear");
+			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
+			ConfigButton.SetStyleClass("gear-clear");
 			ConfigButton.TouchUpInside += (sender, e) => {
 				Console.WriteLine("Cliclou no CONFIG");
 			};
 
-			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f,0f,24f,24f), ConfigButton);
+			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
 
 		/// <summary>
@@ -90,19 +90,19 @@ namespace BeeBaby.Controllers
 		{
 			if (ParseUser.CurrentUser != null)
 			{
-			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
-			{
-				if (await FileSyncManager.Instance.Synchronize(SyncButton))
+				if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 				{
-					if (WeakViewController != null && WeakViewController.IsAlive)
+					if (await FileSyncManager.Instance.Synchronize(SyncButton))
 					{
-						var viewController = (SyncNavigationViewController) WeakViewController.Target;
-						viewController.InvokeOnMainThread(() => {
-							viewController.OnSyncPerformed();
-						});
+						if (WeakViewController != null && WeakViewController.IsAlive)
+						{
+							var viewController = (SyncNavigationViewController) WeakViewController.Target;
+							viewController.InvokeOnMainThread(() => {
+								viewController.OnSyncPerformed();
+							});
+						}
 					}
 				}
-			}
 			}
 		}
 
