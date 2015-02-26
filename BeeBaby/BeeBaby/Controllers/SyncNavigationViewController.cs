@@ -7,6 +7,7 @@ using BeeBaby.Network;
 using MonoTouch.UIKit;
 using PixateFreestyleLib;
 using Parse;
+using System.Collections.Generic;
 
 namespace BeeBaby.Controllers
 {
@@ -92,6 +93,8 @@ namespace BeeBaby.Controllers
 			{
 				if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 				{
+					if (await ParseCloud.CallFunctionAsync<bool>("IsSyncEnabled", new Dictionary<string, object>()))
+					{
 					if (await FileSyncManager.Instance.Synchronize(SyncButton))
 					{
 						if (WeakViewController != null && WeakViewController.IsAlive)
@@ -101,6 +104,7 @@ namespace BeeBaby.Controllers
 								viewController.OnSyncPerformed();
 							});
 						}
+					}
 					}
 				}
 			}
