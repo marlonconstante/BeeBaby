@@ -93,6 +93,18 @@ var BuildQueryUserDeviceFile = function(user, deviceId, deviceIdEqualTo) {
   return query;
 }
 
+Parse.Cloud.define("IsSyncEnabled", function(request, response) {
+  if (request.user) {
+    LoadOrNew("UserAccount", { User: request.user }, function(account, error) {
+      var size = account.get("Size") || 0;
+      var maxSize = 5 * 1024 * 1024;
+      response.success(!error && size < maxSize);
+    });
+  } else {
+    response.success(false);
+  }
+});
+
 Parse.Cloud.define("ConfirmReceiptFile", function(request, response) {
   var deviceId = request.params.DeviceId;
   var clauses = {
