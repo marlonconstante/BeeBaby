@@ -74,7 +74,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <param name="fileName">File name.</param>
 		public void DeletePermanentFile(string fileName)
 		{
-			var filePath = Path.Combine(GetPermanentDirectory(), string.Concat(fileName, m_fileExtension));
+			var filePath = Path.Combine(GetPermanentDirectory(), fileName);
 			File.Delete(filePath);
 		}
 
@@ -362,6 +362,15 @@ namespace BeeBaby.ResourcesProviders
 		public string GetThumbnailImageName(string imageName)
 		{
 			return string.Concat(m_thumbnailPrefix, imageName);
+		}
+
+		/// <summary>
+		/// Gets the image name with extension.
+		/// </summary>
+		/// <returns>The image name with extension.</returns>
+		/// <param name="imageName">Image name.</param>
+		public string GetImageNameWithExtension(string imageName) {
+			return string.Concat(imageName, m_fileExtension);
 		}
 
 		/// <summary>
