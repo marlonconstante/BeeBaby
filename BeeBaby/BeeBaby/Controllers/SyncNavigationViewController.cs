@@ -6,6 +6,8 @@ using System.Timers;
 using BeeBaby.Network;
 using MonoTouch.UIKit;
 using PixateFreestyleLib;
+using Parse;
+using System.Collections.Generic;
 
 namespace BeeBaby.Controllers
 {
@@ -21,7 +23,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static SyncNavigationViewController()
 		{
-			LeftBarButtonLoad ();
+			LeftBarButtonLoad();
 
 			SyncButton = new SyncButton(new RectangleF(6f, 0f, 24f, 24f));
 			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
@@ -33,13 +35,13 @@ namespace BeeBaby.Controllers
 
 		public static void LeftBarButtonLoad()
 		{
-			ConfigButton = new Button (new RectangleF(6f,0f,24f,24f));
-			ConfigButton.SetStyleClass ("gear-clear");
+			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
+			ConfigButton.SetStyleClass("gear-clear");
 			ConfigButton.TouchUpInside += (sender, e) => {
 				Console.WriteLine("Cliclou no CONFIG");
 			};
 
-			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f,0f,24f,24f), ConfigButton);
+			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
 
 		/// <summary>
@@ -87,16 +89,22 @@ namespace BeeBaby.Controllers
 		/// <param name="args">Arguments.</param>
 		static async void OnTimerElapsed(object sender, ElapsedEventArgs args)
 		{
-			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
+			if (ParseUser.CurrentUser != null)
 			{
-				if (await FileSyncManager.Instance.Synchronize(SyncButton))
+				if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 				{
-					if (WeakViewController != null && WeakViewController.IsAlive)
+					if (await ParseCloud.CallFunctionAsync<bool>("IsSyncEnabled", new Dictionary<string, object>()))
 					{
-						var viewController = (SyncNavigationViewController) WeakViewController.Target;
-						viewController.InvokeOnMainThread(() => {
-							viewController.OnSyncPerformed();
-						});
+						if (await FileSyncManager.Instance.Synchronize(SyncButton))
+						{
+							if (WeakViewController != null && WeakViewController.IsAlive)
+							{
+								var viewController = (SyncNavigationViewController) WeakViewController.Target;
+								viewController.InvokeOnMainThread(() => {
+									viewController.OnSyncPerformed();
+								});
+							}
+						}
 					}
 				}
 			}
