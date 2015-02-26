@@ -128,8 +128,16 @@ namespace BeeBaby.Controllers
 		/// <value>The sync bar button item.</value>
 		static NavigationButtonItem SyncBarButtonItem { get; set; }
 
+		/// <summary>
+		/// Gets or sets the config bar button item.
+		/// </summary>
+		/// <value>The config bar button item.</value>
 		static NavigationButtonItem ConfigBarButtonItem { get; set; }
 
+		/// <summary>
+		/// Gets or sets the config button.
+		/// </summary>
+		/// <value>The config button.</value>
 		static Button ConfigButton { get; set; }
 
 		/// <summary>
