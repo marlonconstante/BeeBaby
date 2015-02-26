@@ -95,16 +95,16 @@ namespace BeeBaby.Controllers
 				{
 					if (await ParseCloud.CallFunctionAsync<bool>("IsSyncEnabled", new Dictionary<string, object>()))
 					{
-					if (await FileSyncManager.Instance.Synchronize(SyncButton))
-					{
-						if (WeakViewController != null && WeakViewController.IsAlive)
+						if (await FileSyncManager.Instance.Synchronize(SyncButton))
 						{
-							var viewController = (SyncNavigationViewController) WeakViewController.Target;
-							viewController.InvokeOnMainThread(() => {
-								viewController.OnSyncPerformed();
-							});
+							if (WeakViewController != null && WeakViewController.IsAlive)
+							{
+								var viewController = (SyncNavigationViewController) WeakViewController.Target;
+								viewController.InvokeOnMainThread(() => {
+									viewController.OnSyncPerformed();
+								});
+							}
 						}
-					}
 					}
 				}
 			}
