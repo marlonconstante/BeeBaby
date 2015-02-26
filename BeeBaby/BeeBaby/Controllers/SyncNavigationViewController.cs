@@ -6,6 +6,7 @@ using System.Timers;
 using BeeBaby.Network;
 using MonoTouch.UIKit;
 using PixateFreestyleLib;
+using Parse;
 
 namespace BeeBaby.Controllers
 {
@@ -87,6 +88,8 @@ namespace BeeBaby.Controllers
 		/// <param name="args">Arguments.</param>
 		static async void OnTimerElapsed(object sender, ElapsedEventArgs args)
 		{
+			if (ParseUser.CurrentUser != null)
+			{
 			if (Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork)
 			{
 				if (await FileSyncManager.Instance.Synchronize(SyncButton))
@@ -99,6 +102,7 @@ namespace BeeBaby.Controllers
 						});
 					}
 				}
+			}
 			}
 		}
 
