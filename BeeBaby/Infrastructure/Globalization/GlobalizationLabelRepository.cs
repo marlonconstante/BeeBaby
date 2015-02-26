@@ -11,13 +11,17 @@ namespace Infrastructure.Globalization
 	/// </summary>
 	public class GlobalizationLabelRepository : IGlobalizationLabelRepository
 	{
-		#region Not Implemented
 		public void SetUnitOfWork(Skahal.Infrastructure.Framework.PCL.Repositories.IUnitOfWork unitOfWork)
 		{
 			throw new NotImplementedException();
 		}
 
 		public GlobalizationLabel FindBy(object key)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<GlobalizationLabel> FindAll(int offset, int limit, System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter)
 		{
 			throw new NotImplementedException();
 		}
@@ -58,17 +62,8 @@ namespace Infrastructure.Globalization
 				throw new NotImplementedException();
 			}
 		}
-		#endregion
 
-		List<GlobalizationLabel> m_entities = new List<GlobalizationLabel>();
-
-		public IEnumerable<GlobalizationLabel> FindAll(int offset, int limit, System.Linq.Expressions.Expression<Func<GlobalizationLabel, bool>> filter)
-		{
-			return m_entities.Where(e => filter.Compile()(e))
-				.OrderBy(e => e.Key)
-				.Skip(offset)
-				.Take(limit);
-		}
+		static SortedDictionary<string, GlobalizationLabel> m_entities = new SortedDictionary<string, GlobalizationLabel>();
 
 		/// <summary>
 		/// Loads the culture labels.
@@ -78,28 +73,25 @@ namespace Infrastructure.Globalization
 		/// <param name="cultureName">Culture name.</param>
 		public bool LoadCultureLabels(string cultureName)
 		{
-			if (m_entities.Count(f => f.CultureName.Equals(cultureName, StringComparison.OrdinalIgnoreCase)) == 0)
+			LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
+
+			var lines = GetCultureText(cultureName).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+			LogService.Debug("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
+
+			foreach (var line in lines)
 			{
-				LogService.Debug("TextGlobalizationLabelRepositoryBase :: Loading texts for language '{0}'...", cultureName);
+				var lineParts = line.Split('=');
 
-				var lines = GetCultureText(cultureName).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-				LogService.Debug("TextGlobalizationLabelRepositoryBase :: {0} texts founds...", lines.Length);
-
-				foreach (var line in lines)
+				m_entities[lineParts[0].Trim()] = new GlobalizationLabel()
 				{
-					var lineParts = line.Split('=');
-					m_entities.Add(new GlobalizationLabel()
-					{
-						EnglishText = lineParts[0].Trim(),
-						CultureText = lineParts[1].Trim().Replace(@"\n", Environment.NewLine),
-						CultureName = cultureName
-					});
-				}
-				return true;
+					EnglishText = lineParts[0].Trim(),
+					CultureText = lineParts[1].Trim().Replace(@"\n", Environment.NewLine),
+					CultureName = cultureName
+				};
 			}
 
-			return false;
+			return true;
 		}
 
 		/// <summary>
@@ -110,10 +102,7 @@ namespace Infrastructure.Globalization
 		/// <param name="currentCulture">Current culture.</param>
 		public GlobalizationLabel FindFirst(string englishText, string currentCulture)
 		{
-			return m_entities.FindAll(
-				f => f.EnglishText.Equals(englishText, StringComparison.OrdinalIgnoreCase))
-					.FirstOrDefault();
-
+			return m_entities[englishText];
 		}
 
 		/// <summary>

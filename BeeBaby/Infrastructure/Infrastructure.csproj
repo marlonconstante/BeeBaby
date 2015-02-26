@@ -58,6 +58,9 @@
     <Reference Include="Itenso.TimePeriod">
       <HintPath>..\packages\TimePeriodLibrary.NET.2.0.0\lib\portable-net4+sl4+wp7+win8\Pcl.Release\Itenso.TimePeriod.dll</HintPath>
     </Reference>
+    <Reference Include="HelperSharp.PCL">
+      <HintPath>..\references\HelperSharp.PCL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

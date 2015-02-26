@@ -50,9 +50,6 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="HelperSharp">
-      <HintPath>..\references\HelperSharp.0.0.3.6\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Parse.iOS">
       <HintPath>..\references\Parse.iOS\Parse.iOS.dll</HintPath>
     </Reference>
@@ -61,6 +58,9 @@
     </Reference>
     <Reference Include="Skahal.Infrastructure.Framework.PCL">
       <HintPath>..\references\Skahal.Infrastructure.Framework.PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="HelperSharp.PCL">
+      <HintPath>..\references\HelperSharp.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
