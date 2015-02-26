@@ -23,7 +23,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static SyncNavigationViewController()
 		{
-			LeftBarButtonLoad();
+			LoadConfigButton();
 
 			SyncButton = new SyncButton(new RectangleF(6f, 0f, 24f, 24f));
 			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
@@ -31,17 +31,6 @@ namespace BeeBaby.Controllers
 			Timer = new Timer(c_timerInterval);
 			Timer.Elapsed += OnTimerElapsed;
 			Timer.Start();
-		}
-
-		public static void LeftBarButtonLoad()
-		{
-			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
-			ConfigButton.SetStyleClass("gear-clear");
-			ConfigButton.TouchUpInside += (sender, e) => {
-				Console.WriteLine("Cliclou no CONFIG");
-			};
-
-			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
 
 		/// <summary>
@@ -108,6 +97,20 @@ namespace BeeBaby.Controllers
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Loads the config button.
+		/// </summary>
+		static void LoadConfigButton()
+		{
+			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
+			ConfigButton.SetStyleClass("gear-clear");
+			ConfigButton.TouchUpInside += (sender, e) => {
+				Console.WriteLine("Cliclou no CONFIG");
+			};
+
+			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
 
 		/// <summary>
