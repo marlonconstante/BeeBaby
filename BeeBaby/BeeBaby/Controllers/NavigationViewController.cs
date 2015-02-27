@@ -115,7 +115,7 @@ namespace BeeBaby.Controllers
 			else
 			{
 				ShowProgressWhilePerforming(() => {
-					((MomentNavigationController) NavigationController).Close();
+					((INavigationController) NavigationController).Close();
 				}, false);
 			}
 		}
@@ -144,7 +144,16 @@ namespace BeeBaby.Controllers
 		/// <returns><c>true</c> if this instance is camera flow; otherwise, <c>false</c>.</returns>
 		public bool IsCameraFlow()
 		{
-			return !IsMediaController() && !IsMediaFlow() && !IsEditFlow();
+			return !IsMediaController() && !IsConfigFlow() && !IsMediaFlow() && !IsEditFlow();
+		}
+
+		/// <summary>
+		/// Determines whether this instance is config flow.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is config flow; otherwise, <c>false</c>.</returns>
+		public bool IsConfigFlow()
+		{
+			return NavigationController is ConfigNavigationController;
 		}
 
 		/// <summary>
