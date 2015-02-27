@@ -8,6 +8,7 @@ using MonoTouch.UIKit;
 using PixateFreestyleLib;
 using Parse;
 using System.Collections.Generic;
+using MonoTouch.Foundation;
 
 namespace BeeBaby.Controllers
 {
@@ -62,6 +63,18 @@ namespace BeeBaby.Controllers
 			base.ViewWillAppear(animated);
 
 			WeakViewController = new WeakReference(this);
+			ConfigButton.TouchUpInside += OpenConfigPage;
+		}
+
+		/// <summary>
+		/// Views the will disappear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			ConfigButton.TouchUpInside -= OpenConfigPage;
 		}
 
 		/// <summary>
@@ -69,6 +82,18 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public virtual void OnSyncPerformed()
 		{
+		}
+
+		/// <summary>
+		/// Opens the config page.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="args">Arguments.</param>
+		void OpenConfigPage(object sender, EventArgs args)
+		{
+			ShowProgressWhilePerforming(() => {
+				RootViewController.PerformSegue("segueConfig", sender as NSObject);
+			}, false);
 		}
 
 		/// <summary>
@@ -106,9 +131,6 @@ namespace BeeBaby.Controllers
 		{
 			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
 			ConfigButton.SetStyleClass("gear-clear");
-			ConfigButton.TouchUpInside += (sender, e) => {
-				Console.WriteLine("Cliclou no CONFIG");
-			};
 
 			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
