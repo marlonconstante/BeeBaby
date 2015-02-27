@@ -73,9 +73,9 @@ namespace BeeBaby.Navigations
 		}
 
 		/// <summary>
-		/// Close navigation.
+		/// Close this instance.
 		/// </summary>
-		public virtual void Close()
+		public void Close()
 		{
 			CurrentContext.Instance.Moment.SelectedMediaNames.Clear();
 			CurrentContext.Instance.Moment = null;

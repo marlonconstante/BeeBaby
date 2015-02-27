@@ -28,5 +28,12 @@ namespace BeeBaby.Navigations
 		{
 			return TopViewController;
 		}
+
+		/// <summary>
+		/// Close this instance.
+		/// </summary>
+		public void Close()
+		{
+		}
 	}
 }

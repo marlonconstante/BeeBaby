@@ -766,8 +766,16 @@ namespace BeeBaby.Navigations
 		/// Gets the current view controller.
 		/// </summary>
 		/// <returns>The current view controller.</returns>
-		public UIViewController GetCurrentViewController() {
+		public UIViewController GetCurrentViewController()
+		{
 			return _internalTopNavigation.TopViewController;
+		}
+
+		/// <summary>
+		/// Close this instance.
+		/// </summary>
+		public void Close()
+		{
 		}
 
 		#region Nested type: ProxyNavigationController
