@@ -549,6 +549,14 @@
     <Compile Include="Synchronization\UserFile.cs" />
     <Compile Include="Synchronization\UserAccount.cs" />
     <Compile Include="Synchronization\UserFolder.cs" />
+    <Compile Include="Controllers\ConfigViewController.cs" />
+    <Compile Include="Controllers\ConfigViewController.designer.cs">
+      <DependentUpon>ConfigViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigations\ConfigNavigationController.cs" />
+    <Compile Include="Navigations\ConfigNavigationController.designer.cs">
+      <DependentUpon>ConfigNavigationController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
