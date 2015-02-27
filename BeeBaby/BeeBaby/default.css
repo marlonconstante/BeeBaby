@@ -79,6 +79,54 @@ tab-bar-item {
 	animation-duration: 2s;
 }
 
+.config {
+	background-color: #f6f8f8;
+}
+
+.config label.observations {
+	color: #bababa;
+	font-size: 12pt;
+}
+
+.config label.header,
+.config label.forgot-password {
+	color: #00aead;
+	font-weight: bold;
+}
+
+.config label.header {
+	font-size: 17pt;
+}
+
+.config label.forgot-password {
+	font-size: 13pt;
+}
+
+.config text-field {
+	background-color: #fff;
+	box-shadow: 0 1.25 0 0 #d8d8d8;
+	padding-left: 15;
+	border-radius: 5;
+}
+
+.config button.sign-up,
+.config button.sign-up:highlighted,
+.config button.sign-up:selected {
+	color: #fff;
+	background-color: #33c6f4;
+	box-shadow: 0 3 0 0 #27abd4;
+	border-radius: 5;
+}
+
+.config button.log-in,
+.config button.log-in:highlighted,
+.config button.log-in:selected {
+	color: #fff;
+	background-color: #00aead;
+	box-shadow: 0 3 0 0 #009998;
+	border-radius: 5;
+}
+
 .view .table-view table-view-cell:selected {
 	background-color: #cedbdb;
 }
