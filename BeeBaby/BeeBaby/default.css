@@ -88,18 +88,10 @@ tab-bar-item {
 	font-size: 12pt;
 }
 
-.config label.header,
-.config label.forgot-password {
+.config label.header {
 	color: #00aead;
 	font-weight: bold;
-}
-
-.config label.header {
 	font-size: 17pt;
-}
-
-.config label.forgot-password {
-	font-size: 13pt;
 }
 
 .config text-field {
@@ -107,6 +99,12 @@ tab-bar-item {
 	box-shadow: 0 1.25 0 0 #d8d8d8;
 	padding-left: 15;
 	border-radius: 5;
+}
+
+.config button.forgot-password,
+.config button.forgot-password:highlighted,
+.config button.forgot-password:selected {
+	font-size: 13pt;
 }
 
 .config button.sign-up,
