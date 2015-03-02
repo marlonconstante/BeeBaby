@@ -52,7 +52,7 @@ namespace BeeBaby.Controllers
 		{
 			BTProgressHUD.Show();
 
-			if (signUp ? await RemoteDataSystem.LogIn(txtUser.Text, txtPassword.Text) :await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text))
+			if (signUp ? await RemoteDataSystem.LogIn(txtUser.Text, txtPassword.Text) : await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text))
 			{
 				BTProgressHUD.Dismiss();
 			}
