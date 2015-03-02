@@ -61,6 +61,24 @@ namespace Infrastructure.Systems
 		}
 
 		/// <summary>
+		/// Reset the password.
+		/// </summary>
+		/// <returns>Flag indicating whether e-mail was sent successfully.</returns>
+		/// <param name="email">Email.</param>
+		public static async Task<bool> ResetPassword(string email)
+		{
+			try
+			{
+				await ParseUser.RequestPasswordResetAsync(email);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Sends the moment data.
 		/// </summary>
 		/// <param name="moment">Moment.</param>
