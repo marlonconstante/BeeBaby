@@ -85,7 +85,7 @@ tab-bar-item {
 
 .config label.observations {
 	color: #bababa;
-	font-size: 12pt;
+	font-size: 14pt;
 }
 
 .config label.header {
@@ -104,7 +104,7 @@ tab-bar-item {
 .config button.forgot-password,
 .config button.forgot-password:highlighted,
 .config button.forgot-password:selected {
-	font-size: 13pt;
+	font-size: 15pt;
 }
 
 .config button.sign-up,
