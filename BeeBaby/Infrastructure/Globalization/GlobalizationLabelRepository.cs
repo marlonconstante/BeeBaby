@@ -189,6 +189,12 @@ WhatsUserName = E-mail para login
 EnterBabyName = Digite um nome
 EnterUserName = Digite um e-mail
 WhenWasHeBorn = Data de nascimento (ou data prevista)
+NewUserOrExisting = Novo usuário ou já existente
+EnterPassword = Digite uma senha
+WithoutSpamAndConfidentialData = Não se preocupe, não enviamos spam e \n seus dados serão mantidos em sigilo.
+SignUp = Cadastrar
+LogIn = Conectar
+ForgotPassword = Esqueceu sua senha?
 Timeline = Linha do tempo
 ProductsForYourChild = Produtos para o seu filho
 MyProfile = Meu perfil
@@ -232,7 +238,6 @@ LetsStartTitle = Vamos começar?
 LetsStartText = Toque no botão da câmera \n para tirar ou importar \n fotos
 Version-1.2-ChangeLog = - Altere os momentos \n - Aproveite a facilidade da nova tela de momento \n - Novas cores, detalhes e lindezas no layout da linha do tempo \n - Veja os comentários do momento na linha do tempo \n - Compartilhe o novo card nas redes sociais
 Version-1.3-ChangeLog = - Agora você pode selecionar múltiplas fotos do seu bebê para serem importadas. \n - E na Timeline, ao visualizar as fotos em tela cheia, é possível navegar entre elas.
-
 ";
 				#endregion
 			}
@@ -313,6 +318,12 @@ WhatsUserName = E-mail for login
 EnterBabyName = Type a name
 EnterUserName = Type an e-mail
 WhenWasHeBorn = Birth date (or expected date of birth)
+NewUserOrExisting = New user or existing
+EnterPassword = Type a password
+WithoutSpamAndConfidentialData = Do not worry, do not send spam and \n your data will be kept confidential.
+SignUp = Sign up
+LogIn = Log in
+ForgotPassword = Forgot your password?
 Timeline = Timeline
 ProductsForYourChild = Products for your child
 MyProfile = My Profile

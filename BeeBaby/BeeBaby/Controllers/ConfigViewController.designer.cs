@@ -13,13 +13,78 @@ namespace BeeBaby.Controllers
 	partial class ConfigViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnForgotPassword { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnLogIn { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnSignUp { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblHeader { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel lblObservations { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+
+		[Outlet]
+		BeeBaby.VisualElements.TextField txtPassword { get; set; }
+
+		[Outlet]
+		BeeBaby.VisualElements.TextField txtUser { get; set; }
+
+		[Action ("ForgotPassword:")]
+		partial void ForgotPassword (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("LogIn:")]
+		partial void LogIn (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("SignUp:")]
+		partial void SignUp (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (scrView != null) {
 				scrView.Dispose ();
 				scrView = null;
+			}
+
+			if (lblHeader != null) {
+				lblHeader.Dispose ();
+				lblHeader = null;
+			}
+
+			if (lblObservations != null) {
+				lblObservations.Dispose ();
+				lblObservations = null;
+			}
+
+			if (txtUser != null) {
+				txtUser.Dispose ();
+				txtUser = null;
+			}
+
+			if (txtPassword != null) {
+				txtPassword.Dispose ();
+				txtPassword = null;
+			}
+
+			if (btnSignUp != null) {
+				btnSignUp.Dispose ();
+				btnSignUp = null;
+			}
+
+			if (btnLogIn != null) {
+				btnLogIn.Dispose ();
+				btnLogIn = null;
+			}
+
+			if (btnForgotPassword != null) {
+				btnForgotPassword.Dispose ();
+				btnForgotPassword = null;
 			}
 		}
 	}
