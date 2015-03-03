@@ -481,14 +481,10 @@ namespace BeeBaby.ResourcesProviders
 			var scale = sourceImage.CurrentScale;
 
 			var maxSize = maxSizeInPixels / scale;
-			var ratio = Math.Min(maxSize / size.Width, maxSize / size.Height);
+			var ratio = Math.Min(Math.Min(maxSize / size.Width, maxSize / size.Height), 1f);
 
-			if (ratio < 1f)
-			{
-				var preferredSize = new SizeF(size.Width * ratio, size.Height * ratio);
-				return sourceImage.Scale(preferredSize, scale);
-			}
-			return sourceImage;
+			var preferredSize = new SizeF(size.Width * ratio, size.Height * ratio);
+			return sourceImage.Scale(preferredSize, scale);
 		}
 
 		/// <summary>
