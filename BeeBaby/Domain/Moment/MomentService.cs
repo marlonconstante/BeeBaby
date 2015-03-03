@@ -81,6 +81,8 @@ namespace Domain.Moment
 		/// <returns>The all moments.</returns>
 		public IEnumerable<Moment> FindAllMoments()
 		{
+			MainRepository.RemoveInvalidMoments();
+
 			return MainRepository.FindAll();
 		}
 
