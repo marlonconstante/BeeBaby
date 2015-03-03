@@ -50,14 +50,24 @@ namespace BeeBaby.Controllers
 
 			FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Entrou na tela.", true);
 
+			if (!m_isOpenMediaLibrary)
+			{
+				UpdateImageCollectionView();
+			}
+		}
+
+		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
 			if (m_isOpenMediaLibrary)
 			{
 				AddMediaFromLibrary(btnAddMediaFromLibrary);
 				m_isOpenMediaLibrary = false;
-			}
-			else
-			{
-				UpdateImageCollectionView();
 			}
 		}
 
