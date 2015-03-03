@@ -558,6 +558,7 @@
     <Compile Include="Navigations\ConfigNavigationController.designer.cs">
       <DependentUpon>ConfigNavigationController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Animation\ViewAnimationExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
@@ -599,6 +600,7 @@
     <Folder Include="Synchronization\" />
     <Folder Include="Backup\" />
     <Folder Include="Network\" />
+    <Folder Include="Animation\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

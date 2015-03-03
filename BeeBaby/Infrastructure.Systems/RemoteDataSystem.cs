@@ -16,13 +16,13 @@ namespace Infrastructure.Systems
 		const string s_dateFormat = "yyyyMMddhhmmssff";
 
 		/// <summary>
-		/// Login the specified username and password.
+		/// Log in with specified username and password.
 		/// </summary>
+		/// <returns>Flag indicating whether user is authenticated.</returns>
 		/// <param name="username">Username.</param>
 		/// <param name="password">Password.</param>
-		public static async Task<bool> Login(string username, string password)
+		public static async Task<bool> LogIn(string username, string password)
 		{
-
 			try
 			{
 				var user = await ParseUser.LogInAsync(username, password);
@@ -36,9 +36,9 @@ namespace Infrastructure.Systems
 		}
 
 		/// <summary>
-		/// Signs up.
+		/// Sign up with specified username and password.
 		/// </summary>
-		/// <returns>The up.</returns>
+		/// <returns>Flag indicating whether user is authenticated.</returns>
 		/// <param name="username">Username.</param>
 		/// <param name="password">Password.</param>
 		public static async Task<bool> SignUp(string username, string password)
@@ -53,6 +53,24 @@ namespace Infrastructure.Systems
 				await user.SignUpAsync();
 
 				return user.IsAuthenticated;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Reset the password.
+		/// </summary>
+		/// <returns>Flag indicating whether e-mail was sent successfully.</returns>
+		/// <param name="email">Email.</param>
+		public static async Task<bool> ResetPassword(string email)
+		{
+			try
+			{
+				await ParseUser.RequestPasswordResetAsync(email);
+				return true;
 			}
 			catch (Exception ex)
 			{

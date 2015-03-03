@@ -2,8 +2,8 @@
 using System.Drawing;
 using PixateFreestyleLib;
 using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
 using BeeBaby.Synchronization;
+using BeeBaby.Animation;
 
 namespace BeeBaby.VisualElements
 {
@@ -33,28 +33,6 @@ namespace BeeBaby.VisualElements
 		void SetUp()
 		{
 			this.SetStyleClass("button-sync");
-			InitialTransform = Transform;
-		}
-
-		/// <summary>
-		/// Rotate this instance.
-		/// </summary>
-		void Rotate()
-		{
-			Transform = InitialTransform;
-
-			UIView.Animate(1d, 0d, UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveLinear, () => {
-				Transform = CGAffineTransform.MakeRotation((float) -Math.PI);
-			}, () => {
-				if (IsSynchronizing)
-				{
-					Rotate();
-				} else {
-					UIView.Animate(0.3d, () => {
-						Alpha = 0f;
-					});
-				}
-			});
 		}
 
 		/// <summary>
@@ -76,7 +54,13 @@ namespace BeeBaby.VisualElements
 				UIView.Animate(0.3d, () => {
 					Alpha = 1f;
 				}, () => {
-					Rotate();
+					this.Rotate(1d, () => {
+						return IsSynchronizing;
+					}, () => {
+						UIView.Animate(0.3d, () => {
+							Alpha = 0f;
+						});
+					});
 				});
 			});
 		}
@@ -94,15 +78,6 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		/// <value><c>true</c> if this instance is synchronizing; otherwise, <c>false</c>.</value>
 		bool IsSynchronizing {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the initial transform.
-		/// </summary>
-		/// <value>The initial transform.</value>
-		CGAffineTransform InitialTransform {
 			get;
 			set;
 		}

@@ -52,16 +52,13 @@ namespace BeeBaby.Controllers
 		{
 			BTProgressHUD.Show();
 
-			if (signUp ? await RemoteDataSystem.Login(txtUser.Text, txtPassword.Text) :await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text))
+			if (signUp ? await RemoteDataSystem.LogIn(txtUser.Text, txtPassword.Text) : await RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text))
 			{
 				BTProgressHUD.Dismiss();
-				//Windows.ChangeRootViewController("SlideoutNavigationController");
-				Console.WriteLine("Sucesso");
 			}
 			else
 			{
 				BTProgressHUD.Dismiss();
-				Console.WriteLine("Error");
 
 				new UIAlertView("Ops".Translate(), (signUp ? "SignUpError" : "EmailAndPasswordNotMatch").Translate(), null, "TryAgain".Translate(), null).Show();
 			}
