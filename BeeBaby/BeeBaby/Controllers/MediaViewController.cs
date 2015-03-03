@@ -18,7 +18,7 @@ namespace BeeBaby.Controllers
 	{
 		ImageCollectionViewSource m_collectionViewSource;
 		bool m_isOpenMediaLibrary;
-		bool m_isSaveCurrentMoment; 
+		bool m_isSaveCurrentMoment;
 
 		public MediaViewController(IntPtr handle) : base(handle)
 		{
@@ -92,15 +92,13 @@ namespace BeeBaby.Controllers
 
 			var picker = ELCImagePickerViewController.Instance;
 			picker.MaximumImagesCount = 15;
-			picker.Completion.ContinueWith(task =>
-			{
+			picker.Completion.ContinueWith(task => {
 				if (!task.IsCanceled && task.Exception == null)
 				{
 					var m_imageProvider = new ImageProvider(CurrentContext.Instance.Moment.Id);
-					var actionProgress = new ActionProgress(() =>
-					{
+					var actionProgress = new ActionProgress(() => {
 						var results = task.Result as List<AssetResult>;
-						foreach (var item in results) 
+						foreach (var item in results)
 						{
 							m_imageProvider.SaveTemporaryImage(item.Image);
 						} 
@@ -109,7 +107,7 @@ namespace BeeBaby.Controllers
 					actionProgress.Execute();
 				}
 			});
-			 
+
 			PresentViewController(picker, true, null);
 		}
 
@@ -125,8 +123,7 @@ namespace BeeBaby.Controllers
 			}
 			else
 			{
-				ShowProgressWhilePerforming(() =>
-				{
+				ShowProgressWhilePerforming(() => {
 					if (m_isSaveCurrentMoment)
 					{
 						var moment = CurrentContext.Instance.Moment;
