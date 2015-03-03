@@ -40,8 +40,8 @@ namespace BeeBaby.Controllers
 		/// <param name="handle">Handle.</param>
 		public SyncNavigationViewController(IntPtr handle) : base(handle)
 		{
-			RightBarButtonItem = SyncBarButtonItem;
-			LeftBarButtonItem = ConfigBarButtonItem;
+			RightBarButtonItem = ConfigBarButtonItem;
+			LeftBarButtonItem = SyncBarButtonItem;
 		}
 
 		/// <summary>
