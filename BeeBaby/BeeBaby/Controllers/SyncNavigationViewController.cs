@@ -18,7 +18,7 @@ namespace BeeBaby.Controllers
 		/// <summary>
 		/// The timer interval.
 		/// </summary>
-		const double c_timerInterval = 15000d;
+		const double c_timerInterval = 30000d;
 
 		/// <summary>
 		/// Initializes the <see cref="BeeBaby.Controllers.SyncNavigationViewController"/> class.
