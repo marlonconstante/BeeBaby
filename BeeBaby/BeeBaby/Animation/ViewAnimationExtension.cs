@@ -17,7 +17,11 @@ namespace BeeBaby.Animation
 		{
 			var initialTransform = view.Transform;
 
-			UIView.Animate(duration, 0d, UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveLinear, () => {
+			var options = UIViewAnimationOptions.AllowUserInteraction |
+				UIViewAnimationOptions.BeginFromCurrentState |
+				UIViewAnimationOptions.CurveLinear;
+
+			UIView.Animate(duration, 0d, options, () => {
 				view.Transform = CGAffineTransform.MakeRotation((float) -Math.PI);
 			}, () => {
 				view.Transform = initialTransform;
