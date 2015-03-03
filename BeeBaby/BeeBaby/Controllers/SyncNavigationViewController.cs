@@ -130,7 +130,7 @@ namespace BeeBaby.Controllers
 		static void LoadConfigButton()
 		{
 			ConfigButton = new Button(new RectangleF(0f, 0f, 24f, 24f));
-			ConfigButton.SetStyleClass("gear-clear");
+			ConfigButton.SetStyleClass("settings");
 
 			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}

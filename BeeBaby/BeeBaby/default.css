@@ -1029,12 +1029,16 @@ text-view {
 	background-image: url(pictures.svg);
 }
 
+.settings {
+	background-image: url(settings.svg);
+}
+
 .gear {
 	background-image: url(gear.svg);
 }
 
 .gear-clear {
-	background-image: url(settings.svg);
+	background-image: url(gear-clear.svg);
 }
 
 .baby-tab {
