@@ -330,6 +330,7 @@
     <BundleResource Include="Resources\whatsapp%402x.png" />
     <BundleResource Include="Resources\sync-clear.svg" />
     <BundleResource Include="Resources\baby-icon.svg" />
+    <BundleResource Include="Resources\settings.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
