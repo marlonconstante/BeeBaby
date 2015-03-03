@@ -15,6 +15,7 @@ using BeeBaby.Globalization;
 using BeeBaby.Media;
 using BeeBaby.Notifications;
 using BeeBaby.Util;
+using MonoTouch.ObjCRuntime;
 
 namespace BeeBaby
 {
@@ -99,9 +100,8 @@ namespace BeeBaby
 			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
 			ThirdPartyIntegrationsRegister();
+			RegisterNotifications(application);
 
-			var notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
-			application.RegisterForRemoteNotificationTypes(notificationTypes);
 			application.StatusBarStyle = UIStatusBarStyle.LightContent;
 
 			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
@@ -139,6 +139,25 @@ namespace BeeBaby
 			else
 			{
 				return UIInterfaceOrientationMask.Portrait;
+			}
+		}
+
+		/// <summary>
+		/// Registers the notifications.
+		/// </summary>
+		/// <param name="application">Application.</param>
+		void RegisterNotifications(UIApplication application)
+		{
+			if (application.RespondsToSelector(new Selector("registerForRemoteNotifications")))
+			{
+				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge, null);
+				application.RegisterUserNotificationSettings(notificationSettings);
+				application.RegisterForRemoteNotifications();
+			}
+			else
+			{
+				var notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
+				application.RegisterForRemoteNotificationTypes(notificationTypes);
 			}
 		}
 
