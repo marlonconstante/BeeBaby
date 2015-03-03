@@ -9,6 +9,7 @@ using PixateFreestyleLib;
 using Parse;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
+using BeeBaby.Animation;
 
 namespace BeeBaby.Controllers
 {
@@ -131,6 +132,10 @@ namespace BeeBaby.Controllers
 		{
 			ConfigButton = new Button(new RectangleF(0f, 0f, 24f, 24f));
 			ConfigButton.SetStyleClass("settings");
+
+			ConfigButton.Rotate(2d, () => {
+				return ParseUser.CurrentUser == null;
+			});
 
 			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}
