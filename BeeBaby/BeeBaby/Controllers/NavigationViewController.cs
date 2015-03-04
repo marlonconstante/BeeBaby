@@ -153,7 +153,7 @@ namespace BeeBaby.Controllers
 		/// <returns><c>true</c> if this instance is config flow; otherwise, <c>false</c>.</returns>
 		public bool IsConfigFlow()
 		{
-			return NavigationController is ConfigNavigationController;
+			return NavigationController is LoginConfigNavigationController;
 		}
 
 		/// <summary>

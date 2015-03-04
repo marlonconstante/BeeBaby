@@ -11,13 +11,13 @@ using BeeBaby.Navigations;
 
 namespace BeeBaby.Controllers
 {
-	public partial class ConfigViewController : NavigationViewController
+	public partial class LoginConfigViewController : NavigationViewController
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeeBaby.Controllers.ConfigViewController"/> class.
+		/// Initializes a new instance of the <see cref="BeeBaby.Controllers.LoginConfigViewController"/> class.
 		/// </summary>
 		/// <param name="handle">Handle.</param>
-		public ConfigViewController(IntPtr handle) : base(handle)
+		public LoginConfigViewController(IntPtr handle) : base(handle)
 		{
 		}
 

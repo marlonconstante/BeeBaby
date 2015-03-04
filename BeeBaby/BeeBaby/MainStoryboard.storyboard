@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-18-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735" y="-251"/>
+            <point key="canvasLocation" x="1124" y="-655"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="2Un-uh-d7S">
@@ -221,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-Ve-kS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="-687"/>
+            <point key="canvasLocation" x="1124" y="-1411"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="6UT-XL-r0v">
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPr-V8-YCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="836"/>
+            <point key="canvasLocation" x="-319" y="1084"/>
         </scene>
         <!--Baby View Controller-->
         <scene sceneID="IJi-aZ-den">
@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLl-GD-09a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="1661"/>
+            <point key="canvasLocation" x="-319" y="1835"/>
         </scene>
         <!--Invite Friends View Controller-->
         <scene sceneID="Djg-zq-F5e">
@@ -605,7 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pF9-Yl-pz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736" y="1661"/>
+            <point key="canvasLocation" x="736" y="1835"/>
         </scene>
         <!--On Boarding Modal View Controller-->
         <scene sceneID="uxh-Qv-fXe">
@@ -749,7 +749,7 @@ fotos</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztx-2p-Tjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="1661"/>
+            <point key="canvasLocation" x="1250" y="1835"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="USG-1c-dBa">
@@ -1222,7 +1222,7 @@ fotos</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWM-JI-QaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="712"/>
+            <point key="canvasLocation" x="1250" y="960"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AMm-X7-CW2">
@@ -1366,10 +1366,10 @@ fotos</string>
             </objects>
             <point key="canvasLocation" x="-1239" y="-65"/>
         </scene>
-        <!--Config Navigation Controller-->
+        <!--Login Config Navigation Controller-->
         <scene sceneID="RWq-5p-Elz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jof-4o-Mue" customClass="ConfigNavigationController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jof-4o-Mue" customClass="LoginConfigNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s6W-nD-0hc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1380,12 +1380,12 @@ fotos</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQs-b0-8D1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="153"/>
+            <point key="canvasLocation" x="36" y="-99"/>
         </scene>
-        <!--Config View Controller-->
+        <!--Login Config View Controller-->
         <scene sceneID="Da4-5C-6Wv">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="duD-Rl-W1w" customClass="ConfigViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="duD-Rl-W1w" customClass="LoginConfigViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ffc-cf-Ibl"/>
                         <viewControllerLayoutGuide type="bottom" id="8dy-6R-8bh"/>
@@ -1512,7 +1512,7 @@ seus dados serão mantidos em sigilo.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NlW-mo-z7U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="153"/>
+            <point key="canvasLocation" x="1124" y="37"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8yp-SI-OML">
@@ -1532,7 +1532,7 @@ seus dados serão mantidos em sigilo.</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAS-x7-Mbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1239" y="836"/>
+            <point key="canvasLocation" x="-1239" y="1084"/>
         </scene>
         <!--Camera Options Modal View Controller-->
         <scene sceneID="D5H-PH-BN3">
@@ -1621,7 +1621,7 @@ seus dados serão mantidos em sigilo.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7M5-m3-n1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1239" y="1661"/>
+            <point key="canvasLocation" x="-1239" y="1835"/>
         </scene>
         <!--Deals View Controller-->
         <scene sceneID="Q0l-YW-0bD">
@@ -1660,7 +1660,7 @@ seus dados serão mantidos em sigilo.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpv-7o-SWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="1661"/>
+            <point key="canvasLocation" x="213" y="1835"/>
         </scene>
         <!--Fullscreen View Controller-->
         <scene sceneID="72K-aW-CtN">
@@ -1781,7 +1781,7 @@ seus dados serão mantidos em sigilo.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hza-by-KEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736" y="836"/>
+            <point key="canvasLocation" x="736" y="1084"/>
         </scene>
         <!--Moment Modal View Controller-->
         <scene sceneID="Ofi-Z9-VZO">
@@ -1902,7 +1902,7 @@ seus dados serão mantidos em sigilo.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Gh-Oc-oEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="836"/>
+            <point key="canvasLocation" x="213" y="1084"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="rg0-5s-hDI">
@@ -1985,7 +1985,7 @@ seus dados serão mantidos em sigilo.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s3-Qm-ayv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="-527"/>
+            <point key="canvasLocation" x="-319" y="-745"/>
         </scene>
         <!--Edit Moment Navigation Controller-->
         <scene sceneID="FMs-Xe-iGR">
@@ -2000,7 +2000,7 @@ seus dados serão mantidos em sigilo.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KlC-rT-E6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="-365"/>
+            <point key="canvasLocation" x="542" y="-655"/>
         </scene>
     </scenes>
     <resources>
@@ -2017,8 +2017,8 @@ seus dados serão mantidos em sigilo.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="I7o-pn-b4x"/>
         <segue reference="NxF-Hd-fPk"/>
         <segue reference="j2f-ev-klq"/>
-        <segue reference="I7o-pn-b4x"/>
     </inferredMetricsTieBreakers>
 </document>

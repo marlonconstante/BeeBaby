@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby.Navigations
 {
-	[Register ("ConfigNavigationController")]
-	partial class ConfigNavigationController
+	[Register ("LoginConfigNavigationController")]
+	partial class LoginConfigNavigationController
 	{
 		
 		void ReleaseDesignerOutlets ()

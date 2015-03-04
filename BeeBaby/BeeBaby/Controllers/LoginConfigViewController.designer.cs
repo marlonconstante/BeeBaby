@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
 {
-	[Register ("ConfigViewController")]
-	partial class ConfigViewController
+	[Register ("LoginConfigViewController")]
+	partial class LoginConfigViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnForgotPassword { get; set; }

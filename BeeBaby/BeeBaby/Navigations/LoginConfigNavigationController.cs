@@ -6,13 +6,13 @@ using BeeBaby.Util;
 
 namespace BeeBaby.Navigations
 {
-	public partial class ConfigNavigationController : UINavigationController, INavigationController
+	public partial class LoginConfigNavigationController : UINavigationController, INavigationController
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeeBaby.Navigations.ConfigNavigationController"/> class.
+		/// Initializes a new instance of the <see cref="BeeBaby.Navigations.LoginConfigNavigationController"/> class.
 		/// </summary>
 		/// <param name="handle">Handle.</param>
-		public ConfigNavigationController (IntPtr handle) : base (handle)
+		public LoginConfigNavigationController (IntPtr handle) : base (handle)
 		{
 		}
 
