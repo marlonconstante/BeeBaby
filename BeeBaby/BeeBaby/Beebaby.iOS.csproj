@@ -555,10 +555,10 @@
     <Compile Include="Controllers\LoginConfigViewController.designer.cs">
       <DependentUpon>LoginConfigViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Navigations\LoginConfigNavigationController.cs" />
-    <Compile Include="Navigations\LoginConfigNavigationController.designer.cs">
-      <DependentUpon>LoginConfigNavigationController.cs</DependentUpon>
+    <Compile Include="Navigations\ConfigNavigationController.designer.cs">
+      <DependentUpon>ConfigNavigationController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Navigations\ConfigNavigationController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
