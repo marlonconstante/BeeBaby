@@ -84,7 +84,7 @@ tab-bar-item {
 }
 
 .config label.observations {
-	color: #bababa;
+	color: #a1a1a1;
 	font-size: 14pt;
 }
 
@@ -92,6 +92,10 @@ tab-bar-item {
 	color: #00aead;
 	font-weight: bold;
 	font-size: 17pt;
+}
+
+.config label.header.big {
+	font-size: 30pt;
 }
 
 .config text-field {
@@ -107,6 +111,9 @@ tab-bar-item {
 	font-size: 15pt;
 }
 
+.config button.continue,
+.config button.continue:highlighted,
+.config button.continue:selected,
 .config button.sign-up,
 .config button.sign-up:highlighted,
 .config button.sign-up:selected {
@@ -122,6 +129,15 @@ tab-bar-item {
 	color: #fff;
 	background-color: #00aead;
 	box-shadow: 0 3 0 0 #009998;
+	border-radius: 5;
+}
+
+.config button.log-out,
+.config button.log-out:highlighted,
+.config button.log-out:selected {
+	color: #fff;
+	background-color: #ff5a52;
+	box-shadow: 0 3 0 0 #ec4840;
 	border-radius: 5;
 }
 

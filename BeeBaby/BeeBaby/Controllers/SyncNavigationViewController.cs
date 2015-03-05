@@ -93,7 +93,7 @@ namespace BeeBaby.Controllers
 		void OpenConfigPage(object sender, EventArgs args)
 		{
 			ShowProgressWhilePerforming(() => {
-				RootViewController.PerformSegue("segueConfig", sender as NSObject);
+				RootViewController.PerformSegue(ParseUser.CurrentUser == null ? "segueLoginConfig" : "segueBenefitsConfig", sender as NSObject);
 			}, false);
 		}
 

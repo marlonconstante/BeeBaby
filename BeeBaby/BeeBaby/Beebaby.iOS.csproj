@@ -559,6 +559,10 @@
       <DependentUpon>ConfigNavigationController.cs</DependentUpon>
     </Compile>
     <Compile Include="Navigations\ConfigNavigationController.cs" />
+    <Compile Include="Controllers\BenefitsConfigViewController.cs" />
+    <Compile Include="Controllers\BenefitsConfigViewController.designer.cs">
+      <DependentUpon>BenefitsConfigViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
