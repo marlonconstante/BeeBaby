@@ -11,6 +11,10 @@ namespace BeeBaby.Controllers
 {
 	public partial class OnBoardingModalViewController : ModalViewController
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BeeBaby.Controllers.OnBoardingModalViewController"/> class.
+		/// </summary>
+		/// <param name="handle">Handle.</param>
 		public OnBoardingModalViewController(IntPtr handle) : base(handle)
 		{
 		}
