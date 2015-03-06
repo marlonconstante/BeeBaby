@@ -113,10 +113,7 @@ tab-bar-item {
 
 .config button.continue,
 .config button.continue:highlighted,
-.config button.continue:selected,
-.config button.sign-up,
-.config button.sign-up:highlighted,
-.config button.sign-up:selected {
+.config button.continue:selected {
 	color: #fff;
 	background-color: #33c6f4;
 	box-shadow: 0 3 0 0 #27abd4;

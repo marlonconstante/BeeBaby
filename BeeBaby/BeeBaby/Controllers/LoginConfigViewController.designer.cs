@@ -19,9 +19,6 @@ namespace BeeBaby.Controllers
 		MonoTouch.UIKit.UIButton btnLogIn { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSignUp { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UILabel lblHeader { get; set; }
 
 		[Outlet]
@@ -41,15 +38,17 @@ namespace BeeBaby.Controllers
 
 		[Action ("LogIn:")]
 		partial void LogIn (MonoTouch.UIKit.UIButton sender);
-
-		[Action ("SignUp:")]
-		partial void SignUp (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (scrView != null) {
-				scrView.Dispose ();
-				scrView = null;
+			if (btnForgotPassword != null) {
+				btnForgotPassword.Dispose ();
+				btnForgotPassword = null;
+			}
+
+			if (btnLogIn != null) {
+				btnLogIn.Dispose ();
+				btnLogIn = null;
 			}
 
 			if (lblHeader != null) {
@@ -62,9 +61,9 @@ namespace BeeBaby.Controllers
 				lblObservations = null;
 			}
 
-			if (txtUser != null) {
-				txtUser.Dispose ();
-				txtUser = null;
+			if (scrView != null) {
+				scrView.Dispose ();
+				scrView = null;
 			}
 
 			if (txtPassword != null) {
@@ -72,19 +71,9 @@ namespace BeeBaby.Controllers
 				txtPassword = null;
 			}
 
-			if (btnSignUp != null) {
-				btnSignUp.Dispose ();
-				btnSignUp = null;
-			}
-
-			if (btnLogIn != null) {
-				btnLogIn.Dispose ();
-				btnLogIn = null;
-			}
-
-			if (btnForgotPassword != null) {
-				btnForgotPassword.Dispose ();
-				btnForgotPassword = null;
+			if (txtUser != null) {
+				txtUser.Dispose ();
+				txtUser = null;
 			}
 		}
 	}

@@ -31,7 +31,7 @@ namespace Infrastructure.Systems
 			}
 			catch (Exception ex)
 			{
-				return false;
+				return await SignUp(username, password);
 			}
 		}
 

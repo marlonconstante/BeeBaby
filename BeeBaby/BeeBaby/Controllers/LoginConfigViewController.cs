@@ -42,26 +42,8 @@ namespace BeeBaby.Controllers
 			txtUser.Placeholder = "EnterUserName".Translate();
 			txtPassword.Placeholder = "EnterPassword".Translate();
 			lblObservations.Text = "WithoutSpamAndConfidentialData".Translate();
-			btnSignUp.SetTitle("SignUp".Translate(), UIControlState.Normal);
 			btnLogIn.SetTitle("LogIn".Translate(), UIControlState.Normal);
 			btnForgotPassword.SetTitle("ForgotPassword".Translate(), UIControlState.Normal);
-		}
-
-		/// <summary>
-		/// Signs up.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void SignUp(UIButton sender)
-		{
-			Validators.RunIfValidLogin(txtUser.Text, txtPassword.Text, () => {
-				PerformActionAsync(() => {
-					return RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text);
-				}, () => {
-					OpenBenefitsPage(sender);
-				}, () => {
-					ShowErrorMessage("SignUpError");
-				});
-			});
 		}
 
 		/// <summary>
