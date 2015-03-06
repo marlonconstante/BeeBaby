@@ -4,6 +4,8 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
+using BeeBaby.Navigations;
+using Parse;
 
 namespace BeeBaby.Controllers
 {
@@ -48,7 +50,7 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Continue(UIButton sender)
 		{
-
+			Close();
 		}
 
 		/// <summary>
@@ -57,7 +59,22 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void LogOut(UIButton sender)
 		{
+			Close(() => ParseUser.LogOut());
+		}
 
+		/// <summary>
+		/// Close the specified beforeAction.
+		/// </summary>
+		/// <param name="beforeAction">Before action.</param>
+		void Close(Action beforeAction = null) {
+			ShowProgressWhilePerforming(() => {
+				if (beforeAction != null)
+				{
+					beforeAction();
+				}
+
+				((INavigationController) NavigationController).Close();
+			}, false);
 		}
 	}
 }

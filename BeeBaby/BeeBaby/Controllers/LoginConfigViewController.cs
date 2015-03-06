@@ -3,7 +3,6 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BeeBaby.Util;
-using Parse;
 using System.Threading.Tasks;
 using BigTed;
 using Infrastructure.Systems;
@@ -58,7 +57,7 @@ namespace BeeBaby.Controllers
 				PerformActionAsync(() => {
 					return RemoteDataSystem.SignUp(txtUser.Text, txtPassword.Text);
 				}, () => {
-					Close();
+					OpenBenefitsPage(sender);
 				}, () => {
 					ShowErrorMessage("SignUpError");
 				});
@@ -75,7 +74,7 @@ namespace BeeBaby.Controllers
 				PerformActionAsync(() => {
 					return RemoteDataSystem.LogIn(txtUser.Text, txtPassword.Text);
 				}, () => {
-					Close();
+					OpenBenefitsPage(sender);
 				}, () => {
 					ShowErrorMessage("EmailAndPasswordNotMatch");
 				});
@@ -121,10 +120,11 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
-		/// Close this instance.
+		/// Opens the benefits page.
 		/// </summary>
-		void Close() {
-			((INavigationController) NavigationController).Close();
+		/// <param name="sender">Sender.</param>
+		void OpenBenefitsPage(UIButton sender) {
+			PerformSegue("segueBenefitsConfig", sender);
 		}
 
 		/// <summary>
