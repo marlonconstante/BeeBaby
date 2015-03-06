@@ -2050,8 +2050,17 @@ seus dados serão mantidos em sigilo.</string>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="header"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Utilize as mesmas credenciais em outros iPhones para sincronizar os momentos." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-5A-pTm">
+                                        <rect key="frame" x="25" y="177" width="270" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="observations"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmy-tz-UFH">
-                                        <rect key="frame" x="25" y="255" width="122" height="44"/>
+                                        <rect key="frame" x="173" y="255" width="122" height="44"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2060,18 +2069,6 @@ seus dados serão mantidos em sigilo.</string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="Continue:" destination="9Z2-Wp-Xdh" eventType="touchUpInside" id="jLA-np-f9g"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smD-IW-qwr">
-                                        <rect key="frame" x="173" y="255" width="122" height="44"/>
-                                        <state key="normal" title="Desconectar">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="log-out"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="LogOut:" destination="9Z2-Wp-Xdh" eventType="touchUpInside" id="Esi-qx-yx8"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-Fr-tUS">
@@ -2092,15 +2089,18 @@ seus dados serão mantidos em sigilo.</string>
                                             <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="flying-bee-bg"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Utilize as mesmas credenciais em outros iPhones para sincronizar os momentos." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-5A-pTm">
-                                        <rect key="frame" x="25" y="177" width="270" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smD-IW-qwr">
+                                        <rect key="frame" x="25" y="255" width="122" height="44"/>
+                                        <state key="normal" title="Desconectar">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="observations"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClass" value="log-out"/>
                                         </userDefinedRuntimeAttributes>
-                                    </label>
+                                        <connections>
+                                            <action selector="LogOut:" destination="9Z2-Wp-Xdh" eventType="touchUpInside" id="Esi-qx-yx8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
