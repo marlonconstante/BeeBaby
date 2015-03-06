@@ -38,8 +38,8 @@ namespace BeeBaby.Controllers
 		public override void TranslateLabels()
 		{
 			lblThankYou.Text = "ThankYou".Translate();
-			lblAdvantages.Text = "ImmortalizeMomentsAndShare".Translate();
-			lblObservations.Text = "SynchronizedMoments".Translate();
+			lblAdvantages.Text = "EternalizeMomentsAndShare".Translate();
+			lblObservations.Text = "SynchronizeMoments".Translate();
 			btnContinue.SetTitle("Continue".Translate(), UIControlState.Normal);
 			btnLogOut.SetTitle("LogOut".Translate(), UIControlState.Normal);
 		}

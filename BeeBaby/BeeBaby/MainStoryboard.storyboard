@@ -2093,7 +2093,7 @@ seus dados serão mantidos em sigilo.</string>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Utilize as mesmas credenciais em outros iPhones para sincronizar os momentos." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-5A-pTm">
-                                        <rect key="frame" x="25" y="177" width="270" height="52"/>
+                                        <rect key="frame" x="25" y="177" width="270" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
