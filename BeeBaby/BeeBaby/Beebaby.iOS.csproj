@@ -331,6 +331,8 @@
     <BundleResource Include="Resources\sync-clear.svg" />
     <BundleResource Include="Resources\baby-icon.svg" />
     <BundleResource Include="Resources\settings.svg" />
+    <BundleResource Include="Resources\cloud.svg" />
+    <BundleResource Include="Resources\up-arrow.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -562,6 +564,10 @@
     <Compile Include="Controllers\BenefitsConfigViewController.cs" />
     <Compile Include="Controllers\BenefitsConfigViewController.designer.cs">
       <DependentUpon>BenefitsConfigViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConfigOnBoardingModalViewController.cs" />
+    <Compile Include="Controllers\ConfigOnBoardingModalViewController.designer.cs">
+      <DependentUpon>ConfigOnBoardingModalViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
