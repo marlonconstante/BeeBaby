@@ -243,6 +243,8 @@ ViewAndShareTitle = Visualize e compartilhe
 ViewAndShareText = Toque na foto para \n vê-la ampliada e compartilhar \n nas redes sociais
 LetsStartTitle = Vamos começar?
 LetsStartText = Toque no botão da câmera \n para tirar ou importar \n fotos
+InternetSavedPhotos = Agora suas fotos também são salvas na internet!
+StartSettings = Toque no botão de configurações para iniciar
 Version-1.2-ChangeLog = - Altere os momentos \n - Aproveite a facilidade da nova tela de momento \n - Novas cores, detalhes e lindezas no layout da linha do tempo \n - Veja os comentários do momento na linha do tempo \n - Compartilhe o novo card nas redes sociais
 Version-1.3-ChangeLog = - Agora você pode selecionar múltiplas fotos do seu bebê para serem importadas. \n - E na Timeline, ao visualizar as fotos em tela cheia, é possível navegar entre elas.
 ";
@@ -379,6 +381,8 @@ ViewAndShareTitle = View and share
 ViewAndShareText = Tap the photo to \n see it enlarged and share \n on social networks
 LetsStartTitle = Let's start?
 LetsStartText = Touch the camera button \n to take or import \n photos
+InternetSavedPhotos = Now your photos are also saved on the internet!
+StartSettings = Touch the settings button to start
 Version-1.2-ChangeLog = Say hi to the new version of BeeBaby. \n After being featured in Best New Apps in Brazil, BeeBaby App goes worldwide in english version. 
 Version-1.3-ChangeLog = - Now you can select multiple photos of your baby to be imported. \n - And in the Timeline when viewing photos in full screen, you can navigate between them.
 ";
