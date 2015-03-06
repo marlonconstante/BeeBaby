@@ -903,6 +903,10 @@ text-view {
 	background-image: url(share.svg);
 }
 
+.cloud {
+	background-image: url(cloud.svg);
+}
+
 .cancel {
 	background-image: url(cancel.svg);
 }
@@ -954,6 +958,10 @@ text-view {
 
 .menu {
 	background-image: url(menu.svg);
+}
+
+.up-arrow {
+	background-image: url(up-arrow.svg);
 }
 
 .down-arrow {
