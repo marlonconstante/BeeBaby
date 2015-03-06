@@ -45,6 +45,22 @@ namespace BeeBaby.Controllers
 		}
 
 		/// <summary>
+		/// Lefts the bar button frame.
+		/// </summary>
+		/// <returns>The bar button frame.</returns>
+		public override RectangleF LeftBarButtonFrame()
+		{
+			return RectangleF.Empty;
+		}
+
+		/// <summary>
+		/// Lefts the bar button action.
+		/// </summary>
+		public override void LeftBarButtonAction()
+		{
+		}
+
+		/// <summary>
 		/// Continue the specified sender.
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -66,7 +82,8 @@ namespace BeeBaby.Controllers
 		/// Close the specified beforeAction.
 		/// </summary>
 		/// <param name="beforeAction">Before action.</param>
-		void Close(Action beforeAction = null) {
+		void Close(Action beforeAction = null)
+		{
 			ShowProgressWhilePerforming(() => {
 				if (beforeAction != null)
 				{
