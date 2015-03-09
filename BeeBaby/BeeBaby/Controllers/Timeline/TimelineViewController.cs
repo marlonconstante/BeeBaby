@@ -25,7 +25,6 @@ namespace BeeBaby.Controllers
 		NSIndexPath m_currentIndexPath;
 		Popover<TimelineViewController, EventArgs> m_popover;
 		MomentModalViewController m_modalViewController;
-		OnBoardingModalViewController m_onBoarding;
 		TimelineViewSource m_tableSource;
 
 		public TimelineViewController(IntPtr handle) : base(handle)
@@ -146,15 +145,13 @@ namespace BeeBaby.Controllers
 		/// <summary>
 		/// Shows the on boarding.
 		/// </summary>
-		void ShowOnBoarding()
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		void ShowOnBoarding<T>() where T : ModalViewController
 		{
-			if (m_onBoarding == null)
-			{
-				var board = UIStoryboard.FromName("MainStoryboard", null);
-				m_onBoarding = (OnBoardingModalViewController) board.InstantiateViewController("OnBoardingModalViewController");
-				m_onBoarding.LoadView();
-			}
-			m_onBoarding.Show();
+			var board = UIStoryboard.FromName("MainStoryboard", null);
+			var onBoarding = (T) board.InstantiateViewController(typeof(T).Name);
+			onBoarding.LoadView();
+			onBoarding.Show();
 		}
 
 		/// <summary>
@@ -194,8 +191,12 @@ namespace BeeBaby.Controllers
 
 				if (!PreferencesEditor.IsOnBoardingViewed)
 				{
-					ShowOnBoarding();
+					ShowOnBoarding<OnBoardingModalViewController>();
 					PreferencesEditor.IsOnBoardingViewed = true;
+				}
+				else if (!PreferencesEditor.IsConfigOnBoardingViewed)
+				{
+					ShowOnBoarding<ConfigOnBoardingModalViewController>();
 				}
 
 				CurrentContext.Instance.ReloadMoments = false;
