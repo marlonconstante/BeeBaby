@@ -17,6 +17,20 @@ namespace BeeBaby.Navigations
 		}
 
 		/// <summary>
+		/// Views the did appear.
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			if (!PreferencesEditor.IsConfigOnBoardingViewed)
+			{
+				PreferencesEditor.IsConfigOnBoardingViewed = true;
+			}
+		}
+
+		/// <summary>
 		/// Gets the supported interface orientations.
 		/// </summary>
 		/// <returns>The supported interface orientations.</returns>
