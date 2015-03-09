@@ -33,6 +33,20 @@ namespace BeeBaby.Util
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating is config on boarding viewed.
+		/// </summary>
+		/// <value><c>true</c> if is config on boarding viewed; otherwise, <c>false</c>.</value>
+		public static bool IsConfigOnBoardingViewed {
+			get {
+				return UserDefaults.BoolForKey("IsConfigOnBoardingViewed");
+			}
+			set {
+				UserDefaults.SetBool(value, "IsConfigOnBoardingViewed");
+				UserDefaults.Synchronize();
+			}
+		}
+
+		/// <summary>
 		/// Gets the device identifier.
 		/// </summary>
 		/// <value>The device identifier.</value>
