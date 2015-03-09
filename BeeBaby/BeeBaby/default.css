@@ -69,11 +69,13 @@ tab-bar-item {
 	font-size: 20pt;
 }
 
-.walkthrough > view {
+.walkthrough > view,
+.walkthrough > image-view {
 	opacity: 0;
 }
 
-.walkthrough > view.bubble {
+.walkthrough > view.bubble,
+.walkthrough > image-view.bubble {
 	opacity: 1;
 	animation: bubble;
 	animation-duration: 2s;
