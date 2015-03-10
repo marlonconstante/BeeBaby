@@ -137,7 +137,7 @@ namespace BeeBaby.Controllers
 		void AdjustConstraints()
 		{
 			var constant = UIScreen.MainScreen.Bounds.Height - 568f;
-			if (constant < 0)
+			if (constant < 0 && evtView.Frame.Height == 234f)
 			{
 				Views.ChangeHeightAndDragNextViews(evtView, constant);
 				evtView.Redraw(true);
