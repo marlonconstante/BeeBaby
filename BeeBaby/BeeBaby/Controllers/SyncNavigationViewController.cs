@@ -53,6 +53,13 @@ namespace BeeBaby.Controllers
 			base.ViewDidLoad();
 
 			SyncButton.Update();
+
+			if (ParseUser.CurrentUser == null)
+			{
+				ConfigButton.Rotate(2d, () => {
+					return ParseUser.CurrentUser == null;
+				});
+			}
 		}
 
 		/// <summary>
@@ -132,10 +139,6 @@ namespace BeeBaby.Controllers
 		{
 			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
 			ConfigButton.SetStyleClass("settings");
-
-			ConfigButton.Rotate(2d, () => {
-				return ParseUser.CurrentUser == null;
-			});
 
 			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
 		}

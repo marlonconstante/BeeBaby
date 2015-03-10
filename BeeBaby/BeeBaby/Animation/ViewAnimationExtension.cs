@@ -18,7 +18,6 @@ namespace BeeBaby.Animation
 			var initialTransform = view.Transform;
 
 			var options = UIViewAnimationOptions.AllowUserInteraction |
-				UIViewAnimationOptions.BeginFromCurrentState |
 				UIViewAnimationOptions.CurveLinear;
 
 			UIView.Animate(duration, 0d, options, () => {
