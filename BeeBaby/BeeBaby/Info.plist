@@ -73,7 +73,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
