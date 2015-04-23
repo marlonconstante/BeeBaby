@@ -114,7 +114,10 @@ namespace BeeBaby.Controllers
 						var activityIndicator = imageView.Subviews[0] as UIActivityIndicatorView;
 						activityIndicator.StopAnimating();
 
-						imageView.Image = images[imageView.ItemIndex].Image;
+						if (images.Count > imageView.ItemIndex)
+						{
+							imageView.Image = images[imageView.ItemIndex].Image;
+						}
 					});
 					Thread.Sleep(100);
 				}
