@@ -103,6 +103,7 @@ namespace BeeBaby
 			RegisterNotifications(application);
 
 			application.StatusBarStyle = UIStatusBarStyle.LightContent;
+			application.IdleTimerDisabled = true;
 
 			var currentCulture = SHCultureInfo.From(NSLocale.CurrentLocale);
 
