@@ -97,7 +97,7 @@ Parse.Cloud.define("IsSyncEnabled", function(request, response) {
   if (request.user) {
     LoadOrNew("UserAccount", { User: request.user }, function(account, error) {
       var size = account.get("Size") || 0;
-      var maxSize = 100 * 1024 * 1024;
+      var maxSize = 1000 * 1024 * 1024;
       response.success(!error && size < maxSize);
     });
   } else {
