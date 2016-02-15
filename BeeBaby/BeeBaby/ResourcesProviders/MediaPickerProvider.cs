@@ -1,8 +1,8 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using BeeBaby;
 using Application;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using BeeBaby.Media;
 
 namespace BeeBaby.ResourcesProviders

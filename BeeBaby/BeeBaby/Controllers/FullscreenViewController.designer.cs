@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,19 +13,19 @@ namespace BeeBaby.Controllers
 	partial class FullscreenViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblAge { get; set; }
+		UIKit.UILabel lblAge { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblEvent { get; set; }
+		UIKit.UILabel lblEvent { get; set; }
 
 		[Outlet]
 		SwipeViewer.SwipeView vwSwipe { get; set; }
 
 		[Action ("Close:")]
-		partial void Close (MonoTouch.UIKit.UIButton sender);
+		partial void Close (UIKit.UIButton sender);
 
 		[Action ("Share:")]
-		partial void Share (MonoTouch.UIKit.UIButton sender);
+		partial void Share (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

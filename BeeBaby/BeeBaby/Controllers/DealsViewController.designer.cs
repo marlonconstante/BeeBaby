@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,7 +13,7 @@ namespace BeeBaby.Controllers
 	partial class DealsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIWebView vwWeb { get; set; }
+		UIKit.UIWebView vwWeb { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

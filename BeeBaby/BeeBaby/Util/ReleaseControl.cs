@@ -1,7 +1,7 @@
-﻿using System;
-using MonoTouch.Foundation;
+using System;
+using Foundation;
 using Domain.Baby;
-using MonoTouch.UIKit;
+using UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Domain.Moment;
 using Application;

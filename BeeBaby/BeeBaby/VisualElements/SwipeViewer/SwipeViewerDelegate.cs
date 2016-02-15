@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Drawing;
+using CoreGraphics;
 using SwipeViewer;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
+using System.Drawing;
+using UIKit;
+using System.CodeDom.Compiler;
 
 namespace BeeBaby.VisualElements
 {

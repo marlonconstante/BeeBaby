@@ -1,8 +1,8 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using Application;
 using Domain.Media;
 using PixateFreestyleLib;
@@ -10,6 +10,7 @@ using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BeeBaby.Util;
 using BeeBaby.Progress;
 using BeeBaby.Controllers;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {

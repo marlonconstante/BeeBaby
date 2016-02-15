@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using BeeBaby.Notifications;
 
 namespace BeeBaby.VisualElements

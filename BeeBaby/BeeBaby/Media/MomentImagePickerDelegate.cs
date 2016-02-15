@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using System;
+using UIKit;
+using Foundation;
 using BeeBaby.ResourcesProviders;
 using Application;
 using System.Collections.Generic;

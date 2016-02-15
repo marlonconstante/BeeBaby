@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Parse;
 using System.Net;
-using MonoTouch.Foundation;
+using Foundation;
 using Infrastructure.Systems.Utils;
 using System.IO;
 using System.Threading.Tasks;

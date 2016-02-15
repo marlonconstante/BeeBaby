@@ -1,5 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
+using CoreGraphics;
 using System.Drawing;
 
 namespace BeeBaby.VisualElements

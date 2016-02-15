@@ -1,9 +1,9 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
+using System;
+using UIKit;
+using AssetsLibrary;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using Foundation;
 using System.Threading.Tasks;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BigTed;
@@ -157,7 +157,7 @@ namespace ELCPicker
 				}
 			}
 
-			void GroupsEnumeratorFailed(MonoTouch.Foundation.NSError error)
+			void GroupsEnumeratorFailed(Foundation.NSError error)
 			{
 				Console.WriteLine("Enumerator failed!");
 			}
@@ -191,17 +191,17 @@ namespace ELCPicker
 				});
 			}
 
-			public override int NumberOfSections(UITableView tableView)
+			public override nint NumberOfSections(UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection(UITableView tableview, int section)
+			public override nint RowsInSection(UITableView tableView, nint section)
 			{
 				return AssetGroups.Count;
 			}
 
-			public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				const string cellIdentifier = "Cell";
 
@@ -239,7 +239,7 @@ namespace ELCPicker
 				NavigationController.PushViewController(picker, true);
 			}
 
-			public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 			{
 				return 88f;
 			}
@@ -465,12 +465,12 @@ namespace ELCPicker
 				}
 			}
 
-			public override int NumberOfSections(UITableView tableView)
+			public override nint NumberOfSections(UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection(UITableView tableview, int section)
+			public override nint RowsInSection(UITableView tableView, nint section)
 			{
 				if (Columns <= 0)
 					return 4;
@@ -498,7 +498,7 @@ namespace ELCPicker
 				return cell;
 			}
 
-			public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 			{
 				return 79f;
 			}

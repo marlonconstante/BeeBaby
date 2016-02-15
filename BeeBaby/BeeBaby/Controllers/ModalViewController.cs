@@ -1,7 +1,9 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using PixateFreestyleLib;
+using CoreGraphics;
 using System.Drawing;
+using BeeBaby.VisualElements;
 
 namespace BeeBaby.Controllers
 {

@@ -4,8 +4,8 @@ using System.Net;
 using Application;
 using BigTed;
 using MonoTouch.FacebookConnect;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Parse;
 using PixateFreestyleLib;
 using RestSharp;
@@ -15,7 +15,8 @@ using BeeBaby.Globalization;
 using BeeBaby.Media;
 using BeeBaby.Notifications;
 using BeeBaby.Util;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
+using UIKit;
 
 namespace BeeBaby
 {

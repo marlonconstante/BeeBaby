@@ -1,9 +1,10 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using BeeBaby.Util;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {
@@ -33,7 +34,7 @@ namespace BeeBaby.VisualElements
 		/// <returns><c>true</c>, if inside was pointed, <c>false</c> otherwise.</returns>
 		/// <param name="point">Point.</param>
 		/// <param name="ev">Event.</param>
-		public override bool PointInside(PointF point, UIEvent ev)
+		public override bool PointInside(CGPoint point, UIEvent ev)
 		{
 			if (IsIncreaseTouchArea())
 			{

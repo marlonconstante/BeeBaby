@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Domain.Moment;
 using Domain.Baby;
 using Application;
@@ -9,13 +9,14 @@ using BeeBaby.ResourcesProviders;
 using BeeBaby.Util;
 using Domain.User;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
-using System.Drawing;
+using CoreGraphics;
 using PixateFreestyleLib;
 using System.Collections.Generic;
 using Infrastructure.Systems;
 using BeeBaby.Proxy;
 using BeeBaby.VisualElements;
 using BigTed;
+using System.Drawing;
 
 namespace BeeBaby.Controllers
 {

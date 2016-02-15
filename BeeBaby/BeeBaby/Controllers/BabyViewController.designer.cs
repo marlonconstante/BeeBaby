@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,19 +13,19 @@ namespace BeeBaby.Controllers
 	partial class BabyViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBirthDate { get; set; }
+		UIKit.UILabel lblBirthDate { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblName { get; set; }
+		UIKit.UILabel lblName { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblUser { get; set; }
+		UIKit.UILabel lblUser { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+		UIKit.UIScrollView scrView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl segGender { get; set; }
+		UIKit.UISegmentedControl segGender { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.TextField txtName { get; set; }

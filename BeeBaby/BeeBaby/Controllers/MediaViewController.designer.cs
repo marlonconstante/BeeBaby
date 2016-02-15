@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,19 +13,19 @@ namespace BeeBaby.Controllers
 	partial class MediaViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnAddMediaFromLibrary { get; set; }
+		UIKit.UIButton btnAddMediaFromLibrary { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnNextStep { get; set; }
+		UIKit.UIButton btnNextStep { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UICollectionView clnView { get; set; }
+		UIKit.UICollectionView clnView { get; set; }
 
 		[Action ("AddMediaFromLibrary:")]
-		partial void AddMediaFromLibrary (MonoTouch.UIKit.UIButton sender);
+		partial void AddMediaFromLibrary (UIKit.UIButton sender);
 
 		[Action ("NextStep:")]
-		partial void NextStep (MonoTouch.UIKit.UIButton sender);
+		partial void NextStep (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

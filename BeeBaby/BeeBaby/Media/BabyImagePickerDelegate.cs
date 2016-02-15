@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using System;
+using UIKit;
+using Foundation;
 using BeeBaby.ResourcesProviders;
 using Application;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace BeeBaby.Media
 		/// Gets or sets the completion handler.
 		/// </summary>
 		/// <value>The completion handler.</value>
-		public NSAction CompletionHandler {
+		public Action CompletionHandler {
 			get;
 			set;
 		}

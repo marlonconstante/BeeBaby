@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,28 +13,28 @@ namespace BeeBaby.Controllers
 	partial class BenefitsConfigViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnContinue { get; set; }
+		UIKit.UIButton btnContinue { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnLogOut { get; set; }
+		UIKit.UIButton btnLogOut { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblAdvantages { get; set; }
+		UIKit.UILabel lblAdvantages { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblObservations { get; set; }
+		UIKit.UILabel lblObservations { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblThankYou { get; set; }
+		UIKit.UILabel lblThankYou { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+		UIKit.UIScrollView scrView { get; set; }
 
 		[Action ("Continue:")]
-		partial void Continue (MonoTouch.UIKit.UIButton sender);
+		partial void Continue (UIKit.UIButton sender);
 
 		[Action ("LogOut:")]
-		partial void LogOut (MonoTouch.UIKit.UIButton sender);
+		partial void LogOut (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

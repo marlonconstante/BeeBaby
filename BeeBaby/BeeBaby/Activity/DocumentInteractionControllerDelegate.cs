@@ -1,5 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
+using CoreGraphics;
 using System.Drawing;
 
 namespace BeeBaby.Activity
@@ -37,7 +38,7 @@ namespace BeeBaby.Activity
 		/// Rectangles for preview.
 		/// </summary>
 		/// <param name="controller">Controller.</param>
-		public override RectangleF RectangleForPreview(UIDocumentInteractionController controller)
+		public override CGRect RectangleForPreview(UIDocumentInteractionController controller)
 		{
 			return _viewController.View.Frame;
 		}

@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,40 +13,40 @@ namespace BeeBaby.Controllers
 	partial class ImageShareViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgEventBadge { get; set; }
+		UIKit.UIImageView imgEventBadge { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView ivwBackgroundImage { get; set; }
+		UIKit.UIImageView ivwBackgroundImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblAge { get; set; }
+		UIKit.UILabel lblAge { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblDay { get; set; }
+		UIKit.UILabel lblDay { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.Label lblEvent { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblMonth { get; set; }
+		UIKit.UILabel lblMonth { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblWhere { get; set; }
+		UIKit.UILabel lblWhere { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblYear { get; set; }
+		UIKit.UILabel lblYear { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwImageBadge { get; set; }
+		UIKit.UIView vwImageBadge { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwLowerBackground { get; set; }
+		UIKit.UIView vwLowerBackground { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwLowerBAckground { get; set; }
+		UIKit.UIView vwLowerBAckground { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwMainView { get; set; }
+		UIKit.UIView vwMainView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

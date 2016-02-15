@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,16 +13,16 @@ namespace BeeBaby.Controllers
 	partial class MomentDetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSave { get; set; }
+		UIKit.UIButton btnSave { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.EventView evtView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+		UIKit.UIScrollView scrView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tblView { get; set; }
+		UIKit.UITableView tblView { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.TextView txtDescription { get; set; }
@@ -34,7 +34,7 @@ namespace BeeBaby.Controllers
 		BeeBaby.VisualElements.ViewDatePicker vwDate { get; set; }
 
 		[Action ("Save:")]
-		partial void Save (MonoTouch.UIKit.UIButton sender);
+		partial void Save (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

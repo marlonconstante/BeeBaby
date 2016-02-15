@@ -1,9 +1,10 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 using PixateFreestyleLib;
-using MonoTouch.UIKit;
+using UIKit;
 using BeeBaby.Synchronization;
 using BeeBaby.Animation;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {

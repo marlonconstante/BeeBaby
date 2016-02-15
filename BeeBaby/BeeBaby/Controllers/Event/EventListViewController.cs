@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
 using Application;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
-using System.Drawing;
+using CoreGraphics;
 using PixateFreestyleLib;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Diagnostics;
 using Domain.Baby;
 using BeeBaby.Proxy;

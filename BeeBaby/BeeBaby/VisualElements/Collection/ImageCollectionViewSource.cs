@@ -1,7 +1,7 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using Application;
-using MonoTouch.Foundation;
+using Foundation;
 using BeeBaby.ViewModels;
 using System.Collections.Generic;
 using BeeBaby.ResourcesProviders;
@@ -25,7 +25,7 @@ namespace BeeBaby.VisualElements
 		/// Returns the number of sections.
 		/// </summary>
 		/// <param name="collectionView">Collection view.</param>
-		public override int NumberOfSections(UICollectionView collectionView)
+		public override nint NumberOfSections(UICollectionView collectionView)
 		{
 			return 1;
 		}
@@ -35,7 +35,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		/// <param name="collectionView">Collection view.</param>
 		/// <param name="section">Section.</param>
-		public override int GetItemsCount(UICollectionView collectionView, int section)
+		public override nint GetItemsCount(UICollectionView collectionView, nint section)
 		{
 			return m_images.Count;
 		}

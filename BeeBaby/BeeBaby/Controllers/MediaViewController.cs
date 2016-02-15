@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using BeeBaby.ResourcesProviders;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Application;
-using System.Drawing;
+using CoreGraphics;
 using Domain.Moment;
 using ELCPicker;
 using System.Diagnostics;

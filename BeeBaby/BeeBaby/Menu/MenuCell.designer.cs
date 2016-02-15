@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Menu
@@ -13,10 +13,10 @@ namespace BeeBaby.Menu
 	partial class MenuCell
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgIcon { get; set; }
+		UIKit.UIImageView imgIcon { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblTitle { get; set; }
+		UIKit.UILabel lblTitle { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

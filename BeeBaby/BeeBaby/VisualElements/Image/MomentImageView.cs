@@ -1,8 +1,9 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 using Domain.Moment;
-using MonoTouch.UIKit;
+using UIKit;
 using BeeBaby.ResourcesProviders;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {

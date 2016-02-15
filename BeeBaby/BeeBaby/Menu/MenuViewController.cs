@@ -1,12 +1,12 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Application;
 using Domain.Baby;
 using BeeBaby.Util;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using Domain.Moment;
 using Infrastructure.Systems;
 using BeeBaby.ViewModels;

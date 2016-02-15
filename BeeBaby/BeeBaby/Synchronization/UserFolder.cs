@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Skahal.Infrastructure.Framework.PCL.Domain;
 using Infrastructure.Parse;
 

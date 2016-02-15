@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using PixateFreestyleLib;
 using System.Threading;
 using Skahal.Infrastructure.Framework.PCL.Globalization;

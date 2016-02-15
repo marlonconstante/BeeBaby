@@ -1,8 +1,8 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using BigTed;
-using MonoTouch.Foundation;
-using System.Drawing;
+using Foundation;
+using CoreGraphics;
 using System.Collections.Generic;
 using PixateFreestyleLib;
 using System.Linq;
@@ -187,7 +187,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <param name="action">Action.</param>
 		/// <param name="closeProgressWhenFinished">If set to <c>true</c> close progress when finished.</param>
-		public void ShowProgressWhilePerforming(NSAction action, bool closeProgressWhenFinished = true)
+		public void ShowProgressWhilePerforming(Action action, bool closeProgressWhenFinished = true)
 		{
 			var actionProgress = new ActionProgress(action, closeProgressWhenFinished);
 			actionProgress.Execute();

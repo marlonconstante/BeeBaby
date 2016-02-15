@@ -1,11 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using System.Collections.Generic;
 using PixateFreestyleLib;
-using MonoTouch.CoreAnimation;
+using CoreAnimation;
 using BeeBaby.Util;
 using BeeBaby.Proxy;
 using BeeBaby.Notifications;

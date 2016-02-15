@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Reflection;
 using System.Collections;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace BeeBaby.Util
 {

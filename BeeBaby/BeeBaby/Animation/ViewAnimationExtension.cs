@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using System;
+using UIKit;
+using CoreGraphics;
 
 namespace BeeBaby.Animation
 {

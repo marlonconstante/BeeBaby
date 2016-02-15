@@ -1,11 +1,11 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using Domain.Moment;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using BeeBaby.ResourcesProviders;
 using Domain.Media;
-using System.Drawing;
+using CoreGraphics;
 using Domain.Baby;
 using BeeBaby.ViewModels;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
@@ -198,7 +198,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The in section.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="section">Section.</param>
-		public override int RowsInSection(UITableView tableView, int section)
+		public override nint RowsInSection(UITableView tableView, nint section)
 		{
 			return m_moments.Count;
 		}
@@ -209,7 +209,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The height for row.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
 			return 301f;
 		}
@@ -220,7 +220,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The height.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
+		public override nfloat EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
 		{
 			return 301f;
 		}

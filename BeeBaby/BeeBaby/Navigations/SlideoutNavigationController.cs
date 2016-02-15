@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using UIKit;
+using Foundation;
 using BeeBaby.Util;
 
 namespace BeeBaby.Navigations
@@ -705,10 +705,10 @@ namespace BeeBaby.Navigations
 
 			UIView view = _internalTopView.View;
 
-			NSAction animation = () => {
+			Action animation = () => {
 				view.Frame = new RectangleF(0, 0, view.Frame.Width, view.Frame.Height);
 			};
-			NSAction finished = () => {
+			Action finished = () => {
 				if (view.Subviews.Length > 0)
 					view.Subviews[0].UserInteractionEnabled = true;
 				view.RemoveGestureRecognizer(_tapGesture);

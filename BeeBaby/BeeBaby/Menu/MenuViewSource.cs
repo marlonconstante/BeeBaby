@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using System;
+using UIKit;
+using Foundation;
 using System.Collections.Generic;
 using BeeBaby.ViewModels;
 using BeeBaby.VisualElements;
@@ -26,7 +26,7 @@ namespace BeeBaby.Menu
 		/// <returns>The in section.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="section">Section.</param>
-		public override int RowsInSection(UITableView tableView, int section)
+		public override nint RowsInSection(UITableView tableView, nint section)
 		{
 			return m_tableItems.Count;
 		}

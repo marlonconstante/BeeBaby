@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,10 +13,10 @@ namespace BeeBaby.Controllers
 	partial class EventViewCell
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgEventTagIcon { get; set; }
+		UIKit.UIImageView imgEventTagIcon { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblEventDesc { get; set; }
+		UIKit.UILabel lblEventDesc { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

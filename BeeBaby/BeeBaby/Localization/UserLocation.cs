@@ -1,9 +1,9 @@
-﻿using System;
-using MonoTouch.CoreLocation;
+using System;
+using CoreLocation;
 using Domain.Moment;
-using MonoTouch.Foundation;
+using Foundation;
 using BeeBaby.Util;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
 
 namespace BeeBaby.Localization
 {
@@ -66,7 +66,7 @@ namespace BeeBaby.Localization
 		/// Gets or sets the updated position.
 		/// </summary>
 		/// <value>The updated position.</value>
-		public NSAction UpdatedPosition {
+		public Action UpdatedPosition {
 			get;
 			set;
 		}

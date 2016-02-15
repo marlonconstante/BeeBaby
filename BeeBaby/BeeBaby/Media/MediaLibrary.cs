@@ -1,9 +1,9 @@
-﻿using System;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ImageIO;
+using System;
+using AssetsLibrary;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ImageIO;
 
 namespace BeeBaby.Media
 {

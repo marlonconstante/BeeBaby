@@ -1,12 +1,13 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using BigTed;
-using MonoTouch.Foundation;
-using System.Drawing;
+using Foundation;
+using CoreGraphics;
 using PixateFreestyleLib;
 using BeeBaby.Proxy;
 using BeeBaby.Navigations;
 using BeeBaby.VisualElements;
+using System.Drawing;
 
 namespace BeeBaby.Controllers
 {
@@ -65,7 +66,7 @@ namespace BeeBaby.Controllers
 		public virtual void LeftBarButtonAction()
 		{
 			ShowProgressWhilePerforming(() => {
-				NavigationController.PopViewControllerAnimated(true);
+				NavigationController.PopViewController(true);
 			}, false);
 		}
 

@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using System;
+using MapKit;
+using CoreLocation;
 
 namespace BeeBaby.Localization
 {
@@ -22,7 +22,6 @@ namespace BeeBaby.Localization
 		/// <value>The coordinate.</value>
 		public override CLLocationCoordinate2D Coordinate {
 			get;
-			set;
 		}
 
 		/// <summary>

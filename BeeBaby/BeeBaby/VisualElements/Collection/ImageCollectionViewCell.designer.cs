@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.VisualElements
@@ -13,13 +13,13 @@ namespace BeeBaby.VisualElements
 	partial class ImageCollectionViewCell
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgCheckmark { get; set; }
+		UIKit.UIImageView imgCheckmark { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgPhoto { get; set; }
+		UIKit.UIImageView imgPhoto { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwOverlay { get; set; }
+		UIKit.UIView vwOverlay { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

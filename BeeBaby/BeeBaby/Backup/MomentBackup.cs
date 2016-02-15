@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Domain.Moment;
 using Application;
 using Domain.Baby;

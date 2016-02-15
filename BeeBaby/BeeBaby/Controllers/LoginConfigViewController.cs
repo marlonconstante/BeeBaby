@@ -1,6 +1,6 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using BeeBaby.Util;
 using System.Threading.Tasks;

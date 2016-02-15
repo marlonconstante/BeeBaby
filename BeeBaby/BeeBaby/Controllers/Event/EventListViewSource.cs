@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using Domain.Moment;
 using Application;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
@@ -34,7 +34,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The in section.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="section">Section.</param>
-		public override int RowsInSection(UITableView tableView, int section)
+		public override nint RowsInSection(UITableView tableView, nint section)
 		{
 			return m_otherEventsTableItems.Count;
 		}
@@ -45,7 +45,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The height for row.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
 			return 44f;
 		}
@@ -56,7 +56,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The height.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override float EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
+		public override nfloat EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
 		{
 			return 44f;
 		}
@@ -127,7 +127,7 @@ namespace BeeBaby.Controllers
 		/// Numbers the of sections.
 		/// </summary>
 		/// <param name="tableView">Table view.</param>
-		public override int NumberOfSections(UITableView tableView)
+		public override nint NumberOfSections(UITableView tableView)
 		{
 			return 1;
 		}

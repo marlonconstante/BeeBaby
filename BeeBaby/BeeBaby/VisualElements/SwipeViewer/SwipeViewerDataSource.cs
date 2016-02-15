@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BeeBaby.ViewModels;
-using MonoTouch.UIKit;
+using UIKit;
 using SwipeViewer;
 
 namespace BeeBaby.VisualElements
@@ -30,7 +30,7 @@ namespace BeeBaby.VisualElements
 		/// <param name="swipeView">Swipe view.</param>
 		/// <param name="index">Index.</param>
 		/// <param name="view">View.</param>
-		public override UIView ViewForItemAtIndex(SwipeView swipeView, int index, UIView view)
+		public override UIView ViewForItemAtIndex(SwipeView swipeView, nint index, UIView view)
 		{
 			if (view == null)
 			{

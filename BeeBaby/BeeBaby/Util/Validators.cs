@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
-using MonoTouch.UIKit;
+using UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 
 namespace BeeBaby.Util

@@ -1,8 +1,8 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using System;
+using UIKit;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using BeeBaby.Controllers;
 
 namespace BeeBaby.Notifications

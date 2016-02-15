@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,13 +13,13 @@ namespace BeeBaby.Controllers
 	partial class LoginViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnForgotPass { get; set; }
+		UIKit.UIButton btnForgotPass { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnLogin { get; set; }
+		UIKit.UIButton btnLogin { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrView { get; set; }
+		UIKit.UIScrollView scrView { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.TextField txtPassword { get; set; }
@@ -28,10 +28,10 @@ namespace BeeBaby.Controllers
 		BeeBaby.VisualElements.TextField txtUser { get; set; }
 
 		[Action ("forgotPass:")]
-		partial void forgotPass (MonoTouch.UIKit.UIButton sender);
+		partial void forgotPass (UIKit.UIButton sender);
 
 		[Action ("Login:")]
-		partial void Login (MonoTouch.UIKit.UIButton sender);
+		partial void Login (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

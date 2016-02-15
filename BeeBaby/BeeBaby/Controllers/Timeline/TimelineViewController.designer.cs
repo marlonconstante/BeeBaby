@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,13 +13,13 @@ namespace BeeBaby.Controllers
 	partial class TimelineViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBabyAge { get; set; }
+		UIKit.UILabel lblBabyAge { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblBabyName { get; set; }
+		UIKit.UILabel lblBabyName { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tblView { get; set; }
+		UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

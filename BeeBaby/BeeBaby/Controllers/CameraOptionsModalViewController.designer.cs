@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,19 +13,19 @@ namespace BeeBaby.Controllers
 	partial class CameraOptionsModalViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnImportPhotos { get; set; }
+		UIKit.UIButton btnImportPhotos { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnTakePhotos { get; set; }
+		UIKit.UIButton btnTakePhotos { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwPopover { get; set; }
+		UIKit.UIView vwPopover { get; set; }
 
 		[Action ("ImportPhotos:")]
-		partial void ImportPhotos (MonoTouch.UIKit.UIButton sender);
+		partial void ImportPhotos (UIKit.UIButton sender);
 
 		[Action ("TakePhotos:")]
-		partial void TakePhotos (MonoTouch.UIKit.UIButton sender);
+		partial void TakePhotos (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

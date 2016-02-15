@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using PixateFreestyleLib;
 using Domain.Media;
 using BeeBaby.ResourcesProviders;
@@ -13,6 +13,7 @@ using BeeBaby.Progress;
 using BeeBaby.Navigations;
 using BeeBaby.Menu;
 using BeeBaby.Media;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {

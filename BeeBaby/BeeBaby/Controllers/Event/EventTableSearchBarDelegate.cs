@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
 using Domain.Moment;
-using MonoTouch.Foundation;
+using Foundation;
 using BeeBaby.Util;
 
 namespace BeeBaby.Controllers

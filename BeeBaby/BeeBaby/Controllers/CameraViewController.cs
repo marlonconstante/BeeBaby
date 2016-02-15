@@ -1,12 +1,12 @@
-﻿using MonoTouch.UIKit;
+using UIKit;
 using System;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 using BeeBaby.ResourcesProviders;
 using Application;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
-using MonoTouch.AudioToolbox;
+using AudioToolbox;
 using System.Collections.Generic;
 using BeeBaby.Navigations;
 using BeeBaby.Media;

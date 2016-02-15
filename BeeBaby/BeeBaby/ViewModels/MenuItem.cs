@@ -1,7 +1,7 @@
-﻿using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using System;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using BeeBaby.Util;
 
 namespace BeeBaby.ViewModels

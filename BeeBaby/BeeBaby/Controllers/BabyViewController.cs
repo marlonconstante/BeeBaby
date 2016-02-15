@@ -1,11 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Skahal.Infrastructure.Framework.PCL.Globalization;
 using Domain.Baby;
 using Application;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using BigTed;
 using BeeBaby.Navigations;
 using BeeBaby.Util;

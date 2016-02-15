@@ -1,9 +1,9 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using Foundation;
+using CoreGraphics;
+using CoreGraphics;
 using System.IO;
 
 namespace BeeBaby.Activity

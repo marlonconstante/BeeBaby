@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,46 +13,46 @@ namespace BeeBaby.Controllers
 	partial class CameraViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnFlash { get; set; }
+		UIKit.UIButton btnFlash { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnClose { get; set; }
+		UIKit.UIButton btnClose { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSound { get; set; }
+		UIKit.UIButton btnSound { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnSwitchCamera { get; set; }
+		UIKit.UIButton btnSwitchCamera { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnTakePhoto { get; set; }
+		UIKit.UIButton btnTakePhoto { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblFlash { get; set; }
+		UIKit.UILabel lblFlash { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblReady { get; set; }
+		UIKit.UILabel lblReady { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView vwFlash { get; set; }
+		UIKit.UIView vwFlash { get; set; }
 
 		[Action ("ChangeFlashMode:")]
-		partial void ChangeFlashMode (MonoTouch.UIKit.UIButton sender);
+		partial void ChangeFlashMode (UIKit.UIButton sender);
 
 		[Action ("OpenMedia:")]
-		partial void OpenMedia (MonoTouch.UIKit.UIButton sender);
+		partial void OpenMedia (UIKit.UIButton sender);
 
 		[Action ("Close:")]
-		partial void Close (MonoTouch.UIKit.UIButton sender);
+		partial void Close (UIKit.UIButton sender);
 
 		[Action ("PlaySound:")]
-		partial void PlaySound (MonoTouch.UIKit.UIButton sender);
+		partial void PlaySound (UIKit.UIButton sender);
 
 		[Action ("SwitchCamera:")]
-		partial void SwitchCamera (MonoTouch.UIKit.UIButton sender);
+		partial void SwitchCamera (UIKit.UIButton sender);
 
 		[Action ("TakePhoto:")]
-		partial void TakePhoto (MonoTouch.UIKit.UIButton sender);
+		partial void TakePhoto (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

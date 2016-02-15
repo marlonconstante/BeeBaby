@@ -1,6 +1,7 @@
-﻿using System;
+using System;
+using CoreGraphics;
+using UIKit;
 using System.Drawing;
-using MonoTouch.UIKit;
 
 namespace BeeBaby.Util
 {

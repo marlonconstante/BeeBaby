@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using System;
+using UIKit;
+using Foundation;
 using Domain.Moment;
 using BeeBaby.VisualElements;
 
@@ -25,7 +25,7 @@ namespace BeeBaby.Controllers
 		/// <returns>The in section.</returns>
 		/// <param name="tableview">Tableview.</param>
 		/// <param name="section">Section.</param>
-		public override int RowsInSection(UITableView tableview, int section)
+		public override nint RowsInSection(UITableView tableView, nint section)
 		{
 			return m_locations.Length;
 		}

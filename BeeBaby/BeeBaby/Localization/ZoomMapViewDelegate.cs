@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using System;
+using MapKit;
+using CoreLocation;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
 

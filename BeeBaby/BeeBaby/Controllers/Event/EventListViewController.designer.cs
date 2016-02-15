@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BeeBaby.Controllers
@@ -13,22 +13,22 @@ namespace BeeBaby.Controllers
 	partial class EventListViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIPageControl pcrPager { get; set; }
+		UIKit.UIPageControl pcrPager { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISearchBar schBar { get; set; }
+		UIKit.UISearchBar schBar { get; set; }
 
 		[Outlet]
 		BeeBaby.VisualElements.ScrollView scrView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint tagsHeightConstraint { get; set; }
+		UIKit.NSLayoutConstraint tagsHeightConstraint { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint tblHeightConstraint { get; set; }
+		UIKit.NSLayoutConstraint tblHeightConstraint { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tblView { get; set; }
+		UIKit.UITableView tblView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,6 +1,7 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 using BeeBaby.ViewModels;
+using System.Drawing;
 
 namespace BeeBaby.VisualElements
 {

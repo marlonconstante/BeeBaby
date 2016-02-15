@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using BeeBaby.Synchronization;
 using BeeBaby.VisualElements;
-using System.Drawing;
+using CoreGraphics;
 using System.Timers;
 using BeeBaby.Network;
-using MonoTouch.UIKit;
+using UIKit;
 using PixateFreestyleLib;
 using Parse;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using BeeBaby.Animation;
 
 namespace BeeBaby.Controllers
