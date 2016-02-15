@@ -3,7 +3,6 @@ using UIKit;
 using System.Collections.Generic;
 using Foundation;
 using CoreGraphics;
-using CoreGraphics;
 using System.IO;
 
 namespace BeeBaby.Activity

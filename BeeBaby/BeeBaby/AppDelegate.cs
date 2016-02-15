@@ -16,7 +16,6 @@ using BeeBaby.Media;
 using BeeBaby.Notifications;
 using BeeBaby.Util;
 using ObjCRuntime;
-using UIKit;
 
 namespace BeeBaby
 {

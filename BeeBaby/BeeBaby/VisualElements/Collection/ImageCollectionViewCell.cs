@@ -2,7 +2,6 @@ using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using Domain.Media;
 using PixateFreestyleLib;
 
