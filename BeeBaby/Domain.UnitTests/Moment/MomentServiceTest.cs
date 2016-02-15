@@ -18,7 +18,6 @@ namespace Domain.UnitTests.Moment
 		private MomentService m_target;
 		private MemoryUnitOfWork m_unitOfWork;
 		private MemoryMomentRepository m_repository;
-		private MemoryMomentRepository m_remoteRepository;
 		#endregion
 
 		#region Initialize
@@ -27,7 +26,6 @@ namespace Domain.UnitTests.Moment
 		{ 
 			m_unitOfWork = new MemoryUnitOfWork();
 			m_repository = new MemoryMomentRepository(m_unitOfWork);
-			m_remoteRepository = new MemoryMomentRepository(m_unitOfWork);
 
 			var baby = new Domain.Baby.Baby
 			{
