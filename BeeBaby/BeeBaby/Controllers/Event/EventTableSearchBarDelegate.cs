@@ -92,7 +92,6 @@ namespace BeeBaby.Controllers
 		IList<Event> GetFilteredEvents(String searchText)
 		{
 			var param = new NSDictionary("FiltredText", searchText);
-			FlurryAnalytics.Flurry.LogEvent("Filtrou pela busca.", param);
 
 			return m_events.Where(e => e.Description.ToLower().Contains(searchText.ToLower())).ToList();
 		}

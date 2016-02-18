@@ -55,9 +55,9 @@ namespace BeeBaby.Controllers
 		/// Lefts the bar button frame.
 		/// </summary>
 		/// <returns>The bar button frame.</returns>
-		public virtual RectangleF LeftBarButtonFrame()
+		public virtual CGRect LeftBarButtonFrame()
 		{
-			return new RectangleF(0f, 0f, 18f, 24f);
+			return new CGRect(0f, 0f, 18f, 24f);
 		}
 
 		/// <summary>
@@ -92,15 +92,15 @@ namespace BeeBaby.Controllers
 		/// Rights the bar button frame.
 		/// </summary>
 		/// <returns>The bar button frame.</returns>
-		public virtual RectangleF RightBarButtonFrame()
+		public virtual CGRect RightBarButtonFrame()
 		{
 			if (IsCameraFlow())
 			{
-				return new RectangleF(0f, 0f, 34f, 34f);
+				return new CGRect(0f, 0f, 34f, 34f);
 			}
 			else
 			{
-				return new RectangleF(0f, 0f, 24f, 24f);
+				return new CGRect(0f, 0f, 24f, 24f);
 			}
 		}
 
@@ -225,7 +225,7 @@ namespace BeeBaby.Controllers
 			}
 			else
 			{
-				TitleView = new UIView(new RectangleF(0f, 0f, 82f, 36f));
+				TitleView = new UIView(new CGRect(0f, 0f, 82f, 36f));
 				TitleView.SetStyleClass("bee-baby");
 			}
 			NavigationItem.TitleView = TitleView;

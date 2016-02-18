@@ -21,7 +21,7 @@ namespace BeeBaby.Animation
 				UIViewAnimationOptions.CurveLinear;
 
 			UIView.Animate(duration, 0d, options, () => {
-				view.Transform = CGAffineTransform.MakeRotation((float) -Math.PI);
+				view.Transform = CGAffineTransform.MakeRotation((nfloat) -Math.PI);
 			}, () => {
 				view.Transform = initialTransform;
 				if (isRepeat == null || isRepeat())

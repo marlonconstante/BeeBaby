@@ -37,7 +37,7 @@ namespace BeeBaby.Menu
 				
 			EdgesForExtendedLayout = UIRectEdge.None;
 
-			m_profileView = new ProfileView(new RectangleF(0f, 0f, 250f, 195f));
+			m_profileView = new ProfileView(new CGRect(0f, 0f, 250f, 195f));
 			tblView.TableHeaderView = m_profileView;
 
 			tblView.Source = new MenuViewSource(this, GetMenuItems());
@@ -60,7 +60,6 @@ namespace BeeBaby.Menu
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidAppear(bool animated)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Menu: Abriu");
 
 			base.ViewDidAppear(animated);
 
@@ -77,7 +76,6 @@ namespace BeeBaby.Menu
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Menu: Fechou");
 			base.ViewWillDisappear(animated);
 		}
 

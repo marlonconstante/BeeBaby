@@ -147,7 +147,7 @@ namespace BeeBaby.Controllers
 		/// Gets the tab bar frame.
 		/// </summary>
 		/// <value>The tab bar frame.</value>
-		RectangleF TabBarFrame {
+		CGRect TabBarFrame {
 			get {
 				var frame = TabBar.Frame;
 				frame.Height = 40;

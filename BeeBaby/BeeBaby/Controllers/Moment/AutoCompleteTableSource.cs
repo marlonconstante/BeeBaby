@@ -38,7 +38,6 @@ namespace BeeBaby.Controllers
 		/// <param name="indexPath">Index path.</param>
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Momento: GPS Selecionou da lista.");
 			m_viewController.SelectLocation(m_locations[indexPath.Row]);
 			tableView.DeselectRow(indexPath, true);
 		}

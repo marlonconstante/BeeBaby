@@ -27,8 +27,8 @@ namespace BeeBaby.Controllers
 		{
 			LoadConfigButton();
 
-			SyncButton = new SyncButton(new RectangleF(-6f, 0f, 24f, 24f));
-			SyncBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), SyncButton);
+			SyncButton = new SyncButton(new CGRect(-6f, 0f, 24f, 24f));
+			SyncBarButtonItem = new NavigationButtonItem(new CGRect(0f, 0f, 24f, 24f), SyncButton);
 
 			Timer = new Timer(c_timerInterval);
 			Timer.Elapsed += OnTimerElapsed;
@@ -137,10 +137,10 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		static void LoadConfigButton()
 		{
-			ConfigButton = new Button(new RectangleF(6f, 0f, 24f, 24f));
+			ConfigButton = new Button(new CGRect(6f, 0f, 24f, 24f));
 			ConfigButton.SetStyleClass("settings");
 
-			ConfigBarButtonItem = new NavigationButtonItem(new RectangleF(0f, 0f, 24f, 24f), ConfigButton);
+			ConfigBarButtonItem = new NavigationButtonItem(new CGRect(0f, 0f, 24f, 24f), ConfigButton);
 		}
 
 		/// <summary>

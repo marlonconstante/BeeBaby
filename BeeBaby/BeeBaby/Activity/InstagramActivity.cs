@@ -89,7 +89,7 @@ namespace BeeBaby.Activity
 			var cropVal = ShareImage.Size.Height > ShareImage.Size.Width ? ShareImage.Size.Width : ShareImage.Size.Height;
 			cropVal *= ShareImage.CurrentScale;
 
-			var cropRect = new RectangleF {
+			var cropRect = new CGRect {
 				Height = cropVal,
 				Width = cropVal
 			};

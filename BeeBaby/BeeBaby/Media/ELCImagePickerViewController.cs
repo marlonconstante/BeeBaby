@@ -254,7 +254,7 @@ namespace ELCPicker
 				{
 					base.LayoutSubviews();
 
-					ImageView.Frame = new RectangleF(5f, 5f, 78f, 78f);
+					ImageView.Frame = new CGRect(5f, 5f, 78f, 78f);
 
 					var textFrame = TextLabel.Frame;
 					textFrame.X = 93f;
@@ -474,7 +474,7 @@ namespace ELCPicker
 			{
 				if (Columns <= 0)
 					return 4;
-				int numRows = (int) Math.Ceiling((float) ElcAssets.Count / Columns);
+				int numRows = (int) Math.Ceiling((nfloat) ElcAssets.Count / Columns);
 				return numRows;
 			}
 
@@ -604,10 +604,10 @@ namespace ELCPicker
 						}
 						else
 						{
-							var overlayView = new UIView(new RectangleF(0f, 0f, 75f, 75f));
+							var overlayView = new UIView(new CGRect(0f, 0f, 75f, 75f));
 							overlayView.SetStyleClass("selected-cell");
 
-							var checkmarkView = new UIView(new RectangleF(50f, 50f, 20f, 20f));
+							var checkmarkView = new UIView(new CGRect(50f, 50f, 20f, 20f));
 							checkmarkView.SetStyleClass("checkmark");
 
 							overlayView.AddSubview(checkmarkView);
@@ -624,7 +624,7 @@ namespace ELCPicker
 					var totalWidth = Columns * 75 + (Columns - 1) * 4;
 					var startX = (Bounds.Size.Width - totalWidth) / 2;
 
-					var frame = new RectangleF(startX, 2, 75, 75);
+					var frame = new CGRect(startX, 2, 75, 75);
 					for (int i = 0; i < RowAssets.Count; ++i)
 					{
 						if (frame.Contains(point))
@@ -636,7 +636,7 @@ namespace ELCPicker
 							break;
 						}
 						var x = frame.X + frame.Width + 4;
-						frame = new RectangleF(x, frame.Y, frame.Width, frame.Height);
+						frame = new CGRect(x, frame.Y, frame.Width, frame.Height);
 					}
 				}
 
@@ -645,7 +645,7 @@ namespace ELCPicker
 					var totalWidth = Columns * 75 + (Columns - 1) * 4;
 					var startX = (Bounds.Size.Width - totalWidth) / 2;
 
-					var frame = new RectangleF(startX, 0, 75, 75);
+					var frame = new CGRect(startX, 0, 75, 75);
 
 					int i = 0;
 					foreach (var imageView in ImageViewArray)
@@ -658,7 +658,7 @@ namespace ELCPicker
 						AddSubview(overlayView);
 
 						var x = frame.X + frame.Width + 4;
-						frame = new RectangleF(x, frame.Y, frame.Width, frame.Height);
+						frame = new CGRect(x, frame.Y, frame.Width, frame.Height);
 					}
 				}
 			}

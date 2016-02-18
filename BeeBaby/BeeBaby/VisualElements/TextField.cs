@@ -25,7 +25,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		void SetKeyboardAcessory()
 		{
-			var toolbar = new UIToolbar(new RectangleF(0f, 0f, 240f, 44f));
+			var toolbar = new UIToolbar(new CGRect(0f, 0f, 240f, 44f));
 			toolbar.TintColor = UIColor.FromRGB(0, 174, 173);
 			toolbar.BarStyle = UIBarStyle.Default;
 			toolbar.Translucent = true;
@@ -43,7 +43,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the height of the offset.
 		/// </summary>
 		/// <value>The height of the offset.</value>
-		public float OffsetHeight {
+		public nfloat OffsetHeight {
 			get;
 			set;
 		}

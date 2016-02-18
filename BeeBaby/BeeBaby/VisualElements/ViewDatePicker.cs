@@ -60,7 +60,7 @@ namespace BeeBaby.VisualElements
 		{
 			if (m_mode == UIDatePickerMode.DateAndTime)
 			{
-				m_label = new UILabel(new RectangleF(247f, 12f, 63f, 21f));
+				m_label = new UILabel(new CGRect(247f, 12f, 63f, 21f));
 				m_label.TextAlignment = UITextAlignment.Right;
 				AddSubview(m_label);
 			}
@@ -71,7 +71,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		void AddImage()
 		{
-			m_image = new UIImageView(new RectangleF(9f, 14f, 16f, 16f));
+			m_image = new UIImageView(new CGRect(9f, 14f, 16f, 16f));
 			m_image.ContentMode = UIViewContentMode.Center;
 			AddSubview(m_image);
 		}
@@ -81,7 +81,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		void AddButton()
 		{
-			m_button = new UIButton(new RectangleF(0f, 0f, Frame.Width, Frame.Height));
+			m_button = new UIButton(new CGRect(0f, 0f, Frame.Width, Frame.Height));
 			m_button.ContentEdgeInsets = new UIEdgeInsets(1f, 33f, 0f, 0f);
 			m_button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 			m_button.SetStyleClass("highlighted");
@@ -106,26 +106,25 @@ namespace BeeBaby.VisualElements
 		{
 			InvokeInBackground(() => {
 				InvokeOnMainThread(() => {
-					m_datePicker = new UIDatePicker(new RectangleF(0f, Frame.Height, Frame.Width, 216f));
+					m_datePicker = new UIDatePicker(new CGRect(0f, Frame.Height, Frame.Width, 216f));
 					m_datePicker.Mode = m_mode;
 					m_datePicker.Date = DateTime;
 					m_datePicker.Hidden = true;
 
 					var layer = CALayer.Create();
 					layer.Opacity = 0.3f;
-					layer.Frame = new RectangleF(0f, 0f, Frame.Width, 1f);
+					layer.Frame = new CGRect(0f, 0f, Frame.Width, 1f);
 					layer.BackgroundColor = UIColor.FromRGB(185, 201, 197).CGColor;
 					m_datePicker.Layer.AddSublayer(layer);
 
 					m_datePicker.Layer.ShadowPath = UIBezierPath.FromRect(m_datePicker.Bounds).CGPath;
 					m_datePicker.Layer.ShadowColor = UIColor.LightGray.CGColor;
-					m_datePicker.Layer.ShadowOffset = new SizeF(0f, 0f);
+					m_datePicker.Layer.ShadowOffset = new CGSize(0f, 0f);
 					m_datePicker.Layer.ShadowOpacity = 0.05f;
 					m_datePicker.Layer.ShadowRadius = 1f;
 
 					var proxy = new EventProxy<ViewDatePicker, EventArgs>(this);
 					proxy.Action = (target, sender, args) => {
-						FlurryAnalytics.Flurry.LogEvent("Mudou a data.");
 						target.DateTime = ((UIDatePicker) sender).Date;
 						target.UpdateInfo();
 					};
@@ -150,7 +149,7 @@ namespace BeeBaby.VisualElements
 
 				m_datePicker.Hidden = !m_datePicker.Hidden;
 
-				float height = m_datePicker.Frame.Height * (m_datePicker.Hidden ? -1f : 1f);
+				nfloat height = m_datePicker.Frame.Height * (m_datePicker.Hidden ? -1f : 1f);
 				AdjustConstraints(height);
 			}
 		}
@@ -159,7 +158,7 @@ namespace BeeBaby.VisualElements
 		/// Adjusts the constraints.
 		/// </summary>
 		/// <param name="constant">Constant.</param>
-		void AdjustConstraints(float constant)
+		void AdjustConstraints(nfloat constant)
 		{
 			UIView.Animate(0.3d, () => {
 				Views.ChangeHeightAndDragNextViews(this, constant);
@@ -172,7 +171,7 @@ namespace BeeBaby.VisualElements
 					contentSize.Height += constant;
 					scrollView.ContentSize = contentSize;
 
-					scrollView.ScrollRectToVisible(new RectangleF(0f, Frame.Y, 1f, UIScreen.MainScreen.Bounds.Height - 64f), true);
+					scrollView.ScrollRectToVisible(new CGRect(0f, Frame.Y, 1f, UIScreen.MainScreen.Bounds.Height - 64f), true);
 				}
 			});
 		}

@@ -27,7 +27,6 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Fullscreen Foto: Abriu.");
 
 			base.ViewDidLoad();
 

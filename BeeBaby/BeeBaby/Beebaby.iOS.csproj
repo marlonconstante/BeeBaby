@@ -128,9 +128,6 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="FlurryAnalytics">
-      <HintPath>..\references\FlurryAnalytics.dll</HintPath>
-    </Reference>
     <Reference Include="PixateFreestyle">
       <HintPath>..\references\PixateFreestyle.dll</HintPath>
     </Reference>
@@ -140,14 +137,8 @@
     <Reference Include="Parse.iOS">
       <HintPath>..\references\Parse.iOS\Parse.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="MonoTouch.FacebookConnect">
-      <HintPath>..\Components\facebookios-3.13.1\lib\ios\MonoTouch.FacebookConnect.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp.MonoTouch">
       <HintPath>..\references\RestSharp.MonoTouch.dll</HintPath>
-    </Reference>
-    <Reference Include="BTProgressHUD">
-      <HintPath>..\Components\btprogresshud-1.10\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
     <Reference Include="SwipeViewer">
       <HintPath>..\references\SwipeViewer.dll</HintPath>
@@ -171,6 +162,9 @@
       <HintPath>..\references\HelperSharp.PCL.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\Components\btprogresshud-1.20\lib\ios-unified\BTProgressHUD.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Info.plist" />
@@ -572,12 +566,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="facebookios">
-      <Version>3.13.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="btprogresshud">
-      <Version>1.10</Version>
+      <Version>1.20</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

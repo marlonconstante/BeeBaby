@@ -33,7 +33,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		void AddPlaceholder()
 		{
-			m_placeholder = new Label(new RectangleF(10f, 10f, 300f, 34f));
+			m_placeholder = new Label(new CGRect(10f, 10f, 300f, 34f));
 			m_placeholder.TextColor = UIColor.LightGray;
 
 			AddSubview(m_placeholder);
@@ -44,7 +44,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		void SetKeyboardAcessory()
 		{
-			var toolbar = new UIToolbar(new RectangleF(0f, 0f, 240f, 44f));
+			var toolbar = new UIToolbar(new CGRect(0f, 0f, 240f, 44f));
 			toolbar.TintColor = UIColor.FromRGB(0, 174, 173);
 			toolbar.BarStyle = UIBarStyle.Default;
 			toolbar.Translucent = true;
@@ -72,7 +72,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the height of the offset.
 		/// </summary>
 		/// <value>The height of the offset.</value>
-		public float OffsetHeight {
+		public nfloat OffsetHeight {
 			get;
 			set;
 		}
@@ -121,7 +121,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the placeholder frame.
 		/// </summary>
 		/// <value>The placeholder frame.</value>
-		public RectangleF PlaceholderFrame {
+		public CGRect PlaceholderFrame {
 			get {
 				return m_placeholder.Frame;
 			}

@@ -20,7 +20,7 @@ namespace BeeBaby.VisualElements
 		{
 		}
 
-		public EventView(RectangleF frame) : base(frame, AvatarTemplate.PhotoAndDescription)
+		public EventView(CGRect frame) : base(frame, AvatarTemplate.PhotoAndDescription)
 		{
 		}
 
@@ -73,7 +73,7 @@ namespace BeeBaby.VisualElements
 		{
 			var x = (InitialFrame.Width / 2f) - (BadgeEventSize / 2f);
 
-			var view = new UIView(new RectangleF(x, 0f, BadgeEventSize, BadgeEventSize));
+			var view = new UIView(new CGRect(x, 0f, BadgeEventSize, BadgeEventSize));
 			view.SetStyleClass("badge-event");
 			view.AddSubview(BuildViewTagEvent());
 
@@ -88,7 +88,7 @@ namespace BeeBaby.VisualElements
 		{
 			base.Redraw(updateFrame);
 
-			var label = new Label(new RectangleF(115f, 0f, 200f, 22f));
+			var label = new Label(new CGRect(115f, 0f, 200f, 22f));
 			label.Text = "SwapEvent".Translate();
 			label.SetStyleClass("change-event-label");
 			label.TextAlignment = UITextAlignment.Right;
@@ -102,7 +102,7 @@ namespace BeeBaby.VisualElements
 		UIView BuildViewTagEvent()
 		{
 			var position = (BadgeEventSize - BadgeEventInnerSize) / 2;
-			var frame = new RectangleF(position, position, BadgeEventInnerSize, BadgeEventInnerSize);
+			var frame = new CGRect(position, position, BadgeEventInnerSize, BadgeEventInnerSize);
 
 			var view = new UIView(frame);
 			view.ContentMode = UIViewContentMode.Center;
@@ -115,7 +115,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the padding.
 		/// </summary>
 		/// <value>The padding.</value>
-		protected override float Padding {
+		protected override nfloat Padding {
 			get {
 				return base.Padding * Multiplier;
 			}
@@ -125,7 +125,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the size of the badge event.
 		/// </summary>
 		/// <value>The size of the badge event.</value>
-		float BadgeEventSize {
+		nfloat BadgeEventSize {
 			get {
 				return MediaBase.BadgeEventSize * Multiplier;
 			}
@@ -135,7 +135,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the size of the badge event inner.
 		/// </summary>
 		/// <value>The size of the badge event inner.</value>
-		float BadgeEventInnerSize {
+		nfloat BadgeEventInnerSize {
 			get {
 				return MediaBase.BadgeEventInnerSize * Multiplier;
 			}
@@ -145,7 +145,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the multiplier.
 		/// </summary>
 		/// <value>The multiplier.</value>
-		float Multiplier {
+		nfloat Multiplier {
 			get {
 				if (UIScreen.MainScreen.Bounds.Height <= 480f)
 				{

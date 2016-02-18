@@ -25,9 +25,9 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLayoutSubviews();
 
-			if (scrView.ContentSize == SizeF.Empty)
+			if (scrView.ContentSize == CGSize.Empty)
 			{
-				scrView.ContentSize = new SizeF(320f, 504f);
+				scrView.ContentSize = new CGSize(320f, 504f);
 			}
 		}
 

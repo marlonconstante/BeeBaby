@@ -8,7 +8,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the height of the offset.
 		/// </summary>
 		/// <value>The height of the offset.</value>
-		float OffsetHeight {
+		nfloat OffsetHeight {
 			get;
 			set;
 		}

@@ -5,6 +5,7 @@ using CoreGraphics;
 using BeeBaby.Util;
 using BeeBaby.Controllers;
 using BeeBaby.VisualElements;
+using System.Drawing;
 
 namespace BeeBaby.Notifications
 {

@@ -11,7 +11,7 @@ namespace BeeBaby.VisualElements
 
 		EventHandler m_clicked;
 
-		public UIImageViewClickable(RectangleF frame) : base(frame)
+		public UIImageViewClickable(CGRect frame) : base(frame)
 		{
 		}
 

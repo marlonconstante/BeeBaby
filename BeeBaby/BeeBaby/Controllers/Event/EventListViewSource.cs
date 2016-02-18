@@ -17,7 +17,7 @@ namespace BeeBaby.Controllers
 		EventListViewController m_viewController;
 		IList<Event> m_otherEventsTableItems;
 		IDictionary<string, UIImage> m_tagIcons = new Dictionary<string, UIImage>();
-		float m_scrollY;
+		nfloat m_scrollY;
 
 		public EventListViewSource(EventListViewController viewController, IList<Event> otherItems)
 		{

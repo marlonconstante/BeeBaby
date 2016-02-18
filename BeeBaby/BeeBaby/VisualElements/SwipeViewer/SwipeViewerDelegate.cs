@@ -20,7 +20,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		/// <returns>The view item size.</returns>
 		/// <param name="swipeView">Swipe view.</param>
-		public override SizeF SwipeViewItemSize(SwipeView swipeView)
+		public override SizeF SwipeViewItemSize (SwipeView swipeView)
 		{
 			return swipeView.Bounds.Size;
 		}

@@ -84,7 +84,7 @@ namespace BeeBaby.Controllers
 		/// Gets the frame.
 		/// </summary>
 		/// <value>The frame.</value>
-		public virtual RectangleF Frame {
+		public virtual CGRect Frame {
 			get {
 				return UIScreen.MainScreen.Bounds;
 			}

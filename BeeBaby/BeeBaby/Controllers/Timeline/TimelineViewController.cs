@@ -39,7 +39,6 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLoad();
 
-			FlurryAnalytics.Flurry.LogEvent("Momento: Timeline.", true);
 
 			CurrentContext.Instance.Scale = UIScreen.MainScreen.Scale;
 			CurrentContext.Instance.ReloadMoments = true;
@@ -61,17 +60,7 @@ namespace BeeBaby.Controllers
 			LoadEvents();
 			InitTimeline();
 		}
-
-		/// <summary>
-		/// Views the did disappear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidDisappear(bool animated)
-		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Timeline.", null);
-			base.ViewDidDisappear(animated);
-		}
-
+			
 		/// <summary>
 		/// Raises the sync performed event.
 		/// </summary>
@@ -235,7 +224,7 @@ namespace BeeBaby.Controllers
 					target.HidePopover();
 				};
 
-				m_popover = new Popover<TimelineViewController, EventArgs>(new RectangleF(0f, 0f, 240f, 0));
+				m_popover = new Popover<TimelineViewController, EventArgs>(new CGRect(0f, 0f, 240f, 0));
 				m_popover.MinY = tblView.Frame.Y;
 
 				m_popover.AddPopoverItem("AddPhotos".Translate(), "photo", true, c_buttonHeight, proxyAddPhotos);
@@ -390,7 +379,7 @@ namespace BeeBaby.Controllers
 		/// Gets the current cell rect.
 		/// </summary>
 		/// <value>The current cell rect.</value>
-		RectangleF CurrentCellRect {
+		CGRect CurrentCellRect {
 			get {
 				var tableRect = tblView.RectForRowAtIndexPath(m_currentIndexPath);
 				return tblView.ConvertRectToView(tableRect, View);

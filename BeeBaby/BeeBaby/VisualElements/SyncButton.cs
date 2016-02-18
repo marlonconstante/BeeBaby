@@ -23,7 +23,7 @@ namespace BeeBaby.VisualElements
 		/// Initializes a new instance of the <see cref="BeeBaby.VisualElements.SyncButton"/> class.
 		/// </summary>
 		/// <param name="frame">Frame.</param>
-		public SyncButton(RectangleF frame) : base(frame)
+		public SyncButton(CGRect frame) : base(frame)
 		{
 			SetUp();
 		}

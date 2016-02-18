@@ -13,7 +13,7 @@ namespace BeeBaby.VisualElements
 			InitDefaultValues();
 		}
 
-		public Label(RectangleF frame) : base(frame)
+		public Label(CGRect frame) : base(frame)
 		{
 			InitDefaultValues();
 		}
@@ -63,10 +63,10 @@ namespace BeeBaby.VisualElements
 		/// Gets the size of the text.
 		/// </summary>
 		/// <value>The size of the text.</value>
-		public SizeF TextSize
+		public CGSize TextSize
 		{
 			get {
-				return StringSize(Text, Font, new SizeF(Frame.Width, MaxHeight));
+				return StringSize(Text, Font, new CGSize(Frame.Width, MaxHeight));
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the height of the line.
 		/// </summary>
 		/// <value>The height of the line.</value>
-		public float LineHeight {
+		public nfloat LineHeight {
 			get;
 			set;
 		}
@@ -107,7 +107,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the height of the max.
 		/// </summary>
 		/// <value>The height of the max.</value>
-		public float MaxHeight {
+		public nfloat MaxHeight {
 			get;
 			set;
 		}

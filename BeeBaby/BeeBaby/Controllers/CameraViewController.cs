@@ -29,7 +29,6 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu a Camera.", true);
 			base.ViewDidLoad();
 
 			((MomentNavigationController) NavigationController).CreateMoment();
@@ -66,7 +65,6 @@ namespace BeeBaby.Controllers
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Camera: Abriu a Camera.", null);
 			base.ViewWillDisappear(animated);
 
 			StopSound();
@@ -123,7 +121,6 @@ namespace BeeBaby.Controllers
 		{
 			if (m_systemSound == null)
 			{
-				FlurryAnalytics.Flurry.LogEvent("Camera: Tocou som.");
 				string filePath = NSBundle.MainBundle.PathForResource("lake-waves", "mp3");
 				m_systemSound = SystemSound.FromFile(filePath);
 				m_systemSound.PlaySystemSound();
@@ -143,7 +140,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void ChangeFlashMode(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Mudou Flash.");
 			switch (m_cameraFlashMode)
 			{
 			case UIImagePickerControllerCameraFlashMode.Auto:
@@ -168,7 +164,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void SwitchCamera(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Trocou entre as cameras.");
 
 			bool front = m_picker.CameraDevice == UIImagePickerControllerCameraDevice.Front;
 			UIView.Transition(m_picker.View, 0.75f, UIViewAnimationOptions.TransitionFlipFromLeft, () => {
@@ -182,7 +177,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Close(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Botão Timeline.");
 
 			ShowProgressWhilePerforming(() => {
 				if (m_mediaPickerProvider != null)
@@ -200,7 +194,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void TakePhoto(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Tirou uma foto.");
 			m_picker.TakePicture();
 			UIView.Animate(0.1d, () => {
 				vwFlash.Alpha = 0.9f;

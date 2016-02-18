@@ -7,7 +7,7 @@ namespace BeeBaby.VisualElements
 {
 	public class UITagButton : UIButton
 	{
-		public UITagButton(RectangleF frame) : base(frame)
+		public UITagButton(CGRect frame) : base(frame)
 		{
 		}
 

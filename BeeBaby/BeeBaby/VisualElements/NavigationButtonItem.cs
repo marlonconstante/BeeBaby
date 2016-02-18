@@ -15,7 +15,7 @@ namespace BeeBaby.VisualElements
 		/// <param name="frame">Frame.</param>
 		/// <param name="paddingLeft">Padding left.</param>
 		/// <param name="styleClass">Style class.</param>
-		public NavigationButtonItem(RectangleF frame, float paddingLeft, string styleClass) : this(frame, CreateButton(frame, paddingLeft, styleClass))
+		public NavigationButtonItem(CGRect frame, nfloat paddingLeft, string styleClass) : this(frame, CreateButton(frame, paddingLeft, styleClass))
 		{
 		}
 
@@ -24,7 +24,7 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		/// <param name="frame">Frame.</param>
 		/// <param name="button">Button.</param>
-		public NavigationButtonItem(RectangleF frame, Button button)
+		public NavigationButtonItem(CGRect frame, Button button)
 		{
 			Button = button;
 			AddCustomView(frame);
@@ -37,7 +37,7 @@ namespace BeeBaby.VisualElements
 		/// <param name="frame">Frame.</param>
 		/// <param name="paddingLeft">Padding left.</param>
 		/// <param name="styleClass">Style class.</param>
-		static Button CreateButton(RectangleF frame, float paddingLeft, string styleClass)
+		static Button CreateButton(CGRect frame, nfloat paddingLeft, string styleClass)
 		{
 			frame.X += paddingLeft;
 
@@ -51,7 +51,7 @@ namespace BeeBaby.VisualElements
 		/// Adds the custom view.
 		/// </summary>
 		/// <param name="frame">Frame.</param>
-		void AddCustomView(RectangleF frame)
+		void AddCustomView(CGRect frame)
 		{
 			CustomView = new View(frame);
 			CustomView.AddSubview(Button);

@@ -21,9 +21,9 @@ namespace BeeBaby.Notifications
 		/// Devices the angle.
 		/// </summary>
 		/// <returns>The angle.</returns>
-		public float DeviceAngle()
+		public nfloat DeviceAngle()
 		{
-			return (float) Math.PI * DeviceRotation() / 180;
+			return (nfloat) Math.PI * DeviceRotation() / 180;
 		}
 
 		/// <summary>

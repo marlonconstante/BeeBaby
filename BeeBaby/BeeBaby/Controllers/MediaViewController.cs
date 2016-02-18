@@ -48,7 +48,6 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewWillAppear(animated);
 
-			FlurryAnalytics.Flurry.LogEvent("Escolher Fotos: Entrou na tela.", true);
 
 			if (!m_isOpenMediaLibrary)
 			{
@@ -70,18 +69,7 @@ namespace BeeBaby.Controllers
 				m_isOpenMediaLibrary = false;
 			}
 		}
-
-		/// <summary>
-		/// Views the will disappear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewWillDisappear(bool animated)
-		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Escolher Fotos: Entrou na tela.", null);
-
-			base.ViewWillDisappear(animated);
-		}
-
+			
 		/// <summary>
 		/// Translates the labels.
 		/// </summary>
@@ -98,7 +86,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void AddMediaFromLibrary(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Camera: Abriu o album do iPhone.");
 
 			var picker = ELCImagePickerViewController.Instance;
 			picker.MaximumImagesCount = 15;

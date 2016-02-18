@@ -14,6 +14,7 @@ using Infrastructure.Systems.Domain;
 using BeeBaby.Media;
 using BeeBaby.Controllers;
 using BeeBaby.Backup;
+using System.Drawing;
 
 namespace BeeBaby.ResourcesProviders
 {
@@ -323,7 +324,7 @@ namespace BeeBaby.ResourcesProviders
 			var fullImagePath = Path.Combine(directoryPath, fileName);
 			var thumbnailImagePath = Path.Combine(directoryPath, GetThumbnailImageName(fileName));
 
-			using (var fullScreenImage = ResizeFullScreenImage(image))
+			using (var fullScreenImage = ReCGSizeullScreenImage(image))
 			{
 				using (var imageData = fullScreenImage.AsJPEG(MediaBase.ImageCompressionQuality))
 				{
@@ -422,14 +423,14 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The image resize.</returns>
 		/// <param name="sourceImage">Source image.</param>
 		/// <param name="size">Size.</param>
-		UIImage CroppedImageResize(UIImage sourceImage, float size)
+		UIImage CroppedImageResize(UIImage sourceImage, nfloat size)
 		{
 			UIImage resultImage;
 
-			float width = sourceImage.Size.Width;
-			float height = sourceImage.Size.Height;
-			float marginHorizontal = 0;
-			float marginVertical = 0;
+			nfloat width = sourceImage.Size.Width;
+			nfloat height = sourceImage.Size.Height;
+			nfloat marginHorizontal = 0;
+			nfloat marginVertical = 0;
 
 			if (width > height)
 			{
@@ -444,10 +445,10 @@ namespace BeeBaby.ResourcesProviders
 				marginVertical = (height - width) / 2;
 			}
 
-			UIGraphics.BeginImageContextWithOptions(new SizeF(size, size), true, 0f);
+			UIGraphics.BeginImageContextWithOptions(new CGSize(size, size), true, 0f);
 			try
 			{
-				sourceImage.Draw(new RectangleF(-marginHorizontal, -marginVertical, width, height));
+				sourceImage.Draw(new CGRect(-marginHorizontal, -marginVertical, width, height));
 				resultImage = UIGraphics.GetImageFromCurrentImageContext();
 			}
 			finally
@@ -463,7 +464,7 @@ namespace BeeBaby.ResourcesProviders
 		/// </summary>
 		/// <returns>The full screen image.</returns>
 		/// <param name="sourceImage">Source image.</param>
-		UIImage ResizeFullScreenImage(UIImage sourceImage)
+		UIImage ReCGSizeullScreenImage(UIImage sourceImage)
 		{
 			return ResizeImage(sourceImage, MediaBase.FullScreenImageMaxSizeInPixels);
 		}
@@ -474,7 +475,7 @@ namespace BeeBaby.ResourcesProviders
 		/// <returns>The image.</returns>
 		/// <param name="sourceImage">Source image.</param>
 		/// <param name="maxSizeInPixels">Max size in pixels.</param>
-		UIImage ResizeImage(UIImage sourceImage, float maxSizeInPixels)
+		UIImage ResizeImage(UIImage sourceImage, nfloat maxSizeInPixels)
 		{
 			var size = sourceImage.Size;
 			var scale = sourceImage.CurrentScale;
@@ -482,7 +483,7 @@ namespace BeeBaby.ResourcesProviders
 			var maxSize = maxSizeInPixels / scale;
 			var ratio = Math.Min(Math.Min(maxSize / size.Width, maxSize / size.Height), 1f);
 
-			var preferredSize = new SizeF(size.Width * ratio, size.Height * ratio);
+			var preferredSize = new CGSize(size.Width * ratio, size.Height * ratio);
 			return sourceImage.Scale(preferredSize, scale);
 		}
 
@@ -505,7 +506,7 @@ namespace BeeBaby.ResourcesProviders
 				controller.SetInformation(moment, image);
 			}
 
-			UIGraphics.BeginImageContextWithOptions(new SizeF(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
+			UIGraphics.BeginImageContextWithOptions(new CGSize(MediaBase.ImageShareSize, MediaBase.ImageShareSize), false, 0f);
 			try
 			{
 				using (var context = UIGraphics.GetCurrentContext())

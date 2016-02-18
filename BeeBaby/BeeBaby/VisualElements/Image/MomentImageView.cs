@@ -9,7 +9,7 @@ namespace BeeBaby.VisualElements
 {
 	public class MomentImageView : UIImageViewClickable
 	{
-		public MomentImageView(RectangleF frame) : base(frame)
+		public MomentImageView(CGRect frame) : base(frame)
 		{
 		}
 

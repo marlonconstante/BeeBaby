@@ -15,7 +15,7 @@ namespace BeeBaby.VisualElements
 			InitDefaultValues();
 		}
 
-		public View(RectangleF frame) : base(frame)
+		public View(CGRect frame) : base(frame)
 		{
 			InitDefaultValues();
 		}

@@ -269,7 +269,7 @@ namespace BeeBaby.Controllers
 			momentCell.LabelWhere = string.Concat("At".Translate(), " ", Location.NameOrDefault(moment.LocationName));
 
 			var scrollWidth = moment.MomentMediaCount * MediaBase.ImageThumbnailSize;
-			momentCell.ViewPhotos.ContentSize = new SizeF(scrollWidth, MediaBase.ImageThumbnailSize);
+			momentCell.ViewPhotos.ContentSize = new CGSize(scrollWidth, MediaBase.ImageThumbnailSize);
 			momentCell.ViewPhotos.AddSubviews(GetViewPhotos(moment));
 
 			momentCell.HasDescription = !string.IsNullOrEmpty(moment.MomentDescription);
@@ -294,7 +294,7 @@ namespace BeeBaby.Controllers
 
 			for (var index = 0; index < moment.MomentMediaCount; index++)
 			{
-				var imageView = new MomentImageView(new RectangleF(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
+				var imageView = new MomentImageView(new CGRect(index * MediaBase.ImageThumbnailSize, 0f, MediaBase.ImageThumbnailSize, MediaBase.ImageThumbnailSize));
 
 				imageView.Moment = moment;
 				imageView.ItemIndex = index;

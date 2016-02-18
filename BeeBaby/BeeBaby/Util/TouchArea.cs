@@ -18,7 +18,7 @@ namespace BeeBaby.Util
 		/// <param name="point">Point.</param>
 		/// <param name="bounds">Bounds.</param>
 		/// <param name="extraTouchArea">Extra touch area.</param>
-		public static bool IsPointInside(PointF point, RectangleF bounds, int extraTouchArea)
+		public static bool IsPointInside(PointF point, CGRect bounds, int extraTouchArea)
 		{
 			UIEdgeInsets insets = new UIEdgeInsets(-extraTouchArea, -extraTouchArea, -extraTouchArea, -extraTouchArea);
 			return insets.InsetRect(bounds).Contains(point);

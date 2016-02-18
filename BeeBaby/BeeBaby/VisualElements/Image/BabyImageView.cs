@@ -7,7 +7,7 @@ namespace BeeBaby.VisualElements
 {
 	public class BabyImageView : UIImageViewClickable
 	{
-		public BabyImageView(RectangleF frame) : base(frame)
+		public BabyImageView(CGRect frame) : base(frame)
 		{
 		}
 

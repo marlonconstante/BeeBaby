@@ -23,14 +23,7 @@ namespace BeeBaby.VisualElements
 			return Images.Count;
 		}
 
-		/// <summary>
-		/// Views the index of the for item at.
-		/// </summary>
-		/// <returns>The for item at index.</returns>
-		/// <param name="swipeView">Swipe view.</param>
-		/// <param name="index">Index.</param>
-		/// <param name="view">View.</param>
-		public override UIView ViewForItemAtIndex(SwipeView swipeView, nint index, UIView view)
+		public override UIView ViewForItemAtIndex (SwipeView swipeView, int index, UIView view)
 		{
 			if (view == null)
 			{
@@ -45,7 +38,7 @@ namespace BeeBaby.VisualElements
 			imageView.Image = Images[index].Image;
 
 			return view;
-		}
+		} 
 
 		/// <summary>
 		/// Gets or sets the images.

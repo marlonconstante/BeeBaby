@@ -16,10 +16,10 @@ namespace BeeBaby.VisualElements
 	{
 		const float c_lineHeight = 0.5f;
 		const float c_padding = 10f;
-		float m_viewHeight;
+		nfloat m_viewHeight;
 		IList<UIView> m_menuItems;
 
-		public Popover(RectangleF frame) : base(frame)
+		public Popover(CGRect frame) : base(frame)
 		{
 			m_viewHeight = 0f;
 			m_menuItems = new List<UIView>();
@@ -100,9 +100,9 @@ namespace BeeBaby.VisualElements
 		/// <param name="addLine">If set to <c>true</c> add line.</param>
 		/// <param name="buttonHeight">Button height.</param>
 		/// <param name="proxy">Proxy.</param>
-		public void AddPopoverItem(string title, string iconClass, bool addLine, float buttonHeight, EventProxy<TDelegateController, EventArgs> proxy)
+		public void AddPopoverItem(string title, string iconClass, bool addLine, nfloat buttonHeight, EventProxy<TDelegateController, EventArgs> proxy)
 		{
-			var button = new Button(new RectangleF(0f, m_viewHeight, Frame.Width - c_padding, buttonHeight));
+			var button = new Button(new CGRect(0f, m_viewHeight, Frame.Width - c_padding, buttonHeight));
 			button.TitleEdgeInsets = new UIEdgeInsets(0.5f, 17f, 0f, 0f);
 			button.ImageEdgeInsets = new UIEdgeInsets(0f, 10f, 0f, 0f);
 			button.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
@@ -115,7 +115,7 @@ namespace BeeBaby.VisualElements
 
 			if (addLine)
 			{
-				var line = new UIView(new RectangleF(c_padding, m_viewHeight + buttonHeight, Frame.Width - (c_padding * 2f), c_lineHeight));
+				var line = new UIView(new CGRect(c_padding, m_viewHeight + buttonHeight, Frame.Width - (c_padding * 2f), c_lineHeight));
 				line.BackgroundColor = UIColor.FromRGB(200, 199, 204);
 
 				m_menuItems.Add(line);
@@ -139,7 +139,7 @@ namespace BeeBaby.VisualElements
 		/// Gets or sets the minimum y.
 		/// </summary>
 		/// <value>The minimum y.</value>
-		public float MinY { get; set; }
+		public nfloat MinY { get; set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this instance is visible.

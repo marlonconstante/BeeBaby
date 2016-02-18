@@ -30,7 +30,7 @@ namespace BeeBaby.VisualElements
 			Init(template);
 		}
 
-		public AvatarView(RectangleF frame, AvatarTemplate template) : base(frame)
+		public AvatarView(CGRect frame, AvatarTemplate template) : base(frame)
 		{
 			Init(template);
 		}
@@ -57,7 +57,7 @@ namespace BeeBaby.VisualElements
 			if (!string.IsNullOrEmpty(backgroundImageName))
 			{
 				var image = UIImage.FromFile(string.Format("{0}.png", backgroundImageName));
-				var imageView = new UIImageViewClickable(new RectangleF(0f, 0f, InitialFrame.Width, InitialFrame.Height));
+				var imageView = new UIImageViewClickable(new CGRect(0f, 0f, InitialFrame.Width, InitialFrame.Height));
 				imageView.ContentMode = UIViewContentMode.Center;
 
 				UpdateImageView(imageView, image, Template == AvatarTemplate.PhotoAndDescription);
@@ -120,7 +120,7 @@ namespace BeeBaby.VisualElements
 			}
 
 			var y = (InitialFrame.Height / 2f) - (height / 2f);
-			view.Frame = new RectangleF(0f, y, InitialFrame.Width, height);
+			view.Frame = new CGRect(0f, y, InitialFrame.Width, height);
 
 			AddSubview("avatar-view", view);
 		}
@@ -173,10 +173,10 @@ namespace BeeBaby.VisualElements
 		/// </summary>
 		/// <returns>The description.</returns>
 		/// <param name="y">The y coordinate.</param>
-		Label BuildDescription(float y)
+		Label BuildDescription(nfloat y)
 		{
 			var width = InitialFrame.Width - (Padding * 2f);
-			var label = new Label(new RectangleF(Padding, y, width, 0f));
+			var label = new Label(new CGRect(Padding, y, width, 0f));
 			label.SetStyleClass(GetDescriptionStyleClass());
 			label.TextAlignment = UITextAlignment.Center;
 			label.Text = GetDescription();
@@ -204,7 +204,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the padding.
 		/// </summary>
 		/// <value>The padding.</value>
-		protected virtual float Padding {
+		protected virtual nfloat Padding {
 			get {
 				return 7f;
 			}
@@ -228,7 +228,7 @@ namespace BeeBaby.VisualElements
 		/// Gets the initial frame.
 		/// </summary>
 		/// <value>The initial frame.</value>
-		public RectangleF InitialFrame {
+		public CGRect InitialFrame {
 			get;
 			private set;
 		}

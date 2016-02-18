@@ -49,7 +49,6 @@ namespace BeeBaby.Controllers
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewDidAppear(bool animated)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Baby: Cadastro do Bebe", true);
 			base.ViewDidAppear(animated);
 		}
 
@@ -59,7 +58,6 @@ namespace BeeBaby.Controllers
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Baby: Cadastro do Bebe", null);
 			base.ViewWillDisappear(animated);
 
 			Save();
@@ -72,9 +70,9 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLayoutSubviews();
 
-			if (scrView.ContentSize == SizeF.Empty)
+			if (scrView.ContentSize == CGSize.Empty)
 			{
-				scrView.ContentSize = new SizeF(320f, 455f);
+				scrView.ContentSize = new CGSize(320f, 455f);
 			}
 		}
 

@@ -26,8 +26,8 @@ namespace BeeBaby.Controllers
 		const string s_firstsTagName = "Firsts";
 		const string s_everydayTagName = "Everyday";
 
-		float m_tagsHeight;
-		float m_minTagsHeight;
+		nfloat m_tagsHeight;
+		nfloat m_minTagsHeight;
 		string m_selectedTag;
 		IList<string> m_buttonNamesList;
 		IList<Event> m_events;
@@ -43,7 +43,6 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		public override void ViewDidLoad()
 		{
-			FlurryAnalytics.Flurry.LogEvent("Eventos: Entrou na tela.", true);
 
 			base.ViewDidLoad();
 
@@ -92,17 +91,7 @@ namespace BeeBaby.Controllers
 
 			MoveScrollToTop(false);
 		}
-
-		/// <summary>
-		/// Views the did disappear.
-		/// </summary>
-		/// <param name="animated">If set to <c>true</c> animated.</param>
-		public override void ViewDidDisappear(bool animated)
-		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Entrou na tela.", null);
-			base.ViewDidDisappear(animated);
-		}
-
+			
 		/// <summary>
 		/// Shows the view tags.
 		/// </summary>
@@ -128,7 +117,7 @@ namespace BeeBaby.Controllers
 			if (tblView.NumberOfRowsInSection(0) > 0)
 			{
 				tblView.DeselectRow(tblView.IndexPathForSelectedRow, animated);
-				tblView.ScrollRectToVisible(new RectangleF(0f, 0f, 1f, schBar.Frame.Height), animated);
+				tblView.ScrollRectToVisible(new CGRect(0f, 0f, 1f, schBar.Frame.Height), animated);
 				ResizeViewTags(m_tagsHeight, animated);
 			}
 		}
@@ -138,7 +127,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <param name="y">The y coordinate.</param>
 		/// <param name="adjustLimit">If set to <c>true</c> adjust limit.</param>
-		public void MoveScroll(float y, bool adjustLimit)
+		public void MoveScroll(nfloat y, bool adjustLimit)
 		{
 			var height = tagsHeightConstraint.Constant + y;
 			if ((height > m_tagsHeight) || (adjustLimit && y > 0f))
@@ -157,7 +146,7 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		/// <param name="height">Height.</param>
 		/// <param name="animated">If set to <c>true</c> animated.</param>
-		void ResizeViewTags(float height, bool animated)
+		void ResizeViewTags(nfloat height, bool animated)
 		{
 			var difference = Math.Abs(tagsHeightConstraint.Constant - height);
 			if (difference != 0f)
@@ -181,7 +170,6 @@ namespace BeeBaby.Controllers
 		/// </summary>
 		void ScrollEvent()
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Eventos: Paginou as Tags.", null);
 
 			pcrPager.CurrentPage = (int)Math.Floor(scrView.ContentOffset.X / scrView.Frame.Size.Width);
 		}
@@ -220,9 +208,9 @@ namespace BeeBaby.Controllers
 		/// <param name="x">The x coordinate.</param>
 		/// <param name="y">The y coordinate.</param>
 		/// <param name="tagName">Tag name.</param>
-		UITagButton CreateButton(float x, float y, string tagName)
+		UITagButton CreateButton(nfloat x, nfloat y, string tagName)
 		{
-			var button = new UITagButton(new RectangleF(x, y, s_buttonSizeX, s_buttonSizeY));
+			var button = new UITagButton(new CGRect(x, y, s_buttonSizeX, s_buttonSizeY));
 			button.BackgroundColor = UIColor.Clear;
 			button.TagName = tagName;
 			button.MultipleTouchEnabled = true;
@@ -252,7 +240,6 @@ namespace BeeBaby.Controllers
 			if (selected)
 			{
 				var param = new NSDictionary("Tag", sender.TagName);
-				FlurryAnalytics.Flurry.LogEvent("Eventos: Filtrou pela Tag.", param);
 
 				sender.AddStyleClass("border");
 				sender.AddStyleClass("selected");
@@ -273,12 +260,12 @@ namespace BeeBaby.Controllers
 		{
 			const float x = ((s_buttonSizeX - s_imageSize) / 2);
 
-			var view = new UIView(new RectangleF(x, 0f, s_imageSize, s_imageSize));
+			var view = new UIView(new CGRect(x, 0f, s_imageSize, s_imageSize));
 			view.UserInteractionEnabled = false;
 			view.ContentMode = UIViewContentMode.Center;
 			view.SetStyleClass(tagName.ToLower());
 
-			var overlay = new UIView(new RectangleF(0f, 0f, s_imageSize, s_imageSize));
+			var overlay = new UIView(new CGRect(0f, 0f, s_imageSize, s_imageSize));
 			overlay.SetStyleClass("event-tag-overlay");
 			view.AddSubview(overlay);
 
@@ -291,9 +278,9 @@ namespace BeeBaby.Controllers
 		void ConfigureScrollView()
 		{
 			var numberOfTags = m_buttonNamesList.Count;
-			var scrollWidth = (float)(Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
+			var scrollWidth = (nfloat)(Math.Floor(numberOfTags / 6f) + 1) * scrView.Frame.Size.Width;
 
-			scrView.ContentSize = new SizeF(scrollWidth, s_buttonSizeY * 2);
+			scrView.ContentSize = new CGSize(scrollWidth, s_buttonSizeY * 2);
 			scrView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 
 			pcrPager.Pages = (int)Math.Floor(scrView.ContentSize.Width / scrView.Frame.Size.Width);
@@ -425,7 +412,7 @@ namespace BeeBaby.Controllers
 		void SetTitle(UITagButton button, string tagName)
 		{
 			var text = tagName.Translate();
-			var label = new UILabel(new RectangleF(0, s_imageSize, s_buttonSizeX, 20));
+			var label = new UILabel(new CGRect(0, s_imageSize, s_buttonSizeX, 20));
 			label.Text = text;
 			label.TextAlignment = UITextAlignment.Center;
 			label.SetStyleClass("tag-button-text");
@@ -490,7 +477,7 @@ namespace BeeBaby.Controllers
 		/// Gets the height of the view tags.
 		/// </summary>
 		/// <value>The height of the view tags.</value>
-		public float ViewTagsHeight {
+		public nfloat ViewTagsHeight {
 			get {
 				return m_tagsHeight;
 			}

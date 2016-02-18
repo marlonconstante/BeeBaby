@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using Application;
 using BigTed;
-using MonoTouch.FacebookConnect;
 using Foundation;
 using UIKit;
 using Parse;
@@ -77,7 +76,7 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void OnActivated(UIApplication application)
 		{
-			FBAppEvents.ActivateApp();
+			
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
@@ -88,7 +87,6 @@ namespace BeeBaby
 		/// <param name="application">Application.</param>
 		public override void WillTerminate(UIApplication application)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Fechou o App.");
 		}
 
 		/// <summary>
@@ -180,9 +178,7 @@ namespace BeeBaby
 		/// </summary>
 		void ThirdPartyIntegrationsRegister()
 		{
-			InitFacebook();
 			InitParse();
-			InitFlurry();
 			InitInsights();
 		}
 
@@ -193,30 +189,13 @@ namespace BeeBaby
 		{
 			Insights.Initialize("adcd994ba92f33cf0ee12721261321c4c9c7632f");
 		}
-
-		/// <summary>
-		/// Inits the facebook.
-		/// </summary>
-		void InitFacebook()
-		{
-			FBSettings.DefaultAppID = FacebookApplicationId;
-			FBSettings.DefaultDisplayName = FacebookDisplayName;
-		}
-
+			
 		/// <summary>
 		/// Inits the parse.
 		/// </summary>
 		void InitParse()
 		{
 			ParseClient.Initialize(ParseApplicationId, ParseDotNetKey);
-		}
-
-		/// <summary>
-		/// Inits the flurry.
-		/// </summary>
-		void InitFlurry()
-		{
-			FlurryAnalytics.Flurry.StartSession(FlurryApiKey);
 		}
 
 		/// <summary>
@@ -229,7 +208,7 @@ namespace BeeBaby
 			hud.HudFont = UIFont.FromName("Quicksand", 16f);
 
 			var frame = hud.Frame;
-			frame.Y = (float) Math.Ceiling(hud.Bounds.Height / 20f);
+			frame.Y = (nfloat) Math.Ceiling(hud.Bounds.Height / 20f);
 			hud.Frame = frame;
 		}
 

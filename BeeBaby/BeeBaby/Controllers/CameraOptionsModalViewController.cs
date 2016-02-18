@@ -81,9 +81,9 @@ namespace BeeBaby.Controllers
 		/// Gets the frame.
 		/// </summary>
 		/// <value>The frame.</value>
-		public override RectangleF Frame {
+		public override CGRect Frame {
 			get {
-				return new RectangleF(0f, 0f, base.Frame.Width, base.Frame.Height - 40f);
+				return new CGRect(0f, 0f, base.Frame.Width, base.Frame.Height - 40f);
 			}
 		}
 	}

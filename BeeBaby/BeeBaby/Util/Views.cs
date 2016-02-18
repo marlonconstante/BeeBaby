@@ -15,7 +15,7 @@ namespace BeeBaby.Util
 		/// </summary>
 		/// <param name="view">View.</param>
 		/// <param name="constant">Constant.</param>
-		public static void ChangeHeightAndDragNextViews(UIView view, float constant)
+		public static void ChangeHeightAndDragNextViews(UIView view, nfloat constant)
 		{
 			var superview = view.Superview;
 			var nextViews = Views.GetNextViews(view);

@@ -50,7 +50,7 @@ namespace BeeBaby.Controllers
 			txtLocalName.PlaceholderColor = UIColor.FromRGB(77, 95, 92);
 
 			txtDescription.TextContainerInset = new UIEdgeInsets(13f, 27f, 0f, 0f);
-			txtDescription.PlaceholderFrame = new RectangleF(32f, 14f, 275f, 34f);
+			txtDescription.PlaceholderFrame = new CGRect(32f, 14f, 275f, 34f);
 
 			m_userLocation = new UserLocation();
 			if (IsCameraFlow())
@@ -67,8 +67,6 @@ namespace BeeBaby.Controllers
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillAppear(bool animated)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Momento: Cadastro.", true);
-
 			base.ViewWillAppear(animated);
 
 			txtLocalName.ShouldBeginEditing += InputLocalBeginEditing;
@@ -106,7 +104,6 @@ namespace BeeBaby.Controllers
 		/// <param name="animated">If set to <c>true</c> animated.</param>
 		public override void ViewWillDisappear(bool animated)
 		{
-			FlurryAnalytics.Flurry.EndTimedEvent("Momento: Cadastro.", null);
 
 			base.ViewWillDisappear(animated);
 
@@ -124,9 +121,9 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLayoutSubviews();
 
-			if (scrView.ContentSize == SizeF.Empty)
+			if (scrView.ContentSize == CGSize.Empty)
 			{
-				scrView.ContentSize = new SizeF(320f, UIScreen.MainScreen.Bounds.Height - 64f);
+				scrView.ContentSize = new CGSize(320f, UIScreen.MainScreen.Bounds.Height - 64f);
 				AdjustConstraints();
 			}
 		}
@@ -155,7 +152,6 @@ namespace BeeBaby.Controllers
 				var place = GetLocation(location.Position);
 				if (place.DistanceFrom(currentPlace) <= 200d)
 				{
-					FlurryAnalytics.Flurry.LogEvent("Momento: GPS Localizou automatico.");
 					SelectLocation(location);
 					break;
 				}
@@ -297,7 +293,6 @@ namespace BeeBaby.Controllers
 		/// <param name="sender">Sender.</param>
 		partial void Save(UIButton sender)
 		{
-			FlurryAnalytics.Flurry.LogEvent("Momento: Salvou momento.");
 
 			ShowProgressWhilePerforming(() => {
 				var moment = CurrentContext.Instance.Moment;

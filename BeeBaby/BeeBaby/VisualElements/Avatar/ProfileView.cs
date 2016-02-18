@@ -23,7 +23,7 @@ namespace BeeBaby.VisualElements
 		{
 		}
 
-		public ProfileView(RectangleF frame) : base(frame, AvatarTemplate.PhotoAndDescription)
+		public ProfileView(CGRect frame) : base(frame, AvatarTemplate.PhotoAndDescription)
 		{
 		}
 
@@ -101,8 +101,8 @@ namespace BeeBaby.VisualElements
 				var width = Math.Min(InitialFrame.Width, totalWidth);
 				var x = (InitialFrame.Width / 2f) - (width / 2f);
 
-				var scrollView = new UIScrollView(new RectangleF(x, 0f, width, InitialFrame.Height));
-				scrollView.ContentSize = new SizeF(totalWidth, InitialFrame.Height);
+				var scrollView = new UIScrollView(new CGRect(x, 0f, width, InitialFrame.Height));
+				scrollView.ContentSize = new CGSize(totalWidth, InitialFrame.Height);
 
 				var index = 0;
 				foreach (var babyProfile in babyProfiles)
@@ -195,7 +195,7 @@ namespace BeeBaby.VisualElements
 				x = index * (MediaBase.PhotoProfileSize + Padding) + Padding;
 			}
 
-			var view = new UIView(new RectangleF(x, y, MediaBase.PhotoProfileSize, MediaBase.PhotoProfileSize));
+			var view = new UIView(new CGRect(x, y, MediaBase.PhotoProfileSize, MediaBase.PhotoProfileSize));
 			view.SetStyleClass("photo-profile");
 			view.AddSubview(BuildImageViewProfile(babyProfile));
 
@@ -210,7 +210,7 @@ namespace BeeBaby.VisualElements
 		BabyImageView BuildImageViewProfile(BabyProfile babyProfile)
 		{
 			var position = (MediaBase.PhotoProfileSize - MediaBase.PhotoProfileInnerSize) / 2;
-			var frame = new RectangleF(position, position, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
+			var frame = new CGRect(position, position, MediaBase.PhotoProfileInnerSize, MediaBase.PhotoProfileInnerSize);
 
 			var imageView = new BabyImageView(frame);
 			imageView.BabyProfile = babyProfile;

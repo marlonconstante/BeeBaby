@@ -37,10 +37,12 @@ namespace BeeBaby.Activity
 		/// <summary>
 		/// Rectangles for preview.
 		/// </summary>
+		/// <returns>The for preview.</returns>
 		/// <param name="controller">Controller.</param>
-		public override CGRect RectangleForPreview(UIDocumentInteractionController controller)
+		public override CGRect RectangleForPreview (UIDocumentInteractionController controller)
 		{
 			return _viewController.View.Frame;
 		}
+
 	}
 }

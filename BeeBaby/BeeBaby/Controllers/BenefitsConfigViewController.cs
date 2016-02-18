@@ -27,9 +27,9 @@ namespace BeeBaby.Controllers
 		{
 			base.ViewDidLayoutSubviews();
 
-			if (scrView.ContentSize == SizeF.Empty)
+			if (scrView.ContentSize == CGSize.Empty)
 			{
-				scrView.ContentSize = new SizeF(320f, 504f);
+				scrView.ContentSize = new CGSize(320f, 504f);
 			}
 		}
 
@@ -49,9 +49,9 @@ namespace BeeBaby.Controllers
 		/// Lefts the bar button frame.
 		/// </summary>
 		/// <returns>The bar button frame.</returns>
-		public override RectangleF LeftBarButtonFrame()
+		public override CGRect LeftBarButtonFrame()
 		{
-			return RectangleF.Empty;
+			return CGRect.Empty;
 		}
 
 		/// <summary>
